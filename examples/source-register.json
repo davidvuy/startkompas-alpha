@@ -1,0 +1,66 @@
+{
+  "schema_version": "sk22-register-v1",
+  "version": "0.1.0",
+  "sources": [
+    {
+      "id": "agent-skills-spec",
+      "url": "https://agentskills.io/specification",
+      "title": "Agent Skills specification",
+      "kind": "primary",
+      "published_on": null,
+      "effective_on": null,
+      "checked_on": "2026-10-27",
+      "recheck_reason": "Recheck before packaging changes or if the specification changes",
+      "rights": {
+        "mode": "link_and_own_summary",
+        "licence_ref": null,
+        "note": "URL and original short paraphrase only; no upstream text copied or redistribution licence inferred"
+      }
+    }
+  ],
+  "claims": [
+    {
+      "id": "selective-resources",
+      "text": "The specification describes loading supporting resources when the current task needs them.",
+      "context": "Architecture guidance for selective resource loading; not proof of host behavior or domain correctness",
+      "source_ids": [
+        "agent-skills-spec"
+      ],
+      "reviews": {
+        "source": {
+          "status": "not_reviewed",
+          "reviewer": null,
+          "date": null,
+          "scope": "Agent Skills resource loading in the local Codex prototype",
+          "note": "No independent review recorded",
+          "evidence_ids": []
+        },
+        "interpretation": {
+          "status": "not_reviewed",
+          "reviewer": null,
+          "date": null,
+          "scope": "Agent Skills resource loading in the local Codex prototype",
+          "note": "No independent review recorded",
+          "evidence_ids": []
+        },
+        "applicability": {
+          "status": "not_reviewed",
+          "reviewer": null,
+          "date": null,
+          "scope": "Agent Skills resource loading in the local Codex prototype",
+          "note": "No independent review recorded",
+          "evidence_ids": []
+        },
+        "coverage": {
+          "status": "not_reviewed",
+          "reviewer": null,
+          "date": null,
+          "scope": "Agent Skills resource loading in the local Codex prototype",
+          "note": "No independent review recorded",
+          "evidence_ids": []
+        }
+      }
+    }
+  ],
+  "conflicts": []
+}

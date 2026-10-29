@@ -1,0 +1,19 @@
+{
+  "project_id": "pilot-orbit",
+  "expected_revision": 1,
+  "operation_id": "offer-example-1",
+  "at": "2026-10-29",
+  "language": "nl",
+  "kind": "offer",
+  "client": "Synthetic Alder agency",
+  "period": "October 2026",
+  "previous_artifact_id": null,
+  "change_reason": null,
+  "fields": [
+    {"key":"segment","value":"Een fictief klein ontwerpbureau","assertion":"proposal","record_ids":[]},
+    {"key":"outcome","value":"Eén bestaand rapport verduidelijken","assertion":"proposal","record_ids":[]},
+    {"key":"delivery","value":"Eén handmatig concept op synthetische gegevens","assertion":"proposal","record_ids":[]},
+    {"key":"exclusions","value":"Geen productie-integratie of echte klantgegevens","assertion":"proposal","record_ids":[]},
+    {"key":"next_check","value":"Eerst de recente werkwijze van een passende klant begrijpen; er is nog geen gesprek gehouden","assertion":"proposal","record_ids":[]}
+  ]
+}

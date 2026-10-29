@@ -1,0 +1,9 @@
+# Bounded work and honest stopping
+
+Before a research/execution task, record its scope and operational limits: elapsed time, maximum tool calls and maximum repair attempts. Reuse explicit user/host limits. Otherwise choose a small stated local work unit (for example5 minutes,10 calls, one targeted repair) and checkpoint before exceeding it. These are operational bounds, not David's missing phase/euro budget or authority to buy anything. Small direct answers do not need a ledger ritual.
+
+Use actual host timestamps and available usage metadata. Tokens/cost not exposed remain unknown; never substitute model elapsed time for active human minutes. Keep errors, truncated output, partial artifacts and exact attempts. On a missing tool or exhausted limit stop dependent actions and give one concrete next step. For unavailable sources, preserve the failed URL/time and which conclusion stays open; do not invent a verified answer. Do useful independent work only under a separately scoped task budget.
+
+Before retrying an ambiguous external action, inspect the actual receipt/state to avoid duplicates. A timeout is not proof of failure. Reuse an existing idempotent operation request where supported; never create a new operation ID just to bypass an uncertain result. After the permitted targeted repairs, preserve the remaining issue instead of retrying indefinitely.
+
+Optional existing-dossier route: `docs/run-limits.md` describes a strict reported-event ledger and `src/run-cli.mjs`. It computes stop/reconcile status and prepares an attachment; it is not a tool interceptor, a background timer or verified telemetry. Use actual host enforcement where available and describe any procedural-only limits. A checkpoint proposal is not saved until actual attachment/write and readback succeed. Never mark business checks complete from execution-budget metadata.

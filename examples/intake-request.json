@@ -1,0 +1,15 @@
+{
+  "project_id": "pilot-orbit",
+  "source_revision": 1,
+  "mode": "task",
+  "task_id": "task-1",
+  "revisit_deferred": false,
+  "candidates": [
+    {
+      "key": "available_hours",
+      "text": "Hoeveel tijd kun je voor deze stap vrijmaken?",
+      "why": "Daarmee begrenzen we de voorbereiding.",
+      "needed_for": "task-1"
+    }
+  ]
+}

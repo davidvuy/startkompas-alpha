@@ -1,0 +1,16 @@
+{
+  "project_id": "pilot-orbit",
+  "task_id": "task-1",
+  "scope": "Synthetic source-check attempt; not a real source outage",
+  "started_at": "2026-10-27T10:00:00.000Z",
+  "finished_at": "2026-10-27T10:01:00.000Z",
+  "state": "stopped",
+  "limits": {"elapsed_ms": 300000, "tool_calls": 10, "repair_attempts": 1},
+  "events": [
+    {"id": "attempt-1", "at": "2026-10-27T10:00:30.000Z", "type": "tool", "outcome": "source_unavailable", "note": "Synthetic unavailable source; conclusion remains open", "related_event_id": null, "receipt_ref": null}
+  ],
+  "usage": {"input_tokens": null, "output_tokens": null, "cost_eur": null},
+  "measurement_source": "Synthetic clock/event fixture; no actual model call or billed cost",
+  "partial_result": "Question and intended source recorded; no source content verified",
+  "next_step": "Check an accessible primary source in a separately bounded task; retain the original failure"
+}

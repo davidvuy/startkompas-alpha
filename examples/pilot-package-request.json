@@ -1,0 +1,45 @@
+{
+  "project_id": "pilot-orbit",
+  "expected_revision": 1,
+  "operation_id": "pilot-package-1",
+  "at": "2026-10-28",
+  "language": "nl",
+  "scope": "Fictieve pilot; klantbehoefte nog niet onderzocht",
+  "sections": [
+    {
+      "kind": "brief",
+      "summary": "Concept voor één kleine leerproef; geen lancering goedgekeurd.",
+      "record_ids": [
+        "fact-1",
+        "decision-1"
+      ]
+    },
+    {
+      "kind": "conditions",
+      "summary": null,
+      "record_ids": []
+    },
+    {
+      "kind": "costs",
+      "summary": null,
+      "record_ids": []
+    },
+    {
+      "kind": "acceptance",
+      "summary": null,
+      "record_ids": [
+        "task-1"
+      ]
+    },
+    {
+      "kind": "recruitment",
+      "summary": null,
+      "record_ids": []
+    },
+    {
+      "kind": "support",
+      "summary": null,
+      "record_ids": []
+    }
+  ]
+}
