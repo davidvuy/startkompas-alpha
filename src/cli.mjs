@@ -1,3 +1,4 @@
+import {publicError} from './cli-errors.mjs';
 import {createProject,resumeProject,readJSON} from './dossier.mjs';
 const [command,dir,arg,...extra]=process.argv.slice(2);
 try {
@@ -5,6 +6,6 @@ try {
   const result=command==='create'?createProject(dir,readJSON(arg).data):resumeProject(dir,arg);
   console.log(JSON.stringify({operation:command,...result},null,2));
 } catch(error) {
-  console.error(JSON.stringify({error:error.code==='EEXIST'?'Dossier already exists; creation cannot overwrite it':error.message}));
+  console.error(JSON.stringify(publicError(error)));
   process.exitCode=1;
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
+import {publicError} from './cli-errors.mjs';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 
@@ -18,10 +19,13 @@ const routes={
 };
 const [route,...args]=process.argv.slice(2);
 function help(){
-  return ['Startkompas — internal local preview','',
+  return ['Startkompas — public alpha','',
     'Usage: node src/startkompas.mjs <route> <command> [arguments]',
     '       npm run startkompas -- <route> <command> [arguments]','',
     ...Object.entries(routes).map(([name,[,description]])=>'  '+name.padEnd(10)+description),'',
+    'Check installation: doctor | Guided setup: start',
+    'Readable project: overview <directory> <id> [nl|en]',
+    'Compare versions: compare <directory> <id> <older> <newer>',
     'New project: project init <new-private-directory> <request.json>',
     'Resume:      project handoff <private-directory> <expected-project-id>',
     'Drafts:      business types | business read <directory> <project-id> <artifact-id>',
@@ -38,11 +42,12 @@ try{
     console.log(JSON.parse(fs.readFileSync(new URL('../package.json',import.meta.url),'utf8')).version);
   }else{
     // Fixed route allowlist; arguments never become shell code or module paths.
-    const legacy=['create','resume'].includes(route),entry=legacy?routes.legacy:routes[route];
-    if(!entry||!Object.hasOwn(routes,legacy?'legacy':route))throw Error('Unknown route: '+route+'; use --help');
-    const child=spawnSync(process.execPath,[fileURLToPath(new URL(entry[0],import.meta.url)),...(legacy?[route,...args]:args)],{stdio:'inherit',shell:false,windowsHide:true});
+    const welcome=['doctor','start','overview','compare'].includes(route);
+    const legacy=['create','resume'].includes(route),entry=welcome?['welcome-cli.mjs']:legacy?routes.legacy:routes[route];
+    if(!entry||(!welcome&&!Object.hasOwn(routes,legacy?'legacy':route)))throw Error('Unknown route: '+route+'; use --help');
+    const child=spawnSync(process.execPath,[fileURLToPath(new URL(entry[0],import.meta.url)),...((legacy||welcome)?[route,...args]:args)],{stdio:'inherit',shell:false,windowsHide:true});
     if(child.error)throw child.error;
     if(child.signal){console.error(JSON.stringify({error:'Command interrupted',signal:child.signal}));process.exitCode=1;}
     else process.exitCode=child.status??1;
   }
-}catch(error){console.error(JSON.stringify({error:error.message}));process.exitCode=1;}
+}catch(error){console.error(JSON.stringify(publicError(error)));process.exitCode=1;}

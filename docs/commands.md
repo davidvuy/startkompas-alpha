@@ -43,3 +43,7 @@ The installed npm startkompas alias now opens this common route. Top-level `crea
 ## First answer in a new project
 An empty project has no sources. An intake answer may supply an explicit new source alongside source_id, with title, location and scope. The source and reported answer are proposed together and saved by the existing guarded project update command. Existing source IDs must omit source; new metadata never replaces an existing record. A source describes where the report came from, not verification of the claim. Unknown answers use null. Preparation does not write; save the exact proposal once and retain it for retries.
 See examples/first-intake-answer.json. Set project_id, source_revision, operation_id, date, answer and source description to the actual project and user input before preparing. Run intake answer <directory> <request.json>, save its JSON output, then project update <directory> <saved-proposal.json>. Do not regenerate a proposal to retry an uncertain write.
+
+
+## Alpha 2 guided tools
+Run doctor for read-only installation checks; start asks for the minimal new-project inputs and confirms before saving. overview <directory> <project-id> [nl|en] gives a readable saved-state summary. compare <directory> <project-id> <older> <newer> lists changed record IDs/fields without private values. These tools do not call an AI service or add telemetry. See alpha-improvements.md.
