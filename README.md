@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/startkompas-logo.png" alt="Startkompas logo — Since 2026" width="321" height="255">
+</p>
+
 # Startkompas — public alpha
 
 Keep project decisions, unfinished work and the basis for your business drafts together. This early local Codex skill lets you save a draft, change a premise, see what needs review and resume later.
