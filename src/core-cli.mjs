@@ -1,3 +1,4 @@
+import {publicError} from './cli-errors.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {checkModel} from './model.mjs';
@@ -35,4 +36,4 @@ try {
     default:throw Error('Commands: validate init create read retrieve update attach export history snapshot-export restore migrate unlock handoff save-handoff plan reuse impact upgrade-workflow; see docs/core-route.md and docs/workflow-route.md');
   }
   console.log(JSON.stringify(result,null,2));
-}catch(e){console.error(JSON.stringify({error:e.message}));process.exitCode=1;}
+}catch(e){console.error(JSON.stringify(publicError(e)));process.exitCode=1;}

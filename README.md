@@ -8,6 +8,10 @@ Keep project decisions, unfinished work and the basis for your business drafts t
 
 This is an experimental alpha. Independent user validation is still ahead. No measured time saving, business success or compliance outcome is promised. Download this repository using Code → Download ZIP, or clone https://github.com/davidvuy/startkompas-alpha. For feedback use https://github.com/davidvuy/startkompas-alpha/issues.
 
+## Easier start in alpha 2
+
+Run `node src/startkompas.mjs doctor`, then `node src/startkompas.mjs start` for guided setup without a JSON request. Use `overview <directory> <project-id> [nl|en]` for a readable summary and `compare <directory> <project-id> <older> <newer>` for saved changes. See [the alpha 2 guide](docs/alpha-improvements.md).
+
 ## Try the local helper
 
 Prerequisites: Node.js and npm. The recorded development and package tests use Windows and Node 26.7.0; other versions and operating systems are not yet qualified. Codex access is needed for AI-assisted use, with your provider's own quotas and charges. The following deterministic demo does not call an AI service.
@@ -50,4 +54,4 @@ Never attach private dossiers, customer data, credentials or full conversation l
 
 Local dossiers do not make AI processing local: text supplied to Codex can be processed by its provider. Keep backups and inspect exports before sharing. Removing the application does not erase private projects, shared exports or provider records. Do not use draft business content as qualified legal, tax or security advice. Claude, browser/mobile routes and managed cloud services are not offered by this alpha.
 
-The code underlying this alpha has 167 passing source tests and 167 passing clean-install tests. Its fictional offer demo passes seven checks. These are technical checks, not real-user validation.
+The alpha1 baseline passed 167 source and clean-install tests. Alpha2 adds onboarding, comparison and error-privacy regressions; see the public Quality workflow and release notes for its current result. The fictional offer demo covers seven checks. These are technical checks, not real-user validation.
