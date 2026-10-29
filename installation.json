@@ -1,6 +1,6 @@
 {
-  "source_revision": "a8131be714a37a1c19b9bac35c52754d597eb9f6",
-  "created_at": "2026-10-29T23:10:10.957Z",
+  "source_revision": "f37eba69df90d4064382bff8b24ded3f8292a832",
+  "created_at": "2026-10-29T23:13:23.042Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -70,6 +70,10 @@
     {
       "path": ".gitignore",
       "sha256": "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97"
+    },
+    {
+      "path": "assets/startkompas-header.png",
+      "sha256": "1d0c36c966f2f178db6ba10320ecf2b5237717fb5d5a5a4f47655c4066a5f86b"
     },
     {
       "path": "assets/startkompas-logo.png",
@@ -205,7 +209,7 @@
     },
     {
       "path": "LICENSING.md",
-      "sha256": "906b4d5f1e09c895738507b63e56e37243d0a7426486606593e51d0e6d64df9d"
+      "sha256": "eb8d0a6ae75cee09b6095f89f6722f1263829f23c8e6be4d1ac8426cb98caecb"
     },
     {
       "path": "modules/domain-index.json",
@@ -237,7 +241,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "8476b8d835b483941297fcd7ca3e8ecdc650eadb4488b356cd02228c9fa71b07"
+      "sha256": "d92129cfe41aad6b6abb1057e641c716fdb65193ec9326a9b18e652076dbe7d3"
     },
     {
       "path": "schemas/cost-scenario.schema.json",
