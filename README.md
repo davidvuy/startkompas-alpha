@@ -1,5 +1,5 @@
-<p align="center">
-  <img src="assets/startkompas-logo.png" alt="Startkompas logo — Since 2026" width="321" height="255">
+<p align="left">
+  <img src="assets/startkompas-header.png" alt="Startkompas — Since 2026" width="900">
 </p>
 
 # Startkompas — public alpha
