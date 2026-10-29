@@ -1,0 +1,24 @@
+{
+  "project_id": "pilot-orbit",
+  "expected_revision": 1,
+  "operation_id": "synthetic-screen-1",
+  "at": "2026-10-27",
+  "actor": "synthetic example reviewer",
+  "trigger": "intake",
+  "reason": "Example of considering one unanswered question, not a real user screening",
+  "domains": [
+    {
+      "domain_id": "D01",
+      "applicability": "unknown",
+      "rationale": "Capacity has not been supplied in this synthetic request",
+      "answers": [
+        {
+          "question_id": "q1",
+          "answer": null,
+          "source_ids": [],
+          "note": "Available weekly time remains unknown"
+        }
+      ]
+    }
+  ]
+}

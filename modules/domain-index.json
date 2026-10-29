@@ -1,0 +1,327 @@
+{
+  "schema_version": "sk21-index-v1",
+  "version": "0.3.0",
+  "status": "research_topics_only",
+  "provenance": {
+    "source_file": "docs/plan.md",
+    "section": "De ondernemingskaart",
+    "note": "Plan-derived names/coverage retain plan provenance. Original questions and selective draft procedures; no qualified review."
+  },
+  "domains": [
+    {
+      "id": "D01",
+      "name_nl": "Oprichter en uitgangssituatie",
+      "coverage_nl": "Doel, tijd, budget, ervaring, vestiging en betrokken personen.",
+      "version": "0.1.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_only",
+      "detail_file": null,
+      "detail_status": "not_researched",
+      "applicability_condition": "Any intake or changed founder constraints. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "What outcome and available time are actually reported?"
+        },
+        {
+          "id": "q2",
+          "text": "What budget, experience, location and people are known or unknown?"
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "name_nl": "Klanten en markt",
+      "coverage_nl": "Probleem, doelgroep, alternatieven, onderzoek en relevante bevindingen.",
+      "version": "0.2.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_and_draft_procedure",
+      "detail_file": "modules/market-offer.md",
+      "detail_status": "draft_not_reviewed",
+      "applicability_condition": "A customer segment, problem or major market decision is proposed. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which customer problem and alternatives have been observed?"
+        },
+        {
+          "id": "q2",
+          "text": "What research exists and what contradicts the demand assumption?"
+        }
+      ]
+    },
+    {
+      "id": "D03",
+      "name_nl": "Aanbod en verdienmodel",
+      "coverage_nl": "Waarde, prijsaanname, kosten, verkoopwijze en betalingsbereidheid.",
+      "version": "0.2.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_and_draft_procedure",
+      "detail_file": "modules/market-offer.md",
+      "detail_status": "draft_not_reviewed",
+      "applicability_condition": "An offer, price, sales model or supplier cost changes. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "What value, price and payment evidence exists?"
+        },
+        {
+          "id": "q2",
+          "text": "Which costs and sales assumptions remain untested?"
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "name_nl": "Product en gebruikservaring",
+      "coverage_nl": "Scope, gebruikersflow, toegankelijkheid, taal en acceptatie.",
+      "version": "0.1.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_only",
+      "detail_file": null,
+      "detail_status": "not_researched",
+      "applicability_condition": "A product or user-facing flow is proposed or changed. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "What user outcome and smallest product flow are needed?"
+        },
+        {
+          "id": "q2",
+          "text": "Which language, accessibility and acceptance needs are known?"
+        }
+      ]
+    },
+    {
+      "id": "D05",
+      "name_nl": "Bouw en technische kwaliteit",
+      "coverage_nl": "Hergebruik, architectuur, tests, koppelingen en onderhoud.",
+      "version": "0.1.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_only",
+      "detail_file": null,
+      "detail_status": "not_researched",
+      "applicability_condition": "Software is built, integrated or materially changed. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "What can be reused and which integrations are required?"
+        },
+        {
+          "id": "q2",
+          "text": "Which tests, maintenance and architecture constraints exist?"
+        }
+      ]
+    },
+    {
+      "id": "D06",
+      "name_nl": "Oprichting en administratie",
+      "coverage_nl": "Ondernemingscontext, registratievragen, bevoegdheden en formaliteiten.",
+      "version": "0.3.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_and_draft_procedure",
+      "detail_file": "modules/pilot-conditions.md",
+      "detail_status": "draft_not_reviewed",
+      "applicability_condition": "Operating context, entity or responsible people are established or changed. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Where and through which entity will the activity operate?"
+        },
+        {
+          "id": "q2",
+          "text": "Which registration, authority or administrative questions need research?"
+        }
+      ]
+    },
+    {
+      "id": "D07",
+      "name_nl": "Geld en belastingen",
+      "coverage_nl": "Begroting, kasstroom, boekhouding, facturatie en toepasselijke vragen.",
+      "version": "0.3.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_and_draft_procedure",
+      "detail_file": "modules/pilot-conditions.md",
+      "detail_status": "draft_not_reviewed",
+      "applicability_condition": "Money, billing, business location or transaction scope is involved. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "What budget, cash flow and billing facts are supplied?"
+        },
+        {
+          "id": "q2",
+          "text": "Which bookkeeping, tax and invoicing questions remain unresolved?"
+        }
+      ]
+    },
+    {
+      "id": "D08",
+      "name_nl": "Eigendom en samenwerking",
+      "coverage_nl": "Code en inhoud, naam, licenties, oprichtersafspraken en vertrek.",
+      "version": "0.3.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_and_draft_procedure",
+      "detail_file": "modules/pilot-conditions.md",
+      "detail_status": "draft_not_reviewed",
+      "applicability_condition": "Assets or collaborators are introduced, reused or transferred. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Who supplied or owns code, content and the name?"
+        },
+        {
+          "id": "q2",
+          "text": "Which licences and collaboration or exit arrangements are documented?"
+        }
+      ]
+    },
+    {
+      "id": "D09",
+      "name_nl": "Contracten en juridische zaken",
+      "coverage_nl": "Klanten, leveranciers, voorwaarden en toepassingscontext.",
+      "version": "0.3.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_and_draft_procedure",
+      "detail_file": "modules/pilot-conditions.md",
+      "detail_status": "draft_not_reviewed",
+      "applicability_condition": "A customer or supplier arrangement is proposed or changed. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which customer and supplier promises or terms exist?"
+        },
+        {
+          "id": "q2",
+          "text": "Which context and unanswered agreement questions need review?"
+        }
+      ]
+    },
+    {
+      "id": "D10",
+      "name_nl": "Privacy en AI",
+      "coverage_nl": "Gegevens, doeleinden, rollen, leveranciers, bewaartermijnen en AI-uitkomsten.",
+      "version": "0.3.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_and_draft_procedure",
+      "detail_file": "modules/pilot-conditions.md",
+      "detail_status": "draft_not_reviewed",
+      "applicability_condition": "Data or AI outputs are collected, processed, shared or changed. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which data, purposes, people and providers are involved?"
+        },
+        {
+          "id": "q2",
+          "text": "What retention, processing roles and AI-output questions are unknown?"
+        }
+      ]
+    },
+    {
+      "id": "D11",
+      "name_nl": "Beveiliging en continuïteit",
+      "coverage_nl": "Toegang, geheimen, misbruik, back-ups, herstel en incidenten.",
+      "version": "0.3.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_and_draft_procedure",
+      "detail_file": "modules/pilot-conditions.md",
+      "detail_status": "draft_not_reviewed",
+      "applicability_condition": "Systems, access, dependencies or important data are involved. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Who can access systems and secrets, and what could be lost?"
+        },
+        {
+          "id": "q2",
+          "text": "What evidence exists for recovery and incident handling?"
+        }
+      ]
+    },
+    {
+      "id": "D12",
+      "name_nl": "Marketing en verkoop",
+      "coverage_nl": "Positionering, werving, kanalen, claims en meting.",
+      "version": "0.1.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_only",
+      "detail_file": null,
+      "detail_status": "not_researched",
+      "applicability_condition": "Promotion, outreach or a sales channel is proposed or changed. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which audience, claims and acquisition channels are proposed?"
+        },
+        {
+          "id": "q2",
+          "text": "What evidence supports the claims and how will results be measured?"
+        }
+      ]
+    },
+    {
+      "id": "D13",
+      "name_nl": "Betalingen en klantenzorg",
+      "coverage_nl": "Aankoop, verlenging, opzegging, klachten en ondersteuning.",
+      "version": "0.3.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_and_draft_procedure",
+      "detail_file": "modules/pilot-conditions.md",
+      "detail_status": "draft_not_reviewed",
+      "applicability_condition": "A customer lifecycle or payment flow is proposed or changed. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "How would purchase, renewal, cancellation and support work?"
+        },
+        {
+          "id": "q2",
+          "text": "Which complaint and customer-care responsibilities are unresolved?"
+        }
+      ]
+    },
+    {
+      "id": "D14",
+      "name_nl": "Team en dagelijkse werking",
+      "coverage_nl": "Rollen, overdracht, freelancers, personeel en leveranciers.",
+      "version": "0.1.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_only",
+      "detail_file": null,
+      "detail_status": "not_researched",
+      "applicability_condition": "People, work allocation or operating suppliers change. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "Which roles and handoffs are actually present?"
+        },
+        {
+          "id": "q2",
+          "text": "Are freelancers, employees or external suppliers involved or planned?"
+        }
+      ]
+    },
+    {
+      "id": "D15",
+      "name_nl": "Groei en beëindiging",
+      "coverage_nl": "Nieuwe markten, nieuwe activiteiten, overdracht en gecontroleerd stoppen.",
+      "version": "0.1.0",
+      "source_file": "modules/domain-index.json",
+      "status": "questions_only",
+      "detail_file": null,
+      "detail_status": "not_researched",
+      "applicability_condition": "Expansion, transfer or controlled closure is considered. This is a relevance prompt, not a legal applicability conclusion; missing context remains unknown.",
+      "questions": [
+        {
+          "id": "q1",
+          "text": "What new market, activity, transfer or closure is proposed?"
+        },
+        {
+          "id": "q2",
+          "text": "Which existing commitments and data/assets need a transition plan?"
+        }
+      ]
+    }
+  ]
+}

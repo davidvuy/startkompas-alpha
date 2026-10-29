@@ -1,0 +1,18 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {createProject,MAX_BYTES} from '../src/dossier.mjs';
+const cli=fileURLToPath(new URL('../src/cli.mjs',import.meta.url));
+const fixture=JSON.parse(fs.readFileSync(new URL('../examples/sk09-input.json',import.meta.url)));
+function setup(t){const base=fs.mkdtempSync(path.join(os.tmpdir(),'startkompas-sk09-'));t.after(()=>fs.rmSync(base,{recursive:true,force:true}));const input=path.join(base,'input.json'),dir=path.join(base,'project');fs.writeFileSync(input,JSON.stringify(fixture));return {base,input,dir};}
+const run=(...args)=>spawnSync(process.execPath,[cli,...args],{encoding:'utf8'});
+test('creation process closes; a separate process resumes exact sourced data without rewriting',t=>{const {dir,input}=setup(t);const first=run('create',dir,input);assert.equal(first.status,0,first.stderr);const before=fs.readFileSync(path.join(dir,'project.json'));const second=run('resume',dir,fixture.project_id);assert.equal(second.status,0,second.stderr);const a=JSON.parse(first.stdout),b=JSON.parse(second.stdout);assert.deepEqual(a.dossier,b.dossier);assert.deepEqual(b.dossier.fact,fixture.fact);assert.deepEqual(b.dossier.decision,fixture.decision);assert.equal(b.dossier.revision,1);assert.equal(a.sha256,b.sha256);assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);assert.equal(Object.hasOwn(b.dossier,'risk_tolerance'),false);});
+test('repeat creation and wrong-project resume reject without changing saved bytes',t=>{const {dir,input}=setup(t);assert.equal(run('create',dir,input).status,0);const before=fs.readFileSync(path.join(dir,'project.json'));assert.equal(run('create',dir,input).status,1);assert.equal(run('resume',dir,'another-project').status,1);assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);});
+test('missing source, blank reason, foreign defaults, wrong basis and type coercion reject before writing',t=>{const {base}=setup(t);const variants=[x=>delete x.fact.source,x=>x.decision.reason=' ',x=>x.risk_tolerance='medium',x=>x.decision.basis_fact_id='missing',x=>x.fact.text=90];for(const [i,mutate] of variants.entries()){const x=structuredClone(fixture);mutate(x);const dir=path.join(base,'bad-'+i);assert.throws(()=>createProject(dir,x));assert.equal(fs.existsSync(dir),false);}});
+test('validation does not mutate supplied data; sourced values are retained',t=>{const {dir}=setup(t);const input=structuredClone(fixture);input.fact.text='The founder reports medium risk tolerance and a 90-day horizon.';const before=structuredClone(input);const result=createProject(dir,input);assert.deepEqual(input,before);assert.equal(result.dossier.fact.text,input.fact.text);});
+test('unknown schema, corrupted file and oversized input fail read-only',t=>{const {dir,input,base}=setup(t);assert.equal(run('create',dir,input).status,0);const p=path.join(dir,'project.json');for(const contents of [JSON.stringify({...JSON.parse(fs.readFileSync(p)),schema_version:'future-v2'}),'{broken']){fs.writeFileSync(p,contents);assert.equal(run('resume',dir,fixture.project_id).status,1);assert.equal(fs.readFileSync(p,'utf8'),contents);}const huge=path.join(base,'huge.json');fs.writeFileSync(huge,' '.repeat(MAX_BYTES+1));assert.equal(run('create',path.join(base,'oversize'),huge).status,1);assert.equal(fs.existsSync(path.join(base,'oversize')),false);});
+test('dossier creation inside source tree is refused',()=>{assert.throws(()=>createProject(fileURLToPath(new URL('../',import.meta.url)),fixture),/outside the source/);});

@@ -1,0 +1,12 @@
+Startkompas skill source
+Original Startkompas instructions: Copyright (c) 2026 Startkompas contributors; MIT (LICENSE).
+
+Initialized using OpenAI skill-creator from the locally supplied .system skill.
+Upstream: https://github.com/openai/skills/tree/main/skills/.system/skill-creator
+The accompanying Apache-2.0 licence is preserved in LICENSE-APACHE-2.0 for any retained generated scaffold material. This does not relicense upstream material as MIT.
+
+Changes on 2026-10-26: replaced the complete generated TODO description and instruction body with original Startkompas guidance; added the licence field. Retained generated agents/openai.yaml with project-specific display_name and short_description supplied as initializer arguments. No example code, reference content, icons or initializer implementation is included in this skill. Exact local tool hashes and the original generated files are recorded in repository evidence/sk08; upstream main is not asserted to be the local tool revision.
+
+SK09 change: original saving-limit guidance now points to the original experimental local-route reference. No additional third-party instructions copied.
+
+SK10 change: original local-route guidance locates the helper in the source checkout or complete project-local installation.

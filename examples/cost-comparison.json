@@ -1,0 +1,43 @@
+{
+  "language": "nl",
+  "scenarios": [
+    {
+      "label": "Huidige fictieve raming",
+      "scenario": {
+        "project_id": "note-pilot-001",
+        "period": "one synthetic month",
+        "unit": "processing unit",
+        "currency": "EUR",
+        "source_note": "C03 fictional Beta quote; selling price not supplied",
+        "fixed_cents": 800,
+        "variable_cents_per_unit": 30,
+        "price_cents_per_unit": null,
+        "units": 100,
+        "budget_cents": 3500,
+        "excluded_costs": [
+          "Tax treatment unknown",
+          "Founder time and transition costs not supplied"
+        ]
+      }
+    },
+    {
+      "label": "Fictieve wijziging",
+      "scenario": {
+        "project_id": "note-pilot-001",
+        "period": "one synthetic month",
+        "unit": "processing unit",
+        "currency": "EUR",
+        "source_note": "Synthetic alternative for arithmetic only; no real supplier quote",
+        "fixed_cents": 1200,
+        "variable_cents_per_unit": 20,
+        "price_cents_per_unit": null,
+        "units": 100,
+        "budget_cents": 3500,
+        "excluded_costs": [
+          "Tax treatment unknown",
+          "Founder time and transition costs not supplied"
+        ]
+      }
+    }
+  ]
+}

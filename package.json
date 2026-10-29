@@ -1,0 +1,19 @@
+{
+  "name": "startkompas",
+  "version": "0.1.0-alpha.1",
+  "private": true,
+  "description": "Experimental local Startkompas dossier route",
+  "engines": {
+    "node": "26.7.0"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "startkompas": "node src/startkompas.mjs",
+    "startkompas:legacy": "node src/cli.mjs",
+    "startkompas:core": "node src/core-cli.mjs"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "ajv": "8.20.0"
+  }
+}

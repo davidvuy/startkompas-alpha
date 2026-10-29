@@ -1,0 +1,14 @@
+{
+  "project_id": "my-project",
+  "source_revision": 1,
+  "operation_id": "first-capacity-answer",
+  "at": "2026-10-29",
+  "key": "capacity",
+  "value": null,
+  "source_id": "founder-first-answer",
+  "source": {
+    "title": "Founder first intake response",
+    "location": "conversation:first-intake",
+    "scope": "Founder reports capacity unknown; not independent validation"
+  }
+}

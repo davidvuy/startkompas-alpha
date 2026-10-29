@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "project_id": "pilot-orbit",
+  "revision": 1,
+  "name": "Orbit (synthetic)",
+  "skill_version": "0.1.0-dev",
+  "module_versions": [],
+  "profile": [],
+  "facts": [
+    {
+      "id": "fact-1",
+      "text": "The fictional founder has not interviewed a customer.",
+      "assertion": "reported",
+      "source_ids": [
+        "source-1"
+      ]
+    }
+  ],
+  "assumptions": [],
+  "sources": [
+    {
+      "id": "source-1",
+      "title": "Synthetic founder brief",
+      "location": "synthetic:brief",
+      "scope": "Fictional test only",
+      "accessed_at": null
+    }
+  ],
+  "decisions": [
+    {
+      "id": "decision-1",
+      "text": "Prepare one interview before building a dashboard.",
+      "reason": "Customer need remains untested.",
+      "basis_ids": [
+        "fact-1"
+      ],
+      "status": "active",
+      "supersedes": null
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "title": "Review the interview guide",
+      "applicability": "applies",
+      "progress": "open",
+      "substantiation": "unreviewed",
+      "basis_kind": "own_requirement",
+      "evidence_ids": [],
+      "period": "pilot-round-1",
+      "depends_on": []
+    }
+  ],
+  "checks": [],
+  "artifacts": [],
+  "evidence": [],
+  "events": [],
+  "operations": [],
+  "active_task_id": "task-1"
+}

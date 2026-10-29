@@ -1,0 +1,17 @@
+{
+  "project_id": "pilot-orion-09",
+  "name": "Synthetic Orion pilot",
+  "fact": {
+    "id": "fact-1",
+    "text": "The fictional founder can interview two Belgian business owners this week.",
+    "status": "reported",
+    "source": "Synthetic SK09 fixture supplied by the project; not a real participant observation."
+  },
+  "decision": {
+    "id": "decision-1",
+    "text": "Prepare two problem interviews before building a demo.",
+    "reason": "The reported interview access allows testing the problem before implementation.",
+    "basis_fact_id": "fact-1"
+  },
+  "next_action": "Draft five neutral interview questions."
+}
