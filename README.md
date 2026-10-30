@@ -10,7 +10,7 @@ This is an experimental alpha. Independent user validation is still ahead. No me
 
 ## Start here
 
-[Download alpha 12 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.12.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
+[Download alpha 12.1 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.12.1.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
 
 Extract the ZIP into a new folder. Open a terminal in that folder, install the locked dependencies and open the English menu:
 
@@ -108,7 +108,7 @@ Never attach private dossiers, customer data, credentials or full conversation l
 
 ## Limits and data
 
-Local dossiers do not make AI processing local: text supplied to Codex can be processed by its provider. Keep backups and inspect exports before sharing. Removing the application does not erase private projects, shared exports or provider records. Do not use draft business content as qualified legal, tax or security advice. Claude, browser/mobile routes and managed cloud services are not offered by this alpha.
+Local dossiers do not make AI processing local: text supplied to Codex can be processed by its provider. Keep backups and inspect exports before sharing. Removing the application does not erase private projects, shared exports or provider records. Do not use draft business content as qualified legal, tax or security advice. The local browser workspace is available and has been exercised in Edge on Windows. Claude, a native mobile app and managed cloud services are not offered by this alpha; other browser/OS combinations still need interactive validation.
 
 The alpha1 baseline passed 167 source and clean-install tests. Alpha2 added onboarding and comparison. Alpha3 adds guided work, selective report export and recovery checks. See the public Quality and Secret scan workflows for current results. These are technical checks, not real-user validation.
 

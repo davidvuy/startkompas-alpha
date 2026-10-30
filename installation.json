@@ -1,6 +1,6 @@
 {
-  "source_revision": "3e5df4f631a99a19274f1fda857026a170d6f7ea",
-  "created_at": "2026-10-30T18:10:11.703Z",
+  "source_revision": "92355f0a4d3fdcff4961bdef69d738ea942c1c1e",
+  "created_at": "2026-10-30T18:13:30.405Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -141,7 +141,7 @@
     },
     {
       "path": "docs/alpha-changelog.md",
-      "sha256": "a6f22a7b7ec0f2eab5c5a0e07e0a3949ac84ae1a909ac81b18fe355fa039d93b"
+      "sha256": "eabc5a75237a50972c008611a252329205d77de3ebde3a7e01b3ab8c000a0b88"
     },
     {
       "path": "docs/alpha-contributing.md",
@@ -353,15 +353,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "115cdeedac79af46cb969a53fc86e526839475e7c65308441e635f5c45f2fead"
+      "sha256": "e85677d81f042d18a48cfe32c0feb9f37970b921436aed4eb0800033ca15b2e0"
     },
     {
       "path": "package.json",
-      "sha256": "ceccbe368a643aca14ec6636a9cb35eceee15f6dc83b65ca237436cabe83e8fd"
+      "sha256": "06ad3134add5e7f90da6e503078e647a9c0c4e009faa1c726ea58b91286e99d2"
     },
     {
       "path": "README.md",
-      "sha256": "b0e4fa85ae573553c188c1d3e9135a0a9ac224dca713d7660c0eb374a23e7b93"
+      "sha256": "586e12afbe8aedee020f5dcd426213ff5b0baa53de740e4e74c436ecd9efdb60"
     },
     {
       "path": "schemas/cost-scenario.schema.json",

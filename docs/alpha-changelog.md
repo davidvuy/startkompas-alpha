@@ -1,5 +1,10 @@
 # Changes
 
+## 0.1.0-alpha.12.1 — clarify available browser support
+
+- Includes the alpha12 document workflow below. Corrects a historical README sentence that incorrectly said the browser route was unavailable. The loopback browser workspace exists; native mobile apps, Claude and managed cloud services remain outside this alpha.
+- The alpha12 tag is retained unchanged. Alpha12.1 is the release candidate selected for publication; no product behavior or dependency changed in this documentation correction.
+
 ## 0.1.0-alpha.12 — review, revise and share selected document content
 
 - Read the five business document types as saved sections with field guidance, recorded basis and explicit unknowns. Purpose-based profile questions reuse known statements without inventing answers.
