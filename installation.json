@@ -1,6 +1,6 @@
 {
-  "source_revision": "57d82d737943d9c92f991b92d533c69a7a02651b",
-  "created_at": "2026-10-29T23:28:40.339Z",
+  "source_revision": "fab1db0b53d986b5af7e2b94e2979bbcef5fe7cf",
+  "created_at": "2026-10-30T08:25:58.858Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -72,12 +72,32 @@
       "sha256": "650f0564bcb0fe07277fe91762bcbff97423f9523530d2dd4b276e99afb576b3"
     },
     {
+      "path": ".github/ISSUE_TEMPLATE/bug.md",
+      "sha256": "8ccff64cd248c202b994d1fbe5977b82a3c28e53c58b177596f3b033487f1e86"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "sha256": "df374cd0768de41a177a3da896802bceefe0caa49df7079f700c56e69efe6d73"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature.md",
+      "sha256": "aa6a0d23621d792e60cbec9441dd0ec19de6fabeb8bad23a182be03e109aa93e"
+    },
+    {
       "path": ".github/ISSUE_TEMPLATE/feedback.md",
       "sha256": "f91c4a0717a1355fa7c4e956a066e38f61cac31e5befada7839c480ebf64ab40"
     },
     {
+      "path": ".github/ISSUE_TEMPLATE/question.md",
+      "sha256": "f8bb7cb882e2c45a33fcdf00e476c052de748a07846811d2a181b44297d06c0f"
+    },
+    {
       "path": ".github/workflows/quality.yml",
       "sha256": "66c83c02c5e7ea30b23fda2f01bc5bcda05b673eee6990770ea196cba0b0232d"
+    },
+    {
+      "path": ".github/workflows/secrets.yml",
+      "sha256": "95353bf22bf980125b0779c4cb24921589b4b26b0e974b97e04ba7d42ade71a4"
     },
     {
       "path": ".gitignore",
@@ -92,8 +112,20 @@
       "sha256": "e937d9483a21c525220f89102d776e239deab4c4adf5add58eed050262d8caf3"
     },
     {
+      "path": "docs/alpha-demo.md",
+      "sha256": "d9e21af589402b7ac12be864cea025a3334d3d78cb3c6d138a9761f20dfbeaf9"
+    },
+    {
       "path": "docs/alpha-improvements.md",
       "sha256": "a67f8aa889e0c77ad1092529384a2983c362f04764c453e5a3aab921cdb55ff4"
+    },
+    {
+      "path": "docs/alpha-roadmap.md",
+      "sha256": "ed1b758a33ddc156b3fbce7332eb781084928d36afa0fcd9456f00398ed8ee22"
+    },
+    {
+      "path": "docs/alpha-support.md",
+      "sha256": "286da66b1264bd8cf0b44aa2b3ea4d5931009e42d979991f72ead4bf452849d6"
     },
     {
       "path": "docs/commands.md",
@@ -257,7 +289,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "89acda8caa781e8dce1aaa194280d4d02e3a90a3c1d18c68a37b094cc8589f3d"
+      "sha256": "754f7fa04ede39316adac148d79a6981900b62093a103c73d981e198cd40356b"
     },
     {
       "path": "schemas/cost-scenario.schema.json",

@@ -10,11 +10,15 @@ This is an experimental alpha. Independent user validation is still ahead. No me
 
 ## Easier start in alpha 2
 
+**Need help?** [Ask a question, report a bug or suggest an improvement](https://github.com/davidvuy/startkompas-alpha/issues/new/choose). Dutch and English are welcome. For sensitive vulnerabilities use [private security reporting](https://github.com/davidvuy/startkompas-alpha/security/advisories/new). Never put credentials or private dossiers in public issues. See [support and FAQ](docs/alpha-support.md).
+
+**See it work:** follow the [fictional offer walkthrough](docs/alpha-demo.md), then use the guided setup below. See the [four-week improvement roadmap](docs/alpha-roadmap.md) for our priorities and ways to contribute.
+
 Run `node src/startkompas.mjs doctor`, then `node src/startkompas.mjs start` for guided setup without a JSON request. Use `overview <directory> <project-id> [nl|en]` for a readable summary and `compare <directory> <project-id> <older> <newer>` for saved changes. See [the alpha 2 guide](docs/alpha-improvements.md).
 
 ## Try the local helper
 
-Prerequisites: Node.js and npm. The recorded development and package tests use Windows and Node 26.7.0; other versions and operating systems are not yet qualified. Codex access is needed for AI-assisted use, with your provider's own quotas and charges. The following deterministic demo does not call an AI service.
+Prerequisites: Node.js 26.7.0 and npm. The alpha2 helper tests passed on Windows and Linux in CI; this does not establish Codex host compatibility on every platform. Other Node versions and macOS are not yet qualified. Codex access is needed for AI-assisted use, with your provider's own quotas and charges. The following deterministic demo does not call an AI service.
 
 Extract the complete product package into a new directory. In that directory run:
 
@@ -29,7 +33,20 @@ The demo target must not already exist. It uses fictional business text, saves a
 
 ## Start your project
 
-Keep your private project outside the application folder. Save this as a separate init.json file, adjusting the name:
+Keep your private project outside the application folder. Use the guided setup, review the proposed details and confirm explicitly:
+
+~~~powershell
+node src/startkompas.mjs doctor
+node src/startkompas.mjs start
+~~~
+
+To resume, use your chosen directory and project ID:
+
+~~~powershell
+node src/startkompas.mjs overview ../my-private-project my-project en
+~~~
+
+Alternatively, for scripted setup, save this as a separate init.json file, adjusting the name:
 
 ~~~json
 {"project_id":"my-project","name":"My business idea","first_task":{"id":"first-offer","title":"Draft my first offer"}}
