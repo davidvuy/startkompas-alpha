@@ -34,7 +34,7 @@ export async function startLocalUI({root,port=0}){
    if(req.method==='GET'&&assets.has(req.url)){
     const [file,type]=assets.get(req.url);return send(200,fs.readFileSync(file),type);
    }
-   if(!['/api/recovery-list','/api/recovery-save','/api/recovery-read','/api/recovery-forget','/api/offer-restore','/api/draft-search','/api/task-update','/api/offer-latest','/api/diagnostics','/api/draft','/api/search','/api/record','/api/history','/api/compare','/api/projects','/api/create','/api/show','/api/offer-form','/api/offer-preview','/api/offer-save','/api/report-preview','/api/report-save','/api/archive'].includes(req.url))throw new WorkspaceError('Not found.',404);
+   if(!['/api/decisions','/api/decision-preview','/api/decision-save','/api/research','/api/research-save','/api/session-plan','/api/session-preview','/api/session-save','/api/connections','/api/profile','/api/profile-save','/api/recovery-list','/api/recovery-save','/api/recovery-read','/api/recovery-forget','/api/offer-restore','/api/draft-search','/api/task-update','/api/offer-latest','/api/diagnostics','/api/draft','/api/search','/api/record','/api/history','/api/compare','/api/projects','/api/create','/api/show','/api/offer-form','/api/offer-preview','/api/offer-save','/api/report-preview','/api/report-save','/api/archive'].includes(req.url))throw new WorkspaceError('Not found.',404);
    if(req.method!=='POST')throw new WorkspaceError('This operation requires a POST request.',405);
    const supplied=req.headers['x-startkompas-session'];
    if(req.headers.origin!==origin||typeof supplied!=='string'||! /^[a-f0-9]{64}$/.test(supplied)||!timingSafeEqual(Buffer.from(supplied),Buffer.from(token)))throw new WorkspaceError('The session is missing or expired. Reopen the link from the terminal.',403);
@@ -45,6 +45,13 @@ export async function startLocalUI({root,port=0}){
     result={markdown:['Startkompas local workspace problem report','Application version: '+version,'Node version: '+process.versions.node,'Platform: '+process.platform,'','Steps to reproduce using fictional data: [fill in]','Expected result: [fill in]','Actual result: [fill in]','','This report contains no project names, paths, session tokens or project contents. Review your additions before sharing.'].join('\n')};
    }
    for(const [route,method] of [['recovery-list','recoveryList'],['recovery-save','recoverySave'],['recovery-read','recoveryRead'],['recovery-forget','recoveryForget']])if(req.url==='/api/'+route)result=workspace[method](input);
+   for(const [route,method] of [['session-plan','sessionPlan'],['session-preview','sessionPreview'],['session-save','sessionSave']])if(req.url==='/api/'+route)result=workspace[method](input);
+   for(const [route,method] of [['decisions','decisions'],['decision-preview','decisionPreview'],['decision-save','decisionSave']])if(req.url==='/api/'+route)result=workspace[method](input);
+   if(req.url==='/api/research')result=workspace.research(input);
+   if(req.url==='/api/research-save')result=workspace.researchSave(input);
+   if(req.url==='/api/connections')result=workspace.connections(input);
+   if(req.url==='/api/profile')result=workspace.profile(input);
+   if(req.url==='/api/profile-save')result=workspace.profileSave(input);
    if(req.url==='/api/projects'){exactObject(input,[]);result=workspace.list();}
    if(req.url==='/api/draft')result=workspace.draft(input);
    if(req.url==='/api/draft-search')result=workspace.draftSearch(input);

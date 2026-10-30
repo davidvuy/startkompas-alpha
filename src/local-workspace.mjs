@@ -9,6 +9,11 @@ import {retrieveRecords} from './retrieval.mjs';
 import {dependencyGraph} from './dependencies.mjs';
 import {listHistory} from './history.mjs';
 import {compareRevisions,renderComparison} from './project-view.mjs';
+import {decisionLog,prepareDecisionLog} from './decision-log.mjs';
+import {researchQueue,prepareResearchPriority} from './research-priority.mjs';
+import {sessionPlan,prepareSessionChoice} from './session-plan.mjs';
+import {relationshipMap} from './relationship-map.mjs';
+import {projectProfile,prepareProfileAnswer} from './project-profile.mjs';
 import {durableRecovery} from './draft-recovery.mjs';
 
 export class WorkspaceError extends Error {
@@ -51,6 +56,23 @@ export function localWorkspace(selectedRoot){
   return {dir,id,folder};
  }
  return {
+  decisions(input){exactObject(input,['ref']);const {dir,id}=open(input.ref);return {archived:isProjectArchived(readCore(dir,id).dossier),...decisionLog(dir,id)};},
+  decisionPreview(input){exactObject(input,['ref','revision','sha256','decision']);const {dir,id}=open(input.ref);requireActive(dir,id);let prepared;try{prepared=prepareDecisionLog(dir,id,input.revision,input.sha256,input.decision);}catch{throw new WorkspaceError('Decision could not be prepared. Check the fields/date and current version; inspect unavailable older details before revising.',409);}return {preview:holdPreview({kind:'decision',ref:input.ref,sha256:input.sha256,prepared}),...prepared.preview};},
+  decisionSave(input){exactObject(input,['ref','preview','confirmed']);if(input.confirmed!==true)throw new WorkspaceError('Review and confirm the exact decision preview.');const entry=previews.get(input.preview);if(!entry||entry.kind!=='decision'||entry.ref!==input.ref||entry.expires<Date.now())throw new WorkspaceError('Decision preview missing or expired. Prepare it again.',409);const {dir,id}=open(input.ref);if(entry.receipt)return entry.receipt;requireActive(dir,id);if(readCore(dir,id).sha256!==entry.sha256)throw new WorkspaceError('Project changed after decision preview. Review again.',409);saveGuided(dir,entry.prepared,path.join(root,'retry-'+entry.prepared.update_request.operation_id));entry.receipt={revision:entry.prepared.update_request.expected_revision+1,record_id:entry.prepared.record_id};return entry.receipt;},
+  research(input){exactObject(input,['ref']);const {dir,id}=open(input.ref);return {archived:isProjectArchived(readCore(dir,id).dossier),...researchQueue(dir,id)};},
+  researchSave(input){exactObject(input,['ref','revision','sha256','assessment','confirmed']);if(input.confirmed!==true)throw new WorkspaceError('Review and confirm your research priority first.');const {dir,id}=open(input.ref);requireActive(dir,id);let prepared;try{prepared=prepareResearchPriority(dir,id,input.revision,input.sha256,input.assessment);}catch{throw new WorkspaceError('Priority could not be prepared. Check the assessment/date, refresh changed records and inspect unavailable previous ratings.',409);}saveGuided(dir,prepared,path.join(root,'retry-'+prepared.update_request.operation_id));return {revision:input.revision+1,artifact_id:prepared.artifact_id};},
+  sessionPlan(input){exactObject(input,['ref','target','scope','obstacle','intent']);const {dir,id}=open(input.ref);try{return sessionPlan(dir,id,input);}catch{throw new WorkspaceError('Session choices could not be read. Use an existing record and valid scope, or refresh the project.',409);}},
+  sessionPreview(input){exactObject(input,['ref','target','scope','obstacle','intent']);const {dir,id}=open(input.ref);requireActive(dir,id);let plan,prepared;try{plan=sessionPlan(dir,id,input);prepared=prepareSessionChoice(dir,id,plan);}catch{throw new WorkspaceError('Describe a concrete intended result (maximum 1000 characters), then review the current project again.',409);}
+   const decision=prepared.update_request.changes.decisions.at(-1);return {preview:holdPreview({kind:'session',ref:input.ref,sha256:plan.sha256,prepared}),text:decision.text,reason:decision.reason,basis_ids:decision.basis_ids,revision:plan.revision,plan};},
+  sessionSave(input){exactObject(input,['ref','preview','confirmed']);if(input.confirmed!==true)throw new WorkspaceError('Review and confirm the exact session choice first.');const entry=previews.get(input.preview);if(!entry||entry.kind!=='session'||entry.ref!==input.ref||entry.expires<Date.now())throw new WorkspaceError('Session preview missing or expired. Prepare it again.',409);const {dir,id}=open(input.ref);if(entry.receipt)return entry.receipt;requireActive(dir,id);if(readCore(dir,id).sha256!==entry.sha256)throw new WorkspaceError('Project changed after preview. Review a new session choice.',409);saveGuided(dir,entry.prepared,path.join(root,'retry-'+entry.prepared.update_request.operation_id));entry.receipt={revision:entry.prepared.update_request.expected_revision+1,record_id:entry.prepared.record_id};return entry.receipt;},
+  connections(input){exactObject(input,['ref','id']);const {dir,id}=open(input.ref);try{return relationshipMap(dir,id,input.id);}catch{throw new WorkspaceError('Recorded connections could not be read. Refresh the project and select an existing record.',409);}},
+  profile(input){exactObject(input,['ref']);const {dir,id}=open(input.ref);return {archived:isProjectArchived(readCore(dir,id).dossier),...projectProfile(dir,id)};},
+  profileSave(input){
+   exactObject(input,['ref','revision','sha256','key','value','date','confirmed']);if(input.confirmed!==true)throw new WorkspaceError('Review and confirm this profile answer first.');
+   const {dir,id}=open(input.ref);requireActive(dir,id);let prepared;
+   try{prepared=prepareProfileAnswer(dir,id,input.revision,input.sha256,input.key,input.value,input.date);}catch{throw new WorkspaceError('Profile answer could not be prepared. Check the date and fields, then reopen the profile if it changed or has conflicting records.',409);}
+   saveGuided(dir,prepared,path.join(root,'retry-'+operationId()));return {revision:input.revision+1};
+  },
   recoveryList(input){exactObject(input,[]);try{return recovery.list();}catch{throw new WorkspaceError('Recovery copies cannot be read. Inspect the .startkompas-recovery folder; no files were replaced.',409);}},
   recoverySave(input){exactObject(input,['kind','data','confirmed']);if(input.confirmed!==true)throw new WorkspaceError('Confirm keeping this private text on disk first.');try{return recovery.save(input.kind,input.data);}catch{throw new WorkspaceError('Recovery copy could not be kept. Check the fields and recovery folder, and keep fewer than 50 copies. Your project was not changed.',409);}},
   recoveryRead(input){exactObject(input,['id']);try{return recovery.read(input.id);}catch{throw new WorkspaceError('This recovery copy is unavailable, damaged or older than seven days. No project was changed.',409);}},
@@ -138,7 +160,7 @@ export function localWorkspace(selectedRoot){
    if(prior&&(prior.request.kind!=='offer'||prior.successor_ids.length))throw new WorkspaceError('Select the latest offer version before editing.',409);
    const state=readCore(dir,id);
    const initial=startingFields(state.dossier);
-   return {revision:state.dossier.revision,sha256:state.sha256,previous:input.previous,client:prior?.request.client??'',period:prior?.request.period??'',fields:offerKeys.map(key=>({key,label:briefTypes.offer.fields[key][1],value:prior?(prior.fields.find(f=>f.key===key)?.value??''):(initial[key]?.value??'')}))};
+   return {revision:state.dossier.revision,sha256:state.sha256,previous:input.previous,client:prior?.request.client??'',period:prior?.request.period??'',fields:offerKeys.map(key=>{const field=prior?.fields.find(f=>f.key===key),value=prior?(field?.value??''):(initial[key]?.value??'');return {key,label:briefTypes.offer.fields[key][1],value,assertion:field?.assertion??(value?'proposal':'unknown'),record_ids:field?.record_ids??(initial[key]?[initial[key].id]:[]),requires_review:prior?.requires_review??false};})};
   },
   offerLatest(input){
    exactObject(input,['ref','previous']);const {dir,id}=open(input.ref),state=readCore(dir,id);requireActive(dir,id);

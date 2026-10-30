@@ -1,0 +1,30 @@
+import Ajv2020 from 'ajv/dist/2020.js';
+import {randomUUID} from 'node:crypto';
+import {readCore,regularFile,localFile,bytesFor,sha} from './store.mjs';
+import {records,affected} from './dependencies.mjs';
+import {checkModel} from './model.mjs';
+const id={type:'string',pattern:'^[a-z0-9][a-z0-9-]{0,63}$'},text={type:'string',minLength:1,maxLength:4000,pattern:'\\S'},nullable=s=>({anyOf:[s,{type:'null'}]});
+const requestSchema={type:'object',additionalProperties:false,required:['previous','choice','reason','alternatives','reconsider_when','date','basis_id'],properties:{previous:nullable(id),choice:text,reason:text,alternatives:{type:'array',maxItems:8,uniqueItems:true,items:{type:'string',minLength:1,maxLength:1000,pattern:'\\S'}},reconsider_when:nullable(text),date:{type:'string',pattern:'^\\d{4}-\\d{2}-\\d{2}$'},basis_id:nullable(id)}};
+const ajv=new Ajv2020({strict:true}),validate=ajv.compile(requestSchema),validateSaved=ajv.compile({type:'object',additionalProperties:false,required:['format','project_id','decision_id','artifact_id','version','origin','request'],properties:{format:{const:'startkompas-decision-log-v1'},project_id:id,decision_id:id,artifact_id:id,version:{type:'integer',minimum:1},origin:{const:'user_statement'},request:requestSchema}});
+const eventFor=(d,id)=>d.events.find(e=>e.type==='decision-log'&&e.subject_ids[0]===id);
+function load(state,decision){const event=eventFor(state.dossier,decision);if(!event)return null;const artifact=state.dossier.artifacts.find(a=>a.id===event.subject_ids[1]);if(!artifact||artifact.storage!=='local'||artifact.availability!=='available')throw Error('Decision detail unavailable');const bytes=regularFile(localFile(state.directory,artifact.location),65536);if(sha(bytes)!==artifact.sha256)throw Error('Decision detail fingerprint mismatch');const value=JSON.parse(bytes);if(!validateSaved(value)||value.project_id!==state.dossier.project_id||value.decision_id!==decision||value.artifact_id!==artifact.id||String(value.version)!==artifact.version)throw Error('Decision detail identity mismatch');const record=state.dossier.decisions.find(d=>d.id===decision);if(record.text!==value.request.choice||record.reason!==value.request.reason||record.supersedes!==value.request.previous)throw Error('Decision detail differs from canonical record');return value;}
+export function decisionLog(dir,id){
+ const state=readCore(dir,id),d=state.dossier;
+ const rows=d.decisions.slice(-100).reverse().map(decision=>{let details=null,details_status='legacy';try{details=load(state,decision.id);if(details)details_status='recorded';}catch{details_status='unavailable';}return {...decision,details,details_status,requires_review:d.workflow?.invalidated_ids.includes(decision.id)??false};});
+ const context=[...records(d).values()].filter(r=>['profile','facts','assumptions','sources','tasks','checks'].includes(r.group));
+ if(readCore(dir,id).sha256!==state.sha256)throw Error('Project changed');
+ return {revision:d.revision,sha256:state.sha256,rows,total:d.decisions.length,partial:d.decisions.length>100,context:context.slice(0,100).map(r=>({id:r.id,label:r.title??r.text??r.key??r.id,group:r.group})),context_partial:context.length>100};
+}
+export function prepareDecisionLog(dir,id,revision,digest,request){
+ if(!validate(request)||Number.isNaN(Date.parse(request.date+'T00:00:00Z'))||new Date(request.date+'T00:00:00Z').toISOString().slice(0,10)!==request.date)throw Error('Invalid decision fields or date');
+ const state=readCore(dir,id),d=state.dossier,index=records(d);if(d.revision!==revision||state.sha256!==digest)throw Error('Project changed');
+ const prior=request.previous===null?null:d.decisions.find(x=>x.id===request.previous);if(request.previous!==null&&(!prior||prior.status!=='active'||d.decisions.some(x=>x.supersedes===prior.id)))throw Error('Choose the current decision before revising');
+ const detail=prior?load(state,prior.id):null;if(request.basis_id!==null&&(!index.has(request.basis_id)||!['profile','facts','assumptions','sources','tasks','checks'].includes(index.get(request.basis_id).group)))throw Error('Choose a suitable existing context record');
+ const basis=[...new Set([...(prior?.basis_ids??[]).filter(key=>key!==detail?.artifact_id),request.basis_id].filter(Boolean))],decisionId='decision-'+randomUUID(),artifactId='decision-note-'+randomUUID(),version=(detail?.version??0)+1;
+ const saved={format:'startkompas-decision-log-v1',project_id:id,decision_id:decisionId,artifact_id:artifactId,version,origin:'user_statement',request:structuredClone(request)},content=bytesFor(saved).toString('utf8');if(Buffer.byteLength(content)>65536)throw Error('Decision details too large');
+ const artifact={id:artifactId,version:String(version),storage:'local',location:'files/'+artifactId+'.json',availability:'available',sha256:sha(content)},decision={id:decisionId,text:request.choice,reason:request.reason,basis_ids:[artifactId,...basis],status:'active',supersedes:prior?.id??null};
+ const update_request={project_id:id,expected_revision:revision,operation_id:'decision-save-'+randomUUID(),changes:{decisions:[...d.decisions.map(x=>x.id===prior?.id?{...x,status:'superseded'}:x),decision],artifacts:[...d.artifacts,artifact],events:[...d.events,{id:'decision-event-'+randomUUID(),type:'decision-log',at:request.date,description:prior?'User revised a decision; earlier choice and details retained':'User recorded a decision, alternatives and reconsideration condition',subject_ids:[decisionId,artifactId]}],workflow:{...d.workflow,links:[...d.workflow.links,...basis.map(prerequisite_id=>({dependent_id:artifactId,prerequisite_id,reason:'User decision details use this recorded context'}))]}}};
+ checkModel({...d,...update_request.changes});
+ const impacted=prior?affected(d,[prior.id]).filter(key=>key!==prior.id):[];
+ return {record_id:decisionId,artifact_id:artifactId,content,update_request,preview:{choice:request.choice,reason:request.reason,alternatives:request.alternatives,reconsider_when:request.reconsider_when,date:request.date,supersedes:prior?.id??null,basis_ids:basis,impacted_ids:impacted.slice(0,100),impacted_total:impacted.length}};
+}

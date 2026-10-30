@@ -1,5 +1,16 @@
 # Changes
 
+## 0.1.0-alpha.9 — context, research and recorded choices
+
+- Optional project profile statements retain their source, date and unknown fields.
+- Separate idea, existing-offer and improve-offer entrances preserve unvalidated steps and show field provenance.
+- Explore bounded recorded relationships and open the original records. No missing relationships are inferred.
+- Plan a session from explicit scope, intent and obstacles with visible fixed preparation patterns; no predicted effort or automatic execution.
+- Record dated research priorities with stale-context detection; assumptions remain unvalidated.
+- Keep decisions, alternatives and reconsideration conditions. Revisions retain earlier choices and disclose declared dependency impact.
+
+New context and planning forms have unsaved-edit warnings but are not included in setup/offer recovery. Independent user validation, screen-reader acceptance and security audit remain open. Broader adaptive guidance and the full roadmap remain unfinished.
+
 ## 0.1.0-alpha.8 — durable recovery and easier resumption
 
 - Explicit private form copies on disk survive browser/server restarts. Unique immutable files, strict field/size limits, seven-day form restoration and per-copy confirmed removal; expired files stay until removed. No autosave, encryption or power-loss guarantee.

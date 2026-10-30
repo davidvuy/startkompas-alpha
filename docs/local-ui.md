@@ -115,3 +115,43 @@ Offer fields include short, accessible descriptions of useful input. Examples ar
 ## Error actions
 
 Errors keep their message and receive contextual recovery controls. Return to my form preserves entered text; Refresh project list discovers current folders without reloading the editor. Offer revision conflicts can open the existing explicit comparison. Recovery options expose manual local copies. An unavailable/expired server requires reopening its current terminal launch link; retain the old tab for copying unsaved text. No automatic retries, repairs, file replacement or saved confirmation occurs. The main area marks in-flight operations busy; error focus and keyboard return to the form were checked in Edge.
+
+## Explicit project profile
+
+Project profile records four user-supplied fields: current stage, kind of service, available time and constraints. Each field shows its original assertion, source and statement date; missing answers remain unknown. Update one selected field at a time, review its purpose and confirm the statement/date. Leaving the answer blank records an explicit unknown. No budget, capacity estimate, business maturity or evidence status is inferred.
+
+Profile edits use the existing intake and versioned save paths, with revision/digest and archive guards. Prior sources and revision history remain available. A profile statement is context, not independent validation. Unsaved profile edits have navigation/close warnings but are not covered by setup/offer recovery copies. Guidance that adapts tasks from this profile remains a later increment; saving context does not automatically change tasks or drafts.
+
+## Starting points and field status
+
+Choose a starting point offers three routes in an active project. Explore my idea reuses only its provisional wizard context; Record an existing offer opens blank fields for your own text; Improve this offer selects an explicit current saved version, with client/context, period and ID to distinguish documents. No route selection writes a record or marks skipped work complete. All writes still require an offer preview and confirmation, and revisions need a reason. Unavailable drafts are disclosed rather than silently replaced by an older one.
+
+Offer fields display unknown, proposal or reported status with a linked-record count for unchanged text. Reported does not mean independently verified; changed text becomes a proposal, and blank text remains unknown. The preview remains the authoritative review before saving. A saved draft's review warning is shown without claiming which edited field independently caused it. Wizard customer/outcome questions identify the specific starting assumption and first-offer field they supply. Profile questions remain optional context; not all later adaptive guidance is implemented yet.
+
+## Recorded connections
+
+Recorded connections shows a two-link neighborhood around a selected record. The initial view centers on the most recently recorded business draft, then the active task or first available record when no draft exists. Each row reads from dependent to prerequisite and shows the stored reason. Both endpoints open their original records; Center on this record explores another neighborhood. The record inspector also links back to this view.
+
+The view is read-only, supports archived projects and retains stored assertion/progress/substantiation labels without treating them as a new review. It shows at most 60 records and 200 links, discloses omitted connections and excludes unrelated records. No semantic or market relationships are inferred. The saved graph is not a guarantee that all dependencies were recorded or that attachments remain substantively correct.
+
+## Plan a work session
+
+The session planner explains the saved next-action ordering and lets you select another existing record. It shows recorded blockers and your profile statements with their provenance; choosing another record never overrides a blocker. Brief, focused and extended scopes produce one, two or three bounded preparation steps. These are explicit user choices, not estimated minutes or inferred capacity. The intended-result field makes the proposed session concrete.
+
+Choose an obstacle to adapt preparation: missing information, a choice, limited time, a technical problem or missing access. Missing access offers an invitation draft or an actually available source, never a fabricated interview. Recorded blockers take priority over expanding the work. The planner uses fixed, visible preparation patterns rather than semantic task decomposition or autonomous execution.
+
+You can explore without writing. To persist a choice, supply an intended result, preview the exact text and explicitly confirm. This creates a decision linked to the selected record, recorded blockers and stated profile context. It does not alter task progress, evidence, applicability or active task. Stale previews, archived projects, wrong preview kinds and unauthorized requests are rejected; a retry of a successful save returns the original receipt. Unsaved session edits have navigation/close warnings but are not part of setup/offer recovery.
+
+## Research priorities
+
+Research priorities lists up to the first 200 saved assumptions and openly marks partial lists. You supply impact, uncertainty, research order and a dated reason. Sorting uses your explicit order first, then stated impact, stated uncertainty and direct work-dependent count; priority-assessment history is excluded from that count. There is no weighted market score. Unknown judgments remain unknown.
+
+Each confirmed assessment is a new immutable, checksum-verified local artifact linked to its assumption. Previous assessments and their original bytes remain in project history. A fingerprint of the assumption and its declared prerequisite records detects changed context; stale assessments are displayed but rank as unset/unknown. A fresh assessment can reflect current context while the underlying assumption still requires review. It never validates the assumption or clears existing evidence/review flags.
+
+Damaged or missing latest assessments are shown unavailable without falling back silently to an older score. Restore or inspect the original artifact before updating that assessment. Writes require the current project revision/digest, confirmation, a real calendar date and an active project. Unsaved priority edits have navigation/close protection but are not included in setup/offer recovery copies.
+
+## Decision log
+
+Record a choice, its reason, up to eight alternatives, an optional reconsideration condition, a calendar date and optional recorded context. Preview the exact text before confirming. These are user judgments, not evidence or completed tasks. The latest 100 decisions are shown with explicit truncation; context choices are bounded to 100 records.
+
+Revising an active decision creates a new linked decision and immutable checksum-verified detail file. The previous choice remains readable and becomes superseded. Existing basis links are retained; the preview lists declared dependent records that may require review. Missing legacy alternatives remain unrecorded. Damaged details are unavailable and cannot be silently replaced through revision. Stale previews, wrong preview kinds and archived writes are refused. Unsaved decision edits have navigation/close warnings but are not included in setup/offer recovery.

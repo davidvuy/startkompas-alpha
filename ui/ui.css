@@ -9,3 +9,7 @@ select{font:inherit;color:inherit;background:#1a1b23;border:1px solid #494651;bo
 #inspect-text{white-space:pre-wrap;overflow-wrap:anywhere;padding:22px;background:#191923;border:1px solid #41424e;border-radius:12px;line-height:1.7}#search-results{list-style:none}#search-results li{margin:12px 0}#search-results small{display:block}.panel button{text-align:left;overflow-wrap:anywhere}
 
 #conflict-fields p{white-space:pre-wrap;overflow-wrap:anywhere}#conflict-fields .grid{border-top:1px solid #41424e;margin:18px 0}#conflict-fields h3{font-size:14px}
+
+#session-text{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.7}#session-steps li,#session-context li,#session-alternatives li{margin-bottom:16px}#session-steps small,#session-context small,#session-alternatives small{display:block}
+
+#decision-preview-text{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.7}#decisions-list small{display:block}#decisions-list li{margin-bottom:20px}

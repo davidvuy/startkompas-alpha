@@ -37,7 +37,7 @@ export function workspaceView(dir,id){
   return {id:t.id,title:t.title,progress:t.progress,blocked_by:[...new Set([...blocked,...material.blockers.map(b=>b.record_id)])],requires_review:invalid.has(t.id)};
  }).sort((a,b)=>Number(b.id===d.active_task_id)-Number(a.id===d.active_task_id));
  const drafts=d.events.filter(e=>e.type==='business-brief-draft').map(e=>e.subject_ids[0]).filter((id,n,a)=>a.indexOf(id)===n).map(artifactId=>{
-  try{const b=readBusinessBrief(dir,id,artifactId);return {id:artifactId,kind:b.request.kind,version:b.version,status:b.requires_review?'review_required':'draft',historical:b.successor_ids.length>0,unknown_fields:b.fields.filter(f=>f.value===null).map(f=>f.key)};}
+  try{const b=readBusinessBrief(dir,id,artifactId);return {id:artifactId,kind:b.request.kind,client:b.request.client,period:b.request.period,version:b.version,status:b.requires_review?'review_required':'draft',historical:b.successor_ids.length>0,unknown_fields:b.fields.filter(f=>f.value===null).map(f=>f.key)};}
   catch{return {id:artifactId,status:'unavailable_or_invalid',historical:false};}
  });
  const assumptions=d.assumptions.map(a=>({...a,requires_review:invalid.has(a.id),dependent_count:affected(d,[a.id]).length-1})).sort((a,b)=>b.dependent_count-a.dependent_count);
