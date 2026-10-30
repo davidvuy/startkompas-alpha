@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import {createInterface} from 'node:readline/promises';
-import {spawnSync} from 'node:child_process';
+import {spawn} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {diagnose} from './src/doctor.mjs';
 import {publicError} from './src/cli-errors.mjs';
@@ -19,12 +19,17 @@ try{
   await runMenu({
    ask:async prompt=>(await rl.question(prompt+': ')).trim(),
    print:text=>console.log(text),
-   run:args=>{
+   run:async args=>{
     rl.close();
+    process.stdin.setRawMode?.(false);
     const demo=args[0]==='demo';
-    const child=spawnSync(process.execPath,[fileURLToPath(new URL(demo?'./examples/demo-founder-workflow.mjs':'./src/startkompas.mjs',import.meta.url)),...(demo?args.slice(1):args)],{stdio:'inherit',shell:false,windowsHide:true});
-    if(child.error)throw child.error;
-    process.exitCode=child.status??1;
+    // Keep a single console reader on Windows. A second inherited console reader
+    // can race the parent's pending read and consume the first wizard answer.
+    const child=spawn(process.execPath,[fileURLToPath(new URL(demo?'./examples/demo-founder-workflow.mjs':'./src/startkompas.mjs',import.meta.url)),...(demo?args.slice(1):args)],{stdio:['pipe','inherit','inherit'],shell:false,windowsHide:true});
+    const finished=new Promise((resolve,reject)=>{child.once('error',reject);child.once('close',code=>resolve(code??1));});
+    child.stdin.on('error',error=>{if(error.code!=='EPIPE')console.error(JSON.stringify(publicError(error)));});
+    process.stdin.pipe(child.stdin);
+    try{process.exitCode=await finished;}finally{process.stdin.unpipe(child.stdin);process.stdin.pause();}
    }
   });
  }

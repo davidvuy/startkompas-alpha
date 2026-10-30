@@ -25,3 +25,7 @@ Initial selected public package with local versioned dossiers, business drafts, 
 ## 0.1.0-alpha.4 — easier first use
 
 A Dutch menu (`node start.mjs`) provides installation checks, new projects, fictional demos, resuming, offer drafts and previewed report export. Export still requires confirmation and refuses stale content and overwrites. A short Dutch quickstart explains download, installation, first result and resumption. Updated pinned checkout/setup-node actions, with credential persistence and automatic package caching disabled. Existing CLI commands remain available; no cloud interface or AI calls added.
+
+## 0.1.0-alpha.4.1 — Windows menu input fix
+
+Interactive testing found that two console readers could lose the first wizard answer after leaving the menu. The menu now forwards its single input stream to the child process. A prompt-driven subprocess regression and an actual Windows terminal creation check verify the first project name is retained. The alpha4 tag is preserved as historical evidence; use alpha4.1.

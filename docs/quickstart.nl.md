@@ -6,7 +6,7 @@ Startkompas bewaart aannames, besluiten, taken en concepten voor je bedrijfsidee
 
 Installeer eerst [Node.js 26.7.0 met npm](https://nodejs.org/download/release/v26.7.0/). Deze exacte versie is onze ontwikkelversie; ook Node 24 wordt in de automatische helpertests meegenomen.
 
-[Download de alpha-4-ZIP](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.4.zip). Pak **alles** uit in een nieuwe map. Open die map, waar `package.json` en `start.mjs` staan, in een terminal. Op Windows: rechtsklik in de map en kies 'Openen in Terminal' als die optie beschikbaar is. Op macOS/Linux: open Terminal en gebruik `cd` gevolgd door het pad naar die map.
+[Download de alpha-4-ZIP](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.4.1.zip). Pak **alles** uit in een nieuwe map. Open die map, waar `package.json` en `start.mjs` staan, in een terminal. Op Windows: rechtsklik in de map en kies 'Openen in Terminal' als die optie beschikbaar is. Op macOS/Linux: open Terminal en gebruik `cd` gevolgd door het pad naar die map.
 
 Voer deze opdrachten één voor één uit:
 

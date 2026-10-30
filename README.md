@@ -10,7 +10,7 @@ This is an experimental alpha. Independent user validation is still ahead. No me
 
 ## Start here
 
-[Download alpha 4 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.4.zip) · [Nederlandse startgids](docs/quickstart.nl.md) · [Release notes](https://github.com/davidvuy/startkompas-alpha/releases/tag/v0.1.0-alpha.4)
+[Download alpha 4.1 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.4.1.zip) · [Nederlandse startgids](docs/quickstart.nl.md) · [Release notes](https://github.com/davidvuy/startkompas-alpha/releases/tag/v0.1.0-alpha.4.1)
 
 Extract the ZIP into a new folder. Open a terminal in that folder, install the locked dependencies and open the Dutch menu:
 

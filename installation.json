@@ -1,6 +1,6 @@
 {
-  "source_revision": "6bf4737099ca170a3ecd17d17ea6d02fb208febc",
-  "created_at": "2026-10-30T12:13:31.144Z",
+  "source_revision": "2052f624ab59651052ba3ecd8847bfdcaf233cf9",
+  "created_at": "2026-10-30T12:22:36.965Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -141,7 +141,7 @@
     },
     {
       "path": "docs/alpha-changelog.md",
-      "sha256": "23b213d05b88d13a0554c023ded0fa67d4af77f9fb3e5b83396c61dd57057cb7"
+      "sha256": "81387240ea527eeb78aa813ca7e250be42f536291d16826387af30416902f520"
     },
     {
       "path": "docs/alpha-contributing.md",
@@ -209,7 +209,7 @@
     },
     {
       "path": "docs/quickstart.nl.md",
-      "sha256": "05fbceb208b2a3b5019139cc89126f9a6e517b201fd0542ba6dd3856001ee1a3"
+      "sha256": "43bfeadfbc5185fb8ea0d3acf9b42f61d015586044b018e66a42f68035d8103e"
     },
     {
       "path": "docs/run-limits.md",
@@ -341,15 +341,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "9162b8b841763e943af29af48d8e840643cb9a9d7d838fe42a3b8a12e2b8c923"
+      "sha256": "2d0910e2a98c641994ecea00613da469f36c410ced2c1a38b4f2ed0853866103"
     },
     {
       "path": "package.json",
-      "sha256": "bf7edba9f7c463c6f0e8debd5edc5eddec72e44191f103d93d896eafb89ba2c7"
+      "sha256": "aed5e2fbc3f0003f2769d6f66e20aa97a02d5daa8c9a44e70ca5bbe85df15fb0"
     },
     {
       "path": "README.md",
-      "sha256": "ac78a0de476d6192a0f088c13341850c93f966df5633894a4f60b07b30cd70c4"
+      "sha256": "f9fecad73d15ed1f799920ccd75bfb8514817c9fd991ab9d16b342d1e957f3dd"
     },
     {
       "path": "schemas/cost-scenario.schema.json",
@@ -553,7 +553,7 @@
     },
     {
       "path": "start.mjs",
-      "sha256": "736026d6cd08713aa98993599136c82f355ae6e11bb6b1d27f5f5799ad737263"
+      "sha256": "680a10e1fb787ccff97d329843891d6f2f4eaef95b2a148dc0fff0f2ccc85f4a"
     },
     {
       "path": "tests/business-brief.test.mjs",
@@ -597,7 +597,7 @@
     },
     {
       "path": "tests/menu.test.mjs",
-      "sha256": "f5df8d0ed701a40dc4eadbb72164976b50b17d1e625fe9778b46ac7595451cb5"
+      "sha256": "0e82f5546cd0a097b1cbcb1b070c82e0826bff813c1e57b0a56cea98930222b6"
     },
     {
       "path": "tests/module-notices.test.mjs",
