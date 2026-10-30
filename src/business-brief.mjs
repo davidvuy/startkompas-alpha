@@ -55,6 +55,7 @@ export function prepareBusinessBrief(dir,request){
   const lang=1,unknown='Unknown; not performed or established';
   const status={proposal:'Proposal',reported:'Reported; not independently verified',unknown};
   const lines=['# '+briefTypes[request.kind].title[lang]+' — '+('draft'),'',`${escape(d.name)} · ${d.project_id} · v${version}`,`${'Client/context'}: ${request.client===null?unknown:escape(request.client)}`,`${'Period'}: ${request.period===null?unknown:escape(request.period)}`,'','Draft, not evidence of demand, payment, an interview conducted or pilot approval.'];
+  if(d.events.some(e=>e.type==='practice-project'))lines.push('','FICTIONAL PRACTICE — not real customer evidence or validation.');
   if(prior)lines.push('',`${'Previous version'}: ${prior.artifact_id}`,`${'Change reason'}: ${escape(request.change_reason)}`,`${'Changed fields'}: ${changes.map(c=>c.key).join(', ')||('no field changes')}`);
   for(const f of fields){lines.push('','## '+briefTypes[request.kind].fields[f.key][lang],'',f.value===null?unknown:escape(f.value),status[f.assertion]);for(const r of f.basis)lines.push(`- ${r.record_id}: ${escape(r.status)}${r.requires_review?' — '+('requires review'):''}`);}
   if(request.kind==='interview')lines.push('','## Blank log — no interview yet','Date / participant code / direct statement / observation / interpretation / open question: not yet recorded.');
@@ -68,11 +69,11 @@ export function prepareBusinessBrief(dir,request){
 export function readBusinessBrief(dir,projectId,artifactId){
   const state=readCore(dir,projectId),saved=loadBrief(state,artifactId),d=applyInvalidation(state.dossier,structuredClone(state.dossier),damagedArtifacts(state.directory,state.dossier));
   const successors=d.events.filter(e=>e.type==='business-brief-draft'&&e.subject_ids[1]===artifactId).map(e=>e.subject_ids[0]);
-  return {...saved,current_revision:d.revision,requires_review:d.workflow.invalidated_ids.includes(artifactId),successor_ids:successors,warning:'Saved draft, not new verification; read current basis before acting.'};
+  return {...saved,practice:d.events.some(e=>e.type==='practice-project'),current_revision:d.revision,requires_review:d.workflow.invalidated_ids.includes(artifactId),successor_ids:successors,warning:'Saved draft, not new verification; read current basis before acting.'};
 }
 export function renderBusinessBrief(dir,projectId,artifactId){
   const r=readBusinessBrief(dir,projectId,artifactId);
-  const notes=[];if(r.requires_review)notes.push('CAUTION: basis changed; review again.');
+  const notes=[];if(r.practice)notes.push('FICTIONAL PRACTICE — not real customer evidence or validation.');if(r.requires_review)notes.push('CAUTION: basis changed; review again.');
   if(r.successor_ids.length)notes.push(('Historical version; successor: ')+r.successor_ids.join(', '));
   return notes.concat(r.document_markdown).join('\n\n');
 }

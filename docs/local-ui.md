@@ -24,9 +24,27 @@ If a project is moved within the selected directory, refresh and select its new 
 
 The Node HTTP server binds only to 127.0.0.1 on an ephemeral port. Exact Host, Origin and a fresh 256-bit process token protect every data endpoint. Fetch Metadata blocks foreign-site API requests, including same-site requests from another origin. Only navigation to the static root document is allowed from another site; it contains no project information or token. The fragment token is removed from the address bar and retained in tab session storage. Do not share the start link.
 
-The static allowlist contains four assets. There is no arbitrary file-serving endpoint, shell execution or browser-supplied filesystem path. Project references are opaque process-local handles. The selected parent is canonicalized, linked children and linked dossier files are refused, reads use existing size/schema/identity checks, listings are capped at 200 directory entries, and request bodies at 64 KiB. CSP disallows inline code, external resources and framing. No CORS access is granted. Request content is not logged.
+The static allowlist contains five assets. There is no arbitrary file-serving endpoint, shell execution or browser-supplied filesystem path. Project references are opaque process-local handles. The selected parent is canonicalized, linked children and linked dossier files are refused, reads use existing size/schema/identity checks, listings are capped at 200 directory entries, and request bodies at 64 KiB. CSP disallows inline code, external resources and framing. No CORS access is granted. Request content is not logged.
 
 This is not an OS sandbox: another process running as the same user, a privileged browser extension, compromised dependencies or concurrent malicious filesystem replacement are outside this web-origin boundary. No independent security audit has been performed.
+
+## Interface decision
+
+## Inspecting saved work and asking for help
+
+Read saved draft opens a verified existing business document without entering edit mode, including historical versions and review warnings. Follow its recorded basis links, or open tasks, assumptions and review flags to inspect the original record and its declared prerequisites/dependents. Relationship lists show up to 100 links each and disclose truncation. These are recorded relationships, not inferred dependencies or new verification. Corrupt documents are refused without repair or writes.
+
+Search this project uses case-insensitive literal matching across canonical records, 25 results per page. Results open the original record. The query and revision stay fixed across pages; changed projects require refreshing before another search. Draft metadata is searchable, but attachment document contents are not searched. No external index or AI calls are involved.
+
+Report a problem prepares an editable report containing only application version, Node version, platform and blank fictional reproduction fields. It does not include project text/names, paths, tokens or browser data. Review before copying; copy failures select the text for manual copying. The GitHub support link opens the existing issue choices without prefilled data. Nothing is posted automatically. User additions can contain sensitive information, so inspect them before sharing. The report form is not stored by draft recovery.
+
+## Interface decision
+
+## Finding projects and reading history
+
+Find a project filters the loaded project list by name, ID or folder, ignoring letter case. Show archived projects combines with search; the result count includes the total readable projects in the chosen parent. Sort by recently modified (default) or name. Filtering does not close the selected project or discard form text. Refresh projects reloads disk state; search does not scan files or send text to another service.
+
+Project history shows the current revision, up to 50 saved snapshot candidates and the latest 100 recorded events in reverse recorded order. Truncation and unrecognized files are disclosed. Snapshots pass the existing schema, identity and hash checks; invalid or ambiguous snapshots have no comparison button. Compare with the displayed current revision lists changed record IDs/fields using the existing comparison helper. It does not show full before/after values, restore data, assess business impact or approve contents. The project is reread to detect concurrent changes. Both read-only API routes retain the same session/origin and opaque-project-handle boundary as the rest of the workspace. History is not an independent backup.
 
 ## Interface decision
 
@@ -50,11 +68,27 @@ Automated verification: `node --test tests/local-ui.test.mjs`. This covers share
 
 ## Offer editing
 
+If the project changed while editing, Compare with latest saved fields follows the same offer's successor chain (up to 100 versions) and shows your unsaved fields beside the latest stored values. After reviewing and checking confirmation, choose to keep your text against that revision or load the latest fields. Neither choice writes the project. Client/period continuity follows the saved offer; changed text remains a proposal. A fresh preview and save confirmation are mandatory, and another intervening change is refused. Archived projects, ambiguous/corrupt chains and missing drafts cannot be silently reapplied. New unscoped offers are not automatically merged with unrelated drafts.
+
 Choose Draft an offer or Revise this offer. Unknown answers stay blank. Context and period remain fixed when revising; give a change reason. Unchanged fields retain their recorded basis, while changed text becomes a proposal with no automatic source attribution. Preview is read-only. Saving requires confirmation of the exact server-held preview, expires after 15 minutes, and rejects changed project bytes or revision. Up to 20 previews are retained in memory. Repeated saves of the same successful preview return the same receipt without a duplicate revision. New versions retain previous draft bytes. Retry bundles are generated in unique sibling folders; the browser cannot choose arbitrary paths. After interruption inspect the project and retry bundle before another save. Existing saved documents retain their original bytes and language.
 
 ## Selected report export
 
 Choose Export a report, select sections, preview and confirm. The shared report renderer escapes stored text and retains review warnings. The server rechecks the exact digest before writing a unique Markdown file directly inside the selected projects parent, outside the dossier. The browser cannot supply paths or overwrite an existing file. The saved location is shown. A repeated successful save returns the original receipt. Project files remain unchanged. A report omits attachments and full history and is not a backup. Inspect confidential text before sharing; nothing is transmitted to a recipient.
+
+## Archive and restore
+
+## Practice, resume and tab recovery
+
+New practice projects carry a saved `practice-project` event from revision 1. The marker survives renaming and export/restore, appears in the project list/workspace and is included in new business drafts and report exports. Wizard recovery retains the practice choice. The UI has no conversion action that removes the marker. This is a persistent product label, not tamper-proof protection against deliberate external file edits. Earlier synthetic examples without this event are not retrospectively classified by their names.
+
+Try a fictional practice project fills the setup wizard with an explicitly fictional scenario and a fresh folder ID. Review and confirm before any files are created. The example contains no customer evidence or completed outcomes. It uses the same creation, offer and archive flows as other projects; it is not a sandbox or a real validation result.
+
+After opening a project, this tab remembers its folder and ID. Following refresh, Resume opens that exact project using the current server list, including its archived status. Missing projects are not silently replaced by another project with the same name. This is tab-local convenience, not cross-device history.
+
+Keep an unsaved draft in this browser tab is off by default. Enabling it retains one setup or offer form in sessionStorage on input, replacing the previous recovery copy. It contains the entered text in plaintext; do not enable it on a shared browser profile. Recovery is offered for up to 24 hours and is scoped to the chosen project parent. It does not write a project, preserve a preview/confirmation, make a backup or guarantee survival after tab closure, browser failure or server restart. Browser storage can be unavailable or full; the UI reports failed writes. Browser/session restoration may retain storage longer, so use Forget recovery copy or switch recovery off to remove it explicitly.
+
+Review recovered draft restores only form text. Setup needs all review/confirmation steps again. Offers must match the original folder, ID, project revision, digest and field schema; a fresh preview and confirmation are required. If the project changed, was archived or is unavailable, the recovery text stays readable for manual copying instead of being silently applied. Successful save and explicit discard clear the recovery copy. Back to overview preserves setup text; Discard setup text removes it. Original unknowns and provenance rules still apply.
 
 ## Archive and restore
 

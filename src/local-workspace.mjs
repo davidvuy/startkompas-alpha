@@ -3,8 +3,12 @@ import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {safeDirectory,regularFile,readCore} from './store.mjs';
 import {initializeProject} from './initialize.mjs';
-import {workspaceView,saveGuided,operationId,reportPreview,writeReport,isProjectArchived,prepareProjectArchive} from './workspace.mjs';
-import {briefTypes,prepareBusinessBrief,readBusinessBrief} from './business-brief.mjs';
+import {workspaceView,saveGuided,operationId,reportPreview,writeReport,isProjectArchived,isPracticeProject,prepareProjectArchive} from './workspace.mjs';
+import {briefTypes,prepareBusinessBrief,readBusinessBrief,renderBusinessBrief} from './business-brief.mjs';
+import {retrieveRecords} from './retrieval.mjs';
+import {dependencyGraph} from './dependencies.mjs';
+import {listHistory} from './history.mjs';
+import {compareRevisions,renderComparison} from './project-view.mjs';
 
 export class WorkspaceError extends Error {
  constructor(message,status=400){super(message);this.status=status;}
@@ -56,23 +60,57 @@ export function localWorkspace(selectedRoot){
     if(!fs.existsSync(file))continue;
     try{
      const id=JSON.parse(regularFile(file)).project_id,{dossier:d}=readCore(dir,id);
-     projects.push({ref:register(entry.name,id),folder:entry.name,id:d.project_id,name:d.name,revision:d.revision,archived:isProjectArchived(d),updated:fs.statSync(file).mtime.toISOString()});
+     projects.push({ref:register(entry.name,id),folder:entry.name,id:d.project_id,name:d.name,revision:d.revision,practice:isPracticeProject(d),archived:isProjectArchived(d),updated:fs.statSync(file).mtime.toISOString()});
     }catch{unavailable.push(entry.name);}
    }}finally{iterator.closeSync();}
    return {root,projects:projects.sort((a,b)=>b.updated.localeCompare(a.updated)),unavailable};
   },
   create(input){
-   exactObject(input,['id','name','task','confirmed',...(Object.hasOwn(input??{},'context')?['context']:[])]);
+   exactObject(input,['id','name','task','confirmed',...(Object.hasOwn(input??{},'practice')?['practice']:[]),...(Object.hasOwn(input??{},'context')?['context']:[])]);
    if(Object.hasOwn(input,'context')){exactObject(input.context,['customer','outcome']);for(const value of Object.values(input.context))if(typeof value!=='string'||value.length>2000)throw new WorkspaceError('Starting context must be text of at most 2000 characters per field.');}
+   if(Object.hasOwn(input,'practice')&&typeof input.practice!=='boolean')throw new WorkspaceError('Practice must be true or false.');
    if(input.confirmed!==true)throw new WorkspaceError('Confirm project creation first.');
    if(typeof input.id!=='string'||! /^[a-z0-9][a-z0-9-]{0,63}$/.test(input.id))throw new WorkspaceError('Use lowercase letters, numbers and hyphens for the project ID (maximum 64).');
    for(const field of ['name','task'])if(typeof input[field]!=='string'||input[field].length>4000||(field==='name'&&!input[field].trim()))throw new WorkspaceError('Enter a project name and keep each field under 4001 characters.');
    const dir=directory(input.id);
    if(fs.existsSync(dir))throw new WorkspaceError('This folder already exists. Choose another ID or open the existing project.',409);
-   initializeProject(dir,{project_id:input.id,name:input.name.trim(),first_task:input.task.trim()?{id:'first-task',title:input.task.trim()}:null,...(input.context?{context:input.context}:{})});
+   initializeProject(dir,{project_id:input.id,name:input.name.trim(),practice:input.practice===true,first_task:input.task.trim()?{id:'first-task',title:input.task.trim()}:null,...(input.context?{context:input.context}:{})});
    return {ref:register(input.id,input.id)};
   },
   show(ref){const {dir,id,folder}=open(ref);return {folder,...workspaceView(dir,id)};},
+  draft(input){
+   exactObject(input,['ref','id']);const {dir,id}=open(input.ref),state=readCore(dir,id);
+   let draft,markdown;try{draft=readBusinessBrief(dir,id,input.id);markdown=renderBusinessBrief(dir,id,input.id);}catch{throw new WorkspaceError('This saved draft is unavailable or damaged. No file was changed.',409);}
+   if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed. Open the draft again.',409);
+   return {id:draft.artifact_id,version:draft.version,kind:draft.request.kind,markdown,requires_review:draft.requires_review,historical:draft.successor_ids.length>0,successors:draft.successor_ids,basis_ids:[...new Set(draft.fields.flatMap(f=>f.record_ids))]};
+  },
+  search(input){
+   exactObject(input,['ref','revision','query','offset']);const {dir,id}=open(input.ref),state=readCore(dir,id);
+   let result;try{result=retrieveRecords(dir,{project_id:id,source_revision:input.revision,query:input.query,groups:[],ids:[],offset:input.offset,limit:25});}catch{throw new WorkspaceError('Search could not run. Refresh the project and use a query of at most 1000 characters.',409);}
+   if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed during search. Refresh it and search again.',409);
+   return result;
+  },
+  record(input){
+   exactObject(input,['ref','id']);const {dir,id}=open(input.ref),state=readCore(dir,id);
+   let result;try{result=retrieveRecords(dir,{project_id:id,source_revision:state.dossier.revision,query:'',groups:[],ids:[input.id],offset:0,limit:1});}catch{throw new WorkspaceError('Invalid record selection.');}
+   if(!result.records.length)throw new WorkspaceError('This record is no longer available.',404);
+   const graph=dependencyGraph(state.dossier),label=key=>{const r=graph.index.get(key);return {id:key,group:r.group,title:r.title??r.text??r.description??key};};
+   const prerequisites=[...graph.edges.get(input.id)].map(([key,reason])=>({...label(key),reason})),dependents=graph.reverse.get(input.id).map(label);
+   if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed. Open the record again.',409);
+   return {record:result.records[0],revision:state.dossier.revision,prerequisites:prerequisites.slice(0,100),dependents:dependents.slice(0,100),truncated:prerequisites.length>100||dependents.length>100};
+  },
+  history(input){
+   exactObject(input,['ref']);const {dir,id}=open(input.ref),state=readCore(dir,id);
+   const history=listHistory(dir,id);
+   if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed. Open history again.',409);
+   return {revision:state.dossier.revision,...history,events:state.dossier.events.slice(-100).reverse(),events_truncated:state.dossier.events.length>100};
+  },
+  compare(input){
+   exactObject(input,['ref','before','after']);const {dir,id}=open(input.ref),state=readCore(dir,id);
+   let result;try{result=compareRevisions(dir,id,input.before,input.after);}catch{throw new WorkspaceError('These revisions cannot be compared. Refresh history and choose readable, unambiguous revisions.',409);}
+   if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed during comparison. Refresh history.',409);
+   return {markdown:renderComparison(result)};
+  },
   offerForm(input){
    exactObject(input,['ref','previous']);const {dir,id}=open(input.ref);
    requireActive(dir,id);
@@ -82,6 +120,19 @@ export function localWorkspace(selectedRoot){
    const state=readCore(dir,id);
    const initial=startingFields(state.dossier);
    return {revision:state.dossier.revision,sha256:state.sha256,previous:input.previous,client:prior?.request.client??'',period:prior?.request.period??'',fields:offerKeys.map(key=>({key,label:briefTypes.offer.fields[key][1],value:prior?(prior.fields.find(f=>f.key===key)?.value??''):(initial[key]?.value??'')}))};
+  },
+  offerLatest(input){
+   exactObject(input,['ref','previous']);const {dir,id}=open(input.ref),state=readCore(dir,id);requireActive(dir,id);
+   if(input.previous!==null&&typeof input.previous!=='string')throw new WorkspaceError('Invalid previous draft.');
+   let previous=input.previous;const visited=new Set();
+   try{while(previous!==null){
+    if(visited.has(previous)||visited.size>=100)throw Error('Invalid revision chain');visited.add(previous);
+    const draft=readBusinessBrief(dir,id,previous);if(draft.request.kind!=='offer'||draft.successor_ids.length>1)throw Error('Ambiguous offer');
+    if(!draft.successor_ids.length)break;previous=draft.successor_ids[0];
+   }}catch{throw new WorkspaceError('The offer history cannot be followed safely. Open the project and inspect its saved drafts.',409);}
+   const result=this.offerForm({ref:input.ref,previous});
+   if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed. Compare again.',409);
+   return result;
   },
   offerPreview(input){
    exactObject(input,['ref','previous','revision','sha256','client','period','reason','fields']);

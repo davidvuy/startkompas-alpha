@@ -12,6 +12,7 @@ import {planNext} from './workflow.mjs';
 
 const text=(s,label)=>{if(typeof s!=='string'||!s.trim()||s.length>4000)throw Error(label+' must contain 1–4000 characters');return s.trim();};
 export const operationId=()=> 'guided-'+randomUUID();
+export const isPracticeProject=d=>d.events.some(e=>e.type==='practice-project');
 export const isProjectArchived=d=>d.events.filter(e=>['project-archived','project-restored'].includes(e.type)).at(-1)?.type==='project-archived';
 export function prepareProjectArchive(dir,id,expectedRevision,archived){
  const {dossier:d}=readCore(dir,id);
@@ -43,11 +44,11 @@ export function workspaceView(dir,id){
  const checks=d.checks.filter(c=>c.applicability!=='not_applicable'&&unresolved(c));
  const next=blockers.length?{kind:'review',record_id:blockers[0].id,reason:blockers[0].reason}:checks.length?{kind:'check',record_id:checks[0].id,reason:'Unresolved recorded check; review its applicability and evidence'}:actions.find(a=>!a.requires_review&&!a.blocked_by.length)?{kind:'task',record_id:actions.find(a=>!a.requires_review&&!a.blocked_by.length).id,reason:'First eligible recorded task, active task preferred'}:assumptions.length?{kind:'assumption',record_id:assumptions[0].id,reason:'Review the assumption with the most declared dependents'}:{kind:'draft',record_id:null,reason:'Prepare an offer or interview guide; no next task has been recorded'};
  if(readCore(dir,id).sha256!==s.sha256)throw Error('Project changed while preparing workspace view');
- return {project_id:id,name:d.name,revision:d.revision,archived:isProjectArchived(d),sha256:s.sha256,next,actions,blockers,checks,assumptions,drafts,decisions:d.decisions.filter(x=>x.status==='active'),limitations:['Suggested order from recorded data, not an assessment of real-world urgency or readiness.','Every assumption remains a claim; a source or interview note is not automatic validation.','Draft status is never qualified professional approval.']};
+ return {project_id:id,name:d.name,revision:d.revision,practice:isPracticeProject(d),archived:isProjectArchived(d),sha256:s.sha256,next,actions,blockers,checks,assumptions,drafts,decisions:d.decisions.filter(x=>x.status==='active'),limitations:['Suggested order from recorded data, not an assessment of real-world urgency or readiness.','Every assumption remains a claim; a source or interview note is not automatic validation.','Draft status is never qualified professional approval.']};
 }
 
 export function renderWorkspace(v){
- const lines=['# '+cleanText(v.name),'Revision: '+v.revision,'State: '+(v.archived?'Archived':'Active'),'','## Suggested next action',cleanText(v.next.kind)+': '+cleanText(v.next.record_id??'new draft'),'Reason: '+cleanText(v.next.reason),'','## Review before reuse',...v.blockers.map(x=>'- '+cleanText(x.id)+': '+cleanText(x.reason))];
+ const lines=['# '+cleanText(v.name),'Revision: '+v.revision,...(v.practice?['FICTIONAL PRACTICE — not real customer evidence.']:[]),'State: '+(v.archived?'Archived':'Active'),'','## Suggested next action',cleanText(v.next.kind)+': '+cleanText(v.next.record_id??'new draft'),'Reason: '+cleanText(v.next.reason),'','## Review before reuse',...v.blockers.map(x=>'- '+cleanText(x.id)+': '+cleanText(x.reason))];
  if(!v.blockers.length)lines.push('No recorded invalidations; this is not proof that everything is correct.');
  lines.push('','## Open checks',...v.checks.map(x=>'- '+cleanText(x.id)+': '+cleanText(x.title)+' ['+x.progress+'; '+x.substantiation+']'),'','## Tasks',...v.actions.map(x=>'- '+cleanText(x.id)+': '+cleanText(x.title)+(x.blocked_by.length?' — prerequisites: '+x.blocked_by.map(cleanText).join(', '):'')),'','## Assumptions to investigate',...v.assumptions.map(x=>'- '+cleanText(x.id)+': '+cleanText(x.text)+' ['+x.assertion+'; dependents: '+x.dependent_count+']'),'','## Saved drafts',...v.drafts.map(x=>'- '+cleanText(x.id)+': '+(x.kind??'unknown')+' v'+(x.version??'?')+' ['+x.status+(x.historical?'; historical':'')+']'+(x.unknown_fields?.length?' — unknown: '+x.unknown_fields.join(', '):'')),'',...v.limitations);
  return lines.join('\n')+'\n';
@@ -110,6 +111,7 @@ export function reportPreview(dir,id,sections=['summary','tasks']){
   lines.push('','## Saved draft '+draft.id,renderBusinessBrief(dir,id,draft.id));
  }
  lines.push('','## Review warnings',...v.blockers.map(x=>'- '+cleanText(x.id)+': '+cleanText(x.reason)),'','This is a readable selection, not a backup. Attached files, full history and source locations are not bundled; selected text can still contain personal or confidential information.');
+ if(v.practice)lines.splice(2,0,'FICTIONAL PRACTICE — not real customer evidence or validation.');
  const markdown=lines.join('\n')+'\n';
  if(readCore(dir,id).sha256!==state.sha256)throw Error('Project changed while preparing report');
  return {project_id:id,revision:v.revision,sections,bytes:Buffer.byteLength(markdown),confirmation_sha256:sha(markdown),markdown};

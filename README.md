@@ -10,7 +10,7 @@ This is an experimental alpha. Independent user validation is still ahead. No me
 
 ## Start here
 
-[Download alpha 6 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.6.zip) · [Quickstart](docs/quickstart.md) · [Release notes](https://github.com/davidvuy/startkompas-alpha/releases/tag/v0.1.0-alpha.6)
+[Download alpha 7 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.7.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
 
 Extract the ZIP into a new folder. Open a terminal in that folder, install the locked dependencies and open the English menu:
 
@@ -109,3 +109,7 @@ The alpha1 baseline passed 167 source and clean-install tests. Alpha2 added onbo
 ## Contribute or fork
 
 See [contribution guidance](CONTRIBUTING.md), the [four-week roadmap](docs/alpha-roadmap.md) and [the 50-item progress register](docs/alpha-progress.md). Focused fixes, clearer examples and fictional reproductions are useful contributions. If the project helps you, a star makes it easier to find again. No popularity or business outcome is promised.
+
+### Find and resume your work
+
+The local workspace includes fictional practice projects, optional tab-local form recovery, project search/sorting, saved-document inspection, original-record and dependency navigation, and read-only history comparisons. Offer conflicts can be compared before explicitly keeping your text against a newer revision; saving still needs a fresh preview and confirmation. Report a problem prepares a minimal technical report for review before copying. See [local workspace](docs/local-ui.md) for limits and data handling.

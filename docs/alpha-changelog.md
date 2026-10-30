@@ -1,5 +1,17 @@
 # Changes
 
+## 0.1.0-alpha.7 — practice, recovery and readable project work
+
+- Fictional practice setup with a persistent marker through rename and export/restore; draft and report warnings stay visible.
+- Optional single-draft recovery within a browser tab, exact-project resumption and explicit stale-copy refusal. This is not crash-proof storage or a backup.
+- Project search/sorting, canonical record search, saved-draft reading, recorded basis/dependent navigation and read-only revision comparisons.
+- Side-by-side offer conflict review with explicit choice, fresh preview and confirmed new-version save.
+- Minimal reviewed support reports containing app/Node/platform only; no automatic issue submission.
+- Improved keyboard focus after wizard steps, errors, previews and confirmation panels.
+
+All product copy is English; historical user data is preserved. Independent user validation, screen-reader acceptance and a security audit remain open. The complete month-one/six-month roadmap is not finished.
+
+
 ## 0.1.0-alpha.3 — Guided founder work
 
 - Create and revise offer, interview, alternatives, pricing and pilot drafts through terminal questions instead of request JSON. Keep earlier versions and preserve unknown fields.

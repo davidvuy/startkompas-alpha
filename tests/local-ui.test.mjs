@@ -24,6 +24,92 @@ async function setup(t){
 }
 const input=(id='example')=>({id,name:'Synthetic project',task:'Check a problem',confirmed:true});
 
+test('latest offer resolution follows saved successors without bypassing stale preview guards',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref;
+ const first=(await request('/api/offer-preview',await offer(request,ref))).json();
+ const saved=(await request('/api/offer-save',{ref,preview:first.preview,confirmed:true})).json();
+ const stale=await offer(request,ref,saved.artifact_id),revision={...stale,fields:{...stale.fields,outcome:'Changed elsewhere'}};
+ const next=(await request('/api/offer-preview',revision)).json(),savedNext=(await request('/api/offer-save',{ref,preview:next.preview,confirmed:true})).json();
+ const file=path.join(root,'example','project.json'),before=fs.readFileSync(file);
+ const latest=await request('/api/offer-latest',{ref,previous:saved.artifact_id});assert.equal(latest.status,200);assert.equal(latest.json().previous,savedNext.artifact_id);assert.equal(latest.json().fields.find(f=>f.key==='outcome').value,'Changed elsewhere');
+ assert.equal((await request('/api/offer-preview',stale)).status,409);
+ assert.equal((await request('/api/offer-latest',{ref,previous:saved.artifact_id},{Origin:'https://attacker.invalid'})).status,403);
+ assert.equal((await request('/api/offer-latest',{ref,previous:'missing'})).status,409);
+ assert.equal((await request('/api/offer-latest',{ref,previous:null,path:'../escape'})).status,400);
+ assert.deepEqual(fs.readFileSync(file),before);
+ const v=(await request('/api/show',{ref})).json();await request('/api/archive',{ref,revision:v.revision,sha256:v.sha256,archived:true,confirmed:true});
+ assert.equal((await request('/api/offer-latest',{ref,previous:saved.artifact_id})).status,409);
+});
+
+test('practice marker survives rename and transfer and appears in drafts and reports',async t=>{
+ const {root,request}=await setup(t);
+ assert.equal((await request('/api/create',{...input(),practice:'yes'})).status,400);
+ const ref=(await request('/api/create',{...input(),practice:true})).json().ref,dir=path.join(root,'example');
+ assert.equal((await request('/api/show',{ref})).json().practice,true);
+ const draft=await offer(request,ref),preview=(await request('/api/offer-preview',draft)).json();assert.match(preview.markdown,/FICTIONAL PRACTICE/);
+ const saved=(await request('/api/offer-save',{ref,preview:preview.preview,confirmed:true})).json();
+ updateCore(dir,{project_id:'example',expected_revision:2,operation_id:'rename-practice',changes:{name:'Renamed without practice in the name'}});
+ assert.equal((await request()).json().projects[0].practice,true);
+ assert.match((await request('/api/draft',{ref,id:saved.artifact_id})).json().markdown,/FICTIONAL PRACTICE/);
+ assert.match((await request('/api/report-preview',{ref,sections:['summary']})).json().markdown,/FICTIONAL PRACTICE/);
+ exportCore(dir,'example',path.join(root,'practice-export'));restoreCore(path.join(root,'practice-export'),'example',path.join(root,'practice-restored'));
+ assert.ok((await request()).json().projects.every(p=>p.practice));
+ assert.equal(readCore(dir,'example').dossier.facts.length,0);
+});
+
+test('technical support report includes only allowlisted runtime metadata',async t=>{
+ const {root,app,request}=await setup(t);await request('/api/create',{...input(),name:'Private-name-sentinel',task:'Private-task-sentinel'});
+ const result=await request('/api/diagnostics');assert.equal(result.status,200);
+ assert.match(result.json().markdown,/Application version:/);assert.match(result.json().markdown,/Node version:/);
+ for(const secret of [root,app.token,'Private-name-sentinel','Private-task-sentinel'])assert.ok(!result.text.includes(secret));
+ assert.deepEqual(Object.keys(result.json()),['markdown']);
+ assert.equal((await request('/api/diagnostics',{}, {Origin:'https://attacker.invalid'})).status,403);
+ assert.equal((await request('/api/diagnostics',{include_projects:true})).status,400);
+});
+
+test('record search and draft inspection preserve provenance, refuse invalid input and never write',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',{...input(),context:{customer:'Synthetic studios',outcome:'One draft'}})).json().ref;
+ const draft=await offer(request,ref),preview=(await request('/api/offer-preview',draft)).json();
+ const saved=(await request('/api/offer-save',{ref,preview:preview.preview,confirmed:true})).json();
+ const dir=path.join(root,'example'),before=fs.readFileSync(path.join(dir,'project.json'));
+ const read=await request('/api/draft',{ref,id:saved.artifact_id});assert.equal(read.status,200);assert.match(read.json().markdown,/Synthetic studios/);assert.ok(read.json().basis_ids.includes('starting-customer'));
+ const record=(await request('/api/record',{ref,id:'starting-customer'})).json();assert.equal(record.record.assertion,'unknown');assert.ok(record.dependents.some(r=>r.id===saved.artifact_id));
+ const search=(await request('/api/search',{ref,revision:2,query:'SYNTHETIC STUDIOS',offset:0})).json();assert.ok(search.records.some(r=>r.id==='starting-customer'));
+ assert.equal((await request('/api/search',{ref,revision:1,query:'',offset:0})).status,409);
+ assert.equal((await request('/api/record',{ref,id:'missing'})).status,404);
+ for(const [route,payload]of [['draft',{ref,id:saved.artifact_id}],['record',{ref,id:'first-task'}],['search',{ref,revision:2,query:'',offset:0}]]){
+  assert.equal((await request('/api/'+route,payload,{Origin:'https://attacker.invalid'})).status,403);
+  assert.equal((await request('/api/'+route,{...payload,path:'../escape'})).status,400);
+ }
+ assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);
+ const artifact=readCore(dir,'example').dossier.artifacts.find(a=>a.id===saved.artifact_id);fs.appendFileSync(path.join(dir,artifact.location),'bad');
+ assert.equal((await request('/api/draft',{ref,id:saved.artifact_id})).status,409);
+ assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);
+});
+
+test('history and revision comparison read shared snapshots without changing project bytes',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref;
+ const view=(await request('/api/show',{ref})).json();
+ await request('/api/archive',{ref,revision:view.revision,sha256:view.sha256,archived:true,confirmed:true});
+ const dir=path.join(root,'example'),before=fs.readFileSync(path.join(dir,'project.json'));
+ const history=await request('/api/history',{ref});assert.equal(history.status,200);
+ assert.equal(history.json().revision,2);assert.equal(history.json().snapshots[0].revision,1);assert.equal(history.json().events[0].type,'project-archived');
+ const compared=await request('/api/compare',{ref,before:1,after:2});assert.equal(compared.status,200);assert.match(compared.json().markdown,/1 → 2/);assert.match(compared.json().markdown,/events/);
+ for(const route of ['/api/history','/api/compare']){
+  const payload=route.endsWith('compare')?{ref,before:1,after:2}:{ref};
+  assert.equal((await request(route,payload,{Origin:'https://attacker.invalid'})).status,403);
+  assert.equal((await request(route,{...payload,path:'../elsewhere'})).status,400);
+  assert.equal((await request(route,{...payload,ref:'unknown'})).status,404);
+ }
+ assert.equal((await request('/api/compare',{ref,before:2,after:1})).status,409);
+ assert.equal((await request('/api/compare',{ref,before:1,after:99})).status,409);
+ assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);
+ const snapshot=fs.readdirSync(path.join(dir,'.history'))[0];fs.appendFileSync(path.join(dir,'.history',snapshot),'corrupt');
+ assert.equal((await request('/api/history',{ref})).json().snapshots[0].valid,false);
+ assert.equal((await request('/api/compare',{ref,before:1,after:2})).status,409);
+ assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);
+});
+
 test('browser API creates and resumes the same dossier as a separate CLI process',async t=>{
  const {root,request}=await setup(t);
  assert.deepEqual((await request()).json().projects,[]);
@@ -64,7 +150,7 @@ test('static allowlist exposes only UI assets with CSP and no session secret',as
  const navigation={'Sec-Fetch-Site':'cross-site','Sec-Fetch-Mode':'navigate','Sec-Fetch-Dest':'document'};
  assert.equal((await request('/',{},navigation,'GET')).status,200);
  assert.equal((await request('/api/projects',{},navigation)).status,403);
- for(const route of ['/','/ui.js','/ui.css','/brand.png']){
+ for(const route of ['/','/ui.js','/recovery.js','/ui.css','/brand.png']){
   const response=await request(route,{}, {},'GET');assert.equal(response.status,200);
   assert.equal(response.headers['cache-control'],'no-store');assert.match(response.headers['content-security-policy'],/frame-ancestors 'none'/);
   assert.ok(!response.text.includes(app.token));assert.equal(response.headers['access-control-allow-origin'],undefined);

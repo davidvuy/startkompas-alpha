@@ -5,6 +5,7 @@ import {localWorkspace,WorkspaceError,exactObject} from './local-workspace.mjs';
 
 const assets=new Map([
  ['/',[new URL('../ui/index.html',import.meta.url),'text/html; charset=utf-8']],
+ ['/recovery.js',[new URL('../ui/recovery.js',import.meta.url),'text/javascript; charset=utf-8']],
  ['/ui.js',[new URL('../ui/ui.js',import.meta.url),'text/javascript; charset=utf-8']],
  ['/ui.css',[new URL('../ui/ui.css',import.meta.url),'text/css; charset=utf-8']],
  ['/brand.png',[new URL('../assets/startkompas-header.png',import.meta.url),'image/png']]
@@ -33,16 +34,26 @@ export async function startLocalUI({root,port=0}){
    if(req.method==='GET'&&assets.has(req.url)){
     const [file,type]=assets.get(req.url);return send(200,fs.readFileSync(file),type);
    }
-   if(!['/api/projects','/api/create','/api/show','/api/offer-form','/api/offer-preview','/api/offer-save','/api/report-preview','/api/report-save','/api/archive'].includes(req.url))throw new WorkspaceError('Not found.',404);
+   if(!['/api/offer-latest','/api/diagnostics','/api/draft','/api/search','/api/record','/api/history','/api/compare','/api/projects','/api/create','/api/show','/api/offer-form','/api/offer-preview','/api/offer-save','/api/report-preview','/api/report-save','/api/archive'].includes(req.url))throw new WorkspaceError('Not found.',404);
    if(req.method!=='POST')throw new WorkspaceError('This operation requires a POST request.',405);
    const supplied=req.headers['x-startkompas-session'];
    if(req.headers.origin!==origin||typeof supplied!=='string'||! /^[a-f0-9]{64}$/.test(supplied)||!timingSafeEqual(Buffer.from(supplied),Buffer.from(token)))throw new WorkspaceError('The session is missing or expired. Reopen the link from the terminal.',403);
    if(req.headers['content-type']!=='application/json')throw new WorkspaceError('Use a JSON request.',415);
    const input=await body(req);let result;
+   if(req.url==='/api/diagnostics'){
+    exactObject(input,[]);const version=JSON.parse(fs.readFileSync(new URL('../package.json',import.meta.url),'utf8')).version;
+    result={markdown:['Startkompas local workspace problem report','Application version: '+version,'Node version: '+process.versions.node,'Platform: '+process.platform,'','Steps to reproduce using fictional data: [fill in]','Expected result: [fill in]','Actual result: [fill in]','','This report contains no project names, paths, session tokens or project contents. Review your additions before sharing.'].join('\n')};
+   }
    if(req.url==='/api/projects'){exactObject(input,[]);result=workspace.list();}
+   if(req.url==='/api/draft')result=workspace.draft(input);
+   if(req.url==='/api/search')result=workspace.search(input);
+   if(req.url==='/api/record')result=workspace.record(input);
+   if(req.url==='/api/history')result=workspace.history(input);
+   if(req.url==='/api/compare')result=workspace.compare(input);
    if(req.url==='/api/create')result=workspace.create(input);
    if(req.url==='/api/show'){exactObject(input,['ref']);result=workspace.show(input.ref);}
    if(req.url==='/api/offer-form')result=workspace.offerForm(input);
+   if(req.url==='/api/offer-latest')result=workspace.offerLatest(input);
    if(req.url==='/api/offer-preview')result=workspace.offerPreview(input);
    if(req.url==='/api/offer-save')result=workspace.offerSave(input);
    if(req.url==='/api/report-preview')result=workspace.reportPreview(input);
