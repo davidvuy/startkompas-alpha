@@ -155,3 +155,47 @@ Damaged or missing latest assessments are shown unavailable without falling back
 Record a choice, its reason, up to eight alternatives, an optional reconsideration condition, a calendar date and optional recorded context. Preview the exact text before confirming. These are user judgments, not evidence or completed tasks. The latest 100 decisions are shown with explicit truncation; context choices are bounded to 100 records.
 
 Revising an active decision creates a new linked decision and immutable checksum-verified detail file. The previous choice remains readable and becomes superseded. Existing basis links are retained; the preview lists declared dependent records that may require review. Missing legacy alternatives remain unrecorded. Damaged details are unavailable and cannot be silently replaced through revision. Stale previews, wrong preview kinds and archived writes are refused. Unsaved decision edits have navigation/close warnings but are not included in setup/offer recovery.
+
+## Interview preparation
+
+Choose a readable current offer to preview neutral, fixed-pattern questions mapped to its eight fields, with unknowns first. The opening question establishes a concrete recent work situation before follow-ups. Offer claims are not copied into the questions as facts; reported/proposal status does not imply verification. This is field-driven preparation, not semantic question generation or participant recruitment.
+
+Saving the reviewed guide creates an immutable artifact linked to the exact offer. A separate explicit preview and save creates a genuinely empty log linked to that guide: date, participant and consent notes are null; statements, observations, interpretations and open questions are empty lists. No facts, evidence or task completion are created. Each save is independent: a saved guide survives a failed or abandoned log save, and remains selectable after reopening. Existing retry bundles retain interrupted write material.
+
+The latest 100 preparation artifacts are listed with partial disclosure. Read saved preparation shows the exact retained text. Superseded offers cannot generate fresh guides; changed or unavailable guide context blocks new logs and is marked for review. Old preparation remains available as history. New guides are independent artifacts, not replacements. Archived projects allow reading only. Recording actual observations remains a separate skill/terminal workflow; no observation editor is supplied by this screen.
+
+## Compare alternatives
+
+Compare exactly one current workaround, exactly one do-nothing option and up to five other solutions. Record a decision question and date; each new revision needs a reason. Findings from sources, your suppositions, your assessment of costs/effort/switching and remaining unknowns are separate columns. Findings require at least one existing source; other judgments never become sourced facts automatically. Source relevance is your responsibility, and a linked source is not independent validation.
+
+The preview retains unknown cells, lists options without recorded findings and always discloses incomplete research. It never computes a winner or claims an exhaustive market scan. A fictional project keeps its practice marker. Exact confirmation writes a new immutable comparison and preserves previous bytes; changing a declared source marks dependent comparisons for review. A damaged latest comparison cannot be replaced silently.
+
+History shows the newest 50 versions with a limit notice. Source choices include the first 100 registered sources plus all sources already linked by the current comparison, so reopening cannot silently discard older selections. Each option accepts at most five sources. Existing source registration remains available through the skill/terminal workflows. Archived comparisons are read-only. Unsaved edits have navigation/close protection but are not included in setup/offer recovery.
+
+## Review offer scope
+
+Choose a current offer and list included work, exclusions and unresolved items (up to twelve each). The review retains the exact proposed outcome and recorded capacity/constraint context with provenance. State whether you think the scope can support the outcome and explain a yes/no judgment. This is a user assessment, not a semantic feasibility check.
+
+Optional available and estimated hours must use an explicitly shared period/workload basis. Zero hours is a valid stated constraint. The app compares those numeric statements only; it never parses profile prose into an hours budget. Excess estimated work is a discussion point. An arithmetic fit does not establish delivery feasibility. Missing figures remain unknown.
+
+Discussion points flag normalized identical items across included/excluded/unresolved lists, missing outcome/scope, explicit negative coverage judgments, inconsistent positive judgments with missing scope/outcome, and changed context. This does not detect synonyms, implications or every contradiction in natural language. A confirmed save preserves the exercise and unresolved points without modifying the offer, approving delivery or completing tasks.
+
+Revisions retain original artifact bytes and need a reason. Current context changes, including newly recorded capacity where none existed, mark saved reviews for reconsideration. Damaged latest reviews cannot be silently replaced. The newest 50 reviews are shown with a limit notice. Archived projects remain read-only; unsaved scope text has navigation/close warnings but is not included in setup/offer recovery.
+
+## Prepare a pilot
+
+Select a current offer and propose one bounded deliverable. The form exposes learning, participant/context, exclusions, responsibilities, period, data limits, observable acceptance, stop/review condition and next check. Unknown fields remain empty and are disclosed in the preview; one described deliverable is the minimum for a draft, not permission to start. The app does not semantically verify that a paragraph contains only one deliverable or that a success criterion is adequate.
+
+Related scope discussion points and the proposed offer outcome are shown before editing and retained in the saved proposal. Missing or unreadable scope context is disclosed; older matching context is identified by its original artifact ID and never treated as current approval. Scope selection is limited to the newest 50 reviews. Specialist review of terms, liability and data permissions remains explicitly open; the workflow generates no contract and approves no participant or data processing.
+
+The workflow reuses the existing pilot business-brief format, confirmed attachment storage and version history. Unchanged fields retain their provenance; edited fields become proposals. A revision needs its current predecessor and a reason. Current offer and related scope are declared dependencies. A superseded offer or newer/changed related scope marks the pilot for review in this view. Saved proposals stay readable; no evidence or task completion is created. The newest 50 pilot records are shown, including unavailable records identified by their stored intent. Archived projects are read-only. Unsaved pilot edits have navigation/close warnings but no setup/offer recovery coverage.
+
+## Explore offer scenarios
+
+Start a separate hypothetical scenario from a current offer. Give it a name and reason, then edit the eight offer fields. A confirmed scenario save creates an immutable scenario artifact without creating or replacing a business offer. You can preserve several branches and revise each with its original base retained. Scenario revisions require the current branch version; original files remain intact. Blank fields remain unknown.
+
+Compare any readable scenario against its original offer and the current descendant of that offer. The table shows all eight values and identifies main-offer changes since branching and fields adoption would change. There is no automatic merge: adoption uses every displayed scenario value, including blanks, as the next offer version. It requires a reason, fresh revision/digest preview and confirmation. If the main offer has a newer version than the scenario base, a separate checkbox must acknowledge those current changes.
+
+Adoption uses the existing offer revision workflow, retains current scope metadata and unchanged field provenance, marks changed text as proposals, and records the scenario as the source of those changes. It retains all scenario and historical offer bytes. Identical current values do not create another version. Historical scenario versions, damaged history, ambiguous offer chains and stale previews are refused. History traversal is bounded at 200 successors and fails explicitly rather than guessing. No customer validation or task completion is added.
+
+The view shows the newest 100 scenario versions and newest 50 current offers with limit notices. Archived projects allow comparison/readback only. Unsaved scenario/reason edits have navigation/close protection but no setup/offer recovery coverage.

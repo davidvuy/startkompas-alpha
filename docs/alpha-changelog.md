@@ -1,5 +1,15 @@
 # Changes
 
+## 0.1.0-alpha.10 — explore, compare and prepare a pilot
+
+- Prepare neutral interview questions from current offer fields; save the guide and genuinely empty log as separate artifacts. Preparation never creates answers or evidence.
+- Compare current work, doing nothing and other solutions with separate sourced findings, suppositions and unknowns. Preserve reasoned versions and disclose incomplete research.
+- Review included, excluded and unresolved scope beside the offer and stated capacity. Exact overlap and same-period numeric hour gaps become discussion points; semantic feasibility is not inferred.
+- Prepare a versioned pilot linked to a current offer with one deliverable, success/stop conditions and responsibilities. Missing fields, scope tensions and specialist-review needs remain open. No contract or pilot approval is generated.
+- Explore separate offer scenarios. Compare original/current/scenario fields, then explicitly adopt as a new offer version with a reason and additional acknowledgment of changed main-offer context. Historical offers and scenarios are retained.
+
+All new forms have unsaved-edit warnings but are not included in setup/offer recovery. Source registration and recording actual observations remain separate skill/terminal workflows. Independent user validation, broader interactive browser/accessibility testing and security audit remain open. The full roadmap is not complete.
+
 ## 0.1.0-alpha.9 — context, research and recorded choices
 
 - Optional project profile statements retain their source, date and unknown fields.
