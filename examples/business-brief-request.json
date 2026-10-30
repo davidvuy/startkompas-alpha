@@ -3,17 +3,17 @@
   "expected_revision": 1,
   "operation_id": "offer-example-1",
   "at": "2026-10-29",
-  "language": "nl",
+  "language": "en",
   "kind": "offer",
   "client": "Synthetic Alder agency",
   "period": "October 2026",
   "previous_artifact_id": null,
   "change_reason": null,
   "fields": [
-    {"key":"segment","value":"Een fictief klein ontwerpbureau","assertion":"proposal","record_ids":[]},
-    {"key":"outcome","value":"Eén bestaand rapport verduidelijken","assertion":"proposal","record_ids":[]},
-    {"key":"delivery","value":"Eén handmatig concept op synthetische gegevens","assertion":"proposal","record_ids":[]},
-    {"key":"exclusions","value":"Geen productie-integratie of echte klantgegevens","assertion":"proposal","record_ids":[]},
-    {"key":"next_check","value":"Eerst de recente werkwijze van een passende klant begrijpen; er is nog geen gesprek gehouden","assertion":"proposal","record_ids":[]}
+    {"key":"segment","value":"A fictional small design agency","assertion":"proposal","record_ids":[]},
+    {"key":"outcome","value":"Clarify one existing report","assertion":"proposal","record_ids":[]},
+    {"key":"delivery","value":"One manual draft using synthetic data","assertion":"proposal","record_ids":[]},
+    {"key":"exclusions","value":"No production integration or real customer data","assertion":"proposal","record_ids":[]},
+    {"key":"next_check","value":"First understand a suitable customer's recent workflow; no interview has been conducted","assertion":"proposal","record_ids":[]}
   ]
 }

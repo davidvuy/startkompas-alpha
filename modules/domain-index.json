@@ -1,6 +1,6 @@
 {
   "schema_version": "sk21-index-v1",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "status": "research_topics_only",
   "provenance": {
     "source_file": "docs/plan.md",
@@ -10,8 +10,6 @@
   "domains": [
     {
       "id": "D01",
-      "name_nl": "Oprichter en uitgangssituatie",
-      "coverage_nl": "Doel, tijd, budget, ervaring, vestiging en betrokken personen.",
       "version": "0.1.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_only",
@@ -27,12 +25,12 @@
           "id": "q2",
           "text": "What budget, experience, location and people are known or unknown?"
         }
-      ]
+      ],
+      "name_en": "Founder and starting position",
+      "coverage_en": "Goal, time, budget, experience, location and people involved."
     },
     {
       "id": "D02",
-      "name_nl": "Klanten en markt",
-      "coverage_nl": "Probleem, doelgroep, alternatieven, onderzoek en relevante bevindingen.",
       "version": "0.2.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_and_draft_procedure",
@@ -48,12 +46,12 @@
           "id": "q2",
           "text": "What research exists and what contradicts the demand assumption?"
         }
-      ]
+      ],
+      "name_en": "Customers and market",
+      "coverage_en": "Problem, target customers, alternatives, research and relevant findings."
     },
     {
       "id": "D03",
-      "name_nl": "Aanbod en verdienmodel",
-      "coverage_nl": "Waarde, prijsaanname, kosten, verkoopwijze en betalingsbereidheid.",
       "version": "0.2.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_and_draft_procedure",
@@ -69,12 +67,12 @@
           "id": "q2",
           "text": "Which costs and sales assumptions remain untested?"
         }
-      ]
+      ],
+      "name_en": "Offer and business model",
+      "coverage_en": "Value, pricing assumption, costs, sales approach and willingness to pay."
     },
     {
       "id": "D04",
-      "name_nl": "Product en gebruikservaring",
-      "coverage_nl": "Scope, gebruikersflow, toegankelijkheid, taal en acceptatie.",
       "version": "0.1.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_only",
@@ -90,12 +88,12 @@
           "id": "q2",
           "text": "Which language, accessibility and acceptance needs are known?"
         }
-      ]
+      ],
+      "name_en": "Product and user experience",
+      "coverage_en": "Scope, user flow, accessibility, language and acceptance."
     },
     {
       "id": "D05",
-      "name_nl": "Bouw en technische kwaliteit",
-      "coverage_nl": "Hergebruik, architectuur, tests, koppelingen en onderhoud.",
       "version": "0.1.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_only",
@@ -111,12 +109,12 @@
           "id": "q2",
           "text": "Which tests, maintenance and architecture constraints exist?"
         }
-      ]
+      ],
+      "name_en": "Development and technical quality",
+      "coverage_en": "Reuse, architecture, tests, integrations and maintenance."
     },
     {
       "id": "D06",
-      "name_nl": "Oprichting en administratie",
-      "coverage_nl": "Ondernemingscontext, registratievragen, bevoegdheden en formaliteiten.",
       "version": "0.3.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_and_draft_procedure",
@@ -132,12 +130,12 @@
           "id": "q2",
           "text": "Which registration, authority or administrative questions need research?"
         }
-      ]
+      ],
+      "name_en": "Formation and administration",
+      "coverage_en": "Business context, registration questions, authority and formalities."
     },
     {
       "id": "D07",
-      "name_nl": "Geld en belastingen",
-      "coverage_nl": "Begroting, kasstroom, boekhouding, facturatie en toepasselijke vragen.",
       "version": "0.3.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_and_draft_procedure",
@@ -153,12 +151,12 @@
           "id": "q2",
           "text": "Which bookkeeping, tax and invoicing questions remain unresolved?"
         }
-      ]
+      ],
+      "name_en": "Finance and taxes",
+      "coverage_en": "Budget, cash flow, accounting, invoicing and applicable questions."
     },
     {
       "id": "D08",
-      "name_nl": "Eigendom en samenwerking",
-      "coverage_nl": "Code en inhoud, naam, licenties, oprichtersafspraken en vertrek.",
       "version": "0.3.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_and_draft_procedure",
@@ -174,12 +172,12 @@
           "id": "q2",
           "text": "Which licences and collaboration or exit arrangements are documented?"
         }
-      ]
+      ],
+      "name_en": "Ownership and collaboration",
+      "coverage_en": "Code and content, name, licences, founder agreements and departure."
     },
     {
       "id": "D09",
-      "name_nl": "Contracten en juridische zaken",
-      "coverage_nl": "Klanten, leveranciers, voorwaarden en toepassingscontext.",
       "version": "0.3.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_and_draft_procedure",
@@ -195,12 +193,12 @@
           "id": "q2",
           "text": "Which context and unanswered agreement questions need review?"
         }
-      ]
+      ],
+      "name_en": "Contracts and legal matters",
+      "coverage_en": "Customers, suppliers, terms and applicable context."
     },
     {
       "id": "D10",
-      "name_nl": "Privacy en AI",
-      "coverage_nl": "Gegevens, doeleinden, rollen, leveranciers, bewaartermijnen en AI-uitkomsten.",
       "version": "0.3.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_and_draft_procedure",
@@ -216,12 +214,12 @@
           "id": "q2",
           "text": "What retention, processing roles and AI-output questions are unknown?"
         }
-      ]
+      ],
+      "name_en": "Privacy and AI",
+      "coverage_en": "Data, purposes, roles, suppliers, retention and AI outputs."
     },
     {
       "id": "D11",
-      "name_nl": "Beveiliging en continuïteit",
-      "coverage_nl": "Toegang, geheimen, misbruik, back-ups, herstel en incidenten.",
       "version": "0.3.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_and_draft_procedure",
@@ -237,12 +235,12 @@
           "id": "q2",
           "text": "What evidence exists for recovery and incident handling?"
         }
-      ]
+      ],
+      "name_en": "Security and continuity",
+      "coverage_en": "Access, secrets, abuse, backups, recovery and incidents."
     },
     {
       "id": "D12",
-      "name_nl": "Marketing en verkoop",
-      "coverage_nl": "Positionering, werving, kanalen, claims en meting.",
       "version": "0.1.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_only",
@@ -258,12 +256,12 @@
           "id": "q2",
           "text": "What evidence supports the claims and how will results be measured?"
         }
-      ]
+      ],
+      "name_en": "Marketing and sales",
+      "coverage_en": "Positioning, outreach, channels, claims and measurement."
     },
     {
       "id": "D13",
-      "name_nl": "Betalingen en klantenzorg",
-      "coverage_nl": "Aankoop, verlenging, opzegging, klachten en ondersteuning.",
       "version": "0.3.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_and_draft_procedure",
@@ -279,12 +277,12 @@
           "id": "q2",
           "text": "Which complaint and customer-care responsibilities are unresolved?"
         }
-      ]
+      ],
+      "name_en": "Payments and customer support",
+      "coverage_en": "Purchase, renewal, cancellation, complaints and support."
     },
     {
       "id": "D14",
-      "name_nl": "Team en dagelijkse werking",
-      "coverage_nl": "Rollen, overdracht, freelancers, personeel en leveranciers.",
       "version": "0.1.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_only",
@@ -300,12 +298,12 @@
           "id": "q2",
           "text": "Are freelancers, employees or external suppliers involved or planned?"
         }
-      ]
+      ],
+      "name_en": "Team and daily operations",
+      "coverage_en": "Roles, handover, freelancers, staff and suppliers."
     },
     {
       "id": "D15",
-      "name_nl": "Groei en beëindiging",
-      "coverage_nl": "Nieuwe markten, nieuwe activiteiten, overdracht en gecontroleerd stoppen.",
       "version": "0.1.0",
       "source_file": "modules/domain-index.json",
       "status": "questions_only",
@@ -321,7 +319,9 @@
           "id": "q2",
           "text": "Which existing commitments and data/assets need a transition plan?"
         }
-      ]
+      ],
+      "name_en": "Growth and closure",
+      "coverage_en": "New markets, new activities, transfer and controlled closure."
     }
   ]
 }

@@ -45,9 +45,9 @@ export function prepareIntakeAnswer(dir,request){
 }
 
 const safe=value=>String(value).replace(/[\r\n\t]/g,' ').replace(/[\\`*_{}[\]()#+.!|<>]/g,c=>'\\'+c);
-export function renderIntake(result,language='nl'){
- const words={nl:{question:'Volgende vraag',why:'Waarom',none:'Geen nieuwe intakevraag nodig voor deze stap.',known:'Bekend antwoord hergebruikt',deferred:'Nog onbekend; vraag uitgesteld',review:'Bron gewijzigd; antwoord opnieuw beoordelen',dependent:'Gekoppeld werk kan hercontrole nodig hebben',inferred:'Dit antwoord was een aanname; bevestiging nodig'},en:{question:'Next question',why:'Why',none:'No new intake question needed for this step.',known:'Existing answer reused',deferred:'Still unknown; question deferred',review:'Source changed; review the answer',dependent:'Dependent work may need review',inferred:'This answer was inferred; confirmation needed'}};
- const w=words[language];if(!w)throw Error('Unsupported intake language');
+export function renderIntake(result,language='en'){
+ const words={en:{question:'Next question',why:'Why',none:'No new intake question needed for this step.',known:'Existing answer reused',deferred:'Still unknown; question deferred',review:'Source changed; review the answer',dependent:'Dependent work may need review',inferred:'This answer was inferred; confirmation needed'}};
+ const w=words.en;if(!['en','nl'].includes(language))throw Error('Unsupported intake language');
  const lines=result.question?[w.question+': '+safe(result.question.text),w.why+': '+safe(result.question.why)]:[w.none];
  for(const r of result.results){if(r.status==='known')lines.push(w.known+': '+safe(r.answers[0].value));if(r.status==='deferred')lines.push(w.deferred+': '+safe(r.text));if(r.status==='review')lines.push(w.review+': '+safe(r.text));if(r.status==='confirm_inference')lines.push(w.inferred);if(r.dependent_review_required)lines.push(w.dependent);}
  return lines.join('\n')+'\n';

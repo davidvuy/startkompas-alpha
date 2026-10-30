@@ -38,7 +38,7 @@ To resume, substitute your own directory and project ID:
 node src/startkompas.mjs overview ../my-private-project my-project en
 ```
 
-Use `nl` instead of `en` for a Dutch overview. For AI-assisted drafting, follow the README's Codex instructions. For help, see [support](alpha-support.md).
+Product summaries use English. Legacy `nl` request codes remain readable for compatibility. For AI-assisted drafting, follow the README's Codex instructions. For help, see [support](alpha-support.md).
 
 ## Captured founder workflow
 

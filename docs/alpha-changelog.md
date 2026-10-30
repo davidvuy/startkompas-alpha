@@ -29,3 +29,9 @@ A Dutch menu (`node start.mjs`) provides installation checks, new projects, fict
 ## 0.1.0-alpha.4.1 — Windows menu input fix
 
 Interactive testing found that two console readers could lose the first wizard answer after leaving the menu. The menu now forwards its single input stream to the child process. A prompt-driven subprocess regression and an actual Windows terminal creation check verify the first project name is retained. The alpha4 tag is preserved as historical evidence; use alpha4.1.
+
+## 0.1.0-alpha.5 — English workspace and offer editor
+
+Product prompts, new generated document labels, topic names and maintained product guides now use English. Legacy language codes remain readable and existing stored documents are not rewritten. A local browser workspace creates and selects projects, shows saved work, and previews/saves/revises offers through the existing storage layer. Saving requires explicit confirmation and rejects changed project state; earlier draft bytes remain intact. Local host/origin/session checks and bounded file access protect the browser route. No cloud service, model calls or independent validation added.
+
+At the owner's request, author/committer metadata for the ten earlier public commits and five release tags was corrected to David Vuylsteker (davidvuy). Their file trees are identical; commit IDs changed. A verified private bundle preserves the original history. Existing clones should use a fresh checkout or carefully reconcile local work with the rewritten main branch.

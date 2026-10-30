@@ -17,7 +17,7 @@ test('SK21 all fifteen index entries are versioned research topics, never assess
   const index=domainIndex();assert.equal(index.domains.length,15);assert.equal(domainDetail('D02').detail_loaded,true);assert.match(domainDetail('D02').content,/not proof of demand/);assert.equal(new Set(index.domains.map(x=>x.id)).size,15);
   for(const d of index.domains){if(['D02','D03'].includes(d.id)){assert.equal(d.detail_status,'draft_not_reviewed');assert.equal(d.detail_file,'modules/market-offer.md');}else if(['D06','D07','D08','D09','D10','D11','D13'].includes(d.id)){assert.equal(d.detail_status,'draft_not_reviewed');assert.equal(d.detail_file,'modules/pilot-conditions.md');assert.match(domainDetail(d.id).content,/Qualified interpretation/);}else{assert.equal(d.status,'questions_only');assert.equal(d.detail_file,null);assert.equal(d.detail_status,'not_researched');}assert.ok(d.version&&d.source_file&&d.applicability_condition);assert.equal(d.questions.length,2);}
   // This assertion also works in the installed package; canonical plan mapping is audited separately.
-  assert.equal(index.domains[0].name_nl,'Oprichter en uitgangssituatie');assert.equal(index.domains[14].name_nl,'Groei en beëindiging');
+  assert.equal(index.domains[0].name_en,'Founder and starting position');assert.equal(index.domains[14].name_en,'Growth and closure');
 });
 test('SK21 selected detail stays missing and rejects unknown paths',()=>{
   assert.equal(domainDetail('D01').detail_loaded,false);assert.equal(domainDetail('D10').domain.id,'D10');assert.throws(()=>domainDetail('../docs/plan.md'),/Unknown/);

@@ -10,20 +10,24 @@ This is an experimental alpha. Independent user validation is still ahead. No me
 
 ## Start here
 
-[Download alpha 4.1 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.4.1.zip) · [Nederlandse startgids](docs/quickstart.nl.md) · [Release notes](https://github.com/davidvuy/startkompas-alpha/releases/tag/v0.1.0-alpha.4.1)
+[Download alpha 5 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.5.zip) · [Quickstart](docs/quickstart.md) · [Release notes](https://github.com/davidvuy/startkompas-alpha/releases/tag/v0.1.0-alpha.5)
 
-Extract the ZIP into a new folder. Open a terminal in that folder, install the locked dependencies and open the Dutch menu:
+Extract the ZIP into a new folder. Open a terminal in that folder, install the locked dependencies and open the English menu:
 
 ```sh
 npm ci --ignore-scripts --no-audit --no-fund
 node start.mjs
 ```
 
-The menu offers installation checks, a fictional demo, new projects, resuming, offer drafts and a report preview/save flow. It runs locally; it does not call AI or upload your project. Existing draft prompts are partly English. See the guide for prerequisites and the exact first-use steps.
+The menu offers installation checks, a fictional demo, new projects, resuming, offer drafts and a report preview/save flow. It runs locally; it does not call AI or upload your project. All product prompts and new generated document labels are English. See the guide for prerequisites and the exact first-use steps.
 
-## Guided work in alpha 3
+## Local browser workspace
 
-Prepare an offer or interview guide, record assumptions and observations, connect decisions to their basis, and export a readable report without writing request JSON. [Product guide](docs/alpha-workspace.md) · [Nederlandse startuitleg](docs/alpha-workspace.nl.md) · [Changes](docs/alpha-changelog.md).
+Choose an existing projects parent outside the app and run `npm run ui -- ../my-projects`. Open the private session link printed by the terminal. Create or select a project, preview an offer and explicitly confirm saving. Revise it later with a reason; previous versions remain intact. The server binds only to your computer, uses per-session access checks and makes no AI calls. See [workspace setup and limits](docs/local-ui.md). Keep the terminal open while using it.
+
+## Guided project work
+
+Prepare an offer or interview guide, record assumptions and observations, connect decisions to their basis, and export a readable report without writing request JSON. [Product guide](docs/alpha-workspace.md) · [Browser workspace](docs/local-ui.md) · [Changes](docs/alpha-changelog.md).
 
 ~~~sh
 node src/startkompas.mjs workspace show ../my-project my-project

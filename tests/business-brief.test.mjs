@@ -23,7 +23,7 @@ test('draft saves, retries exactly, reads through another process and survives e
 test('changed offer retains old bytes and records field changes with a reason',()=>{
  const s=setup(),p=prepareBusinessBrief(s.dir,req());save(s,p);const original=fs.readFileSync(path.join(s.dir,'files',p.artifact_id+'.json'));
  const q=prepareBusinessBrief(s.dir,req({expected_revision:2,operation_id:'offer-2',previous_artifact_id:p.artifact_id,change_reason:'Narrow the outcome',fields:[...req().fields.filter(f=>f.key!=='outcome'),{key:'outcome',value:'Eén bestaand aanbod verbeteren',assertion:'proposal',record_ids:[]}]}));assert.deepEqual(q.changes,[{key:'outcome',before:'Concept van één aanbod',after:'Eén bestaand aanbod verbeteren'}]);save(s,q);
- assert.equal(q.version,2);assert.ok(original.equals(fs.readFileSync(path.join(s.dir,'files',p.artifact_id+'.json'))));assert.deepEqual(readBusinessBrief(s.dir,'pilot-orbit',p.artifact_id).successor_ids,[q.artifact_id]);assert.match(renderBusinessBrief(s.dir,'pilot-orbit',p.artifact_id),/Historische versie/);
+ assert.equal(q.version,2);assert.ok(original.equals(fs.readFileSync(path.join(s.dir,'files',p.artifact_id+'.json'))));assert.deepEqual(readBusinessBrief(s.dir,'pilot-orbit',p.artifact_id).successor_ids,[q.artifact_id]);assert.match(renderBusinessBrief(s.dir,'pilot-orbit',p.artifact_id),/Historical version/);
  assert.throws(()=>prepareBusinessBrief(s.dir,req({expected_revision:3,operation_id:'offer-3',previous_artifact_id:p.artifact_id,change_reason:'Branch old draft'})),/successor/);
 });
 test('same-scope first draft is not regenerated; clients and periods stay separate',()=>{
@@ -36,7 +36,7 @@ test('unknown scope is explicit and never silently merged',()=>{
 test('basis changes flag saved drafts and rendering while retaining unrelated work',()=>{
  const s=setup(),p=prepareBusinessBrief(s.dir,req());save(s,p);const d=readCore(s.dir,'pilot-orbit').dossier;
  updateCore(s.dir,{project_id:'pilot-orbit',expected_revision:2,operation_id:'change-fact',changes:{facts:d.facts.map(f=>({...f,text:'Changed premise'}))}});
- assert.equal(readBusinessBrief(s.dir,'pilot-orbit',p.artifact_id).requires_review,true);assert.match(renderBusinessBrief(s.dir,'pilot-orbit',p.artifact_id),/opnieuw beoordelen/);assert.equal(readCore(s.dir,'pilot-orbit').dossier.tasks[0].progress,'open');
+ assert.equal(readBusinessBrief(s.dir,'pilot-orbit',p.artifact_id).requires_review,true);assert.match(renderBusinessBrief(s.dir,'pilot-orbit',p.artifact_id),/review again/);assert.equal(readCore(s.dir,'pilot-orbit').dossier.tasks[0].progress,'open');
 });
 test('invalid identities, schema, revisions, assertions, fields and dates reject without writes',()=>{
  const s=setup(),before=readCore(s.dir,'pilot-orbit').sha256;
@@ -49,11 +49,11 @@ test('spent operations, stale attachment proposals and tampered predecessors are
  fs.appendFileSync(path.join(s.dir,'files',p.artifact_id+'.json'),'tamper');assert.throws(()=>readBusinessBrief(s.dir,'pilot-orbit',p.artifact_id),/fingerprint/);
  assert.throws(()=>prepareBusinessBrief(s.dir,req({expected_revision:3,operation_id:'third',previous_artifact_id:p.artifact_id,change_reason:'Update'})),/fingerprint/);
 });
-test('English/Nederlands render untrusted field text as text and retain reported basis',()=>{
+test('English and legacy-language requests render untrusted field text as text and retain reported basis',()=>{
  for(const language of ['en','nl']){const s=setup(),p=prepareBusinessBrief(s.dir,req({language,fields:[{key:'outcome',value:'<script>\n# approved [click](https://example.invalid)',assertion:'reported',record_ids:['fact-1']}]}));assert.ok(!p.document_markdown.includes('<script>'));assert.ok(!p.document_markdown.includes('\n# approved'));const record=JSON.parse(p.content);assert.equal(record.fields.find(f=>f.key==='outcome').basis[0].status,'reported');assert.equal(record.fields.find(f=>f.key==='support').value,null);}
 });
 test('interview output is a blank log and never records an interview as performed',()=>{
- const s=setup(),p=prepareBusinessBrief(s.dir,req({kind:'interview',fields:[]}));save(s,p);assert.match(p.document_markdown,/Leeg verslag/);const d=readCore(s.dir,'pilot-orbit').dossier;assert.equal(d.evidence.length,0);assert.equal(d.events.at(-1).type,'business-brief-draft');
+ const s=setup(),p=prepareBusinessBrief(s.dir,req({kind:'interview',fields:[]}));save(s,p);assert.match(p.document_markdown,/Blank log/);const d=readCore(s.dir,'pilot-orbit').dossier;assert.equal(d.evidence.length,0);assert.equal(d.events.at(-1).type,'business-brief-draft');
 });
 test('CLI preparation returns an attachable document from an actual file',()=>{
  const s=setup(),input=path.join(s.root,'request.json');fs.writeFileSync(input,JSON.stringify(req()));const p=JSON.parse(execFileSync(process.execPath,[fileURLToPath(new URL('../src/business-cli.mjs',import.meta.url)),'prepare',s.dir,input],{encoding:'utf8'}));save(s,p);assert.equal(readBusinessBrief(s.dir,'pilot-orbit',p.artifact_id).version,1);

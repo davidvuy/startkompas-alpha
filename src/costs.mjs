@@ -21,9 +21,9 @@ export function compareCosts(input){
 }
 const escapeCell=s=>String(s).replace(/[\r\n\t]/g,' ').replace(/[\\`*_{}[\]()#+.!|<>]/g,c=>'\\'+c);
 export function costComparisonBrief(input){
- const r=compareCosts(input),nl=r.language==='nl',unknown=nl?'Onbekend':'Unknown',money=v=>v===null?unknown:(v/100).toFixed(2)+' EUR';
- const lines=[nl?'# Kostenscenario’s vergelijken':'# Compare cost scenarios','',`${nl?'Periode':'Period'}: ${escapeCell(r.period)}. ${nl?'Eenheid':'Unit'}: ${escapeCell(r.unit)}.`,'',nl?'| Scenario | Aantal | Kosten | Omzet | Rekenkundig saldo | Budget min kosten | Kostenverschil t.o.v. eerste |':'| Scenario | Units | Cost | Revenue | Arithmetic surplus | Budget less cost | Cost difference vs first |','|---|---|---|---|---|---|---|'];
+ const r=compareCosts(input),unknown='Unknown',money=v=>v===null?unknown:(v/100).toFixed(2)+' EUR';
+ const lines=['# Compare cost scenarios','',`${'Period'}: ${escapeCell(r.period)}. ${'Unit'}: ${escapeCell(r.unit)}.`,'','| Scenario | Units | Cost | Revenue | Arithmetic surplus | Budget less cost | Cost difference vs first |','|---|---|---|---|---|---|---|'];
  for(const row of r.rows){const c=row.calculation;lines.push(`| ${escapeCell(row.label)} | ${row.input.units??unknown} | ${money(c.total_cost_cents)} | ${money(c.revenue_cents)} | ${money(c.scenario_surplus_cents)} | ${money(c.budget_difference_cents)} | ${money(row.difference_from_first.total_cost_cents)} |`);}
- for(const row of r.rows)lines.push('',`**${escapeCell(row.label)}**`,`${nl?'Bron':'Source'}: ${escapeCell(row.input.source_note)}`,`${nl?'Uitgesloten of onopgelost':'Excluded or unresolved'}: ${row.input.excluded_costs.map(escapeCell).join('; ')}`);
- lines.push('',nl?'Aannames, geen waargenomen winst of bewezen vraag. Aantallen, budgetten en uitsluitingen kunnen verschillen. Een lagere berekende kost is geen aankoopadvies of toestemming om te betalen.':'Assumptions, not observed profit or proven demand. Quantities, budgets and exclusions may differ. Lower calculated cost is not a purchase recommendation or permission to spend.');return lines.join('\n')+'\n';
+ for(const row of r.rows)lines.push('',`**${escapeCell(row.label)}**`,`${'Source'}: ${escapeCell(row.input.source_note)}`,`${'Excluded or unresolved'}: ${row.input.excluded_costs.map(escapeCell).join('; ')}`);
+ lines.push('','Assumptions, not observed profit or proven demand. Quantities, budgets and exclusions may differ. Lower calculated cost is not a purchase recommendation or permission to spend.');return lines.join('\n')+'\n';
 }

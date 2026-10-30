@@ -24,7 +24,7 @@ function help(){
     'Usage: node src/startkompas.mjs <route> <command> [arguments]',
     '       npm run startkompas -- <route> <command> [arguments]','',
     ...Object.entries(routes).map(([name,[,description]])=>'  '+name.padEnd(10)+description),'',
-    'Nederlandstalig keuzemenu: node start.mjs',
+    'Interactive menu: node start.mjs',
     'Check installation: doctor | Guided setup: start',
     'Readable project: overview <directory> <id> [nl|en]',
     'Compare versions: compare <directory> <id> <older> <newer> [--values]',

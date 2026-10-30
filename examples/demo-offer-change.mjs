@@ -11,12 +11,12 @@ try {
   const root=safeDirectory(process.argv[2],true);fs.mkdirSync(root);
   const dir=path.join(root,'project'),projectId='synthetic-offer-demo';
   initializeProject(dir,{project_id:projectId,name:'Synthetic offer revision demonstration',first_task:{id:'draft-offer',title:'Prepare one fictional offer'}});
-  const request={project_id:projectId,expected_revision:1,operation_id:'offer-demo-1',at:'2026-10-29',language:'nl',kind:'offer',client:'Fictional Alder agency',period:'Synthetic October 2026',previous_artifact_id:null,change_reason:null,fields:[
-    {key:'segment',value:'Een fictief klein ontwerpbureau',assertion:'proposal',record_ids:[]},
-    {key:'outcome',value:'Een nieuw rapport opstellen',assertion:'proposal',record_ids:[]},
-    {key:'delivery',value:'Eén handmatig concept op verzonnen gegevens',assertion:'proposal',record_ids:[]},
-    {key:'exclusions',value:'Geen integraties of echte klantgegevens',assertion:'proposal',record_ids:[]},
-    {key:'next_check',value:'De huidige rapportagewerkwijze onderzoeken; nog geen gesprek uitgevoerd',assertion:'proposal',record_ids:[]}
+  const request={project_id:projectId,expected_revision:1,operation_id:'offer-demo-1',at:'2026-10-29',language:'en',kind:'offer',client:'Fictional Alder agency',period:'Synthetic October 2026',previous_artifact_id:null,change_reason:null,fields:[
+    {key:'segment',value:'A fictional small design agency',assertion:'proposal',record_ids:[]},
+    {key:'outcome',value:'Prepare a new report',assertion:'proposal',record_ids:[]},
+    {key:'delivery',value:'One manual draft using fictional data',assertion:'proposal',record_ids:[]},
+    {key:'exclusions',value:'No integrations or real customer data',assertion:'proposal',record_ids:[]},
+    {key:'next_check',value:'Investigate the current reporting workflow; no interview conducted yet',assertion:'proposal',record_ids:[]}
   ]};
   function persist(p,label){
     const content=path.join(root,label+'.json'),update=path.join(root,label+'-update.json');
@@ -28,7 +28,7 @@ try {
   }
   const first=prepareBusinessBrief(dir,request);persist(first,'offer-v1');
   const firstFile=path.join(dir,'files',first.artifact_id+'.json'),oldHash=sha(fs.readFileSync(firstFile));
-  const updated={...request,expected_revision:2,operation_id:'offer-demo-2',previous_artifact_id:first.artifact_id,change_reason:'Synthetic founder narrows the offer to improving existing work',fields:request.fields.map(f=>f.key==='outcome'?{...f,value:'Eén bestaand rapport verduidelijken'}:f)};
+  const updated={...request,expected_revision:2,operation_id:'offer-demo-2',previous_artifact_id:first.artifact_id,change_reason:'Synthetic founder narrows the offer to improving existing work',fields:request.fields.map(f=>f.key==='outcome'?{...f,value:'Clarify one existing report'}:f)};
   const second=prepareBusinessBrief(dir,updated);persist(second,'offer-v2');
   assert.equal(sha(fs.readFileSync(firstFile)),oldHash);assert.deepEqual(second.changes.map(c=>c.key),['outcome']);
   const resumed=readBusinessBrief(dir,projectId,second.artifact_id);assert.equal(resumed.version,2);assert.equal(resumed.current_revision,3);

@@ -3,12 +3,12 @@
   "expected_revision": 1,
   "operation_id": "pilot-package-1",
   "at": "2026-10-28",
-  "language": "nl",
-  "scope": "Fictieve pilot; klantbehoefte nog niet onderzocht",
+  "language": "en",
+  "scope": "Fictional pilot; customer needs have not been investigated",
   "sections": [
     {
       "kind": "brief",
-      "summary": "Concept voor één kleine leerproef; geen lancering goedgekeurd.",
+      "summary": "Draft for one small learning experiment; no launch approved.",
       "record_ids": [
         "fact-1",
         "decision-1"

@@ -17,8 +17,8 @@ async function guided(fn){
 async function confirmSave(ask,dir,prepared){
  const bundle=await ask('New private retry-bundle directory outside app and project',{required:true});
  console.log('Saving will change revision '+prepared.update_request.expected_revision+' of project '+prepared.update_request.project_id+'. Retry files remain in your chosen directory.');
- const yes=await ask('Save this exact proposal? [yes/ja/no/nee]',{allowed:['yes','ja','no','nee']});
- if(!['yes','ja'].includes(yes)){console.log('Cancelled; nothing saved.');return;}
+ const yes=await ask('Save this exact proposal? [yes/no]',{allowed:['yes','no']});
+ if(!['yes'].includes(yes)){console.log('Cancelled; nothing saved.');return;}
  console.log(JSON.stringify(saveGuided(dir,prepared,bundle),null,2));
 }
 try{
@@ -34,7 +34,7 @@ try{
   const state=readCore(dir,id),prior=previous?readBusinessBrief(dir,id,previous):null;
   if(prior&&prior.request.kind!==kind)throw Error('Previous draft has a different kind');
   await guided(async ask=>{
-   const language=await ask('Language / Taal [nl/en]',{allowed:['nl','en']}),lang=language==='nl'?0:1;
+   const language='en',lang=1;
    const client=prior?prior.request.client:(await ask('Client/context (optional; use a code, not personal data)')||null);
    const period=prior?prior.request.period:(await ask('Period (optional)')||null);
    const change_reason=prior?await ask('Why revise this draft?',{required:true}):null;

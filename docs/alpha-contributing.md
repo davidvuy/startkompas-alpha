@@ -7,7 +7,7 @@ Fork the repository, create a focused branch and keep your changes reviewable. I
 ## Good first contributions
 
 - Reproduce an installation problem with exact platform/version details and fictional inputs.
-- Improve one confusing Dutch or English command example and run it.
+- Improve one confusing English command example and run it.
 - Add a focused regression for a reported bug, demonstrating failure before the fix.
 - Improve accessibility of terminal output without losing status or uncertainty warnings.
 

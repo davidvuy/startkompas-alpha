@@ -8,12 +8,12 @@ import {publicError} from './src/cli-errors.mjs';
 let rl;
 try{
  if(process.argv.length>2){
-  if(process.argv.length!==3||!['--help','-h'].includes(process.argv[2]))throw Error('Gebruik: node start.mjs');
-  console.log('Startkompas keuzemenu: node start.mjs\nVereist een interactieve terminal. /cancel stopt een invoerstap.\nOpdrachten voor scripts: node src/startkompas.mjs --help');
+  if(process.argv.length!==3||!['--help','-h'].includes(process.argv[2]))throw Error('Usage: node start.mjs');
+  console.log('Startkompas menu: node start.mjs\nRequires an interactive terminal. /cancel exits a prompt.\nScript commands: node src/startkompas.mjs --help');
  }else{
-  if(!process.stdin.isTTY)throw Error('Open een interactieve terminal en voer node start.mjs uit. Gebruik de gewone CLI voor scripts.');
+  if(!process.stdin.isTTY)throw Error('Open an interactive terminal and run node start.mjs. Use the regular CLI for scripts.');
   const diagnostics=diagnose();
-  if(!diagnostics.ok)throw Error('Installatie onvolledig. Voer npm ci --ignore-scripts --no-audit --no-fund uit en controleer met node src/startkompas.mjs doctor.');
+  if(!diagnostics.ok)throw Error('Incomplete installation. Run npm ci --ignore-scripts --no-audit --no-fund and check with node src/startkompas.mjs doctor.');
   const {runMenu}=await import('./src/menu.mjs');
   rl=createInterface({input:process.stdin,output:process.stdout});
   await runMenu({

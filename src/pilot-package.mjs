@@ -9,7 +9,7 @@ const schema={type:'object',additionalProperties:false,required:['project_id','e
 const validate=new Ajv2020({strict:true,allErrors:true,coerceTypes:false,useDefaults:false,removeAdditional:false}).compile(schema);
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const escape=s=>String(s).replace(/[\\`*_{}\[\]()<>#!|]/g,'\\$&').replace(/[\r\n]+/g,' ');
-const labels={nl:{title:'Pilotpakket — concept',scope:'Reikwijdte',unknown:'Onbekend / nog uit te werken',basis:'Gebruikte projectgegevens',unresolved:'Open of opnieuw te beoordelen',none:'Geen basis gekoppeld; voorstel, geen vastgesteld feit',warning:'Concept op basis van opgegeven selectie. Geen onafhankelijke review, pilotgoedkeuring of verzonden werving. Selectie bewijst geen volledige dekking.',sections:['Pilotbrief','Voorwaarden','Kosten en prijsaanname','Productacceptatie','Wervingstekst — niet verstuurd','Ondersteuning en stoppen']},en:{title:'Pilot package — draft',scope:'Scope',unknown:'Unknown / still to develop',basis:'Referenced project records',unresolved:'Open or requiring review',none:'No linked basis; proposal, not an established fact',warning:'Draft from a supplied selection. No independent review, pilot approval or recruitment sent. Selection does not prove complete coverage.',sections:['Pilot brief','Conditions','Costs and price assumption','Product acceptance','Recruitment copy — unsent','Support and exit']}};
+const labels={en:{title:'Pilot package — draft',scope:'Scope',unknown:'Unknown / still to develop',basis:'Referenced project records',unresolved:'Open or requiring review',none:'No linked basis; proposal, not an established fact',warning:'Draft from a supplied selection. No independent review, pilot approval or recruitment sent. Selection does not prove complete coverage.',sections:['Pilot brief','Conditions','Costs and price assumption','Product acceptance','Recruitment copy — unsent','Support and exit']}};
 export function preparePilotPackage(dir,request){
  if(!validate(request))throw Error('Invalid pilot-package request: '+validate.errors.map(e=>e.instancePath+' '+e.message).join('; '));
  if(new Date(request.at+'T00:00:00Z').toISOString().slice(0,10)!==request.at)throw Error('Invalid calendar date');
@@ -18,7 +18,7 @@ export function preparePilotPackage(dir,request){
  if(!original.workflow)throw Error('Pilot package requires explicit schema1.1 workflow upgrade');
  if(original.revision!==request.expected_revision)throw Error('Revision conflict; reread project');
  if(original.operations.some(o=>o.id===request.operation_id))throw Error('Operation already recorded; retry the original saved attachment request');
- const damaged=damagedArtifacts(state.directory,original),d=applyInvalidation(original,structuredClone(original),damaged),index=records(d),w=labels[request.language];
+ const damaged=damagedArtifacts(state.directory,original),d=applyInvalidation(original,structuredClone(original),damaged),index=records(d),w=labels.en;
  const artifactId='pilot-package-'+sha(request.operation_id).slice(0,32);
  if(index.has(artifactId)||index.has(artifactId+'-event'))throw Error('Generated record ID already exists');
  const basis=[...new Set(request.sections.flatMap(s=>s.record_ids))];

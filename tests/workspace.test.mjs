@@ -55,9 +55,9 @@ test('output writes cannot overwrite canonical files or put bundles within dossi
 test('guided CLI can create and revise offers without request JSON and preserves original',()=>{
  const f=fixture(),bundle=path.join(f.root,'first');
  // Eight offer fields: one supplied with its optional basis prompt, seven unknown.
- const input=['en','','','Small teams','',...Array(7).fill(''),bundle,'yes',''].join('\n');
+ const input=['','','Small teams','',...Array(7).fill(''),bundle,'yes',''].join('\n');
  const r=call(['workspace','draft',f.dir,'work','offer'],input);assert.equal(r.status,0,r.stderr+'\n'+r.stdout);const d=readCore(f.dir,'work').dossier,artifact=d.artifacts[0],original=fs.readFileSync(path.join(f.dir,artifact.location));
- const revised=call(['workspace','draft',f.dir,'work','offer',artifact.id],['en','Clarify scope',...Array(8).fill(''),path.join(f.root,'second'),'yes',''].join('\n'));assert.equal(revised.status,0,revised.stderr);assert.deepEqual(fs.readFileSync(path.join(f.dir,artifact.location)),original);assert.equal(readCore(f.dir,'work').dossier.artifacts.length,2);
+ const revised=call(['workspace','draft',f.dir,'work','offer',artifact.id],['Clarify scope',...Array(8).fill(''),path.join(f.root,'second'),'yes',''].join('\n'));assert.equal(revised.status,0,revised.stderr);assert.deepEqual(fs.readFileSync(path.join(f.dir,artifact.location)),original);assert.equal(readCore(f.dir,'work').dossier.artifacts.length,2);
 });
 test('cancelled guided input and malicious text cause no side effects',()=>{
  const f=fixture(),before=fs.readFileSync(path.join(f.dir,'project.json'));for(const input of ['/cancel\n','A private premise\n','A private premise\n'+path.join(f.root,'cancelled')+'\nno\n']){call(['workspace','add',f.dir,'work','assumption'],input);assert.deepEqual(fs.readFileSync(path.join(f.dir,'project.json')),before);}assert.equal(fs.existsSync(path.join(f.root,'cancelled')),false);

@@ -7,8 +7,8 @@
   "candidates": [
     {
       "key": "available_hours",
-      "text": "Hoeveel tijd kun je voor deze stap vrijmaken?",
-      "why": "Daarmee begrenzen we de voorbereiding.",
+      "text": "How much time can you make available for this step?",
+      "why": "This helps bound the preparation.",
       "needed_for": "task-1"
     }
   ]

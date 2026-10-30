@@ -3,16 +3,16 @@ import {readCore} from './store.mjs';
 import {readSnapshot} from './history.mjs';
 import {COLLECTIONS,canonical} from './model.mjs';
 export const cleanText=value=>String(value).replace(/[\x00-\x1f\x7f-\x9f]/g,' ').replace(/[\\`*_{}[\]()#+.!|<>]/g,c=>'\\'+c);
-export function projectSummary(dir,id,language='nl'){
+export function projectSummary(dir,id,language='en'){
  if(!['nl','en'].includes(language))throw Error('Language must be nl or en');
- const h=handoff(dir,id,{limit:10}),nl=language==='nl';
- const lines=['# '+cleanText(h.name), (nl?'Versie':'Revision')+': '+h.revision,'',nl?'## Eerstvolgende werk':'## Current work',h.active_task?cleanText(h.active_task.title):(nl?'Nog geen actieve taak gekozen.':'No active task selected.'),'',nl?'## Open taken':'## Open tasks'];
- lines.push(...h.open_tasks.map(t=>'- '+cleanText(t.title)+' ['+t.progress+']'));if(!h.open_tasks.length)lines.push(nl?'Geen open taken geregistreerd; dit bewijst geen voltooiing van je onderneming.':'No open tasks recorded; this does not prove business completion.');
- lines.push('',(nl?'Actieve besluiten':'Active decisions')+': '+h.summary.totals.decisions,(nl?'Open controles':'Unresolved checks')+': '+h.summary.totals.unresolved_checks,(nl?'Opnieuw te beoordelen records':'Records needing review')+': '+h.invalidated_ids.length);
+ const h=handoff(dir,id,{limit:10});
+ const lines=['# '+cleanText(h.name), ('Revision')+': '+h.revision,'','## Current work',h.active_task?cleanText(h.active_task.title):('No active task selected.'),'','## Open tasks'];
+ lines.push(...h.open_tasks.map(t=>'- '+cleanText(t.title)+' ['+t.progress+']'));if(!h.open_tasks.length)lines.push('No open tasks recorded; this does not prove business completion.');
+ lines.push('',('Active decisions')+': '+h.summary.totals.decisions,('Unresolved checks')+': '+h.summary.totals.unresolved_checks,('Records needing review')+': '+h.invalidated_ids.length);
  if(h.invalidated_ids.length)lines.push(h.invalidated_ids.map(cleanText).join(', '));
- const bad=h.artifacts.filter(a=>!['hash_matches','external_unchecked'].includes(a.actual));if(bad.length)lines.push('',nl?'LET OP: ontbrekende of gewijzigde bestanden.':'CAUTION: missing or changed files.',...bad.map(a=>'- '+cleanText(a.id)+': '+a.actual));
- if(h.summary.truncated)lines.push('',nl?'Dit overzicht is ingekort. Gebruik project handoff voor verdere inspectie.':'This overview is shortened. Use project handoff for further inspection.');
- lines.push('',nl?'Gebaseerd op opgeslagen gegevens; geen onafhankelijke inhoudelijke beoordeling.':'Based on saved records; not an independent substantive review.');return lines.join('\n')+'\n';
+ const bad=h.artifacts.filter(a=>!['hash_matches','external_unchecked'].includes(a.actual));if(bad.length)lines.push('','CAUTION: missing or changed files.',...bad.map(a=>'- '+cleanText(a.id)+': '+a.actual));
+ if(h.summary.truncated)lines.push('','This overview is shortened. Use project handoff for further inspection.');
+ lines.push('','Based on saved records; not an independent substantive review.');return lines.join('\n')+'\n';
 }
 export function compareRevisions(dir,id,before,after,{values=false}={}){
  const current=readCore(dir,id);const get=n=>n===current.dossier.revision?current:readSnapshot(dir,id,n);

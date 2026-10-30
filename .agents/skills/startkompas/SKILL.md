@@ -12,7 +12,7 @@ For installed command discovery use `node src/startkompas.mjs --help` and docs/c
 
 ## Choose the smallest useful intervention
 
-Follow the user's requested outcome. For a simple edit, translation, calculation, explanation or coding fix, do that task without imposing startup intake or reopening an entire business plan. Use the broader procedure when uncertain assumptions, continuity or a material change affect what the founder should do next. Answer in the user's language; Dutch and English are intended, not yet behaviorally validated.
+Follow the user's requested outcome. For a simple edit, translation, calculation, explanation or coding fix, do that task without imposing startup intake or reopening an entire business plan. Use the broader procedure when uncertain assumptions, continuity or a material change affect what the founder should do next. Use English for product artifacts, code, documentation and generated outputs. Conversation may follow the user's language. Preserve existing user content and source evidence without silently translating it.
 
 ## Work from evidence
 
@@ -28,7 +28,7 @@ For an intake, new milestone or relevant change that needs a breadth check, use 
 
 When recording researched claims or review decisions, use [source-register.md](references/source-register.md) to keep source, interpretation, applicability and coverage review separate.
 
-For adaptive daily work, concrete execution and readable Dutch/English evidence, use [daily-work.md](references/daily-work.md). Small standalone questions still bypass broad intake.
+For adaptive daily work, concrete execution and readable English evidence, use [daily-work.md](references/daily-work.md). Small standalone questions still bypass broad intake.
 
 For research or tool-execution work, use [run-limits.md](references/run-limits.md) to set a bounded task and preserve partial outcomes. A missing phase budget is not filled in by operational task limits.
 

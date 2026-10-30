@@ -21,7 +21,7 @@ Updated 2026-10-30. This register concerns the improvement suggestions, not comp
 | 15 | Guided next steps | Implemented: workspace journey, draft, add and task-state |
 | 16 | Actionable doctor failures | Implemented: reinstall/dependency/skill recovery guidance |
 | 17 | Independent installation test | Open: no independent tester supplied |
-| 18 | Dutch and English instructions | Implemented: paired workspace guides; some terminal prompts remain English |
+| 18 | Dutch and English instructions | Superseded by the English product policy: English guides and prompts; historical language codes remain readable |
 | 19 | Additional Node versions | Passed in alpha3 run 41029497263: Node 24.x and 26.7.0 on all three OS targets |
 | 20 | macOS verification | Helper tests passed on macOS in alpha3 run 41029497263; host/Codex discovery remains untested |
 | 21 | Idea-to-offer route | Implemented: assumptions, linked observations/decisions and guided offer drafts |

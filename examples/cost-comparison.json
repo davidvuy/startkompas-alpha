@@ -1,8 +1,8 @@
 {
-  "language": "nl",
+  "language": "en",
   "scenarios": [
     {
-      "label": "Huidige fictieve raming",
+      "label": "Current fictional estimate",
       "scenario": {
         "project_id": "note-pilot-001",
         "period": "one synthetic month",
