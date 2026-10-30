@@ -20,7 +20,13 @@ node examples/demo-founder-workflow.mjs ../founder-demo
 
 The example uses fictional input and produces `workspace.md`, `report.md` and an export/restore check. Assumptions remain unknown; drafts are not approved business advice.
 
-**Need help?** [Ask a question, report a bug or suggest an improvement](https://github.com/davidvuy/startkompas-alpha/issues/new/choose). Dutch and English are welcome. For sensitive vulnerabilities use [private security reporting](https://github.com/davidvuy/startkompas-alpha/security/advisories/new). Never put credentials or private dossiers in public issues. See [support and FAQ](docs/alpha-support.md).
+**Need help?** [Ask a question, report a bug or suggest an improvement](https://github.com/davidvuy/startkompas-alpha/issues/new/choose). [Join Discussions](https://github.com/davidvuy/startkompas-alpha/discussions) for general usage questions. Dutch and English are welcome. For sensitive vulnerabilities use [private security reporting](https://github.com/davidvuy/startkompas-alpha/security/advisories/new). Never put credentials or private dossiers in public issues. See [support and FAQ](docs/alpha-support.md).
+
+[Watch the 40-second demo](assets/startkompas-demo.mp4) · [All five output previews](docs/alpha-demo.md#captured-founder-workflow)
+
+![Workspace output from the fictional founder demo](assets/demo-3.png)
+
+The video and previews reformat actual CLI output. They are not screen recordings or customer results.
 
 **See it work:** follow the [fictional offer walkthrough](docs/alpha-demo.md), then use the guided setup below. See the [four-week improvement roadmap](docs/alpha-roadmap.md) for our priorities and ways to contribute.
 

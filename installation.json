@@ -1,6 +1,6 @@
 {
-  "source_revision": "309e71d68966d0e4759bbcab2bab4e730c54a699",
-  "created_at": "2026-10-30T08:53:10.956Z",
+  "source_revision": "1c2ed4e3a508177b0633e3602050557c35dc6365",
+  "created_at": "2026-10-30T10:48:24.293Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -104,6 +104,30 @@
       "sha256": "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97"
     },
     {
+      "path": "assets/demo-1.png",
+      "sha256": "2ce2ff9165aa628ffb5764bd2f7a0248b5bed1c5cb9c767fa6d721351f6a7cff"
+    },
+    {
+      "path": "assets/demo-2.png",
+      "sha256": "89ddba602a6496fceb4610776f69b159b74de958676e36246afe712a1565cbbe"
+    },
+    {
+      "path": "assets/demo-3.png",
+      "sha256": "68abed1d2a147f5e9f77acc27cb302fddf8a1f3ce24ff7583100e395c8060ad4"
+    },
+    {
+      "path": "assets/demo-4.png",
+      "sha256": "eddd7db1e56561b6293ec391dc3f84dbeeb3f17882072830449c31e465f6a799"
+    },
+    {
+      "path": "assets/demo-5.png",
+      "sha256": "9ce2ce20c5d7bc9f1247b828ef71d71db0469f429bfed5badf9be0fdf4512b62"
+    },
+    {
+      "path": "assets/startkompas-demo.mp4",
+      "sha256": "10404f9fefe7681e71da8c53518e1894746c2d31c92d6248b991f7f00e4214c2"
+    },
+    {
       "path": "assets/startkompas-header.png",
       "sha256": "1d0c36c966f2f178db6ba10320ecf2b5237717fb5d5a5a4f47655c4066a5f86b"
     },
@@ -125,7 +149,7 @@
     },
     {
       "path": "docs/alpha-demo.md",
-      "sha256": "d9e21af589402b7ac12be864cea025a3334d3d78cb3c6d138a9761f20dfbeaf9"
+      "sha256": "8d4ade7b943a6e51a031bb22848f5747fc5e3eef31b3f6c6e1f9f6da035b7852"
     },
     {
       "path": "docs/alpha-improvements.md",
@@ -133,7 +157,7 @@
     },
     {
       "path": "docs/alpha-progress.md",
-      "sha256": "67d7562fa6c057d2e9558b587240859012c7ffa1f9bccb0b97ca338eaad21156"
+      "sha256": "f4c8cb0754f3f822165c9ef40ce6c29bb3826d94051f5275ba35ad17ea6ce30e"
     },
     {
       "path": "docs/alpha-roadmap.md",
@@ -321,7 +345,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "7f65f0a7be6edca105ad4e131c4b8362e872074e846b1710e5b97a2c76f34890"
+      "sha256": "7e75578f600cf2324fd75a8c7b5d957637a78e07c7bcabb2d392b643609c0373"
     },
     {
       "path": "schemas/cost-scenario.schema.json",
