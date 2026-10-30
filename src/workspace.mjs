@@ -101,7 +101,7 @@ export function reportPreview(dir,id,sections=['summary','tasks']){
  if(!Array.isArray(sections)||!sections.length||new Set(sections).size!==sections.length||sections.some(s=>!allowedSections.includes(s)))throw Error('Choose unique report sections: '+allowedSections.join(', '));
  const state=readCore(dir,id),v=workspaceView(dir,id);
  if(state.dossier.revision!==v.revision)throw Error('Project changed while preparing report');
- const lines=['# '+cleanText(v.name),'Project: '+id+' · Revision: '+v.revision,'','Private working report. Inspect before sharing. Drafts and reported claims are not independent validation.'];
+ const lines=['# '+cleanText(v.name),'Project: '+id+' · Revision: '+v.revision,'','Local export snapshot of this project revision. Later project edits do not update this file. Saving does not send it to anyone.','Private working report. Inspect before sharing. Drafts and reported claims are not independent validation.'];
  if(sections.includes('summary'))lines.push('','## Suggested next action',cleanText(v.next.record_id??'new draft')+': '+cleanText(v.next.reason));
  if(sections.includes('tasks'))lines.push('','## Tasks',...v.actions.map(x=>'- '+cleanText(x.title)+' ['+x.progress+']'+(x.blocked_by.length?' — prerequisites: '+x.blocked_by.map(cleanText).join(', '):'')));
  if(sections.includes('assumptions'))lines.push('','## Assumptions',...v.assumptions.map(x=>'- '+cleanText(x.text)+' ['+x.assertion+(x.requires_review?'; review required':'')+']'));

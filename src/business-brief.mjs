@@ -12,6 +12,58 @@ export const briefTypes={
   pilot:{title:['Pilot boundary','Pilot boundary'],fields:{learning:['Learning objective','Learning objective'],client:['Eligible client and context','Eligible client and context'],deliverable:['One deliverable','One deliverable'],exclusions:['Exclusions','Exclusions'],responsibilities:['Responsibilities','Responsibilities'],period:['Proposed period','Proposed period'],data_limits:['Data limits','Data limits'],acceptance:['Observable acceptance','Observable acceptance'],stop:['Stop or review condition','Stop or review condition'],next_check:['Next check','Next check']}},
   pricing:{title:['Pricing assumption','Pricing assumption'],fields:{price:['Proposed price and unit','Proposed price and unit'],buyer:['Buying decision maker','Buying decision maker'],payment_evidence:['Actual payments or commitments','Actual payments or commitments'],alternatives:['Relevant alternatives','Relevant alternatives'],costs:['Costs and exclusions','Costs and exclusions'],terms:['Terms to clarify','Terms to clarify'],next_check:['Next check','Next check']}}
 };
+// Display-only guidance; never default answers or recorded evidence.
+export const briefFieldHelp={
+  "offer": {
+    "segment": "Describe a specific customer and situation. Fictional example: a small design studio preparing a client handover.",
+    "job": "Describe the job they need to finish and the difficulty you suspect. Separate your guess from what someone actually reported.",
+    "outcome": "Describe an observable result you propose. Fictional example: one handover checklist with named owners. Avoid unsupported guarantees.",
+    "delivery": "Explain what you would deliver, in what format and within which boundaries. Leave unknown effort or timing blank.",
+    "exclusions": "State what is outside this offer. Fictional example: no implementation or ongoing support included.",
+    "workaround": "Describe what the customer currently does, if known. Do not invent an alternative or assume they do nothing.",
+    "support": "Summarize both supporting and contradicting indications, with private source references when available. This field does not create verified evidence.",
+    "next_check": "Choose a small check that could change your decision. State what you would observe and how it would affect your next step."
+  },
+  "interview": {
+    "learning": "Name one uncertainty a real conversation could resolve. A question is not evidence of demand.",
+    "participant": "Describe whose recent experience is relevant and why. Use participant codes in shared notes; do not invent a participant.",
+    "recent_job": "Ask about the last concrete time this happened: when, what happened and what they did. Avoid asking them to endorse your idea.",
+    "workaround": "Ask how they handle it today and what effort or difficulty they actually experienced. Keep unreported consequences unknown.",
+    "buying": "Ask who decided and what happened in a recent comparable purchase. Hypothetical willingness is not a payment.",
+    "decision_rule": "Before collecting answers, state what would support, weaken or change your decision. Preserve contradictory answers.",
+    "next_check": "Choose the next question or preparation step. Keep the log blank until a real conversation occurs."
+  },
+  "alternatives": {
+    "job": "Describe the customer job in a specific situation so options can be compared for the same purpose.",
+    "current_workaround": "Record what the customer actually uses, with a source if available. Separate a reported workaround from your guess.",
+    "do_nothing": "Describe what leaving the problem alone might mean. Do not assume a cost or urgency without supporting information.",
+    "alternatives": "Name concrete options and sources for each claim. Listing an option does not mean its claims have been checked.",
+    "constraints": "Compare costs, effort and switching needs on the same basis. Keep missing prices and conditions unknown.",
+    "unknowns": "List unanswered comparisons and the source or observation needed to resolve each one.",
+    "next_check": "Choose one missing comparison that could change your decision and how you will check it."
+  },
+  "pricing": {
+    "price": "State a proposed amount, currency and unit. Clarify tax treatment if known; do not assume it. A proposal is not an accepted price.",
+    "buyer": "Describe who can decide on this purchase and what remains unconfirmed. Do not invent budget authority.",
+    "payment_evidence": "Record only actual payments or explicit commitments, with sources and conditions. Interest and praise are not payments. Leave blank if none is known.",
+    "alternatives": "Compare prices only when scope, unit and conditions are understood. Record sources and unknown differences.",
+    "costs": "Identify known delivery costs and exclusions. Keep uncertain effort and expenses explicit rather than treating them as zero.",
+    "terms": "List terms still needing agreement, such as timing, scope and cancellation. This working field is not an agreed contract.",
+    "next_check": "Choose what to learn about price or buying behavior next and what result would change the proposal."
+  },
+  "pilot": {
+    "learning": "State the uncertainty this pilot should test. Completing a deliverable does not by itself validate demand.",
+    "client": "Describe the suitable client and context. Eligibility and interest do not establish consent or an agreed pilot.",
+    "deliverable": "Name one concrete output and its boundaries. Keep it consistent with the selected offer and available capacity.",
+    "exclusions": "Specify activities outside this pilot so they cannot silently become obligations.",
+    "responsibilities": "Describe proposed responsibilities, including inputs and review. Unknown owners remain open until agreed.",
+    "period": "Record the proposed start, end and relevant availability. A proposed period is not an agreed schedule.",
+    "data_limits": "State what data is needed, what must not be used and what permission remains unresolved. Do not paste sensitive data here.",
+    "acceptance": "Describe an observable delivery check and who would review it. Delivery acceptance is separate from proof of market demand.",
+    "stop": "Define an observable reason to stop or review, such as expanded scope or missing permission.",
+    "next_check": "Choose the next unresolved scope, responsibility or consent question to check before proceeding."
+  }
+};
 const id={type:'string',pattern:'^[a-z0-9][a-z0-9-]{0,63}$'},text={type:'string',minLength:1,maxLength:4000,pattern:'\\S'},nullable=s=>({anyOf:[s,{type:'null'}]});
 const validate=new Ajv2020({strict:true,allErrors:true,coerceTypes:false,useDefaults:false}).compile({type:'object',additionalProperties:false,required:['project_id','expected_revision','operation_id','at','language','kind','client','period','previous_artifact_id','change_reason','fields'],properties:{project_id:id,expected_revision:{type:'integer',minimum:1},operation_id:id,at:{type:'string',pattern:'^\\d{4}-\\d{2}-\\d{2}$'},language:{enum:['nl','en']},kind:{enum:Object.keys(briefTypes)},client:nullable(text),period:nullable(text),previous_artifact_id:nullable(id),change_reason:nullable(text),fields:{type:'array',maxItems:10,items:{type:'object',additionalProperties:false,required:['key','value','assertion','record_ids'],properties:{key:text,value:nullable(text),assertion:{enum:['proposal','reported','unknown']},record_ids:{type:'array',maxItems:100,uniqueItems:true,items:id}}}}}});
 function checkRequest(r){

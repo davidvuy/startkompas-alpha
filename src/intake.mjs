@@ -12,17 +12,20 @@ function check(validate,request){if(!validate(request))throw Error('Invalid inta
 function state(dir,request){const s=readCore(dir,request.project_id);if(s.dossier.revision!==request.source_revision)throw Error('Revision conflict; reread project');return s;}
 function activeTask(index,id){const r=index.get(id);if(!r||!['tasks','checks'].includes(r.group))throw Error('Missing intake task: '+id);return r;}
 const usable=r=>r.value!==null&&!(typeof r.value==='string'&&!r.value.trim())&&['reported','observed'].includes(r.assertion);
+export function intakeFieldState(d,key,revisitDeferred=false){
+ const matches=d.profile.filter(r=>r.key===key),ids=matches.map(r=>r.id);let status='missing';
+ if(matches.length>1)status='conflict';
+ else if(matches.length===1){const r=matches[0];if(r.source_ids.some(id=>d.workflow?.invalidated_ids.includes(id)))status='review';else if(usable(r))status='known';else if(r.assertion==='inferred')status='confirm_inference';else if(!revisitDeferred&&d.events.some(e=>e.type==='intake-deferred'&&e.subject_ids.includes(r.id)))status='deferred';}
+ return {status,record_ids:ids,dependent_review_required:ids.some(id=>d.workflow?.invalidated_ids.includes(id)),answers:matches.map(r=>({id:r.id,value:r.value,assertion:r.assertion,source_ids:r.source_ids}))};
+}
 export function planIntake(dir,request){
  check(planSchema,request);const s=state(dir,request),d=applyInvalidation(s.dossier,structuredClone(s.dossier),damagedArtifacts(s.directory,s.dossier)),index=records(d);
  const task=activeTask(index,request.task_id);
  const keys=new Set();for(const c of request.candidates){if(keys.has(c.key))throw Error('Duplicate intake key');keys.add(c.key);activeTask(index,c.needed_for);}
  const results=request.candidates.map(c=>{
-  const matches=d.profile.filter(r=>r.key===c.key),ids=matches.map(r=>r.id);
-  let status='missing';
-  if(request.mode==='ordinary_question'||task.progress==='done'||task.applicability==='not_applicable'||c.needed_for!==request.task_id)status='not_needed';
-  else if(matches.length>1)status='conflict';
-  else if(matches.length===1){const r=matches[0];if(r.source_ids.some(id=>d.workflow?.invalidated_ids.includes(id)))status='review';else if(usable(r))status='known';else if(r.assertion==='inferred')status='confirm_inference';else if(!request.revisit_deferred&&d.events.some(e=>e.type==='intake-deferred'&&e.subject_ids.includes(r.id)))status='deferred';}
-  return {...c,status,record_ids:ids,dependent_review_required:ids.some(id=>d.workflow?.invalidated_ids.includes(id)),answers:matches.map(r=>({id:r.id,value:r.value,assertion:r.assertion,source_ids:r.source_ids}))};
+  const result=intakeFieldState(d,c.key,request.revisit_deferred);
+  if(request.mode==='ordinary_question'||task.progress==='done'||task.applicability==='not_applicable'||c.needed_for!==request.task_id)result.status='not_needed';
+  return {...c,...result};
  });
  const unresolved=results.filter(r=>['missing','conflict','review','confirm_inference'].includes(r.status));
  return {project_id:d.project_id,revision:d.revision,mode:request.mode,question:unresolved[0]??null,remaining_question_count:Math.max(0,unresolved.length-1),results,limitations:['Candidate relevance and key mapping are supplied judgments; no semantic discovery or approval','Deferred unknowns remain unknown and do not make dependent work executable','Read-only; existing assertions retain their original provenance']};

@@ -1,5 +1,16 @@
 # Changes
 
+## 0.1.0-alpha.12 — review, revise and share selected document content
+
+- Read the five business document types as saved sections with field guidance, recorded basis and explicit unknowns. Purpose-based profile questions reuse known statements without inventing answers.
+- Revise one section while preserving other manual fields, provenance and earlier versions. Linked pilots retain offer/scope safeguards.
+- Keep suggestions separate from documents. Save a manual or neutral-template proposal, edit before accepting, or reject it. Identical normalized proposals stay blocked within the document history; this is not semantic duplicate detection.
+- Distinguish unsaved edits, saved versions and immutable local export copies. Select an external offer summary with every field initially excluded, inspect its exact text and explicitly confirm saving. Nothing is sent; selected prose still needs a privacy review.
+- Inspect missing answers and section-linked review questions. Compare versions with separate additions, removals, amounts/numbers, terms and provenance changes, alongside exact original text. These checks are not a semantic correctness or quality score.
+- Review candidate sections after a change, with explicit editorial-rule or recorded-dependency reasons. Propose only the selected revision, review its full preview and retain the selection context in the new version. Unrelated manual text stays intact.
+
+No model calls, automatic rewriting, PDF export or user validation are added. Unsaved document/suggestion edits are not covered by setup/offer recovery. Independent security, accessibility and real-user acceptance remain open; the broader roadmap is incomplete.
+
 ## 0.1.0-alpha.11 — choose context and review change impact
 
 - Select bounded prerequisite context in the app or terminal, exclude records and opt individual text fields in. Inspect the exact packet before sharing; changed selections clear the old preview. No AI call, clipboard access or upload occurs. Exclusions are per request, not automatic redaction or an access-control policy.

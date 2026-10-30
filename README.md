@@ -10,7 +10,7 @@ This is an experimental alpha. Independent user validation is still ahead. No me
 
 ## Start here
 
-[Download alpha 8 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.10.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
+[Download alpha 12 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.12.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
 
 Extract the ZIP into a new folder. Open a terminal in that folder, install the locked dependencies and open the English menu:
 
@@ -24,6 +24,12 @@ The menu offers installation checks, a fictional demo, new projects, resuming, o
 ## Local browser workspace
 
 Choose an existing projects parent outside the app and run `npm run ui -- ../my-projects`. Open the private session link printed by the terminal. Create a project through a three-step wizard, reuse optional context in your first offer, and explicitly confirm saving. Select sections for a report, preview and save a new local Markdown file. Archive projects without deleting their files and restore them through Show archived projects. Revise it later with a reason; previous versions remain intact. The server binds only to your computer, uses per-session access checks and makes no AI calls. See [workspace setup and limits](docs/local-ui.md). Keep the terminal open while using it.
+
+## Review and revise documents
+
+Read saved document sections, see unanswered fields and their recorded basis, and revise one section without losing other manual text. Keep suggestions separate until you accept or reject them. Compare versions side by side, inspect affected-section explanations and review the complete new version before saving.
+
+For external use, select only the offer fields you want to include; all fields start excluded. Preview the exact text and save a separate local copy. No upload occurs, and later project changes do not alter that copy. See [document review, comparison and sharing](docs/local-ui.md).
 
 ## Guided project work
 

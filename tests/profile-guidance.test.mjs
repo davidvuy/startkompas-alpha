@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {initializeProject} from '../src/initialize.mjs';
+import {readCore,updateCore} from '../src/store.mjs';
+import {projectProfile,prepareProfileAnswer} from '../src/project-profile.mjs';
+test('purpose-driven profile guidance reuses statements, preserves deferred unknowns and revisits changed sources',t=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'sk-profile-guidance-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));const dir=path.join(root,'project'),id='profile-guidance';
+ initializeProject(dir,{project_id:id,name:'Synthetic profile',first_task:null});
+ const read=()=>projectProfile(dir,id),answer=(key,value)=>{const s=readCore(dir,id);updateCore(dir,prepareProfileAnswer(dir,id,s.dossier.revision,s.sha256,key,value,'2026-10-30').update_request);};
+ const before=readCore(dir,id).sha256,empty=read();assert.deepEqual(empty.guidance.entry.map(q=>q.key),['stage']);assert.deepEqual(empty.guidance.offer.map(q=>q.key),['service_type','constraints']);assert.deepEqual(empty.guidance.session.map(q=>q.key),['capacity','constraints']);assert.equal(readCore(dir,id).sha256,before);
+ answer('service_type','A fictional documentation service');answer('constraints','');
+ const next=read();assert.equal(next.guidance.offer[0].status,'known');assert.equal(next.guidance.offer[1].status,'deferred');assert.equal(next.guidance.session[0].status,'missing');assert.equal(next.guidance.pilot[1].status,'missing');
+ assert.equal(next.fields.find(f=>f.key==='constraints').records[0].value,null);assert.equal(next.guidance.offer[0].answers[0].assertion,'reported');
+ const state=readCore(dir,id),source=state.dossier.profile.find(r=>r.key==='service_type').source_ids[0];updateCore(dir,{project_id:id,expected_revision:state.dossier.revision,operation_id:'changed-source',changes:{sources:state.dossier.sources.map(r=>r.id===source?{...r,title:'Revised fictional source context'}:r)}});
+ assert.equal(read().guidance.offer[0].status,'review');assert.equal(read().guidance.offer[1].status,'deferred');
+ const final=readCore(dir,id).dossier;assert.equal(final.tasks.length,0);assert.equal(final.evidence.length,0);assert.equal(final.facts.length,0);assert.ok(!final.profile.some(p=>p.key==='budget'));assert.equal(final.profile.find(p=>p.key==='service_type').value,'A fictional documentation service');
+});

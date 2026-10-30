@@ -1,3 +1,9 @@
+import {affectedSections,prepareAffectedSection} from './affected-sections.mjs';
+import {documentVersions,compareDocuments} from './document-comparison.mjs';
+import {documentReview} from './document-review.mjs';
+import {externalSummary,writeExternalSummary} from './external-summary.mjs';
+import {suggestionsView,prepareSuggestion,prepareSuggestionResolution} from './document-suggestions.mjs';
+import {prepareDocumentSection} from './document-section.mjs';
 import {changeImpact,businessPreviewMarkdown} from './change-impact.mjs';
 import {skillContextChoices,prepareSkillContext} from './skill-context.mjs';
 import {scenariosView,compareScenario,prepareScenario,prepareScenarioAdoption} from './offer-scenarios.mjs';
@@ -11,7 +17,7 @@ import {randomUUID} from 'node:crypto';
 import {safeDirectory,regularFile,readCore} from './store.mjs';
 import {initializeProject} from './initialize.mjs';
 import {workspaceView,saveGuided,operationId,reportPreview,writeReport,isProjectArchived,isPracticeProject,prepareProjectArchive,prepareTaskState,prepareTaskFocus} from './workspace.mjs';
-import {briefTypes,prepareBusinessBrief,readBusinessBrief,renderBusinessBrief,searchBusinessBriefs} from './business-brief.mjs';
+import {briefTypes,briefFieldHelp,prepareBusinessBrief,readBusinessBrief,renderBusinessBrief,searchBusinessBriefs} from './business-brief.mjs';
 import {retrieveRecords} from './retrieval.mjs';
 import {dependencyGraph} from './dependencies.mjs';
 import {listHistory} from './history.mjs';
@@ -63,6 +69,12 @@ export function localWorkspace(selectedRoot){
   return {dir,id,folder};
  }
  return {
+  suggestions(input){exactObject(input,['ref','document_id']);const {dir,id}=open(input.ref);return {...suggestionsView(dir,id,input.document_id),archived:isProjectArchived(readCore(dir,id).dossier)};},
+  suggestionPreview(input){exactObject(input,['ref','revision','sha256','suggestion']);const {dir,id}=open(input.ref);requireActive(dir,id);let prepared;try{prepared=prepareSuggestion(dir,id,input.revision,input.sha256,input.suggestion);}catch{throw new WorkspaceError('Suggestion cannot be prepared. Use a current section, different text and a reason. Existing or resolved identical text cannot be recreated; inspect history. Changed or damaged context requires review.',409);}return {preview:holdPreview({kind:'document-suggestion',ref:input.ref,sha256:input.sha256,prepared}),details:prepared.preview,rebase:false};},
+  suggestionDecisionPreview(input){exactObject(input,['ref','revision','sha256','decision']);const {dir,id}=open(input.ref);requireActive(dir,id);let prepared;try{prepared=prepareSuggestionResolution(dir,id,input.revision,input.sha256,input.decision);}catch{throw new WorkspaceError('Suggestion decision cannot be prepared. Review current context, unresolved status and a reason. A changed target section, rejected text or outdated linked pilot basis cannot be silently replaced.',409);}return {preview:holdPreview({kind:'suggestion-decision',ref:input.ref,sha256:input.sha256,prepared}),details:prepared.preview,markdown:prepared.document_markdown?businessPreviewMarkdown(prepared):null,rebase:prepared.rebase};},
+  suggestionSave(input){exactObject(input,['ref','preview','confirmed','acknowledge_rebase']);if(input.confirmed!==true||typeof input.acknowledge_rebase!=='boolean')throw new WorkspaceError('Review and confirm the exact suggestion action.');const entry=previews.get(input.preview);if(!entry||!['document-suggestion','suggestion-decision'].includes(entry.kind)||entry.ref!==input.ref||entry.expires<Date.now())throw new WorkspaceError('Suggestion preview missing or expired.',409);if(entry.prepared.rebase&&!input.acknowledge_rebase)throw new WorkspaceError('Acknowledge the newer document version and retained other fields.');const {dir,id}=open(input.ref);if(entry.receipt)return entry.receipt;requireActive(dir,id);if(readCore(dir,id).sha256!==entry.sha256)throw new WorkspaceError('Project changed; preview the suggestion action again.',409);saveGuided(dir,entry.prepared,path.join(root,'retry-'+entry.prepared.update_request.operation_id));entry.receipt={artifact_id:entry.prepared.artifact_id??null,action:entry.prepared.action??'proposed',revision:entry.prepared.update_request.expected_revision+1};return entry.receipt;},
+  sectionPreview(input){exactObject(input,['ref','revision','sha256','section']);const {dir,id}=open(input.ref);requireActive(dir,id);let prepared;try{prepared=prepareDocumentSection(dir,id,input.revision,input.sha256,input.section);}catch{throw new WorkspaceError('Section cannot be prepared. Use a current document, a changed value of at most 4000 characters and a reason. Refresh changed context. If a linked pilot offer is outdated, use Prepare a pilot to select its current basis.',409);}return {preview:holdPreview({kind:'document-section',ref:input.ref,sha256:input.sha256,prepared}),markdown:businessPreviewMarkdown(prepared),section:prepared.edited_section};},
+  sectionSave(input){exactObject(input,['ref','preview','confirmed']);if(input.confirmed!==true)throw new WorkspaceError('Review and confirm the exact document preview.');const entry=previews.get(input.preview);if(!entry||entry.kind!=='document-section'||entry.ref!==input.ref||entry.expires<Date.now())throw new WorkspaceError('Section preview missing or expired.',409);const {dir,id}=open(input.ref);if(entry.receipt)return entry.receipt;requireActive(dir,id);if(readCore(dir,id).sha256!==entry.sha256)throw new WorkspaceError('Project changed; reopen and review the section again.',409);saveGuided(dir,entry.prepared,path.join(root,'retry-'+entry.prepared.update_request.operation_id));entry.receipt={artifact_id:entry.prepared.artifact_id,revision:entry.prepared.update_request.expected_revision+1};return entry.receipt;},
   changeImpact(input){exactObject(input,['ref','id']);const {dir,id}=open(input.ref),state=readCore(dir,id);let result;try{result=changeImpact(state.dossier,[input.id]);}catch{throw new WorkspaceError('Choose an existing record for change impact.');}if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('Project changed; review impact again.',409);return {...result,sha256:state.sha256};},
   contextChoices(input){exactObject(input,['ref']);const {dir,id}=open(input.ref);return skillContextChoices(dir,id);},
   contextPreview(input){exactObject(input,['ref','selection']);const {dir,id}=open(input.ref);if(input.selection?.project_id!==id)throw new WorkspaceError('Context project identity mismatch.',409);try{return prepareSkillContext(dir,input.selection);}catch{throw new WorkspaceError('Context selection is invalid or changed. Reload the selector; choose existing included fields, reduce oversized selections, and review again.',409);}},
@@ -137,7 +149,7 @@ export function localWorkspace(selectedRoot){
    exactObject(input,['ref','id']);const {dir,id}=open(input.ref),state=readCore(dir,id);
    let draft,markdown;try{draft=readBusinessBrief(dir,id,input.id);markdown=renderBusinessBrief(dir,id,input.id);}catch{throw new WorkspaceError('This saved draft is unavailable or damaged. No file was changed.',409);}
    if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed. Open the draft again.',409);
-   return {id:draft.artifact_id,version:draft.version,kind:draft.request.kind,markdown,requires_review:draft.requires_review,historical:draft.successor_ids.length>0,successors:draft.successor_ids,basis_ids:[...new Set(draft.fields.flatMap(f=>f.record_ids))]};
+   return {review:documentReview(draft),id:draft.artifact_id,version:draft.version,kind:draft.request.kind,revision:state.dossier.revision,sha256:state.sha256,sections:draft.fields.map(f=>({key:f.key,label:briefTypes[draft.request.kind].fields[f.key][1],help:briefFieldHelp[draft.request.kind][f.key],value:f.value,assertion:f.assertion,record_ids:[...f.record_ids],recorded_basis:f.basis??[]})),markdown,requires_review:draft.requires_review,historical:draft.successor_ids.length>0,successors:draft.successor_ids,basis_ids:[...new Set(draft.fields.flatMap(f=>f.record_ids))]};
   },
   search(input){
    exactObject(input,['ref','revision','query','offset']);const {dir,id}=open(input.ref),state=readCore(dir,id);
@@ -187,7 +199,7 @@ export function localWorkspace(selectedRoot){
    if(prior&&(prior.request.kind!=='offer'||prior.successor_ids.length))throw new WorkspaceError('Select the latest offer version before editing.',409);
    const state=readCore(dir,id);
    const initial=startingFields(state.dossier);
-   return {revision:state.dossier.revision,sha256:state.sha256,previous:input.previous,client:prior?.request.client??'',period:prior?.request.period??'',fields:offerKeys.map(key=>{const field=prior?.fields.find(f=>f.key===key),value=prior?(field?.value??''):(initial[key]?.value??'');return {key,label:briefTypes.offer.fields[key][1],value,assertion:field?.assertion??(value?'proposal':'unknown'),record_ids:field?.record_ids??(initial[key]?[initial[key].id]:[]),requires_review:prior?.requires_review??false};})};
+   return {revision:state.dossier.revision,sha256:state.sha256,previous:input.previous,client:prior?.request.client??'',period:prior?.request.period??'',fields:offerKeys.map(key=>{const field=prior?.fields.find(f=>f.key===key),value=prior?(field?.value??''):(initial[key]?.value??'');return {key,label:briefTypes.offer.fields[key][1],help:briefFieldHelp.offer[key],value,assertion:field?.assertion??(value?'proposal':'unknown'),record_ids:field?.record_ids??(initial[key]?[initial[key].id]:[]),requires_review:prior?.requires_review??false};})};
   },
   offerLatest(input){
    exactObject(input,['ref','previous']);const {dir,id}=open(input.ref),state=readCore(dir,id);requireActive(dir,id);
@@ -243,6 +255,38 @@ export function localWorkspace(selectedRoot){
    const retry=directory('retry-'+entry.prepared.update_request.operation_id);
    let receipt;try{receipt=saveGuided(dir,entry.prepared,retry);}catch{throw new WorkspaceError('Saving did not complete. Check the project and its retry folder before trying again.',409);}
    entry.receipt={artifact_id:entry.prepared.artifact_id,revision:entry.prepared.update_request.expected_revision+1,retry_folder:path.basename(receipt.retry_bundle)};
+   return entry.receipt;
+  },
+  affectedSections(input){
+   exactObject(input,['ref','before','after']);const {dir,id}=open(input.ref);
+   try{const result=affectedSections(dir,id,input.before,input.after);return {...result,archived:isProjectArchived(readCore(dir,id).dossier)};}catch{throw new WorkspaceError('Affected sections cannot be selected. Compare readable versions ending at the current document; refresh changed or overlong history.',409);}
+  },
+  affectedSectionPreview(input){
+   exactObject(input,['ref','revision','sha256','before','after','section']);const {dir,id}=open(input.ref);requireActive(dir,id);
+   let prepared;try{prepared=prepareAffectedSection(dir,id,input.revision,input.sha256,input.before,input.after,input.section);}catch{throw new WorkspaceError('This targeted revision cannot be prepared. Refresh the selection, choose a listed field and explain a changed value. A pilot linked to an outdated offer requires explicit offer selection through Prepare a pilot.',409);}
+   return {preview:holdPreview({kind:'document-section',ref:input.ref,sha256:input.sha256,prepared}),markdown:businessPreviewMarkdown(prepared),selection:prepared.selection_context};
+  },
+  documentVersions(input){
+   exactObject(input,['ref','id']);const {dir,id}=open(input.ref);
+   try{return documentVersions(dir,id,input.id);}catch{throw new WorkspaceError('Document version history is unavailable, inconsistent or exceeds 200 versions.',409);}
+  },
+  documentCompare(input){
+   exactObject(input,['ref','before','after']);const {dir,id}=open(input.ref);
+   try{return compareDocuments(dir,id,input.before,input.after);}catch{throw new WorkspaceError('Choose two increasing versions of the same readable document. Refresh if the project changed.',409);}
+  },
+  summaryPreview(input){
+   exactObject(input,['ref','artifact_id','keys']);const {dir,id}=open(input.ref);
+   let summary;try{summary=externalSummary(dir,id,input.artifact_id,input.keys);}catch{throw new WorkspaceError('Choose unique sections from a current, readable offer, with at most 6000 text characters. Reopen the offer if it changed.',409);}
+   const preview=holdPreview({kind:'external-summary',ref:input.ref,artifact_id:input.artifact_id,keys:[...input.keys],summary});
+   return {preview,...summary};
+  },
+  summarySave(input){
+   exactObject(input,['ref','preview','confirmed']);if(input.confirmed!==true)throw new WorkspaceError('Review and confirm the exact summary first.');
+   const entry=previews.get(input.preview);
+   if(!entry||entry.kind!=='external-summary'||entry.ref!==input.ref||entry.expires<Date.now())throw new WorkspaceError('Summary preview missing or expired. Preview again.',409);
+   const {dir,id}=open(input.ref);if(entry.receipt)return entry.receipt;
+   try{entry.receipt=writeExternalSummary(dir,id,entry.artifact_id,entry.keys,entry.summary.sha256,directory('offer-summary-'+randomUUID()+'.md'));}
+   catch{throw new WorkspaceError('Summary could not be saved. The project may have changed; preview again.',409);}
    return entry.receipt;
   },
   reportPreview(input){

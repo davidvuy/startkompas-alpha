@@ -86,3 +86,19 @@ test('workspace does not recommend a task behind a declared material uncertainty
  updateCore(f.dir,{project_id:'work',expected_revision:d.revision,operation_id:'material-uncertainty',changes:{workflow:{...d.workflow,links:[{dependent_id:'offer-task',prerequisite_id:a.record_id,reason:'Task depends on this premise'}],uncertainties:[{record_id:a.record_id,impact:'material',reason:'Changes the offer substantially',checks:[]}]}}});
  const v=workspaceView(f.dir,'work');assert.ok(v.actions[0].blocked_by.includes(a.record_id));assert.notEqual(v.next.kind,'task');
 });
+
+
+test('saved export remains an exact unsent snapshot after a document revision',()=>{
+ const f=fixture(),first=brief(f);saveGuided(f.dir,first,path.join(f.root,'draft-one'));
+ const before=reportPreview(f.dir,'work',['drafts']),target=path.join(f.root,'snapshot.md');
+ const receipt=writeReport(f.dir,'work',['drafts'],before.confirmation_sha256,target),bytes=fs.readFileSync(target);
+ const second=brief(f,'offer-two',first.artifact_id);saveGuided(f.dir,second,path.join(f.root,'draft-two'));
+ assert.deepEqual(fs.readFileSync(target),bytes);
+ assert.equal(receipt.revision,before.revision);
+ assert.match(before.markdown,/Later project edits do not update this file/);
+ assert.match(before.markdown,/Saving does not send it to anyone/);
+ const after=reportPreview(f.dir,'work',['drafts']);assert.ok(after.revision>receipt.revision);assert.notEqual(after.confirmation_sha256,before.confirmation_sha256);
+ assert.throws(()=>writeReport(f.dir,'work',['drafts'],before.confirmation_sha256,path.join(f.root,'stale-snapshot.md')),/preview again/);
+ assert.equal(fs.existsSync(path.join(f.root,'stale-snapshot.md')),false);
+ assert.deepEqual(fs.readFileSync(target),bytes);
+});

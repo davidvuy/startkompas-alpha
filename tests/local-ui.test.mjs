@@ -600,3 +600,96 @@ test('offer impact is visible before confirmation and does not regenerate depend
  assert.equal((await request('/api/offer-save',{ref,preview:preview.preview,confirmed:false})).status,400);assert.equal(readCore(dir,'impact-ui').sha256,linked.sha256);
  assert.equal((await request('/api/offer-save',{ref,preview:preview.preview,confirmed:true})).status,200);assert.deepEqual(readCore(dir,'impact-ui').dossier.tasks,linked.dossier.tasks);
 });
+
+test('document sections reflect saved fields and a focused offer revision retains untouched provenance and bytes',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',{...input('section-example'),context:{customer:'Fictional local studios',outcome:'One handover checklist'}})).json().ref,dir=path.join(root,'section-example');
+ const form=await offer(request,ref);form.fields.delivery='Manual line one\nManual line two';form.fields.exclusions='No customer data';
+ const preview=(await request('/api/offer-preview',form)).json(),saved=(await request('/api/offer-save',{ref,preview:preview.preview,confirmed:true})).json();
+ const original=readBusinessBrief(dir,'section-example',saved.artifact_id),state=readCore(dir,'section-example'),old=fs.readFileSync(path.join(dir,state.dossier.artifacts.find(a=>a.id===saved.artifact_id).location));
+ const display=(await request('/api/draft',{ref,id:saved.artifact_id})).json();assert.equal(display.sections.length,original.fields.length);assert.equal(display.sha256,state.sha256);assert.equal(display.revision,state.dossier.revision);
+ for(const section of display.sections){const field=original.fields.find(f=>f.key===section.key);assert.ok(section.help.length>30);assert.equal(section.value,field.value);assert.equal(section.assertion,field.assertion);assert.deepEqual(section.record_ids,field.record_ids);assert.deepEqual(section.recorded_basis,field.basis);}
+ const edited=await offer(request,ref,saved.artifact_id);edited.fields.outcome='Only the selected result changes';edited.reason='Narrow the result without replacing manual delivery text';
+ const invalid={...edited,fields:{...edited.fields,outcome:'x'.repeat(4001)}};assert.equal((await request('/api/offer-preview',invalid)).status,400);assert.equal(readCore(dir,'section-example').sha256,state.sha256);
+ const revisedPreview=(await request('/api/offer-preview',edited)).json(),revised=(await request('/api/offer-save',{ref,preview:revisedPreview.preview,confirmed:true})).json(),newDraft=readBusinessBrief(dir,'section-example',revised.artifact_id);
+ for(const field of original.fields.filter(f=>f.key!=='outcome'))assert.deepEqual(newDraft.fields.find(f=>f.key===field.key),field);
+ assert.equal(newDraft.fields.find(f=>f.key==='outcome').assertion,'proposal');assert.deepEqual(newDraft.fields.find(f=>f.key==='outcome').record_ids,[]);assert.deepEqual(fs.readFileSync(path.join(dir,state.dossier.artifacts.find(a=>a.id===saved.artifact_id).location)),old);
+ const historical=(await request('/api/draft',{ref,id:saved.artifact_id})).json();assert.equal(historical.historical,true);assert.deepEqual(historical.sections,display.sections);assert.equal((await request('/api/offer-form',{ref,previous:saved.artifact_id})).status,409);
+});
+
+test('generic section preview has independent confirmation, retry receipt and stale-session boundaries',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input('generic-section'))).json().ref;
+ const initial=await offer(request,ref),firstPreview=(await request('/api/offer-preview',initial)).json(),first=(await request('/api/offer-save',{ref,preview:firstPreview.preview,confirmed:true})).json();
+ const shown=(await request('/api/draft',{ref,id:first.artifact_id})).json(),body={ref,revision:shown.revision,sha256:shown.sha256,section:{artifact_id:first.artifact_id,key:'next_check',value:'One fictional check',reason:'Clarify next action'}};
+ assert.equal((await request('/api/section-preview',body,{Origin:'https://example.invalid'})).status,403);const p=(await request('/api/section-preview',body)).json();assert.ok(p.preview);
+ assert.equal((await request('/api/offer-save',{ref,preview:p.preview,confirmed:true})).status,409);assert.equal((await request('/api/section-save',{ref,preview:p.preview,confirmed:false})).status,400);
+ const save={ref,preview:p.preview,confirmed:true},saved=(await request('/api/section-save',save)).json();assert.ok(saved.artifact_id);assert.deepEqual((await request('/api/section-save',save)).json(),saved);
+ const next=(await request('/api/draft',{ref,id:saved.artifact_id})).json(),p2=(await request('/api/section-preview',{...body,revision:next.revision,sha256:next.sha256,section:{...body.section,artifact_id:saved.artifact_id,value:'Another fictional check'}})).json();
+ updateCore(path.join(root,'generic-section'),{project_id:'generic-section',expected_revision:next.revision,operation_id:'concurrent-section',changes:{name:'Changed while editing'}});
+ assert.equal((await request('/api/section-save',{ref,preview:p2.preview,confirmed:true})).status,409);assert.equal((await request('/api/section-preview',body)).status,409);
+});
+
+test('suggestion actions require exact preview confirmation and separate acknowledgment for a newer document',async t=>{
+ const {request}=await setup(t),ref=(await request('/api/create',input('suggestion-ui'))).json().ref;
+ const initial=await offer(request,ref),p=(await request('/api/offer-preview',initial)).json(),original=(await request('/api/offer-save',{ref,preview:p.preview,confirmed:true})).json();
+ let view=(await request('/api/suggestions',{ref,document_id:original.artifact_id})).json();const body={ref,revision:view.revision,sha256:view.sha256,suggestion:{document_id:original.artifact_id,key:'next_check',value:view.template,origin:'template',reason:'Prepare a neutral question'}};
+ assert.equal((await request('/api/suggestion-preview',body,{Origin:'https://example.invalid'})).status,403);const proposed=(await request('/api/suggestion-preview',body)).json();assert.ok(proposed.preview);
+ assert.equal((await request('/api/suggestion-save',{ref,preview:proposed.preview,confirmed:false,acknowledge_rebase:false})).status,400);assert.equal((await request('/api/section-save',{ref,preview:proposed.preview,confirmed:true})).status,409);
+ const saved=(await request('/api/suggestion-save',{ref,preview:proposed.preview,confirmed:true,acknowledge_rebase:false})).json();assert.equal(saved.action,'proposed');assert.deepEqual((await request('/api/suggestion-save',{ref,preview:proposed.preview,confirmed:true,acknowledge_rebase:false})).json(),saved);
+ const revise=await offer(request,ref,original.artifact_id);revise.fields.delivery='Independent manual delivery';const rp=(await request('/api/offer-preview',revise)).json(),current=(await request('/api/offer-save',{ref,preview:rp.preview,confirmed:true})).json();
+ view=(await request('/api/suggestions',{ref,document_id:current.artifact_id})).json();const decision={ref,revision:view.revision,sha256:view.sha256,decision:{suggestion_id:saved.artifact_id,document_id:current.artifact_id,action:'accept',value:view.rows[0].request.value,reason:'Accept against current document'}};
+ const dp=(await request('/api/suggestion-decision-preview',decision)).json();assert.equal(dp.rebase,true);assert.equal((await request('/api/suggestion-save',{ref,preview:dp.preview,confirmed:true,acknowledge_rebase:false})).status,400);
+ const accepted=(await request('/api/suggestion-save',{ref,preview:dp.preview,confirmed:true,acknowledge_rebase:true})).json();assert.equal(accepted.action,'accept');
+ const after=(await request('/api/draft',{ref,id:accepted.artifact_id})).json();assert.equal(after.sections.find(f=>f.key==='delivery').value,'Independent manual delivery');assert.equal(after.sections.find(f=>f.key==='next_check').value,view.rows[0].request.value);assert.equal((await request('/api/suggestion-decision-preview',decision)).status,409);
+});
+
+
+test('external summary routes gate selection, confirmation, preview kind and stale saves',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref,dir=path.join(root,'example');
+ const draft=await offer(request,ref);draft.client='PRIVATE CLIENT';draft.fields.segment='Selected audience';draft.fields.support='PRIVATE NOTES';
+ const prepared=(await request('/api/offer-preview',draft)).json(),saved=(await request('/api/offer-save',{ref,preview:prepared.preview,confirmed:true})).json();
+ const selection={ref,artifact_id:saved.artifact_id,keys:['segment']},before=readCore(dir,'example');
+ assert.equal((await request('/api/summary-preview',{...selection,keys:[]})).status,409);
+ assert.equal((await request('/api/summary-preview',selection,{Origin:'https://untrusted.invalid'})).status,403);
+ const p=(await request('/api/summary-preview',selection)).json();assert.match(p.markdown,/Selected audience/);assert.doesNotMatch(p.markdown,/PRIVATE|Synthetic project/);
+ const save={ref,preview:p.preview,confirmed:false};assert.equal((await request('/api/summary-save',save)).status,400);save.confirmed=true;
+ assert.equal((await request('/api/report-save',save)).status,409);assert.equal((await request('/api/summary-save',{...save,preview:prepared.preview})).status,409);
+ const written=await request('/api/summary-save',save);assert.equal(written.status,200);const receipt=written.json(),bytes=fs.readFileSync(receipt.path);
+ assert.equal(bytes.toString(),p.markdown);assert.deepEqual((await request('/api/summary-save',save)).json(),receipt);assert.equal(readCore(dir,'example').sha256,before.sha256);
+ const stale=(await request('/api/summary-preview',selection)).json();updateCore(dir,{project_id:'example',expected_revision:before.dossier.revision,operation_id:'change-after-summary',changes:{name:'Changed private name'}});
+ assert.equal((await request('/api/summary-save',{...save,preview:stale.preview})).status,409);assert.deepEqual(fs.readFileSync(receipt.path),bytes);
+});
+
+
+test('document comparison API isolates project history and returns exact read-only field changes',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref,dir=path.join(root,'example');
+ const first=await offer(request,ref);first.fields.outcome='One fictional checklist';
+ const p=(await request('/api/offer-preview',first)).json(),a=(await request('/api/offer-save',{ref,preview:p.preview,confirmed:true})).json();
+ const revision=await offer(request,ref,a.artifact_id);revision.fields.outcome='Two fictional checklists';revision.fields.exclusions='No implementation';
+ const next=(await request('/api/offer-preview',revision)).json(),b=(await request('/api/offer-save',{ref,preview:next.preview,confirmed:true})).json();
+ const state=readCore(dir,'example'),versions=await request('/api/document-versions',{ref,id:b.artifact_id});assert.equal(versions.status,200);assert.deepEqual(versions.json().versions.map(v=>v.version),[2,1]);
+ const selection={ref,before:a.artifact_id,after:b.artifact_id},result=await request('/api/document-compare',selection);assert.equal(result.status,200);assert.equal(result.json().changes.find(r=>r.key==='outcome').before.value,'One fictional checklist');assert.equal(result.json().changes.find(r=>r.key==='exclusions').type,'added');assert.equal(readCore(dir,'example').sha256,state.sha256);
+ assert.equal((await request('/api/document-compare',{...selection,before:b.artifact_id,after:a.artifact_id})).status,409);
+ assert.equal((await request('/api/document-compare',selection,{Origin:'https://untrusted.invalid'})).status,403);
+ const other=(await request('/api/create',input('other'))).json().ref;assert.equal((await request('/api/document-compare',{...selection,ref:other})).status,409);
+ assert.equal((await request('/api/document-compare',{...selection,extra:true})).status,400);
+});
+
+
+test('affected section route enforces displayed candidates, exact preview and preserved manual text',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref,dir=path.join(root,'example');
+ const first=await offer(request,ref);first.fields.segment='Fictional studios';first.fields.exclusions='Manual exclusions remain';
+ const p=(await request('/api/offer-preview',first)).json(),a=(await request('/api/offer-save',{ref,preview:p.preview,confirmed:true})).json();
+ const second=await offer(request,ref,a.artifact_id);second.fields.segment='Fictional agencies';
+ const p2=(await request('/api/offer-preview',second)).json(),b=(await request('/api/offer-save',{ref,preview:p2.preview,confirmed:true})).json();
+ const selection={ref,before:a.artifact_id,after:b.artifact_id},view=(await request('/api/affected-sections',selection)).json();assert.ok(view.candidates.some(c=>c.key==='delivery'&&c.reasons[0].kind==='editorial_rule'));
+ const edit={...selection,revision:view.revision,sha256:view.sha256,section:{artifact_id:b.artifact_id,key:'delivery',value:'One fictional checklist',reason:'Adjust delivery for the new audience'}};
+ assert.equal((await request('/api/affected-section-preview',{...edit,section:{...edit.section,key:'exclusions'}})).status,409);
+ assert.equal((await request('/api/affected-section-preview',edit,{Origin:'https://untrusted.invalid'})).status,403);
+ const preview=await request('/api/affected-section-preview',edit);assert.equal(preview.status,200);assert.match(preview.json().markdown,/Editorial rule from segment/);assert.equal(readCore(dir,'example').sha256,view.sha256);
+ const save={ref,preview:preview.json().preview,confirmed:false};assert.equal((await request('/api/section-save',save)).status,400);save.confirmed=true;
+ const receipt=(await request('/api/section-save',save)).json();assert.deepEqual((await request('/api/section-save',save)).json(),receipt);
+ const revised=readBusinessBrief(dir,'example',receipt.artifact_id);assert.equal(revised.fields.find(f=>f.key==='exclusions').value,'Manual exclusions remain');assert.equal(revised.revision_context.reasons[0].kind,'editorial_rule');
+ assert.equal((await request('/api/affected-section-preview',edit)).status,409);assert.equal((await request('/api/affected-sections',selection)).status,409);
+ const state=readCore(dir,'example');assert.equal((await request('/api/archive',{ref,revision:state.dossier.revision,sha256:state.sha256,archived:true,confirmed:true})).status,200);
+ const newer={ref,before:b.artifact_id,after:receipt.artifact_id},archived=(await request('/api/affected-sections',newer)).json();assert.equal(archived.archived,true);assert.equal((await request('/api/affected-section-preview',{...newer,revision:archived.revision,sha256:archived.sha256,section:{artifact_id:receipt.artifact_id,key:'exclusions',value:'Different limits',reason:'Review'}})).status,409);
+});

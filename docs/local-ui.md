@@ -199,3 +199,42 @@ Compare any readable scenario against its original offer and the current descend
 Adoption uses the existing offer revision workflow, retains current scope metadata and unchanged field provenance, marks changed text as proposals, and records the scenario as the source of those changes. It retains all scenario and historical offer bytes. Identical current values do not create another version. Historical scenario versions, damaged history, ambiguous offer chains and stale previews are refused. History traversal is bounded at 200 successors and fails explicitly rather than guessing. No customer validation or task completion is added.
 
 The view shows the newest 100 scenario versions and newest 50 current offers with limit notices. Archived projects allow comparison/readback only. Unsaved scenario/reason edits have navigation/close protection but no setup/offer recovery coverage.
+
+### Purpose-driven profile questions
+
+In Project profile, choose a starting route, offer, work session or pilot. The app recommends one relevant missing/review-needed statement and explains its decision or document destination. Known statements are reused; explicitly skipped answers remain unknown. You may select any field to revise or revisit it. These are fixed purpose mappings, not semantic inference from free text. Profile answers do not populate an offer or approve a pilot automatically.
+
+### Saved sections and focused offer editing
+
+Read a saved business draft to see its structured fields, unknowns, recorded assertion and per-section basis links alongside the complete document. Basis status is a snapshot from saving; a review warning is not removed by displaying a source link. Current offers have an Edit button on each section. This opens that section while retaining the other fields and their provenance. Show all offer sections reveals them without discarding edits. A new complete immutable version is saved only after reason, preview, impact review and confirmation. Historical offers must first be explicitly reused as a new version. Current interview, alternatives, pricing and pilot business briefs also support single-section edits. Linked pilots reuse their recorded offer and refresh related scope warnings; an outdated offer must be reselected through Prepare a pilot instead of being silently replaced. Ordinary unlinked pilot briefs remain unlinked. A changed section becomes a proposal, an empty section stays unknown, and unchanged field provenance is retained. The generic section form has navigation/close guards but is not included in setup/offer recovery. Separate interview-preparation logs and comparison exercises keep their own editors.
+
+### Separate document suggestions
+
+From a saved business brief choose Review document suggestions. Supply a proposed section value or choose the neutral next-check template, inspect the separate proposal, and explicitly save it. The document does not change. Review a pending proposal to accept its text, edit before accepting, or reject with a reason. Accepted text becomes a proposal in a new document version, not validated evidence. Rejection records the original normalized text (Unicode normalization, trimmed/collapsed whitespace) for that document lineage; an identical proposal cannot silently be recreated, even after later document versions. Similar wording and manual document edits are not blocked. There is no automatic model call.
+
+If only other fields changed after a proposal, acceptance previews the current document and requires acknowledgment of the newer version; those fields are retained. A changed target field is refused rather than overwritten. Linked pilot rules still apply. Resolved proposals cannot be resolved twice; retry uses the same preview receipt. The view shows the newest100 proposals for the lineage. Duplicate checking reads up to500 project proposals and fails closed on damaged/oversized history instead of forgetting rejections. Unsaved suggestion forms are not included in setup/offer recovery.
+
+
+## Document review and external summaries
+
+Open a saved business draft to see its sections, field guidance and open points. Missing fields are separate from wording review questions. Each point jumps to the relevant section; it does not edit the document. A review question is not a detected defect, and no score or automatic approval is assigned. The checks cannot identify every semantic contradiction or omitted condition.
+
+For a current saved offer, choose **Prepare external offer summary**. Every section starts excluded. Select the sections, inspect the exact preview and explicitly confirm before saving a local Markdown copy. At most 6000 selected text characters are allowed. Project name, project ID, client, period, basis links and unselected records are not automatically included. Selected prose can still contain private information, so inspect it yourself. The file retains draft/practice/review notices and warns that omitted sections may contain important limits.
+
+Saving sends nothing and does not change the project. The saved copy keeps its offer version and project revision; later edits cannot update it. A stale preview must be prepared again. Opening the summary selector again resets all selections. This is a selected snapshot, not the complete offer, a backup, a signed agreement or a PDF.
+
+
+## Compare saved document versions
+
+Open a saved business document with earlier versions and choose **Compare document versions**. Select two increasing versions from its own history. Added answers, removed answers, changed text and status/basis-only changes are shown separately. Amount-bearing fields, terms/scope and changed number fragments have their own navigation links. These categories do not infer currency, tax, contractual meaning or business impact.
+
+Each changed section retains exact earlier/later text, assertions and recorded basis. Complete original Markdown for both versions is available below, including unchanged wording. A field summary cannot replace reading that text. Comparisons never save, restore or approve a document. Historical choices include up to200 versions along the selected document's ancestry; inconsistent, unreadable or longer histories are refused rather than silently shortened. To include a newer version, open that version first.
+
+
+## Revise only selected affected sections
+
+After comparing versions, choose **Review affected sections**. The later version must still be current. Suggestions distinguish explicit editorial rules (for example, review delivery after a changed customer segment) from recorded field-basis dependencies. The explanation shows the changed field or cited record and the dependency path. Editorial rules are prompts, not customer evidence or proof that text is wrong. Fields already changed in the comparison are not suggested again by those rules.
+
+Choose one candidate, write your proposed replacement and reason, then review and confirm the complete new version. The selection explanation is shown before confirmation and retained with the saved revision. Only the selected field changes; other manual values and provenance remain. No replacement text is generated automatically. Archived projects allow reading but require restoration before editing. An outdated linked pilot offer must be selected explicitly through the pilot workflow.
+
+A document-level link without a field-specific link asks you to inspect that document; it does not guess which field is affected. Unreadable documents are listed as an incomplete inspection. Selection refuses more than200 current documents or explanations longer than200 links. Missing links can hide dependencies, and leaving a suggested field unchanged is allowed. Saved changes require a fresh comparison before reusing an outdated selection.
