@@ -8,7 +8,9 @@ import {createProject} from '../src/dossier.mjs';
 import {exportCore,restoreCore,migrateLegacy} from '../src/transfer.mjs';
 const seed=()=>JSON.parse(fs.readFileSync(new URL('../examples/dossier-v1.1.json',import.meta.url)));
 const legacy=()=>JSON.parse(fs.readFileSync(new URL('../examples/sk09-input.json',import.meta.url)));
-function setup(old=false){const root=fs.mkdtempSync(path.join(os.tmpdir(),'startkompas-transfer-')),dir=path.join(root,'source');if(old)createProject(dir,legacy());else createCore(dir,seed());return {root,dir,file:path.join(dir,'project.json')};}
+// macOS temporary paths may be aliases (for example /var -> /private/var).
+// Match the canonical path used by the store so fault injection really occurs.
+function setup(old=false){const root=fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(),'startkompas-transfer-'))),dir=path.join(root,'source');if(old)createProject(dir,legacy());else createCore(dir,seed());return {root,dir,file:path.join(dir,'project.json')};}
 // Exercise real file replacement at the deterministic gap between two reads.
 function replaceOnSecondRead(t,file,bytes){
  const open=fs.openSync;let count=0;
