@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 
 const routes={
+  workspace:['workspace-cli.mjs','show/journey/draft/add/task-state/impact/report/recovery-check/source-review; use workspace help'],
   project:['core-cli.mjs','init/create/read/retrieve/update/attach/handoff/export/restore/history and workflow commands'],
   business:['business-cli.mjs','types/prepare/read/render for versioned business drafts'],
   intake:['intake-cli.mjs','plan/answer/brief-nl/brief-en'],
@@ -25,7 +26,7 @@ function help(){
     ...Object.entries(routes).map(([name,[,description]])=>'  '+name.padEnd(10)+description),'',
     'Check installation: doctor | Guided setup: start',
     'Readable project: overview <directory> <id> [nl|en]',
-    'Compare versions: compare <directory> <id> <older> <newer>',
+    'Compare versions: compare <directory> <id> <older> <newer> [--values]',
     'New project: project init <new-private-directory> <request.json>',
     'Resume:      project handoff <private-directory> <expected-project-id>',
     'Drafts:      business types | business read <directory> <project-id> <artifact-id>',
