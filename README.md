@@ -28,7 +28,7 @@ Run `node src/startkompas.mjs doctor`, then `node src/startkompas.mjs start` for
 
 ## Try the local helper
 
-Prerequisites: Node.js 26.7.0 and npm. The alpha2 helper tests passed on Windows and Linux in CI; this does not establish Codex host compatibility on every platform. Other Node versions and macOS are not yet qualified. Codex access is needed for AI-assisted use, with your provider's own quotas and charges. The following deterministic demo does not call an AI service.
+Prerequisites: Node.js and npm; the reproducible development pin is 26.7.0. The Quality matrix exercises the helper on Windows, Linux and macOS with Node 26.7.0 and 24.x; inspect the latest successful run for the version you download. This does not establish Codex host compatibility or qualify arbitrary Node versions. Codex access is needed for AI-assisted use, with your provider's own quotas and charges. The following deterministic demo does not call an AI service.
 
 Extract the complete product package into a new directory. In that directory run:
 

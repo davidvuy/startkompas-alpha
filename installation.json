@@ -1,6 +1,6 @@
 {
-  "source_revision": "a4303add048675a4b80bea29cdc2058af141bb58",
-  "created_at": "2026-10-30T08:49:47.687Z",
+  "source_revision": "309e71d68966d0e4759bbcab2bab4e730c54a699",
+  "created_at": "2026-10-30T08:53:10.956Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -321,7 +321,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "d48cd2620381392d9af238c8fbb8783a638a3e2911421779543872c1a8e00665"
+      "sha256": "7f65f0a7be6edca105ad4e131c4b8362e872074e846b1710e5b97a2c76f34890"
     },
     {
       "path": "schemas/cost-scenario.schema.json",
@@ -585,7 +585,7 @@
     },
     {
       "path": "tests/transfer-consistency.test.mjs",
-      "sha256": "99a55e4300b0b7122c23d9707dfdc40bb66ad272b615808b15f5c51f7de799cd"
+      "sha256": "d3831bc5729d6c0a864ea560a36a8c97d6677bf8407f97f5c8a37baa57c77b54"
     },
     {
       "path": "tests/welcome.test.mjs",
