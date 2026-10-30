@@ -8,6 +8,7 @@ import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {startLocalUI} from '../src/local-ui-server.mjs';
 import {readCore,updateCore} from '../src/store.mjs';
+import {exportCore,restoreCore} from '../src/transfer.mjs';
 import {readBusinessBrief} from '../src/business-brief.mjs';
 
 async function setup(t){
@@ -136,4 +137,57 @@ test('offer payloads reject unknown fields and forged preview handles',async t=>
  assert.equal((await request('/api/offer-preview',{...draft,fields:{...draft.fields,unexpected:'value'}})).status,400);
  assert.equal((await request('/api/offer-preview',{...draft,fields:{...draft.fields,segment:{bad:true}}})).status,400);
  assert.equal((await request('/api/offer-save',{ref,preview:'made-up',confirmed:true})).status,409);
+});
+
+test('wizard context is optional, remains unknown and supplies traceable first-offer fields',async t=>{
+ const {root,request}=await setup(t);
+ const created=await request('/api/create',{...input(),context:{customer:'Small studios',outcome:'One clearer report'}});assert.equal(created.status,200);
+ const ref=created.json().ref,dir=path.join(root,'example'),d=readCore(dir,'example').dossier;
+ assert.equal(d.revision,1);assert.equal(d.facts.length,0);assert.equal(d.assumptions.length,2);assert.ok(d.assumptions.every(a=>a.assertion==='unknown'));
+ const draft=await offer(request,ref);assert.equal(draft.fields.segment,'Small studios');assert.equal(draft.fields.outcome,'One clearer report');
+ const preview=(await request('/api/offer-preview',draft)).json();const saved=(await request('/api/offer-save',{ref,preview:preview.preview,confirmed:true})).json();
+ const brief=readBusinessBrief(dir,'example',saved.artifact_id);assert.deepEqual(brief.fields.find(f=>f.key==='segment').record_ids,['starting-customer']);assert.equal(brief.fields.find(f=>f.key==='segment').assertion,'proposal');
+ const blank=await request('/api/create',{...input('blank'),context:{customer:'',outcome:'  '}});assert.equal(blank.status,200);assert.equal(readCore(path.join(root,'blank'),'blank').dossier.assumptions.length,0);
+ for(const context of [null,{customer:'x'}, {customer:'x',outcome:'',invented:true},{customer:'x'.repeat(2001),outcome:''}])assert.equal((await request('/api/create',{...input('invalid'),context})).status,400);
+ assert.ok(!fs.existsSync(path.join(root,'invalid')));
+});
+
+test('report export requires exact confirmation, rejects stale preview and leaves project bytes unchanged',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref,dir=path.join(root,'example'),before=fs.readFileSync(path.join(dir,'project.json'));
+ const p=await request('/api/report-preview',{ref,sections:['summary','tasks']});assert.equal(p.status,200);assert.match(p.json().markdown,/Check a problem/);
+ const save={ref,preview:p.json().preview,confirmed:false};assert.equal((await request('/api/report-save',save)).status,400);save.confirmed=true;
+ assert.equal((await request('/api/offer-save',save)).status,409);
+ const saved=await request('/api/report-save',save);assert.equal(saved.status,200);assert.equal(fs.readFileSync(path.join(root,saved.json().filename),'utf8'),p.json().markdown);
+ assert.deepEqual((await request('/api/report-save',save)).json(),saved.json());assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);
+ const stale=(await request('/api/report-preview',{ref,sections:['tasks']})).json();updateCore(dir,{project_id:'example',expected_revision:1,operation_id:'edit-after-report',changes:{name:'Changed'}});
+ assert.equal((await request('/api/report-save',{ref,preview:stale.preview,confirmed:true})).status,409);
+ assert.equal(fs.readdirSync(root).filter(x=>x.endsWith('.md')).length,1);
+});
+
+test('archive/restore persists in project history and export while preserving content and refusing stale writes',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref,dir=path.join(root,'example');
+ const view=(await request('/api/show',{ref})).json(),before=readCore(dir,'example').dossier;
+ const change={ref,revision:view.revision,sha256:view.sha256,archived:true,confirmed:false};
+ assert.equal((await request('/api/archive',change)).status,400);change.confirmed=true;
+ assert.equal((await request('/api/archive',change,{Origin:'https://attacker.invalid'})).status,403);
+ assert.equal((await request('/api/archive',change)).status,200);
+ const archived=readCore(dir,'example').dossier;assert.deepEqual(archived.tasks,before.tasks);assert.deepEqual(archived.facts,before.facts);assert.equal(archived.events.at(-1).type,'project-archived');
+ assert.equal((await request()).json().projects[0].archived,true);assert.equal((await request('/api/show',{ref})).json().archived,true);
+ assert.equal((await request('/api/offer-form',{ref,previous:null})).status,409);
+ assert.equal((await request('/api/archive',{...change,archived:false})).status,409);
+ exportCore(dir,'example',path.join(root,'export'));restoreCore(path.join(root,'export'),'example',path.join(root,'restored'));
+ assert.ok((await request()).json().projects.filter(p=>p.id==='example').every(p=>p.archived));
+ const latest=(await request('/api/show',{ref})).json();assert.equal((await request('/api/archive',{...change,revision:latest.revision,sha256:latest.sha256,archived:false})).status,200);
+ assert.equal((await request('/api/show',{ref})).json().archived,false);assert.equal((await request('/api/offer-form',{ref,previous:null})).status,200);
+ assert.deepEqual(readCore(dir,'example').dossier.tasks,before.tasks);
+});
+
+test('report routes reject cross-project handles, unknown sections and untrusted origins',async t=>{
+ const {request}=await setup(t),ref=(await request('/api/create',input())).json().ref,other=(await request('/api/create',input('other'))).json().ref;
+ assert.equal((await request('/api/report-preview',{ref,sections:['private-path'] })).status,409);
+ assert.equal((await request('/api/report-preview',{ref,sections:[]})).status,409);
+ const preview=(await request('/api/report-preview',{ref,sections:['summary']})).json().preview;
+ assert.equal((await request('/api/report-save',{ref:other,preview,confirmed:true})).status,409);
+ assert.equal((await request('/api/report-save',{ref,preview,confirmed:true},{Origin:'https://attacker.invalid'})).status,403);
+ assert.equal((await request('/api/report-save',{ref,preview,confirmed:true,path:'../escape'})).status,400);
 });

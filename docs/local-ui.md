@@ -1,6 +1,6 @@
 # Local workspace preview
 
-This first month-one increment creates empty projects and reads the existing workspace view in a browser. Reports, archive controls and the extended intake are still CLI/skill-only or planned; this is not the completed month-one product.
+This month-one increment provides project setup, saved work, offer editing, selected report export and reversible archiving in a local browser. Adaptive intake and the remaining roadmap work are still ahead; this is not the completed month-one product.
 
 ## Run
 
@@ -14,13 +14,13 @@ Open the private session link printed by the terminal. Keep that terminal open. 
 
 The sidebar lists valid projects immediately inside that chosen directory, with name, ID, folder, revision and modification time. It never searches the computer. Select a project to read open tasks, assumptions, stored draft summaries and review items. Suggested order is based on saved records, not real-world validation.
 
-Choose New project, supply a name and unique lowercase ID, optionally a first task, then explicitly confirm the destination. Existing folders are never overwritten. Cancel returns to the overview without saving; unsaved inputs stay in the form until a successful save or page reload. Browser refresh reloads the project list; select the project again. The same directory and ID work with the existing CLI and skill.
+Choose New project, supply a name and unique lowercase ID and optionally a first task. Continue to optional customer/outcome context, then review the exact details and confirm the destination. Back preserves entered answers. Blank context creates no assumption; supplied context is stored as unknown, never as customer evidence. It is reused in the first offer with a link to its recorded basis. Existing folders are never overwritten. Cancel returns to the overview without saving; unsaved inputs stay in the form until a successful save or page reload. Browser refresh reloads the project list; select the project again. The same directory and ID work with the existing CLI and skill.
 
 If a project is moved within the selected directory, refresh and select its new folder. If missing, restore the original folder and refresh; the interface does not recreate or overwrite it. If moved outside the selected directory, stop and start with its new parent. Invalid or linked projects are not opened. Use existing backup/restore tools for damaged content; this preview does not repair it automatically.
 
 ## Architecture and local boundary
 
-`local-workspace.mjs` adapts existing `initializeProject`, `readCore` and `workspaceView` operations. It does not implement a second schema or write JSON directly. The write surface includes project creation and previewed offer creation/revision. Offer edits reuse prepareBusinessBrief and saveGuided with revision and content-hash checks. CLI tests verify that a project created through HTTP reads identically through a separate CLI process.
+`local-workspace.mjs` adapts existing `initializeProject`, `readCore` and `workspaceView` operations. It does not implement a second schema or write JSON directly. The write surface includes project creation, previewed offer creation/revision, confirmed selected-report export and confirmed archive/restore events. Offer edits reuse prepareBusinessBrief and saveGuided with revision and content-hash checks. CLI tests verify that a project created through HTTP reads identically through a separate CLI process.
 
 The Node HTTP server binds only to 127.0.0.1 on an ephemeral port. Exact Host, Origin and a fresh 256-bit process token protect every data endpoint. Fetch Metadata blocks foreign-site API requests, including same-site requests from another origin. Only navigation to the static root document is allowed from another site; it contains no project information or token. The fragment token is removed from the address bar and retained in tab session storage. Do not share the start link.
 
@@ -51,3 +51,11 @@ Automated verification: `node --test tests/local-ui.test.mjs`. This covers share
 ## Offer editing
 
 Choose Draft an offer or Revise this offer. Unknown answers stay blank. Context and period remain fixed when revising; give a change reason. Unchanged fields retain their recorded basis, while changed text becomes a proposal with no automatic source attribution. Preview is read-only. Saving requires confirmation of the exact server-held preview, expires after 15 minutes, and rejects changed project bytes or revision. Up to 20 previews are retained in memory. Repeated saves of the same successful preview return the same receipt without a duplicate revision. New versions retain previous draft bytes. Retry bundles are generated in unique sibling folders; the browser cannot choose arbitrary paths. After interruption inspect the project and retry bundle before another save. Existing saved documents retain their original bytes and language.
+
+## Selected report export
+
+Choose Export a report, select sections, preview and confirm. The shared report renderer escapes stored text and retains review warnings. The server rechecks the exact digest before writing a unique Markdown file directly inside the selected projects parent, outside the dossier. The browser cannot supply paths or overwrite an existing file. The saved location is shown. A repeated successful save returns the original receipt. Project files remain unchanged. A report omits attachments and full history and is not a backup. Inspect confidential text before sharing; nothing is transmitted to a recipient.
+
+## Archive and restore
+
+Archive project requires confirmation and the currently viewed revision/hash. It appends an event through the existing transactional storage; it never deletes or moves project files. The active sidebar hides archived projects. Enable Show archived projects, open one and choose Restore project to return it to the active list. Archive state is derived from saved events, survives server restart, and travels with export/restore. Reports remain available while archived; browser offer edits require restoring first. Archiving is an organizational state, not an OS lock: the CLI can still edit the project deliberately. Concurrent changes require refreshing before archive or restore. No task is automatically completed by archiving.

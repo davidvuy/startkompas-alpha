@@ -32,7 +32,7 @@ In development builds containing `src/local-ui-cli.mjs`, create or choose a sepa
 npm run ui -- ../my-projects
 ```
 
-Open the private link printed by the terminal. Create or select a project, choose **Draft an offer**, fill in what you know, preview and explicitly confirm saving. To revise a saved offer, choose **Revise this offer** and record a reason. Earlier versions remain intact. Keep the terminal open while using the workspace; Ctrl+C stops it. See [local workspace](local-ui.md) for access boundaries and recovery. The released alpha 4.1 predates this browser preview.
+Open the private link printed by the terminal. Create a project in three steps: name and first task, optional customer/outcome context, then review and confirm. Back retains your answers; unknown context can stay blank. Choose **Draft an offer** to reuse that context, fill in what you know, preview and confirm saving. To revise a saved offer, choose **Revise this offer** and record a reason. Earlier versions remain intact. Use **Export a report** to select sections, preview and save a new local Markdown file. **Archive project** hides it from active projects without deleting files; **Show archived projects** lets you find and restore it. Keep the terminal open while using the workspace; Ctrl+C stops it. See [local workspace](local-ui.md) for access boundaries and recovery. The released alpha 4.1 predates this browser preview.
 
 ## Resume and export
 

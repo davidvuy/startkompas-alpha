@@ -3,7 +3,7 @@ import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {safeDirectory,regularFile,readCore} from './store.mjs';
 import {initializeProject} from './initialize.mjs';
-import {workspaceView,saveGuided,operationId} from './workspace.mjs';
+import {workspaceView,saveGuided,operationId,reportPreview,writeReport,isProjectArchived,prepareProjectArchive} from './workspace.mjs';
 import {briefTypes,prepareBusinessBrief,readBusinessBrief} from './business-brief.mjs';
 
 export class WorkspaceError extends Error {
@@ -17,6 +17,13 @@ export function exactObject(value,keys){
 export function localWorkspace(selectedRoot){
  const root=safeDirectory(selectedRoot),handles=new Map(),references=new Map(),previews=new Map();
  const offerKeys=Object.keys(briefTypes.offer.fields);
+ function startingFields(d){return Object.fromEntries([['segment','customer','Provisional customer: '],['outcome','outcome','Proposed outcome: ']].map(([key,suffix,prefix])=>{const record=d.assumptions.find(a=>a.id==='starting-'+suffix);return [key,record?.text.startsWith(prefix)?{value:record.text.slice(prefix.length),id:record.id}:null];}));}
+ function requireActive(dir,id){if(isProjectArchived(readCore(dir,id).dossier))throw new WorkspaceError('This project is archived. Restore it before editing.',409);}
+ function holdPreview(entry){
+  for(const [key,value]of previews)if(value.expires<Date.now())previews.delete(key);
+  if(previews.size>=20)previews.delete(previews.keys().next().value);
+  const key=randomUUID();previews.set(key,{...entry,expires:Date.now()+15*60*1000});return key;
+ }
  function shortText(value,label){if(typeof value!=='string'||value.length>4000)throw new WorkspaceError(label+' must be text of at most 4000 characters.');return value.trim();}
  function checkRoot(){if(fs.realpathSync(root)!==root)throw new WorkspaceError('The project folder has moved. Restart the workspace.',409);}
  function directory(folder){
@@ -49,33 +56,37 @@ export function localWorkspace(selectedRoot){
     if(!fs.existsSync(file))continue;
     try{
      const id=JSON.parse(regularFile(file)).project_id,{dossier:d}=readCore(dir,id);
-     projects.push({ref:register(entry.name,id),folder:entry.name,id:d.project_id,name:d.name,revision:d.revision,updated:fs.statSync(file).mtime.toISOString()});
+     projects.push({ref:register(entry.name,id),folder:entry.name,id:d.project_id,name:d.name,revision:d.revision,archived:isProjectArchived(d),updated:fs.statSync(file).mtime.toISOString()});
     }catch{unavailable.push(entry.name);}
    }}finally{iterator.closeSync();}
    return {root,projects:projects.sort((a,b)=>b.updated.localeCompare(a.updated)),unavailable};
   },
   create(input){
-   exactObject(input,['id','name','task','confirmed']);
+   exactObject(input,['id','name','task','confirmed',...(Object.hasOwn(input??{},'context')?['context']:[])]);
+   if(Object.hasOwn(input,'context')){exactObject(input.context,['customer','outcome']);for(const value of Object.values(input.context))if(typeof value!=='string'||value.length>2000)throw new WorkspaceError('Starting context must be text of at most 2000 characters per field.');}
    if(input.confirmed!==true)throw new WorkspaceError('Confirm project creation first.');
    if(typeof input.id!=='string'||! /^[a-z0-9][a-z0-9-]{0,63}$/.test(input.id))throw new WorkspaceError('Use lowercase letters, numbers and hyphens for the project ID (maximum 64).');
    for(const field of ['name','task'])if(typeof input[field]!=='string'||input[field].length>4000||(field==='name'&&!input[field].trim()))throw new WorkspaceError('Enter a project name and keep each field under 4001 characters.');
    const dir=directory(input.id);
    if(fs.existsSync(dir))throw new WorkspaceError('This folder already exists. Choose another ID or open the existing project.',409);
-   initializeProject(dir,{project_id:input.id,name:input.name.trim(),first_task:input.task.trim()?{id:'first-task',title:input.task.trim()}:null});
+   initializeProject(dir,{project_id:input.id,name:input.name.trim(),first_task:input.task.trim()?{id:'first-task',title:input.task.trim()}:null,...(input.context?{context:input.context}:{})});
    return {ref:register(input.id,input.id)};
   },
   show(ref){const {dir,id,folder}=open(ref);return {folder,...workspaceView(dir,id)};},
   offerForm(input){
    exactObject(input,['ref','previous']);const {dir,id}=open(input.ref);
+   requireActive(dir,id);
    if(input.previous!==null&&typeof input.previous!=='string')throw new WorkspaceError('Invalid previous draft.');
    const prior=input.previous===null?null:readBusinessBrief(dir,id,input.previous);
    if(prior&&(prior.request.kind!=='offer'||prior.successor_ids.length))throw new WorkspaceError('Select the latest offer version before editing.',409);
    const state=readCore(dir,id);
-   return {revision:state.dossier.revision,sha256:state.sha256,previous:input.previous,client:prior?.request.client??'',period:prior?.request.period??'',fields:offerKeys.map(key=>({key,label:briefTypes.offer.fields[key][1],value:prior?.fields.find(f=>f.key===key)?.value??''}))};
+   const initial=startingFields(state.dossier);
+   return {revision:state.dossier.revision,sha256:state.sha256,previous:input.previous,client:prior?.request.client??'',period:prior?.request.period??'',fields:offerKeys.map(key=>({key,label:briefTypes.offer.fields[key][1],value:prior?(prior.fields.find(f=>f.key===key)?.value??''):(initial[key]?.value??'')}))};
   },
   offerPreview(input){
    exactObject(input,['ref','previous','revision','sha256','client','period','reason','fields']);
    exactObject(input.fields,offerKeys);const {dir,id}=open(input.ref),state=readCore(dir,id);
+   requireActive(dir,id);
    if(input.revision!==state.dossier.revision||input.sha256!==state.sha256)throw new WorkspaceError('The project changed. Reopen the offer before preparing a new preview.',409);
    if(input.previous!==null&&typeof input.previous!=='string')throw new WorkspaceError('Invalid previous draft.');
    const prior=input.previous===null?null:readBusinessBrief(dir,id,input.previous);
@@ -83,23 +94,23 @@ export function localWorkspace(selectedRoot){
    if(input.previous!==null&&!reason)throw new WorkspaceError('Explain why you are revising this offer.');
    const fields=offerKeys.map(key=>{
     const value=shortText(input.fields[key],briefTypes.offer.fields[key][1])||null,old=prior?.request.fields.find(f=>f.key===key);
-    return old&&old.value===value?structuredClone(old):{key,value,assertion:value===null?'unknown':'proposal',record_ids:[]};
+    const initial=prior?null:startingFields(state.dossier)[key];
+    return old&&old.value===value?structuredClone(old):{key,value,assertion:value===null?'unknown':'proposal',record_ids:initial&&initial.value===value?[initial.id]:[]};
    });
    let prepared;
    try{prepared=prepareBusinessBrief(dir,{project_id:id,expected_revision:state.dossier.revision,operation_id:operationId(),at:new Date().toISOString().slice(0,10),language:'en',kind:'offer',client,period,previous_artifact_id:input.previous,change_reason:input.previous===null?null:reason,fields});}
    catch{throw new WorkspaceError('This offer cannot be prepared. Check its context and latest version, then reopen it.',409);}
-   for(const [key,value]of previews)if(value.expires<Date.now())previews.delete(key);
-   if(previews.size>=20)previews.delete(previews.keys().next().value);
-   const preview=randomUUID();previews.set(preview,{ref:input.ref,sha256:state.sha256,prepared,expires:Date.now()+15*60*1000});
+   const preview=holdPreview({kind:'offer',ref:input.ref,sha256:state.sha256,prepared});
    return {preview,markdown:prepared.document_markdown,revision:state.dossier.revision,expires_in_seconds:900};
   },
   offerSave(input){
    exactObject(input,['ref','preview','confirmed']);
    if(input.confirmed!==true)throw new WorkspaceError('Confirm saving the displayed preview first.');
    const entry=previews.get(input.preview);
-   if(!entry||entry.ref!==input.ref||entry.expires<Date.now())throw new WorkspaceError('The preview is missing or expired. Prepare it again.',409);
+   if(!entry||entry.kind!=='offer'||entry.ref!==input.ref||entry.expires<Date.now())throw new WorkspaceError('The preview is missing or expired. Prepare it again.',409);
    const {dir,id}=open(input.ref);
    if(entry.receipt)return entry.receipt;
+   requireActive(dir,id);
    if(readCore(dir,id).sha256!==entry.sha256)throw new WorkspaceError('The project changed after preview. Reopen the offer and review a fresh preview.',409);
    // The browser cannot choose a filesystem destination. Retry material is retained
    // in a unique sibling folder using the same operation as the CLI.
@@ -107,6 +118,33 @@ export function localWorkspace(selectedRoot){
    let receipt;try{receipt=saveGuided(dir,entry.prepared,retry);}catch{throw new WorkspaceError('Saving did not complete. Check the project and its retry folder before trying again.',409);}
    entry.receipt={artifact_id:entry.prepared.artifact_id,revision:entry.prepared.update_request.expected_revision+1,retry_folder:path.basename(receipt.retry_bundle)};
    return entry.receipt;
+  },
+  reportPreview(input){
+   exactObject(input,['ref','sections']);const {dir,id}=open(input.ref);
+   let report;try{report=reportPreview(dir,id,input.sections);}catch{throw new WorkspaceError('Cannot preview this selection. Choose valid sections and check for unreadable drafts.',409);}
+   const preview=holdPreview({kind:'report',ref:input.ref,report});
+   return {preview,markdown:report.markdown,revision:report.revision,sections:report.sections};
+  },
+  reportSave(input){
+   exactObject(input,['ref','preview','confirmed']);
+   if(input.confirmed!==true)throw new WorkspaceError('Confirm saving the displayed report first.');
+   const entry=previews.get(input.preview);
+   if(!entry||entry.kind!=='report'||entry.ref!==input.ref||entry.expires<Date.now())throw new WorkspaceError('The report preview is missing or expired. Prepare it again.',409);
+   const {dir,id}=open(input.ref);if(entry.receipt)return entry.receipt;
+   const filename='report-'+id+'-'+randomUUID()+'.md';
+   try{const saved=writeReport(dir,id,entry.report.sections,entry.report.confirmation_sha256,directory(filename));entry.receipt={filename,path:saved.saved,sha256:saved.sha256,revision:saved.revision};}
+   catch{throw new WorkspaceError('The report could not be saved. The project may have changed; prepare a fresh preview.',409);}
+   return entry.receipt;
+  },
+  archive(input){
+   exactObject(input,['ref','revision','sha256','archived','confirmed']);
+   if(input.confirmed!==true||typeof input.archived!=='boolean')throw new WorkspaceError('Confirm the requested archive or restore action.');
+   const {dir,id}=open(input.ref),state=readCore(dir,id);
+   if(state.dossier.revision!==input.revision||state.sha256!==input.sha256)throw new WorkspaceError('The project changed. Refresh before archiving or restoring.',409);
+   if(isProjectArchived(state.dossier)===input.archived)return {archived:input.archived,revision:state.dossier.revision};
+   const prepared=prepareProjectArchive(dir,id,input.revision,input.archived);
+   saveGuided(dir,prepared,directory('retry-'+prepared.update_request.operation_id));
+   return {archived:input.archived,revision:input.revision+1};
   }
  };
 }

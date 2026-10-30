@@ -33,7 +33,7 @@ export async function startLocalUI({root,port=0}){
    if(req.method==='GET'&&assets.has(req.url)){
     const [file,type]=assets.get(req.url);return send(200,fs.readFileSync(file),type);
    }
-   if(!['/api/projects','/api/create','/api/show','/api/offer-form','/api/offer-preview','/api/offer-save'].includes(req.url))throw new WorkspaceError('Not found.',404);
+   if(!['/api/projects','/api/create','/api/show','/api/offer-form','/api/offer-preview','/api/offer-save','/api/report-preview','/api/report-save','/api/archive'].includes(req.url))throw new WorkspaceError('Not found.',404);
    if(req.method!=='POST')throw new WorkspaceError('This operation requires a POST request.',405);
    const supplied=req.headers['x-startkompas-session'];
    if(req.headers.origin!==origin||typeof supplied!=='string'||! /^[a-f0-9]{64}$/.test(supplied)||!timingSafeEqual(Buffer.from(supplied),Buffer.from(token)))throw new WorkspaceError('The session is missing or expired. Reopen the link from the terminal.',403);
@@ -45,6 +45,9 @@ export async function startLocalUI({root,port=0}){
    if(req.url==='/api/offer-form')result=workspace.offerForm(input);
    if(req.url==='/api/offer-preview')result=workspace.offerPreview(input);
    if(req.url==='/api/offer-save')result=workspace.offerSave(input);
+   if(req.url==='/api/report-preview')result=workspace.reportPreview(input);
+   if(req.url==='/api/report-save')result=workspace.reportSave(input);
+   if(req.url==='/api/archive')result=workspace.archive(input);
    send(200,result);
   }catch(error){
    if(!res.destroyed&&!res.headersSent)send(error instanceof WorkspaceError?error.status:500,{error:error instanceof WorkspaceError?error.message:'The local data could not be processed. Check your project folder and try again. No files were automatically replaced.'});
