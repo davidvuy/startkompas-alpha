@@ -8,7 +8,17 @@ Keep project decisions, unfinished work and the basis for your business drafts t
 
 This is an experimental alpha. Independent user validation is still ahead. No measured time saving, business success or compliance outcome is promised. Download this repository using Code → Download ZIP, or clone https://github.com/davidvuy/startkompas-alpha. For feedback use https://github.com/davidvuy/startkompas-alpha/issues.
 
-## Easier start in alpha 2
+## Guided work in alpha 3
+
+Prepare an offer or interview guide, record assumptions and observations, connect decisions to their basis, and export a readable report without writing request JSON. [Product guide](docs/alpha-workspace.md) · [Nederlandse startuitleg](docs/alpha-workspace.nl.md) · [Changes](docs/alpha-changelog.md).
+
+~~~sh
+node src/startkompas.mjs workspace show ../my-project my-project
+node src/startkompas.mjs workspace draft ../my-project my-project offer
+node examples/demo-founder-workflow.mjs ../founder-demo
+~~~
+
+The example uses fictional input and produces `workspace.md`, `report.md` and an export/restore check. Assumptions remain unknown; drafts are not approved business advice.
 
 **Need help?** [Ask a question, report a bug or suggest an improvement](https://github.com/davidvuy/startkompas-alpha/issues/new/choose). Dutch and English are welcome. For sensitive vulnerabilities use [private security reporting](https://github.com/davidvuy/startkompas-alpha/security/advisories/new). Never put credentials or private dossiers in public issues. See [support and FAQ](docs/alpha-support.md).
 
@@ -71,4 +81,8 @@ Never attach private dossiers, customer data, credentials or full conversation l
 
 Local dossiers do not make AI processing local: text supplied to Codex can be processed by its provider. Keep backups and inspect exports before sharing. Removing the application does not erase private projects, shared exports or provider records. Do not use draft business content as qualified legal, tax or security advice. Claude, browser/mobile routes and managed cloud services are not offered by this alpha.
 
-The alpha1 baseline passed 167 source and clean-install tests. Alpha2 adds onboarding, comparison and error-privacy regressions; see the public Quality workflow and release notes for its current result. The fictional offer demo covers seven checks. These are technical checks, not real-user validation.
+The alpha1 baseline passed 167 source and clean-install tests. Alpha2 added onboarding and comparison. Alpha3 adds guided work, selective report export and recovery checks. See the public Quality and Secret scan workflows for current results. These are technical checks, not real-user validation.
+
+## Contribute or fork
+
+See [contribution guidance](CONTRIBUTING.md), the [four-week roadmap](docs/alpha-roadmap.md) and [the 50-item progress register](docs/alpha-progress.md). Focused fixes, clearer examples and fictional reproductions are useful contributions. If the project helps you, a star makes it easier to find again. No popularity or business outcome is promised.

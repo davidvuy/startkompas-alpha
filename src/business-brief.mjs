@@ -32,7 +32,7 @@ function loadBrief(state,artifactId){
   checkRequest(saved.request);if(saved.request.project_id!==saved.project_id)throw Error('Business brief request identity mismatch');
   return saved;
 }
-const escape=s=>String(s).replace(/[\r\n\t]/g,' ').replace(/[\\`*_{}[\]()#+.!|<>]/g,c=>'\\'+c);
+const escape=s=>String(s).replace(/[\x00-\x1f\x7f-\x9f]/g,' ').replace(/[\\`*_{}[\]()#+.!|<>]/g,c=>'\\'+c);
 export function prepareBusinessBrief(dir,request){
   checkRequest(request);const state=readCore(dir,request.project_id),original=state.dossier;
   if(!original.workflow)throw Error('Business briefs require explicit schema 1.1 upgrade');

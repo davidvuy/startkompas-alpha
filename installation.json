@@ -1,6 +1,6 @@
 {
-  "source_revision": "fab1db0b53d986b5af7e2b94e2979bbcef5fe7cf",
-  "created_at": "2026-10-30T08:25:58.858Z",
+  "source_revision": "a4303add048675a4b80bea29cdc2058af141bb58",
+  "created_at": "2026-10-30T08:49:47.687Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -61,7 +61,7 @@
     },
     {
       "path": ".agents/skills/startkompas/SKILL.md",
-      "sha256": "e53e3cfd57c47ec78907116f71c076c3a433df288e184d04f8407e765cde1304"
+      "sha256": "c651b7ca657c43fbaa58a4388d323dab20e0e3c32ad6bdfa4ca6f424fb17d467"
     },
     {
       "path": ".gitattributes",
@@ -93,7 +93,7 @@
     },
     {
       "path": ".github/workflows/quality.yml",
-      "sha256": "66c83c02c5e7ea30b23fda2f01bc5bcda05b673eee6990770ea196cba0b0232d"
+      "sha256": "492b73ede7558c029ea0c44ec5df86e351e85328c638fc00fc8e688d96085945"
     },
     {
       "path": ".github/workflows/secrets.yml",
@@ -112,6 +112,18 @@
       "sha256": "e937d9483a21c525220f89102d776e239deab4c4adf5add58eed050262d8caf3"
     },
     {
+      "path": "CONTRIBUTING.md",
+      "sha256": "01e726e118fa1c01335531aaced9cc5f392cecfcbd06954d2ea5416b93de0e04"
+    },
+    {
+      "path": "docs/alpha-changelog.md",
+      "sha256": "6b10728b46a79cd8ac74a0a66049e030036f29d3c0772f1167ee2fbf3beff01f"
+    },
+    {
+      "path": "docs/alpha-contributing.md",
+      "sha256": "01e726e118fa1c01335531aaced9cc5f392cecfcbd06954d2ea5416b93de0e04"
+    },
+    {
       "path": "docs/alpha-demo.md",
       "sha256": "d9e21af589402b7ac12be864cea025a3334d3d78cb3c6d138a9761f20dfbeaf9"
     },
@@ -120,12 +132,28 @@
       "sha256": "a67f8aa889e0c77ad1092529384a2983c362f04764c453e5a3aab921cdb55ff4"
     },
     {
+      "path": "docs/alpha-progress.md",
+      "sha256": "67d7562fa6c057d2e9558b587240859012c7ffa1f9bccb0b97ca338eaad21156"
+    },
+    {
       "path": "docs/alpha-roadmap.md",
       "sha256": "ed1b758a33ddc156b3fbce7332eb781084928d36afa0fcd9456f00398ed8ee22"
     },
     {
+      "path": "docs/alpha-security-maintenance.md",
+      "sha256": "b30f2e8f1cc34ce79c3bc9171298d2deb559ee285c05210fa49fa0532bb0abb9"
+    },
+    {
       "path": "docs/alpha-support.md",
       "sha256": "286da66b1264bd8cf0b44aa2b3ea4d5931009e42d979991f72ead4bf452849d6"
+    },
+    {
+      "path": "docs/alpha-workspace.md",
+      "sha256": "ab25e6306d2a8e19d0e0792d1c68726da53f81c247bdec5e3524a00c408c32cf"
+    },
+    {
+      "path": "docs/alpha-workspace.nl.md",
+      "sha256": "55d62235f5b15dc5e3a0e11d13d04174317c2c2204fa48738e9b6ba07f543add"
     },
     {
       "path": "docs/commands.md",
@@ -190,6 +218,10 @@
     {
       "path": "examples/cost-scenario.json",
       "sha256": "2a6b2fdfe56fbdaf0cf6d103e112963238b7bc0423361701fcf02b6f64fdd4cb"
+    },
+    {
+      "path": "examples/demo-founder-workflow.mjs",
+      "sha256": "3a5cb3dbf5210dff0e412e35d572e35e167425fab295a1e05484a121b1aec9b8"
     },
     {
       "path": "examples/demo-offer-change.mjs",
@@ -281,15 +313,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "575933229bfe8ae15257a853854d245b7ca55193d02ecff974864338172b0bcb"
+      "sha256": "9e95900fd89d47000732e90cef543c4346b09554e1dd30495c465390c01f1209"
     },
     {
       "path": "package.json",
-      "sha256": "ffe6be4bbba7c7ca00b5d426c3f7eaed1e745c106785af158c6b2fd8c0c05153"
+      "sha256": "0a09d031f663a652283934c1492b0bee3f9e41ba6b5e3729de3b9bf929db4381"
     },
     {
       "path": "README.md",
-      "sha256": "754f7fa04ede39316adac148d79a6981900b62093a103c73d981e198cd40356b"
+      "sha256": "d48cd2620381392d9af238c8fbb8783a638a3e2911421779543872c1a8e00665"
     },
     {
       "path": "schemas/cost-scenario.schema.json",
@@ -320,6 +352,14 @@
       "sha256": "2653e807c58bb29c4b1ab4dd11d8d59d9d5bfaa94813904036f6002f39ffecfa"
     },
     {
+      "path": "scripts/refresh-public-manifest.mjs",
+      "sha256": "2ffbc424064acf3c48746e03e4d67f7708e0f93a13a4797ecbb23d07060ab20a"
+    },
+    {
+      "path": "scripts/scan-staged.sh",
+      "sha256": "18149d7388522362610c0f8f9ec897af13732f08225160ae32767cc1fd7804d2"
+    },
+    {
       "path": "scripts/verify-installation.mjs",
       "sha256": "5d487a6acb64b7a91b37c70c9cd82a9441e16d4645877ece9c863d4ebcd8d13c"
     },
@@ -329,7 +369,7 @@
     },
     {
       "path": "src/business-brief.mjs",
-      "sha256": "c26f840e757cd3c7390002ed3ad01433d7ad467174069e3880da784149f091ac"
+      "sha256": "4dfaf93432ec2e617c7c81a5acfdcd25d073a1ea093fb2cdd293718ae2b0efa4"
     },
     {
       "path": "src/business-cli.mjs",
@@ -373,7 +413,7 @@
     },
     {
       "path": "src/doctor.mjs",
-      "sha256": "7c18c6500fc4c2effde15cba6d7b29edaa765996b5549b6e86c7c9de8f497d11"
+      "sha256": "e69fcb5e145f3ee9a9f404fcb0407d324d72f31c610e71ffd6161bb61b445251"
     },
     {
       "path": "src/domains-cli.mjs",
@@ -429,7 +469,7 @@
     },
     {
       "path": "src/project-view.mjs",
-      "sha256": "a1e8b532e371d2abe8dd9981667e5f47d8b8464d33cc86821b1d25da2f407112"
+      "sha256": "10985afcd9c45945fe28510d532bd4c11a44a321e800e0584fcde2481489f76a"
     },
     {
       "path": "src/register-cli.mjs",
@@ -453,7 +493,7 @@
     },
     {
       "path": "src/startkompas.mjs",
-      "sha256": "72123537322833a327342c98a4a1596a811686aaf43f18b3f08cc4892483c380"
+      "sha256": "94149d83fa9183ced86adf938917055ec6078e394d3accc21f5ddfc35ee957f2"
     },
     {
       "path": "src/store.mjs",
@@ -465,11 +505,19 @@
     },
     {
       "path": "src/welcome-cli.mjs",
-      "sha256": "107586d2e899913c85aef306c435f7f882a1f1dbd05a6d45c8a9ac69e3237bfa"
+      "sha256": "a69b9f0b1050a0f9e5edcaa7514f4b3b50c8e9f2652a6c46b320f3b5c20bdb8e"
     },
     {
       "path": "src/workflow.mjs",
       "sha256": "34bb46a37019d8518471ed8615d5aa1f340db796a4e9daf88c98506876c2da35"
+    },
+    {
+      "path": "src/workspace-cli.mjs",
+      "sha256": "8c1206d0b5ce3668dff83486f800745dfc710c0e58fc9aba062ab54a54c61211"
+    },
+    {
+      "path": "src/workspace.mjs",
+      "sha256": "c60dded4ff9d77bfb0ee6359b5d5f538fc73a58c92519fa3cfcd7338a411a3e9"
     },
     {
       "path": "tests/business-brief.test.mjs",
@@ -546,6 +594,10 @@
     {
       "path": "tests/workflow.test.mjs",
       "sha256": "57399f547075507021a52bc26e147794683665562727754e56ad7fb541fb19a8"
+    },
+    {
+      "path": "tests/workspace.test.mjs",
+      "sha256": "d3436d96030e3856fe66525ac8bfc1df3bff46c4e22e75f470b660faf4dc321b"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",

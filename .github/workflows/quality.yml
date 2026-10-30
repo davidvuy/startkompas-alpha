@@ -14,7 +14,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: ['26.7.0', '24.x']
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     steps:
@@ -23,7 +24,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: '26.7.0'
+          node-version: ${{ matrix.node }}
       - name: Verify package inventory
         run: node scripts/check-public-package.mjs
       - name: Install locked dependencies without install scripts
@@ -34,6 +35,8 @@ jobs:
         run: node src/startkompas.mjs doctor --json
       - name: Fictional save and restore demo
         run: node examples/demo-offer-change.mjs ../startkompas-ci-demo
+      - name: Fictional guided founder workflow
+        run: node examples/demo-founder-workflow.mjs ../startkompas-founder-ci-demo
   audit:
     runs-on: ubuntu-latest
     timeout-minutes: 5

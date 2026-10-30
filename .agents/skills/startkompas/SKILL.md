@@ -34,6 +34,8 @@ For research or tool-execution work, use [run-limits.md](references/run-limits.m
 
 ## Saving and handoff limits
 
+For direct founder interaction without hand-written request JSON, use `node src/startkompas.mjs workspace help` and `docs/alpha-workspace.md`. Guided drafts and record capture require an explicit preview/confirmation and a separate private retry bundle. `workspace show` suggests an order from recorded data, not actual urgency. Observations remain reported, assumptions remain uncertain, and task progress never implies evidence approval. Report exports require inspection and an exact preview digest; never share a private report merely because it was generated. Use `workspace impact`, `source-review` and `recovery-check` for declared dependencies, recorded source age and bounded export/restore checks respectively.
+
 For customer learning, alternatives, offer/pricing assumptions or pilot costs, use [market-offer.md](references/market-offer.md) for the selected business deliverable.
 
 For scoped pilot conditions and unresolved review needs, use [pilot-conditions.md](references/pilot-conditions.md). Research worksheets do not approve a real pilot.

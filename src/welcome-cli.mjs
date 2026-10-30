@@ -13,6 +13,6 @@ try{
  }else if(cmd==='overview'){
   if(args.length<2||args.length>3)throw Error('Usage: overview <directory> <project-id> [nl|en]');const {projectSummary}=await import('./project-view.mjs');process.stdout.write(projectSummary(...args));
  }else if(cmd==='compare'){
-  if(args.length!==4)throw Error('Usage: compare <directory> <project-id> <older-revision> <newer-revision>');const {compareRevisions,renderComparison}=await import('./project-view.mjs');process.stdout.write(renderComparison(compareRevisions(args[0],args[1],Number(args[2]),Number(args[3]))));
+  if(args.length!==4&&!(args.length===5&&args[4]==='--values'))throw Error('Usage: compare <directory> <project-id> <older-revision> <newer-revision> [--values]');const {compareRevisions,renderComparison}=await import('./project-view.mjs');const result=compareRevisions(args[0],args[1],Number(args[2]),Number(args[3]),{values:args[4]==='--values'});process.stdout.write(args[4]?JSON.stringify(result,null,2)+'\n':renderComparison(result));
  }else throw Error('Commands: doctor, start, overview, compare');
 }catch(error){console.error(JSON.stringify(publicError(error)));process.exitCode=1;}

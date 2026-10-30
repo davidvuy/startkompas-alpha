@@ -14,11 +14,13 @@ export function projectSummary(dir,id,language='nl'){
  if(h.summary.truncated)lines.push('',nl?'Dit overzicht is ingekort. Gebruik project handoff voor verdere inspectie.':'This overview is shortened. Use project handoff for further inspection.');
  lines.push('',nl?'Gebaseerd op opgeslagen gegevens; geen onafhankelijke inhoudelijke beoordeling.':'Based on saved records; not an independent substantive review.');return lines.join('\n')+'\n';
 }
-export function compareRevisions(dir,id,before,after){
+export function compareRevisions(dir,id,before,after,{values=false}={}){
  const current=readCore(dir,id);const get=n=>n===current.dossier.revision?current:readSnapshot(dir,id,n);
  if(!Number.isSafeInteger(before)||!Number.isSafeInteger(after)||before<1||after<=before)throw Error('Use two increasing positive revisions');
  const a=get(before).dossier,b=get(after).dossier,groups=[];
  for(const group of COLLECTIONS){const old=new Map(a[group].map(r=>[r.id,r])),next=new Map(b[group].map(r=>[r.id,r]));const added=[...next.keys()].filter(id=>!old.has(id)),removed=[...old.keys()].filter(id=>!next.has(id)),changed=[...next.keys()].filter(id=>old.has(id)&&canonical(old.get(id))!==canonical(next.get(id))).map(id=>({id,fields:[...new Set([...Object.keys(old.get(id)),...Object.keys(next.get(id))])].filter(k=>canonical(old.get(id)[k])!==canonical(next.get(id)[k]))}));if(added.length||removed.length||changed.length)groups.push({group,added,removed,changed});}
- const metadata=['name','active_task_id','schema_version','skill_version','module_versions','workflow'].filter(k=>canonical(a[k])!==canonical(b[k]));return {project_id:id,before,after,metadata,groups,limitations:['Lists changed record IDs and fields, not private values or business impact.','Does not write, restore or approve any record.']};
+ const metadata=['name','active_task_id','schema_version','skill_version','module_versions','workflow'].filter(k=>canonical(a[k])!==canonical(b[k]));
+ const details=values?groups.map(g=>({group:g.group,records:[...g.added,...g.removed,...g.changed.map(x=>x.id)].map(id=>({id,before:a[g.group].find(r=>r.id===id)??null,after:b[g.group].find(r=>r.id===id)??null}))})):undefined;
+ return {project_id:id,before,after,metadata,groups,...(values?{details,metadata_values:metadata.map(key=>({key,before:a[key]??null,after:b[key]??null}))}:{}),limitations:[values?'Private values included by explicit request. Inspect before sharing.':'Lists changed record IDs and fields, not private values or business impact.','Does not write, restore or approve any record.']};
 }
 export function renderComparison(r){return ['# '+r.before+' → '+r.after,...r.metadata.map(k=>'- metadata: '+cleanText(k)),...r.groups.flatMap(g=>['','## '+g.group,...g.added.map(id=>'+ '+cleanText(id)),...g.removed.map(id=>'- '+cleanText(id)),...g.changed.map(x=>'~ '+cleanText(x.id)+': '+x.fields.map(cleanText).join(', '))]),'',...r.limitations].join('\n')+'\n';}
