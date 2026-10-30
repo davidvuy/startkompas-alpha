@@ -15,7 +15,7 @@ async function api(route,value={}){
  const res=await fetch('/api/'+route,{method:'POST',headers:{'Content-Type':'application/json','X-Startkompas-Session':token},body:JSON.stringify(value),cache:'no-store'});
  const data=await res.json();if(!res.ok){const error=Error(data.error||'The request failed.');error.status=res.status;error.route=route;throw error;}return data;
 }
-function screen(name){for(const key of ['welcome','create','workspace','offer','report','history','inspect','search','help','profile','entry','connections','session','research','decisions','interviews','alternatives','scope','pilots','scenarios'])$(key).hidden=key!==name;}
+function screen(name){for(const key of ['welcome','create','workspace','offer','report','history','inspect','search','help','profile','entry','connections','session','research','decisions','interviews','alternatives','scope','pilots','scenarios','context','impact'])$(key).hidden=key!==name;}
 function list(id,items,empty,render){const target=$(id);target.replaceChildren();if(!items.length){const li=document.createElement('li');li.className='muted';li.textContent=empty;target.append(li);}else for(const item of items){const li=document.createElement('li');render(li,item);target.append(li);}}
 function detail(parent,text){const small=document.createElement('small');small.textContent=text;parent.append(small);}
 function title(parent,text){const span=document.createElement('span');span.textContent=text;parent.append(span);}
@@ -446,3 +446,43 @@ $('scenario-form').addEventListener('submit',event=>{event.preventDefault();act(
 $('scenario-adopt-form').addEventListener('submit',event=>{event.preventDefault();act(async()=>{const comparison=scenarioState.comparison,result=await api('scenario-adopt-preview',{ref:selected,revision:comparison.revision,sha256:comparison.sha256,id:comparison.scenario_id,reason:$('scenario-adopt-reason').value});scenarioState.preview=result.preview;scenarioTable(result.rows,comparison.practice);$('scenario-preview-text').textContent='ADOPT AS A NEW MAIN-OFFER VERSION\n\n'+result.markdown;$('scenario-ack-label').hidden=!result.changed_since_base;$('scenario-ack').checked=false;$('scenario-confirm').checked=false;$('scenario-save').textContent='Adopt as new offer version';$('scenario-preview').hidden=false;$('scenario-preview-text').focus();});});
 $('scenario-save').addEventListener('click',()=>act(async()=>{const saved=await api('scenario-save',{ref:selected,preview:scenarioState.preview,confirmed:$('scenario-confirm').checked,acknowledge_current_changes:$('scenario-ack').checked});scenarioDirty=false;await refresh();await openScenarios();notice(saved.adopted?'Scenario adopted as a new offer version in revision '+saved.revision+'. Original offers and scenarios remain intact; no validation was added.':'Separate scenario saved in revision '+saved.revision+'. The main offer was not changed.');}));
 $('scenarios-back').addEventListener('click',()=>act(async()=>{scenarioDirty=false;await show(selected);}));
+
+let contextState=null;
+function clearContextPreview(){if(contextState)contextState.preview=null;$('context-preview').hidden=true;$('context-payload').textContent='';}
+$('open-context').addEventListener('click',()=>act(async()=>{
+ if(editor||wizardDirty||profileDirty||sessionDirty||researchDirty||decisionDirty||alternativesDirty||scopeDirty||pilotDirty||scenarioDirty)throw Error('Save or discard your form before selecting context.');
+ contextState={...await api('context-choices',{ref:selected}),selection:null,preview:null};
+ $('context-focus').replaceChildren();for(const item of contextState.choices){const option=document.createElement('option');option.value=item.id;option.textContent=item.group+' · '+item.id;$('context-focus').append(option);}
+ if(contextState.choices.some(r=>r.id===contextState.active_task_id))$('context-focus').value=contextState.active_task_id;
+ $('context-status').textContent='Revision '+contextState.revision+'. '+(contextState.partial?'First 200 record IDs shown; use the terminal route for another known focus. ':'')+'Selection follows declared prerequisites only.';
+ $('context-exclude').value='';$('context-depth').value='1';$('context-fields-form').hidden=true;clearContextPreview();screen('context');$('context-title').focus();
+}));
+$('context-selection').addEventListener('input',()=>{clearContextPreview();contextState.selection=null;$('context-fields-form').hidden=true;});
+$('context-selection').addEventListener('submit',event=>{event.preventDefault();act(async()=>{
+ clearContextPreview();const selection={project_id:contextState.project_id,source_revision:contextState.revision,canonical_sha256:contextState.sha256,focus_id:$('context-focus').value,depth:Number($('context-depth').value),exclude_ids:$('context-exclude').value.split(',').map(s=>s.trim()).filter(Boolean),include_fields:[]};
+ const result=await api('context-preview',{ref:selected,selection}),packet=JSON.parse(result.payload);contextState.selection=selection;
+ $('context-fields').replaceChildren();for(const record of packet.records){const group=document.createElement('fieldset'),legend=document.createElement('legend');legend.textContent=record.group+' · '+record.id;group.append(legend);
+ detail(group,'Omitted prerequisites: '+record.omitted_prerequisite_count+'. '+(record.requires_review?'Review required.':''));
+ for(const field of record.omitted_content_fields){const label=document.createElement('label');label.className='check';const input=document.createElement('input');input.type='checkbox';input.dataset.record=record.id;input.value=field;label.append(input,document.createTextNode('Include '+field));group.append(label);}
+ $('context-fields').append(group);}
+ $('context-status').textContent=packet.records.length+(packet.records.length===1?' record selected. ':' records selected. ')+(packet.selection.record_limit_reached?'Record limit reached. ':'')+'Review omission counts; this is a partial context.';
+ $('context-fields-form').hidden=false;
+});});
+$('context-fields-form').addEventListener('input',clearContextPreview);
+$('context-fields-form').addEventListener('submit',event=>{event.preventDefault();act(async()=>{
+ if(!contextState.selection)throw Error('Choose the context records first.');clearContextPreview();
+ const fields=new Map();for(const input of $('context-fields').querySelectorAll('input:checked')){if(!fields.has(input.dataset.record))fields.set(input.dataset.record,[]);fields.get(input.dataset.record).push(input.value);}
+ const selection={...contextState.selection,include_fields:[...fields].map(([record_id,fields])=>({record_id,fields}))};
+ const result=await api('context-preview',{ref:selected,selection});contextState.preview=result;
+ $('context-payload').textContent=result.payload;$('context-digest').textContent=result.bytes+' UTF-8 bytes · SHA-256 '+result.payload_sha256;
+ $('context-preview').hidden=false;$('context-payload').focus();
+});});
+$('context-back').addEventListener('click',()=>act(async()=>{clearContextPreview();contextState=null;await show(selected);}));
+
+let impactOriginal=null;
+$('inspect-impact').addEventListener('click',()=>act(async()=>{
+ if(!inspectedId)throw Error('Open a saved record first.');const result=await api('change-impact',{ref:selected,id:inspectedId});impactOriginal=inspectedId;
+ screen('impact');$('impact-summary').textContent='Revision '+result.basis_revision+' · '+result.total+' declared affected records'+(result.partial?' · First '+result.limit+' shown; remaining records are omitted.':'.');
+ list('impact-records',result.records,'No recorded dependencies.',(li,r)=>{recordLink(li,r.id,r.label===r.id?r.id:r.label+' · '+r.id);detail(li,r.group+(r.direct?' · Original being considered':' · Depends on the original'));});$('impact-title').focus();
+}));
+$('impact-back').addEventListener('click',()=>act(()=>inspectRecord(impactOriginal)));

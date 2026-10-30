@@ -85,3 +85,7 @@ node examples/demo-founder-workflow.mjs ../founder-demo
 Open `workspace.md` and `report.md` in that new directory. The example covers a premise, synthetic observation, linked decision, draft offer, selected report and recovery check. It explicitly preserves unknowns and does not claim a real interview occurred.
 
 For interrupted guided saves, inspect the saved receipt and project revision. Retry the exact saved `request.json` with `project update`, or `project attach` plus `content.json` for drafts. Do not restart the wizard as a substitute for an exact retry. For help, use the public question template with a fictional reproduction.
+
+### Browser change-impact review
+
+Open an original record or saved draft, then choose **Review change impact**. The bounded list shows the first100 of all recorded affected IDs, with total and partial disclosure. This action is read-only. Offer and pilot revision previews (including scenario adoption) also show the impact before the exact-preview confirmation. Unrecorded dependencies remain unknown; this does not approve a broad change or regenerate dependent documents. CLI business preparation returns the same structured `change_impact` when revising a prior artifact.

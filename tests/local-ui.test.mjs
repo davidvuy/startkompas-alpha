@@ -568,3 +568,35 @@ test('scenario adoption discloses changed main fields and refuses stale, histori
  fs.appendFileSync(path.join(dir,'files',revised.artifact_id+'.json'),'bad');view=(await request('/api/scenarios',{ref})).json();assert.equal(view.scenarios.find(s=>s.artifact_id===revised.artifact_id).unavailable,true);assert.notEqual((await request('/api/scenario-compare',{ref,id:revised.artifact_id})).status,200);
  await request('/api/archive',{ref,revision:view.revision,sha256:view.sha256,archived:true,confirmed:true});assert.equal((await request('/api/scenario-preview',{ref,revision:view.revision,sha256:view.sha256,scenario})).status,409);assert.equal((await request('/api/scenarios',{ref})).json().archived,true);
 });
+
+test('selected context API is read-only, bounded to its project and protected by session/origin',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input('context-example'))).json().ref;
+ const dir=path.join(root,'context-example'),before=readCore(dir,'context-example');
+ const choices=(await request('/api/context-choices',{ref})).json();
+ assert.equal(choices.project_id,'context-example');assert.ok(choices.choices.every(r=>Object.keys(r).length===2));
+ const selection={project_id:choices.project_id,source_revision:choices.revision,canonical_sha256:choices.sha256,focus_id:choices.active_task_id,depth:1,exclude_ids:[],include_fields:[]};
+ const result=await request('/api/context-preview',{ref,selection});assert.equal(result.status,200,result.text);
+ const packet=JSON.parse(result.json().payload);assert.equal(packet.records[0].title,undefined);
+ assert.equal((await request('/api/context-preview',{ref,selection:{...selection,project_id:'another'}})).status,409);
+ assert.equal((await request('/api/context-preview',{ref,selection},{Origin:'https://example.invalid'})).status,403);
+ assert.equal((await request('/api/context-preview',{ref,selection},{'X-Startkompas-Session':'wrong'})).status,403);
+ assert.equal((await request('/api/context-choices',{ref,extra:true})).status,400);
+ assert.equal(readCore(dir,'context-example').sha256,before.sha256);
+ updateCore(dir,{project_id:'context-example',expected_revision:before.dossier.revision,operation_id:'stale-context',changes:{name:'Changed context'}});
+ assert.equal((await request('/api/context-preview',{ref,selection})).status,409);
+});
+
+test('offer impact is visible before confirmation and does not regenerate dependent work',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input('impact-ui'))).json().ref,dir=path.join(root,'impact-ui');
+ const initial=await offer(request,ref),p=(await request('/api/offer-preview',initial)).json();
+ const saved=(await request('/api/offer-save',{ref,preview:p.preview,confirmed:true})).json();
+ const before=readCore(dir,'impact-ui'),taskId=before.dossier.tasks[0].id;
+ updateCore(dir,{project_id:'impact-ui',expected_revision:before.dossier.revision,operation_id:'link-impact',changes:{workflow:{...before.dossier.workflow,links:[...before.dossier.workflow.links,{dependent_id:taskId,prerequisite_id:saved.artifact_id,reason:'Synthetic pilot task uses this offer'}]}}});
+ const linked=readCore(dir,'impact-ui'),impact=(await request('/api/change-impact',{ref,id:saved.artifact_id})).json();assert.ok(impact.records.some(r=>r.id===taskId));
+ assert.equal((await request('/api/change-impact',{ref,id:'missing'})).status,400);
+ assert.equal((await request('/api/change-impact',{ref,id:saved.artifact_id},{Origin:'https://example.invalid'})).status,403);
+ const revised=await offer(request,ref,saved.artifact_id);revised.reason='Narrow synthetic group';revised.fields.segment='Fictional smaller audience';
+ const preview=(await request('/api/offer-preview',revised)).json();assert.ok(preview.markdown.includes(taskId));
+ assert.equal((await request('/api/offer-save',{ref,preview:preview.preview,confirmed:false})).status,400);assert.equal(readCore(dir,'impact-ui').sha256,linked.sha256);
+ assert.equal((await request('/api/offer-save',{ref,preview:preview.preview,confirmed:true})).status,200);assert.deepEqual(readCore(dir,'impact-ui').dossier.tasks,linked.dossier.tasks);
+});

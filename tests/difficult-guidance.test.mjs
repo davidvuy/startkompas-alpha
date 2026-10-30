@@ -1,0 +1,38 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {initializeProject} from '../src/initialize.mjs';
+import {readCore,updateCore} from '../src/store.mjs';
+import {saveGuided} from '../src/workspace.mjs';
+import {prepareProfileAnswer} from '../src/project-profile.mjs';
+import {sessionPlan} from '../src/session-plan.mjs';
+import {prepareBusinessBrief,briefTypes} from '../src/business-brief.mjs';
+import {prepareScope} from '../src/scope-exercise.mjs';
+import {preparePilotWorkflow,pilotWorkflow} from '../src/pilot-workflow.mjs';
+import {prepareInterview} from '../src/interview-preparation.mjs';
+
+test('difficult founder journey preserves contradictory scope, limited capacity, missing customer and unknown budget',t=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'sk-difficult-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));const dir=path.join(root,'project'),id='difficult-fiction';let seq=0;
+ initializeProject(dir,{project_id:id,name:'Fictional difficult starter',practice:true,first_task:{id:'first-task',title:'Prepare one learning step'},context:{customer:'',outcome:''}});
+ const state=()=>readCore(dir,id),save=p=>saveGuided(dir,p,path.join(root,'retry-'+(++seq)));
+ let s=state();const profile=prepareProfileAnswer(dir,id,s.dossier.revision,s.sha256,'capacity','Only one evening; exact hours are not known','2026-10-30');updateCore(dir,profile.update_request);
+ const plan=sessionPlan(dir,id,{scope:'brief',obstacle:'access',intent:'Prepare without inventing a participant'});
+ assert.equal(plan.steps.length,1);assert.equal(plan.obstacle,'access');assert.ok(plan.context.some(c=>c.key==='capacity'));assert.ok(!state().dossier.profile.some(r=>/budget|hours/.test(r.key)));
+ s=state();const offer=prepareBusinessBrief(dir,{project_id:id,expected_revision:s.dossier.revision,operation_id:'difficult-offer',at:'2026-10-30',language:'en',kind:'offer',client:null,period:null,previous_artifact_id:null,change_reason:null,fields:[]});save(offer);
+ s=state();const scope=prepareScope(dir,id,s.dossier.revision,s.sha256,{previous:null,offer_id:offer.artifact_id,date:'2026-10-30',reason:null,included:['One checklist'],excluded:['One checklist'],unknowns:['Participant access'],outcome_fit:'yes',outcome_reason:'Fictional founder is confident without an outcome',available_hours:1,estimated_hours:5,period:'One fictional week'});
+ const scopeData=JSON.parse(scope.content);assert.equal(scopeData.request.outcome_fit,'yes');assert.ok(scope.points.some(p=>p.includes('conflicts')));assert.ok(scope.points.some(p=>p.includes('Overlapping scope')));assert.ok(scope.points.some(p=>p.includes('4 hours')));save(scope);
+ s=state();const pilotFields=Object.fromEntries(Object.keys(briefTypes.pilot.fields).map(k=>[k,k==='deliverable'?'One fictional checklist':'']));
+ const pilot=preparePilotWorkflow(dir,id,s.dossier.revision,s.sha256,{offer_id:offer.artifact_id,previous:null,reason:'',fields:pilotFields});
+ assert.ok(pilot.missing.includes('client'));const pilotData=JSON.parse(pilot.content);assert.equal(pilotData.preparation_context.expert_review,'not_performed');assert.equal(pilotData.preparation_context.scope_id,scope.artifact_id);
+ for(const point of scope.points)assert.ok(pilot.warnings.includes(point));assert.equal(pilotData.fields.find(f=>f.key==='client').value,null);assert.equal(pilotData.fields.find(f=>f.key==='client').assertion,'unknown');save(pilot);
+ s=state();const guide=prepareInterview(dir,id,s.dossier.revision,s.sha256,'guide',offer.artifact_id);assert.ok(JSON.parse(guide.content).questions.every(q=>q.status==='unknown'));save(guide);
+ s=state();const log=prepareInterview(dir,id,s.dossier.revision,s.sha256,'blank_log',guide.artifact_id),blank=JSON.parse(log.content).log;
+ assert.equal(blank.participant_code,null);assert.deepEqual(blank.direct_statements,[]);assert.deepEqual(blank.observations,[]);save(log);
+ const after=state();assert.equal(after.dossier.tasks[0].progress,'open');assert.equal(after.dossier.tasks[0].substantiation,'unreviewed');assert.equal(after.dossier.facts.length,0);assert.equal(after.dossier.evidence.length,0);assert.ok(!after.dossier.profile.some(r=>/budget/.test(r.key)));
+ const oldPilotBytes=fs.readFileSync(path.join(dir,after.dossier.artifacts.find(a=>a.id===pilot.artifact_id).location));
+ const revised=prepareBusinessBrief(dir,{...JSON.parse(offer.content).request,expected_revision:after.dossier.revision,operation_id:'difficult-offer-revision',previous_artifact_id:offer.artifact_id,change_reason:'Change the proposed audience after reviewing unknowns',fields:[{key:'segment',value:'A different fictional audience',assertion:'proposal',record_ids:[]}]});save(revised);
+ assert.equal(pilotWorkflow(dir,id).pilots.find(p=>p.id===pilot.artifact_id).requires_review,true);
+ assert.deepEqual(fs.readFileSync(path.join(dir,after.dossier.artifacts.find(a=>a.id===pilot.artifact_id).location)),oldPilotBytes);
+});

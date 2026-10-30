@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 
 const routes={
+  context:['context-cli.mjs','preview selected prerequisite context; use context help'],
   workspace:['workspace-cli.mjs','show/journey/draft/add/task-state/impact/report/recovery-check/source-review; use workspace help'],
   project:['core-cli.mjs','init/create/read/retrieve/update/attach/handoff/export/restore/history and workflow commands'],
   business:['business-cli.mjs','types/prepare/read/render for versioned business drafts'],

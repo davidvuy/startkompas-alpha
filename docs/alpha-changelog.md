@@ -1,5 +1,14 @@
 # Changes
 
+## 0.1.0-alpha.11 — choose context and review change impact
+
+- Select bounded prerequisite context in the app or terminal, exclude records and opt individual text fields in. Inspect the exact packet before sharing; changed selections clear the old preview. No AI call, clipboard access or upload occurs. Exclusions are per request, not automatic redaction or an access-control policy.
+- Skill guidance respects selected-context omissions and distinguishes proposed results, basis, uncertainties and verified versus possible storage actions. This instruction contract is not a guarantee of model compliance.
+- Inspect declared change impact from saved records. Offer/pilot revisions and scenario adoption show affected records before exact-preview confirmation, preserving original files and dependent work. Unknown dependencies remain unknown.
+- Exercise a difficult fictional starter journey with limited time, no customer or budget data, contradictory scope, unresolved pilot conditions and an empty interview log. Later audience changes mark earlier pilot context for review without regenerating it.
+
+Independent user validation, security review and broader browser/accessibility acceptance remain open. Context selection does not imply local-only AI processing after you share it. The full roadmap remains incomplete.
+
 ## 0.1.0-alpha.10 — explore, compare and prepare a pilot
 
 - Prepare neutral interview questions from current offer fields; save the guide and genuinely empty log as separate artifacts. Preparation never creates answers or evidence.

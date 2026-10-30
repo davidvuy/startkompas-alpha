@@ -1,3 +1,4 @@
+import {changeImpact} from './change-impact.mjs';
 import Ajv2020 from 'ajv/dist/2020.js';
 import {readCore,regularFile,localFile,sha,bytesFor,damagedArtifacts} from './store.mjs';
 import {records} from './dependencies.mjs';
@@ -64,7 +65,7 @@ export function prepareBusinessBrief(dir,request){
   const artifact={id:artifactId,version:String(version),storage:'local',location:'files/'+artifactId+'.json',availability:'available',sha256:sha(content)};
   const basis=[...new Set(fields.flatMap(f=>f.record_ids))];
   const update_request={project_id:d.project_id,expected_revision:d.revision,operation_id:request.operation_id,changes:{artifacts:[...original.artifacts,artifact],events:[...original.events,{id:artifactId+'-event',type:'business-brief-draft',at:request.at,description:prior?'Revised business draft; original and change reason retained in the artifact':'Business draft prepared; no external action or validation',subject_ids:[artifactId,...(prior?[prior.artifact_id]:[])]}],workflow:{...original.workflow,links:[...original.workflow.links,...basis.map(prerequisite_id=>({dependent_id:artifactId,prerequisite_id,reason:'Business draft uses selected project record'}))],intents:[...original.workflow.intents,{record_id:artifactId,goal:'business-brief:'+request.kind,client:request.client,period:request.period,version:String(version)}]}}};
-  return {artifact_id:artifactId,version,content,document_markdown,changes,existing_candidates:candidates,update_request,warning:'Proposal only. Save exact content and update_request, attach with the core helper and read back. Unknown scope is not merged automatically. Omitted fields become unknown; revisions are complete drafts, not patches.'};
+  return {artifact_id:artifactId,version,content,document_markdown,changes,change_impact:prior?changeImpact(d,[prior.artifact_id]):null,existing_candidates:candidates,update_request,warning:'Proposal only. Save exact content and update_request, attach with the core helper and read back. Unknown scope is not merged automatically. Omitted fields become unknown; revisions are complete drafts, not patches.'};
 }
 export function readBusinessBrief(dir,projectId,artifactId){
   const state=readCore(dir,projectId),saved=loadBrief(state,artifactId),d=applyInvalidation(state.dossier,structuredClone(state.dossier),damagedArtifacts(state.directory,state.dossier));

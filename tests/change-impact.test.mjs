@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {initializeProject} from '../src/initialize.mjs';
+import {readCore,updateCore} from '../src/store.mjs';
+import {prepareBusinessBrief} from '../src/business-brief.mjs';
+import {saveGuided} from '../src/workspace.mjs';
+import {changeImpact,businessPreviewMarkdown} from '../src/change-impact.mjs';
+test('offer revision previews recorded consequences while preserving dependent content and original bytes',t=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'sk-impact-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));const dir=path.join(root,'project');
+ initializeProject(dir,{project_id:'impact-example',name:'Fictional impact',first_task:{id:'task-1',title:'Review fictional pilot'}});
+ const request={project_id:'impact-example',expected_revision:1,operation_id:'original',at:'2026-10-30',language:'en',kind:'offer',client:null,period:null,previous_artifact_id:null,change_reason:null,fields:[]};
+ const first=prepareBusinessBrief(dir,request);saveGuided(dir,first,path.join(root,'retry-first'));
+ const state=readCore(dir,'impact-example');updateCore(dir,{project_id:'impact-example',expected_revision:2,operation_id:'link',changes:{workflow:{...state.dossier.workflow,links:[{dependent_id:'task-1',prerequisite_id:first.artifact_id,reason:'Task uses original offer'}]}}});
+ const before=readCore(dir,'impact-example'),oldFile=path.join(dir,before.dossier.artifacts[0].location),oldBytes=fs.readFileSync(oldFile);
+ const next=prepareBusinessBrief(dir,{...request,expected_revision:3,operation_id:'revision',previous_artifact_id:first.artifact_id,change_reason:'Narrow fictional segment',fields:[{key:'segment',value:'A narrower fictional group',assertion:'proposal',record_ids:[]}]});
+ assert.deepEqual(next.change_impact.records.map(r=>r.id),[first.artifact_id,'task-1']);assert.equal(next.change_impact.basis_revision,3);
+ assert.ok(businessPreviewMarkdown(next).includes('task-1'));assert.equal(readCore(dir,'impact-example').sha256,before.sha256);
+ assert.equal(JSON.parse(next.content).change_impact,undefined);saveGuided(dir,next,path.join(root,'retry-next'));
+ const after=readCore(dir,'impact-example');assert.deepEqual(after.dossier.tasks,before.dossier.tasks);assert.deepEqual(fs.readFileSync(oldFile),oldBytes);
+ assert.equal(after.dossier.artifacts.length,before.dossier.artifacts.length+1);
+});
+test('change impact preserves direction and explicitly bounds a large affected set',()=>{
+ const d={revision:1,profile:[],facts:[{id:'seed',text:'Synthetic'}],assumptions:[],sources:[],decisions:[],tasks:Array.from({length:110},(_,i)=>({id:'task-'+i,title:'Task '+i,depends_on:['seed']})),checks:[],artifacts:[],evidence:[],events:[]};
+ const before=JSON.stringify(d),result=changeImpact(d,['seed']);assert.equal(result.total,111);assert.equal(result.records.length,100);assert.equal(result.partial,true);
+ assert.deepEqual(changeImpact(d,['task-0']).records.map(r=>r.id),['task-0']);assert.equal(JSON.stringify(d),before);
+ assert.throws(()=>changeImpact(d,['missing']));assert.throws(()=>changeImpact(d,[]));assert.throws(()=>changeImpact(d,['seed','seed']));
+});

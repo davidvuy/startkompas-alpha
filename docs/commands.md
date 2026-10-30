@@ -47,3 +47,7 @@ See examples/first-intake-answer.json. Set project_id, source_revision, operatio
 
 ## Alpha 2 guided tools
 Run doctor for read-only installation checks; start asks for the minimal new-project inputs and confirms before saving. overview <directory> <project-id> [nl|en] gives a readable saved-state summary. compare <directory> <project-id> <older> <newer> lists changed record IDs/fields without private values. These tools do not call an AI service or add telemetry. See alpha-improvements.md.
+
+## Selected skill context
+
+`node src/startkompas.mjs context preview <private-directory> <selection.json>` produces bounded, explicitly selected prerequisite context. Read [skill-context.md](skill-context.md) before sharing. This route is read-only and makes no model call.
