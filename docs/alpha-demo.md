@@ -39,3 +39,17 @@ node src/startkompas.mjs overview ../my-private-project my-project en
 ```
 
 Use `nl` instead of `en` for a Dutch overview. For AI-assisted drafting, follow the README's Codex instructions. For help, see [support](alpha-support.md).
+
+## Captured founder workflow
+
+[Watch the 40-second video](../assets/startkompas-demo.mp4). The five panels below reproduce actual captured output from `doctor` and `demo-founder-workflow`. They are reformatted output, not desktop screenshots. The example is fictional, makes no AI calls and does not validate customer demand. Long outputs are explicitly excerpted.
+
+![Installation check](../assets/demo-1.png)
+
+![Fictional founder route](../assets/demo-2.png)
+
+![Current workspace](../assets/demo-3.png)
+
+![Report excerpt](../assets/demo-4.png)
+
+![Export and restore check](../assets/demo-5.png)

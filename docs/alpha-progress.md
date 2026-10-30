@@ -8,22 +8,22 @@ Updated 2026-10-30. This register concerns the improvement suggestions, not comp
 | 2 | Question form | Implemented: question issue template |
 | 3 | Bug form | Implemented: version, steps, expected/actual result |
 | 4 | Problem-first feature form | Implemented: feature issue template |
-| 5 | Discussions | Open: browser settings could not be safely controlled; Issues remain available |
+| 5 | Discussions | Enabled and verified in the repository navigation on 2026-10-30; Issues remain available |
 | 6 | Support mailbox | Deferred by user: GitHub-only contact |
 | 7 | Public/private reporting distinction | Implemented: support guide, SECURITY and issue chooser |
-| 8 | Notification delivery test | Open: account settings and actual delivery need verification; no test notification sent |
+| 8 | Notification delivery test | Custom watch configured for Issues, Pull requests, Discussions and Security alerts; actual delivery untested |
 | 9 | Issue follow-up routine | Documented: security-maintenance guide; recurring human execution not established |
 | 10 | FAQ from recurring questions | Initial FAQ implemented; real recurring-question evidence still missing |
 | 11 | Fast first result | Implemented: guided setup and deterministic founder demo; novice timing unmeasured |
-| 12 | Short demonstration video | Open: runnable walkthrough exists, no screencast produced |
+| 12 | Short demonstration video | Implemented: 40-second rendered video of actual fictional CLI output; explicitly not a screen recording |
 | 13 | Fictional example project | Implemented: demo-founder-workflow generates a complete example |
-| 14 | Screenshots of actual output | Open: generated workspace.md/report.md are available; no new screenshots captured |
+| 14 | Screenshots of actual output | Implemented: five readable previews of captured CLI output; rendered panels, not OS screenshots |
 | 15 | Guided next steps | Implemented: workspace journey, draft, add and task-state |
 | 16 | Actionable doctor failures | Implemented: reinstall/dependency/skill recovery guidance |
 | 17 | Independent installation test | Open: no independent tester supplied |
 | 18 | Dutch and English instructions | Implemented: paired workspace guides; some terminal prompts remain English |
-| 19 | Additional Node versions | CI expanded to 24.x alongside 26.7.0; consult the exact run before claiming compatibility |
-| 20 | macOS verification | macOS added to helper CI; host/Codex discovery remains separate and untested |
+| 19 | Additional Node versions | Passed in alpha3 run 41029497263: Node 24.x and 26.7.0 on all three OS targets |
+| 20 | macOS verification | Helper tests passed on macOS in alpha3 run 41029497263; host/Codex discovery remains untested |
 | 21 | Idea-to-offer route | Implemented: assumptions, linked observations/decisions and guided offer drafts |
 | 22 | Guided interview preparation | Implemented: interview draft wizard and blank log |
 | 23 | Findings linked to assumptions and decisions | Implemented: reported observations with context links, scoped sources and decision basis |
@@ -45,8 +45,8 @@ Updated 2026-10-30. This register concerns the improvement suggestions, not comp
 | 39 | Local/AI data boundary | Documented in README, support and security-data-flows; no telemetry added |
 | 40 | Independent security review | Open: requires an actual independent reviewer |
 | 41 | Concrete README use case | Implemented: guided founder workflow and example outputs |
-| 42 | Repository topics | Open: browser settings could not be safely controlled |
-| 43 | Social preview image | Open: existing header remains; upload/settings not completed |
+| 42 | Repository topics | Implemented and UI-verified: business-planning, cli, codex, nodejs |
+| 43 | Social preview image | Blocked: browser file upload requires extension access to local file URLs; existing README header remains |
 | 44 | Public roadmap | Implemented: four-week roadmap plus this status register |
 | 45 | User-focused changelog | Implemented: alpha-changelog.md |
 | 46 | Public contribution instructions | Implemented: CONTRIBUTING.md, manifest and secret-check guidance |
