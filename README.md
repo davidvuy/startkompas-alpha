@@ -8,6 +8,19 @@ Keep project decisions, unfinished work and the basis for your business drafts t
 
 This is an experimental alpha. Independent user validation is still ahead. No measured time saving, business success or compliance outcome is promised. Download this repository using Code → Download ZIP, or clone https://github.com/davidvuy/startkompas-alpha. For feedback use https://github.com/davidvuy/startkompas-alpha/issues.
 
+## Start here
+
+[Download alpha 4 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.4.zip) · [Nederlandse startgids](docs/quickstart.nl.md) · [Release notes](https://github.com/davidvuy/startkompas-alpha/releases/tag/v0.1.0-alpha.4)
+
+Extract the ZIP into a new folder. Open a terminal in that folder, install the locked dependencies and open the Dutch menu:
+
+```sh
+npm ci --ignore-scripts --no-audit --no-fund
+node start.mjs
+```
+
+The menu offers installation checks, a fictional demo, new projects, resuming, offer drafts and a report preview/save flow. It runs locally; it does not call AI or upload your project. Existing draft prompts are partly English. See the guide for prerequisites and the exact first-use steps.
+
 ## Guided work in alpha 3
 
 Prepare an offer or interview guide, record assumptions and observations, connect decisions to their basis, and export a readable report without writing request JSON. [Product guide](docs/alpha-workspace.md) · [Nederlandse startuitleg](docs/alpha-workspace.nl.md) · [Changes](docs/alpha-changelog.md).

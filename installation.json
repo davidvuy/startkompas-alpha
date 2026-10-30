@@ -1,6 +1,6 @@
 {
-  "source_revision": "1c2ed4e3a508177b0633e3602050557c35dc6365",
-  "created_at": "2026-10-30T10:48:24.293Z",
+  "source_revision": "6bf4737099ca170a3ecd17d17ea6d02fb208febc",
+  "created_at": "2026-10-30T12:13:31.144Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -93,11 +93,11 @@
     },
     {
       "path": ".github/workflows/quality.yml",
-      "sha256": "492b73ede7558c029ea0c44ec5df86e351e85328c638fc00fc8e688d96085945"
+      "sha256": "5caaeea48b2c0eea591721e5459332e0bbb24bb1d750ddf2badbae0d8e4ce707"
     },
     {
       "path": ".github/workflows/secrets.yml",
-      "sha256": "95353bf22bf980125b0779c4cb24921589b4b26b0e974b97e04ba7d42ade71a4"
+      "sha256": "a1a1e0d92c35378ace274642ebe25ac8eb1113148ac262e2c890a8b184b3b691"
     },
     {
       "path": ".gitignore",
@@ -141,7 +141,7 @@
     },
     {
       "path": "docs/alpha-changelog.md",
-      "sha256": "6b10728b46a79cd8ac74a0a66049e030036f29d3c0772f1167ee2fbf3beff01f"
+      "sha256": "23b213d05b88d13a0554c023ded0fa67d4af77f9fb3e5b83396c61dd57057cb7"
     },
     {
       "path": "docs/alpha-contributing.md",
@@ -206,6 +206,10 @@
     {
       "path": "docs/module-maintenance.md",
       "sha256": "79042a580a2488c4af9277a895c0d6996051c17f04b510b03316b9e6b3d79bf0"
+    },
+    {
+      "path": "docs/quickstart.nl.md",
+      "sha256": "05fbceb208b2a3b5019139cc89126f9a6e517b201fd0542ba6dd3856001ee1a3"
     },
     {
       "path": "docs/run-limits.md",
@@ -337,15 +341,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "9e95900fd89d47000732e90cef543c4346b09554e1dd30495c465390c01f1209"
+      "sha256": "9162b8b841763e943af29af48d8e840643cb9a9d7d838fe42a3b8a12e2b8c923"
     },
     {
       "path": "package.json",
-      "sha256": "0a09d031f663a652283934c1492b0bee3f9e41ba6b5e3729de3b9bf929db4381"
+      "sha256": "bf7edba9f7c463c6f0e8debd5edc5eddec72e44191f103d93d896eafb89ba2c7"
     },
     {
       "path": "README.md",
-      "sha256": "7e75578f600cf2324fd75a8c7b5d957637a78e07c7bcabb2d392b643609c0373"
+      "sha256": "ac78a0de476d6192a0f088c13341850c93f966df5633894a4f60b07b30cd70c4"
     },
     {
       "path": "schemas/cost-scenario.schema.json",
@@ -472,6 +476,10 @@
       "sha256": "44abb49e7d47d81375c8cb4aa4ad3aa4d08d206111d36650183f669b903cbe27"
     },
     {
+      "path": "src/menu.mjs",
+      "sha256": "7a5582d9af965a88734e77ec3e10cef88bb99365fae9b56eca39713fbb5da169"
+    },
+    {
       "path": "src/model.mjs",
       "sha256": "2d11439cd1fb5d31810becfd8ebdbbbcca120538a89fceb5f10bec72671df77b"
     },
@@ -517,7 +525,7 @@
     },
     {
       "path": "src/startkompas.mjs",
-      "sha256": "94149d83fa9183ced86adf938917055ec6078e394d3accc21f5ddfc35ee957f2"
+      "sha256": "be96f893d2279cc38b46e50dc049089aec03074ede9fd8b56cb1598c32b3e66f"
     },
     {
       "path": "src/store.mjs",
@@ -537,11 +545,15 @@
     },
     {
       "path": "src/workspace-cli.mjs",
-      "sha256": "8c1206d0b5ce3668dff83486f800745dfc710c0e58fc9aba062ab54a54c61211"
+      "sha256": "62285995bfe8ccece47e8150e44f6620fb374b71a5ed1cded3bf8c083e92f1c2"
     },
     {
       "path": "src/workspace.mjs",
       "sha256": "c60dded4ff9d77bfb0ee6359b5d5f538fc73a58c92519fa3cfcd7338a411a3e9"
+    },
+    {
+      "path": "start.mjs",
+      "sha256": "736026d6cd08713aa98993599136c82f355ae6e11bb6b1d27f5f5799ad737263"
     },
     {
       "path": "tests/business-brief.test.mjs",
@@ -582,6 +594,10 @@
     {
       "path": "tests/intake.test.mjs",
       "sha256": "47562ce75fac6ce555ec4cf4c467dd6b2b07a0ecd66180bab99311d91027f023"
+    },
+    {
+      "path": "tests/menu.test.mjs",
+      "sha256": "f5df8d0ed701a40dc4eadbb72164976b50b17d1e625fe9778b46ac7595451cb5"
     },
     {
       "path": "tests/module-notices.test.mjs",

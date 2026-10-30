@@ -21,3 +21,7 @@ Guided project start, installation doctor, readable overview and revision compar
 ## 0.1.0-alpha.1
 
 Initial selected public package with local versioned dossiers, business drafts, export/restore and explicit limitations. The original private development history and source documents were excluded.
+
+## 0.1.0-alpha.4 — easier first use
+
+A Dutch menu (`node start.mjs`) provides installation checks, new projects, fictional demos, resuming, offer drafts and previewed report export. Export still requires confirmation and refuses stale content and overwrites. A short Dutch quickstart explains download, installation, first result and resumption. Updated pinned checkout/setup-node actions, with credential persistence and automatic package caching disabled. Existing CLI commands remain available; no cloud interface or AI calls added.

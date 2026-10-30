@@ -6,7 +6,7 @@ import {workspaceView,renderWorkspace,impactView,prepareRecord,saveGuided,report
 import {cleanText} from './project-view.mjs';
 
 const [cmd,...args]=process.argv.slice(2);
-const usage='workspace show|journey <dir> <id> | impact <dir> <id> <record-id> | draft <dir> <id> <offer|interview|alternatives|pilot|pricing> [previous-artifact] | add <dir> <id> <assumption|observation|decision|task> | report-preview <dir> <id> [summary,tasks,assumptions,decisions,drafts] | report-save <dir> <id> <sections> <preview-sha256> <new-file.md> | recovery-check <dir> <id> <new-private-directory> | source-review <dir> <id> <YYYY-MM-DD> [max-age-days]';
+const usage='workspace show|journey <dir> <id> | task-state <dir> <id> <task-id> | impact <dir> <id> <record-id> | draft <dir> <id> <offer|interview|alternatives|pilot|pricing> [previous-artifact] | add <dir> <id> <assumption|observation|decision|task> | report-preview <dir> <id> [summary,tasks,assumptions,decisions,drafts] | report-save <dir> <id> <sections> <preview-sha256> <new-file.md> | recovery-check <dir> <id> <new-private-directory> | source-review <dir> <id> <YYYY-MM-DD> [max-age-days]';
 async function guided(fn){
  const rl=createInterface({input:process.stdin,crlfDelay:Infinity,terminal:false}),it=rl[Symbol.asyncIterator]();
  async function ask(prompt,{required=false,allowed=null}={}){
