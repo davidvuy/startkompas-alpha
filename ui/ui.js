@@ -2,10 +2,10 @@
 const $=id=>document.getElementById(id);
 let token='',selected=null,editor=null,dirty=false,preview=null,currentView=null,reportState=null,wizardStep=0,wizardDirty=false,wizardPractice=false;
 try{const fragment=new URLSearchParams(location.hash.slice(1));token=fragment.get('session')||sessionStorage.getItem('startkompas-session')||'';history.replaceState(null,'',location.pathname);if(token)sessionStorage.setItem('startkompas-session',token);}catch{history.replaceState(null,'',location.pathname);}
-const notice=message=>{$('notice').textContent=message;};
+const notice=message=>{$('notice').textContent=message;if(!message)$('error-actions').hidden=true;};
 async function api(route,value={}){
  const res=await fetch('/api/'+route,{method:'POST',headers:{'Content-Type':'application/json','X-Startkompas-Session':token},body:JSON.stringify(value),cache:'no-store'});
- const data=await res.json();if(!res.ok)throw Error(data.error||'The request failed.');return data;
+ const data=await res.json();if(!res.ok){const error=Error(data.error||'The request failed.');error.status=res.status;error.route=route;throw error;}return data;
 }
 function screen(name){for(const key of ['welcome','create','workspace','offer','report','history','inspect','search','help'])$(key).hidden=key!==name;}
 function list(id,items,empty,render){const target=$(id);target.replaceChildren();if(!items.length){const li=document.createElement('li');li.className='muted';li.textContent=empty;target.append(li);}else for(const item of items){const li=document.createElement('li');render(li,item);target.append(li);}}
@@ -17,6 +17,10 @@ async function show(ref){
  if(wizardDirty&&!$('create').hidden)throw Error('Return to the overview before switching projects. Your setup text will be kept.');
  const view=await api('show',{ref});selected=ref;currentView=view;reportState=null;screen('workspace');$('project-name').textContent=view.name;
  $('project-meta').textContent=`${view.project_id} · Revision ${view.revision} · Folder: ${view.folder} · ${view.archived?'Archived':'Active'}${view.practice?' · FICTIONAL PRACTICE':''}`;
+ const recent=view.resume?.last_event,latest=view.resume?.latest_draft;
+ $('resume-event').textContent=recent?'Last recorded event: '+recent.description+' ('+recent.at+')':'No event recorded yet. Project history still shows saved revisions.';
+ $('resume-draft').textContent=latest?'Most recently recorded draft: '+(latest.kind||'Unknown type')+' · version '+(latest.version??'?')+' · '+(latest.status==='review_required'?'Review required':latest.status==='draft'?'Draft — unvalidated':'Unavailable; inspect the original files'):'No saved draft yet. Start an offer when you are ready.';
+ $('resume-draft-open').hidden=!latest||latest.status==='unavailable_or_invalid';
  $('new-offer').hidden=view.archived;$('archive-open').textContent=view.archived?'Restore project':'Archive project';$('archive-confirmation').hidden=true;$('archive-confirm').checked=false;
  const action=view.actions.find(a=>a.id===view.next.record_id),assumption=view.assumptions.find(a=>a.id===view.next.record_id),check=view.checks.find(a=>a.id===view.next.record_id);
  $('next-title').textContent=action?.title||assumption?.text||check?.title||(view.next.kind==='review'?'Review changed assumptions':'Prepare your first offer');
@@ -50,7 +54,18 @@ $('project-search').addEventListener('input',renderProjects);
 $('project-sort').addEventListener('change',renderProjects);
 let recovery=null,projectList=[],rootScope='',lastProject=null;
 let busy=false;
-async function act(fn){if(busy)return;busy=true;notice('');const controls=[...document.querySelectorAll('button,input,textarea,select')].map(element=>({element,disabled:element.disabled}));controls.forEach(c=>c.element.disabled=true);try{await fn();}catch(error){notice(error.message==='Failed to fetch'?'The workspace is unreachable. Check that the terminal is still open.':error.message);$('notice').scrollIntoView({block:'nearest'});$('notice').focus();}finally{busy=false;controls.forEach(c=>c.element.disabled=c.disabled);}}
+async function act(fn){if(busy)return;busy=true;$('main').setAttribute('aria-busy','true');notice('');const controls=[...document.querySelectorAll('button,input,textarea,select')].map(element=>({element,disabled:element.disabled}));controls.forEach(c=>c.element.disabled=true);try{await fn();}catch(error){notice(error.message==='Failed to fetch'?'The workspace is unreachable. Check that the terminal is still open.':error.message);showErrorActions(error);$('notice').scrollIntoView({block:'nearest'});$('notice').focus();}finally{busy=false;$('main').setAttribute('aria-busy','false');controls.forEach(c=>c.element.disabled=c.disabled);}}
+function showErrorActions(error){
+ $('error-actions').hidden=false;$('error-form').hidden=!editor&&!wizardDirty;
+ $('error-compare').hidden=!(editor&&error.status===409&&error.route?.startsWith('offer-'));
+ $('error-guidance').textContent=error.status===403?'Reopen the current launch link from your terminal. Keep this tab open to copy your unsaved text; a new server session will not save it for you.':error instanceof TypeError?'The local server may be stopped. Keep this tab open; you can return to your form and copy the text. Start the workspace with the same projects folder, then use its new launch link.':'Your form text remains in this tab. Refreshing the list only discovers projects; it does not save or reload your form. If a file is missing or damaged, restore it from your own backup before retrying. Nothing will be repaired automatically.';
+}
+function returnToForm(){if(editor){screen('offer');$('offer-title').focus();}else if(wizardDirty){screen('create');wizard(wizardStep);}else $('refresh').focus();}
+$('error-form').addEventListener('click',returnToForm);
+$('error-compare').addEventListener('click',()=>$('offer-compare').click());
+$('error-refresh').addEventListener('click',()=>act(async()=>{await refresh();notice('Project list refreshed. Your current form text is retained.');if(editor||wizardDirty)returnToForm();else $('refresh').focus();}));
+$('error-recovery').addEventListener('click',()=>{$('disk-options').open=true;$('disk-options-title').focus();});
+$('error-dismiss').addEventListener('click',()=>{$('error-actions').hidden=true;returnToForm();});
 function wizard(step){wizardStep=step;for(const [i,key]of ['identity','context','confirm'].entries())$('wizard-'+key).hidden=i!==step;$('wizard-step').textContent=['STEP 1 OF 3 — YOUR PROJECT','STEP 2 OF 3 — OPTIONAL CONTEXT','STEP 3 OF 3 — REVIEW'][step];$('create-form').elements.confirmed.checked=false;$('wizard-step').focus();if(step===2){const f=$('create-form').elements;$('wizard-summary').textContent=`${wizardPractice?'FICTIONAL PRACTICE — not real customer evidence.\n':''}Project: ${f.name.value}\nID / folder: ${f.id.value}\nFirst task: ${f.task.value||'Not specified'}\nProvisional customer: ${f.customer.value||'Unknown — not recorded'}\nProposed outcome: ${f.outcome.value||'Unknown — not recorded'}\n\nNo customer evidence or completed work will be invented.`;}}
 function identityValid(){return [...$('wizard-identity').querySelectorAll('input')].every(input=>input.reportValidity());}
 function createScreen(){if(editor){notice('Save or discard your offer before creating a project.');return;}notice('');screen('create');wizard(0);$('create-form').elements.name.focus();}
@@ -66,13 +81,24 @@ $('wizard-back').addEventListener('click',()=>wizard(0));
 $('wizard-review').addEventListener('click',()=>wizard(2));
 $('wizard-edit').addEventListener('click',()=>wizard(1));
 $('create-form').addEventListener('submit',event=>{event.preventDefault();const form=event.currentTarget;if(wizardStep<2){if(identityValid())wizard(wizardStep+1);return;}if(!form.reportValidity())return;act(async()=>{const data=await api('create',{name:form.elements.name.value,id:form.elements.id.value,task:form.elements.task.value,context:{customer:form.elements.customer.value,outcome:form.elements.outcome.value},practice:wizardPractice,confirmed:form.elements.confirmed.checked});form.reset();wizardDirty=false;wizardPractice=false;clearRecovery();await refresh();await show(data.ref);notice('Project saved. Optional context remains unverified; use the same project through the skill or CLI.');});});
+$('resume-draft-open').addEventListener('click',()=>act(async()=>{const latest=currentView?.resume?.latest_draft;if(latest)await inspectDraft(latest.id);}));
+const offerHelp={
+ segment:'Describe a specific customer and situation. Fictional example: a small design studio preparing a client handover.',
+ job:'Describe the job they need to finish and the difficulty you suspect. Separate your guess from what someone actually reported.',
+ outcome:'Describe an observable result you propose. Fictional example: one handover checklist with named owners. Avoid unsupported guarantees.',
+ delivery:'Explain what you would deliver, in what format and within which boundaries. Leave unknown effort or timing blank.',
+ exclusions:'State what is outside this offer. Fictional example: no implementation or ongoing support included.',
+ workaround:'Describe what the customer currently does, if known. Do not invent an alternative or assume they do nothing.',
+ support:'Summarize both supporting and contradicting indications, with private source references when available. This field does not create verified evidence.',
+ next_check:'Choose a small check that could change your decision. State what you would observe and how it would affect your next step.'
+};
 async function openOffer(previous=null){
  const data=await api('offer-form',{ref:selected,previous});editor={...data,ref:selected};dirty=false;preview=null;
  $('offer-fields').replaceChildren();$('offer-conflict').hidden=true;$('offer-preview').hidden=true;$('offer-confirm').checked=false;
  $('offer-client').value=data.client;$('offer-period').value=data.period;$('offer-reason').value='';
  $('offer-client').readOnly=previous!==null;$('offer-period').readOnly=previous!==null;
  $('offer-reason-label').hidden=previous===null;$('offer-reason').required=previous!==null;
- for(const field of data.fields){const label=document.createElement('label');label.textContent=field.label;const input=document.createElement('textarea');input.id='field-'+field.key;input.name=field.key;input.maxLength=4000;input.value=field.value;input.placeholder='Not sure yet? Leave this blank.';label.append(input);$('offer-fields').append(label);}
+ for(const field of data.fields){const label=document.createElement('label');label.textContent=field.label;const input=document.createElement('textarea');input.id='field-'+field.key;input.name=field.key;input.maxLength=4000;input.value=field.value;input.placeholder='Not sure yet? Leave this blank.';const help=document.createElement('small');help.id='help-'+field.key;help.textContent=offerHelp[field.key]||'Leave unknown information blank.';input.setAttribute('aria-describedby',help.id);label.append(input,help);$('offer-fields').append(label);}
  screen('offer');$('offer-title').focus();
 }
 $('new-offer').addEventListener('click',()=>act(()=>openOffer()));
@@ -109,23 +135,32 @@ $('open-history').addEventListener('click',()=>act(async()=>{
 }));
 $('history-back').addEventListener('click',()=>act(()=>show(selected)));
 function recordLink(parent,id,label){const button=document.createElement('button');button.type='button';button.className='quiet';button.textContent=label;button.addEventListener('click',()=>act(()=>inspectRecord(id)));parent.append(button);}
-function inspection(titleText,status,body){screen('inspect');$('inspect-title').textContent=titleText;$('inspect-status').textContent=status;$('inspect-text').textContent=body;$('inspect-title').focus();}
+let inspectedTask=null;
+function inspection(titleText,status,body){inspectedTask=null;$('task-form').hidden=true;screen('inspect');$('inspect-title').textContent=titleText;$('inspect-status').textContent=status;$('inspect-text').textContent=body;$('inspect-title').focus();}
 async function inspectDraft(id){
  const data=await api('draft',{ref:selected,id});inspection('Saved '+data.kind+' · Version '+data.version,(data.historical?'Historical version. ':'')+(data.requires_review?'Basis changed — review before reuse. ':'')+'Read-only; this is a draft, not validation.',data.markdown);
  list('inspect-basis',data.basis_ids,'No basis records linked.',(li,key)=>recordLink(li,key,key));
+ if(data.kind==='offer'&&data.historical&&!currentView.archived){const li=document.createElement('li'),button=document.createElement('button');button.type='button';button.textContent='Use this historical offer as a new revision';button.addEventListener('click',()=>act(()=>restoreOffer(data.id)));li.append(button);$('inspect-basis').append(li);}
  list('inspect-dependents',data.successors,'No newer version recorded.',(li,key)=>{const b=document.createElement('button');b.type='button';b.textContent='Read newer version';b.addEventListener('click',()=>act(()=>inspectDraft(key)));li.append(b);});
+}
+async function restoreOffer(id){
+ const restored=await api('offer-restore',{ref:selected,id});await openOffer(restored.latest.previous);
+ if(editor.sha256!==restored.latest.sha256){editor=null;await show(selected);throw Error('The project changed. Open the historical offer again.');}
+ for(const field of editor.fields)$('field-'+field.key).value=restored.fields[field.key]??'';
+ $('offer-reason').value='';dirty=true;preview=null;keepDraft();notice('Version '+restored.source_version+' loaded as proposed text for a new revision. Explain why, then review a fresh preview and confirm. No project files have changed.');
 }
 async function inspectRecord(id){
  const data=await api('record',{ref:selected,id}),r=data.record;
  inspection(r.title||r.text||r.id,'Revision '+data.revision+' · '+r.group+(r.requires_review?' · Review required':'')+(data.truncated?' · First 100 links shown':''),Object.entries(r).filter(([k])=>!['group','requires_review'].includes(k)).map(([k,v])=>k.replaceAll('_',' ')+': '+(typeof v==='string'?v:JSON.stringify(v,null,2))).join('\n\n'));
+ if(r.group==='tasks'&&!data.archived){inspectedTask={ref:selected,id:r.id,revision:data.revision,sha256:data.sha256};$('task-form').reset();$('task-form').hidden=false;$('task-current').textContent='Current progress: '+(progress[r.progress]||r.progress)+(data.active_task_id===r.id?' · Your active task':'');}
  list('inspect-basis',data.prerequisites,'No prerequisites recorded.',(li,item)=>{recordLink(li,item.id,item.title);detail(li,item.reason);});
  list('inspect-dependents',data.dependents,'No dependents recorded.',(li,item)=>recordLink(li,item.id,item.title));
  if(r.group==='artifacts'&&currentView.drafts.some(d=>d.id===r.id)){const b=document.createElement('button');b.type='button';b.textContent='Read saved draft';b.addEventListener('click',()=>act(()=>inspectDraft(r.id)));$('inspect-basis').append(b);}
 }
 let searchState=null;
-async function searchRecords(offset){const result=await api('search',{ref:selected,revision:searchState.revision,query:searchState.query,offset});searchState.next=result.next_offset;$('search-count').textContent=result.total_matches+' matching records · '+result.returned+' shown from '+(offset+1);list('search-results',result.records,'No matches in saved records.',(li,r)=>{recordLink(li,r.id,r.title||r.text||r.description||r.id);detail(li,r.group+' · '+r.id+(r.requires_review?' · Review required':''));});$('search-more').hidden=result.next_offset===null;$('search-count').focus();}
+async function searchRecords(offset){const result=await api(searchState.drafts?'draft-search':'search',{ref:selected,revision:searchState.revision,query:searchState.query,offset});searchState.next=result.next_offset;$('search-count').textContent=result.total_matches+' matching records · '+result.returned+' shown from '+(offset+1)+(result.partial?' · PARTIAL: some documents could not be searched.':'')+(searchState.drafts?' · '+result.scanned+' of '+result.total_candidates+' drafts checked':'');list('search-results',result.records,'No matches in saved records.',(li,r)=>{if(r.group==='drafts'){const b=document.createElement('button');b.type='button';b.className='quiet';b.textContent=r.title;b.addEventListener('click',()=>act(()=>inspectDraft(r.id)));li.append(b);}else recordLink(li,r.id,r.title||r.text||r.description||r.id);detail(li,r.group+' · '+r.id+(r.requires_review?' · Review required':''));if(r.snippet)detail(li,r.snippet);});$('search-more').hidden=result.next_offset===null;$('search-count').focus();}
 $('open-search').addEventListener('click',()=>{screen('search');$('search-results').replaceChildren();$('search-count').textContent='';$('search-more').hidden=true;$('record-query').focus();});
-$('record-search-form').addEventListener('submit',event=>{event.preventDefault();act(async()=>{searchState={revision:currentView.revision,query:$('record-query').value};await searchRecords(0);});});
+$('record-search-form').addEventListener('submit',event=>{event.preventDefault();act(async()=>{searchState={revision:currentView.revision,query:$('record-query').value,drafts:$('search-drafts').checked};await searchRecords(0);});});
 $('search-more').addEventListener('click',()=>act(()=>searchRecords(searchState.next)));
 $('search-back').addEventListener('click',()=>act(()=>show(selected)));
 $('inspect-back').addEventListener('click',()=>act(()=>show(selected)));
@@ -151,6 +186,8 @@ async function applyConflict(keep){
 }
 $('conflict-keep').addEventListener('click',()=>act(()=>applyConflict(true)));
 $('conflict-load').addEventListener('click',()=>act(()=>applyConflict(false)));
+$('task-form').addEventListener('input',event=>{if(event.target.id!=='task-confirm')$('task-confirm').checked=false;});
+$('task-form').addEventListener('submit',event=>{event.preventDefault();act(async()=>{if(!inspectedTask||!$('task-confirm').checked)throw Error('Review and confirm this task change.');const result=await api('task-update',{...inspectedTask,action:$('task-action').value,reason:$('task-reason').value,confirmed:true});await refresh();await show(selected);notice('Task change saved in revision '+result.revision+'. Evidence and dependency status are unchanged.');});});
 window.addEventListener('beforeunload',event=>{if(dirty||wizardDirty){event.preventDefault();event.returnValue='';}});
 function initRecovery(){
  if(recovery)return;
@@ -160,15 +197,33 @@ function recoveryStatus(){
  const entry=recovery?.read();$('recovery-actions').hidden=!entry;
  $('recovery-status').textContent=entry?'Unsaved '+entry.kind+' copy available from '+new Date(entry.at).toLocaleString('en-GB')+'. It has not been saved to a project.':$('keep-draft').checked?'Tab recovery is on. Form changes will be kept locally.':'Tab recovery is off.';
 }
-function clearRecovery(){try{recovery?.clear();$('recovery-text').hidden=true;recoveryStatus();}catch{$('recovery-status').textContent='Could not remove the recovery copy. Clear this tab’s browser storage when finished.';}}
-function keepDraft(){
- if(!$('keep-draft').checked||!recovery)return;
- try{
-  if(editor){recovery.write('offer',{folder:currentView.folder,id:currentView.project_id,previous:editor.previous,revision:editor.revision,sha256:editor.sha256,client:$('offer-client').value,period:$('offer-period').value,reason:$('offer-reason').value,fields:Object.fromEntries(editor.fields.map(f=>[f.key,$('field-'+f.key).value]))});}
-  else if(wizardDirty){const f=$('create-form').elements;recovery.write('wizard',{...Object.fromEntries(['name','id','task','customer','outcome'].map(k=>[k,f[k].value])),practice:wizardPractice});}
-  recoveryStatus();
- }catch{$('recovery-status').textContent='Recovery copy could not be updated. Keep this page open and save your work.';}
+function clearRecovery(){diskStatus();try{recovery?.clear();$('recovery-text').hidden=true;recoveryStatus();}catch{$('recovery-status').textContent='Could not remove the recovery copy. Clear this tab’s browser storage when finished.';}}
+let diskSnapshot=null;
+function currentDraft(){
+ if(editor)return {kind:'offer',data:{folder:currentView.folder,id:currentView.project_id,previous:editor.previous,revision:editor.revision,sha256:editor.sha256,client:$('offer-client').value,period:$('offer-period').value,reason:$('offer-reason').value,fields:Object.fromEntries(editor.fields.map(f=>[f.key,$('field-'+f.key).value]))}};
+ if(wizardDirty){const f=$('create-form').elements;return {kind:'wizard',data:{...Object.fromEntries(['name','id','task','customer','outcome'].map(k=>[k,f[k].value])),practice:wizardPractice}};}
+ return null;
 }
+function diskStatus(){if(diskSnapshot)$('disk-status').textContent=JSON.stringify(currentDraft())===diskSnapshot?'Current form matches the last copy kept in this session. Project save still requires review.':'The current form differs from the last disk copy. Keep another copy to preserve these edits.';}
+function keepDraft(){
+ diskStatus();if(!$('keep-draft').checked||!recovery)return;
+ try{const entry=currentDraft();if(entry)recovery.write(entry.kind,entry.data);recoveryStatus();}catch{$('recovery-status').textContent='Recovery copy could not be updated. Keep this page open and save your work.';}
+}
+async function listDiskCopies(){
+ const result=await api('recovery-list');$('disk-location').textContent='Local folder: '+result.path;
+ list('disk-copies',result.copies,'No recovery copies on disk.',(li,copy)=>{
+  title(li,(copy.title||'Untitled setup')+' · '+copy.kind);detail(li,new Date(copy.created_at).toLocaleString('en-GB')+(copy.expired?' · Expired; local file retained':''));
+  if(!copy.expired){const open=document.createElement('button');open.type='button';open.className='quiet';open.textContent='Recover this text';open.addEventListener('click',()=>act(async()=>{const entry=await api('recovery-read',{id:copy.id});await refresh();await recoverEntry(entry);}));li.append(open);}
+  const label=document.createElement('label'),check=document.createElement('input');label.className='check';check.type='checkbox';label.append(check,document.createTextNode('Permanently forget this copy'));li.append(label);
+  const forget=document.createElement('button');forget.type='button';forget.className='quiet';forget.textContent='Forget copy';forget.addEventListener('click',()=>act(async()=>{if(!check.checked)throw Error('Confirm forgetting this specific recovery copy first.');await api('recovery-forget',{id:copy.id,sha256:copy.sha256,confirmed:true});diskSnapshot=null;$('disk-status').textContent='Recovery copy forgotten. Project files were not changed.';await listDiskCopies();$('disk-list').focus();}));li.append(forget);
+ });
+ if(result.unavailable)notice(result.unavailable+' damaged or incomplete recovery copies could not be opened. Inspect the local folder; no files were replaced.');
+}
+$('disk-list').addEventListener('click',()=>act(listDiskCopies));
+$('disk-save').addEventListener('click',()=>act(async()=>{
+ if(!$('disk-consent').checked)throw Error('Confirm keeping this private text on disk first.');const entry=currentDraft();if(!entry)throw Error('Start a project setup or open an offer form first.');
+ const result=await api('recovery-save',{...entry,confirmed:true});diskSnapshot=JSON.stringify(entry);$('disk-consent').checked=false;diskStatus();await listDiskCopies();notice('Recovery copy kept at '+new Date(result.created_at).toLocaleString('en-GB')+'. Later edits need another copy. Existing copies remain until you forget them.');
+}));
 $('keep-draft').addEventListener('change',()=>{try{sessionStorage.setItem('startkompas-keep-draft',$('keep-draft').checked?'yes':'no');if(!$('keep-draft').checked)clearRecovery();else keepDraft();recoveryStatus();}catch{$('recovery-status').textContent='Browser storage is unavailable; recovery is not active.';}});
 $('forget-draft').addEventListener('click',clearRecovery);
 $('resume-last').addEventListener('click',()=>act(async()=>{if(lastProject)await show(lastProject.ref);}));
@@ -179,9 +234,9 @@ $('practice').addEventListener('click',()=>{
  for(const [key,value]of Object.entries(values))f[key].value=value;
  wizardDirty=true;keepDraft();notice('Fictional practice only. Review the example before creating a separate project. No customer evidence is supplied.');
 });
-$('recover-draft').addEventListener('click',()=>act(async()=>{
+async function recoverEntry(entry){
  if(editor||wizardDirty)throw Error('Finish or discard the current form before recovering another draft.');
- const entry=recovery?.read();if(!entry)throw Error('No valid recovery copy remains in this tab.');
+ if(!entry)throw Error('No valid recovery copy remains in this tab.');
  const d=entry.data;
  if(entry.kind==='wizard'){createScreen();for(const [key,value]of Object.entries(d))if(key!=='practice')$('create-form').elements[key].value=value;wizardPractice=d.practice===true;wizardDirty=true;wizard(0);notice('Recovered setup text. Review all steps and confirm before creating anything.');return;}
  const project=projectList.find(p=>p.folder===d.folder&&p.id===d.id);
@@ -197,5 +252,6 @@ $('recover-draft').addEventListener('click',()=>act(async()=>{
  $('offer-client').value=d.client;$('offer-period').value=d.period;$('offer-reason').value=d.reason;
  for(const [key,value]of Object.entries(d.fields))$('field-'+key).value=value;
  dirty=true;preview=null;$('recovery-text').hidden=true;notice('Recovered unsaved text. Prepare and confirm a fresh preview before saving.');
-}));
+}
+$('recover-draft').addEventListener('click',()=>act(()=>recoverEntry(recovery?.read())));
 act(refresh);

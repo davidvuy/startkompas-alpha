@@ -3,12 +3,13 @@ import path from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {safeDirectory,regularFile,readCore} from './store.mjs';
 import {initializeProject} from './initialize.mjs';
-import {workspaceView,saveGuided,operationId,reportPreview,writeReport,isProjectArchived,isPracticeProject,prepareProjectArchive} from './workspace.mjs';
-import {briefTypes,prepareBusinessBrief,readBusinessBrief,renderBusinessBrief} from './business-brief.mjs';
+import {workspaceView,saveGuided,operationId,reportPreview,writeReport,isProjectArchived,isPracticeProject,prepareProjectArchive,prepareTaskState,prepareTaskFocus} from './workspace.mjs';
+import {briefTypes,prepareBusinessBrief,readBusinessBrief,renderBusinessBrief,searchBusinessBriefs} from './business-brief.mjs';
 import {retrieveRecords} from './retrieval.mjs';
 import {dependencyGraph} from './dependencies.mjs';
 import {listHistory} from './history.mjs';
 import {compareRevisions,renderComparison} from './project-view.mjs';
+import {durableRecovery} from './draft-recovery.mjs';
 
 export class WorkspaceError extends Error {
  constructor(message,status=400){super(message);this.status=status;}
@@ -20,6 +21,7 @@ export function exactObject(value,keys){
 // Shared application boundary: no alternate storage/schema or direct UI writes.
 export function localWorkspace(selectedRoot){
  const root=safeDirectory(selectedRoot),handles=new Map(),references=new Map(),previews=new Map();
+ const recovery=durableRecovery(root);
  const offerKeys=Object.keys(briefTypes.offer.fields);
  function startingFields(d){return Object.fromEntries([['segment','customer','Provisional customer: '],['outcome','outcome','Proposed outcome: ']].map(([key,suffix,prefix])=>{const record=d.assumptions.find(a=>a.id==='starting-'+suffix);return [key,record?.text.startsWith(prefix)?{value:record.text.slice(prefix.length),id:record.id}:null];}));}
  function requireActive(dir,id){if(isProjectArchived(readCore(dir,id).dossier))throw new WorkspaceError('This project is archived. Restore it before editing.',409);}
@@ -49,6 +51,10 @@ export function localWorkspace(selectedRoot){
   return {dir,id,folder};
  }
  return {
+  recoveryList(input){exactObject(input,[]);try{return recovery.list();}catch{throw new WorkspaceError('Recovery copies cannot be read. Inspect the .startkompas-recovery folder; no files were replaced.',409);}},
+  recoverySave(input){exactObject(input,['kind','data','confirmed']);if(input.confirmed!==true)throw new WorkspaceError('Confirm keeping this private text on disk first.');try{return recovery.save(input.kind,input.data);}catch{throw new WorkspaceError('Recovery copy could not be kept. Check the fields and recovery folder, and keep fewer than 50 copies. Your project was not changed.',409);}},
+  recoveryRead(input){exactObject(input,['id']);try{return recovery.read(input.id);}catch{throw new WorkspaceError('This recovery copy is unavailable, damaged or older than seven days. No project was changed.',409);}},
+  recoveryForget(input){exactObject(input,['id','sha256','confirmed']);if(input.confirmed!==true)throw new WorkspaceError('Confirm forgetting this recovery copy first.');try{return recovery.forget(input.id,input.sha256);}catch{throw new WorkspaceError('Recovery copy could not be forgotten. Refresh the list before trying again.',409);}},
   list(){
    checkRoot();const projects=[],unavailable=[];let count=0;
    const iterator=fs.opendirSync(root);
@@ -90,6 +96,10 @@ export function localWorkspace(selectedRoot){
    if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed during search. Refresh it and search again.',409);
    return result;
   },
+  draftSearch(input){
+   exactObject(input,['ref','revision','query','offset']);const {dir,id}=open(input.ref);
+   try{return searchBusinessBriefs(dir,id,input.revision,input.query,input.offset);}catch{throw new WorkspaceError('Draft search could not run. Refresh the project and check your query.',409);}
+  },
   record(input){
    exactObject(input,['ref','id']);const {dir,id}=open(input.ref),state=readCore(dir,id);
    let result;try{result=retrieveRecords(dir,{project_id:id,source_revision:state.dossier.revision,query:'',groups:[],ids:[input.id],offset:0,limit:1});}catch{throw new WorkspaceError('Invalid record selection.');}
@@ -97,7 +107,16 @@ export function localWorkspace(selectedRoot){
    const graph=dependencyGraph(state.dossier),label=key=>{const r=graph.index.get(key);return {id:key,group:r.group,title:r.title??r.text??r.description??key};};
    const prerequisites=[...graph.edges.get(input.id)].map(([key,reason])=>({...label(key),reason})),dependents=graph.reverse.get(input.id).map(label);
    if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed. Open the record again.',409);
-   return {record:result.records[0],revision:state.dossier.revision,prerequisites:prerequisites.slice(0,100),dependents:dependents.slice(0,100),truncated:prerequisites.length>100||dependents.length>100};
+   return {record:result.records[0],revision:state.dossier.revision,sha256:state.sha256,archived:isProjectArchived(state.dossier),active_task_id:state.dossier.active_task_id,prerequisites:prerequisites.slice(0,100),dependents:dependents.slice(0,100),truncated:prerequisites.length>100||dependents.length>100};
+  },
+  taskUpdate(input){
+   exactObject(input,['ref','id','revision','sha256','action','reason','confirmed']);
+   if(input.confirmed!==true)throw new WorkspaceError('Confirm the displayed task change first.');
+   const {dir,id}=open(input.ref),state=readCore(dir,id);requireActive(dir,id);
+   if(state.dossier.revision!==input.revision||state.sha256!==input.sha256)throw new WorkspaceError('The project changed. Reopen the task before updating it.',409);
+   let prepared;try{prepared=input.action==='focus'?prepareTaskFocus(dir,id,input.revision,input.id,input.reason):prepareTaskState(dir,id,input.revision,input.id,input.action,input.reason);}catch{throw new WorkspaceError('Choose a valid task change and provide a reason. Completed/deferred tasks cannot become the focus.',400);}
+   saveGuided(dir,prepared,directory('retry-'+prepared.update_request.operation_id));
+   return {revision:input.revision+1};
   },
   history(input){
    exactObject(input,['ref']);const {dir,id}=open(input.ref),state=readCore(dir,id);
@@ -133,6 +152,13 @@ export function localWorkspace(selectedRoot){
    const result=this.offerForm({ref:input.ref,previous});
    if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed. Compare again.',409);
    return result;
+  },
+  offerRestore(input){
+   exactObject(input,['ref','id']);const {dir,id}=open(input.ref),state=readCore(dir,id);requireActive(dir,id);
+   let source;try{source=readBusinessBrief(dir,id,input.id);if(source.request.kind!=='offer'||!source.successor_ids.length)throw Error('Not a historical offer');}catch{throw new WorkspaceError('Choose an available historical offer. Damaged or current drafts cannot be restored here.',409);}
+   const latest=this.offerLatest({ref:input.ref,previous:input.id});
+   if(readCore(dir,id).sha256!==state.sha256)throw new WorkspaceError('The project changed. Open the historical offer again.',409);
+   return {latest,source_id:input.id,source_version:source.version,fields:Object.fromEntries(source.fields.map(f=>[f.key,f.value??'']))};
   },
   offerPreview(input){
    exactObject(input,['ref','previous','revision','sha256','client','period','reason','fields']);

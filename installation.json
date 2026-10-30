@@ -1,6 +1,6 @@
 {
-  "source_revision": "c4f0bf1c5f7f8b57c0b1248cf3a15d22505373ea",
-  "created_at": "2026-10-30T15:08:05.090Z",
+  "source_revision": "2eb013358188d9b98c81c9e879641c6ed301df58",
+  "created_at": "2026-10-30T15:36:37.958Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -141,7 +141,7 @@
     },
     {
       "path": "docs/alpha-changelog.md",
-      "sha256": "8a28d49388fbc20f552b4f698a1e6e40cc7f69ec059069697d9016b87dbaf02a"
+      "sha256": "5b2120a1ef37ee71a750f7a50b49d61678e5b0a6b5f13b067465b74bbc4b7e86"
     },
     {
       "path": "docs/alpha-contributing.md",
@@ -201,7 +201,7 @@
     },
     {
       "path": "docs/local-ui.md",
-      "sha256": "bcc6424aff6b6cab01ad0bb40eb2dd9272981e8cf4d622c78ecac6a73ee10684"
+      "sha256": "e8755df82e9d3e7849d731ae4a67ea39b52ef238d9cc4c53bec5e9fb47407318"
     },
     {
       "path": "docs/maintenance-readiness.md",
@@ -349,15 +349,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "40bb992ac49954fce8686503fa6e782d65fca1483ae3afad3d46dabd3c55fd7a"
+      "sha256": "bf591eaf865b5fd1768553da026eb2b3d64475c92b678fe4fb8cadfe0eb283a7"
     },
     {
       "path": "package.json",
-      "sha256": "8e10ec251864d3f11bfc6005729904ae792373c9912287de76809fcf0eba39d7"
+      "sha256": "1bd033fc99cf97811ee1746762ca618cca073c9daa9faff2afbf87ee2f7c645a"
     },
     {
       "path": "README.md",
-      "sha256": "36d4e0a4392866ad634b4f6b01ca381d10565fdb0989c060b98dc552616f24c0"
+      "sha256": "16380111f8007df10f516e17ebe8daf3aa71235eb960117c1e53f849af394aef"
     },
     {
       "path": "schemas/cost-scenario.schema.json",
@@ -405,7 +405,7 @@
     },
     {
       "path": "src/business-brief.mjs",
-      "sha256": "2a8f025031b6f2e960df8831b2f46fb6bc483dfbcab71e154a22b81860faee1f"
+      "sha256": "5636a85d3c6d3ecce579b7e37b384e2640a70a71d3d82f6031240ebc1b8d0624"
     },
     {
       "path": "src/business-cli.mjs",
@@ -464,6 +464,10 @@
       "sha256": "341c049badcb4dc3714a3fb0ffdde019b34dde43dcc62520f6162d03bcc49bc5"
     },
     {
+      "path": "src/draft-recovery.mjs",
+      "sha256": "ded6e27ebf1e37245fa1007ecf54488608e64d1d156656f23a8336b0f88b4aba"
+    },
+    {
       "path": "src/handoff.mjs",
       "sha256": "3aeea8d4cb232e6744d5edb883660e3e6c997d2d109c7838bbf15b28789c1389"
     },
@@ -489,11 +493,11 @@
     },
     {
       "path": "src/local-ui-server.mjs",
-      "sha256": "eaa0f7b742321a2aa4d38df574009f8d2891d3def69fd76b5a2564e4dfd93e59"
+      "sha256": "5a462eaba220a37c3f11412573bb683b5935be870f5acfcfb86dbee292f31d7b"
     },
     {
       "path": "src/local-workspace.mjs",
-      "sha256": "838b097bd34099c84ee6cc80ff13c9d8b260be1544e73001f869d4523c6e265c"
+      "sha256": "5a064540f2b657774572e6e847ced306671b25fed4427d2123763687f53d877f"
     },
     {
       "path": "src/menu.mjs",
@@ -569,7 +573,7 @@
     },
     {
       "path": "src/workspace.mjs",
-      "sha256": "315c0c1edbf98ccea5cf2d218526474842be6089875d4af4e10b738e32a433a7"
+      "sha256": "45ad47f16f2ef15b00e164e4bd6fe292c215f38d4764379bd535933ac88d211f"
     },
     {
       "path": "start.mjs",
@@ -600,6 +604,10 @@
       "sha256": "33f778ed3bfce4e1ddbf88ed80fb60fbb6a44840ab3d7b393812b8343865154f"
     },
     {
+      "path": "tests/draft-recovery.test.mjs",
+      "sha256": "fbf3c698edf1946c351a7c9176b65398f8db297b7b3cb80442450eb277c30589"
+    },
+    {
       "path": "tests/entrypoint.test.mjs",
       "sha256": "8e01e5cd5672167c6aa47fcb7a9966e5e41221dfbfd97fd435648eb577b0f203"
     },
@@ -617,7 +625,7 @@
     },
     {
       "path": "tests/local-ui.test.mjs",
-      "sha256": "2ce29ba0939063c1891134f22999c1a64b742e99b628aeca838614576261fb00"
+      "sha256": "2cf57608f4ee4ea6e163e20bfae00657dc627a5c16ec8985d25ecb9960af33a1"
     },
     {
       "path": "tests/menu.test.mjs",
@@ -673,7 +681,7 @@
     },
     {
       "path": "ui/index.html",
-      "sha256": "b78ba87c93bfc029a5731315d194243326ff379afa3b79b58a37bdc8a03d212f"
+      "sha256": "c361041b58786e9c393f2732e08dfe137adf77a56498c4ef6efa3cb4dd4619e8"
     },
     {
       "path": "ui/recovery.js",
@@ -685,7 +693,7 @@
     },
     {
       "path": "ui/ui.js",
-      "sha256": "df8df8c60c11637509f712d877dfaf6b9db2d819b366b5a859ca9422eb6a5689"
+      "sha256": "9641b8e8c8d901702d2db390d1be614823da77e9ca068624add0796a48d6b380"
     }
   ],
   "distribution": "public-alpha"

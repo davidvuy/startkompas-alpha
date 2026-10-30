@@ -23,10 +23,10 @@ function checkRequest(r){
     if(f.assertion==='reported'&&!f.record_ids.length)throw Error('Reported fields require linked project records');
   }
 }
-function loadBrief(state,artifactId){
+function loadBrief(state,artifactId,providedBytes=null){
   const a=state.dossier.artifacts.find(a=>a.id===artifactId);
   if(!a||a.storage!=='local'||a.availability!=='available'||!state.dossier.events.some(e=>e.type==='business-brief-draft'&&e.subject_ids[0]===artifactId))throw Error('Not an available business brief');
-  const bytes=regularFile(localFile(state.directory,a.location));if(sha(bytes)!==a.sha256)throw Error('Business brief fingerprint mismatch');
+  const bytes=providedBytes??regularFile(localFile(state.directory,a.location));if(sha(bytes)!==a.sha256)throw Error('Business brief fingerprint mismatch');
   const saved=JSON.parse(bytes);
   if(saved.format!=='startkompas-business-brief-v1'||saved.project_id!==state.dossier.project_id||saved.artifact_id!==artifactId||!Number.isInteger(saved.version)||saved.version<1||String(saved.version)!==a.version||typeof saved.document_markdown!=='string')throw Error('Business brief identity/format mismatch');
   checkRequest(saved.request);if(saved.request.project_id!==saved.project_id)throw Error('Business brief request identity mismatch');
@@ -76,4 +76,24 @@ export function renderBusinessBrief(dir,projectId,artifactId){
   const notes=[];if(r.practice)notes.push('FICTIONAL PRACTICE — not real customer evidence or validation.');if(r.requires_review)notes.push('CAUTION: basis changed; review again.');
   if(r.successor_ids.length)notes.push(('Historical version; successor: ')+r.successor_ids.join(', '));
   return notes.concat(r.document_markdown).join('\n\n');
+}
+
+export function searchBusinessBriefs(dir,projectId,revision,query,offset=0){
+ if(typeof query!=='string'||query.length>1000||!Number.isSafeInteger(offset)||offset<0||offset>100000)throw Error('Invalid draft search');
+ const state=readCore(dir,projectId);if(state.dossier.revision!==revision)throw Error('Project changed');
+ const candidates=[...new Set(state.dossier.events.filter(e=>e.type==='business-brief-draft').map(e=>e.subject_ids[0]).reverse())];
+ const matches=[],unavailable=[];let bytesRead=0,scanned=0;const maxBytes=4*1024*1024,maxCandidates=32,needle=query.toLowerCase();
+ for(const artifactId of candidates.slice(0,maxCandidates)){
+  if(bytesRead>=maxBytes)break;scanned++;
+  try{
+   const artifact=state.dossier.artifacts.find(a=>a.id===artifactId);if(!artifact||artifact.storage!=='local')throw Error('Unavailable');
+   const bytes=regularFile(localFile(state.directory,artifact.location),maxBytes-bytesRead);bytesRead+=bytes.length;
+   const draft=loadBrief(state,artifactId,bytes);
+   const text=draft.fields.map(f=>f.value??'').join('\n'),at=text.toLowerCase().indexOf(needle);
+   if(at>=0){const start=Math.max(0,at-40);matches.push({id:artifactId,group:'drafts',title:briefTypes[draft.request.kind].title[1]+' · Version '+draft.version,snippet:text.slice(start,start+200),requires_review:state.dossier.workflow?.invalidated_ids.includes(artifactId)||false});}
+  }catch{unavailable.push(artifactId);}
+ }
+ if(readCore(dir,projectId).sha256!==state.sha256)throw Error('Project changed during draft search');
+ const page=matches.slice(offset,offset+25),end=offset+page.length;
+ return {revision,records:page,total_matches:matches.length,returned:page.length,next_offset:end<matches.length?end:null,scanned,total_candidates:candidates.length,partial:scanned<candidates.length||unavailable.length>0,unavailable_count:unavailable.length,limitation:'Searches field text in at most 32 newest saved business drafts and 4 MiB of document data. Older, corrupt or oversized documents may be omitted. No external files or index are searched.'};
 }

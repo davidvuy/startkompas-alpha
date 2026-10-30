@@ -44,7 +44,7 @@ export function workspaceView(dir,id){
  const checks=d.checks.filter(c=>c.applicability!=='not_applicable'&&unresolved(c));
  const next=blockers.length?{kind:'review',record_id:blockers[0].id,reason:blockers[0].reason}:checks.length?{kind:'check',record_id:checks[0].id,reason:'Unresolved recorded check; review its applicability and evidence'}:actions.find(a=>!a.requires_review&&!a.blocked_by.length)?{kind:'task',record_id:actions.find(a=>!a.requires_review&&!a.blocked_by.length).id,reason:'First eligible recorded task, active task preferred'}:assumptions.length?{kind:'assumption',record_id:assumptions[0].id,reason:'Review the assumption with the most declared dependents'}:{kind:'draft',record_id:null,reason:'Prepare an offer or interview guide; no next task has been recorded'};
  if(readCore(dir,id).sha256!==s.sha256)throw Error('Project changed while preparing workspace view');
- return {project_id:id,name:d.name,revision:d.revision,practice:isPracticeProject(d),archived:isProjectArchived(d),sha256:s.sha256,next,actions,blockers,checks,assumptions,drafts,decisions:d.decisions.filter(x=>x.status==='active'),limitations:['Suggested order from recorded data, not an assessment of real-world urgency or readiness.','Every assumption remains a claim; a source or interview note is not automatic validation.','Draft status is never qualified professional approval.']};
+ return {project_id:id,name:d.name,revision:d.revision,practice:isPracticeProject(d),archived:isProjectArchived(d),sha256:s.sha256,resume:{last_event:d.events.length?structuredClone(d.events.at(-1)):null,latest_draft:drafts.at(-1)??null},next,actions,blockers,checks,assumptions,drafts,decisions:d.decisions.filter(x=>x.status==='active'),limitations:['Suggested order from recorded data, not an assessment of real-world urgency or readiness.','Every assumption remains a claim; a source or interview note is not automatic validation.','Draft status is never qualified professional approval.']};
 }
 
 export function renderWorkspace(v){
@@ -157,5 +157,14 @@ export function prepareTaskState(dir,id,expectedRevision,taskId,progress,reason)
  const {dossier:d}=readCore(dir,id);if(d.revision!==expectedRevision)throw Error('Revision conflict; reread project');
  if(!d.tasks.some(t=>t.id===taskId)||!['open','in_progress','deferred','done'].includes(progress))throw Error('Choose an existing task and valid progress');
  const request={project_id:id,expected_revision:expectedRevision,operation_id:operationId(),changes:{tasks:d.tasks.map(t=>t.id===taskId?{...t,progress}:t),events:[...d.events,{id:'progress-'+randomUUID(),type:'user-reported-progress',at:new Date().toISOString(),description:text(reason,'Progress reason'),subject_ids:[taskId]}]}};
+ checkModel({...d,...request.changes});return {update_request:request};
+}
+
+export function prepareTaskFocus(dir,id,expectedRevision,taskId,reason){
+ const {dossier:d}=readCore(dir,id);if(d.revision!==expectedRevision)throw Error('Revision conflict; reread project');
+ const task=d.tasks.find(t=>t.id===taskId);
+ if(!task||['done','deferred'].includes(task.progress)||task.applicability==='not_applicable')throw Error('Choose an unfinished, applicable task');
+ if(d.active_task_id===taskId)throw Error('This task is already selected');
+ const request={project_id:id,expected_revision:expectedRevision,operation_id:operationId(),changes:{active_task_id:taskId,events:[...d.events,{id:'focus-'+randomUUID(),type:'user-selected-task',at:new Date().toISOString(),description:text(reason,'Selection reason'),subject_ids:[taskId]}]}};
  checkModel({...d,...request.changes});return {update_request:request};
 }

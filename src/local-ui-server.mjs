@@ -34,7 +34,7 @@ export async function startLocalUI({root,port=0}){
    if(req.method==='GET'&&assets.has(req.url)){
     const [file,type]=assets.get(req.url);return send(200,fs.readFileSync(file),type);
    }
-   if(!['/api/offer-latest','/api/diagnostics','/api/draft','/api/search','/api/record','/api/history','/api/compare','/api/projects','/api/create','/api/show','/api/offer-form','/api/offer-preview','/api/offer-save','/api/report-preview','/api/report-save','/api/archive'].includes(req.url))throw new WorkspaceError('Not found.',404);
+   if(!['/api/recovery-list','/api/recovery-save','/api/recovery-read','/api/recovery-forget','/api/offer-restore','/api/draft-search','/api/task-update','/api/offer-latest','/api/diagnostics','/api/draft','/api/search','/api/record','/api/history','/api/compare','/api/projects','/api/create','/api/show','/api/offer-form','/api/offer-preview','/api/offer-save','/api/report-preview','/api/report-save','/api/archive'].includes(req.url))throw new WorkspaceError('Not found.',404);
    if(req.method!=='POST')throw new WorkspaceError('This operation requires a POST request.',405);
    const supplied=req.headers['x-startkompas-session'];
    if(req.headers.origin!==origin||typeof supplied!=='string'||! /^[a-f0-9]{64}$/.test(supplied)||!timingSafeEqual(Buffer.from(supplied),Buffer.from(token)))throw new WorkspaceError('The session is missing or expired. Reopen the link from the terminal.',403);
@@ -44,15 +44,19 @@ export async function startLocalUI({root,port=0}){
     exactObject(input,[]);const version=JSON.parse(fs.readFileSync(new URL('../package.json',import.meta.url),'utf8')).version;
     result={markdown:['Startkompas local workspace problem report','Application version: '+version,'Node version: '+process.versions.node,'Platform: '+process.platform,'','Steps to reproduce using fictional data: [fill in]','Expected result: [fill in]','Actual result: [fill in]','','This report contains no project names, paths, session tokens or project contents. Review your additions before sharing.'].join('\n')};
    }
+   for(const [route,method] of [['recovery-list','recoveryList'],['recovery-save','recoverySave'],['recovery-read','recoveryRead'],['recovery-forget','recoveryForget']])if(req.url==='/api/'+route)result=workspace[method](input);
    if(req.url==='/api/projects'){exactObject(input,[]);result=workspace.list();}
    if(req.url==='/api/draft')result=workspace.draft(input);
+   if(req.url==='/api/draft-search')result=workspace.draftSearch(input);
    if(req.url==='/api/search')result=workspace.search(input);
    if(req.url==='/api/record')result=workspace.record(input);
    if(req.url==='/api/history')result=workspace.history(input);
    if(req.url==='/api/compare')result=workspace.compare(input);
    if(req.url==='/api/create')result=workspace.create(input);
    if(req.url==='/api/show'){exactObject(input,['ref']);result=workspace.show(input.ref);}
+   if(req.url==='/api/task-update')result=workspace.taskUpdate(input);
    if(req.url==='/api/offer-form')result=workspace.offerForm(input);
+   if(req.url==='/api/offer-restore')result=workspace.offerRestore(input);
    if(req.url==='/api/offer-latest')result=workspace.offerLatest(input);
    if(req.url==='/api/offer-preview')result=workspace.offerPreview(input);
    if(req.url==='/api/offer-save')result=workspace.offerSave(input);

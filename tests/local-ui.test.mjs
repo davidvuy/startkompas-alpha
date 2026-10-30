@@ -24,6 +24,56 @@ async function setup(t){
 }
 const input=(id='example')=>({id,name:'Synthetic project',task:'Check a problem',confirmed:true});
 
+test('historical offer reuse prepares a new explained revision without replacing old files',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref,dir=path.join(root,'example');
+ const first=await offer(request,ref);first.fields.outcome='Original fictional outcome';
+ const p1=(await request('/api/offer-preview',first)).json(),s1=(await request('/api/offer-save',{ref,preview:p1.preview,confirmed:true})).json();
+ const second=await offer(request,ref,s1.artifact_id);second.fields.outcome='Newer fictional outcome';
+ const p2=(await request('/api/offer-preview',second)).json(),s2=(await request('/api/offer-save',{ref,preview:p2.preview,confirmed:true})).json();
+ const state=readCore(dir,'example'),oldFiles=state.dossier.artifacts.map(a=>[a.location,fs.readFileSync(path.join(dir,a.location))]);
+ const restored=(await request('/api/offer-restore',{ref,id:s1.artifact_id})).json();assert.equal(restored.source_version,1);assert.equal(restored.latest.previous,s2.artifact_id);assert.equal(restored.fields.outcome,'Original fictional outcome');assert.equal(readCore(dir,'example').sha256,state.sha256);
+ const proposed={ref,...restored.latest,fields:restored.fields,reason:''};assert.equal((await request('/api/offer-preview',proposed)).status,400);
+ proposed.reason='Restore original scope after reviewing the alternatives';const p3=(await request('/api/offer-preview',proposed)).json();assert.equal((await request('/api/offer-save',{ref,preview:p3.preview,confirmed:true})).status,200);
+ assert.equal(readCore(dir,'example').dossier.revision,4);assert.ok(oldFiles.every(([p,b])=>fs.readFileSync(path.join(dir,p)).equals(b)));
+ assert.equal((await request('/api/offer-restore',{ref,id:s1.artifact_id},{Origin:'https://attacker.invalid'})).status,403);
+ const v=(await request('/api/show',{ref})).json();await request('/api/archive',{ref,revision:v.revision,sha256:v.sha256,archived:true,confirmed:true});assert.equal((await request('/api/offer-restore',{ref,id:s1.artifact_id})).status,409);
+});
+
+test('draft text search finds original documents and reports unreadable content without writes',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref;
+ const draft=await offer(request,ref);draft.fields.outcome='Unique handover wording only inside the draft';
+ const preview=(await request('/api/offer-preview',draft)).json(),saved=(await request('/api/offer-save',{ref,preview:preview.preview,confirmed:true})).json();
+ const dir=path.join(root,'example'),before=fs.readFileSync(path.join(dir,'project.json')),query={ref,revision:2,query:'HANDOVER WORDING',offset:0};
+ const found=await request('/api/draft-search',query);assert.equal(found.status,200);assert.equal(found.json().total_matches,1);assert.equal(found.json().records[0].id,saved.artifact_id);assert.match(found.json().records[0].snippet,/Unique handover/);assert.equal(found.json().partial,false);
+ assert.equal((await request('/api/search',query)).json().total_matches,0);
+ assert.equal((await request('/api/draft-search',{...query,revision:1})).status,409);
+ assert.equal((await request('/api/draft-search',query,{Origin:'https://attacker.invalid'})).status,403);
+ assert.equal((await request('/api/draft-search',{...query,path:'../escape'})).status,400);
+ const artifact=readCore(dir,'example').dossier.artifacts.find(a=>a.id===saved.artifact_id);fs.appendFileSync(path.join(dir,artifact.location),'corrupt');
+ const partial=(await request('/api/draft-search',query)).json();assert.equal(partial.partial,true);assert.equal(partial.unavailable_count,1);assert.equal(partial.total_matches,0);
+ assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);
+});
+
+test('task choices preserve evidence states, require confirmation and reject stale and archived writes',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref,dir=path.join(root,'example');
+ const original=readCore(dir,'example').dossier.tasks[0];
+ const task=(await request('/api/record',{ref,id:'first-task'})).json();
+ const change={ref,id:'first-task',revision:task.revision,sha256:task.sha256,action:'in_progress',reason:'Starting the synthetic check',confirmed:false};
+ assert.equal((await request('/api/task-update',change)).status,400);change.confirmed=true;
+ assert.equal((await request('/api/task-update',change,{Origin:'https://attacker.invalid'})).status,403);
+ assert.equal((await request('/api/task-update',change)).status,200);
+ const updated=readCore(dir,'example').dossier;assert.deepEqual(updated.tasks[0],{...original,progress:'in_progress'});assert.equal(updated.events.at(-1).type,'user-reported-progress');
+ assert.equal((await request('/api/task-update',change)).status,409);
+ updateCore(dir,{project_id:'example',expected_revision:2,operation_id:'add-second-task',changes:{tasks:[...updated.tasks,{...original,id:'second-task',title:'Another synthetic task'}]}});
+ const second=(await request('/api/record',{ref,id:'second-task'})).json();
+ assert.equal((await request('/api/task-update',{...change,id:'second-task',revision:second.revision,sha256:second.sha256,action:'focus'})).status,200);
+ assert.equal(readCore(dir,'example').dossier.active_task_id,'second-task');
+ assert.deepEqual(readCore(dir,'example').dossier.tasks[1],{...original,id:'second-task',title:'Another synthetic task'});
+ const v=(await request('/api/show',{ref})).json();await request('/api/archive',{ref,revision:v.revision,sha256:v.sha256,archived:true,confirmed:true});
+ const a=(await request('/api/record',{ref,id:'first-task'})).json();assert.equal(a.archived,true);
+ assert.equal((await request('/api/task-update',{...change,revision:a.revision,sha256:a.sha256})).status,409);
+});
+
 test('latest offer resolution follows saved successors without bypassing stale preview guards',async t=>{
  const {root,request}=await setup(t),ref=(await request('/api/create',input())).json().ref;
  const first=(await request('/api/offer-preview',await offer(request,ref))).json();
@@ -276,4 +326,12 @@ test('report routes reject cross-project handles, unknown sections and untrusted
  assert.equal((await request('/api/report-save',{ref:other,preview,confirmed:true})).status,409);
  assert.equal((await request('/api/report-save',{ref,preview,confirmed:true},{Origin:'https://attacker.invalid'})).status,403);
  assert.equal((await request('/api/report-save',{ref,preview,confirmed:true,path:'../escape'})).status,400);
+});
+
+test('resume points at the last recorded draft without hiding damaged latest work or changing project bytes',async t=>{
+ const {root,request}=await setup(t),ref=(await request('/api/create',input('resume-example'))).json().ref,dir=path.join(root,'resume-example');
+ assert.equal((await request('/api/show',{ref})).json().resume.latest_draft,null);
+ const first=await offer(request,ref);first.fields.outcome='Fictional result';const preview=(await request('/api/offer-preview',first)).json();const saved=(await request('/api/offer-save',{ref,preview:preview.preview,confirmed:true})).json();
+ const state=readCore(dir,'resume-example'),view=(await request('/api/show',{ref})).json();assert.equal(view.resume.latest_draft.id,saved.artifact_id);assert.equal(view.resume.latest_draft.version,1);assert.ok(view.resume.last_event);assert.equal(readCore(dir,'resume-example').sha256,state.sha256);
+ const artifact=state.dossier.artifacts.find(a=>a.id===saved.artifact_id);fs.appendFileSync(path.join(dir,artifact.location),'broken');const damaged=(await request('/api/show',{ref})).json();assert.equal(damaged.resume.latest_draft.id,saved.artifact_id);assert.equal(damaged.resume.latest_draft.status,'unavailable_or_invalid');assert.equal(readCore(dir,'resume-example').sha256,state.sha256);
 });

@@ -1,5 +1,16 @@
 # Changes
 
+## 0.1.0-alpha.8 — durable recovery and easier resumption
+
+- Explicit private form copies on disk survive browser/server restarts. Unique immutable files, strict field/size limits, seven-day form restoration and per-copy confirmed removal; expired files stay until removed. No autosave, encryption or power-loss guarantee.
+- Choose an active task or report progress with a reason; evidence and applicability remain unchanged.
+- Search saved draft text within disclosed document/read limits and open the original version.
+- Reuse historical offer fields as a new explained version with fresh preview/confirmation; original files remain intact.
+- Resume from the last recorded event and latest draft, with damaged-latest disclosure. Accessible field guidance preserves unknowns and does not insert fictional examples.
+- Contextual error actions return to retained form text, refresh the project list, expose recovery options or compare an offer conflict.
+
+Independent user validation, screen-reader acceptance, broader interactive browser coverage and security audit remain open. The full roadmap is not complete.
+
 ## 0.1.0-alpha.7 — practice, recovery and readable project work
 
 - Fictional practice setup with a persistent marker through rename and export/restore; draft and report warnings stay visible.
