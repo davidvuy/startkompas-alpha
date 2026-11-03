@@ -1,3 +1,5 @@
+import {priorityRows} from './research-order.mjs';
+import {sharingReview} from './sharing-review.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
@@ -37,12 +39,13 @@ export function workspaceView(dir,id){
   return {id:t.id,title:t.title,progress:t.progress,blocked_by:[...new Set([...blocked,...material.blockers.map(b=>b.record_id)])],requires_review:invalid.has(t.id)};
  }).sort((a,b)=>Number(b.id===d.active_task_id)-Number(a.id===d.active_task_id));
  const drafts=d.events.filter(e=>e.type==='business-brief-draft').map(e=>e.subject_ids[0]).filter((id,n,a)=>a.indexOf(id)===n).map(artifactId=>{
-  try{const b=readBusinessBrief(dir,id,artifactId);return {id:artifactId,kind:b.request.kind,client:b.request.client,period:b.request.period,version:b.version,status:b.requires_review?'review_required':'draft',historical:b.successor_ids.length>0,unknown_fields:b.fields.filter(f=>f.value===null).map(f=>f.key)};}
+  try{const b=readBusinessBrief(dir,id,artifactId);return {...(b.request.kind==='experiment'?{worksheet_name:b.template_context?.template.name??null,question:b.fields.find(f=>f.key==='question')?.value??null}:{}),id:artifactId,kind:b.request.kind,client:b.request.client,period:b.request.period,version:b.version,status:b.requires_review?'review_required':'draft',historical:b.successor_ids.length>0,unknown_fields:b.fields.filter(f=>f.value===null).map(f=>f.key)};}
   catch{return {id:artifactId,status:'unavailable_or_invalid',historical:false};}
  });
- const assumptions=d.assumptions.map(a=>({...a,requires_review:invalid.has(a.id),dependent_count:affected(d,[a.id]).length-1})).sort((a,b)=>b.dependent_count-a.dependent_count);
+ const assessmentIds=new Set(d.events.filter(e=>e.type==='research-priority').map(e=>e.subject_ids[0]));
+ const assumptions=priorityRows({...s,dossier:d}).map(row=>({...d.assumptions.find(a=>a.id===row.id),requires_review:invalid.has(row.id),dependent_count:affected(d,[row.id]).filter(key=>key!==row.id&&!assessmentIds.has(key)).length}));
  const checks=d.checks.filter(c=>c.applicability!=='not_applicable'&&unresolved(c));
- const next=blockers.length?{kind:'review',record_id:blockers[0].id,reason:blockers[0].reason}:checks.length?{kind:'check',record_id:checks[0].id,reason:'Unresolved recorded check; review its applicability and evidence'}:actions.find(a=>!a.requires_review&&!a.blocked_by.length)?{kind:'task',record_id:actions.find(a=>!a.requires_review&&!a.blocked_by.length).id,reason:'First eligible recorded task, active task preferred'}:assumptions.length?{kind:'assumption',record_id:assumptions[0].id,reason:'Review the assumption with the most declared dependents'}:{kind:'draft',record_id:null,reason:'Prepare an offer or interview guide; no next task has been recorded'};
+ const next=blockers.length?{kind:'review',record_id:blockers[0].id,reason:blockers[0].reason}:checks.length?{kind:'check',record_id:checks[0].id,reason:'Unresolved recorded check; review its applicability and evidence'}:actions.find(a=>!a.requires_review&&!a.blocked_by.length)?{kind:'task',record_id:actions.find(a=>!a.requires_review&&!a.blocked_by.length).id,reason:'First eligible recorded task, active task preferred'}:assumptions.length?{kind:'assumption',record_id:assumptions[0].id,reason:'Follow the current research order: your priority, impact, uncertainty and direct work dependencies; stale or unavailable ratings are not used'}:{kind:'draft',record_id:null,reason:'Prepare an offer or interview guide; no next task has been recorded'};
  if(readCore(dir,id).sha256!==s.sha256)throw Error('Project changed while preparing workspace view');
  return {project_id:id,name:d.name,revision:d.revision,practice:isPracticeProject(d),archived:isProjectArchived(d),sha256:s.sha256,resume:{last_event:d.events.length?structuredClone(d.events.at(-1)):null,latest_draft:drafts.at(-1)??null},next,actions,blockers,checks,assumptions,drafts,decisions:d.decisions.filter(x=>x.status==='active'),limitations:['Suggested order from recorded data, not an assessment of real-world urgency or readiness.','Every assumption remains a claim; a source or interview note is not automatic validation.','Draft status is never qualified professional approval.']};
 }
@@ -114,7 +117,7 @@ export function reportPreview(dir,id,sections=['summary','tasks']){
  if(v.practice)lines.splice(2,0,'FICTIONAL PRACTICE — not real customer evidence or validation.');
  const markdown=lines.join('\n')+'\n';
  if(readCore(dir,id).sha256!==state.sha256)throw Error('Project changed while preparing report');
- return {project_id:id,revision:v.revision,sections,bytes:Buffer.byteLength(markdown),confirmation_sha256:sha(markdown),markdown};
+ return {project_id:id,revision:v.revision,sections,bytes:Buffer.byteLength(markdown),confirmation_sha256:sha(markdown),markdown,sharing_review:sharingReview(markdown)};
 }
 
 export function writeReport(dir,id,sections,expectedDigest,destination){

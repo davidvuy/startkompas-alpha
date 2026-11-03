@@ -1,3 +1,4 @@
+import {documentFieldDefinitions} from './business-fields.mjs';
 import {readCore,bytesFor,sha} from './store.mjs';
 import {briefTypes,readBusinessBrief} from './business-brief.mjs';
 import {compareDocuments} from './document-comparison.mjs';
@@ -19,7 +20,7 @@ export function affectedSections(dir,id,before,after){
  if(source.successor_ids.length)throw Error('Open the current later version before selecting revisions');
  const candidates=new Map(),reviews=[],unavailable=[];
  function add(draft,key,reason){const field=draft.fields.find(f=>f.key===key);if(!field)throw Error('Missing target section');const identity=draft.artifact_id+':'+key;
-  if(!candidates.has(identity))candidates.set(identity,{document_id:draft.artifact_id,version:draft.version,kind:draft.request.kind,key,label:briefTypes[draft.request.kind].fields[key][1],reasons:[]});
+  if(!candidates.has(identity))candidates.set(identity,{document_id:draft.artifact_id,version:draft.version,kind:draft.request.kind,key,label:documentFieldDefinitions(draft.request)[key][1],reasons:[]});
   candidates.get(identity).reasons.push(reason);
  }
  for(const change of comparison.changes.filter(c=>c.before.value!==c.after.value))for(const [key,reason] of Object.entries(rules[source.request.kind]?.[change.key]??{})){

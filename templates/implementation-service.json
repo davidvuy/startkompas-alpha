@@ -1,0 +1,57 @@
+{
+  "format": "startkompas-document-template-v1",
+  "id": "implementation-service",
+  "version": 1,
+  "name": "Implementation service",
+  "document_kind": "offer",
+  "audience": "Teams planning one bounded workflow change",
+  "scope": "A proposed configuration, handover and acceptance process",
+  "required_inputs": [
+    "segment",
+    "job",
+    "delivery",
+    "exclusions"
+  ],
+  "unknowns": [
+    "Whether the current systems and permissions support the change",
+    "Whether the proposed acceptance and rollback process is feasible"
+  ],
+  "boundaries": [
+    "Configuration is not evidence of adoption or business impact",
+    "Migration, integrations and ongoing support must be explicitly scoped"
+  ],
+  "sections": [
+    {
+      "key": "segment",
+      "prompt": "Who will operate and own the changed workflow?"
+    },
+    {
+      "key": "job",
+      "prompt": "Which concrete workflow step needs changing?"
+    },
+    {
+      "key": "outcome",
+      "prompt": "What observable capability should exist after handover? Avoid guaranteed savings."
+    },
+    {
+      "key": "delivery",
+      "prompt": "What configuration, dependencies, test, handover and acceptance steps are included?"
+    },
+    {
+      "key": "exclusions",
+      "prompt": "What migrations, integrations, support periods or custom development are excluded?"
+    },
+    {
+      "key": "workaround",
+      "prompt": "How is the task currently done and what would switching disrupt?"
+    },
+    {
+      "key": "support",
+      "prompt": "Which actual observations support or challenge this implementation? Separate assumptions."
+    },
+    {
+      "key": "next_check",
+      "prompt": "Which dependency and acceptance test must be checked before committing?"
+    }
+  ]
+}

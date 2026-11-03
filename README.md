@@ -8,9 +8,11 @@ Keep project decisions, unfinished work and the basis for your business drafts t
 
 This is an experimental alpha. Independent user validation is still ahead. No measured time saving, business success or compliance outcome is promised. Download this repository using Code → Download ZIP, or clone https://github.com/davidvuy/startkompas-alpha. For feedback use https://github.com/davidvuy/startkompas-alpha/issues.
 
+See the release notes for the exact tested scope and pending browser checks. Earlier alpha releases remain available separately.
+
 ## Start here
 
-[Download alpha 12.1 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.12.1.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
+[Download alpha 13 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.13.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
 
 Extract the ZIP into a new folder. Open a terminal in that folder, install the locked dependencies and open the English menu:
 
@@ -30,6 +32,12 @@ Choose an existing projects parent outside the app and run `npm run ui -- ../my-
 Read saved document sections, see unanswered fields and their recorded basis, and revise one section without losing other manual text. Keep suggestions separate until you accept or reject them. Compare versions side by side, inspect affected-section explanations and review the complete new version before saving.
 
 For external use, select only the offer fields you want to include; all fields start excluded. Preview the exact text and save a separate local copy. No upload occurs, and later project changes do not alter that copy. See [document review, comparison and sharing](docs/local-ui.md).
+
+## Learning, review and recovery
+
+Capture sources and conversation notes, retain supporting and opposing findings, and prepare a small experiment without treating a plan as a result. Exchange selected mentor files through your own sharing route and deliberately review imported feedback.
+
+Optional tab and disk recovery preserves unfinished inputs without restoring approval. Historical project reinstatement creates a new revision while retaining privacy removals and review requirements. Local PDF exports and reusable worksheets stay separate from source documents. See [release notes and verification limits](docs/alpha-changelog.md).
 
 ## Guided project work
 

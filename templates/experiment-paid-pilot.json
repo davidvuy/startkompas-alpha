@@ -1,0 +1,58 @@
+{
+  "format": "startkompas-document-template-v1",
+  "id": "experiment-paid-pilot",
+  "version": 1,
+  "name": "Bounded paid pilot",
+  "document_kind": "experiment",
+  "audience": "People choosing a bounded way to investigate a specific business uncertainty",
+  "scope": "Prepare a small proposed paid engagement to learn about delivery and observed value in one explicit context.",
+  "required_inputs": [
+    "question",
+    "method",
+    "audience",
+    "effort",
+    "observation",
+    "decision_rule",
+    "boundaries"
+  ],
+  "unknowns": [
+    "Suitable participants, permissions, materials and access until explicitly confirmed",
+    "Actual observations and outcomes until recorded with sources"
+  ],
+  "boundaries": [
+    "Cannot establish payment, profit, repeatability, retention or wider demand until relevant actual records exist; one pilot cannot establish general demand.",
+    "This worksheet does not record execution, observations, validation or payments",
+    "Record actual results separately with provenance; retain later changes to the decision rule",
+    "User-supplied dates cannot prove a plan preceded execution"
+  ],
+  "sections": [
+    {
+      "key": "question",
+      "prompt": "Which delivery or value uncertainty would a bounded pilot investigate?"
+    },
+    {
+      "key": "method",
+      "prompt": "Prepare a proposed deliverable, exclusions, acceptance check, feedback questions, payment terms to discuss and a blank delivery log. Separate proposal, accepted agreement, work delivered and actual payment records. Reuse an existing offer or pilot record explicitly if available."
+    },
+    {
+      "key": "audience",
+      "prompt": "Which customer situation and decision-maker role would fit? Participants, agreement, access and willingness to pay remain unknown until actually recorded."
+    },
+    {
+      "key": "effort",
+      "prompt": "Set proposed effort and cash limits, required materials and dependencies. Compare expected revenue and costs without assuming payment or unpaid work; record unknown estimates."
+    },
+    {
+      "key": "observation",
+      "prompt": "Plan to retain delivery evidence, actual effort and cost, customer feedback and payment status as separate sourced records. Do not infer satisfaction from delivery or receipt of money alone."
+    },
+    {
+      "key": "decision_rule",
+      "prompt": "Which observed delivery, value and effort outcomes would justify repeating, changing or stopping? Define the decision before delivery and retain later changes."
+    },
+    {
+      "key": "boundaries",
+      "prompt": "Set a maximum time/cost and explicit pause conditions for scope changes or missing agreement/access. This plan authorizes no spending, billing, contract, outreach or execution."
+    }
+  ]
+}

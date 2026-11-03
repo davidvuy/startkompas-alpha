@@ -1,6 +1,6 @@
 # Actual local route: data flows and boundaries
 
-Checked2026-10-27 for internal Windows/Node26.7.0/Codex CLI0.162.1 development. This supersedes the early SK04 map's unbuilt-product and controller-network assumptions. It does not certify a deployment or account. Real dossiers belong outside source; organizational separation alone is not access control.
+Historical baseline checked2026-10-27 for internal Windows/Node26.7.0/Codex CLI0.162.1 development. The current-route reconciliation below supersedes historical no-publication and CLI-only wording. This supersedes the early SK04 map's unbuilt-product and controller-network assumptions. It does not certify a deployment or account. Real dossiers belong outside source; organizational separation alone is not access control.
 
 | Location / movement | Actual behavior | Enforced versus procedural boundary |
 |---|---|---|
@@ -29,3 +29,21 @@ Checked2026-10-27 for internal Windows/Node26.7.0/Codex CLI0.162.1 development. 
 - Synthetic security tests and one model refusal cannot establish universal injection resistance. Keep original failures and scope limits. Unsupported host modes/other providers remain untested; Claude is deferred.
 
 For privacy-sensitive or real-service deployment, actual host/account/provider controls and scoped expertise remain open conditions. This document records facts and limitations; it does not authorize new uploads, contacts, publication or spending.
+
+
+## Current local routes — reconciled 2026-11-03
+
+The private working repository and reviewed public alpha are separate histories. Public alpha12.1 exists; subsequent local changes are not automatically published. The historical table's “No remote or public upload performed” describes its original checkpoint, not current publication state. Never push the mixed private history as a release.
+
+| Surface | Data movement and persistence | Enforced boundary and remaining limit |
+| --- | --- | --- |
+| Local browser | Static assets from a loopback server; requests exchange selected project data with that local process. Session token is supplied in the URL fragment, removed from the address bar and kept in tab storage. | local-ui-server.mjs binds loopback and checks session, Host/Origin and request limits. CSP restricts browser connections to the same origin. This is not an authenticated multi-user service or protection from other authorized local processes. |
+| Browser form recovery | Optional sessionStorage copies contain unfinished input; explicit disk recovery copies live under the selected workspace's .startkompas-recovery directory. Both can contain private text. | Exact context and expiry govern restoration; preview handles and confirmations are excluded. Tab copies may disappear on tab/server lifecycle. Expired disk copies are not automatically deleted. Neither route is encrypted storage or a backup promise. |
+| Selected AI context | Local preview contains selected records/fields; omission choices restrict that packet. The app makes no model call. | Copying or using the packet in a host/model is a separate data transfer. Selection is not automatic redaction or an OS-level access restriction. Host/provider handling remains outside this app. |
+| Report, summary and PDF | Explicit selection and review produce local files. Saved exports remain snapshots when the project changes. | Exact preview/context checks precede saving. These formats do not bundle arbitrary adjacent files; selected prose can still disclose private data. Export preferences require explicit application and fresh review. Saving does not send. |
+| Mentor exchange | Selected review package and standalone HTML can be saved locally; reviewer feedback and unfinished reviewer drafts are separate files. Import is explicit and tied to package/project/version/section. | No mail, hosting, invitations or authenticated reviewer identity. A delivered copy cannot be recalled. Standalone file-browser interaction remains unverified; generated-client tests are not browser proof. |
+| Source removal | Explicit project removal can remove selected source bytes and linked copies; tombstones and events remain. Historical reinstatement preserves removals. | Old exports, separately downloaded files, OS backups and provider copies are outside the transaction. Reappeared removed bytes block reinstatement; the app does not silently erase them. Metadata and prior records can themselves remain sensitive. |
+| Project reinstatement | Explicit preview/reason/confirmation creates a new revision, retains the previous snapshot, preserves privacy removals and existing review requirements. | It is not physical erasure of later history, a schema downgrade or independent revalidation. Restoring a form draft does not restore the project. |
+| Support | Editable, allowlisted support metadata with an explicit GitHub route. | Nothing is posted automatically. User-added report text may be private; GitHub submission is a separate external action. |
+
+Evidence inspected: local-ui-server.mjs, ui/ui.js, source selection and recovery code; local-ui, draft-recovery, ui-recovery, skill-context, export-settings, review-package, review-feedback, mentor-review, source-removal and history tests. Exact successful source/installed runs and their limitations are recorded in checkpoint.md. These checks do not establish absence of every secret, universal prompt-injection resistance, account retention settings or an independent security audit. No real private dossier was used in this reconciliation.

@@ -1,3 +1,4 @@
+import Ajv2020 from 'ajv/dist/2020.js';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import test from 'node:test';
@@ -8,9 +9,14 @@ import path from 'node:path';
 import {checkModel} from '../src/model.mjs';
 import {emptyWorkflow,affected} from '../src/dependencies.mjs';
 import {createCore,readCore,updateCore,attachFile,sha} from '../src/store.mjs';
-import {planNext,findReusable,prepareChange,upgradeWorkflow} from '../src/workflow.mjs';
+import {planNext as rawPlan,findReusable as rawReuse,prepareChange as rawImpact,upgradeWorkflow} from '../src/workflow.mjs';
 import {handoff} from '../src/handoff.mjs';
 import {exportCore,restoreCore} from '../src/transfer.mjs';
+const ajv=new Ajv2020({strict:true,allowUnionTypes:true});
+for(const name of ['dossier-v1.schema.json','dossier-v1.1.schema.json','project-handoff-v1.schema.json','update-request-v1.schema.json'])ajv.addSchema(JSON.parse(fs.readFileSync(new URL('../schemas/'+name,import.meta.url))),name);
+const workflowSchema=JSON.parse(fs.readFileSync(new URL('../schemas/workflow-contract-v1.schema.json',import.meta.url)));ajv.addSchema(workflowSchema);
+const checked=(kind,fn)=>(...args)=>{const result=fn(...args),validate=ajv.getSchema(workflowSchema.$id+'#/$defs/'+kind+'_result');assert.ok(validate(result),JSON.stringify(validate.errors));return result;};
+const planNext=checked('plan',rawPlan),findReusable=checked('reuse',rawReuse),prepareChange=checked('impact',rawImpact);
 const baseFixture=JSON.parse(fs.readFileSync(new URL('../examples/dossier-v1.json',import.meta.url)));
 export function fixture(){
   const d=structuredClone(baseFixture);d.schema_version='1.1.0';d.workflow=emptyWorkflow();
@@ -104,4 +110,18 @@ test('SK17 explicit impact also reopens accepted uncertainty in a new process',t
  const p=prepareChange(dir,{project_id:'pilot-orbit',expected_revision:1,operation_id:'review-acceptance',changed_ids:['fact-1'],reason:'New external information',at:'2026-10-29'});updateCore(dir,p.update_request);
  const input=path.join(dir,'plan-request.json');fs.writeFileSync(input,JSON.stringify({kind:'material_choice',target_ids:['build']}));
  const result=JSON.parse(execFileSync(process.execPath,[fileURLToPath(new URL('../src/core-cli.mjs',import.meta.url)),'plan',dir,'pilot-orbit',input],{encoding:'utf8'}));assert.equal(result.blockers.length,1);assert.equal(result.acceptance_requiring_review.length,1);
+});
+
+test('workflow CLI contracts validate proposals and reject malformed input without writes',t=>{
+ const {dir,base}=setup(t),id='pilot-orbit',cli=fileURLToPath(new URL('../src/startkompas.mjs',import.meta.url)),file=path.join(base,'request.json'),before=fs.readFileSync(path.join(dir,'project.json'));
+ const examples={plan:{kind:'material_choice',target_ids:['build']},reuse:{goal:'No declared intent',client:null,period:null,version:null},impact:{project_id:id,expected_revision:1,operation_id:'impact-contract',changed_ids:['fact-1'],reason:'Synthetic external change',at:'2026-11-03'}};
+ for(const [kind,input]of Object.entries(examples)){
+  const validateInput=ajv.getSchema(workflowSchema.$id+'#/$defs/'+kind+'_request'),validateOutput=ajv.getSchema(workflowSchema.$id+'#/$defs/'+kind+'_result');assert.ok(validateInput(input));fs.writeFileSync(file,JSON.stringify(input));
+  const args=['project',kind,dir,...(kind==='impact'?[]:[id]),file],out=JSON.parse(execFileSync(process.execPath,[cli,...args],{encoding:'utf8'}));assert.ok(validateOutput(out),JSON.stringify(validateOutput.errors));
+  for(const bad of [{...input,extra:true},null]){assert.equal(validateInput(bad),false);fs.writeFileSync(file,JSON.stringify(bad));assert.throws(()=>execFileSync(process.execPath,[cli,...args],{encoding:'utf8',stdio:'pipe'}));}
+  assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);
+ }
+ assert.throws(()=>rawImpact(dir,{...examples.impact,expected_revision:'1'}),/Invalid impact request/);
+ assert.throws(()=>rawPlan(dir,id,{kind:'material_choice',target_ids:['absent']}),/existing target_ids/);
+ assert.throws(()=>rawReuse(dir,id,{...examples.reuse,goal:' '}),/Invalid reuse request/);
 });

@@ -1,3 +1,4 @@
+import {documentFieldDefinitions} from './business-fields.mjs';
 import Ajv2020 from 'ajv/dist/2020.js';
 import {randomUUID} from 'node:crypto';
 import {readCore,regularFile,localFile,bytesFor,sha} from './store.mjs';
@@ -17,10 +18,10 @@ function load(s,suggestionId){const a=s.dossier.artifacts.find(a=>a.id===suggest
 function resolution(d,id){return d.events.filter(e=>['document-suggestion-accepted','document-suggestion-rejected'].includes(e.type)&&e.subject_ids[0]===id).at(-1)??null;}
 function all(s){const events=s.dossier.events.filter(e=>e.type==='document-suggestion');if(events.length>500)throw Error('Suggestion history exceeds 500 entries; no partial duplicate check is allowed');return events.map(e=>load(s,e.subject_ids[0]));}
 function recheck(s){if(readCore(s.directory,s.dossier.project_id).sha256!==s.sha256)throw Error('Project changed during suggestion review');}
-export function suggestionsView(dir,id,documentId){const s=readCore(dir,id),{draft,root}=lineage(dir,id,documentId);let rows=[],unavailable=false;try{rows=all(s).filter(r=>r.root_id===root).map(r=>({...r,resolution:resolution(s.dossier,r.artifact_id)}));}catch{unavailable=true;}recheck(s);return {revision:s.dossier.revision,sha256:s.sha256,document_id:documentId,document_version:draft.version,historical:!!draft.successor_ids.length,sections:draft.fields.map(f=>({key:f.key,label:briefTypes[draft.request.kind].fields[f.key][1],value:f.value})),rows:rows.slice(-100).reverse(),partial:rows.length>100,unavailable,template,limitation:'Separate proposals, not verified content. Rejected identical normalized text is blocked within this document lineage. No automatic model call or document change.'};}
+export function suggestionsView(dir,id,documentId){const s=readCore(dir,id),{draft,root}=lineage(dir,id,documentId);let rows=[],unavailable=false;try{rows=all(s).filter(r=>r.root_id===root).map(r=>({...r,resolution:resolution(s.dossier,r.artifact_id)}));}catch{unavailable=true;}recheck(s);return {revision:s.dossier.revision,sha256:s.sha256,document_id:documentId,document_version:draft.version,historical:!!draft.successor_ids.length,sections:draft.fields.map(f=>({key:f.key,label:documentFieldDefinitions(draft.request)[f.key][1],value:f.value})),rows:rows.slice(-100).reverse(),partial:rows.length>100,unavailable,template,limitation:'Separate proposals, not verified content. Rejected identical normalized text is blocked within this document lineage. No automatic model call or document change.'};}
 export function prepareSuggestion(dir,id,revision,digest,request){
  if(!valid(request))throw Error('Invalid suggestion request');const s=basis(dir,id,revision,digest),{draft,root}=lineage(dir,id,request.document_id);
- if(draft.successor_ids.length||!Object.hasOwn(briefTypes[draft.request.kind].fields,request.key))throw Error('Choose a current document section');
+ if(draft.successor_ids.length||!Object.hasOwn(documentFieldDefinitions(draft.request),request.key))throw Error('Choose a current document section');
  if(request.origin==='template'&&(request.key!=='next_check'||request.value!==template))throw Error('Use the available next-check template exactly');
  const old=draft.fields.find(f=>f.key===request.key),value=request.value.trim();if(normalize(old.value)===normalize(value))throw Error('Suggestion does not change this section');
  const fingerprint=signature(root,request.key,value);if(all(s).some(p=>p.signature===fingerprint))throw Error('This suggestion already exists or was resolved; inspect its history instead of recreating it');

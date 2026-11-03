@@ -1,0 +1,57 @@
+{
+  "format": "startkompas-document-template-v1",
+  "id": "recurring-reporting",
+  "version": 1,
+  "name": "Recurring reporting service",
+  "document_kind": "offer",
+  "audience": "Teams making repeated decisions from a defined data source",
+  "scope": "A proposed recurring report with a cadence, owner and review process",
+  "required_inputs": [
+    "segment",
+    "job",
+    "delivery",
+    "exclusions"
+  ],
+  "unknowns": [
+    "Whether data is available, permitted and sufficiently reliable",
+    "Whether recipients use the report to make the intended decision"
+  ],
+  "boundaries": [
+    "A report is not a guaranteed decision or business outcome",
+    "Missing or delayed data must remain visible rather than being estimated silently"
+  ],
+  "sections": [
+    {
+      "key": "segment",
+      "prompt": "Who receives the report and owns the recurring decision?"
+    },
+    {
+      "key": "job",
+      "prompt": "Which recurring decision needs information, and how often?"
+    },
+    {
+      "key": "outcome",
+      "prompt": "What usable decision input should each report provide?"
+    },
+    {
+      "key": "delivery",
+      "prompt": "Which sources, metric definitions, reporting period, cadence, owner and correction process are included?"
+    },
+    {
+      "key": "exclusions",
+      "prompt": "Which analysis, source repairs, real-time monitoring or actions are excluded?"
+    },
+    {
+      "key": "workaround",
+      "prompt": "Which reports or manual steps currently support the decision?"
+    },
+    {
+      "key": "support",
+      "prompt": "What real examples support or contradict the need for repeated reporting?"
+    },
+    {
+      "key": "next_check",
+      "prompt": "How will you test one reporting cycle, including late or missing data, before recurring delivery?"
+    }
+  ]
+}

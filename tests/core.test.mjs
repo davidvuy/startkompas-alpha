@@ -9,6 +9,7 @@ import {checkModel,canonical} from '../src/model.mjs';
 import {createCore,readCore,updateCore,attachFile,sha,releaseAbandonedLock} from '../src/store.mjs';
 import {exportCore,restoreCore,migrateLegacy} from '../src/transfer.mjs';
 import {handoff} from '../src/handoff.mjs';
+import {retrieveRecords} from '../src/retrieval.mjs';
 import {createProject} from '../src/dossier.mjs';
 const fixture=JSON.parse(fs.readFileSync(new URL('../examples/dossier-v1.json',import.meta.url)));
 const oldFixture=JSON.parse(fs.readFileSync(new URL('../examples/sk09-input.json',import.meta.url)));
@@ -140,4 +141,15 @@ test('SK13 exception before rename preserves old state and releases lock',t=>{
 test('SK15 bounded summary reports omitted tasks, and handoff cannot leak into source',t=>{
   const {dir,base}=setup(t),tasks=Array.from({length:30},(_,i)=>({...fixture.tasks[0],id:'task-'+(i+1)}));updateCore(dir,request({tasks}));const s=handoff(dir,fixture.project_id,{limit:3});assert.equal(s.open_tasks.length,3);assert.equal(s.summary.truncated,true);assert.equal(s.summary.totals.open_tasks,30);
   const output=fileURLToPath(new URL('../should-not-exist-private-handoff.json',import.meta.url));assert.equal(run('save-handoff',dir,fixture.project_id,output).status,1);assert.equal(fs.existsSync(output),false);
+});
+
+test('legacy handoff marks damaged evidence stale without migration or canonical writes',t=>{
+ const {dir,base}=setup(t),file=path.join(base,'proof.txt');fs.writeFileSync(file,'Synthetic proof');
+ const d=readCore(dir,fixture.project_id).dossier;d.tasks[0].substantiation='supported';d.tasks[0].evidence_ids=['legacy-proof-review'];
+ attachFile(dir,request({tasks:d.tasks,artifacts:[{id:'legacy-proof',version:'1',storage:'local',location:'files/proof.txt',availability:'available',sha256:sha('Synthetic proof')}],evidence:[{id:'legacy-proof-review',artifact_id:'legacy-proof',subject_id:'task-1',subject_version:'1',environment:'synthetic',date:'2026-11-03',reviewer:'Fictional reviewer',scope:'Synthetic only',result:'supports',period:d.tasks[0].period}]}),file);
+ const before=fs.readFileSync(path.join(dir,'project.json'));assert.equal(handoff(dir,fixture.project_id).active_task.substantiation,'supported');
+ fs.writeFileSync(path.join(dir,'files/proof.txt'),'Changed bytes');const view=handoff(dir,fixture.project_id);
+ assert.equal(view.active_task.substantiation,'stale');assert.ok(view.invalidated_ids.includes('task-1'));const retrieved=retrieveRecords(dir,{project_id:fixture.project_id,source_revision:2,query:'',groups:[],ids:['task-1','legacy-proof','legacy-proof-review'],offset:0,limit:10});assert.equal(retrieved.returned,3);assert.ok(retrieved.records.every(row=>row.requires_review));assert.equal(view.artifacts[0].actual,'hash_mismatch');assert.equal(view.schema_version,'1.0.0');assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);
+ fs.unlinkSync(path.join(dir,'files/proof.txt'));assert.equal(handoff(dir,fixture.project_id).active_task.substantiation,'stale');
+ assert.throws(()=>updateCore(dir,request({name:'Same legacy project'},2,'legacy-observed-change')),/ENOENT/);assert.deepEqual(fs.readFileSync(path.join(dir,'project.json')),before);assert.equal(Object.hasOwn(readCore(dir,fixture.project_id).dossier,'workflow'),false);
 });

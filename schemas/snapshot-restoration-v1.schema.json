@@ -1,0 +1,390 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "startkompas-snapshot-restoration-v1",
+  "$defs": {
+    "preview_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "expected_revision",
+        "expected_sha256",
+        "snapshot_revision",
+        "snapshot_sha256",
+        "reason"
+      ],
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "expected_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "snapshot_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "restore_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "expected_revision",
+        "expected_sha256",
+        "snapshot_revision",
+        "snapshot_sha256",
+        "reason",
+        "operation_id",
+        "at"
+      ],
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "expected_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "snapshot_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000,
+          "pattern": "\\S"
+        },
+        "operation_id": {
+          "type": "string",
+          "pattern": "^restore-[a-f0-9-]{36}$"
+        },
+        "at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "project_id",
+        "current_revision",
+        "current_sha256",
+        "snapshot_revision",
+        "snapshot_sha256",
+        "proposed_revision",
+        "reason",
+        "project_state",
+        "changed_metadata",
+        "collections",
+        "unavailable_artifact_ids",
+        "unresolved_references",
+        "blockers",
+        "write_available",
+        "limitations",
+        "privacy",
+        "review_required_ids"
+      ],
+      "properties": {
+        "format": {
+          "const": "startkompas-snapshot-restore-review-v1"
+        },
+        "project_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "current_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "current_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "snapshot_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "proposed_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000,
+          "pattern": "\\S"
+        },
+        "project_state": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "current_archived",
+            "historical_archived",
+            "current_practice",
+            "historical_practice"
+          ],
+          "properties": {
+            "current_archived": {
+              "type": "boolean"
+            },
+            "historical_archived": {
+              "type": "boolean"
+            },
+            "current_practice": {
+              "type": "boolean"
+            },
+            "historical_practice": {
+              "type": "boolean"
+            }
+          }
+        },
+        "changed_metadata": {
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "enum": [
+              "name",
+              "active_task_id",
+              "skill_version",
+              "module_versions",
+              "workflow"
+            ]
+          }
+        },
+        "collections": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "restored_ids",
+              "changed_ids",
+              "history_only_ids"
+            ],
+            "properties": {
+              "group": {
+                "enum": [
+                  "profile",
+                  "facts",
+                  "assumptions",
+                  "sources",
+                  "decisions",
+                  "tasks",
+                  "checks",
+                  "artifacts",
+                  "evidence",
+                  "events"
+                ]
+              },
+              "restored_ids": {
+                "type": "array",
+                "maxItems": 10000,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+                }
+              },
+              "changed_ids": {
+                "type": "array",
+                "maxItems": 10000,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+                }
+              },
+              "history_only_ids": {
+                "type": "array",
+                "maxItems": 10000,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+                }
+              }
+            }
+          }
+        },
+        "unavailable_artifact_ids": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+          }
+        },
+        "unresolved_references": {
+          "type": "array",
+          "maxItems": 10000,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "artifact_id",
+              "storage",
+              "availability"
+            ],
+            "properties": {
+              "artifact_id": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              },
+              "storage": {
+                "enum": [
+                  "local",
+                  "external"
+                ]
+              },
+              "availability": {
+                "enum": [
+                  "available",
+                  "missing",
+                  "unknown"
+                ]
+              }
+            }
+          }
+        },
+        "blockers": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "string"
+          }
+        },
+        "write_available": {
+          "type": "boolean"
+        },
+        "limitations": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string"
+          }
+        },
+        "privacy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "removed_artifact_ids",
+            "removal_event_ids",
+            "invalidated_ids"
+          ],
+          "properties": {
+            "removed_artifact_ids": {
+              "type": "array",
+              "maxItems": 10000,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              }
+            },
+            "removal_event_ids": {
+              "type": "array",
+              "maxItems": 10000,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              }
+            },
+            "invalidated_ids": {
+              "type": "array",
+              "maxItems": 10000,
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              }
+            }
+          }
+        },
+        "review_required_ids": {
+          "type": "array",
+          "maxItems": 100000,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+          }
+        }
+      }
+    },
+    "receipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "operation_id",
+        "revision",
+        "snapshot_revision",
+        "snapshot_sha256",
+        "previous_revision",
+        "previous_sha256"
+      ],
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "operation_id": {
+          "type": "string",
+          "pattern": "^restore-[a-f0-9-]{36}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "snapshot_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "previous_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "previous_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

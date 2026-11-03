@@ -1,11 +1,11 @@
 import {COLLECTIONS} from './model.mjs';
 import {readCore,regularFile,localFile,sha,damagedArtifacts} from './store.mjs';
-import {applyInvalidation} from './change-rules.mjs';
+import {applyInvalidation,legacyReviewIds} from './change-rules.mjs';
 import fs from 'node:fs';
 
 export function handoff(dir,id,{query='',limit=20}={}) {
   if(typeof query!=='string'||query.length>1000||!Number.isInteger(limit)||limit<1||limit>100)throw Error('Invalid query/limit');
-  const state=readCore(dir,id),d=applyInvalidation(state.dossier,structuredClone(state.dossier),damagedArtifacts(state.directory,state.dossier));
+  const state=readCore(dir,id),damaged=damagedArtifacts(state.directory,state.dossier),d=applyInvalidation(state.dossier,structuredClone(state.dossier),damaged);
   const all=COLLECTIONS.flatMap(group=>d[group].map(record=>({group,...record})));
   const matches=all.filter(r=>!query||JSON.stringify(r).toLowerCase().includes(query.toLowerCase()));
   const artifacts=d.artifacts.map(a=>{
@@ -24,6 +24,6 @@ export function handoff(dir,id,{query='',limit=20}={}) {
     evidence:d.evidence.slice(0,limit),artifacts:artifacts.slice(0,limit),
     summary:{limit_per_section:limit,totals,truncated:Object.values(totals).some(n=>n>limit)},
     retrieval:{query,total_matches:matches.length,returned:Math.min(limit,matches.length),truncated:matches.length>limit,records:matches.slice(0,limit)},
-    invalidated_ids:d.workflow?.invalidated_ids||[],
+    invalidated_ids:d.workflow?.invalidated_ids||legacyReviewIds(d,damaged),
     limitations:['Derived from this canonical revision plus current local artifact checks; not conversational memory','Record existence, hashes and reported reviews do not establish substantive correctness','External content is not fetched; access and truth remain unchecked']};
 }

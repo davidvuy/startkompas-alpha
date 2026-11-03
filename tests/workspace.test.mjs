@@ -1,3 +1,5 @@
+import {prepareResearchPriority,researchQueue} from '../src/research-priority.mjs';
+import {sessionPlan} from '../src/session-plan.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -101,4 +103,19 @@ test('saved export remains an exact unsent snapshot after a document revision',(
  assert.throws(()=>writeReport(f.dir,'work',['drafts'],before.confirmation_sha256,path.join(f.root,'stale-snapshot.md')),/preview again/);
  assert.equal(fs.existsSync(path.join(f.root,'stale-snapshot.md')),false);
  assert.deepEqual(fs.readFileSync(target),bytes);
+});
+
+test('overview and session planner follow current research order without counting rating history as work',t=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'sk-priority-order-')),dir=path.join(root,'project');t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
+ initializeProject(dir,{project_id:'work',name:'Fictional priority order',first_task:null,context:{customer:'Fictional studios',outcome:'Hypothetical intake'}});
+ const original=readCore(dir,'work').dossier;
+ const rate=priority=>{const state=readCore(dir,'work'),p=prepareResearchPriority(dir,'work',state.dossier.revision,state.sha256,{assumption_id:'starting-outcome',impact:'unknown',uncertainty:'high',priority,reason:'Fictional ordering judgment',date:'2026-11-03'}),file=path.join(root,p.artifact_id+'.json');fs.writeFileSync(file,p.content);attachFile(dir,p.update_request,file);return p.artifact_id;};
+ const first=rate('later');rate('later');
+ let view=workspaceView(dir,'work');assert.equal(view.next.record_id,'starting-customer');assert.equal(sessionPlan(dir,'work',{}).target.id,'starting-customer');assert.deepEqual(view.assumptions.map(a=>a.id),researchQueue(dir,'work').rows.map(a=>a.id));assert.equal(view.assumptions.find(a=>a.id==='starting-outcome').dependent_count,0);assert.ok(impactView(dir,'work','starting-outcome').affected.some(a=>a.id===first));
+ rate('first');view=workspaceView(dir,'work');assert.equal(view.next.record_id,'starting-outcome');assert.equal(sessionPlan(dir,'work',{}).target.id,'starting-outcome');
+ const state=readCore(dir,'work');for(const key of ['assumptions','tasks','facts','evidence'])assert.deepEqual(state.dossier[key],original[key]);
+ updateCore(dir,{project_id:'work',expected_revision:state.dossier.revision,operation_id:'change-assumption-context',changes:{assumptions:state.dossier.assumptions.map(a=>a.id==='starting-outcome'?{...a,text:'Changed fictional outcome'}:a)}});
+ const queue=researchQueue(dir,'work');assert.equal(queue.rows.find(a=>a.id==='starting-outcome').status,'review_required');assert.deepEqual(workspaceView(dir,'work').assumptions.map(a=>a.id),queue.rows.map(a=>a.id));assert.equal(queue.rows[0].id,'starting-customer');
+ const expanded=readCore(dir,'work');updateCore(dir,{project_id:'work',expected_revision:expanded.dossier.revision,operation_id:'expand-fictional-queue',changes:{assumptions:[expanded.dossier.assumptions[0],...Array.from({length:199},(_,i)=>({id:'extra-'+i,text:'Fictional unknown '+i,assertion:'unknown',source_ids:[]})),expanded.dossier.assumptions[1]]}});
+ rate('first');const bounded=researchQueue(dir,'work');assert.equal(bounded.total,201);assert.equal(bounded.partial,true);assert.equal(bounded.rows.length,200);assert.equal(bounded.rows[0].id,'starting-outcome');assert.equal(workspaceView(dir,'work').assumptions[0].id,bounded.rows[0].id);
 });

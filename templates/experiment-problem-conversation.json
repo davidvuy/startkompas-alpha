@@ -1,0 +1,58 @@
+{
+  "format": "startkompas-document-template-v1",
+  "id": "experiment-problem-conversation",
+  "version": 1,
+  "name": "Problem conversation",
+  "document_kind": "experiment",
+  "audience": "People choosing a bounded way to investigate a specific business uncertainty",
+  "scope": "Explore a recent concrete problem, its context and current workaround; prepare neutral questions, not a sales pitch.",
+  "required_inputs": [
+    "question",
+    "method",
+    "audience",
+    "effort",
+    "observation",
+    "decision_rule",
+    "boundaries"
+  ],
+  "unknowns": [
+    "Suitable participants, permissions, materials and access until explicitly confirmed",
+    "Actual observations and outcomes until recorded with sources"
+  ],
+  "boundaries": [
+    "Cannot establish prevalence, willingness to pay or future behavior from a conversation alone.",
+    "This worksheet does not record execution, observations, validation or payments",
+    "Record actual results separately with provenance; retain later changes to the decision rule",
+    "User-supplied dates cannot prove a plan preceded execution"
+  ],
+  "sections": [
+    {
+      "key": "question",
+      "prompt": "Which specific problem and recent situation need clarification, before discussing a solution?"
+    },
+    {
+      "key": "method",
+      "prompt": "Prepare a neutral opening and questions: describe the last occurrence; what happened next; what workaround was used; what was difficult; what would contradict your assumption? Plan to ask permission before recording. Keep a blank notes structure for quotations, observations and your interpretations."
+    },
+    {
+      "key": "audience",
+      "prompt": "Which people actually experience this situation? State selection criteria and recruitment route; leave identities and availability unknown until confirmed."
+    },
+    {
+      "key": "effort",
+      "prompt": "Estimate preparation, conversation and analysis time separately. Which materials and consent arrangements are needed? Do not assume free access or confirmed participants."
+    },
+    {
+      "key": "observation",
+      "prompt": "Plan to record a concrete occurrence, workaround and consequences, including contrary examples. Link each actual quotation or observation to its source; distinguish reported behavior from observed behavior."
+    },
+    {
+      "key": "decision_rule",
+      "prompt": "What specific answers would make you narrow, change or abandon the problem assumption? How will you avoid treating polite agreement as confirmation?"
+    },
+    {
+      "key": "boundaries",
+      "prompt": "Set a time limit, permission boundary and stopping rule. Do not record unwanted personal details or turn questions into leading claims."
+    }
+  ]
+}

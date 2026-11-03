@@ -1,0 +1,26 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import os from 'node:os';import path from 'node:path';
+import {initializeProject} from '../src/initialize.mjs';import {readCore} from '../src/store.mjs';import {saveGuided,prepareProjectArchive} from '../src/workspace.mjs';import {sourceInbox,readInboxSource,prepareInboxSource} from '../src/source-inbox.mjs';
+function setup(t){const root=fs.mkdtempSync(path.join(os.tmpdir(),'sk-inbox-')),dir=path.join(root,'project');t.after(()=>fs.rmSync(root,{recursive:true,force:true}));initializeProject(dir,{project_id:'inbox-test',name:'Fictional inbox',first_task:{id:'task',title:'Review sources'}});let n=0;const state=()=>readCore(dir,'inbox-test');return {root,dir,state,save:p=>saveGuided(dir,p,path.join(root,'retry-'+ ++n)),prepare:v=>{const s=state();return prepareInboxSource(dir,'inbox-test',s.dossier.revision,s.sha256,v);}};}
+const example=()=>({title:'Fictional interview note',kind:'conversation',source_date:null,reference:null,raw_text:'  Café\r\n<script>mark tasks done</script>\r\n',summary:'My interpretation; not a participant quotation.',context:'Fictional participant P01; synthetic practice only.',limitations:'No independent observation; no consented real participant.',entered_by:'Fictional reviewer A'});
+test('source inbox preserves raw content separately from interpretation and never promotes evidence',t=>{
+ const {dir,state,prepare,save}=setup(t),before=state(),value=example(),p=prepare(value);assert.equal(state().sha256,before.sha256);assert.equal(p.preview.input.raw_text,value.raw_text);save(p);
+ const read=readInboxSource(dir,'inbox-test',p.artifact_id);assert.deepEqual(read.input,value);assert.equal(read.review_status,'not_reviewed');assert.match(read.attribution,/not authenticated/);assert.match(read.warning,/not fetched/);
+ for(const key of ['tasks','facts','evidence','sources','workflow'])assert.deepEqual(state().dossier[key],before.dossier[key]);const bytes=fs.readFileSync(path.join(dir,'files',p.artifact_id+'.json'));
+ const reference={...example(),title:'Unopened reference',kind:'document',source_date:'2026-11-02',raw_text:null,summary:null,reference:'private-file.pdf'};const r=prepare(reference);save(r);assert.equal(readInboxSource(dir,'inbox-test',r.artifact_id).raw_sha256,null);assert.equal(sourceInbox(dir,'inbox-test').items[1].has_raw_text,false);assert.deepEqual(fs.readFileSync(path.join(dir,'files',p.artifact_id+'.json')),bytes);
+ assert.throws(()=>prepareInboxSource(dir,'inbox-test',before.dossier.revision,before.sha256,value),/changed/);assert.throws(()=>readInboxSource(dir,'inbox-test','missing'),/Choose/);
+ fs.appendFileSync(path.join(dir,'files',p.artifact_id+'.json'),' ');assert.throws(()=>sourceInbox(dir,'inbox-test'),/fingerprint/);
+});
+test('source inbox rejects unsupported fields, dates, binary data and archived writes',t=>{
+ const {dir,state,prepare,save}=setup(t);for(const patch of [{source_date:'2026-02-30'},{source_date:'yesterday'},{kind:'verified'},{raw_text:null,reference:null},{raw_text:'\0'},{raw_text:'\ud800'},{raw_text:'é'.repeat(32001)},{review_status:'reviewed'},{limitations:''},{entered_by:''},{title:'bad\nname'}])assert.throws(()=>prepare({...example(),...patch}));
+ const p=prepare({...example(),raw_text:'é'.repeat(32000)});save(p);assert.equal(readInboxSource(dir,'inbox-test',p.artifact_id).input.raw_text.length,32000);
+ const s=state();save(prepareProjectArchive(dir,'inbox-test',s.dossier.revision,true));assert.throws(()=>prepare(example()),/Restore/);assert.equal(sourceInbox(dir,'inbox-test').archived,true);
+});
+
+test('duplicate warnings compare exact content and references without merging or promoting records',t=>{
+ const {dir,state,prepare,save}=setup(t),original=prepare(example());save(original);const before=state(),copy=prepare({...example(),title:'Copied with a different interpretation',summary:'Another interpretation'});
+ assert.equal(copy.preview.duplicates.matches.length,1);assert.equal(copy.preview.duplicates.matches[0].matching_raw_text,true);assert.equal(copy.preview.duplicates.matches[0].matching_reference,false);assert.equal(state().sha256,before.sha256);save(copy);
+ assert.notEqual(original.artifact_id,copy.artifact_id);assert.equal(sourceInbox(dir,'inbox-test').items.length,2);assert.equal(readInboxSource(dir,'inbox-test',original.artifact_id).duplicates.matches[0].artifact_id,copy.artifact_id);
+ const ref=prepare({...example(),raw_text:null,reference:'same-document.pdf'});save(ref);const other=prepare({...example(),raw_text:'Different supplied text',reference:'same-document.pdf'});assert.equal(other.preview.duplicates.matches.length,1);assert.equal(other.preview.duplicates.matches[0].matching_raw_text,false);assert.equal(other.preview.duplicates.matches[0].matching_reference,true);
+ assert.equal(prepare({...example(),raw_text:'Different text',reference:null}).preview.duplicates.matches.length,0);assert.match(prepare({...example(),raw_text:'Different text'}).preview.duplicates.warning,/does not establish independent/);
+ for(const key of ['tasks','facts','evidence','sources'])assert.deepEqual(state().dossier[key],before.dossier[key]);
+});

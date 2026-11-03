@@ -1,0 +1,58 @@
+{
+  "format": "startkompas-document-template-v1",
+  "id": "experiment-prototype-check",
+  "version": 1,
+  "name": "Prototype task check",
+  "document_kind": "experiment",
+  "audience": "People choosing a bounded way to investigate a specific business uncertainty",
+  "scope": "Explore whether someone can perform a defined task with a prototype; prepare the task, observation sheet and debrief.",
+  "required_inputs": [
+    "question",
+    "method",
+    "audience",
+    "effort",
+    "observation",
+    "decision_rule",
+    "boundaries"
+  ],
+  "unknowns": [
+    "Suitable participants, permissions, materials and access until explicitly confirmed",
+    "Actual observations and outcomes until recorded with sources"
+  ],
+  "boundaries": [
+    "Cannot establish market demand, willingness to pay, production reliability or accessibility for all users from a small prototype check.",
+    "This worksheet does not record execution, observations, validation or payments",
+    "Record actual results separately with provenance; retain later changes to the decision rule",
+    "User-supplied dates cannot prove a plan preceded execution"
+  ],
+  "sections": [
+    {
+      "key": "question",
+      "prompt": "Which task or interaction uncertainty should the prototype check investigate?"
+    },
+    {
+      "key": "method",
+      "prompt": "Prepare a starting state, neutral task instruction and clear completion criterion. Plan when to stay silent, when to help and how to note assistance. Prepare debrief questions about confusion without suggesting the desired answer."
+    },
+    {
+      "key": "audience",
+      "prompt": "Who encounters this task, with which device and relevant experience? Distinguish an invented internal walkthrough from an actual participant test."
+    },
+    {
+      "key": "effort",
+      "prompt": "List the prototype, test data, device, setup time and facilitation time needed. Use fictional or permitted data; identify unavailable materials explicitly."
+    },
+    {
+      "key": "observation",
+      "prompt": "Plan to record task completion, hesitation, errors, assistance and contrary outcomes with source and context. Separate what happened from your explanation of why."
+    },
+    {
+      "key": "decision_rule",
+      "prompt": "Which failure or repeated need for help requires a design change? Which observation would justify another test rather than a launch claim?"
+    },
+    {
+      "key": "boundaries",
+      "prompt": "Set session and preparation limits, stop if the participant withdraws or sensitive data appears, and record prototype limitations."
+    }
+  ]
+}

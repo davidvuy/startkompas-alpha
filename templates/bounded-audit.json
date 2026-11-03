@@ -1,0 +1,57 @@
+{
+  "format": "startkompas-document-template-v1",
+  "id": "bounded-audit",
+  "version": 1,
+  "name": "Bounded audit service",
+  "document_kind": "offer",
+  "audience": "Teams considering a review of one existing workflow",
+  "scope": "A proposed assessment and prioritised findings, without implementation",
+  "required_inputs": [
+    "segment",
+    "job",
+    "delivery",
+    "exclusions"
+  ],
+  "unknowns": [
+    "Whether the customer has this problem and wants an assessment",
+    "Whether access and sample quality permit useful conclusions"
+  ],
+  "boundaries": [
+    "This worksheet is not an audit result or certification",
+    "Remediation and regulated assurance require separately agreed scope"
+  ],
+  "sections": [
+    {
+      "key": "segment",
+      "prompt": "Which team owns the workflow to be reviewed?"
+    },
+    {
+      "key": "job",
+      "prompt": "Which specific failure or uncertainty would the review investigate?"
+    },
+    {
+      "key": "outcome",
+      "prompt": "What decision should the findings help the customer make? Do not promise findings in advance."
+    },
+    {
+      "key": "delivery",
+      "prompt": "Which workflow, sample, access, review method and findings format are in scope?"
+    },
+    {
+      "key": "exclusions",
+      "prompt": "Which systems, remediation work and assurance claims are excluded?"
+    },
+    {
+      "key": "workaround",
+      "prompt": "How does the team currently review this workflow?"
+    },
+    {
+      "key": "support",
+      "prompt": "Which dated observations support or contradict the need? Do not invent audit results."
+    },
+    {
+      "key": "next_check",
+      "prompt": "How will you check demand, access and scope before offering the review?"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import {documentReview} from '../src/document-review.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -12,7 +13,7 @@ const fixture=()=>JSON.parse(fs.readFileSync(new URL('../examples/dossier-v1.1.j
 function setup(){const root=fs.mkdtempSync(path.join(os.tmpdir(),'startkompas-business-')),dir=path.join(root,'project');createCore(dir,fixture());return {root,dir};}
 const req=(patch={})=>({project_id:'pilot-orbit',expected_revision:1,operation_id:'offer-1',at:'2026-10-29',language:'nl',kind:'offer',client:'Alder',period:'October 2026',previous_artifact_id:null,change_reason:null,fields:[{key:'segment',value:'Fictieve bureaus',assertion:'proposal',record_ids:['fact-1']},{key:'outcome',value:'Concept van één aanbod',assertion:'proposal',record_ids:[]}],...patch});
 function save(s,p){const file=path.join(s.root,p.artifact_id+'.json');fs.writeFileSync(file,p.content);return attachFile(s.dir,p.update_request,file);}
-test('all five business procedures produce a draft with unknowns and no dossier mutation',()=>{
+test('all business procedures produce a draft with unknowns and no dossier mutation',()=>{
  for(const kind of Object.keys(briefTypes)){const s=setup(),before=readCore(s.dir,'pilot-orbit').sha256,p=prepareBusinessBrief(s.dir,req({kind,fields:[]}));assert.equal(p.version,1);const record=JSON.parse(p.content);assert.ok(record.fields.length>5);assert.ok(record.fields.every(f=>f.value===null&&f.assertion==='unknown'));assert.equal(readCore(s.dir,'pilot-orbit').sha256,before);assert.equal(readCore(s.dir,'pilot-orbit').dossier.tasks[0].progress,'open');}
 });
 test('draft saves, retries exactly, reads through another process and survives export/restore',()=>{
@@ -57,4 +58,10 @@ test('interview output is a blank log and never records an interview as performe
 });
 test('CLI preparation returns an attachable document from an actual file',()=>{
  const s=setup(),input=path.join(s.root,'request.json');fs.writeFileSync(input,JSON.stringify(req()));const p=JSON.parse(execFileSync(process.execPath,[fileURLToPath(new URL('../src/business-cli.mjs',import.meta.url)),'prepare',s.dir,input],{encoding:'utf8'}));save(s,p);assert.equal(readBusinessBrief(s.dir,'pilot-orbit',p.artifact_id).version,1);
+});
+
+
+test('experiment cards preserve planning rules without inventing execution or results',()=>{
+ const s=setup(),before=readCore(s.dir,'pilot-orbit'),p=prepareBusinessBrief(s.dir,req({kind:'experiment',fields:[{key:'question',value:'Does a fictional handover checklist resolve missing ownership?',assertion:'proposal',record_ids:[]},{key:'decision_rule',value:'Reconsider if ownership remains unclear after the planned check.',assertion:'proposal',record_ids:[]}]}));
+ const card=JSON.parse(p.content);assert.equal(card.fields.length,7);const review=documentReview(card);assert.equal(review.missing_count,5);assert.ok(review.points.every(point=>point.question.length>30));assert.equal(card.fields.find(f=>f.key==='effort').value,null);assert.match(card.document_markdown,/Not recorded. This card prepares an experiment/);assert.match(card.document_markdown,/dates do not prove this plan preceded execution/);assert.equal(readCore(s.dir,'pilot-orbit').sha256,before.sha256);save(s,p);assert.equal(readBusinessBrief(s.dir,'pilot-orbit',p.artifact_id).request.kind,'experiment');for(const key of ['tasks','evidence','assumptions'])assert.deepEqual(readCore(s.dir,'pilot-orbit').dossier[key],before.dossier[key]);
 });

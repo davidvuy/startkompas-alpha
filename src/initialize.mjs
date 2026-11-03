@@ -3,8 +3,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import {COLLECTIONS} from './model.mjs';
 import {emptyWorkflow} from './dependencies.mjs';
 import {createCore} from './store.mjs';
-const id={type:'string',pattern:'^[a-z0-9][a-z0-9-]{0,63}$'},text={type:'string',minLength:1,maxLength:4000,pattern:'\\S'};
-const validate=new Ajv2020({strict:true,allErrors:true,coerceTypes:false,useDefaults:false}).compile({type:'object',additionalProperties:false,required:['project_id','name','first_task'],properties:{practice:{type:'boolean'},project_id:id,name:text,first_task:{anyOf:[{type:'null'},{type:'object',additionalProperties:false,required:['id','title'],properties:{id,title:text}}]},context:{type:'object',additionalProperties:false,required:['customer','outcome'],properties:{customer:{type:'string',maxLength:2000},outcome:{type:'string',maxLength:2000}}}}});
+const validate=new Ajv2020({strict:true,allErrors:true,coerceTypes:false,useDefaults:false}).compile(JSON.parse(fs.readFileSync(new URL('../schemas/project-init-v1.schema.json',import.meta.url),'utf8')));
 export function initializeProject(dir,request){
  if(!validate(request))throw Error('Invalid project initialization: '+validate.errors.map(e=>e.instancePath+' '+e.message).join('; '));
  const version=JSON.parse(fs.readFileSync(new URL('../package.json',import.meta.url))).version;

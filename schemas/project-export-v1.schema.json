@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "startkompas-project-export-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "directory",
+    "manifest"
+  ],
+  "properties": {
+    "directory": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "project_id",
+        "revision",
+        "files",
+        "references"
+      ],
+      "properties": {
+        "format": {
+          "enum": [
+            "startkompas-export-v1",
+            "startkompas-export-v2"
+          ]
+        },
+        "project_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "files": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10501,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "sha256",
+              "size"
+            ],
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "size": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "artifact_id",
+              "location",
+              "reason"
+            ],
+            "properties": {
+              "artifact_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "location": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

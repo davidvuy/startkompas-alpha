@@ -1,0 +1,22 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {learningLoop} from '../examples/demo-learning-loop.mjs';
+import {readCore} from '../src/store.mjs';
+import {readBusinessBrief} from '../src/business-brief.mjs';
+import {experimentRuns} from '../src/experiment-runs.mjs';
+import {prepareDocumentSection} from '../src/document-section.mjs';
+import {experimentReviews} from '../src/experiment-reviews.mjs';
+test('complete synthetic learning loop retains source, original rules and explicitly justified offer revision',t=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'sk-learning-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));const target=path.join(root,'demo'),r=learningLoop(target),dir=r.project_directory,id=r.project_id,s=readCore(dir,id);
+ const original=readBusinessBrief(dir,id,r.offer),revised=readBusinessBrief(dir,id,r.revised_offer),run=experimentRuns(dir,id).runs[0],review=experimentReviews(dir,id).rows[0];
+ assert.equal(revised.version,2);assert.deepEqual(original.successor_ids,[r.revised_offer]);assert.equal(original.fields.find(f=>f.key==='outcome').value,'Replace the existing handover process');
+ for(const f of original.fields)if(f.key!=='outcome')assert.deepEqual(revised.fields.find(x=>x.key===f.key),f);
+ const changed=revised.fields.find(f=>f.key==='outcome');assert.equal(changed.assertion,'proposal');assert.deepEqual(changed.record_ids,[r.review]);assert.match(revised.request.change_reason,/no demand was validated/);
+ assert.equal(run.input.plan_id,r.plan);assert.match(run.original_conditions.decision_rule,/current checklist works/);assert.equal(run.observations[0].input.source_id,r.source);assert.equal(review.input.choice,'adapt');assert.equal(review.targets[0].id,r.offer);assert.equal(review.targets[0].snapshot.sections.find(f=>f.key==='outcome').value,original.fields.find(f=>f.key==='outcome').value);
+ assert.equal(review.context_status,'review_required');assert.equal(s.dossier.tasks[0].progress,'open');for(const key of ['facts','evidence','assumptions','decisions'])assert.equal(s.dossier[key].length,0);assert.equal(r.real_participants,0);assert.equal(r.validation,'not_established');assert.ok(s.dossier.workflow.links.some(l=>l.dependent_id===r.revised_offer&&l.prerequisite_id===r.review));
+ const revisionInput={artifact_id:r.revised_offer,key:'outcome',value:'Another proposed change',reason:'Synthetic',review_id:r.review};assert.throws(()=>prepareDocumentSection(dir,id,s.dossier.revision,s.sha256,revisionInput),/current Adapt review/);assert.throws(()=>prepareDocumentSection(dir,id,s.dossier.revision,s.sha256,{...revisionInput,review_id:'missing'}),/Choose a document section/);
+ const digest=s.sha256;assert.throws(()=>learningLoop(target),/Destination exists/);assert.equal(readCore(dir,id).sha256,digest);
+});

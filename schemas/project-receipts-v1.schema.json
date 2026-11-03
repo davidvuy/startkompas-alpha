@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "startkompas-project-receipts-v1",
+  "$defs": {
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valid"
+      ],
+      "properties": {
+        "valid": {
+          "const": true
+        }
+      }
+    },
+    "update_validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valid",
+        "contract",
+        "scope"
+      ],
+      "properties": {
+        "valid": {
+          "const": true
+        },
+        "contract": {
+          "const": "startkompas-update-request-v1"
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "saved_handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "saved",
+        "project_id",
+        "revision"
+      ],
+      "properties": {
+        "saved": {
+          "type": "string",
+          "minLength": 1
+        },
+        "project_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "released_lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "released",
+        "project_id"
+      ],
+      "properties": {
+        "released": {
+          "const": true
+        },
+        "project_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/validation"
+    },
+    {
+      "$ref": "#/$defs/update_validation"
+    },
+    {
+      "$ref": "#/$defs/saved_handoff"
+    },
+    {
+      "$ref": "#/$defs/released_lock"
+    }
+  ]
+}

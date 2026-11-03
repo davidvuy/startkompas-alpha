@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "startkompas-write-receipt-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project_id",
+    "operation_id",
+    "revision"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "operation_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 2
+    }
+  }
+}

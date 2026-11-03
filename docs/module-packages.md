@@ -1,0 +1,28 @@
+# Data module packages
+
+`node src/startkompas.mjs modules inspect-package package.json 1.1.0` validates a bounded JSON package and prints its exact content, fingerprint, compatibility and review warnings. This command does not install a module or change a project. Existing module notices and restricted-content review commands remain separate.
+
+The `startkompas-module-package-v1` object requires id, integer version, name, maker, audience, scope, compatibility, sources, review, templates, routes and checks. Compatibility declares command_contract 1 and explicit supported project_schemas. Embedded templates reuse the v1/v2 document-template formats, including custom fields. A route contains id, template_id and label; it selects a bundled template rather than executing a command. A check contains id, template_id, prompt and source_ids; it is an unanswered review question, never a passed project check. Sources contain id and citation. References must resolve within the package; member IDs are unique within each collection. Extra properties and unknown formats are refused. Maximum package size is 1 MiB, with at most ten templates and twenty routes, checks and sources each.
+
+Review requires status (unreviewed, reviewed or withdrawn), reviewer, reviewed_on, review_due, specialist_required and review_route. Dates use YYYY-MM-DD or null. Reviewed content requires an attributed reviewer and dates; future or impossible review dates are refused. Inspection exposes overdue and withdrawn content. Maker/reviewer attribution is supplied metadata, not authenticated identity or proof of expertise. Specialist content must identify its review route; the tool does not certify that review or silently turn guidance into evidence. Citations are text and are never fetched or executed.
+
+Inspection is read-only. Fictional trial previews and retained trial records are available below; live project integration remains subsequent work. An inspected package is not installed, trusted or approved for live use.
+`modules trial-preview <practice-project-directory> <request.json>` previews a selected route on a separately initialized practice project. The request requires project_id, expected_revision, expected_sha256, module, module_sha256, route_id and answers. Obtain module_sha256 from inspection; project identity/revision/hash from project read. The exact package and selected template are retained in the preview. Questions remain unanswered, supplied text remains a proposal, withdrawn modules are refused, and nothing is saved. Discarding the preview leaves the project unchanged. The practice marker describes intended use, not automatic anonymization: never copy customer data into a trial. Activation, persisted module provenance and rollback after activation remain unimplemented.
+
+
+## Retain or discard a fictional trial
+
+`modules trial-prepare <directory> <request.json>` accepts the same request as trial-preview and returns content plus a guarded update_request. Review the exact preview and save these two returned values as separate UTF-8 files; use `project attach <directory> <update-request.json> <content.json>` to retain the trial. Preserve those exact files for retries. This saves a private trial artifact and event, not a live business document or activated module.
+
+`modules trials <directory> <project-id>` reads retained trials, verifies file and module fingerprints, and shows whether each was discarded. The record retains the whole package, source citations, review assessment date, selected route, proposed document and unanswered checks. Historical assessment stays historical; it is not a current approval.
+
+`modules trial-discard <directory> <request.json>` requires project_id, expected_revision, expected_sha256, artifact_id and a nonblank reason. Review the returned update_request and apply with `project update <directory> <update-request.json>`. Discard adds an event and excludes the trial from active consideration. It preserves the artifact, original project records and history; it does not delete or undo unrelated later work. A discarded trial can be inspected and a new trial can be prepared explicitly. No background activation or automatic migration occurs.
+
+
+## Deprecation and withdrawal
+
+An optional lifecycle object records status (`deprecated` or `withdrawn`), effective_on (YYYY-MM-DD), reason, alternatives (up to ten distinct package IDs), and migration_notes. Alternatives cannot name the same package and are suggestions, not installed or endorsed replacements. Unknown fields or invalid dates are refused. Existing packages without lifecycle metadata remain readable without rewriting their fingerprints; older app versions may reject the new property.
+
+Inspection always shows the notice, including a future effective date. Deprecated packages remain available for explicit fictional trials with a warning. Lifecycle withdrawal blocks new trials on or after its effective date; the pre-existing review.status `withdrawn` still blocks immediately. This uses the local system date, not a trusted time service. Package metadata is local and supplied by its author; there is no online advisory feed or automatic notification for an older retained copy.
+
+Existing retained trials keep their original package and historical assessment. They remain readable, discardable and exportable. Before moving to an alternative, export and restore a copy, inspect the alternative's exact scope/compatibility/review state, and make a separate trial. Never rewrite the original package or silently copy its answers into a replacement. Record why the old trial was discarded and retain the original reference. Historical accessibility does not mean current approval.

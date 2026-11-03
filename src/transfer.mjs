@@ -7,6 +7,7 @@ import {readSnapshot} from './history.mjs';
 import {resumeProject} from './dossier.mjs';
 
 const LIMIT=64*1024*1024;
+const historyPath=/^\.history\/([1-9][0-9]*)-([a-f0-9]{64})\.json$/;
 export function exportCore(dir,id,destination,revision=null) {
   const current=readCore(dir,id),target=safeDirectory(destination,true);
   let bytes=regularFile(current.file),data=current.dossier;
@@ -31,10 +32,23 @@ function exportSelected(directory,id,target,bytes,data){
     if(sha(content)!==a.sha256)throw Error('Artifact changed since recorded: '+a.id);
     if(!files.some(f=>f.path===a.location)){total+=content.length;if(total>LIMIT)throw Error('Export exceeds 64 MiB');files.push({path:a.location,bytes:content});}
   }
+  const revisions=new Set();
+  for(const event of data.events.filter(e=>e.type==='review-feedback')){
+    const artifact=data.artifacts.find(a=>a.id===event.subject_ids[0]),file=artifact&&files.find(f=>f.path===artifact.location);
+    if(!file)throw Error('Required review feedback is unavailable for export');
+    const record=JSON.parse(file.bytes),original=JSON.parse(record.original_content);
+    if(record.format!=='startkompas-review-feedback-record-v1'||record.project_id!==id||sha(record.original_content)!==record.original_sha256||original.project_id!==id||!Number.isSafeInteger(original.project_revision)||original.project_revision<1||original.project_revision>data.revision)throw Error('Invalid review recovery context');
+    if(original.project_revision!==data.revision)revisions.add(original.project_revision);
+  }
+  if(revisions.size>500)throw Error('Too many required review snapshots');
+  for(const revision of [...revisions].sort((a,b)=>a-b)){
+    const snapshot=readSnapshot(directory,id,revision);total+=snapshot.bytes.length;if(total>LIMIT)throw Error('Export exceeds 64 MiB');
+    files.push({path:'.history/'+revision+'-'+snapshot.sha256+'.json',bytes:snapshot.bytes});
+  }
   // A manifest is published only after all selected content has passed validation.
   const staging=target+'.staging-'+randomUUID();fs.mkdirSync(staging);
   for(const f of files){const p=path.join(staging,f.path);fs.mkdirSync(path.dirname(p),{recursive:true});writeExclusive(p,f.bytes);}
-  const manifest={format:'startkompas-export-v1',project_id:id,revision:data.revision,
+  const manifest={format:revisions.size?'startkompas-export-v2':'startkompas-export-v1',project_id:id,revision:data.revision,
     files:files.map(f=>({path:f.path,sha256:sha(f.bytes),size:f.bytes.length})),references};
   writeExclusive(path.join(staging,'manifest.json'),bytesFor(manifest));
   fs.renameSync(staging,target);
@@ -43,18 +57,21 @@ function exportSelected(directory,id,target,bytes,data){
 export function restoreCore(bundle,expectedId,destination) {
   const source=safeDirectory(bundle),target=safeDirectory(destination,true);
   const manifest=JSON.parse(regularFile(path.join(source,'manifest.json')));
-  if(manifest.format!=='startkompas-export-v1'||manifest.project_id!==expectedId||!Array.isArray(manifest.files)||manifest.files.length>10001)throw Error('Invalid export manifest or project identity');
+  if(!['startkompas-export-v1','startkompas-export-v2'].includes(manifest.format)||manifest.project_id!==expectedId||!Array.isArray(manifest.files)||manifest.files.length>10501)throw Error('Invalid export manifest or project identity');
   const seen=new Set(),files=[];let total=0;
   for(const f of manifest.files){
     if(!f||typeof f.path!=='string'||seen.has(f.path))throw Error('Invalid/duplicate manifest path');seen.add(f.path);
-    const file=f.path==='project.json'?path.join(source,f.path):localFile(source,f.path);
-    const bytes=regularFile(file,f.path==='project.json'?4*1024*1024:16*1024*1024);
+    const historical=manifest.format==='startkompas-export-v2'&&historyPath.test(f.path);
+    if(historical&&fs.existsSync(path.join(source,'.history'))&&fs.lstatSync(path.join(source,'.history')).isSymbolicLink())throw Error('Unsafe export history directory');
+    const file=f.path==='project.json'||historical?path.join(source,f.path):localFile(source,f.path);
+    const bytes=regularFile(file,f.path==='project.json'||historical?4*1024*1024:16*1024*1024);
     total+=bytes.length;if(total>LIMIT||sha(bytes)!==f.sha256||bytes.length!==f.size)throw Error('Export integrity mismatch');files.push({path:f.path,bytes});
   }
   const project=files.find(f=>f.path==='project.json');if(!project)throw Error('Export has no project');
   const data=checkModel(JSON.parse(project.bytes));
   if(data.project_id!==expectedId||data.revision!==manifest.revision)throw Error('Export identity/revision mismatch');
-  for(const f of files)if(f.path!=='project.json'&&!data.artifacts.some(a=>a.storage==='local'&&a.location===f.path&&a.sha256===sha(f.bytes)))throw Error('File is not an identified artifact');
+  const snapshotRevisions=new Set();for(const f of files){if(!historyPath.test(f.path))continue;const match=historyPath.exec(f.path),snapshot=checkModel(JSON.parse(f.bytes));if(manifest.format!=='startkompas-export-v2'||snapshot.project_id!==expectedId||snapshot.revision!==Number(match[1])||snapshot.revision>=data.revision||sha(f.bytes)!==match[2]||snapshotRevisions.has(snapshot.revision)||snapshotRevisions.size>=500)throw Error('Invalid recovery snapshot');snapshotRevisions.add(snapshot.revision);}
+  for(const f of files)if(f.path!=='project.json'&&!historyPath.test(f.path)&&!data.artifacts.some(a=>a.storage==='local'&&a.location===f.path&&a.sha256===sha(f.bytes)))throw Error('File is not an identified artifact');
   if(!Array.isArray(manifest.references))throw Error('Missing external/missing references');
   const refIds=new Set();
   for(const ref of manifest.references){
@@ -63,6 +80,7 @@ export function restoreCore(bundle,expectedId,destination) {
     refIds.add(a.id);
   }
   for(const a of data.artifacts)if(!files.some(f=>a.storage==='local'&&f.path===a.location)&&!refIds.has(a.id))throw Error('Export silently omits an artifact');
+  if(manifest.format==='startkompas-export-v2')for(const event of data.events.filter(e=>e.type==='review-feedback')){const artifact=data.artifacts.find(a=>a.id===event.subject_ids[0]),file=artifact&&files.find(f=>f.path===artifact.location);if(!file)throw Error('Missing feedback recovery content');const record=JSON.parse(file.bytes),original=JSON.parse(record.original_content);if(record.project_id!==expectedId||sha(record.original_content)!==record.original_sha256||original.project_id!==expectedId||!Number.isSafeInteger(original.project_revision)||original.project_revision<1||(original.project_revision!==data.revision&&!snapshotRevisions.has(original.project_revision)))throw Error('Missing or invalid review recovery snapshot');}
   const staging=target+'.staging-'+randomUUID();fs.mkdirSync(staging);
   for(const f of files){const p=path.join(staging,f.path);fs.mkdirSync(path.dirname(p),{recursive:true});writeExclusive(p,f.bytes);}
   // Keep restoration provenance separate from the unchanged canonical snapshot.

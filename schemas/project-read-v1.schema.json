@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "startkompas-project-read-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "directory",
+    "file",
+    "sha256",
+    "dossier"
+  ],
+  "properties": {
+    "directory": {
+      "type": "string",
+      "minLength": 1
+    },
+    "file": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "dossier": {
+      "oneOf": [
+        {
+          "$ref": "dossier-v1.schema.json"
+        },
+        {
+          "$ref": "dossier-v1.1.schema.json"
+        }
+      ]
+    }
+  }
+}

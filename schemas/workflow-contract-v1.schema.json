@@ -1,0 +1,428 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "startkompas-workflow-contract-v1",
+  "$defs": {
+    "plan_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "target_ids"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "small_edit",
+            "material_choice"
+          ]
+        },
+        "target_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "reuse_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "goal",
+        "client",
+        "period",
+        "version"
+      ],
+      "properties": {
+        "goal": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "client": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "period": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "impact_request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "expected_revision",
+        "operation_id",
+        "changed_ids",
+        "reason",
+        "at"
+      ],
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "operation_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "changed_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+          },
+          "minItems": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "at": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "plan_result": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "project_id",
+            "revision",
+            "route",
+            "research",
+            "warning"
+          ],
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "route": {
+              "const": "direct_small_edit"
+            },
+            "research": {
+              "type": "array",
+              "maxItems": 0
+            },
+            "warning": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "project_id",
+            "revision",
+            "route",
+            "reused_research",
+            "accepted_uncertainty",
+            "acceptance_requiring_review",
+            "blockers",
+            "independent_tasks",
+            "next_checks",
+            "limitations"
+          ],
+          "properties": {
+            "project_id": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "route": {
+              "enum": [
+                "check_before_expansion",
+                "no_declared_material_blocker"
+              ]
+            },
+            "reused_research": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "uncertainty",
+                  "checks"
+                ],
+                "properties": {
+                  "uncertainty": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+                  },
+                  "checks": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+                    }
+                  }
+                }
+              }
+            },
+            "accepted_uncertainty": {
+              "type": "array",
+              "items": {
+                "$ref": "dossier-v1.1.schema.json#/properties/workflow/properties/accepted/items"
+              }
+            },
+            "acceptance_requiring_review": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "record_id",
+                  "reason",
+                  "review_reason"
+                ],
+                "properties": {
+                  "record_id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/workflow/properties/accepted/items/properties/record_id"
+                  },
+                  "reason": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/workflow/properties/accepted/items/properties/reason"
+                  },
+                  "review_reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  }
+                }
+              }
+            },
+            "blockers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "record_id",
+                  "reason",
+                  "next_check",
+                  "cost_rank"
+                ],
+                "properties": {
+                  "record_id": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+                  },
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "next_check": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "cost_rank": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "independent_tasks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              }
+            },
+            "next_checks": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+              }
+            },
+            "limitations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "reuse_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "revision",
+        "search_complete_for_declared_intents",
+        "reusable",
+        "review_candidates",
+        "limitations"
+      ],
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "search_complete_for_declared_intents": {
+          "const": true
+        },
+        "reusable": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "intent",
+              "record"
+            ],
+            "properties": {
+              "intent": {
+                "$ref": "dossier-v1.1.schema.json#/properties/workflow/properties/intents/items"
+              },
+              "record": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items"
+              }
+            }
+          }
+        },
+        "review_candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "intent",
+              "reason"
+            ],
+            "properties": {
+              "intent": {
+                "$ref": "dossier-v1.1.schema.json#/properties/workflow/properties/intents/items"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "impact_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "affected_ids",
+        "update_request",
+        "warning"
+      ],
+      "properties": {
+        "affected_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+          }
+        },
+        "update_request": {
+          "$ref": "update-request-v1.schema.json"
+        },
+        "warning": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      }
+    }
+  },
+  "anyOf": [
+    {
+      "$ref": "#/$defs/plan_request"
+    },
+    {
+      "$ref": "#/$defs/reuse_request"
+    },
+    {
+      "$ref": "#/$defs/impact_request"
+    },
+    {
+      "$ref": "#/$defs/plan_result"
+    },
+    {
+      "$ref": "#/$defs/reuse_result"
+    },
+    {
+      "$ref": "#/$defs/impact_result"
+    }
+  ]
+}

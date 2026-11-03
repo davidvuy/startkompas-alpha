@@ -1,0 +1,58 @@
+{
+  "format": "startkompas-document-template-v1",
+  "id": "experiment-offer-conversation",
+  "version": 1,
+  "name": "Offer conversation",
+  "document_kind": "experiment",
+  "audience": "People choosing a bounded way to investigate a specific business uncertainty",
+  "scope": "Explore understanding and objections around an explicit proposed offer; prepare the offer summary and neutral discussion guide.",
+  "required_inputs": [
+    "question",
+    "method",
+    "audience",
+    "effort",
+    "observation",
+    "decision_rule",
+    "boundaries"
+  ],
+  "unknowns": [
+    "Suitable participants, permissions, materials and access until explicitly confirmed",
+    "Actual observations and outcomes until recorded with sources"
+  ],
+  "boundaries": [
+    "Cannot establish a sale or payment from interest, compliments, a hypothetical price answer or an unaccepted proposal.",
+    "This worksheet does not record execution, observations, validation or payments",
+    "Record actual results separately with provenance; retain later changes to the decision rule",
+    "User-supplied dates cannot prove a plan preceded execution"
+  ],
+  "sections": [
+    {
+      "key": "question",
+      "prompt": "Which uncertainty about the proposed offer, scope or price needs discussion?"
+    },
+    {
+      "key": "method",
+      "prompt": "Prepare a concise offer summary covering deliverable, exclusions, proposed price and unresolved terms. Ask the person to explain the offer in their own words, compare their current alternative, and describe objections and decision process. Do not describe hypothetical agreement as a commitment."
+    },
+    {
+      "key": "audience",
+      "prompt": "Which people face this need and can explain the buying process? Record their role and context only when known; do not invent authority or budget."
+    },
+    {
+      "key": "effort",
+      "prompt": "Estimate preparation and discussion effort. Identify the offer draft and price assumptions to review; unknown cost or budget stays unknown."
+    },
+    {
+      "key": "observation",
+      "prompt": "Plan separate notes for comprehension, objections, current alternatives and any explicit next step. Retain exact wording and source; distinguish a suggestion, stated intention and documented commitment."
+    },
+    {
+      "key": "decision_rule",
+      "prompt": "Which objection would change scope or price? What concrete next step would merit follow-up, and what would require reconsideration rather than interpreting silence as agreement?"
+    },
+    {
+      "key": "boundaries",
+      "prompt": "Set a discussion limit. No messages, commitments, contracts or payments are made by this worksheet; keep unresolved terms visible."
+    }
+  ]
+}

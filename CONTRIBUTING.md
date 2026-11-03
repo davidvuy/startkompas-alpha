@@ -24,3 +24,7 @@ After reviewing edits to already listed files, run `node scripts/refresh-public-
 Install Gitleaks from its official repository, then run `sh scripts/scan-staged.sh` before committing. This requires a shell such as Git Bash on Windows. The script is opt-in and does not change your Git hooks. CI also scans public history. Redaction reduces log exposure; it is not a security guarantee.
 
 Reviewers should explain requested changes and preserve attribution. Feature proposals and pull requests are not automatically accepted. No support response deadline is promised.
+
+For templates and data modules, use [the content submission and maintenance checklist](docs/content-contributions.md) and the [fictional package rehearsal](docs/practice-modules.md). Include source rights and review status; a passing synthetic test does not establish specialist approval.
+
+See [fork update and extension boundaries](docs/fork-updates.md) and the [tested compatibility limits](docs/support-matrix.md) before merging upstream or migrating private data.

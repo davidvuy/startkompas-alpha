@@ -1,0 +1,999 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "startkompas-project-handoff-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project_id",
+    "name",
+    "revision",
+    "schema_version",
+    "canonical_sha256",
+    "active_task",
+    "decisions",
+    "open_tasks",
+    "unresolved_checks",
+    "evidence",
+    "artifacts",
+    "summary",
+    "retrieval",
+    "invalidated_ids",
+    "limitations"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "schema_version": {
+      "enum": [
+        "1.0.0",
+        "1.1.0"
+      ]
+    },
+    "canonical_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "active_task": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "anyOf": [
+            {
+              "$ref": "dossier-v1.schema.json#/properties/tasks/items"
+            },
+            {
+              "$ref": "dossier-v1.1.schema.json#/properties/tasks/items"
+            }
+          ]
+        }
+      ]
+    },
+    "decisions": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "dossier-v1.schema.json#/properties/decisions/items"
+          },
+          {
+            "$ref": "dossier-v1.1.schema.json#/properties/decisions/items"
+          }
+        ]
+      }
+    },
+    "open_tasks": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "dossier-v1.schema.json#/properties/tasks/items"
+          },
+          {
+            "$ref": "dossier-v1.1.schema.json#/properties/tasks/items"
+          }
+        ]
+      }
+    },
+    "unresolved_checks": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "dossier-v1.schema.json#/properties/checks/items"
+          },
+          {
+            "$ref": "dossier-v1.1.schema.json#/properties/checks/items"
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "dossier-v1.schema.json#/properties/evidence/items"
+          },
+          {
+            "$ref": "dossier-v1.1.schema.json#/properties/evidence/items"
+          }
+        ]
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "recorded_availability",
+          "actual",
+          "location"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "recorded_availability": {
+            "enum": [
+              "available",
+              "missing",
+              "unknown"
+            ]
+          },
+          "actual": {
+            "enum": [
+              "external_unchecked",
+              "missing",
+              "hash_matches",
+              "hash_mismatch",
+              "unreadable_or_unsafe"
+            ]
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "limit_per_section",
+        "totals",
+        "truncated"
+      ],
+      "properties": {
+        "limit_per_section": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "totals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "decisions",
+            "open_tasks",
+            "unresolved_checks",
+            "evidence",
+            "artifacts"
+          ],
+          "properties": {
+            "decisions": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "open_tasks": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unresolved_checks": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "evidence": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "artifacts": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "retrieval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "query",
+        "total_matches",
+        "returned",
+        "truncated",
+        "records"
+      ],
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "total_matches": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "returned": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "records": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "key",
+                  "value",
+                  "assertion",
+                  "source_ids"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "profile"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/profile/items/properties/id"
+                  },
+                  "key": {
+                    "$ref": "dossier-v1.schema.json#/properties/profile/items/properties/key"
+                  },
+                  "value": {
+                    "$ref": "dossier-v1.schema.json#/properties/profile/items/properties/value"
+                  },
+                  "assertion": {
+                    "$ref": "dossier-v1.schema.json#/properties/profile/items/properties/assertion"
+                  },
+                  "source_ids": {
+                    "$ref": "dossier-v1.schema.json#/properties/profile/items/properties/source_ids"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "text",
+                  "assertion",
+                  "source_ids"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "facts"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/facts/items/properties/id"
+                  },
+                  "text": {
+                    "$ref": "dossier-v1.schema.json#/properties/facts/items/properties/text"
+                  },
+                  "assertion": {
+                    "$ref": "dossier-v1.schema.json#/properties/facts/items/properties/assertion"
+                  },
+                  "source_ids": {
+                    "$ref": "dossier-v1.schema.json#/properties/facts/items/properties/source_ids"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "text",
+                  "assertion",
+                  "source_ids"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "assumptions"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/assumptions/items/properties/id"
+                  },
+                  "text": {
+                    "$ref": "dossier-v1.schema.json#/properties/assumptions/items/properties/text"
+                  },
+                  "assertion": {
+                    "$ref": "dossier-v1.schema.json#/properties/assumptions/items/properties/assertion"
+                  },
+                  "source_ids": {
+                    "$ref": "dossier-v1.schema.json#/properties/assumptions/items/properties/source_ids"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "title",
+                  "location",
+                  "scope",
+                  "accessed_at"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "sources"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/sources/items/properties/id"
+                  },
+                  "title": {
+                    "$ref": "dossier-v1.schema.json#/properties/sources/items/properties/title"
+                  },
+                  "location": {
+                    "$ref": "dossier-v1.schema.json#/properties/sources/items/properties/location"
+                  },
+                  "scope": {
+                    "$ref": "dossier-v1.schema.json#/properties/sources/items/properties/scope"
+                  },
+                  "accessed_at": {
+                    "$ref": "dossier-v1.schema.json#/properties/sources/items/properties/accessed_at"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "text",
+                  "reason",
+                  "basis_ids",
+                  "status",
+                  "supersedes"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "decisions"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/decisions/items/properties/id"
+                  },
+                  "text": {
+                    "$ref": "dossier-v1.schema.json#/properties/decisions/items/properties/text"
+                  },
+                  "reason": {
+                    "$ref": "dossier-v1.schema.json#/properties/decisions/items/properties/reason"
+                  },
+                  "basis_ids": {
+                    "$ref": "dossier-v1.schema.json#/properties/decisions/items/properties/basis_ids"
+                  },
+                  "status": {
+                    "$ref": "dossier-v1.schema.json#/properties/decisions/items/properties/status"
+                  },
+                  "supersedes": {
+                    "$ref": "dossier-v1.schema.json#/properties/decisions/items/properties/supersedes"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "title",
+                  "applicability",
+                  "progress",
+                  "substantiation",
+                  "basis_kind",
+                  "evidence_ids",
+                  "period",
+                  "depends_on"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "tasks"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/tasks/items/properties/id"
+                  },
+                  "title": {
+                    "$ref": "dossier-v1.schema.json#/properties/tasks/items/properties/title"
+                  },
+                  "applicability": {
+                    "$ref": "dossier-v1.schema.json#/properties/tasks/items/properties/applicability"
+                  },
+                  "progress": {
+                    "$ref": "dossier-v1.schema.json#/properties/tasks/items/properties/progress"
+                  },
+                  "substantiation": {
+                    "$ref": "dossier-v1.schema.json#/properties/tasks/items/properties/substantiation"
+                  },
+                  "basis_kind": {
+                    "$ref": "dossier-v1.schema.json#/properties/tasks/items/properties/basis_kind"
+                  },
+                  "evidence_ids": {
+                    "$ref": "dossier-v1.schema.json#/properties/tasks/items/properties/evidence_ids"
+                  },
+                  "period": {
+                    "$ref": "dossier-v1.schema.json#/properties/tasks/items/properties/period"
+                  },
+                  "depends_on": {
+                    "$ref": "dossier-v1.schema.json#/properties/tasks/items/properties/depends_on"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "title",
+                  "scope",
+                  "applicability",
+                  "progress",
+                  "substantiation",
+                  "basis_kind",
+                  "evidence_ids",
+                  "period"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "checks"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/checks/items/properties/id"
+                  },
+                  "title": {
+                    "$ref": "dossier-v1.schema.json#/properties/checks/items/properties/title"
+                  },
+                  "scope": {
+                    "$ref": "dossier-v1.schema.json#/properties/checks/items/properties/scope"
+                  },
+                  "applicability": {
+                    "$ref": "dossier-v1.schema.json#/properties/checks/items/properties/applicability"
+                  },
+                  "progress": {
+                    "$ref": "dossier-v1.schema.json#/properties/checks/items/properties/progress"
+                  },
+                  "substantiation": {
+                    "$ref": "dossier-v1.schema.json#/properties/checks/items/properties/substantiation"
+                  },
+                  "basis_kind": {
+                    "$ref": "dossier-v1.schema.json#/properties/checks/items/properties/basis_kind"
+                  },
+                  "evidence_ids": {
+                    "$ref": "dossier-v1.schema.json#/properties/checks/items/properties/evidence_ids"
+                  },
+                  "period": {
+                    "$ref": "dossier-v1.schema.json#/properties/checks/items/properties/period"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "version",
+                  "storage",
+                  "location",
+                  "availability",
+                  "sha256"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "artifacts"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/artifacts/items/properties/id"
+                  },
+                  "version": {
+                    "$ref": "dossier-v1.schema.json#/properties/artifacts/items/properties/version"
+                  },
+                  "storage": {
+                    "$ref": "dossier-v1.schema.json#/properties/artifacts/items/properties/storage"
+                  },
+                  "location": {
+                    "$ref": "dossier-v1.schema.json#/properties/artifacts/items/properties/location"
+                  },
+                  "availability": {
+                    "$ref": "dossier-v1.schema.json#/properties/artifacts/items/properties/availability"
+                  },
+                  "sha256": {
+                    "$ref": "dossier-v1.schema.json#/properties/artifacts/items/properties/sha256"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "artifact_id",
+                  "subject_id",
+                  "subject_version",
+                  "environment",
+                  "date",
+                  "reviewer",
+                  "scope",
+                  "result",
+                  "period"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "evidence"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/id"
+                  },
+                  "artifact_id": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/artifact_id"
+                  },
+                  "subject_id": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/subject_id"
+                  },
+                  "subject_version": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/subject_version"
+                  },
+                  "environment": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/environment"
+                  },
+                  "date": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/date"
+                  },
+                  "reviewer": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/reviewer"
+                  },
+                  "scope": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/scope"
+                  },
+                  "result": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/result"
+                  },
+                  "period": {
+                    "$ref": "dossier-v1.schema.json#/properties/evidence/items/properties/period"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "type",
+                  "at",
+                  "description",
+                  "subject_ids"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "events"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.schema.json#/properties/events/items/properties/id"
+                  },
+                  "type": {
+                    "$ref": "dossier-v1.schema.json#/properties/events/items/properties/type"
+                  },
+                  "at": {
+                    "$ref": "dossier-v1.schema.json#/properties/events/items/properties/at"
+                  },
+                  "description": {
+                    "$ref": "dossier-v1.schema.json#/properties/events/items/properties/description"
+                  },
+                  "subject_ids": {
+                    "$ref": "dossier-v1.schema.json#/properties/events/items/properties/subject_ids"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "key",
+                  "value",
+                  "assertion",
+                  "source_ids"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "profile"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/profile/items/properties/id"
+                  },
+                  "key": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/profile/items/properties/key"
+                  },
+                  "value": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/profile/items/properties/value"
+                  },
+                  "assertion": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/profile/items/properties/assertion"
+                  },
+                  "source_ids": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/profile/items/properties/source_ids"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "text",
+                  "assertion",
+                  "source_ids"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "facts"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/facts/items/properties/id"
+                  },
+                  "text": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/facts/items/properties/text"
+                  },
+                  "assertion": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/facts/items/properties/assertion"
+                  },
+                  "source_ids": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/facts/items/properties/source_ids"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "text",
+                  "assertion",
+                  "source_ids"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "assumptions"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/assumptions/items/properties/id"
+                  },
+                  "text": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/assumptions/items/properties/text"
+                  },
+                  "assertion": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/assumptions/items/properties/assertion"
+                  },
+                  "source_ids": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/assumptions/items/properties/source_ids"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "title",
+                  "location",
+                  "scope",
+                  "accessed_at"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "sources"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/sources/items/properties/id"
+                  },
+                  "title": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/sources/items/properties/title"
+                  },
+                  "location": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/sources/items/properties/location"
+                  },
+                  "scope": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/sources/items/properties/scope"
+                  },
+                  "accessed_at": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/sources/items/properties/accessed_at"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "text",
+                  "reason",
+                  "basis_ids",
+                  "status",
+                  "supersedes"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "decisions"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/decisions/items/properties/id"
+                  },
+                  "text": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/decisions/items/properties/text"
+                  },
+                  "reason": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/decisions/items/properties/reason"
+                  },
+                  "basis_ids": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/decisions/items/properties/basis_ids"
+                  },
+                  "status": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/decisions/items/properties/status"
+                  },
+                  "supersedes": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/decisions/items/properties/supersedes"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "title",
+                  "applicability",
+                  "progress",
+                  "substantiation",
+                  "basis_kind",
+                  "evidence_ids",
+                  "period",
+                  "depends_on"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "tasks"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/tasks/items/properties/id"
+                  },
+                  "title": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/tasks/items/properties/title"
+                  },
+                  "applicability": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/tasks/items/properties/applicability"
+                  },
+                  "progress": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/tasks/items/properties/progress"
+                  },
+                  "substantiation": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/tasks/items/properties/substantiation"
+                  },
+                  "basis_kind": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/tasks/items/properties/basis_kind"
+                  },
+                  "evidence_ids": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/tasks/items/properties/evidence_ids"
+                  },
+                  "period": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/tasks/items/properties/period"
+                  },
+                  "depends_on": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/tasks/items/properties/depends_on"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "title",
+                  "scope",
+                  "applicability",
+                  "progress",
+                  "substantiation",
+                  "basis_kind",
+                  "evidence_ids",
+                  "period"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "checks"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/checks/items/properties/id"
+                  },
+                  "title": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/checks/items/properties/title"
+                  },
+                  "scope": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/checks/items/properties/scope"
+                  },
+                  "applicability": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/checks/items/properties/applicability"
+                  },
+                  "progress": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/checks/items/properties/progress"
+                  },
+                  "substantiation": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/checks/items/properties/substantiation"
+                  },
+                  "basis_kind": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/checks/items/properties/basis_kind"
+                  },
+                  "evidence_ids": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/checks/items/properties/evidence_ids"
+                  },
+                  "period": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/checks/items/properties/period"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "version",
+                  "storage",
+                  "location",
+                  "availability",
+                  "sha256"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "artifacts"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/artifacts/items/properties/id"
+                  },
+                  "version": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/artifacts/items/properties/version"
+                  },
+                  "storage": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/artifacts/items/properties/storage"
+                  },
+                  "location": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/artifacts/items/properties/location"
+                  },
+                  "availability": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/artifacts/items/properties/availability"
+                  },
+                  "sha256": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/artifacts/items/properties/sha256"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "artifact_id",
+                  "subject_id",
+                  "subject_version",
+                  "environment",
+                  "date",
+                  "reviewer",
+                  "scope",
+                  "result",
+                  "period"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "evidence"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/id"
+                  },
+                  "artifact_id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/artifact_id"
+                  },
+                  "subject_id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/subject_id"
+                  },
+                  "subject_version": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/subject_version"
+                  },
+                  "environment": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/environment"
+                  },
+                  "date": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/date"
+                  },
+                  "reviewer": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/reviewer"
+                  },
+                  "scope": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/scope"
+                  },
+                  "result": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/result"
+                  },
+                  "period": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/evidence/items/properties/period"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "group",
+                  "id",
+                  "type",
+                  "at",
+                  "description",
+                  "subject_ids"
+                ],
+                "properties": {
+                  "group": {
+                    "const": "events"
+                  },
+                  "id": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/events/items/properties/id"
+                  },
+                  "type": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/events/items/properties/type"
+                  },
+                  "at": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/events/items/properties/at"
+                  },
+                  "description": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/events/items/properties/description"
+                  },
+                  "subject_ids": {
+                    "$ref": "dossier-v1.1.schema.json#/properties/events/items/properties/subject_ids"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "invalidated_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

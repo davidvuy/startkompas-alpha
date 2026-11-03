@@ -1,0 +1,17 @@
+# PDF export
+
+PDFs are local, immutable snapshots. No content is uploaded or sent. The renderer uses pinned PDFKit/fontkit packages and bundled Noto Sans regular/bold fonts. It renders headings, paragraphs, lists and simple pipe tables (2-8 columns), with repeated table headers, split oversized rows, margins and page numbers. Links remain readable text; remote images, HTML, scripts and attachments are not loaded. Full Markdown styling, complex scripts and PDF/A or PDF/UA certification are not claimed.
+
+Select exactly one source:
+
+- `{ "kind": "document", "artifact_id": "..." }`: the complete saved business draft, including original template context and recorded basis warnings.
+- `{ "kind": "report", "sections": ["summary", "tasks"] }`: the existing explicitly selected private working report.
+- `{ "kind": "summary", "artifact_id": "...", "keys": ["outcome"] }`: selected sections of a current offer; unselected internal fields and project/client identifiers are not added.
+
+Run `node src/startkompas.mjs pdf preview <project-directory> <project-id> <selection.json>` to inspect the source text, warnings, page count and PDF fingerprint. Then `pdf save <project-directory> <project-id> <selection.json> <preview-sha256> <new-file.pdf>` creates a new file outside the project. An existing destination is never overwritten. A changed PDF fingerprint refuses saving. Later document edits cannot alter prior exports. Selected text may itself contain private information; review it before sharing. In the browser, use **Preview complete draft as PDF** on a saved document, or **Preview selected report/summary as PDF** in its export selection form. Review the notices and complete source, open the exact PDF in a separate tab, then confirm **Save reviewed PDF snapshot**. The browser may download the preview instead if configured that way. Returning to selection clears the previous PDF and its confirmation; a fresh preview uses the new selection.
+
+Limits: 250000 source bytes, 200 pages, 20 MB PDF, up to eight table columns. Invalid or inconsistent tables refuse rendering rather than silently dropping cells. Standard headings and escaped punctuation are rendered as readable text. Unsupported glyphs are represented by explicit `[U+XXXX]` codes with a rendering notice. If bundled fonts cannot be read, standard PDF fonts provide readable ASCII output, and non-ASCII characters use the same visible codes. Original project text is retained unchanged. This fallback preserves character identity but is not a substitute for native-script typography.
+
+Font source: [Noto fonts at pinned commit ffebf8c](https://github.com/notofonts/noto-fonts/tree/ffebf8c1ee449e544955a7e813c54f9b73848eac/hinted/ttf/NotoSans), SIL OFL 1.1, copyright notice in `assets/fonts/OFL.txt`. Font files are unmodified and embedded as subsets. See THIRD_PARTY_NOTICES.md for runtime dependencies.
+
+The local authenticated API exposes `pdf-preview` with `{ref, selection}` and `pdf-save` with `{ref, preview, confirmed:true}`. Preview returns PDF bytes as base64 plus readable source, page count, warnings and fingerprint. Save checks the preview's project state, regenerates matching bytes and writes a new server-selected filename outside the project. Concurrent retries return one receipt; expired, cross-project or wrong-kind previews refuse. These routes use the existing loopback session/origin boundary. The browser releases its temporary PDF URL when leaving the preview or unloading the page. It does not persist PDF bytes in tab recovery or change browser PDF settings.

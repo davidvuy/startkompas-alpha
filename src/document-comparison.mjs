@@ -1,3 +1,4 @@
+import {documentFieldDefinitions} from './business-fields.mjs';
 import {readCore} from './store.mjs';
 import {canonical} from './model.mjs';
 import {briefTypes,readBusinessBrief} from './business-brief.mjs';
@@ -26,7 +27,7 @@ export function compareDocuments(dir,id,beforeId,afterId){
  const state=readCore(dir,id),rows=chain(dir,id,afterId),after=rows[0],before=rows.find(r=>r.artifact_id===beforeId);
  if(!before||before.version>=after.version)throw Error('Select two increasing versions of the same document');
  const changes=[];
- for(const [key,labels] of Object.entries(briefTypes[after.request.kind].fields)){
+ for(const [key,labels] of Object.entries(documentFieldDefinitions(after.request))){
   const a=before.fields.find(f=>f.key===key),b=after.fields.find(f=>f.key===key);
   if(!a||!b)throw Error('Incomplete document fields');
   const textChanged=a.value!==b.value,statusChanged=a.assertion!==b.assertion,basisChanged=canonical([a.record_ids,a.basis])!==canonical([b.record_ids,b.basis]);

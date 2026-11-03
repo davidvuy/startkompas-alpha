@@ -1,3 +1,5 @@
+import {sharingReview} from './sharing-review.mjs';
+import {documentFieldDefinitions} from './business-fields.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import {readCore,safeDirectory,writeExclusive,sha} from './store.mjs';
@@ -5,9 +7,9 @@ import {briefTypes,readBusinessBrief} from './business-brief.mjs';
 
 const escape=value=>String(value).replace(/[\x00-\x1f\x7f-\x9f]/g,' ').replace(/[\\`*_{}[\]()#+.!|<>]/g,c=>'\\'+c);
 export function externalSummary(dir,id,artifactId,keys){
- const allowed=Object.keys(briefTypes.offer.fields);
+ const state=readCore(dir,id),draft=readBusinessBrief(dir,id,artifactId),definitions=documentFieldDefinitions(draft.request);
+ const allowed=Object.keys(definitions);
  if(!Array.isArray(keys)||!keys.length||keys.length>allowed.length||new Set(keys).size!==keys.length||keys.some(k=>!allowed.includes(k)))throw Error('Select unique offer sections for the summary');
- const state=readCore(dir,id),draft=readBusinessBrief(dir,id,artifactId);
  if(draft.request.kind!=='offer'||draft.successor_ids.length)throw Error('Select a current saved offer');
  const fields=allowed.filter(key=>keys.includes(key)).map(key=>draft.fields.find(f=>f.key===key));
  if(fields.some(f=>!f))throw Error('Offer fields are incomplete');
@@ -15,11 +17,11 @@ export function externalSummary(dir,id,artifactId,keys){
  const lines=['# Offer summary','',`Saved offer version ${draft.version} · Project revision ${state.dossier.revision}`,'','Selected draft content, not a validated result or agreed commitment.'];
  if(draft.practice)lines.push('FICTIONAL PRACTICE — not real customer evidence or validation.');
  if(draft.requires_review)lines.push('CAUTION: the recorded basis changed; review this draft before reuse.');
- for(const f of fields)lines.push('','## '+briefTypes.offer.fields[f.key][1],'',f.value===null?'Unknown — no answer recorded.':escape(f.value),({proposal:'Proposal — not validated.',reported:'Reported — not independently verified.',unknown:'Unknown — not established.'})[f.assertion]);
+ for(const f of fields)lines.push('','## '+escape(definitions[f.key][1]),'',f.value===null?'Unknown — no answer recorded.':escape(f.value),({proposal:'Proposal — not validated.',reported:'Reported — not independently verified.',unknown:'Unknown — not established.'})[f.assertion]);
  lines.push('','This is a selected local snapshot, not the complete offer or an agreement. Omitted sections may contain important limits. Later project edits do not update this copy. Saving does not send it to anyone.');
  const markdown=lines.join('\n')+'\n';
  if(readCore(dir,id).sha256!==state.sha256)throw Error('Project changed; preview again');
- return {revision:state.dossier.revision,version:draft.version,markdown,sha256:sha(markdown),bytes:Buffer.byteLength(markdown)};
+ return {revision:state.dossier.revision,version:draft.version,markdown,sharing_review:sharingReview(markdown),sha256:sha(markdown),bytes:Buffer.byteLength(markdown)};
 }
 export function writeExternalSummary(dir,id,artifactId,keys,digest,destination){
  const preview=externalSummary(dir,id,artifactId,keys);

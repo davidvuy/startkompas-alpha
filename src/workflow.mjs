@@ -1,3 +1,4 @@
+import Ajv2020 from 'ajv/dist/2020.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import {randomUUID} from 'node:crypto';
@@ -7,9 +8,14 @@ import {readCore,updateCore,damagedArtifacts,safeDirectory,writeExclusive,bytesF
 import {exportCore,restoreCore} from './transfer.mjs';
 import {applyInvalidation} from './change-rules.mjs';
 
+const requestSchemas=JSON.parse(fs.readFileSync(new URL('../schemas/workflow-contract-v1.schema.json',import.meta.url),'utf8')).$defs;
+const requestValidators=Object.fromEntries(['plan','reuse','impact'].map(kind=>[kind,new Ajv2020({strict:true,allErrors:true,coerceTypes:false,useDefaults:false}).compile(requestSchemas[kind+'_request'])]));
+function checkRequest(kind,value){const validate=requestValidators[kind];if(!validate(value))throw Error('Invalid '+kind+' request: '+validate.errors.map(e=>e.instancePath+' '+e.message).join('; '));}
+
 function state(dir,id){const loaded=readCore(dir,id);if(!loaded.dossier.workflow)throw Error('Workflow requires schema 1.1.0; use explicit copy upgrade');
   const data=applyInvalidation(loaded.dossier,structuredClone(loaded.dossier),damagedArtifacts(loaded.directory,loaded.dossier));return {...loaded,data};}
 export function planNext(dir,id,request){
+  checkRequest('plan',request);
   const {data:d}=state(dir,id),g=dependencyGraph(d);
   if(!request||!['small_edit','material_choice'].includes(request.kind)||!Array.isArray(request.target_ids)||!request.target_ids.length||request.target_ids.some(x=>!g.index.has(x)))throw Error('Planning requires kind and existing target_ids');
   if(request.kind==='small_edit')return {project_id:id,revision:d.revision,route:'direct_small_edit',research:[],warning:'Caller/skill classifies materiality; this does not authorize external actions'};
@@ -34,6 +40,7 @@ export function planNext(dir,id,request){
 }
 const normalize=s=>s.normalize('NFKC').toLowerCase().trim().replace(/\s+/g,' ');
 export function findReusable(dir,id,query){
+  checkRequest('reuse',query);
   const {data:d}=state(dir,id),index=records(d);
   if(!query||typeof query.goal!=='string'||!query.goal.trim()||['client','period','version'].some(k=>!(k in query)||(query[k]!==null&&typeof query[k]!=='string')))throw Error('Reuse query needs goal, client, period and version (null if unknown)');
   const hits=d.workflow.intents.filter(i=>normalize(i.goal)===normalize(query.goal));
@@ -44,6 +51,7 @@ export function findReusable(dir,id,query){
     limitations:['Normalized explicit goal identity, not a semantic language model or exhaustive synonym search','No match means no matching declared intent; inspect raw records before creating duplicate work','No records are merged or changed by search']};
 }
 export function prepareChange(dir,request){
+  checkRequest('impact',request);
   const {dossier:d}=readCore(dir,request.project_id);
   if(!d.workflow||!Array.isArray(request.changed_ids)||!request.changed_ids.length||typeof request.reason!=='string'||!request.reason.trim())throw Error('Change needs changed_ids and reason');
   const impacted=affected(d,request.changed_ids),workflow={...d.workflow,invalidated_ids:[...new Set([...d.workflow.invalidated_ids,...impacted])]};

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "startkompas-project-upgrade-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "directory",
+    "file",
+    "sha256",
+    "dossier",
+    "retained_export",
+    "warning"
+  ],
+  "properties": {
+    "directory": {
+      "$ref": "project-read-v1.schema.json#/properties/directory"
+    },
+    "file": {
+      "$ref": "project-read-v1.schema.json#/properties/file"
+    },
+    "sha256": {
+      "$ref": "project-read-v1.schema.json#/properties/sha256"
+    },
+    "dossier": {
+      "$ref": "project-read-v1.schema.json#/properties/dossier"
+    },
+    "retained_export": {
+      "type": "string",
+      "minLength": 1
+    },
+    "warning": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

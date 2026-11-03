@@ -1,5 +1,16 @@
 # Changes
 
+## 0.1.0-alpha.13 — local learning, review and recovery
+
+- Add versioned personal worksheets and local PDF output, explicit export preferences and pre-share review. Imported text and comments keep their original context; nothing is sent automatically.
+- Record source excerpts, separate conversation quotations from interpretation, link findings and retain opposing judgments. Capture experiment plans, reported observations and separate review proposals without inventing execution or customer evidence.
+- Prepare selected mentor packages, import scoped feedback, record owner responses and connect them to decisions. Reviewer aliases are not authenticated identities; hosted accounts and invitations are not supplied.
+- Preserve unfinished inputs through optional tab recovery and explicit private disk copies. Standalone mentor drafts use separate local files. Confirmations and save authority are never restored.
+- Review an older project snapshot and explicitly reinstate it as a new explained revision. Keep previous snapshots, privacy-removal tombstones and existing review requirements. Deleted content is not recreated, and old evidence does not become newly validated. Legacy dossiers also expose damaged evidence as requiring review without silent migration.
+- Add bounded practice module trials, lifecycle notices, import comparison and explicit project-command schemas. Fictional examples and technical tests do not establish module expertise or market demand.
+
+This remains an experimental alpha, not a version1.0 completion. Actual browser checks for AI-context draft recovery, snapshot reinstatement and standalone mentor files remain incomplete because the automation connection/activation is unavailable. Screen-reader, independent security/content review and real-user validation remain open. Earlier Edge route evidence does not cover every new screen. No provider model calls, cloud service, telemetry or background monitoring added.
+
 ## 0.1.0-alpha.12.1 — clarify available browser support
 
 - Includes the alpha12 document workflow below. Corrects a historical README sentence that incorrectly said the browser route was unavailable. The loopback browser workspace exists; native mobile apps, Claude and managed cloud services remain outside this alpha.

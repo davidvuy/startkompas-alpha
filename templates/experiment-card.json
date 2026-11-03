@@ -1,0 +1,57 @@
+{
+  "format": "startkompas-document-template-v1",
+  "id": "experiment-card",
+  "version": 1,
+  "name": "Experiment planning card",
+  "document_kind": "experiment",
+  "audience": "People preparing a bounded check of one business uncertainty",
+  "scope": "A proposed experiment, with a decision rule and no recorded execution or results",
+  "required_inputs": [
+    "question",
+    "method",
+    "audience",
+    "effort",
+    "observation",
+    "decision_rule",
+    "boundaries"
+  ],
+  "unknowns": [
+    "Whether suitable participants or source material are available",
+    "What the experiment will actually reveal"
+  ],
+  "boundaries": [
+    "This worksheet does not record execution, observations, validation or payments",
+    "Record actual results separately with provenance; retain later changes to the decision rule",
+    "User-supplied dates cannot prove a plan preceded execution"
+  ],
+  "sections": [
+    {
+      "key": "question",
+      "prompt": "Which single uncertainty should this experiment investigate?"
+    },
+    {
+      "key": "method",
+      "prompt": "What procedure will you use, and what comparison would be informative?"
+    },
+    {
+      "key": "audience",
+      "prompt": "Which audience and situation does this planned check apply to? Do not invent participants."
+    },
+    {
+      "key": "effort",
+      "prompt": "What time, cost and resources are required? Leave unknown estimates blank."
+    },
+    {
+      "key": "observation",
+      "prompt": "What do you intend to observe, and how will you record actual observations with their source?"
+    },
+    {
+      "key": "decision_rule",
+      "prompt": "Before execution, which observations would support, weaken or change your next decision?"
+    },
+    {
+      "key": "boundaries",
+      "prompt": "What limitations, exclusions and stop conditions apply?"
+    }
+  ]
+}

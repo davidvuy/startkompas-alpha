@@ -73,3 +73,13 @@ export function checkModel(data) {
   checkWorkflow(data);
   return data;
 }
+
+
+const updateValidator=new Ajv2020({strict:true,allowUnionTypes:true,allErrors:true,useDefaults:false,coerceTypes:false,removeAdditional:false})
+ .addSchema(JSON.parse(fs.readFileSync(new URL('../schemas/dossier-v1.1.schema.json',import.meta.url))),'dossier-v1.1.schema.json')
+ .compile(JSON.parse(fs.readFileSync(new URL('../schemas/update-request-v1.schema.json',import.meta.url))));
+export function checkUpdateRequest(request){
+ if(!updateValidator(request))throw Error('Invalid update request: '+updateValidator.errors.slice(0,8).map(e=>`${e.instancePath||'/'} ${e.message}`).join('; '));
+ if(Buffer.byteLength(JSON.stringify(request))>MAX_CORE_BYTES)throw Error('Update exceeds size limit');
+ return request;
+}

@@ -4,6 +4,18 @@ import {createHash} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
 const digest=b=>createHash('sha256').update(b).digest('hex');
 const requireThat=(ok,message)=>{if(!ok)throw Error(message);};
+// Explicit notice paths retain distinct nested package versions and multi-file notices.
+const dependencyNotices={
+ 'node_modules/@noble/ciphers':['noble-ciphers-LICENSE.txt'],
+ 'node_modules/@noble/hashes':['noble-hashes-LICENSE.txt'],
+ 'node_modules/@swc/helpers':['swc-helpers-LICENSE.txt'],
+ 'node_modules/linebreak/node_modules/base64-js':['linebreak-base64-js-LICENSE.MIT.txt'],
+ 'node_modules/tslib':['tslib-LICENSE.txt.txt'],
+ 'node_modules/fontkit':['fontkit-README.md.txt','fontkit-package.json.txt'],
+ 'node_modules/dfa':['dfa-README.md.txt','dfa-package.json.txt'],
+ 'node_modules/brotli':['brotli-README.md.txt','brotli-package.json.txt','brotli-decoder-notice-source.txt','swc-helpers-LICENSE.txt'],
+ ...Object.fromEntries(['base64-js','clone','fflate','linebreak','pako','pdfkit','png-js','restructure','tiny-inflate','unicode-properties','unicode-trie'].map(name=>['node_modules/'+name,[name+'-LICENSE.txt']]))
+};
 export const requiredFiles=['package.json','package-lock.json','LICENSE','LICENSING.md','THIRD_PARTY_NOTICES.md','.agents/skills/startkompas/SKILL.md','.agents/skills/startkompas/LICENSE','.agents/skills/startkompas/NOTICE','.agents/skills/startkompas/LICENSE-APACHE-2.0','src/core-cli.mjs','schemas/dossier-v1.schema.json','schemas/dossier-v1.1.schema.json','examples/dossier-v1.1.json','docs/start-resume.md','docs/gebruiken.nl.md'];
 export function verifyInstallation(directory,expectedRevision,expectedManifestHash){
  requireThat(/^[a-f0-9]{40}$/.test(expectedRevision??''),'Expected source revision required');
@@ -37,9 +49,9 @@ export function verifyInstallation(directory,expectedRevision,expectedManifestHa
  requireThat(JSON.stringify(pkg.dependencies)===JSON.stringify(lock.packages[''].dependencies),'Package/lock dependencies differ');
  const deps=Object.entries(lock.packages).filter(([p])=>p);requireThat(deps.length>0,'Missing locked dependencies');
  for(const [p,d]of deps){
-  requireThat(/^node_modules\/[a-z0-9-]+$/.test(p),'Unsupported dependency layout');
+  requireThat(/^(?:node_modules\/(?:@[a-z0-9-]+\/)?[a-z0-9-]+)(?:\/node_modules\/(?:@[a-z0-9-]+\/)?[a-z0-9-]+)*$/.test(p),'Unsupported dependency layout');
   requireThat(typeof d.version==='string'&&typeof d.integrity==='string'&&/^sha512-[A-Za-z0-9+/]+=*$/.test(d.integrity),'Missing locked dependency identity');
-  const name=p.slice(13);requireThat(files.has('licenses/dependencies/'+name+'.txt'),'Missing dependency notice');
+  const notices=dependencyNotices[p]??[p.slice(13)+'.txt'];for(const notice of notices)requireThat(files.has('licenses/dependencies/'+notice),'Missing dependency notice: '+p);
  }
  for(const [name,version]of Object.entries(pkg.dependencies??{}))requireThat(lock.packages['node_modules/'+name]?.version===version,'Direct dependency not exact locked version');
  requireThat(/^name: startkompas\r?$/m.test(regular(path.join(root,'.agents/skills/startkompas/SKILL.md')).toString()),'Wrong skill identity');

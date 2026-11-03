@@ -1,0 +1,911 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "startkompas-retrieval-result-v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project_id",
+    "revision",
+    "canonical_sha256",
+    "query",
+    "groups",
+    "offset",
+    "limit",
+    "total_matches",
+    "returned",
+    "next_offset",
+    "truncated",
+    "missing_requested_ids",
+    "records",
+    "limitations"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "canonical_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "query": {
+      "$ref": "retrieval-request-v1.schema.json#/properties/query"
+    },
+    "groups": {
+      "$ref": "retrieval-request-v1.schema.json#/properties/groups"
+    },
+    "offset": {
+      "$ref": "retrieval-request-v1.schema.json#/properties/offset"
+    },
+    "limit": {
+      "$ref": "retrieval-request-v1.schema.json#/properties/limit"
+    },
+    "total_matches": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "returned": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "next_offset": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "integer",
+          "minimum": 0
+        }
+      ]
+    },
+    "truncated": {
+      "type": "boolean"
+    },
+    "missing_requested_ids": {
+      "$ref": "retrieval-request-v1.schema.json#/properties/ids"
+    },
+    "records": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "key",
+              "value",
+              "assertion",
+              "source_ids",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/0/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/0/properties/id"
+              },
+              "key": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/0/properties/key"
+              },
+              "value": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/0/properties/value"
+              },
+              "assertion": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/0/properties/assertion"
+              },
+              "source_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/0/properties/source_ids"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "text",
+              "assertion",
+              "source_ids",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/1/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/1/properties/id"
+              },
+              "text": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/1/properties/text"
+              },
+              "assertion": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/1/properties/assertion"
+              },
+              "source_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/1/properties/source_ids"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "text",
+              "assertion",
+              "source_ids",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/2/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/2/properties/id"
+              },
+              "text": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/2/properties/text"
+              },
+              "assertion": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/2/properties/assertion"
+              },
+              "source_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/2/properties/source_ids"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "title",
+              "location",
+              "scope",
+              "accessed_at",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/3/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/3/properties/id"
+              },
+              "title": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/3/properties/title"
+              },
+              "location": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/3/properties/location"
+              },
+              "scope": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/3/properties/scope"
+              },
+              "accessed_at": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/3/properties/accessed_at"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "text",
+              "reason",
+              "basis_ids",
+              "status",
+              "supersedes",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/4/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/4/properties/id"
+              },
+              "text": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/4/properties/text"
+              },
+              "reason": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/4/properties/reason"
+              },
+              "basis_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/4/properties/basis_ids"
+              },
+              "status": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/4/properties/status"
+              },
+              "supersedes": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/4/properties/supersedes"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "title",
+              "applicability",
+              "progress",
+              "substantiation",
+              "basis_kind",
+              "evidence_ids",
+              "period",
+              "depends_on",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/id"
+              },
+              "title": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/title"
+              },
+              "applicability": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/applicability"
+              },
+              "progress": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/progress"
+              },
+              "substantiation": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/substantiation"
+              },
+              "basis_kind": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/basis_kind"
+              },
+              "evidence_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/evidence_ids"
+              },
+              "period": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/period"
+              },
+              "depends_on": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/5/properties/depends_on"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "title",
+              "scope",
+              "applicability",
+              "progress",
+              "substantiation",
+              "basis_kind",
+              "evidence_ids",
+              "period",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/id"
+              },
+              "title": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/title"
+              },
+              "scope": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/scope"
+              },
+              "applicability": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/applicability"
+              },
+              "progress": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/progress"
+              },
+              "substantiation": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/substantiation"
+              },
+              "basis_kind": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/basis_kind"
+              },
+              "evidence_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/evidence_ids"
+              },
+              "period": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/6/properties/period"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "version",
+              "storage",
+              "location",
+              "availability",
+              "sha256",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/7/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/7/properties/id"
+              },
+              "version": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/7/properties/version"
+              },
+              "storage": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/7/properties/storage"
+              },
+              "location": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/7/properties/location"
+              },
+              "availability": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/7/properties/availability"
+              },
+              "sha256": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/7/properties/sha256"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "artifact_id",
+              "subject_id",
+              "subject_version",
+              "environment",
+              "date",
+              "reviewer",
+              "scope",
+              "result",
+              "period",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/id"
+              },
+              "artifact_id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/artifact_id"
+              },
+              "subject_id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/subject_id"
+              },
+              "subject_version": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/subject_version"
+              },
+              "environment": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/environment"
+              },
+              "date": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/date"
+              },
+              "reviewer": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/reviewer"
+              },
+              "scope": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/scope"
+              },
+              "result": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/result"
+              },
+              "period": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/8/properties/period"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "type",
+              "at",
+              "description",
+              "subject_ids",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/9/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/9/properties/id"
+              },
+              "type": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/9/properties/type"
+              },
+              "at": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/9/properties/at"
+              },
+              "description": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/9/properties/description"
+              },
+              "subject_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/9/properties/subject_ids"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "key",
+              "value",
+              "assertion",
+              "source_ids",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/10/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/10/properties/id"
+              },
+              "key": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/10/properties/key"
+              },
+              "value": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/10/properties/value"
+              },
+              "assertion": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/10/properties/assertion"
+              },
+              "source_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/10/properties/source_ids"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "text",
+              "assertion",
+              "source_ids",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/11/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/11/properties/id"
+              },
+              "text": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/11/properties/text"
+              },
+              "assertion": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/11/properties/assertion"
+              },
+              "source_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/11/properties/source_ids"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "text",
+              "assertion",
+              "source_ids",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/12/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/12/properties/id"
+              },
+              "text": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/12/properties/text"
+              },
+              "assertion": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/12/properties/assertion"
+              },
+              "source_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/12/properties/source_ids"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "title",
+              "location",
+              "scope",
+              "accessed_at",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/13/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/13/properties/id"
+              },
+              "title": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/13/properties/title"
+              },
+              "location": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/13/properties/location"
+              },
+              "scope": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/13/properties/scope"
+              },
+              "accessed_at": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/13/properties/accessed_at"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "text",
+              "reason",
+              "basis_ids",
+              "status",
+              "supersedes",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/14/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/14/properties/id"
+              },
+              "text": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/14/properties/text"
+              },
+              "reason": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/14/properties/reason"
+              },
+              "basis_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/14/properties/basis_ids"
+              },
+              "status": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/14/properties/status"
+              },
+              "supersedes": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/14/properties/supersedes"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "title",
+              "applicability",
+              "progress",
+              "substantiation",
+              "basis_kind",
+              "evidence_ids",
+              "period",
+              "depends_on",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/id"
+              },
+              "title": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/title"
+              },
+              "applicability": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/applicability"
+              },
+              "progress": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/progress"
+              },
+              "substantiation": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/substantiation"
+              },
+              "basis_kind": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/basis_kind"
+              },
+              "evidence_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/evidence_ids"
+              },
+              "period": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/period"
+              },
+              "depends_on": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/15/properties/depends_on"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "title",
+              "scope",
+              "applicability",
+              "progress",
+              "substantiation",
+              "basis_kind",
+              "evidence_ids",
+              "period",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/id"
+              },
+              "title": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/title"
+              },
+              "scope": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/scope"
+              },
+              "applicability": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/applicability"
+              },
+              "progress": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/progress"
+              },
+              "substantiation": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/substantiation"
+              },
+              "basis_kind": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/basis_kind"
+              },
+              "evidence_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/evidence_ids"
+              },
+              "period": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/16/properties/period"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "version",
+              "storage",
+              "location",
+              "availability",
+              "sha256",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/17/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/17/properties/id"
+              },
+              "version": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/17/properties/version"
+              },
+              "storage": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/17/properties/storage"
+              },
+              "location": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/17/properties/location"
+              },
+              "availability": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/17/properties/availability"
+              },
+              "sha256": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/17/properties/sha256"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "artifact_id",
+              "subject_id",
+              "subject_version",
+              "environment",
+              "date",
+              "reviewer",
+              "scope",
+              "result",
+              "period",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/id"
+              },
+              "artifact_id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/artifact_id"
+              },
+              "subject_id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/subject_id"
+              },
+              "subject_version": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/subject_version"
+              },
+              "environment": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/environment"
+              },
+              "date": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/date"
+              },
+              "reviewer": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/reviewer"
+              },
+              "scope": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/scope"
+              },
+              "result": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/result"
+              },
+              "period": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/18/properties/period"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "group",
+              "id",
+              "type",
+              "at",
+              "description",
+              "subject_ids",
+              "requires_review"
+            ],
+            "properties": {
+              "group": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/19/properties/group"
+              },
+              "id": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/19/properties/id"
+              },
+              "type": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/19/properties/type"
+              },
+              "at": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/19/properties/at"
+              },
+              "description": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/19/properties/description"
+              },
+              "subject_ids": {
+                "$ref": "project-handoff-v1.schema.json#/properties/retrieval/properties/records/items/anyOf/19/properties/subject_ids"
+              },
+              "requires_review": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
