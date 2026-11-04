@@ -26,7 +26,8 @@ export function installSkill(destination) {
     fs.copyFileSync(path.join(source,row.path),output,fs.constants.COPYFILE_EXCL);
   }
   fs.copyFileSync(path.join(source,'installation.json'),path.join(runtime,'installation.json'));
-  fs.cpSync(path.join(runtime,'.agents/skills/startkompas'),target,{recursive:true,force:false,errorOnExist:true});
+  const skillSource=path.join(runtime,'.agents/skills/startkompas');
+  for(const name of fs.readdirSync(skillSource))fs.cpSync(path.join(skillSource,name),path.join(target,name),{recursive:true,force:false,errorOnExist:true});
   return {skill:target,runtime,next:'Run npm ci --ignore-scripts --no-audit --no-fund in runtime. Open a fresh Codex chat and invoke $startkompas.',verification:'Package consistency checked; authenticity depends on your download source.'};
 }
 

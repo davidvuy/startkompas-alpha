@@ -1,5 +1,9 @@
 # Changes
 
+## 0.1.0-alpha.14.2 — Node 24 installer compatibility
+
+- Copy skill entries into new destinations individually so Node 24 does not reject the newly created skill root as an existing copy target. Existing installations still cannot be overwritten. Use this patch instead of alpha 14/14.1 when installing with Node 24.
+
 ## 0.1.0-alpha.14.1 — consistent skill onboarding
 
 - Align the quickstart and support guide with personal-skill installation and conversational use. The alpha 14 runtime is unchanged.

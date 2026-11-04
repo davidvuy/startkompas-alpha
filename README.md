@@ -12,7 +12,7 @@ See the release notes for the exact tested scope and pending browser checks. Ear
 
 ## Start here
 
-[Download alpha 14.1 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.14.1.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
+[Download alpha 14.2 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.14.2.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
 
 Startkompas is a **Codex skill**. Describe your idea or task in chat; Codex uses the skill's guidance and bundled helpers to draft offers, preserve evidence and resume saved work. The browser workspace is optional.
 
