@@ -1,6 +1,6 @@
 # Install and resume the public alpha
 
-Extract or clone the complete repository into a new directory. Follow [the quickstart](../README.md) for prerequisites, installation, demo and a new project. Keep private dossiers outside the application directory. Never overwrite an existing installation or project.
+Extract or clone the complete repository into a new directory. Run `node scripts/install-skill.mjs`, install dependencies in the printed runtime directory, then open a fresh Codex chat and invoke `$startkompas`. The personal skill is the primary interface; the browser workspace is optional. Follow [the quickstart](../README.md) for prerequisites, installation, demo and a new project. Keep private dossiers outside the application directory. Never overwrite an existing installation or project.
 
 Run npm ci --ignore-scripts --no-audit --no-fund, then npm test. Use node src/startkompas.mjs --help. The bundled .agents/skills/startkompas directory is for project-local Codex discovery. Claude remains untested. The local browser project and offer flow was checked in Edge on Windows; other browser/OS combinations still need interactive validation.
 

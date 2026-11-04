@@ -1,5 +1,14 @@
 # Changes
 
+## 0.1.0-alpha.14 — install and use Startkompas in Codex
+
+- Make conversational Codex work the primary route, with task-specific references and existing guarded project helpers.
+- Add a complete personal-skill installer that works from the downloaded ZIP without Git and preserves existing installations.
+- Resolve helper paths independently of the current project directory; document exact prepared-content saving.
+- Add an installed-skill CI check for creation, offer persistence, retry and resumption from another directory.
+- Keep the browser workspace optional. Include recent feedback-filter preferences and recovery fixes from development.
+- Deterministic checks do not prove automatic discovery in every Codex build, conversational quality, user benefit or independent security review.
+
 ## 0.1.0-alpha.13 — local learning, review and recovery
 
 - Add versioned personal worksheets and local PDF output, explicit export preferences and pre-share review. Imported text and comments keep their original context; nothing is sent automatically.

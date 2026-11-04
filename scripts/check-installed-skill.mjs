@@ -1,0 +1,30 @@
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {installSkill} from './install-skill.mjs';
+
+const base=fs.mkdtempSync(path.join(os.tmpdir(),'startkompas-skill-'));
+const target=path.join(base,'skill');
+const {runtime}=installSkill(target);
+assert.throws(()=>installSkill(target),/Destination exists/);
+const installOptions={cwd:runtime,stdio:'inherit',windowsHide:true};
+if(process.platform==='win32')execFileSync('cmd.exe',['/d','/s','/c','npm ci --ignore-scripts --no-audit --no-fund'],installOptions);
+else execFileSync('npm',['ci','--ignore-scripts','--no-audit','--no-fund'],installOptions);
+const wrapper=path.join(target,'scripts/startkompas.mjs');
+const run=(...args)=>execFileSync(process.execPath,[wrapper,...args],{cwd:base,encoding:'utf8',windowsHide:true});
+assert.equal(fs.realpathSync(run('--runtime-root').trim()),fs.realpathSync(runtime));
+const save=(name,data)=>{const p=path.join(base,name);fs.writeFileSync(p,typeof data==='string'?data:JSON.stringify(data));return p;};
+const project=path.join(base,'project');
+run('project','init',project,save('init.json',{project_id:'skill-check',name:'Synthetic skill check',first_task:null}));
+const req=JSON.parse(fs.readFileSync(path.join(runtime,'examples/business-brief-request.json')));
+req.project_id='skill-check';
+const prepared=JSON.parse(run('business','prepare',project,save('request.json',req)));
+const update=save('update.json',prepared.update_request),content=save('content.json',prepared.content);
+run('project','attach',project,update,content);
+run('project','attach',project,update,content); // Retry must not create another revision.
+assert.match(run('business','render',project,'skill-check',prepared.artifact_id),/fictional small design agency/);
+assert.ok(run('project','handoff',project,'skill-check').length>0);
+assert.equal(JSON.parse(fs.readFileSync(path.join(project,'project.json'))).revision,2);
+console.log(JSON.stringify({result:'pass',base,checks:['ZIP-compatible installation','existing destination preserved','unrelated working directory','create','save','idempotent retry','resume and render','handoff'],model_or_user_evaluation:false}));

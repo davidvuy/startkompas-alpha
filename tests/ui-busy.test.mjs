@@ -39,3 +39,51 @@ test('unchanged controls recover their original state after success or failure',
   assert.equal(s.control.disabled,initial);
  }
 });
+function feedbackSetup(storage=new Map(),fail=false){
+ const source=fs.readFileSync(new URL('../ui/ui.js',import.meta.url),'utf8');
+ const elements=new Map();
+ const get=id=>{if(!elements.has(id))elements.set(id,{checked:false,textContent:'',listeners:{},addEventListener(name,fn){this.listeners[name]=fn;}});return elements.get(id);};
+ const renders=[];
+ const context=vm.createContext({sessionStorage:{getItem:key=>{if(fail)throw Error('Denied');return storage.get(key)??null;},setItem:(key,value)=>{if(fail)throw Error('Quota');storage.set(key,value);},removeItem:key=>{if(fail)throw Error('Denied');storage.delete(key);}},$:get,renderFeedbackDiscussions:(data,onlyOpen)=>renders.push(onlyOpen),reviewFeedbackState:{}});
+ vm.runInContext(source.slice(source.indexOf("const feedbackPreferenceKey="),source.indexOf('function renderFeedbackDiscussions(data,onlyOpen){')),context);
+ vm.runInContext(source.slice(source.indexOf('function changeFeedbackPreference(){'),source.indexOf('async function openReviewFeedback(){')),context);
+ context.syncFeedbackPreference();
+ return {context,get,renders,storage,change:()=>context.changeFeedbackPreference(),reset:()=>get('review-feedback-reset').listeners.click()};
+}
+
+test('feedback view opt-in survives reload without storing project or review data; reset clears it',()=>{
+ const s=feedbackSetup();
+ assert.equal(s.get('review-feedback-only-open').checked,false);
+ assert.equal(s.storage.size,0);
+ s.get('review-feedback-only-open').checked=true;s.change();
+ assert.deepEqual(s.renders,[true]);assert.equal(s.storage.size,0);
+ s.context.syncFeedbackPreference();assert.equal(s.get('review-feedback-only-open').checked,true);
+ assert.equal(feedbackSetup(s.storage).get('review-feedback-only-open').checked,false);
+ s.get('review-feedback-remember').checked=true;s.change();
+ assert.deepEqual(JSON.parse([...s.storage.values()][0]),{version:1,onlyOpen:true});
+ const reopened=feedbackSetup(s.storage);
+ assert.equal(reopened.get('review-feedback-only-open').checked,true);
+ assert.equal(reopened.get('review-feedback-remember').checked,true);
+ reopened.reset();assert.equal(s.storage.size,0);assert.deepEqual(reopened.renders,[false]);
+ assert.equal(reopened.get('review-feedback-remember').checked,false);
+});
+
+test('feedback preference malformed/unknown data is refused and storage failure remains usable',()=>{
+ for(const raw of ['null','[]','{','{"version":2,"onlyOpen":true}','{"version":1,"onlyOpen":"false"}','{"version":1,"onlyOpen":true,"project":"private"}']){
+  const storage=new Map([['startkompas-feedback-view-v1',raw]]),s=feedbackSetup(storage);
+  assert.equal(s.get('review-feedback-only-open').checked,false);assert.equal(storage.size,0);
+ }
+ const s=feedbackSetup(new Map(),true);
+ s.get('review-feedback-only-open').checked=true;s.get('review-feedback-remember').checked=true;s.change();
+ assert.deepEqual(s.renders,[true]);assert.equal(s.get('review-feedback-remember').checked,false);
+ assert.match(s.get('review-feedback-preference-status').textContent,/unavailable/);
+ s.reset();assert.deepEqual(s.renders,[true,false]);
+ assert.match(s.get('review-feedback-preference-status').textContent,/could not be confirmed cleared/);
+});
+
+test('disabling remembered feedback preference clears storage but retains the active filter',()=>{
+ const s=feedbackSetup(new Map([['startkompas-feedback-view-v1','{"version":1,"onlyOpen":true}']]));
+ s.get('review-feedback-remember').checked=false;s.change();
+ assert.equal(s.storage.size,0);assert.equal(s.get('review-feedback-only-open').checked,true);
+ assert.deepEqual(s.renders,[true]);
+});

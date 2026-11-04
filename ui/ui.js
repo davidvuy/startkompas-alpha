@@ -1650,17 +1650,55 @@ $('review-package-back').addEventListener('click',()=>act(async()=>{reviewPackag
 
 function reviewOriginalText(packet,context){return [packet.title,'Package: '+packet.package_id,'Project revision: '+packet.project_revision,'Owner alias: '+packet.roles.owner_alias,'Intended reviewer alias: '+packet.roles.reviewer_alias,'Questions:',...packet.questions.map(q=>'- '+q),...packet.documents.flatMap(d=>['',d.kind+' v'+d.version+' | '+d.artifact_id,d.practice?'FICTIONAL PRACTICE':'',...d.sections.map(f=>f.label+' ['+f.assertion+']: '+(f.value??'Unknown - not recorded'))]),...context.map(c=>c.document_id+': '+(c.historical?'Historical version; do not apply to a newer document.':'No newer document version recorded.')+(c.requires_review?' Recorded basis needs review.':'')),'Aliases are unverified; this package grants no access.'].join('\n');}
 function reviewFeedbackText(record,context){const packet=JSON.parse(record.original_content);return [reviewOriginalText(packet,context),'','Claimed response author: '+record.feedback.reviewer_alias,'Original import status: '+record.status,...record.feedback.comments.map(c=>'\n'+c.document_id+' | v'+c.document_version+' | '+c.key+'\n'+c.comment),record.warning].join('\n');}
+const feedbackPreferenceKey='startkompas-feedback-view-v1';
+let feedbackPreference={onlyOpen:false,remember:false};
+function restoreFeedbackPreference(){
+ try{
+  const raw=sessionStorage.getItem(feedbackPreferenceKey);
+  if(raw===null)return;
+  const value=JSON.parse(raw);
+  if(!value||Object.keys(value).length!==2||value.version!==1||typeof value.onlyOpen!=='boolean')throw Error('Invalid view preference');
+  feedbackPreference={onlyOpen:value.onlyOpen,remember:true};
+ }catch{try{sessionStorage.removeItem(feedbackPreferenceKey);}catch{} }
+}
+function updateFeedbackPreference(onlyOpen,remember){
+ feedbackPreference={onlyOpen,remember:false};
+ try{
+  if(remember){sessionStorage.setItem(feedbackPreferenceKey,JSON.stringify({version:1,onlyOpen}));feedbackPreference.remember=true;}
+  else sessionStorage.removeItem(feedbackPreferenceKey);
+ }catch{
+  try{sessionStorage.removeItem(feedbackPreferenceKey);}catch{}
+  return false;
+ }
+ return true;
+}
+function syncFeedbackPreference(message=''){
+ $('review-feedback-only-open').checked=feedbackPreference.onlyOpen;
+ $('review-feedback-remember').checked=feedbackPreference.remember;
+ $('review-feedback-preference-status').textContent=message||(feedbackPreference.remember?'View preference saved for this tab and local app address. No project data is stored.':'View preference kept only while this page stays open.');
+}
+restoreFeedbackPreference();
 function renderFeedbackDiscussions(data,onlyOpen){
  const a=data.attention;$('review-feedback-attention').textContent=a? a.unreviewed+' unreviewed · '+a.changed_since_response+' changed since response · '+a.reviewed+' reviewed. Local overview only; nothing is sent.':'Review overview unavailable.';
  $('review-feedback-discussions').replaceChildren();for(const group of data.discussions??[]){const comments=group.comments.filter(item=>!onlyOpen||item.attention_status!=='reviewed');if(!comments.length)continue;const panel=document.createElement('details'),heading=document.createElement('summary');heading.textContent=group.key+' · original version '+group.document_version+' · '+comments.length+' of '+group.comments.length+' comment(s) shown · '+group.document_id;panel.append(heading);for(const item of comments){const article=document.createElement('article');detail(article,'Reviewer alias (unverified): '+item.reviewer_alias);detail(article,'Original review questions: '+item.review_questions.join(' | '));detail(article,'Comment: '+item.comment.comment);detail(article,'Recorded response: '+(item.decision?item.decision.input.choice+' — '+item.decision.input.reason:'Not reviewed'));detail(article,item.attention_status==='unreviewed'?'Needs review: no owner response recorded.':item.attention_status==='changed_since_response'?'Needs review: document or context changed after the last response.':'Reviewed against the current document context; no factual validation implied.');detail(article,'Response history: '+item.history.length+' recorded choice(s).');if(item.comparison.version_changed||item.comparison.context_changed)detail(article,'Original text or context has changed. Review the comparison before responding.');const button=document.createElement('button');button.type='button';button.textContent=data.archived?'Read response history':'Read comparison and respond';button.addEventListener('click',()=>act(()=>openFeedbackDecision(item.feedback_id,item.comment_index)));article.append(button);panel.append(article);}$('review-feedback-discussions').append(panel);}if(!$('review-feedback-discussions').children.length)$('review-feedback-discussions').textContent=onlyOpen?'No comments currently need review.':'No imported comments to group yet.';
 }
-$('review-feedback-only-open').addEventListener('change',()=>renderFeedbackDiscussions(reviewFeedbackState,$('review-feedback-only-open').checked));
+function changeFeedbackPreference(){
+ const ok=updateFeedbackPreference($('review-feedback-only-open').checked,$('review-feedback-remember').checked);
+ syncFeedbackPreference(ok?'':'Tab storage is unavailable. This choice applies to the current page only; a previously stored choice could not be confirmed cleared.');
+ if(reviewFeedbackState)renderFeedbackDiscussions(reviewFeedbackState,feedbackPreference.onlyOpen);
+}
+$('review-feedback-only-open').addEventListener('change',changeFeedbackPreference);
+$('review-feedback-remember').addEventListener('change',changeFeedbackPreference);
+$('review-feedback-reset').addEventListener('click',()=>{
+ const ok=updateFeedbackPreference(false,false);syncFeedbackPreference(ok?'View reset to all comments; saved tab preference removed.':'View reset for this page. Tab storage is unavailable; a previously stored choice could not be confirmed cleared.');
+ if(reviewFeedbackState)renderFeedbackDiscussions(reviewFeedbackState,false);
+});
 async function openReviewFeedback(){
  if(editor||wizardDirty||profileDirty||sessionDirty||researchDirty||decisionDirty||alternativesDirty||scopeDirty||pilotDirty||scenarioDirty||sectionDirty||suggestionDirty||templateDirty||importDirty||commentDirty||inboxDirty||conversationDirty||findingDirty||provenanceDirty||retentionDirty||classificationDirty||researchConflictDirty||experimentDirty||reviewPackageDirty||reviewFeedbackDirty||feedbackDecisionDirty||responsibilityDirty||taskDirty||supportDirty||reportDirty||summaryDirty||exportDirty||contextDirty||restorationDirty)throw Error('Save or discard the current form first.');
  const data=await api('review-feedback',{ref:selected});reviewFeedbackState={...data,ref:selected,preview:null,mentorPreview:null};reviewFeedbackDirty=false;screen('review-feedback');$('review-feedback-title').focus();$('review-feedback-form').reset();$('mentor-review-preview').hidden=true;$('mentor-review-result').textContent='';$('review-feedback-preview').hidden=true;$('review-feedback-confirm').checked=false;
  $('review-feedback-status').textContent=data.packages.length+' readable local package(s). '+(data.partial?'Only the first 100 matching local filenames were inspected. ':'')+(data.unavailable?data.unavailable+' local package file(s) could not be verified. ':'')+'Select your original copy; a file fingerprint does not prove who authored it.';
  const selector=$('review-feedback-original');selector.replaceChildren();const blank=document.createElement('option');blank.value='';blank.textContent='Choose an original package';selector.append(blank);for(const p of data.packages){const option=document.createElement('option');option.value=p.handle;option.textContent=p.title+' | revision '+p.project_revision+' | '+p.name;selector.append(option);}
- $('review-feedback-only-open').checked=false;renderFeedbackDiscussions(data,false);
+ syncFeedbackPreference();renderFeedbackDiscussions(data,feedbackPreference.onlyOpen);
  $('review-feedback-form').hidden=data.archived||!data.packages.length;$('review-feedback-original-view').textContent='';$('review-feedback-template').value='';$('review-feedback-history').replaceChildren();for(const row of data.rows){const article=document.createElement('article'),heading=document.createElement('h3'),body=document.createElement('pre');heading.textContent='Imported feedback | '+row.artifact_id;body.textContent=reviewFeedbackText(row,row.context);article.append(heading,body);for(const item of data.owner_responses.filter(x=>x.feedback_id===row.artifact_id)){const button=document.createElement('button');button.type='button';button.textContent='Respond to comment '+(item.comment_index+1)+' | '+(item.decision?item.decision.input.choice:'not reviewed');button.addEventListener('click',()=>act(()=>openFeedbackDecision(item.feedback_id,item.comment_index)));article.append(button);if(item.decision)detail(article,'Latest owner response: '+item.decision.input.reason);}$('review-feedback-history').append(article);}if(!data.rows.length)$('review-feedback-history').textContent='No feedback imported.';
 }
 function invalidateReviewFeedback(){reviewFeedbackState.mentorPreview=null;$('mentor-review-preview').hidden=true;$('mentor-review-confirm').checked=false;$('mentor-review-result').textContent='';reviewFeedbackDirty=true;reviewFeedbackState.preview=null;$('review-feedback-preview').hidden=true;$('review-feedback-confirm').checked=false;keepDraft();}

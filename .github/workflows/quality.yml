@@ -32,6 +32,8 @@ jobs:
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Product and security regressions
         run: npm test
+      - name: Installed Codex skill lifecycle
+        run: node scripts/check-installed-skill.mjs
       - name: Installation diagnostics
         run: node src/startkompas.mjs doctor --json
       - name: Fictional save and restore demo

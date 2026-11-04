@@ -12,16 +12,43 @@ See the release notes for the exact tested scope and pending browser checks. Ear
 
 ## Start here
 
-[Download alpha 13 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.13.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
+[Download alpha 14 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.14.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
 
-Extract the ZIP into a new folder. Open a terminal in that folder, install the locked dependencies and open the English menu:
+Startkompas is a **Codex skill**. Describe your idea or task in chat; Codex uses the skill's guidance and bundled helpers to draft offers, preserve evidence and resume saved work. The browser workspace is optional.
+
+### Install the skill
+
+Prerequisites: Codex access, Node.js and npm. The helper CI tests Node 26.7.0 and 24.x. Extract the complete ZIP into a new folder, open a terminal there and run:
+
+```sh
+node scripts/install-skill.mjs
+```
+
+The installer copies the complete skill and its runtime into `~/.codex/skills/startkompas` (or `$CODEX_HOME/skills/startkompas` when configured), verifies package consistency and refuses to overwrite an existing skill. Git is not required. It prints the runtime directory; enter that directory and run:
 
 ```sh
 npm ci --ignore-scripts --no-audit --no-fund
-node start.mjs
 ```
 
-The menu offers installation checks, a fictional demo, new projects, resuming, offer drafts and a report preview/save flow. It runs locally; it does not call AI or upload your project. All product prompts and new generated document labels are English. See the guide for prerequisites and the exact first-use steps.
+Open a fresh Codex chat, select `$startkompas` and try:
+
+```text
+Use $startkompas. Help me develop an offer for my B2B service idea. Ask for the missing facts, distinguish assumptions from evidence and save the result in my chosen private project directory.
+```
+
+To resume:
+
+```text
+Use $startkompas. Resume the dossier at <absolute private project path>. Read its saved state, explain what needs review and continue the next agreed task.
+```
+
+No browser extension or additional model API key is required by the skill. Codex account limits still apply. Keep private projects outside the downloaded package and installed skill. If the skill does not appear, restart Codex and check that installation used the same Codex home. Automatic discovery across every host build is not yet verified.
+
+For an existing installation, preserve the old skill, install to a separate location with `node scripts/install-skill.mjs <new-directory>`, and check it before deliberately replacing your active copy. No dossier migration happens automatically. Do not install just `SKILL.md`: its supporting references and runtime are required.
+
+### Optional local menu
+
+From the downloaded package, run `npm ci --ignore-scripts --no-audit --no-fund` and `node start.mjs` for deterministic demos and manual project operations. This menu makes no AI calls.
 
 ## Local browser workspace
 

@@ -8,7 +8,11 @@ license: MIT for original instructions; retained scaffold notices in NOTICE and 
 
 Help the founder advance one explicit milestone with evidence. The first content scope is a Belgian solo founder, Belgian business pilot customers and no employees. Flag other jurisdictions, consumers, staff or regulated activities as needing additional scoped review; do not silently adapt the conclusions.
 
-For installed command discovery use `node src/startkompas.mjs --help` and docs/commands.md. The common entry point routes to existing helpers; proposals still require their documented save/readback steps. Use `project init` only for a new empty project. For a selected-context task use `context preview` and docs/skill-context.md; `project handoff` is a broader resume view, not a privacy-filtered packet. Direct and legacy helpers remain available.
+## Operate inside Codex
+
+You are the founder's working partner in this chat. Produce the requested business artifact, research synthesis or next decision here, then persist authorized work. Do not send the user to a browser app, terminal wizard or JSON editor as the normal workflow. The optional workspace is a secondary viewer, not a prerequisite for this skill. Use the existing helpers yourself for reliable storage and provenance.
+
+Resolve this skill's directory from its actual loaded path, never from the user's current working directory. Use `node "<skill-directory>/scripts/startkompas.mjs" --runtime-root` to locate the supporting runtime and its docs. Prefix common commands with `node "<skill-directory>/scripts/startkompas.mjs"`; use absolute private project/request paths. Read [codex-workflow.md](references/codex-workflow.md) for choosing and completing a conversational route. No browser connection, server, API key or autonomous second model is required. Node and locked runtime dependencies are needed only for structured dossier operations. Missing helpers do not prevent an explicitly unsaved conversational draft.
 
 ## Choose the smallest useful intervention
 
