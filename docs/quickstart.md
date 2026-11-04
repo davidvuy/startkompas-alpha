@@ -1,8 +1,46 @@
-# Your first result with Startkompas
+# Your first result with the Startkompas Codex skill
 
-Startkompas keeps assumptions, decisions, tasks and drafts together for your business idea. This is an early local alpha. The menu, browser workspace and fictional demo make no AI calls. Optional Codex assistance has separate access requirements and provider costs.
+Use Startkompas inside a Codex conversation to develop a B2B service idea, draft an offer and resume saved work. The bundled helper stores structured dossiers; the menu and browser are optional tools.
 
-## Install
+## Install the complete skill
+
+Download and extract the complete release ZIP. With Node.js and npm available, open a terminal in the extracted folder and run:
+
+```sh
+node scripts/install-skill.mjs
+```
+
+The default destination is your Codex home skills/startkompas directory. An existing destination is preserved and refused. The installer prints a runtime directory: enter that exact directory and run:
+
+```sh
+npm ci --ignore-scripts --no-audit --no-fund
+```
+
+Open a fresh Codex chat and invoke `$startkompas`. If discovery does not refresh, restart Codex and verify it uses the same Codex home. The skill needs no browser extension or separate model API key; your Codex account limits apply.
+
+## Produce and save a first result
+
+Tell Codex your idea, intended customers and known problem. Unknowns may remain unknown. For example:
+
+```text
+Use $startkompas. Help me draft an offer for my B2B service idea. Ask what you need to know. Keep assumptions distinct from evidence. Save our work in <absolute private directory outside the skill and downloaded package>.
+```
+
+Codex should produce the actual draft, operate the helpers and verify the saved result. You do not need to write request JSON. Keep the project path for later; a chat statement is not proof of a saved file. No customer validation is implied by a draft.
+
+## Resume or change the work
+
+```text
+Use $startkompas. Resume <absolute private project directory>. Read the current saved state, explain unresolved questions and continue our next agreed task.
+```
+
+For a change, state what changed and ask Codex to review the affected work while preserving earlier versions. Keep backups; do not paste private dossiers into public issues.
+
+## Optional manual helper walkthrough
+
+The following menu route remains available for deterministic demonstrations or direct operation without AI. It is not required for normal skill use.
+
+### Open the optional menu
 
 Install Node.js with npm. The development pin is 26.7.0; the published alpha CI also exercises Node 24. Download the complete repository or release ZIP, extract it into a new folder and open a terminal there, alongside `package.json` and `start.mjs`.
 
@@ -32,7 +70,7 @@ In development builds containing `src/local-ui-cli.mjs`, create or choose a sepa
 npm run ui -- ../my-projects
 ```
 
-Open the private link printed by the terminal. Create a project in three steps: name and first task, optional customer/outcome context, then review and confirm. Back retains your answers; unknown context can stay blank. Choose **Draft an offer** to reuse that context, fill in what you know, preview and confirm saving. To revise a saved offer, choose **Revise this offer** and record a reason. Earlier versions remain intact. Use **Export a report** to select sections, preview and save a new local Markdown file. **Archive project** hides it from active projects without deleting files; **Show archived projects** lets you find and restore it. Keep the terminal open while using the workspace; Ctrl+C stops it. See [local workspace](local-ui.md) for access boundaries and recovery. The released alpha 4.1 predates this browser preview.
+Open the private link printed by the terminal. Create a project in three steps: name and first task, optional customer/outcome context, then review and confirm. Back retains your answers; unknown context can stay blank. Choose **Draft an offer** to reuse that context, fill in what you know, preview and confirm saving. To revise a saved offer, choose **Revise this offer** and record a reason. Earlier versions remain intact. Use **Export a report** to select sections, preview and save a new local Markdown file. **Archive project** hides it from active projects without deleting files; **Show archived projects** lets you find and restore it. Keep the terminal open while using the workspace; Ctrl+C stops it. See [local workspace](local-ui.md) for access boundaries and recovery. The browser is optional and has separate validation limits.
 
 ## Resume and export
 

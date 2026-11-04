@@ -8,6 +8,12 @@ For sensitive vulnerabilities, use [private vulnerability reporting](https://git
 
 There is currently no support mailbox, live chat, automatic issue responder or guaranteed response time. GitHub notifications depend on your account settings. Never assume a report has been seen until someone replies.
 
+## Installing and finding the Codex skill
+
+Use `node scripts/install-skill.mjs` from the complete release download, install dependencies in the runtime directory it prints, then open a fresh Codex chat and invoke `$startkompas`. See [the skill quickstart](quickstart.md). Do not copy only SKILL.md.
+
+If Codex cannot find the skill, restart it and confirm the installer used that host's Codex home. If helpers report missing dependencies, run `npm ci --ignore-scripts --no-audit --no-fund` in the installed runtime. An existing-destination refusal protects your installation; install to a separate directory and review before replacing the active copy. Report your OS, Node version, alpha version and sanitized error through GitHub. No browser permission is needed for the skill.
+
 ## Common questions
 
 **Does the demo need an API key?** No. The deterministic local demo makes no AI calls. AI-assisted use through Codex depends on that provider's access, charges and data handling.

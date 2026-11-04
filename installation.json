@@ -1,6 +1,6 @@
 {
-  "source_revision": "abdfcd3d8f85a26ce3d46d08f99f45b36ec5dcea",
-  "created_at": "2026-11-04T18:53:21.843Z",
+  "source_revision": "6fd2a6a67cf83874244542afc84f8638b2f002ac",
+  "created_at": "2026-11-04T18:55:04.894Z",
   "route": "project-local .agents/skills/startkompas; external sibling dossiers",
   "files": [
     {
@@ -161,7 +161,7 @@
     },
     {
       "path": "docs/alpha-changelog.md",
-      "sha256": "839be56d036d5fe22d172eff16ee1ebc627cff4e477d12ab15cf582e6e8fdf90"
+      "sha256": "390a2a47e91d2ecaf475567632665c9c13d047533ba00ff17b5e9d8cd65fa466"
     },
     {
       "path": "docs/alpha-contributing.md",
@@ -193,7 +193,7 @@
     },
     {
       "path": "docs/alpha-support.md",
-      "sha256": "286da66b1264bd8cf0b44aa2b3ea4d5931009e42d979991f72ead4bf452849d6"
+      "sha256": "0c1aaec7a3240b901ae4a17430f5774d07c47ec6decac708f60ae8ff0f72aa7a"
     },
     {
       "path": "docs/alpha-workspace.md",
@@ -293,7 +293,7 @@
     },
     {
       "path": "docs/quickstart.md",
-      "sha256": "387aa7e38391b5e670319c61efa4e2a40a3093754bcd6310d9a4c69c647b6738"
+      "sha256": "68b9a09c52d652c242b42e6106e2887b5e688731116df557b9ecc37d99b8f38c"
     },
     {
       "path": "docs/quickstart.nl.md",
@@ -593,15 +593,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "c9e6486a34ca992df0e6b483f22ec5475ac9046817024d4c6b976ca49cf398b0"
+      "sha256": "844cee05d48f32e600e24f247a36879e2c3aa159067d40c9e0d40158b6037e31"
     },
     {
       "path": "package.json",
-      "sha256": "d28e3538151f998a3f08a51cd6d4578926ea0d43526d093f84cf056927367033"
+      "sha256": "c8e1a02ec8d34ef02d72dd0bfca0db81300103196293af578d4a44264ad3e34e"
     },
     {
       "path": "README.md",
-      "sha256": "b8dc41f4ca03ea7cb6c26ab4e7769fddb62a92cbe74dfea9120552bfc894ebdf"
+      "sha256": "8657575001e0937c4e5f8121d51ea95fd40990acf8e56c6bc94f9a4c878501d4"
     },
     {
       "path": "schemas/cli-error-v1.schema.json",

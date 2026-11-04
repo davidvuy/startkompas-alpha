@@ -1,5 +1,9 @@
 # Changes
 
+## 0.1.0-alpha.14.1 — consistent skill onboarding
+
+- Align the quickstart and support guide with personal-skill installation and conversational use. The alpha 14 runtime is unchanged.
+
 ## 0.1.0-alpha.14 — install and use Startkompas in Codex
 
 - Make conversational Codex work the primary route, with task-specific references and existing guarded project helpers.
