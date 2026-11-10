@@ -14,12 +14,25 @@ Run `check-all.mjs`. The individual scripts exist for when you want one check's 
 
 | Script | Proves | Fails on | Network |
 | --- | --- | --- | --- |
-| `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, reintroduced runtime coupling, a named host, an undated pack, over budget, a binary | no |
+| `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, a reference linking outside the model-facing set, reintroduced runtime coupling, a named host, an undated or off-template pack, over budget, a binary | no |
 | `check-dossier.mjs` | The change-propagation algorithm in `references/dossier-format.md` terminates | Broken reference, duplicate id, invalid assertion value, a dependency cycle, a non-terminating walk | no |
 | `check-facts.mjs` | Packs and eval cases still agree | A fact a case depends on has moved, or a reversed claim has returned | no |
 | `check-freshness.mjs` | No pack is past its recheck date | Missing recheck date, overdue recheck, a verified claim older than 183 days | no |
 | `check-links.mjs` | Every cited source URL still resolves | 404, 410, or a host that does not resolve | **yes** |
 | `build-zip.mjs` | The upload archive has `SKILL.md` at its root | `SKILL.md` not at the archive root | no |
+
+## The two size budgets
+
+`check-skill.mjs` enforces two, because they measure different costs.
+
+| Budget | Covers | Why |
+| --- | --- | --- |
+| **192 KB** | `SKILL.md` + `references/` | Everything the model can actually load. This is the number that matters — it is what a conversation pays for. Currently ~143 KB. |
+| 384 KB | the whole folder | Loose, and only there to catch accidental bulk. `scripts/` and `evals/` are never read by a model. |
+
+Measuring only the folder — as this check first did — would have blocked adding a jurisdiction pack because the *tooling* had grown. That was a bug in the check, not a reason to trim content.
+
+The same distinction is why references may only link to `SKILL.md` or to each other: if a reference pointed into `scripts/` or `evals/`, the model could be sent to a file that is not part of what it should be reading. That closure is enforced.
 
 ## Three conventions these follow
 
@@ -29,11 +42,25 @@ Run `check-all.mjs`. The individual scripts exist for when you want one check's 
 
 **`check-facts.mjs` failing is a decision, not a bug.** Exactly one of two things is true: the pack improved and the eval case must be rewritten, or the edit was a mistake. Work out which. Do not relax the assertion to make the build green — that is the one change that silently destroys the check's value.
 
-That script has already caught three real mismatches, none of them a pack error:
+That script has already caught four real mismatches, none of them a pack error:
 
 - the pack said "none of this is law", the assertion looked for "not yet law"
 - the Belgium pack gained its enacting instrument, so C6's "primary confirmation is open" requirement would have marked a *better* answer as a failure
 - two assertions written without allowing for markdown emphasis (`**not** a legal requirement`)
+
+## Every check here has been seen to fail
+
+A check nobody has watched fail is not known to work. Each of these has fired on a real or deliberately introduced fault:
+
+| Check | What made it fire |
+| --- | --- |
+| `check-skill.mjs` — template | An off-template `## 4.` heading in `germany.md`, introduced on purpose and reverted |
+| `check-skill.mjs` — closure | A reference linking to `../evals/cases.md`, introduced on purpose and reverted |
+| `check-skill.mjs` — "not advice" | A real omission: both EU layers lacked the disclaimer the national packs carry |
+| `check-facts.mjs` | Four real mismatches, listed above |
+| `check-freshness.mjs` | Three packs whose recheck date did not parse, because the period sat inside the bold |
+| `check-links.mjs` | A `wetten.overheid.nl` redirect to a dated URL, and a moved CNIL page |
+| `check-dossier.mjs` | Not yet — the worked example has been correct since it was written. Break it on purpose if you change the walk. |
 
 ## `lib/`
 

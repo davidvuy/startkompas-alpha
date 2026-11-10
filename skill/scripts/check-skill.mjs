@@ -19,8 +19,20 @@ import {skillRoot, skillFile, referencesDir, packsDir, packIndexFile} from './li
 import {listFiles, relativePosix, totalBytes, kb} from './lib/files.mjs';
 import {createReport} from './lib/report.mjs';
 
-// Raise deliberately, in a commit of its own, if a pack genuinely needs the room.
-const SIZE_BUDGET_KB = 256;
+// Two budgets, because they measure different costs.
+//
+// MODEL_BUDGET_KB covers SKILL.md plus references/ — everything the model can
+// actually load. This is the number that matters: it is what a conversation
+// pays for. Raise it deliberately, in a commit of its own, when a pack needs
+// the room.
+//
+// FOLDER_BUDGET_KB covers the whole folder, including scripts/ and evals/ that
+// no model ever reads. It exists only to catch accidental bulk, so it is loose.
+//
+// Measuring only the folder — as this check first did — would have blocked
+// adding a jurisdiction pack because the *tooling* had grown. That was a bug.
+const MODEL_BUDGET_KB = 192;
+const FOLDER_BUDGET_KB = 384;
 
 // A description shorter than this cannot carry both scope and "when to use".
 const MIN_DESCRIPTION = 80;
@@ -200,17 +212,47 @@ if (existsSync(packsDir)) {
   else report.note(`${national.length} national pack(s) on template, ${shared.length} shared layer(s)`);
 }
 
-// --- 7. Self-containment, size and no binaries -------------------------------
+// --- 7. The model-facing set is closed --------------------------------------
+// If a reference linked into scripts/ or evals/, the model could be pointed at
+// a file that is not part of what it should be reading.
+
+for (const file of markdown.filter((f) => rel(f).startsWith('references/'))) {
+  for (const target of localLinkTargets(file)) {
+    const resolved = resolve(dirname(file), target);
+    const inside = rel(resolved).startsWith('references/') || resolved === skillFile;
+    if (!inside)
+      report.fail(
+        rel(file),
+        `links outside the model-facing set -> ${target}; references may only point at SKILL.md or other references`,
+      );
+  }
+}
+
+// --- 8. Self-containment, size and no binaries -------------------------------
 
 if (!existsSync(referencesDir)) report.fail('references/', 'missing');
 
-const bytes = totalBytes(files);
-report.note(`${files.length} files, ${kb(bytes)} KB of ${SIZE_BUDGET_KB} KB budget`);
+const modelFiles = files.filter((f) => rel(f).startsWith('references/') || f === skillFile);
+const modelBytes = totalBytes(modelFiles);
+const folderBytes = totalBytes(files);
 
-if (bytes > SIZE_BUDGET_KB * 1024)
+report.note(
+  `model-facing: ${modelFiles.length} files, ${kb(modelBytes)} KB of ${MODEL_BUDGET_KB} KB`,
+);
+report.note(
+  `whole folder: ${files.length} files, ${kb(folderBytes)} KB of ${FOLDER_BUDGET_KB} KB`,
+);
+
+if (modelBytes > MODEL_BUDGET_KB * 1024)
+  report.fail(
+    'SKILL.md + references/',
+    `${kb(modelBytes)} KB is over the ${MODEL_BUDGET_KB} KB model budget; trim it or raise the budget on purpose`,
+  );
+
+if (folderBytes > FOLDER_BUDGET_KB * 1024)
   report.fail(
     '.',
-    `skill is ${kb(bytes)} KB, over the ${SIZE_BUDGET_KB} KB budget; trim it or raise the budget on purpose`,
+    `folder is ${kb(folderBytes)} KB, over the ${FOLDER_BUDGET_KB} KB limit; something bulky got in`,
   );
 
 for (const file of files.filter((f) => /\.(mp4|png|jpg|jpeg|ttf|otf|woff2?|zip|pdf)$/i.test(f)))
