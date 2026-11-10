@@ -55,6 +55,14 @@ const REQUIRED = [
   {case: '—', pack: 'germany.md', label: 'BMF grace period end', pattern: /2026-12-31/},
   {case: '—', pack: 'germany.md', label: 'ownership provision', pattern: /§69b UrhG/},
   {case: '—', pack: 'germany.md', label: 'unfair terms provision', pattern: /§310\(1\) BGB/},
+  // Rn. 22 of the 2025 BMF letter: a Kleinunternehmer is exempt from ISSUING,
+  // not merely deferred. Losing this silently would make the pack overstate the
+  // obligation for exactly the founders it is written for.
+  {case: 'C14', pack: 'germany.md', label: 'Kleinunternehmer exempt from issuing, not deferred', pattern: /never has to issue an e-invoice/i},
+  {case: 'C14', pack: 'germany.md', label: 'small-amount invoice ceiling', pattern: /€250/},
+  {case: 'C14', pack: 'germany.md', label: 'no transitional rule for receiving', pattern: /no transition for receiving/i},
+  {case: '—', pack: 'germany.md', label: 'retention period is eight years', pattern: /\*\*eight years\*\*/},
+  {case: '—', pack: 'germany.md', label: 'validation may be relied on; keep the report', pattern: /validation report/i},
 
   // --- France ----------------------------------------------------------------
   {case: 'C15', pack: 'france.md', label: 'receiving in force from 2026-09-01', pattern: /2026-09-01/},
