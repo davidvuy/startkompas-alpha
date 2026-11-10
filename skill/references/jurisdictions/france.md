@@ -135,7 +135,28 @@ Source: [article L442-1 I, Code de commerce](https://www.legifrance.gouv.fr/code
 
 Note that the prohibition reaches an *attempt* to impose such obligations, and that `soumettre` implies the term was not genuinely negotiable.
 
-**Open:** article **1171 Code civil**, which concerns a non-negotiable clause creating a significant imbalance in a `contrat d'adhésion`, is the other half of this picture and was **[not researched]** — its interaction with L442-1, and whether it applies where L442-1 does, is exactly the question a French lawyer should answer. Do not state either provision's scope from this pack.
+### The second route — article 1171 Code civil
+
+Source: [article 1171 Code civil](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000032041110/2016-10-01) · *primary legislation* · **[checked 2026-11-10]**
+
+In a `contrat d'adhésion`, any **non-negotiable clause determined in advance by one party** that creates a significant imbalance between the parties' rights and obligations is **`réputée non écrite`** — deemed unwritten.
+
+Two limits are written into it: the assessment applies **neither to the principal object of the contract nor to the adequacy of the price** against the service supplied. So a bad bargain is not an imbalance; a one-sided *clause* is.
+
+In force since **2018-10-01**, as amended by law 2018-287 of 2018-04-20, originally introduced by Ordinance 2016-131 of 2016-02-10.
+
+### So France has two routes, with different remedies
+
+| | Art. L442-1 I C.com | Art. 1171 C.civ |
+| --- | --- | --- |
+| Catches | imposing, or **attempting** to impose, obligations creating a significant imbalance | a **non-negotiable** clause in a `contrat d'adhésion` creating a significant imbalance |
+| Who | any person in production, distribution or services | the parties to an adhesion contract |
+| Remedy | **civil liability and damages** | the clause is **deemed unwritten** — the rest of the contract stands |
+| Excluded | — | the principal object, and price adequacy |
+
+For a founder the practical difference is what they get: L442-1 compensates harm, art. 1171 **removes the clause**. Which one applies turns on whether the contract is an adhesion contract and whether the term was genuinely negotiable.
+
+**Open:** the **interaction** between the two — whether art. 1171 is available where L442-1 applies, which is a contested question in French commercial practice — is **[not researched]**. There is Cour de cassation case law on it. Do not state which prevails; name both and send the founder to a French lawyer with the specific clause.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet. Never draft a blanket liability waiver, a unilateral acceptance clause, an automatic renewal or an invented service guarantee.
 ---

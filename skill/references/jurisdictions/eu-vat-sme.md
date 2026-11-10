@@ -29,11 +29,45 @@ Member states had to adopt the provisions by **2024-12-31** and apply them from 
 
 **€100,000 is an EU figure, not a national one.** Where a national pack mentions a €100,000 cross-border threshold, it is this provision. Do not treat it as that country's own invention, and do not confuse it with Germany's €100,000 **current-year domestic** figure under §19 UStG — which is an unrelated number that happens to coincide. That coincidence is a live trap: the German figure is domestic and current-year, the directive's is Union-wide and prior-year.
 
+## Using the exemption in another member state — the mechanics
+
+All from the same directive, articles 284 to 284e · **[checked 2026-11-10]**
+
+**Prior notification, and an `EX` number.** A small enterprise must give **prior notification to its member state of establishment** before using the exemption elsewhere. That state then issues an **individual identification number with the suffix `EX`**. Identification happens **no later than 35 working days** after notification, which member states may extend where they suspect tax evasion.
+
+So the cross-border exemption is not something you simply apply: it has an application, a waiting period and its own number.
+
+**A quarterly return.** For **each calendar quarter**, report to the member state of establishment:
+
+- the total value of supplies in your own member state, **or `0`**
+- the total value of supplies in **each** other member state, **or `0`**
+
+Due **within one month of the end of the quarter**. The explicit "or 0" matters: a nil quarter still needs filing.
+
+This is a real recurring obligation that the domestic exemption does not have. A founder who takes the cross-border exemption trades quarterly VAT returns for quarterly turnover returns — do not present it as pure simplification.
+
+**How the two turnover figures are defined.**
+
+| Term | Definition |
+| --- | --- |
+| Annual turnover **in the member state** | *"the total annual value of supplies of goods and services, exclusive of VAT, made by a taxable person within that Member State during a calendar year"* |
+| **Union** annual turnover | the same, *"within the territory of the Community during a calendar year"* |
+
+Both are **exclusive of VAT** and measured **per calendar year**, not rolling.
+
+## Crossing the Union threshold mid-year
+
+**The exemption stops immediately, not at year end.** Where the €100,000 Union threshold is exceeded during a calendar year, the exemption granted to a taxable person **not established** in the member state granting it *"shall cease to apply as of that time"*.
+
+And there is a **15 working day** notification deadline when the Union threshold is breached — separate from, and much shorter than, the quarterly return.
+
+Note what this does **not** settle: it governs the **cross-border** exemption for a non-established person. It does not tell you what happens to a founder's **domestic** exemption when a domestic threshold is crossed mid-year — which is precisely the question the German pack records §19 UStG as being silent on. Two different thresholds, two different rules, and only one of them is answered here.
+
 ## What this layer does not cover
 
-- The **registration, notification and reporting** mechanics of using the cross-border scheme — including the EX identifier and the quarterly return that the Dutch pack records — are **[not researched]** at EU level. Each member state implements them.
-- Which turnover counts toward the Union figure, and the treatment of exempt supplies: **[not researched]**.
-- Transitional rules for a business crossing a threshold mid-year: **[not researched]**, and this is exactly where the German pack records that its own statute is silent.
+- The treatment of **exempt supplies** and which transactions fall outside the turnover calculation: **[not researched]**.
+- How each member state **implements** the notification and quarterly return in practice — the Dutch `opgaaf kwartaalomzet` is one implementation; the others are **[not researched]**.
+- What happens to a **domestic** exemption on a mid-year threshold crossing. See above: not an EU question.
 
 ## Pack maintenance
 
@@ -42,9 +76,13 @@ Member states had to adopt the provisions by **2024-12-31** and apply them from 
 | National threshold ceiling €85,000, art. 284(1) | 2026-11-10 | **Primary EU legislation read and quoted** |
 | Union annual turnover €100,000, art. 284(2)(a) | 2026-11-10 | **Primary EU legislation read and quoted** |
 | Adoption by 2024-12-31, application from 2025-01-01, art. 3(1) | 2026-11-10 | Primary EU legislation read |
-| Cross-border scheme mechanics, EX identifier, returns | — | Not researched |
-| What counts toward Union turnover | — | Not researched |
-| Mid-year threshold crossing | — | Not researched |
+| Prior notification, EX identifier, 35 working days | 2026-11-10 | **Primary EU legislation read** |
+| Quarterly return, content and one-month deadline | 2026-11-10 | **Primary EU legislation read** |
+| Mid-year Union threshold breach: exemption ceases immediately; 15 working day notice | 2026-11-10 | **Primary EU legislation read** |
+| Definitions of member-state and Union annual turnover | 2026-11-10 | **Primary EU legislation read** |
+| Treatment of exempt supplies in the turnover calculation | — | Not researched |
+| Member-state implementation of notification and returns | — | Not researched |
+| Domestic exemption on a mid-year crossing | — | Not an EU question; see the national pack |
 
 Next full recheck due: **2027-05-10**. Earlier on any amendment to the SME scheme or a member state changing its national figure.
 

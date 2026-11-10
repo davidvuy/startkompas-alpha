@@ -57,7 +57,7 @@ Every one of the four controls unreasonable standard terms between businesses. N
 | Belgium | General norm **plus** a statutory black list (irrebuttable) and grey list (rebuttable), art. VI.91/3–91/5 WER | The term is unfair |
 | Germany | The §§308/309 catalogue is **disapplied** in B2B by §310(1) BGB, but the general §307 test survives | The term is ineffective |
 | Netherlands | Open test in art. 6:233 BW; the black and grey lists are **consumer-only**, but `reflexwerking` can import them for a small party. Art. 6:235 **excludes large parties** from the protection entirely | The term is voidable |
-| France | No catalogue; art. L442-1 I C.com prohibits imposing — or **attempting** to impose — obligations creating a `déséquilibre significatif` | **Civil liability and damages**, not automatic nullity |
+| France | **Two routes.** Art. L442-1 I C.com catches imposing — or **attempting** to impose — a `déséquilibre significatif`. Art. 1171 C.civ catches a **non-negotiable** clause in an adhesion contract, excluding the principal object and price adequacy | L442-1: **damages**. Art. 1171: the clause is **deemed unwritten** |
 
 Two traps for anyone reasoning across borders:
 
