@@ -1,25 +1,31 @@
 #!/usr/bin/env node
-// Backlog item 32: the change-propagation rules in references/dossier-format.md
-// are an algorithm written in prose. This executes them against the worked
-// example, so "the walk terminates" is verified rather than assumed, and the
-// example cannot drift out of referential integrity unnoticed.
+// The change-propagation rules in references/dossier-format.md are an algorithm
+// written in prose. This executes them against the worked example, so "the walk
+// terminates" is verified rather than assumed, and the example cannot drift out
+// of referential integrity unnoticed.
 //
 //   node scripts/check-dossier.mjs [project.json]
 //
-// Standard library only.
+// Defaults to the worked example. Point it at a real project.json to check that
+// project — it only reads.
 
 import {readFileSync, existsSync} from 'node:fs';
-import {join, dirname, resolve} from 'node:path';
-import {fileURLToPath} from 'node:url';
+import {join, resolve} from 'node:path';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const target = resolve(
-  process.argv[2] ?? join(root, 'references', 'examples', 'worked-project.json'),
-);
+import {examplesDir} from './lib/paths.mjs';
+import {createReport} from './lib/report.mjs';
 
-const problems = [];
-const notes = [];
-const fail = (m) => problems.push(m);
+const EXPECTED_FORMAT = 'startkompas-dossier/1';
+
+const COLLECTIONS = ['sources', 'facts', 'assumptions', 'decisions', 'tasks', 'artifacts', 'links', 'events'];
+/** Collections whose entries carry an `id` that others may reference. */
+const ID_BEARING = ['sources', 'facts', 'assumptions', 'decisions', 'tasks', 'artifacts', 'events'];
+
+const ASSERTIONS = {facts: ['reported', 'observed', 'inferred'], assumptions: ['unknown']};
+const TASK_PROGRESS = ['open', 'in_progress', 'parked', 'done'];
+const TASK_SUBSTANTIATION = ['unreviewed', 'reviewed'];
+
+const target = resolve(process.argv[2] ?? join(examplesDir, 'worked-project.json'));
 
 if (!existsSync(target)) {
   console.error(`No such file: ${target}`);
@@ -34,174 +40,181 @@ try {
   process.exit(1);
 }
 
-// --- 1. Shape -----------------------------------------------------------------
+const report = createReport({
+  ok: 'referentially intact, vocabularies valid, propagation walk terminates, no cycles.',
+});
 
-if (doc.format !== 'startkompas-dossier/1')
-  fail(`format is ${JSON.stringify(doc.format)}; expected "startkompas-dossier/1"`);
+// --- 1. Shape ----------------------------------------------------------------
+// Bail out early: the later checks assume these collections exist.
+
+if (doc.format !== EXPECTED_FORMAT)
+  report.fail('format', `is ${JSON.stringify(doc.format)}; expected "${EXPECTED_FORMAT}"`);
 if (!Number.isInteger(doc.revision) || doc.revision < 1)
-  fail(`revision must be a positive integer, got ${JSON.stringify(doc.revision)}`);
-if (typeof doc.project_id !== 'string' || !doc.project_id)
-  fail('project_id missing');
+  report.fail('revision', `must be a positive integer, got ${JSON.stringify(doc.revision)}`);
+if (typeof doc.project_id !== 'string' || !doc.project_id) report.fail('project_id', 'missing');
 
-const collections = [
-  'sources',
-  'facts',
-  'assumptions',
-  'decisions',
-  'tasks',
-  'artifacts',
-  'links',
-  'events',
-];
-for (const name of collections) {
-  if (!Array.isArray(doc[name])) fail(`${name} must be an array`);
+for (const name of COLLECTIONS) {
+  if (!Array.isArray(doc[name])) report.fail(name, 'must be an array');
 }
-if (problems.length) {
-  for (const p of problems) console.error(`  - ${p}`);
+if (report.problemCount) {
+  report.finish();
   process.exit(1);
 }
 
-// --- 2. Ids are unique and references resolve ---------------------------------
+// --- 2. Ids are unique, and every reference resolves -------------------------
 
-const ids = new Map(); // id -> kind
-const register = (kind, list) => {
-  for (const item of list) {
+/** id -> the collection it lives in */
+const ids = new Map();
+for (const collection of ID_BEARING) {
+  for (const item of doc[collection]) {
     if (typeof item.id !== 'string' || !item.id) {
-      fail(`${kind} entry without an id`);
+      report.fail(collection, 'entry without an id');
       continue;
     }
-    if (ids.has(item.id)) fail(`duplicate id ${item.id} (${kind} and ${ids.get(item.id)})`);
-    ids.set(item.id, kind);
+    if (ids.has(item.id))
+      report.fail(collection, `duplicate id ${item.id} (also in ${ids.get(item.id)})`);
+    ids.set(item.id, collection);
   }
-};
-for (const name of ['sources', 'facts', 'assumptions', 'decisions', 'tasks', 'artifacts', 'events'])
-  register(name, doc[name]);
+}
 
-const refsOf = (item, keys) =>
-  keys.flatMap((k) => {
-    const v = item[k];
-    if (v == null) return [];
-    return Array.isArray(v) ? v.map((x) => [k, x]) : [[k, v]];
+/** Every [key, referencedId] pair for the given keys, flattening arrays. */
+function references(item, keys) {
+  return keys.flatMap((key) => {
+    const value = item[key];
+    if (value == null) return [];
+    return Array.isArray(value) ? value.map((id) => [key, id]) : [[key, value]];
   });
+}
 
-const checkRefs = (kind, list, keys) => {
-  for (const item of list)
-    for (const [key, ref] of refsOf(item, keys))
-      if (!ids.has(ref)) fail(`${kind} ${item.id}: ${key} points at unknown id ${ref}`);
+const REFERENCE_KEYS = {
+  facts: ['source_ids'],
+  assumptions: ['source_ids'],
+  decisions: ['basis_ids', 'supersedes'],
+  tasks: ['evidence_ids', 'depends_on'],
+  artifacts: ['basis_ids', 'supersedes'],
+  events: ['subject_ids'],
 };
 
-checkRefs('fact', doc.facts, ['source_ids']);
-checkRefs('assumption', doc.assumptions, ['source_ids']);
-checkRefs('decision', doc.decisions, ['basis_ids', 'supersedes']);
-checkRefs('task', doc.tasks, ['evidence_ids', 'depends_on']);
-checkRefs('artifact', doc.artifacts, ['basis_ids', 'supersedes']);
-checkRefs('event', doc.events, ['subject_ids']);
+for (const [collection, keys] of Object.entries(REFERENCE_KEYS)) {
+  for (const item of doc[collection]) {
+    for (const [key, id] of references(item, keys)) {
+      if (!ids.has(id)) report.fail(`${collection} ${item.id}`, `${key} points at unknown id ${id}`);
+    }
+  }
+}
 
-if (doc.active_task_id != null && !doc.tasks.some((t) => t.id === doc.active_task_id))
-  fail(`active_task_id ${doc.active_task_id} is not a task`);
+if (doc.active_task_id != null && !doc.tasks.some((task) => task.id === doc.active_task_id))
+  report.fail('active_task_id', `${doc.active_task_id} is not a task`);
 
-for (const [i, link] of doc.links.entries()) {
+for (const [index, link] of doc.links.entries()) {
+  const where = `links[${index}]`;
   for (const key of ['dependent_id', 'prerequisite_id']) {
-    if (!ids.has(link[key])) fail(`links[${i}]: ${key} points at unknown id ${link[key]}`);
+    if (!ids.has(link[key])) report.fail(where, `${key} points at unknown id ${link[key]}`);
   }
   if (link.dependent_id === link.prerequisite_id)
-    fail(`links[${i}]: a record cannot be its own prerequisite`);
+    report.fail(where, 'a record cannot be its own prerequisite');
   if (typeof link.reason !== 'string' || !link.reason.trim())
-    fail(`links[${i}]: every declared link needs a reason`);
+    report.fail(where, 'every declared link needs a reason');
 }
 
-// --- 3. Assertion vocabularies ------------------------------------------------
+// --- 3. Assertion vocabularies, and the format's own rules -------------------
 
-const allowed = {
-  fact: ['reported', 'observed', 'inferred'],
-  assumption: ['unknown'],
-};
-for (const f of doc.facts)
-  if (!allowed.fact.includes(f.assertion))
-    fail(`fact ${f.id}: assertion ${JSON.stringify(f.assertion)} not in ${allowed.fact.join('/')}`);
-for (const a of doc.assumptions)
-  if (!allowed.assumption.includes(a.assertion))
-    fail(`assumption ${a.id}: assertion must be "unknown", got ${JSON.stringify(a.assertion)}`);
-
-for (const t of doc.tasks) {
-  if (!['open', 'in_progress', 'parked', 'done'].includes(t.progress))
-    fail(`task ${t.id}: unknown progress ${JSON.stringify(t.progress)}`);
-  if (!['unreviewed', 'reviewed'].includes(t.substantiation))
-    fail(`task ${t.id}: unknown substantiation ${JSON.stringify(t.substantiation)}`);
-  // The format's own rule: done work is not approved evidence.
-  if (t.progress === 'done' && t.substantiation === 'reviewed' && t.evidence_ids.length === 0)
-    fail(`task ${t.id}: marked done and reviewed with no evidence_ids`);
+for (const [collection, allowed] of Object.entries(ASSERTIONS)) {
+  for (const item of doc[collection]) {
+    if (!allowed.includes(item.assertion))
+      report.fail(
+        `${collection} ${item.id}`,
+        `assertion ${JSON.stringify(item.assertion)} not in ${allowed.join('/')}`,
+      );
+  }
 }
 
-for (const a of doc.assumptions)
-  if (a.source_ids.length > 0)
-    fail(`assumption ${a.id}: has sources, so it is a fact rather than an assumption`);
+for (const task of doc.tasks) {
+  if (!TASK_PROGRESS.includes(task.progress))
+    report.fail(`tasks ${task.id}`, `unknown progress ${JSON.stringify(task.progress)}`);
+  if (!TASK_SUBSTANTIATION.includes(task.substantiation))
+    report.fail(`tasks ${task.id}`, `unknown substantiation ${JSON.stringify(task.substantiation)}`);
+  // dossier-format.md: done work is not approved evidence.
+  if (task.progress === 'done' && task.substantiation === 'reviewed' && task.evidence_ids.length === 0)
+    report.fail(`tasks ${task.id}`, 'marked done and reviewed with no evidence_ids');
+}
 
-// --- 4. The documented change-propagation walk --------------------------------
+for (const assumption of doc.assumptions) {
+  if (assumption.source_ids.length > 0)
+    report.fail(
+      `assumptions ${assumption.id}`,
+      'has sources, so it is a fact rather than an assumption',
+    );
+}
+
+// --- 4. The documented change-propagation walk -------------------------------
 // dossier-format.md: "Walk links to find every dependent of the changed
 // prerequisite, transitively." Prose does not prove termination; this does.
 
-const dependentsOf = new Map();
+/** prerequisiteId -> ids that declare it as a prerequisite */
+const directDependents = new Map();
 for (const link of doc.links) {
-  if (!dependentsOf.has(link.prerequisite_id)) dependentsOf.set(link.prerequisite_id, []);
-  dependentsOf.get(link.prerequisite_id).push(link.dependent_id);
+  if (!directDependents.has(link.prerequisite_id)) directDependents.set(link.prerequisite_id, []);
+  directDependents.get(link.prerequisite_id).push(link.dependent_id);
 }
 
-function walk(startId) {
-  const seen = new Set();
+/**
+ * Every record transitively downstream of `startId`.
+ * Returns `terminated: false` if a bound is exceeded, which would mean the
+ * documented walk can loop — the thing this check exists to rule out.
+ */
+function dependentsReachableFrom(startId) {
+  const reached = new Set();
   const queue = [startId];
+  const bound = ids.size * ids.size + 10; // generous; a terminating walk never gets near it
   let steps = 0;
-  const limit = ids.size * ids.size + 10; // generous bound; a terminating walk never reaches it
+
   while (queue.length) {
-    if (++steps > limit) return {terminated: false, seen};
-    const current = queue.pop();
-    for (const next of dependentsOf.get(current) ?? []) {
-      if (seen.has(next)) continue;
-      seen.add(next);
+    if (++steps > bound) return {terminated: false, reached};
+    for (const next of directDependents.get(queue.pop()) ?? []) {
+      if (reached.has(next)) continue;
+      reached.add(next);
       queue.push(next);
     }
   }
-  return {terminated: true, seen, steps};
+  return {terminated: true, reached};
 }
 
-// A cycle would make "revise only the dependents" ill-defined.
 for (const id of ids.keys()) {
-  const {terminated, seen} = walk(id);
-  if (!terminated) fail(`change-propagation walk from ${id} did not terminate`);
-  if (seen.has(id)) fail(`dependency cycle: ${id} is transitively its own dependent`);
+  const {terminated, reached} = dependentsReachableFrom(id);
+  if (!terminated) report.fail(id, 'change-propagation walk did not terminate');
+  // A cycle would make "revise only the dependents" ill-defined.
+  if (reached.has(id)) report.fail(id, 'dependency cycle: transitively its own dependent');
 }
 
-// Report what the graph actually answers, which is the point of the format.
-const assumptionImpact = doc.assumptions
-  .map((a) => ({id: a.id, dependents: [...walk(a.id).seen]}))
-  .sort((x, y) => y.dependents.length - x.dependents.length);
-
-const unlinked = [...ids.entries()]
-  .filter(([, kind]) => kind === 'artifacts' || kind === 'decisions')
-  .filter(([id]) => !doc.links.some((l) => l.dependent_id === id))
-  .map(([id]) => id);
-
-// --- report -------------------------------------------------------------------
+// --- 5. Report what the graph actually answers -------------------------------
 
 console.log(`${doc.project_id} revision ${doc.revision}, format ${doc.format}`);
 console.log(`${ids.size} records, ${doc.links.length} declared links\n`);
 
+const impact = doc.assumptions
+  .map((assumption) => ({
+    id: assumption.id,
+    dependents: [...dependentsReachableFrom(assumption.id).reached],
+  }))
+  .sort((a, b) => b.dependents.length - a.dependents.length);
+
 console.log('Change impact per assumption (what a revision would mark for review):');
-for (const row of assumptionImpact)
-  console.log(`  ${row.dependents.length}  ${row.id}${row.dependents.length ? ' -> ' + row.dependents.join(', ') : ''}`);
+for (const {id, dependents} of impact) {
+  const tail = dependents.length ? ` -> ${dependents.join(', ')}` : '';
+  console.log(`  ${dependents.length}  ${id}${tail}`);
+}
+
+const unlinked = [...ids.entries()]
+  .filter(([, collection]) => collection === 'artifacts' || collection === 'decisions')
+  .filter(([id]) => !doc.links.some((link) => link.dependent_id === id))
+  .map(([id]) => id);
 
 if (unlinked.length) {
   console.log('\nArtifacts/decisions with no declared prerequisite:');
   for (const id of unlinked) console.log(`  ${id}`);
-  console.log('  (allowed - the graph is explicitly incomplete - but worth a look)');
+  console.log('  (allowed — the graph is explicitly incomplete — but worth a look)');
 }
 
-for (const n of notes) console.log(`  ${n}`);
-
-if (problems.length === 0) {
-  console.log('\nOK: referentially intact, vocabularies valid, propagation walk terminates, no cycles.');
-} else {
-  console.error(`\n${problems.length} problem(s):`);
-  for (const p of problems) console.error(`  - ${p}`);
-  process.exitCode = 1;
-}
+console.log();
+report.finish();

@@ -109,7 +109,7 @@
     },
     {
       "path": ".github/workflows/skill.yml",
-      "sha256": "87f1a9004ca977dee32cd9245cb6de9831bd2e43bfb394a8d9137ba9573741ee"
+      "sha256": "c5af1688b1be0317f6b77256e69f8315de4dbfc7e19991538c3a492a4f026e43"
     },
     {
       "path": ".gitignore",

@@ -29,34 +29,15 @@ jobs:
           package-manager-cache: false
           node-version: '24.x'
 
-      - name: Frontmatter, links, runtime-freedom, host neutrality, size budget
+      # One entrypoint, so CI and a developer's terminal run exactly the same
+      # thing. See skill/scripts/README.md for what each check proves.
+      - name: All skill checks
         working-directory: skill
-        run: node scripts/check-skill.mjs
-
-      - name: Dossier format — referential integrity and propagation walk
-        working-directory: skill
-        # Executes the change-propagation algorithm that dossier-format.md
-        # states in prose, over the worked example. Proves it terminates.
-        run: node scripts/check-dossier.mjs
-
-      - name: Facts the eval cases depend on
-        working-directory: skill
-        # Consistency between packs and cases, not truth in the world.
-        run: node scripts/check-facts.mjs
+        run: node scripts/check-all.mjs
 
       - name: Upload archive builds with SKILL.md at the root
         working-directory: skill
         run: node scripts/build-zip.mjs "$RUNNER_TEMP/startkompas-skill.zip"
-
-      - name: External source URLs
-        working-directory: skill
-        # Fails only on 404/410 or a host that does not resolve. A 403 or a
-        # redirect is reported, because official portals do both routinely.
-        run: node scripts/check-links.mjs
-
-      - name: Pack freshness
-        working-directory: skill
-        run: node scripts/check-freshness.mjs
 
   stale-packs:
     name: Open an issue for stale packs
