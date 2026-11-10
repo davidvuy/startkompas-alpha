@@ -21,6 +21,24 @@ const args = new Set(process.argv.slice(2));
 const today = new Date(new Date().toISOString().slice(0, 10));
 const daysBetween = (later, earlier) => Math.round((later - earlier) / 86400000);
 
+/**
+ * Parse `YYYY-MM-DD`, returning null for a date that cannot exist.
+ *
+ * The markers are matched with `\d{4}-\d{2}-\d{2}`, which happily accepts
+ * 2027-13-45. `new Date` makes that an Invalid Date, every comparison against
+ * NaN is false, and the pack then reports as perfectly fresh for ever — a typo
+ * in the one field that exists to make staleness loud would have silenced it.
+ * The round-trip is what rejects 2027-02-30 as well as 2027-13-45.
+ *
+ * @param {string} text
+ * @returns {Date | null}
+ */
+function parseIsoDate(text) {
+  const date = new Date(`${text}T00:00:00Z`);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toISOString().slice(0, 10) === text ? date : null;
+}
+
 if (!existsSync(packsDir)) {
   console.error('No references/jurisdictions directory.');
   process.exit(1);
@@ -68,26 +86,41 @@ function inspect(file) {
       `${tableRows} "Not researched" row(s) in the maintenance table but no marker in the body — the table claims gaps the prose has closed`,
     );
 
+  // Every date is validated before it is compared. An impossible one is
+  // reported as impossible rather than silently making the pack look fresh.
+  for (const marker of [...checked, ...carried]) {
+    if (!parseIsoDate(marker))
+      entry.problems.push(`"${marker}" is not a real date; check the marker that carries it`);
+  }
+
+  const dueDate = due ? parseIsoDate(due) : null;
+
   if (!due) {
     entry.problems.push('no "Next full recheck due" date');
+  } else if (!dueDate) {
+    entry.problems.push(`recheck due date "${due}" is not a real date`);
   } else {
-    const remaining = daysBetween(new Date(due), today);
+    const remaining = daysBetween(dueDate, today);
     if (remaining < 0) entry.problems.push(`recheck overdue by ${-remaining} days (due ${due})`);
     else if (remaining <= DUE_SOON_DAYS) entry.warnings.push(`recheck due in ${remaining} days`);
   }
 
+  const oldestChecked = entry.oldest_checked ? parseIsoDate(entry.oldest_checked) : null;
+
   if (!entry.oldest_checked) {
     entry.problems.push('no [checked YYYY-MM-DD] claim at all');
-  } else {
-    const age = daysBetween(today, new Date(entry.oldest_checked));
+  } else if (oldestChecked) {
+    const age = daysBetween(today, oldestChecked);
     if (age > STALE_AFTER_DAYS)
       entry.problems.push(
         `oldest verified claim is ${age} days old (${entry.oldest_checked}); limit is ${STALE_AFTER_DAYS}`,
       );
   }
 
-  if (entry.oldest_carried) {
-    const age = daysBetween(today, new Date(entry.oldest_carried));
+  const oldestCarried = entry.oldest_carried ? parseIsoDate(entry.oldest_carried) : null;
+
+  if (oldestCarried) {
+    const age = daysBetween(today, oldestCarried);
     entry.warnings.push(`carries unrefetched claims from ${entry.oldest_carried} (${age} days old)`);
   }
 

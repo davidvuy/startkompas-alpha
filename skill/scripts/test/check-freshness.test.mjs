@@ -83,6 +83,40 @@ test('a recheck date with the period inside the bold is not silently accepted', 
   );
 });
 
+test('an impossible recheck date fails instead of making the pack look fresh', () => {
+  // The bug this guards: the marker regex accepts 2027-13-45, `new Date` makes
+  // that an Invalid Date, and every comparison against NaN is false — so the
+  // pack reported as perfectly fresh for ever. A typo in the one field that
+  // exists to make staleness loud had been silencing it.
+  for (const due of ['2027-13-45', '0000-00-00', '2027-02-30', '2026-11-31']) {
+    expectFail(
+      {'testland.md': validPack({recheck: due})},
+      new RegExp(`recheck due date "${due}" is not a real date`),
+    );
+  }
+});
+
+test('an impossible checked date fails too', () => {
+  // Same hazard on the other marker: a NaN age is never greater than the
+  // staleness limit.
+  expectFail(
+    {
+      'testland.md': validPack({recheck: isoDaysFromNow(200)}).replaceAll(
+        '[checked 2026-11-10]',
+        '[checked 2026-02-31]',
+      ),
+    },
+    /"2026-02-31" is not a real date/,
+  );
+});
+
+test('a leap day is accepted in a leap year and rejected otherwise', () => {
+  // The round-trip check has to be exact, not approximate: 2028 is a leap year
+  // and 2027 is not.
+  expectPass({'testland.md': validPack({recheck: '2028-02-29'})});
+  expectFail({'testland.md': validPack({recheck: '2027-02-29'})}, /not a real date/);
+});
+
 test('no checked marker at all fails', () => {
   expectFail(
     {'testland.md': validPack().replaceAll(/\[checked \d{4}-\d{2}-\d{2}\]/g, '[verified]')},

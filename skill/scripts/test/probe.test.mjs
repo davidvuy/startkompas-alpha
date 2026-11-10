@@ -185,6 +185,16 @@ test('a probe sends a user agent identifying the checker', async () => {
   assert.match(seen['user-agent'], /startkompas/);
 });
 
+test('a response with no usable status is never classified as live', () => {
+  // The same shape of bug as an invalid date in check-freshness: a comparison
+  // against NaN or undefined is false, and the safe-looking branch is "ok".
+  // Here the fall-through is 'other', which warns — so a broken response is
+  // reported rather than silently counted as a working source.
+  for (const status of [undefined, null, Number.NaN, 0, -1]) {
+    assert.notEqual(classifyStatus(status), 'ok', `status ${String(status)} must not read as live`);
+  }
+});
+
 test('the default timeout is long enough for a slow government portal', () => {
   // Stated as a decision rather than a magic number: official PDF endpoints are
   // routinely several seconds.
