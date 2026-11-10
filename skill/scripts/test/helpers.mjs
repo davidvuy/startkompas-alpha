@@ -90,8 +90,12 @@ export function runCheck(script, root, {args = [], env = {}} = {}) {
 // fixture started from something already broken, a test could pass for the
 // wrong reason.
 
-/** Frontmatter + body that satisfies check-skill's section 1. */
-export const VALID_SKILL_MD = `---
+/**
+ * Frontmatter + body that satisfies check-skill's section 1.
+ * Not exported: tests reach it through `baseTree()`, so there is one place a
+ * fixture's starting point is defined.
+ */
+const VALID_SKILL_MD = `---
 name: startkompas-test
 description: A fixture skill used by the check tests. Use it when exercising the checks themselves, because it carries enough description text to satisfy the minimum routing length that the real check enforces.
 ---

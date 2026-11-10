@@ -28,8 +28,6 @@ export const skillFile = join(skillRoot, 'SKILL.md');
 export const referencesDir = join(skillRoot, 'references');
 export const packsDir = join(referencesDir, 'jurisdictions');
 export const examplesDir = join(referencesDir, 'examples');
-export const evalsDir = join(skillRoot, 'evals');
-
 /**
  * Where the check scripts themselves live — always the real folder, never a
  * fixture. `skillRoot` is the tree under inspection; this is the code doing the

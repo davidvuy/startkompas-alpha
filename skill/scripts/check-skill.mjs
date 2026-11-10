@@ -19,7 +19,7 @@ import {skillRoot, skillFile, referencesDir, packsDir, packIndexFile} from './li
 import {listFiles, relativePosix, totalBytes, kb, overBudget} from './lib/files.mjs';
 import {createReport} from './lib/report.mjs';
 
-// Four budgets, because they measure four different costs. The order below is
+// Five budgets, because they measure five different costs. The order below is
 // the order of how much each one actually matters.
 //
 // ALWAYS_BUDGET_KB — SKILL.md alone. The host loads this on every single turn
@@ -37,8 +37,14 @@ import {createReport} from './lib/report.mjs';
 // purpose, because adding the ninth jurisdiction pack should not be blocked by
 // the eight that a given conversation will not read.
 //
-// FOLDER_BUDGET_KB — the whole folder, including scripts/ and evals/ that no
-// model ever reads. It exists only to catch accidental bulk.
+// FOLDER_BUDGET_KB — the folder as a user installs it, minus the test suite.
+// It exists only to catch accidental bulk.
+//
+// TEST_BUDGET_KB — scripts/test/ on its own. Test code is *deliberate* bulk,
+// and the third time this check measured the wrong thing was when the suite
+// grew to 95 KB and started competing with the packs for the folder budget: a
+// new jurisdiction pack would have been blocked by a new fixture. Tests still
+// get a bound, so a runaway fixture is caught, but it is their own.
 //
 // Measuring only the folder — as this check first did — would have blocked
 // adding a jurisdiction pack because the *tooling* had grown. That was a bug.
@@ -54,6 +60,10 @@ import {createReport} from './lib/report.mjs';
 //           reference of 36.1 KB (germany.md). They encode what the aggregate
 //           could not: that the per-turn cost is bounded by one pack, and that
 //           SKILL.md growing is far worse than references/ growing.
+//   2026-11-11  TEST added at 95 KB, and scripts/test/ taken out of the folder
+//           figure. Nothing was over budget; the point is that it was about to
+//           be, for the wrong reason — a fixture and a jurisdiction pack were
+//           drawing on the same 512 KB.
 // Before raising MODEL again, ask whether the packs should be condensed. Before
 // raising ALWAYS, ask what behaviour the extra instruction buys. Verified prose
 // earns its space; restated prose does not.
@@ -61,6 +71,7 @@ const ALWAYS_BUDGET_KB = 10;
 const REFERENCE_BUDGET_KB = 48;
 const MODEL_BUDGET_KB = 320;
 const FOLDER_BUDGET_KB = 512;
+const TEST_BUDGET_KB = 192;
 
 // A description shorter than this cannot carry both scope and "when to use".
 const MIN_DESCRIPTION = 80;
@@ -294,7 +305,13 @@ const referenceFiles = files.filter((f) => rel(f).startsWith('references/'));
 const modelFiles = [...presentSkillFile, ...referenceFiles];
 const alwaysBytes = totalBytes(presentSkillFile);
 const modelBytes = totalBytes(modelFiles);
-const folderBytes = totalBytes(files);
+
+// Test code is charged separately: it is deliberate bulk, so letting it draw on
+// the same budget as the packs would mean a new fixture could block a new pack.
+const testFiles = files.filter((f) => rel(f).startsWith('scripts/test/'));
+const installedFiles = files.filter((f) => !rel(f).startsWith('scripts/test/'));
+const testBytes = totalBytes(testFiles);
+const folderBytes = totalBytes(installedFiles);
 
 // The per-turn cost is SKILL.md plus whichever single reference gets opened,
 // so the largest reference is the one that bounds it.
@@ -314,31 +331,40 @@ report.note(
   `model-facing total: ${modelFiles.length} files, ${kb(modelBytes)} KB of ${MODEL_BUDGET_KB} KB`,
 );
 report.note(
-  `whole folder: ${files.length} files, ${kb(folderBytes)} KB of ${FOLDER_BUDGET_KB} KB`,
+  `folder without tests: ${installedFiles.length} files, ${kb(folderBytes)} KB of ${FOLDER_BUDGET_KB} KB`,
+);
+report.note(
+  `test suite: ${testFiles.length} files, ${kb(testBytes)} KB of ${TEST_BUDGET_KB} KB`,
 );
 
 if (alwaysBytes > ALWAYS_BUDGET_KB * 1024)
   report.fail(
     'SKILL.md',
-    `${overBudget(alwaysBytes, ALWAYS_BUDGET_KB, "always-loaded")}; this file is paid for on every turn, so move detail into a reference`,
+    `${overBudget(alwaysBytes, ALWAYS_BUDGET_KB, 'always-loaded')}; this file is paid for on every turn, so move detail into a reference`,
   );
 
 if (largest && largest.bytes > REFERENCE_BUDGET_KB * 1024)
   report.fail(
     rel(largest.file),
-    `${overBudget(largest.bytes, REFERENCE_BUDGET_KB, "per-reference")}; split it rather than raising the budget, because one file is what a single turn pays for`,
+    `${overBudget(largest.bytes, REFERENCE_BUDGET_KB, 'per-reference')}; split it rather than raising the budget, because one file is what a single turn pays for`,
   );
 
 if (modelBytes > MODEL_BUDGET_KB * 1024)
   report.fail(
     'SKILL.md + references/',
-    `${overBudget(modelBytes, MODEL_BUDGET_KB, "model-facing")}; trim it or raise the budget on purpose`,
+    `${overBudget(modelBytes, MODEL_BUDGET_KB, 'model-facing')}; trim it or raise the budget on purpose`,
   );
 
 if (folderBytes > FOLDER_BUDGET_KB * 1024)
   report.fail(
     '.',
-    `folder is ${overBudget(folderBytes, FOLDER_BUDGET_KB, "whole-folder")}; something bulky got in`,
+    `folder is ${overBudget(folderBytes, FOLDER_BUDGET_KB, 'installed-folder')}; something bulky got in`,
+  );
+
+if (testBytes > TEST_BUDGET_KB * 1024)
+  report.fail(
+    'scripts/test/',
+    `${overBudget(testBytes, TEST_BUDGET_KB, 'test-suite')}; a fixture has probably grown instead of a test being added`,
   );
 
 for (const file of files.filter((f) => /\.(mp4|png|jpg|jpeg|ttf|otf|woff2?|zip|pdf)$/i.test(f)))

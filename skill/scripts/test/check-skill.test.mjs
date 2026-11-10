@@ -284,6 +284,20 @@ test('many small references do not trip the per-reference budget', () => {
   expectPass(files);
 });
 
+test('test code is charged to its own budget, not the folder budget', () => {
+  // The regression this split exists for: a fixture and a jurisdiction pack
+  // used to draw on the same 512 KB, so a new test could block a new pack.
+  const bulk = 'x'.repeat(200 * 1024);
+  const result = withTree(
+    {...baseTree(), 'scripts/test/huge.test.mjs': bulk},
+    (root) => runCheck('check-skill.mjs', root),
+  );
+  assert.match(result.output, /test suite: 1 files/);
+  assert.match(result.output, /over the 192 KB test-suite budget/);
+  // The installed-folder figure must not include it.
+  assert.match(result.output, /folder without tests: 2 files/);
+});
+
 test('a binary asset in the tree fails', () => {
   expectFail({...baseTree(), 'assets/logo.png': 'not really a png'}, /binary asset does not belong/);
 });

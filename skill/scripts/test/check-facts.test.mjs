@@ -11,10 +11,11 @@
 
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {readdirSync} from 'node:fs';
+import {readdirSync, readFileSync} from 'node:fs';
+import {join} from 'node:path';
 
 import {REQUIRED, FORBIDDEN, evaluate} from '../lib/facts.mjs';
-import {packsDir} from '../lib/paths.mjs';
+import {packsDir, skillRoot} from '../lib/paths.mjs';
 
 // --- The tables as data ------------------------------------------------------
 
@@ -47,6 +48,26 @@ test('no two assertions on the same pack share a label', () => {
     const key = `${entry.pack}::${entry.label}`;
     assert.ok(!seen.has(key), `duplicate assertion label: ${key}`);
     seen.add(key);
+  }
+});
+
+test('every eval case an assertion names is defined in cases.md', () => {
+  // The failure message says "C6 expects …". If C6 does not exist, that message
+  // sends a maintainer looking for a case that was renamed or deleted, and the
+  // assertion is orphaned — still green, no longer tied to anything.
+  const cases = readFileSync(join(skillRoot, 'evals', 'cases.md'), 'utf8');
+  const defined = new Set(
+    [...cases.matchAll(/^##\s+(C\d+)\b/gm)].map((match) => match[1]),
+  );
+  assert.ok(defined.size > 0, 'no case headings found; the parser or the file changed shape');
+
+  for (const entry of REQUIRED) {
+    // '—' means the assertion guards a pack claim no single case encodes.
+    if (entry.case === '—') continue;
+    assert.ok(
+      defined.has(entry.case),
+      `assertion "${entry.label}" names ${entry.case}, which cases.md does not define`,
+    );
   }
 });
 

@@ -43,20 +43,23 @@ Two seams make that possible, and neither is used by anything that ships:
 
 The first negative test written — "missing `SKILL.md` fails" — failed. `check-skill.mjs` reported the missing file in section 1 and then crashed with an unhandled `ENOENT` in section 4, because two later sections read `SKILL.md` without checking it was there. A contributor whose `SKILL.md` was missing got a stack trace instead of the one sentence that would have told them why. That is the argument for this directory in one example.
 
-## The four size budgets
+## The five size budgets
 
-`check-skill.mjs` enforces four, because they measure four different costs. They are listed in order of how much each one matters.
+`check-skill.mjs` enforces five, because they measure five different costs. They are listed in order of how much each one matters.
 
 | Budget | Covers | Why |
 | --- | --- | --- |
 | **10 KB** | `SKILL.md` alone | The host loads this on **every turn**, used or not. The most expensive kilobyte in the project, and the budget to defend hardest. |
 | **48 KB** | the **largest single** file in `references/` | Progressive disclosure means the model opens *one* pack. A founder in Berlin never pays for the French pack, so the per-conversation cost is `SKILL.md` plus the biggest thing it might open. |
-| 320 KB | `SKILL.md` + all of `references/` | A **distribution** bound, not a per-turn cost: how much a reader has to trust and a maintainer has to recheck. Deliberately the loosest of the three, so the ninth pack is not blocked by the eight a given conversation will not read. |
-| 512 KB | the whole folder | Loose, and only there to catch accidental bulk. `scripts/` and `evals/` are never read by a model. |
+| 320 KB | `SKILL.md` + all of `references/` | A **distribution** bound, not a per-turn cost: how much a reader has to trust and a maintainer has to recheck. Deliberately loose, so the ninth pack is not blocked by the eight a given conversation will not read. |
+| 512 KB | the folder as installed, **excluding** `scripts/test/` | Loose, and only there to catch accidental bulk. |
+| 192 KB | `scripts/test/` alone | Test code is *deliberate* bulk. Giving it its own bound keeps a runaway fixture catchable without letting a fixture compete with a jurisdiction pack. |
 
 The check also reports the **worst-case turn** — always-loaded plus the largest reference — which is the number to watch. Run it rather than trusting a figure quoted in a document; that is why it prints them.
 
-**Two bugs of the same shape, both fixed.** Measuring only the folder, as this check first did, would have blocked adding a jurisdiction pack because the *tooling* had grown. Measuring only the aggregate, as it did next, had the same bug one level up: it priced every pack into every conversation and made closing an open topic in one country compete for budget with another country. A budget should charge for what is actually loaded.
+**The same bug three times, each a level further out.** Measuring only the folder, as this check first did, would have blocked adding a jurisdiction pack because the *tooling* had grown. Measuring only the aggregate, as it did next, priced every pack into every conversation, so closing an open topic in one country competed for budget with another country. Then the test suite reached 95 KB and started drawing on the same 512 KB as the packs, so a new fixture would have blocked a new pack. In each case the fix was the same: **charge for what is actually loaded, by whoever actually loads it.**
+
+**And a message bug worth remembering.** `kb()` rounds, so a file one byte over the 10 KB budget reported `10.0 KB is over the 10 KB budget` — which reads as the check contradicting itself, and whose first interpretation is that the check is broken. `overBudget()` states the excess in bytes instead: `10.0 KB, over the 10 KB always-loaded budget by 1 byte`.
 
 The same distinction is why references may only link to `SKILL.md` or to each other: if a reference pointed into `scripts/` or `evals/`, the model could be sent to a file that is not part of what it should be reading. That closure is enforced.
 
