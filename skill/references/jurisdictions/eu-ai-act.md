@@ -125,7 +125,6 @@ Two of these are already behind us at this pack's check date, and **general appl
 | Marketing content as public-interest text under art. 50 | — | Not researched |
 | Art. 25: three triggers by which a deployer becomes a provider — all require high risk | 2026-11-10 | **Article text read** |
 | The full provider obligations for a high-risk system | — | Not researched, deliberately — that founder needs a specialist |
-
 | National authorities and penalties | — | Not researched |
 
 Next full recheck due: **2027-05-10**. Earlier before 2027-12-02, when high-risk obligations reach sensitive areas.

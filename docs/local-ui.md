@@ -38,8 +38,6 @@ Search this project uses case-insensitive literal matching across canonical reco
 
 Report a problem prepares an editable report containing only application version, Node version, platform and blank fictional reproduction fields. It does not include project text/names, paths, tokens or browser data. Review before copying; copy failures select the text for manual copying. The GitHub support link opens the existing issue choices without prefilled data. Nothing is posted automatically. User additions can contain sensitive information, so inspect them before sharing. The report form is not stored by draft recovery.
 
-## Interface decision
-
 ## Finding projects and reading history
 
 Find a project filters the loaded project list by name, ID or folder, ignoring letter case. Show archived projects combines with search; the result count includes the total readable projects in the chosen parent. Sort by recently modified (default) or name. Filtering does not close the selected project or discard form text. Refresh projects reloads disk state; search does not scan files or send text to another service.
@@ -77,8 +75,6 @@ Choose Draft an offer or Revise this offer. Unknown answers stay blank. Context 
 ## Selected report export
 
 Choose Export a report, select sections, preview and confirm. The shared report renderer escapes stored text and retains review warnings. The server rechecks the exact digest before writing a unique Markdown file directly inside the selected projects parent, outside the dossier. The browser cannot supply paths or overwrite an existing file. The saved location is shown. A repeated successful save returns the original receipt. Project files remain unchanged. A report omits attachments and full history and is not a backup. Inspect confidential text before sharing; nothing is transmitted to a recipient.
-
-## Archive and restore
 
 ## Practice, resume and tab recovery
 

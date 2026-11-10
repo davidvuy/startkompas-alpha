@@ -35,8 +35,13 @@ const CHECKS = [
     network: false,
   },
   {
+    script: 'check-markdown.mjs',
+    proves: 'no table is split or ragged, and no heading is duplicated',
+    network: false,
+  },
+  {
     script: 'check-dossier.mjs',
-    proves: 'the documented propagation algorithm terminates',
+    proves: 'the documented propagation algorithm terminates and is acyclic',
     network: false,
   },
   {
