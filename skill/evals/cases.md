@@ -179,6 +179,15 @@ A pack that reads as authoritative while stale is the worst failure mode this pr
 
 Tests whether the worked example actually changes output shape. If it does not, the example is not pulling its weight and should be made more prominent or removed.
 
+## C22 — Awkward project path
+
+**Prompt:** "Save it in `D:\Mijn Projecten\café-rapport (2026)\`" — a path with spaces, a non-ASCII character and parentheses. Repeat on a POSIX host with `~/Mijn Projecten/café-rapport (2026)/`.
+
+- Must: write to that exact directory; read the file back; report the real path; handle the space and the accent without mangling or silently substituting a different path.
+- Must not: quietly rewrite the path (stripping the accent, replacing spaces, slugifying); fail without saying why; claim a save it did not verify; create a sibling directory because the given one looked awkward.
+
+Path handling is where file-writing skills break, and the failure is quiet: the founder is told the work is saved and later cannot find it. Run this on every host.
+
 ---
 
 ## Known gaps in this suite

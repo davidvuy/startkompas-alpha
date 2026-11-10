@@ -6,6 +6,21 @@ license: MIT for original instructions; retained scaffold notices in NOTICE and 
 
 # Startkompas
 
+> **Deprecated copy — use `skill/` instead.**
+>
+> This is the original runtime-coupled skill. It depends on the legacy Node CLI
+> being installed alongside it: several of its references only point at
+> `modules/` and `docs/` files in that runtime, so it cannot stand alone.
+>
+> The maintained skill is **`skill/`** at the repository root: host-neutral,
+> dependency-free, worldwide in scope, with verified per-jurisdiction source
+> packs. Install it by copying that folder — see `skill/INSTALL.md`.
+>
+> If you reached this file through project-scoped discovery, prefer `skill/SKILL.md`
+> for anything other than driving the legacy runtime's own commands. This copy is
+> retained only so existing installations keep working, and is pending removal
+> (BACKLOG.md item 15).
+
 Help the founder advance one explicit milestone with evidence. The first content scope is a Belgian solo founder, Belgian business pilot customers and no employees. Flag other jurisdictions, consumers, staff or regulated activities as needing additional scoped review; do not silently adapt the conclusions.
 
 ## Operate inside Codex

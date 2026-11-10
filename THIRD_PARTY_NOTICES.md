@@ -1,6 +1,18 @@
 # Third-party notices
 
-Root MIT licensing applies only as described in LICENSING.md. This register distinguishes evidence copies, selected future dependencies and tools used externally. Complete retrieved texts and exact online observations are in evidence/sk07/licenses/ and evidence/sk07/online-inspection.json.
+> **This register concerns the legacy Node runtime, not `skill/`.**
+>
+> `skill/` has no dependencies, bundles no fonts, images or binaries, and ships
+> no third-party material, so it requires none of the notices below. See
+> [skill/NOTICE](skill/NOTICE) for its own position and the measured check
+> behind it.
+>
+> If the runtime is removed or moved out (see [BACKLOG.md](BACKLOG.md) item 11),
+> the 24 locked dependencies and the 28 texts in `licenses/dependencies/` go
+> with it, and most of this register goes too. Reviewed 2026-11-10; nothing
+> below was re-retrieved on that date.
+
+Root MIT licensing applies only as described in LICENSING.md. This register distinguishes evidence copies, selected future dependencies and tools used externally. Complete retrieved texts and exact online observations are in `evidence/sk07/licenses/` and `evidence/sk07/online-inspection.json` — a private development tree that **is not part of this repository**; those references are retained for provenance, not as paths you can open here.
 
 | Component / version | Licence and attribution | Use / retained notice |
 |---|---|---|

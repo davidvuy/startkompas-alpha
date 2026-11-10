@@ -8,6 +8,35 @@ Nothing here is a guess about what users want. Items are grounded in what is act
 
 ---
 
+## Progress
+
+Updated 2026-11-10.
+
+**Done (41):** 1, 2, 5, 7, 9, 15, 16, 26, 27, 28, 29, 30, 31, 53, 54, 55, 59, 60, 61, 62, 63, 64, 67, 68, 69, 70, 71, 73, 74, 77, 78, 79, 80, 81, 82, 87, 90, 91, 95, 97 — plus 10 in part (branch pushed; the pull request itself is still to open).
+
+**Partly done:**
+
+- **47** — an instruction-coverage audit of all 22 cases is recorded in [skill/evals/results.md](skill/evals/results.md) and found four real gaps, now fixed. A **behavioural score on a host is still missing**, and that is the part that matters.
+- **22** — target corrected, see below.
+- **33–46** — verification debt: untouched. This is the moat and the largest remaining block.
+
+**Found while working, not in the original list:**
+
+- Adding `skill/` had already broken CI. `verify-installation.mjs` requires every tree file to be listed in `installation.json`, so the first pull request would have failed on `Unlisted file: skill/SKILL.md`. Fixed by excluding `skill/` from the legacy runtime walk.
+- `LICENSING.md` excluded `evals/**` from the MIT grant, which collided with the new `skill/evals/`. Resolved explicitly in favour of inclusion.
+- `check-freshness.mjs` caught three packs whose recheck date did not parse, because the trailing period sat inside the bold. Normalized all four to one format.
+- `check-public-package.mjs` requires the README to carry a download link matching `package.json`. Preserved by moving that link to the legacy row rather than weakening the check.
+
+### Correction to item 22
+
+The original target — "`SKILL.md` under 5 KB" — was set without measuring what was load-bearing, and is **wrong**. The file is 7.3 KB: 0.7 KB of routing description and 6.6 KB of body across 47 lines, after real deduplication into the references.
+
+What remains is the jurisdiction rule, the four evidence steps, the four-part close, the reference table and the data/authority boundaries. Cutting further removes safety rules — a worse trade than the tokens saved.
+
+**Revised target: keep the body under 8 KB and every section load-bearing.** Re-examine when a section is added, not against a byte count.
+
+---
+
 ## Do these twelve first
 
 They unblock or invalidate large parts of the rest.

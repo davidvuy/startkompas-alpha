@@ -11,6 +11,21 @@ material and no vendor-specific metadata file. The Apache-2.0 notice required by
 the earlier .agents/skills/startkompas copy therefore does not apply here; that
 earlier copy and its LICENSE-APACHE-2.0 remain unchanged in this repository.
 
+Checked on 2026-11-10 rather than assumed. Measured against the earlier
+.agents/skills/startkompas/SKILL.md: 54 of 1128 eight-word sequences and 19 of
+1124 twelve-word sequences are shared. Each shared sequence was inspected and
+belongs to the project's own MIT-licensed instruction text, which this folder
+deliberately carries forward - for example the skill description, the clause on
+a material change affecting what the founder should do next, and the rule
+against inventing an approval gate on the founder's own future actions. None of
+the shared text originates in the generated scaffold, whose contribution was the
+placeholder description body (replaced in 2026), the frontmatter structure, and
+agents/openai.yaml. This folder contains no agents/openai.yaml and no
+LICENSE-APACHE-2.0, and its frontmatter carries only name and description.
+
+Reproduce that measurement before changing this claim; a rewritten SKILL.md
+does not inherit this check.
+
 No bundled dependencies, fonts, images or other binary assets are included, so
 no dependency licence texts are required.
 

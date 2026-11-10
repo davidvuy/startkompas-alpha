@@ -69,7 +69,7 @@
     },
     {
       "path": ".agents/skills/startkompas/SKILL.md",
-      "sha256": "8cf84ffc825b324f00acaa0920132487cdb134794fe3547c47a23031111f6397"
+      "sha256": "62161684315ded87c9671bf3192835494f93a2ba20c0dbf1b00f3dd8226f9a7d"
     },
     {
       "path": ".gitattributes",
@@ -161,7 +161,7 @@
     },
     {
       "path": "BACKLOG.md",
-      "sha256": "0c3608190c6605cc23070d469e16eb665471daa5b57dcbf6076c381b00c85c92"
+      "sha256": "f6f0760aca07f37adf1c31f34ca3a43e4fcc27b4805d3ab450d74390513747a7"
     },
     {
       "path": "CODE_OF_CONDUCT.md",
@@ -281,7 +281,7 @@
     },
     {
       "path": "docs/maintenance-readiness.md",
-      "sha256": "2546f7b15e40c9cf6e0c3ce8f65cc941d49bca412161562caac2f05cb8f1dc75"
+      "sha256": "ceeefc6a39d989d001e2689750aa550f5a18907efc844728f9ba536db6b72e93"
     },
     {
       "path": "docs/module-maintenance.md",
@@ -569,7 +569,7 @@
     },
     {
       "path": "LICENSING.md",
-      "sha256": "eb8d0a6ae75cee09b6095f89f6722f1263829f23c8e6be4d1ac8426cb98caecb"
+      "sha256": "481ef7ff8b3ddfdabe83fdb26da444cd725961e0b681276601b5d518947dd73b"
     },
     {
       "path": "modules/domain-index.json",
@@ -1393,7 +1393,7 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "sha256": "ec13da401a3864f98898a21dc3bd07f69adad5e62a6b1a8ed8f742594426b306"
+      "sha256": "afb5ee45d04711c57b549d6b227a5c7eac06195cda5166b64736a28380e607de"
     },
     {
       "path": "ui/import-source.js",

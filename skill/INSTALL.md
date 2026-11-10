@@ -24,7 +24,15 @@ Start a new session and ask for something in scope — for example *"help me dra
 
 ## Claude (claude.ai and the desktop app)
 
-Zip the `startkompas` folder so that `SKILL.md` sits at the top level inside the archive, then upload it under Settings → Capabilities → Skills.
+Upload a zip under Settings → Capabilities → Skills. `SKILL.md` must sit at the **top level inside the archive**, not inside a `startkompas/` folder — so zip the folder's *contents*, not the folder.
+
+Build it with:
+
+```sh
+node scripts/build-zip.mjs
+```
+
+That writes `startkompas-skill.zip` one level above the repository, deliberately outside the source tree, and prints the path. It needs no dependency and no zip tool, and it fails loudly if `SKILL.md` would not land at the archive root. Pass a path to choose your own output location.
 
 ## Codex
 
@@ -49,6 +57,20 @@ node scripts/check-skill.mjs
 ```
 
 This checks the frontmatter, that every relative link resolves, and that nothing re-introduces a runtime dependency. It needs only Node's standard library, and it is a convenience — the skill itself does not require Node.
+
+## Verified installs
+
+What has actually been done, as opposed to what should work. Add a row when you install on a new host or OS — and keep the distinction between *the files are in place* and *a model used them correctly*, because they are not the same claim.
+
+| Date | Host | OS | Files in place | Structure check | Used in a real session |
+| --- | --- | --- | --- | --- | --- |
+| 2026-11-10 | Claude Code | Windows 11 | yes, 26 files / 148 KB at `~/.claude/skills/startkompas` | pass | **not yet** |
+| 2026-11-10 | Codex | Windows 11 | yes, 26 files / 148 KB at `~/.codex/skills/startkompas` | pass | **not yet** |
+| 2026-11-10 | claude.ai upload | — | zip built, 66 KB, 26 entries, `SKILL.md` at archive root | pass | **not uploaded** |
+
+Not yet verified on any host: that the skill is actually **discovered** and selected from its description, that **progressive disclosure** works (the model opening the right reference by relative path), and that it behaves correctly — see [evals/results.md](evals/results.md). No install has happened on macOS or Linux.
+
+To remove an install, delete the folder. It holds no state.
 
 ## Your projects live elsewhere
 
