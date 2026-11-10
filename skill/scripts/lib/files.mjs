@@ -33,3 +33,22 @@ export const totalBytes = (files) => files.reduce((sum, f) => sum + statSync(f).
 
 /** Bytes as KB with one decimal, for reporting. */
 export const kb = (bytes) => (bytes / 1024).toFixed(1);
+
+/**
+ * How far past a KB budget something is, phrased for a failure message.
+ *
+ * `kb()` rounds, so a file one byte over a 10 KB budget reports as "10.0 KB",
+ * and "10.0 KB is over the 10 KB budget" reads like the check is broken. The
+ * excess in bytes removes the ambiguity and is what the author has to remove.
+ *
+ * @param {number} bytes
+ * @param {number} budgetKb
+ * @param {string} [name] which budget, e.g. 'always-loaded'
+ * @returns {string} e.g. "10.0 KB, over the 10 KB always-loaded budget by 1 byte"
+ */
+export function overBudget(bytes, budgetKb, name = '') {
+  const excess = bytes - budgetKb * 1024;
+  const unit = excess === 1 ? 'byte' : 'bytes';
+  const which = name ? `${name} ` : '';
+  return `${kb(bytes)} KB, over the ${budgetKb} KB ${which}budget by ${excess} ${unit}`;
+}

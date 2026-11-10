@@ -16,7 +16,15 @@ import {readFileSync, readdirSync, statSync, existsSync} from 'node:fs';
 import {dirname, join, relative, resolve, sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
-const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+// Normally the repository this script lives in. `STARTKOMPAS_REPO_ROOT`
+// overrides it so check-doc-links.test.mjs can point it at a fixture tree with
+// a deliberately broken link — otherwise the only tree it could ever examine is
+// the correct one, and nothing would show that it fails when it should.
+// It is a test seam: no shipped code path sets it.
+const repoRoot = process.env.STARTKOMPAS_REPO_ROOT
+  ? resolve(process.env.STARTKOMPAS_REPO_ROOT)
+  : resolve(dirname(fileURLToPath(import.meta.url)), '..');
+
 const SKIP_DIRS = new Set(['node_modules', '.git']);
 
 function markdownFiles(dir) {

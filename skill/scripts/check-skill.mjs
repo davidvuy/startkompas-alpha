@@ -16,7 +16,7 @@ import {readFileSync, existsSync, readdirSync} from 'node:fs';
 import {dirname, join, resolve} from 'node:path';
 
 import {skillRoot, skillFile, referencesDir, packsDir, packIndexFile} from './lib/paths.mjs';
-import {listFiles, relativePosix, totalBytes, kb} from './lib/files.mjs';
+import {listFiles, relativePosix, totalBytes, kb, overBudget} from './lib/files.mjs';
 import {createReport} from './lib/report.mjs';
 
 // Four budgets, because they measure four different costs. The order below is
@@ -72,12 +72,27 @@ const files = listFiles(skillRoot);
 const rel = (file) => relativePosix(skillRoot, file);
 const markdown = files.filter((file) => file.endsWith('.md'));
 
+// Eight sections below look at the same files. Reading each one once keeps the
+// check honest as well as quick: two sections reading a file separately can
+// disagree about its contents if it changes mid-run, and the pack loop used to
+// read every pack twice.
+const contents = new Map();
+function read(file) {
+  if (!contents.has(file)) contents.set(file, readFileSync(file, 'utf8'));
+  return contents.get(file);
+}
+
+// Link extraction is run three times per file — once for dead links, once for
+// the reachability walk, once for the closure check — so memoise the result
+// rather than re-scanning the text.
+const linkTargets = new Map();
+
 // --- 1. SKILL.md frontmatter -------------------------------------------------
 
 if (!existsSync(skillFile)) {
   report.fail('SKILL.md', 'missing; a skill must have SKILL.md at its root');
 } else {
-  const frontmatter = /^---\r?\n([\s\S]*?)\r?\n---/.exec(readFileSync(skillFile, 'utf8'));
+  const frontmatter = /^---\r?\n([\s\S]*?)\r?\n---/.exec(read(skillFile));
 
   if (!frontmatter) {
     report.fail('SKILL.md', 'no YAML frontmatter delimited by --- at the very start');
@@ -112,9 +127,15 @@ if (!existsSync(skillFile)) {
 
 /** Link targets in a markdown file that point at local files. */
 function localLinkTargets(file) {
-  return [...readFileSync(file, 'utf8').matchAll(/\]\(([^)\s#]+)(?:#[^)]*)?\)/g)]
-    .map(([, target]) => target)
-    .filter((target) => !/^(https?:|mailto:)/.test(target));
+  if (!linkTargets.has(file)) {
+    linkTargets.set(
+      file,
+      [...read(file).matchAll(/\]\(([^)\s#]+)(?:#[^)]*)?\)/g)]
+        .map(([, target]) => target)
+        .filter((target) => !/^(https?:|mailto:)/.test(target)),
+    );
+  }
+  return linkTargets.get(file);
 }
 
 for (const file of markdown) {
@@ -172,7 +193,7 @@ const modelFacing = [
 ];
 
 for (const file of modelFacing) {
-  const text = readFileSync(file, 'utf8');
+  const text = read(file);
   for (const [pattern, why] of RUNTIME_SMELLS) {
     const hit = pattern.exec(text);
     if (hit) report.fail(rel(file), `${why} -> "${hit[0]}"`);
@@ -185,7 +206,7 @@ for (const file of modelFacing) {
 const HOSTS = ['Codex', 'Claude', 'ChatGPT', 'Copilot', 'Gemini'];
 
 for (const file of modelFacing) {
-  const text = readFileSync(file, 'utf8');
+  const text = read(file);
   for (const host of HOSTS) {
     if (new RegExp(`\\b${host}\\b`).test(text))
       report.fail(rel(file), `names the host "${host}"; SKILL.md and references must stay host-neutral`);
@@ -207,7 +228,7 @@ const NATIONAL_TEMPLATE = [
 ];
 
 if (existsSync(packsDir)) {
-  const index = existsSync(packIndexFile) ? readFileSync(packIndexFile, 'utf8') : '';
+  const index = existsSync(packIndexFile) ? read(packIndexFile) : '';
   if (!index) report.fail(relativePosix(skillRoot, packIndexFile), 'missing pack index');
 
   const packs = readdirSync(packsDir)
@@ -222,7 +243,7 @@ if (existsSync(packsDir)) {
     if (!index.includes(`(${pack})`))
       report.fail(where, 'not linked from the pack index; it would be unfindable');
 
-    const text = readFileSync(join(packsDir, pack), 'utf8');
+    const text = read(join(packsDir, pack));
     if (!/##\s*Pack maintenance/i.test(text))
       report.fail(where, 'no "Pack maintenance" section with per-claim check dates');
     if (!/\[checked \d{4}-\d{2}-\d{2}/.test(text))
@@ -235,7 +256,7 @@ if (existsSync(packsDir)) {
 
   // The template applies to national packs only; shared layers have their own shape.
   for (const pack of national) {
-    const text = readFileSync(join(packsDir, pack), 'utf8');
+    const text = read(join(packsDir, pack));
     for (const [index_, heading] of NATIONAL_TEMPLATE.entries()) {
       if (!heading.test(text))
         report.fail(
@@ -299,25 +320,25 @@ report.note(
 if (alwaysBytes > ALWAYS_BUDGET_KB * 1024)
   report.fail(
     'SKILL.md',
-    `${kb(alwaysBytes)} KB is over the ${ALWAYS_BUDGET_KB} KB always-loaded budget; this file is paid for on every turn, so move detail into a reference`,
+    `${overBudget(alwaysBytes, ALWAYS_BUDGET_KB, "always-loaded")}; this file is paid for on every turn, so move detail into a reference`,
   );
 
 if (largest && largest.bytes > REFERENCE_BUDGET_KB * 1024)
   report.fail(
     rel(largest.file),
-    `${kb(largest.bytes)} KB is over the ${REFERENCE_BUDGET_KB} KB per-reference budget; split it rather than raising the budget, because one file is what a single turn pays for`,
+    `${overBudget(largest.bytes, REFERENCE_BUDGET_KB, "per-reference")}; split it rather than raising the budget, because one file is what a single turn pays for`,
   );
 
 if (modelBytes > MODEL_BUDGET_KB * 1024)
   report.fail(
     'SKILL.md + references/',
-    `${kb(modelBytes)} KB is over the ${MODEL_BUDGET_KB} KB model budget; trim it or raise the budget on purpose`,
+    `${overBudget(modelBytes, MODEL_BUDGET_KB, "model-facing")}; trim it or raise the budget on purpose`,
   );
 
 if (folderBytes > FOLDER_BUDGET_KB * 1024)
   report.fail(
     '.',
-    `folder is ${kb(folderBytes)} KB, over the ${FOLDER_BUDGET_KB} KB limit; something bulky got in`,
+    `folder is ${overBudget(folderBytes, FOLDER_BUDGET_KB, "whole-folder")}; something bulky got in`,
   );
 
 for (const file of files.filter((f) => /\.(mp4|png|jpg|jpeg|ttf|otf|woff2?|zip|pdf)$/i.test(f)))

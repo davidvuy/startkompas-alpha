@@ -245,10 +245,20 @@ test('a shared eu-* layer is not held to the national template', () => {
 
 test('SKILL.md over the always-loaded budget fails and says to move detail out', () => {
   const padding = '\nFiller line that exists only to inflate the file past 10 KB.';
-  expectFail(
+  const result = expectFail(
     {...baseTree(), 'SKILL.md': baseTree()['SKILL.md'] + padding.repeat(250)},
     /over the 10 KB always-loaded budget/,
   );
+  assert.match(result.output, /by \d+ bytes/, 'the message must quantify the overage');
+});
+
+test('a one-byte overage reports as one byte, not as exactly the budget', () => {
+  // Because kb() rounds, this message used to read "10.0 KB is over the 10 KB
+  // budget", which looks like the check contradicting itself.
+  const base = baseTree();
+  const padded = base['SKILL.md'] + 'x'.repeat(10 * 1024 + 1 - base['SKILL.md'].length);
+  const result = expectFail({...base, 'SKILL.md': padded}, /by 1 byte/);
+  assert.match(result.output, /10\.0 KB, over the 10 KB always-loaded budget by 1 byte/);
 });
 
 test('a single reference over the per-reference budget fails and says to split it', () => {

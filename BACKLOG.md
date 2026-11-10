@@ -169,7 +169,7 @@ The repository now contains two different products. A visitor cannot tell which 
 
 **18.** Delete `installation.json` (50 KB manifest of 352 files) if the runtime is parked. It only exists to serve the old distribution model.
 
-**19.** Decide the fate of the 565 runtime tests. They pass and they are good work, but they guard code a skill-first design does not need. Move them with the runtime, or keep only the store/history integrity subset.
+**19.** Decide the fate of the 565 runtime tests. They pass and they are good work, but they guard code a skill-first design does not need. Move them with the runtime, or keep only the store/history integrity subset. — *[Kept, per item 11. **Profiled on 2026-11-11 and deliberately not changed.** 565 tests, 565 passing, **32.4 s wall clock** against **174 s** of summed test durations — so `node --test` is already getting about 5.4x out of the 24 cores, and there is no parallelism left to win. The cost is subprocess spawning: the slowest 15 tests are 29% of the total and every one of them drives the CLI as a child process, the worst at 10.1 s. That could be cut, and it is **not going to be**: the runtime is frozen for security, dependency and compatibility fixes only (see [DECISIONS.md](DECISIONS.md) entry 1), and rewriting 565 passing tests of the dossier format's only reference implementation to save CI seconds is precisely the change the freeze exists to prevent. Recorded so the next person does not have to measure it again.]*
 
 **20.** Re-point `.github/workflows/quality.yml`. Every step — `check-public-package`, `npm ci`, `npm test`, `check-installed-skill`, `doctor`, two demos — exercises the runtime. **Nothing in CI touches `skill/`.**
 

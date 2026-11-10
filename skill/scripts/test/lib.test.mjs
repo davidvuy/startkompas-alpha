@@ -8,7 +8,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {join} from 'node:path';
 
-import {listFiles, toPosix, relativePosix, totalBytes, kb} from '../lib/files.mjs';
+import {listFiles, toPosix, relativePosix, totalBytes, kb, overBudget} from '../lib/files.mjs';
 import {createReport} from '../lib/report.mjs';
 import {mapPool} from '../lib/pool.mjs';
 import {harvestCitations} from '../lib/citations.mjs';
@@ -75,9 +75,24 @@ test('kb formats to one decimal', () => {
   assert.equal(kb(0), '0.0');
   assert.equal(kb(1024), '1.0');
   assert.equal(kb(1536), '1.5');
-  // Rounding, not truncation: a file 1 byte over a budget must not display as
-  // exactly the budget.
+  // Rounding, not truncation: a file 1 byte over a budget displays as exactly
+  // the budget. That is why overBudget exists — see below.
   assert.equal(kb(1024 * 10 + 1), '10.0');
+});
+
+test('overBudget states the excess in bytes, so a one-byte overage is not confusing', () => {
+  // The bug this fixes: because kb() rounds, the message read "10.0 KB is over
+  // the 10 KB budget", which looks like the check contradicting itself. A
+  // contributor's first conclusion was that the check was broken.
+  assert.equal(
+    overBudget(1024 * 10 + 1, 10, 'always-loaded'),
+    '10.0 KB, over the 10 KB always-loaded budget by 1 byte',
+  );
+});
+
+test('overBudget pluralises and works without a budget name', () => {
+  assert.match(overBudget(1024 * 10 + 2, 10), /by 2 bytes$/);
+  assert.equal(overBudget(1024 * 11, 10), '11.0 KB, over the 10 KB budget by 1024 bytes');
 });
 
 // --- report.mjs --------------------------------------------------------------

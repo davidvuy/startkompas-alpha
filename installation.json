@@ -37,7 +37,7 @@
     },
     {
       "path": ".github/workflows/quality.yml",
-      "sha256": "0b933386a9d6547f104cc19ab7fb66ebed5e3bb4cf3317632e9b7c494d4b55c3"
+      "sha256": "d336b194915618ea1d8001c3afc0ac6771b06334e503b67b345bd32f4c321327"
     },
     {
       "path": ".github/workflows/secrets.yml",
@@ -45,7 +45,7 @@
     },
     {
       "path": ".github/workflows/skill.yml",
-      "sha256": "c5af1688b1be0317f6b77256e69f8315de4dbfc7e19991538c3a492a4f026e43"
+      "sha256": "9403afdc6ec303f89e70e69e49b8a99f798399e2d194cc9664797f0708390d2b"
     },
     {
       "path": ".gitignore",
@@ -101,7 +101,7 @@
     },
     {
       "path": "BACKLOG.md",
-      "sha256": "40d951bae9d14ed63da0db857e3099939da79c9ad41065f4c9a71ff5eb99f304"
+      "sha256": "fc2b637cd10aa6c0b99358eb6d03da5edab802f28a9b5ddf0754aacf0f110962"
     },
     {
       "path": "CODE_OF_CONDUCT.md",
@@ -557,7 +557,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "c6891e01420d97c7ebfabb3a77bc34f6eca03751acc267d35aeee163b348c3c4"
+      "sha256": "43a15064ec6c0a22c57942737864a83f3e20657aeb01f702410ca8d7aa885bee"
     },
     {
       "path": "README.md",
@@ -649,7 +649,11 @@
     },
     {
       "path": "scripts/check-doc-links.mjs",
-      "sha256": "62c3231e8a0dc1f50523db9a33f213346494831cab3bfa512a24b73ae3117091"
+      "sha256": "0881885abb46d849ce5c04033b633e3e03868c484b06b0ede7f47be6eb0719c6"
+    },
+    {
+      "path": "scripts/check-doc-links.test.mjs",
+      "sha256": "e778d26051f11b7fc3523aacb7f5438005635b2b3f121e43fc3bd4c0738317b0"
     },
     {
       "path": "scripts/check-public-package.mjs",

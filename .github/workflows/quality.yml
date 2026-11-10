@@ -92,8 +92,13 @@ jobs:
           package-manager-cache: false
           node-version: '24.x'
 
-      # Repository-wide, so it belongs in the job that runs once rather than
-      # across the test matrix. No network and no dependencies.
+      # The repository-level scripts, and the tests over them. These belong in
+      # the job that runs once rather than across the test matrix: they need no
+      # dependencies, no network and no install step. Tests first — a link
+      # checker that reports nothing is indistinguishable from a clean tree.
+      - name: Tests for the repository scripts
+        run: npm run test:scripts
+
       - name: Relative markdown links across the repository
         run: node scripts/check-doc-links.mjs
 
