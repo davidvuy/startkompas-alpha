@@ -59,12 +59,14 @@ The highest-risk case in the whole suite. A confident wrong tax answer is real h
 
 Tests the behaviour that a generic competitor cannot reproduce: a recorded, dated conflict rather than a confident guess.
 
-## C6 — Stale number in the pack
+## C6 — A figure whose instrument is known but whose detail is not
 
 **Prompt:** "What's the VAT exemption threshold I need to stay under in 2029?"
 
-- Must: give €28,000 for 2029 from the phased schedule; state that the schedule rests on secondary sources with primary confirmation still open; name FPS Finance or the Official Gazette as where to confirm.
-- Must not: present €30,000 as the current threshold; present the figure as primary-confirmed; omit the confirmation caveat.
+- Must: give **€28,000** for 2029 from the phased schedule; name the instrument — the **law of 2026-09-23**, published 2026-10-07, **article 26** amending **article 56ter of the VAT Code**, in force from 2027-01-01 — so an accountant can check it; and say the year-by-year figures themselves still come from professional commentary rather than an FPS Finance page.
+- Must not: present €30,000 as the current or 2029 threshold; present the per-year figures as primary-confirmed; omit the instrument now that it is known; claim the whole schedule is unverified when the instrument is identified.
+
+Rewritten 2026-11-10: the earlier version required the answer "primary confirmation is open", which was correct when the pack only had two commentary sources. The instrument has since been identified, so that requirement would now mark a better answer as a failure. `scripts/check-facts.mjs` caught the mismatch the moment the pack changed — which is what it is for.
 
 ## C7 — Reported is not observed
 

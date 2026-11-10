@@ -7,6 +7,7 @@ A jurisdiction pack is a dated, sourced answer set for one country or region. It
 | Jurisdiction | File | Last checked | Covered from a read source | Open topics |
 | --- | --- | --- | --- | --- |
 | **EU — GDPR layer** (shared, not a country) | [eu-gdpr.md](eu-gdpr.md) | 2026-11-10 | Controller/processor test, processor-contract duties, sub-processor rule, register obligation, 72-hour breach notification, security principle | AI Act, transfers, DPIA thresholds, DPO requirement |
+| **EU — small-enterprise VAT scheme** (shared, not a country) | [eu-vat-sme.md](eu-vat-sme.md) | 2026-11-10 | Directive (EU) 2020/285: €85,000 ceiling on a national threshold, €100,000 Union cap for the cross-border exemption, application from 2025-01-01 | Cross-border mechanics, what counts toward Union turnover, mid-year crossing |
 | Belgium (federal; regional differences noted) | [belgium.md](belgium.md) | 2026-11-10 | Registration formalities, VAT exemption, B2B e-invoicing, unfair-terms structure, software ownership (3 rules), data protection roles and security | Black/grey list contents, Belgian DPA guidance |
 | Netherlands | [netherlands.md](netherlands.md) | 2026-11-10 | Registration test and KVK→Belastingdienst link, KOR incl. invoicing duties, EU-KOR, B2B/B2G e-invoicing, data protection | Agreements, ownership, AP guidance, registration fees |
 | Germany | [germany.md](germany.md) | 2026-11-10 | VAT §19 (primary law, quoted), B2B e-invoicing, BMF guidance points, data protection | Registration route, agreements/AGB, ownership, BDSG |
@@ -37,6 +38,10 @@ Thresholds diverge just as much:
 | Netherlands | €20,000 domestic; €100,000 Union-wide for the EU-KOR, with a quarterly report |
 | Germany | €25,000 previous year **and** €100,000 current year, both operative |
 | France | €37,500 previous year / €41,250 current year for services; €85,000 / €93,500 for sales |
+
+None of those is "the EU threshold". [eu-vat-sme.md](eu-vat-sme.md) records why: Directive (EU) 2020/285 art. 284(1) sets a **ceiling** of €85,000 on what a member state may choose, so France's sales figure sits exactly at the ceiling while the Netherlands chose a quarter of it. A founder asking for "the EU figure" is asking a question with no answer.
+
+**One trap worth naming.** Germany's €100,000 is a **domestic, current-year** figure under §19 UStG. The directive's €100,000 is a **Union-wide, prior-year** cap for the cross-border exemption. Same number, unrelated rules — and a plausible place to be confidently wrong.
 
 And the invoicing duty attached to the exemption inverts: a Dutch KOR user is **not required to issue an invoice at all**, while a Belgian founder under the exemption **must issue a structured electronic one**. Carrying either answer across a border produces a confidently wrong result.
 

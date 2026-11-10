@@ -65,7 +65,7 @@ Source: [Belastingdienst — kleineondernemersregeling in de EU (EU-KOR)](https:
 - The **national threshold of each country also applies** where you use the exemption. Both limits must hold.
 - **Establishment requirement:** established in the Netherlands, with the principal place of business here if operating from several EU locations. A business not established in the EU cannot participate.
 - **Quarterly reporting:** an `opgaaf kwartaalomzet` to the Dutch tax authority, covering turnover achieved across the whole EU that quarter. This is a real recurring obligation that the domestic KOR does not have — do not present EU-KOR as simply "KOR but abroad".
-- Available since **2025-01-01** · *that start date is secondary; the official page read here did not state it* · **[needs primary confirmation]**
+- Available since **2025-01-01** — **now primary-confirmed**: art. 3(1) of Council Directive (EU) 2020/285 required member states to apply the scheme from that date. The €100,000 Union cap is art. 284(2)(a). See [eu-vat-sme.md](eu-vat-sme.md).
 
 Recheck triggers: turnover approaching €20,000 or €100,000; the start of a new calendar year; any customer in another EU country.
 
@@ -172,7 +172,7 @@ The AP publishes a `stappenplan` for controllers and one for acting on a data br
 | KOR invoicing: not required, must state the scheme, no VAT | 2026-11-10 | Tax authority page read, wording quoted |
 | KOR: purchase invoices still retained | 2026-11-10 | Secondary; primary confirmation open |
 | EU-KOR: €100,000 Union threshold, national thresholds also apply, NL establishment, quarterly report | 2026-11-10 | Tax authority page read |
-| EU-KOR start date 2025-01-01 | 2026-11-10 | Secondary; primary confirmation open |
+| EU-KOR start date 2025-01-01 and €100,000 Union cap | 2026-11-10 | **Primary EU legislation read** — see eu-vat-sme.md |
 | Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | KVK pages read |
 | Registration fee, identification, timeframe | — | Not researched |
 | 6:233 voidability, 6:235 large-party exclusion, consumer-only lists, reflexwerking | 2026-11-10 | Secondary consistent; BW text not read |

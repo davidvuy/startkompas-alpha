@@ -28,7 +28,9 @@ const assertions = [
   ['C5', 'belgium.md', 'Walloon abolition date', /2025-10-01/],
   ['C5', 'belgium.md', 'conflict preserved as a conflict', /source conflict/i],
   ['C6', 'belgium.md', '2029 threshold is EUR 28,000', /\|\s*2029\s*\|\s*€28,000\s*\|/],
-  ['C6', 'belgium.md', 'primary confirmation still open', /not primary-confirmed/i],
+  ['C6', 'belgium.md', 'enacting instrument identified', /law of 2026-09-23/i],
+  ['C6', 'belgium.md', 'amended VAT Code article named', /article 56ter/i],
+  ['C6', 'belgium.md', 'per-year figures still only commentary', /rest on professional commentary/i],
   ['—', 'belgium.md', 'unfair terms black list article', /VI\.91\/4/],
   ['—', 'belgium.md', 'software ownership: no automatic transfer', /niet automatisch overgedragen/],
 

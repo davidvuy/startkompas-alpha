@@ -58,17 +58,17 @@ Scheduled phased increase, from **2027-01-01**, rising €1,000 per year:
 | 2030 | €29,000 |
 | 2031 and after | €30,000 |
 
-Legal basis: a bill approved by the Chamber of Representatives on **2026-09-17**.
+Legal basis — **now enacted, not a bill**: the **law of 2026-09-23**, published in the Belgian Official Journal on **2026-10-07**. Its **article 26** amends **article 56ter of the Belgian VAT Code**, entering into force **2027-01-01**. (The Chamber approved it on 2026-09-17.) · *secondary, consistent and specific* · **[checked 2026-11-10]**
 
 Sources · *both secondary (professional commentary), mutually consistent* · **[checked 2026-11-10]**
 - [vereniginginfo.be](https://www.vereniginginfo.be/blog/vzws/btw-vrijstellingsregeling-kleine-ondernemingen-van-25000-naar-30000-euro/302/)
 - [btw-lijn.be](https://www.btw-lijn.be/wetsontwerp-verhoging-omzetdrempel-vrijstelling-kleine-onderneming-ingediend/)
 
-**Open: not primary-confirmed.** Both are professional commentary, not the published law or an FPS Finance page. Confirm against FPS Finance or the Belgian Official Gazette before a founder relies on a specific year's figure. Headlines reading "threshold raised to €30,000" are misleading — €30,000 applies only from 2031.
+The phased figures themselves still rest on professional commentary rather than an FPS Finance page, but the **instrument is now identified** (law of 2026-09-23, art. 26, amending art. 56ter VAT Code), which is what a founder's accountant needs to check. Headlines reading "threshold raised to €30,000" remain misleading — €30,000 applies only from 2031.
 
 What the exemption does: supply without charging VAT, relieved of periodic VAT returns, while keeping the VAT identification. The trade-off is **loss of input VAT deduction** on purchases and investments relating to the exempt activity. · **[checked 2026-11-10]**
 
-Separate EU cross-border scheme: a dual-threshold system with an EU-wide figure of €100,000 reportedly applies from 2025-01-01 alongside the national threshold. · *single secondary source* · **[checked 2026-11-10, needs primary confirmation]** — [vat-consult.be](https://www.vat-consult.be/blog/small-enterprises)
+Separate EU cross-border scheme — **now primary-confirmed**: the €100,000 Union annual turnover cap comes from art. 284(2)(a) of Council Directive (EU) 2020/285 and applies from 2025-01-01, alongside the national threshold. See [eu-vat-sme.md](eu-vat-sme.md). · **[checked 2026-11-10]**
 
 Recheck triggers: turnover approaching the threshold; the start of any calendar year; any cross-border customer.
 
@@ -159,8 +159,8 @@ Belgian national provisions supplementing the GDPR are **[not researched]**.
 | Start-up formalities and responsible bodies | 2026-11-10 | Official page read |
 | Basic-management three-way conflict | 2026-11-10 | All three sources read; conflict preserved |
 | B2B e-invoicing scope and start date | 2026-11-10 | Primary official source read |
-| VAT exemption phased thresholds | 2026-11-10 | Two consistent secondary sources; primary confirmation open |
-| EU-wide €100,000 cross-border threshold | 2026-11-10 | Single secondary source; needs primary confirmation |
+| VAT exemption phased thresholds | 2026-11-10 | Secondary; instrument identified (law 2026-09-23, art. 26, art. 56ter VAT Code) |
+| EU-wide €100,000 cross-border threshold | 2026-11-10 | **Primary EU legislation read** — see eu-vat-sme.md |
 | Unfair terms: general norm, black and grey list structure | 2026-11-10 | Secondary legal commentary; primary WER text not read |
 | Contents of the black and grey lists | — | **Not researched** — do not state specific clauses |
 | Official unfair-terms brochure | 2026-11-10 | **Fetch succeeded but text not extractable**; metadata shows 2020-09 authored, 2021-04 modified |
