@@ -72,6 +72,36 @@ for (const file of markdown) {
   }
 }
 
+// --- 2b. Every reference is reachable from SKILL.md -------------------------
+// Backlog item 28: an unreferenced reference never loads, so it is dead weight
+// that still counts against the size budget.
+
+if (existsSync(skillPath)) {
+  const linksOf = (file) =>
+    [...readFileSync(file, 'utf8').matchAll(/\]\(([^)\s#]+)(?:#[^)]*)?\)/g)]
+      .map(([, t]) => t)
+      .filter((t) => !/^(https?:|mailto:)/.test(t))
+      .map((t) => resolve(dirname(file), t))
+      .filter((p) => existsSync(p));
+
+  const reached = new Set([skillPath]);
+  const queue = [skillPath];
+  while (queue.length) {
+    for (const target of linksOf(queue.pop())) {
+      if (reached.has(target)) continue;
+      reached.add(target);
+      if (target.endsWith('.md')) queue.push(target);
+    }
+  }
+
+  for (const file of files) {
+    const r = rel(file);
+    if (!r.startsWith('references/')) continue;
+    if (!reached.has(file))
+      fail(r, 'not reachable from SKILL.md by any chain of links; it would never be loaded');
+  }
+}
+
 // --- 3. No runtime dependency re-introduced ---------------------------------
 
 const forbidden = [

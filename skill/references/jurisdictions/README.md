@@ -33,7 +33,9 @@ Any skill that answers this from a single "EU" position is wrong in at least thr
 ## Using a pack
 
 1. Establish the founder's country and region, the customers' country, and where the service is delivered. These can differ and each can matter.
-2. If a pack matches, use it. Respect its `checked` date and its recorded conflicts. If a claim's `recheck_trigger` has occurred, or the check date is older than roughly six months for anything consequential, recheck the primary source before relying on it.
+2. If a pack matches, use it. Respect its `checked` date and its recorded conflicts.
+
+   **Say so when a pack is stale.** If the pack is past its `Next full recheck due` date, or a claim's `recheck_trigger` has occurred, or its check date is older than roughly six months for anything consequential: still give the recorded figure, but tell the founder in the same breath that it is past its recheck date and needs confirming against the primary source before they rely on it. Recheck it yourself if the host can fetch. A stale pack that reads as authoritative is worse than no pack at all — never present its figures unqualified, and never quietly replace them with a figure from memory.
 3. Record what you used in the project's `sources` with the pack's URL and its check date — not with today's date, unless you actually refetched the page yourself.
 
 ## When no pack matches

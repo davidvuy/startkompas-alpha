@@ -1,0 +1,193 @@
+{
+  "_comment": "Fictional worked example at revision 3. Every id referenced below exists in this file. Not a template to copy wholesale: a real project starts with empty collections and only gains a record when there is something real to record.",
+  "format": "startkompas-dossier/1",
+  "project_id": "clearer-reports",
+  "name": "Monthly report clean-up service",
+  "revision": 3,
+  "jurisdiction": {
+    "founder_country": "BE",
+    "founder_region": "Brussels",
+    "customer_country": "BE",
+    "delivery_location": "remote",
+    "pack": "belgium.md"
+  },
+  "sources": [
+    {
+      "id": "source-interview-p01",
+      "title": "Conversation with P01, operations lead at a 9-person agency",
+      "type": "interview",
+      "location": "notes/2026-11-04-p01.md",
+      "scope": "One person, one 35-minute call. Their own account of their own work. Not a market finding and not a commitment.",
+      "published_at": null,
+      "effective_from": null,
+      "checked_at": "2026-11-04",
+      "recheck_trigger": "Superseded if P01 changes role or the agency changes reporting tool"
+    },
+    {
+      "id": "source-be-einvoicing-faq",
+      "title": "Belgian official e-invoicing FAQ, general B2B questions",
+      "type": "primary_official",
+      "location": "https://efactuur.belgium.be/nl/FAQ/algemene-vragen-b2b",
+      "scope": "Structured B2B e-invoicing scope and start date for Belgian VAT-taxable businesses. Does not address article 44 exempt-only persons.",
+      "published_at": null,
+      "effective_from": "2026-01-01",
+      "checked_at": "2026-11-10",
+      "recheck_trigger": "The announced legal adjustment for non-established taxpayers; before issuing the first real invoice"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact-p01-manual-rework",
+      "text": "P01 rewrites the monthly client report by hand each month because the tool's export is unreadable to their clients.",
+      "assertion": "reported",
+      "source_ids": ["source-interview-p01"],
+      "scope": "P01's own account on 2026-11-04. One person, one agency. Their saying it is the fact; whether it is the most costly part of their month is not established.",
+      "recorded_at": "2026-11-04",
+      "review_required": false
+    },
+    {
+      "id": "fact-einvoice-applies-under-exemption",
+      "text": "The Belgian structured B2B e-invoicing obligation applies to invoices created, issued or sent from 2026-01-01, including to businesses using the small-business VAT exemption regime.",
+      "assertion": "reported",
+      "source_ids": ["source-be-einvoicing-faq"],
+      "scope": "Belgian VAT-taxable to Belgian VAT-taxable B2B. Reported by the official FAQ; applicability to this founder's actual VAT status still needs an accountant.",
+      "recorded_at": "2026-11-10",
+      "review_required": false
+    }
+  ],
+  "assumptions": [
+    {
+      "id": "assumption-agencies-pay-for-this",
+      "text": "Small agencies will pay a third party to clean up a report they currently fix themselves.",
+      "assertion": "unknown",
+      "source_ids": [],
+      "test": "Offer a paid one-off clean-up to three agencies and record who accepts, declines, or asks the price first.",
+      "recorded_at": "2026-11-04",
+      "review_required": false
+    },
+    {
+      "id": "assumption-one-hour-per-report",
+      "text": "A clean-up takes about one hour per report once the source file is in hand.",
+      "assertion": "unknown",
+      "source_ids": [],
+      "test": "Do one unpaid clean-up end to end and time it.",
+      "recorded_at": "2026-11-06",
+      "review_required": false
+    }
+  ],
+  "decisions": [
+    {
+      "id": "decision-narrow-to-one-deliverable",
+      "text": "Offer exactly one deliverable: one cleaned-up monthly report, not a reporting subscription.",
+      "reason": "The only recorded evidence concerns a single recurring manual task. A subscription would rest on assumptions nothing supports yet.",
+      "basis_ids": ["fact-p01-manual-rework"],
+      "status": "active",
+      "supersedes": null,
+      "reconsider_when": "Two or more agencies ask for an ongoing arrangement unprompted.",
+      "decided_at": "2026-11-06"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "test-willingness-to-pay",
+      "title": "Offer a paid one-off clean-up to three agencies",
+      "progress": "open",
+      "substantiation": "unreviewed",
+      "basis_kind": "own_requirement",
+      "evidence_ids": [],
+      "depends_on": ["offer-v1"],
+      "period": null
+    },
+    {
+      "id": "confirm-invoicing-route",
+      "title": "Confirm the structured e-invoicing route with an accountant before the first real invoice",
+      "progress": "open",
+      "substantiation": "unreviewed",
+      "basis_kind": "obligation",
+      "evidence_ids": ["fact-einvoice-applies-under-exemption"],
+      "depends_on": [],
+      "period": null
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "offer-v1",
+      "kind": "offer",
+      "version": "1",
+      "location": "files/offer-v1.md",
+      "sha256": "9f2c4b1ad7e8305c6b0f1e9d4a7c2b85f3e6d1c09a4b7e2f5c8d1a6b3e9f0c74",
+      "basis_ids": [
+        "fact-p01-manual-rework",
+        "assumption-agencies-pay-for-this",
+        "assumption-one-hour-per-report"
+      ],
+      "supersedes": null,
+      "change_reason": null,
+      "created_at": "2026-11-06",
+      "review_required": false
+    }
+  ],
+  "links": [
+    {
+      "dependent_id": "offer-v1",
+      "prerequisite_id": "fact-p01-manual-rework",
+      "reason": "The offer's described job comes from this single reported account"
+    },
+    {
+      "dependent_id": "offer-v1",
+      "prerequisite_id": "assumption-agencies-pay-for-this",
+      "reason": "The offer presumes someone will pay for this at all"
+    },
+    {
+      "dependent_id": "offer-v1",
+      "prerequisite_id": "assumption-one-hour-per-report",
+      "reason": "The offer's price and scope rest on the effort estimate"
+    },
+    {
+      "dependent_id": "decision-narrow-to-one-deliverable",
+      "prerequisite_id": "fact-p01-manual-rework",
+      "reason": "Narrowing to one deliverable follows from having only this one record"
+    },
+    {
+      "dependent_id": "test-willingness-to-pay",
+      "prerequisite_id": "assumption-agencies-pay-for-this",
+      "reason": "This task exists to test that assumption"
+    },
+    {
+      "dependent_id": "confirm-invoicing-route",
+      "prerequisite_id": "fact-einvoice-applies-under-exemption",
+      "reason": "The task exists because the obligation was recorded"
+    }
+  ],
+  "events": [
+    {
+      "id": "event-2026-11-04-created",
+      "type": "project_created",
+      "at": "2026-11-04",
+      "description": "Project created after one customer conversation",
+      "subject_ids": []
+    },
+    {
+      "id": "event-2026-11-04-fact",
+      "type": "fact_recorded",
+      "at": "2026-11-04",
+      "description": "Recorded P01's account of manual report rework as reported, not observed",
+      "subject_ids": ["fact-p01-manual-rework"]
+    },
+    {
+      "id": "event-2026-11-06-offer",
+      "type": "artifact_saved",
+      "at": "2026-11-06",
+      "description": "Saved offer v1 with two open assumptions still unknown",
+      "subject_ids": ["offer-v1"]
+    },
+    {
+      "id": "event-2026-11-10-source",
+      "type": "source_checked",
+      "at": "2026-11-10",
+      "description": "Read the official e-invoicing FAQ; obligation applies despite the small-business exemption",
+      "subject_ids": ["source-be-einvoicing-faq", "fact-einvoice-applies-under-exemption"]
+    }
+  ],
+  "active_task_id": "test-willingness-to-pay"
+}

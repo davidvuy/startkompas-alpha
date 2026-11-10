@@ -35,7 +35,9 @@ Do not report a save until step 6 succeeded. A write command returning without e
 
 A request to save or revise already authorizes **that scoped write**. Do not ask twice for the same permission.
 
-It does not authorize a wider one. Ask again before: writing outside the agreed directory, changing records the founder did not mention, deleting anything, or producing a copy intended to leave the machine.
+**Approving the content is not the same as authorizing a write.** "That looks good", "perfect", "yes that's right" and similar are judgments about the draft, not instructions to put it on disk. Ask where to save it, and save only after they say so. Equally, do not invent a project path in order to have somewhere to write.
+
+A save request does not authorize a wider one either. Ask again before: writing outside the agreed directory, changing records the founder did not mention, deleting anything, or producing a copy intended to leave the machine.
 
 Before writing an export meant for someone else, show the exact content first and let the founder confirm it. Exports are frozen copies — a later project change never updates them, and a generated export is not cleared for sharing merely because it exists.
 

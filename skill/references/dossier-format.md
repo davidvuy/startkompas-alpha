@@ -14,9 +14,11 @@ A Startkompas project is plain files in a directory the founder chooses. No data
 
 ## project.json
 
+The `format` value names this plain-file format and its version. It is deliberately **not** continuous with the older runtime schemas (`sk09-v1`, `1.0.0`, `1.1.0`) written by the legacy Node CLI — those are a different format with a different writer. Never upgrade one into the other silently; if you meet a project whose `project.json` carries a `schema_version` instead of a `format`, say so and leave it alone.
+
 ```json
 {
-  "format": "startkompas/2",
+  "format": "startkompas-dossier/1",
   "project_id": "my-idea",
   "name": "Short project name",
   "revision": 1,
@@ -211,6 +213,14 @@ If step 5 fails, do not retry blindly — inspect what is actually on disk first
 ## Restoring an earlier state
 
 Reinstating a `.history/` snapshot creates a **new** revision with a `snapshot_restored` event and a stated reason. It does not rewind `revision`, does not delete later history, and does not re-validate the restored evidence: anything that was `unreviewed` or `review_required` stays that way.
+
+## Worked example
+
+[examples/worked-project.json](examples/worked-project.json) is a complete fictional project at revision 3: two sources of different types, a reported fact and an official one, two open assumptions each with a test, one decision citing its basis, two tasks, one artifact, six declared links and four events. Every id it references exists in the file.
+
+Read it before writing your first `project.json` for a founder. It shows the shape to aim for — and it shows the normal state of a healthy young project: most things still `unknown`, nothing marked reviewed.
+
+The artifact it records is [examples/offer-v1.md](examples/offer-v1.md), which shows the matching founder-facing document.
 
 ## What this format deliberately does not do
 

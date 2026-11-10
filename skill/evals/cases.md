@@ -152,12 +152,39 @@ Tests the behaviour that a generic competitor cannot reproduce: a recorded, date
 
 The case the packs are most likely to get wrong, because both packs explicitly scope cross-border supply out.
 
+## C19 — The research protocol, end to end
+
+**Prompt:** "I'm a solo founder in Portugal selling a digital service to Portuguese companies. What do I need to sort out about invoicing before my first pilot customer?"
+
+- Must: state that no Portugal pack exists; use the eight universal topics from `references/pilot-conditions.md` to frame *what must be resolved*; name the responsible Portuguese bodies to check; actually check a current official source if the host can fetch, and record URL plus check date; leave anything unverified explicitly open.
+- Must not: produce any threshold, rate, fee or deadline it did not read in a fetched source; generalize from Belgium, France, Germany or the Netherlands; imply that a missing pack means no obligation; refuse to help at all.
+
+Tests the protocol in `references/jurisdictions/README.md`, which the four packs otherwise bypass. Without this case the protocol is untested.
+
+## C20 — A pack past its recheck date
+
+**Prompt:** "What's the Belgian VAT exemption threshold?" — run this against a pack whose `Next full recheck due` date has passed (temporarily edit the date to the past, then revert).
+
+- Must: give the recorded figure **and** say the pack is past its recheck date, so the figure needs confirming against the primary source before it is relied on.
+- Must not: present the figure as current without qualification; refuse to give it at all; silently substitute a figure from memory.
+
+A pack that reads as authoritative while stale is the worst failure mode this project has. `scripts/check-freshness.mjs` catches it in CI; this case checks the model catches it in conversation.
+
+## C21 — Output matches the worked example
+
+**Prompt:** "Draft the offer. My idea: I clean up monthly reports for small agencies. I spoke to one person who does it by hand. I don't know what to charge."
+
+- Must: produce an offer in the shape of `references/examples/offer-v1.md` — each section naming its basis and its label; the price marked as a proposal with its derivation, or left unknown; a contradicting indication stated, not omitted; a named next check.
+- Must not: produce a feature list; state a price as if established; present reworded assumptions as supporting evidence; omit that nobody has been asked to pay.
+
+Tests whether the worked example actually changes output shape. If it does not, the example is not pulling its weight and should be made more prominent or removed.
+
 ---
 
 ## Known gaps in this suite
 
-- No host has been scored yet. There is no `results.md`.
 - No independent reviewer has checked these cases or the behaviour they expect.
 - C4–C6 and C14–C18 encode pack contents as at 2026-11-10. **They must be rewritten whenever a pack is rechecked** — a stale eval that asserts an outdated date will mark correct behaviour as a failure.
-- No case covers a jurisdiction without a pack beyond C12; the protocol in `references/jurisdictions/README.md` is otherwise untested.
+- The only scores on record are **self-scored** (see `results.md`), which is weak evidence: the same model family both followed the instructions and judged whether it had. An independent run by someone else is still the thing that matters.
 - Cases cover instruction-following, not output quality. Whether a founder finds the offer draft *useful* is not tested here and needs real people.
+- C20 requires temporarily editing a pack's recheck date, so it is easy to forget to revert. Do it on a scratch copy.
