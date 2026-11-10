@@ -259,18 +259,29 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 
 **The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle.
 
-**French specifics.** The supervisory authority is the **CNIL**, which publishes unusually extensive small-business material — the richest national guidance of the four packs. · [cnil.fr — TPE/PME](https://www.cnil.fr/fr/thematiques/tpe-pme) · *official authority* · **[checked 2026-11-10]**
+**French specifics.** The supervisory authority is the **CNIL**, which publishes the most extensive small-business material of the four packs — including **four fact sheets on generative AI**, the only AI-specific national guidance any pack has found, a practical SME **FAQ**, and online services for **notifying a breach**. · [cnil.fr — TPE/PME](https://www.cnil.fr/fr/thematiques/tpe-pme) · *official authority* · **[checked 2026-11-10]**
 
-What it offers a founder:
+### Its two SME documents — read, and dated
 
-- **Four main actions** to start and maintain compliance, as its own entry point
-- a **GDPR guide for small and medium enterprises**, and a separate **TPE-PME verification checklist**
-- explicit emphasis on building a **`registre des traitements`** as the foundational document
-- a practical **FAQ** of the questions small businesses actually ask
-- **four fact sheets on generative AI** use — the only AI-specific national material any of these packs has found
-- online services for **notifying a data breach** and for compliance tooling
+| Document | Date it carries | What it says about itself |
+| --- | --- | --- |
+| [`Respecter la vie privée, par où commencer ? La check-list pour les TPE/PME`](https://www.cnil.fr/sites/cnil/files/atoms/files/check-list_rgpd_pour_les_tpe-pme.pdf) | undated | *"remplir cette check-list ne garantit pas une conformité au RGPD"* |
+| [`Guide pratique de sensibilisation au RGPD pour les petites et moyennes entreprises`](https://www.cnil.fr/sites/cnil/files/atoms/files/bpi-cnil-rgpd_guide-tpe-pme.pdf), CNIL with Bpifrance | **April 2018** | `Document non contractuel`, and written before 2018-05-25 — it describes the GDPR entering application in the **future tense** |
 
-Point a French founder at the CNIL's own checklist rather than paraphrasing it. The individual documents were **[not researched]** here; only the landing page was read.
+Both **extracted and read on 2026-11-10**. Like the Belgian SME guide ([belgium.md](belgium.md) §6), the French one is **pre-application awareness material, not a compliance standard**. Use it for the shape of the work; check any figure in it against something current before relying on it.
+
+What they say that still holds:
+
+- **The four actions**, offered as the whole entry point and as work that *"doivent perdurer dans le temps"*: build the register (`recensez vos fichiers`), cut the data down (`faites le tri`), honour information and rights (`respectez les droits des personnes`), secure what remains (`sécurisez vos données`).
+- **What goes on each register sheet** — one per activity, not one per company: the purpose, the data categories, who has access, and the retention period, split into *how long the data is operationally useful* and *how long it is kept in archive*. The register sits with the head of the company. **Purely occasional processing need not be listed** — its example is a file built for a one-off shop opening.
+- **The work scales with the data, not the company.** The guide states the criterion is the volume or sensitivity of the data processed, **not the size or headcount** of the business. The Belgian authority reaches the same conclusion from the other direction — see [belgium.md](belgium.md) §6.
+- **A DPO is mandatory only for large-scale processing presenting particular risks**; in the other cases the CNIL *recommends* rather than requires one, notably where the activity forces a `PIA`.
+- **Inactivity retention.** Its figure for customer and prospect data is **3 years from the end of the commercial relationship**, after which the record goes; data held under a separate legal duty (accounting, litigation) moves to a **distinct archive base** rather than staying in the live one. Carried from an April 2018 document — the CNIL's current `référentiels` are **[not researched]**.
+- **Prospecting by electronic means** requires consent, and you must keep the **proof** of it.
+- **Cookies and trackers:** information suffices for a strictly functional tracker (its example: a shopping basket), **consent** is required for an advertising one, and third-party features embedded in your pages — analytics, social buttons, embedded video — need the visitor's consent. The CNIL's cookie doctrine has moved since April 2018; the current guidelines are **[not researched]**, so treat this as the shape of the rule and not its present detail.
+- For security it defers to the **ANSSI/CPME** `12 règles essentielles pour sécuriser vos équipements numériques` and to its own `guide sécurité des données personnelles`. Neither was read here.
+
+Point a French founder at the CNIL's **current** pages, and at its register template, rather than at these two PDFs or at a paraphrase of them.
 ---
 
 ## Pack maintenance
@@ -300,7 +311,12 @@ Point a French founder at the CNIL's own checklist rather than paraphrasing it. 
 | L121-7 CPI: software moral rights narrowed — no veto on modification, no repentance or withdrawal | 2026-11-10 | **Primary legislation read** |
 | Client's permitted use for commissioned software (the French §31(5) equivalent) | — | Not researched |
 | CNIL small-business offering incl. registre des traitements and AI fact sheets | 2026-11-10 | Official landing page read |
-| The CNIL's individual guides and TPE-PME checklist | — | Not researched |
+| TPE-PME check-list: four actions, register sheet contents, security hygiene | 2026-11-10 | **Extracted and read** |
+| CNIL/Bpifrance PME guide is dated **April 2018** and marked `non contractuel` | 2026-11-10 | **Extracted and read** — colophon quoted |
+| Occasional processing need not be registered; register sits with the company head | 2026-11-10 | **Extracted and read** (April 2018 guide) |
+| 3-year inactivity retention for customer and prospect data | 2026-11-10 | **Carried from the April 2018 guide, not refetched** — current référentiels not read |
+| CNIL cookie doctrine as it stands now | — | **Not researched** — only the April 2018 statement was read |
+| CNIL `guide sécurité des données personnelles`; ANSSI/CPME 12 règles | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2027-09-01, when the issuing obligation reaches small businesses.

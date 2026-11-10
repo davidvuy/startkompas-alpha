@@ -202,12 +202,25 @@ Source: [GBA — register van de verwerkingsactiviteiten](https://www.gegevensbe
 
 The GBA states that **both controllers and processors** must keep a register under art. 30.1, and that this applies **even to organisations not established in the EEA** where the GDPR reaches them. The under-250 exemption and the four conditions that cancel it are in [eu-gdpr.md](eu-gdpr.md) §3 — walk those rather than assuming a small founder is exempt.
 
-Its SME publications, named so a founder can find them · *titles from the GBA's own publication index* · **[checked 2026-11-10, individual documents not read]**:
+### Its SME publications — and a warning about one of them
 
-- `Wegwijs in de AVG voor KMO's` — a guide for small and medium enterprises
-- `FAQ-brochure voor KMO's`
-- `13-stappenplan` — a thirteen-step plan
-- `Als KMO omgaan met rechten van betrokkenen` — handling data subject rights as an SME
+Titles from the GBA's own publication index · **[checked 2026-11-10]**:
+
+| Publication | Status |
+| --- | --- |
+| `Wegwijs in de AVG voor KMO's` | **Dated January 2018 and issued by the CBPL**, the GBA's predecessor — see below |
+| `FAQ-brochure voor KMO's` | **[not researched]** |
+| `13-stappenplan` | **[not researched]** |
+| `Als KMO omgaan met rechten van betrokkenen` | **[not researched]** |
+
+**The main SME guide predates the GDPR taking effect.** Extracted and read on 2026-11-10: it carries *"januari 2018"* on its own front matter, opens with *"Op 25 mei 2018 treedt de Algemene Verordening Gegevensbescherming (AVG) in werking"* in the **future tense**, and explains that the GBA *"zal"* replace the CBPL from that date. It is therefore **pre-application guidance, now over eight years old**, and it reflects no supervisory practice, no decisions and no case law since.
+
+So: a founder may still find it a readable introduction, but **do not treat it as current**, and do not cite a figure or procedure from it without checking against something newer. The Dutch [AP step plan](netherlands.md) §6 is far more current. The French [CNIL](france.md) §6 has the most small-business material of the four packs — but its main PME guide carries **April 2018** and has exactly the same problem, so the pattern here is not a Belgian failing.
+
+Two points from it that remain sound and are not GDPR restatement:
+
+- **The GDPR's impact depends on an SME's actual processing activities, not on SME status as such** — consistent with the four-condition register test in [eu-gdpr.md](eu-gdpr.md) §3.
+- A data subject may **complain to the GBA and go to the ordinary court at the same time**; nothing excludes doing both. So a sanction risk and a damages claim are not alternatives.
 
 Breach notification goes to the GBA, on the 72-hour clock in [eu-gdpr.md](eu-gdpr.md) §4.
 

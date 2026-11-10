@@ -37,6 +37,8 @@ const REQUIRED = [
   {case: 'C6', pack: 'belgium.md', label: 'per-year figures still only commentary', pattern: /rest on professional commentary/i},
   {case: '—', pack: 'belgium.md', label: 'unfair terms black list article', pattern: /VI\.91\/4/},
   {case: '—', pack: 'belgium.md', label: 'software ownership: no automatic transfer', pattern: /niet automatisch overgedragen/},
+  // Same trap as the French guide below: the GBA's SME brochure is CBPL-era.
+  {case: '—', pack: 'belgium.md', label: 'GBA SME guide dated January 2018, issued by the CBPL', pattern: /Dated January 2018 and issued by the CBPL/},
 
   // --- Germany ---------------------------------------------------------------
   {case: 'C14', pack: 'germany.md', label: 'receiving mandatory from 2025-01-01', pattern: /2025-01-01/},
@@ -60,6 +62,11 @@ const REQUIRED = [
   {case: 'C17', pack: 'france.md', label: 'current-year threshold EUR 41,250', pattern: /€41,250/},
   {case: '—', pack: 'france.md', label: 'ownership provision', pattern: /L113-9/},
   {case: '—', pack: 'france.md', label: 'unfair terms provision', pattern: /L442-1/},
+  // The CNIL/Bpifrance PME guide is pre-GDPR-application. Losing the date would
+  // turn awareness material from April 2018 back into current guidance.
+  {case: '—', pack: 'france.md', label: 'CNIL/Bpifrance PME guide dated April 2018', pattern: /\*\*April 2018\*\*/},
+  {case: '—', pack: 'france.md', label: 'effort scales with data, not headcount', pattern: /not the size or headcount/i},
+  {case: '—', pack: 'france.md', label: '3-year inactivity retention, and its provenance', pattern: /3 years from the end of the commercial relationship/i},
 
   // --- Netherlands -----------------------------------------------------------
   {case: 'C16', pack: 'netherlands.md', label: 'no domestic B2B mandate', pattern: /no business-to-business \(B2B\) mandate/},
