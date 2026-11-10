@@ -391,18 +391,26 @@ Deliberately refused. Each would add surface area before the basics above are do
 
 ## Status
 
-As at **2026-11-10**, end of day. Every number here is read from the repository, not estimated.
+**Do not read counts from this section. Run the checks.** Pack totals, open topics, file sizes, assertion counts and live URLs all move with every research commit, and a hand-copied number here goes stale the same day. One command prints the current ones:
+
+```bash
+node skill/scripts/check-all.mjs
+```
+
+It reports the pack count, open topics per pack, every size budget against its limit, the fact-assertion total and the live/dead URL split. That is the authority; this file is not.
+
+What is true as at **2026-11-10** and does *not* drift with the next commit:
 
 | | |
 | --- | --- |
-| Jurisdiction packs | **7** — Belgium, Netherlands, Germany, France, plus `eu-gdpr`, `eu-vat-sme`, `eu-ai-act` as shared layers |
-| Pack verification | All checked **2026-11-10**; next full recheck **2027-05-10**; none stale |
-| Open topics | **33**, each named in the pack that owns it. This number goes **up** when research succeeds, because closing a vague gap names two specific ones |
-| Eval cases | **22** written, **0 scored on any host** — still the largest single hole |
-| `skill/` | **38 files**; 20 model-facing at 234.0 KB, whole folder 332.6 KB, **no dependencies**. The cost that matters is the **worst-case turn: 42.6 KB** — `SKILL.md` at 7.5 KB plus the single largest reference at 35.0 KB |
-| Checks | 5, all passing: `check-skill`, `check-dossier`, `check-facts`, `check-freshness`, `check-links`. `check-facts` asserts **65** claims across 6 packs, including 3 forbidden patterns |
-| Cited URLs | **68** checked, 58 live, **none gone** |
-| Runtime | 94 `src/` modules, **565 passing tests**, frozen; 380 files in the repository overall |
-| Reviews | **None.** No independent user, security, legal or tax review of anything |
+| Pack coverage | Four national packs — Belgium, Netherlands, Germany, France — plus shared `eu-gdpr`, `eu-vat-sme` and `eu-ai-act` layers for rules that are genuinely identical across them |
+| Pack verification | All checked **2026-11-10**; next full recheck **2027-05-10** |
+| Size budgets | **10 KB** always-loaded, **48 KB** largest single reference, **320 KB** model-facing total, **512 KB** folder. These are decisions, not measurements — the reasoning is in `check-skill.mjs` |
+| Dependencies | **None.** `skill/` installs by copying a folder |
+| Eval scoring | **Zero cases scored on any host.** Still the largest single hole, and the one thing on this list that no amount of further work by the model can close |
+| Runtime | 94 `src/` modules, 565 passing tests, **frozen** — [DECISIONS.md](DECISIONS.md) entry 1 |
+| Reviews | **None.** No independent user, security, legal or tax review of any part of this |
+
+**Open topics are expected to rise, not fall.** Each one is named in the pack that owns it. Closing a vague gap reliably produces two specific ones — "read the BMF guidance" became "read §27(38) UStG" and "read the GoBD letter" — so a rising count is the method working. The number to worry about would be a pack with *zero* open topics, which would mean it had stopped being checked.
 
 **The one-line version: the content is in better shape than the evidence that it works.** Four of the twelve priority items are open and all four need a person who is not the model — one host scoring session, one GitHub session, and five conversations with real founders.

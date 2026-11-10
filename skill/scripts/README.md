@@ -32,7 +32,7 @@ Run `check-all.mjs`. The individual scripts exist for when you want one check's 
 | 320 KB | `SKILL.md` + all of `references/` | A **distribution** bound, not a per-turn cost: how much a reader has to trust and a maintainer has to recheck. Deliberately the loosest of the three, so the ninth pack is not blocked by the eight a given conversation will not read. |
 | 512 KB | the whole folder | Loose, and only there to catch accidental bulk. `scripts/` and `evals/` are never read by a model. |
 
-The check also reports the **worst-case turn** — always-loaded plus the largest reference — which is the number to watch. At the last run it was 42.6 KB, against a model-facing total of 234.0 KB.
+The check also reports the **worst-case turn** — always-loaded plus the largest reference — which is the number to watch. Run it rather than trusting a figure quoted in a document; that is why it prints them.
 
 **Two bugs of the same shape, both fixed.** Measuring only the folder, as this check first did, would have blocked adding a jurisdiction pack because the *tooling* had grown. Measuring only the aggregate, as it did next, had the same bug one level up: it priced every pack into every conversation and made closing an open topic in one country compete for budget with another country. A budget should charge for what is actually loaded.
 
