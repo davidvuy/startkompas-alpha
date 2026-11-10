@@ -6,7 +6,7 @@ Out of scope and requiring separate research: consumer (B2C) sales, employees or
 
 **This pack is preparation, not advice.** Consequential steps need a French `expert-comptable` or the tax administration itself.
 
-Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[not researched]** means no source was consulted — the topic is open.
+Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[carried YYYY-MM-DD, not refetched]** means earlier research was reused without refetching it. **[not researched]** means no source was consulted — the topic is open.
 
 Note for maintainers: **Légifrance returns 403 to automated link checks** while serving the pages normally to a reader. `scripts/check-links.mjs` therefore reports the two Légifrance citations below as `blocked`, not `dead`. Both articles were read on 2026-11-10. Do not "fix" those URLs.
 
@@ -353,7 +353,7 @@ Point a French founder at the CNIL's **current** pages, and at its register temp
 | TPE-PME check-list: four actions, register sheet contents, security hygiene | 2026-11-10 | **Extracted and read** |
 | CNIL/Bpifrance PME guide is dated **April 2018** and marked `non contractuel` | 2026-11-10 | **Extracted and read** — colophon quoted |
 | Occasional processing need not be registered; register sits with the company head | 2026-11-10 | **Extracted and read** (April 2018 guide) |
-| 3-year inactivity retention for customer and prospect data | 2026-11-10 | **Carried from the April 2018 guide, not refetched** — current référentiels not read |
+| 3-year inactivity retention for customer and prospect data | 2026-11-10 | **Read in the April 2018 guide**, whose figure may since have moved — current référentiels not read |
 | CNIL cookie doctrine as it stands now | — | **Not researched** — only the April 2018 statement was read |
 | CNIL `guide sécurité des données personnelles`; ANSSI/CPME 12 règles | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |

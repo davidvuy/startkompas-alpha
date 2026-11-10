@@ -4,7 +4,7 @@
 
 **This layer is preparation, not advice.** It records what the Commission's framework page and the articles themselves state, with dates. Whether a specific system or use is in scope is a legal question for a qualified reviewer.
 
-Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[not researched]** means no source was consulted.
+Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[carried YYYY-MM-DD, not refetched]** means earlier research was reused without refetching it. **[not researched]** means no source was consulted — the topic is open.
 
 Read it because **every founder using this skill is using an AI system**, which makes "does this apply to me" a live question rather than a theoretical one.
 

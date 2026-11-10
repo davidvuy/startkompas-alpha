@@ -6,7 +6,7 @@ Out of scope and requiring separate research: consumer (B2C) sales, employees or
 
 **This pack is preparation, not advice.** It records what official sources state, with dates. It is not a tax, legal or compliance determination for any founder. Consequential steps need a Belgian accountant, business counter (`ondernemingsloket` / `guichet d'entreprises`) or lawyer.
 
-Verification convention: **[checked YYYY-MM-DD]** means the source page was actually fetched and read on that date. **[not researched]** means no source was consulted — the topic is open.
+Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[carried YYYY-MM-DD, not refetched]** means earlier research was reused without refetching it. **[not researched]** means no source was consulted — the topic is open.
 
 ---
 

@@ -8,7 +8,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 
-import {baseTree, runCheck, withTree, VALID_REFERENCE, validPack} from './helpers.mjs';
+import {baseTree, runCheck, withTree, VALID_REFERENCE, VALID_CONVENTION, validPack} from './helpers.mjs';
 
 /** A tree that passes, so a negative result can only come from the defect. */
 function expectPass(files) {
@@ -202,6 +202,41 @@ test('a pack with no recheck date fails', () => {
   );
 });
 
+test('a pack with no verification convention line fails', () => {
+  expectFail(
+    packTree(validPack().replace(/^Verification convention:.*$/m, 'Trust me.')),
+    /no "Verification convention:" line/,
+  );
+});
+
+test('two packs defining the markers differently fails', () => {
+  // The vocabulary had drifted into three wordings, one saying "the source
+  // page" — wrong now that many sources are PDFs. A reader opening one pack
+  // must not get a different definition from a reader opening another.
+  const tree = packTree(validPack({name: 'Aland'}), {
+    index: '[a-land.md](a-land.md) [b-land.md](b-land.md)',
+  });
+  delete tree['references/jurisdictions/testland.md'];
+  tree['references/jurisdictions/a-land.md'] = validPack({name: 'Aland'});
+  tree['references/jurisdictions/b-land.md'] = validPack({name: 'Bland'}).replace(
+    /^Verification convention:.*$/m,
+    'Verification convention: something else entirely about the markers.',
+  );
+
+  const result = expectFail(tree, /must be defined identically in every pack/);
+  assert.match(result.output, /b-land\.md/);
+});
+
+test('packs defining the markers identically pass', () => {
+  const tree = packTree(validPack({name: 'Aland'}), {
+    index: '[a-land.md](a-land.md) [b-land.md](b-land.md)',
+  });
+  delete tree['references/jurisdictions/testland.md'];
+  tree['references/jurisdictions/a-land.md'] = validPack({name: 'Aland'});
+  tree['references/jurisdictions/b-land.md'] = validPack({name: 'Bland'});
+  expectPass(tree);
+});
+
 test('a pack with no "not advice" disclaimer fails', () => {
   expectFail(
     packTree(validPack().replace('Not advice. Verify before relying on it.', 'Trust this.')),
@@ -230,6 +265,8 @@ test('a shared eu-* layer is not held to the national template', () => {
       '# Shared layer',
       '',
       'Not advice.',
+      '',
+      VALID_CONVENTION,
       '',
       'A claim. · **[checked 2026-11-10]**',
       '',

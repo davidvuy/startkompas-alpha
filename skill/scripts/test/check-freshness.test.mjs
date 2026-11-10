@@ -176,6 +176,30 @@ test('table rows with no body markers fails as the opposite drift', () => {
   expectFail({'testland.md': pack}, /claims gaps the prose has closed/);
 });
 
+test('the legend that defines the markers is not counted as an instance of them', () => {
+  // A real bug, found when the fixtures gained the legend every pack carries.
+  // The "Verification convention:" line mentions [not researched] in order to
+  // DEFINE it, and counting that inflated every pack's open topics by one — so
+  // the totals reported in commits and in the backlog were all one per pack
+  // too high.
+  const result = expectPass({
+    'testland.md': validPack({recheck: isoDaysFromNow(200), notResearched: 0}),
+  });
+  assert.match(result.output, /0 open topic\(s\) named/);
+  assert.ok(
+    !/topic\(s\) marked \[not researched\]/.test(result.output),
+    'a pack with no open topics should not warn about any',
+  );
+});
+
+test('a pack that closes its last open topic does not fail the drift check', () => {
+  // The consequence of the bug above, and the worse half: with the legend
+  // counted, a pack with one body marker and no table row looked like table
+  // drift. So closing the final open topic — what the whole project is working
+  // towards — would have failed the build.
+  expectPass({'testland.md': validPack({recheck: isoDaysFromNow(200), notResearched: 0})});
+});
+
 test('open topics on both sides pass and are counted as a warning', () => {
   const result = expectPass({
     'testland.md': validPack({recheck: isoDaysFromNow(200), notResearched: 3}),

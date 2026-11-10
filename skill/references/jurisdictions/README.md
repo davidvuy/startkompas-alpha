@@ -168,7 +168,7 @@ Two kinds of file live here, distinguished by name:
 Scope: ...                       who this pack is for
 Out of scope: ...                what needs separate research
 **This pack is preparation, not advice.**
-Verification convention: ...     what [checked] and [not researched] mean
+Verification convention: ...     copy it verbatim from any existing pack
 
 ## 1. Registration and formalities
 ## 2. VAT — <the national scheme's own name>

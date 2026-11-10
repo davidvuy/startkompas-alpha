@@ -21,7 +21,9 @@ import {skillRoot} from './lib/paths.mjs';
 import {listFiles, relativePosix} from './lib/files.mjs';
 import {createReport} from './lib/report.mjs';
 
-const report = createReport({ok: 'every markdown table is well-formed and every heading is unique.'});
+const report = createReport({
+  ok: 'tables are well-formed, headings are unique and every file ends cleanly.',
+});
 
 const isRow = (line) => /^\s*\|/.test(line);
 /** `| --- | :-: |` — the row that makes the line above it a header. */
@@ -46,7 +48,18 @@ let rows = 0;
 
 for (const file of listFiles(skillRoot, {ext: '.md'})) {
   const where = relativePosix(skillRoot, file);
-  const lines = readFileSync(file, 'utf8').split(/\r?\n/);
+  const text = readFileSync(file, 'utf8');
+  const lines = text.split(/\r?\n/);
+
+  // A missing final newline is how a scripted edit announces itself: git shows
+  // "\ No newline at end of file", concatenation runs two files together, and
+  // POSIX tools treat the last line as incomplete. A batch rewrite of all seven
+  // packs stripped it here, and nothing noticed until the bytes were inspected
+  // by hand — which is the argument for checking it.
+  if (text.length > 0 && !text.endsWith('\n'))
+    report.fail(where, 'no newline at end of file');
+  else if (/\n{3,}$/.test(text))
+    report.fail(where, 'more than one blank line at the end of the file');
 
   let inTable = false;
   let columns = 0;

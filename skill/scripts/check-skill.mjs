@@ -249,6 +249,9 @@ if (existsSync(packsDir)) {
   const shared = packs.filter((pack) => pack.startsWith('eu-'));
   const national = packs.filter((pack) => !pack.startsWith('eu-'));
 
+  // The first pack's convention line becomes the one every other must match.
+  const conventions = new Map();
+
   for (const pack of packs) {
     const where = `references/jurisdictions/${pack}`;
     if (!index.includes(`(${pack})`))
@@ -263,6 +266,23 @@ if (existsSync(packsDir)) {
       report.fail(where, 'no recheck due date; packs rot silently without one');
     if (!/not advice/i.test(text))
       report.fail(where, 'no "not advice" line; every pack must disclaim it');
+
+    // The marker vocabulary has to mean the same thing in every pack. It had
+    // drifted into three wordings, one of which said "the source page" — wrong
+    // now that many sources are PDFs — and none of which defined [carried],
+    // although check-freshness reports it. A reader opening one pack must not
+    // get a different definition from a reader opening another.
+    const convention = /^Verification convention:.*$/m.exec(text)?.[0];
+    if (!convention) {
+      report.fail(where, 'no "Verification convention:" line defining the markers');
+    } else if (conventions.size && !conventions.has(convention)) {
+      report.fail(
+        where,
+        `its "Verification convention:" line differs from ${conventions.values().next().value.pack}; the markers must be defined identically in every pack`,
+      );
+    } else if (!conventions.size) {
+      conventions.set(convention, {pack});
+    }
   }
 
   // The template applies to national packs only; shared layers have their own shape.

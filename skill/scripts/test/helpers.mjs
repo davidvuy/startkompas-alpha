@@ -112,6 +112,15 @@ Nothing here links anywhere.
 `;
 
 /**
+ * The marker legend every pack must carry, word for word.
+ *
+ * check-skill requires it to be identical across packs, so the fixtures need
+ * one canonical copy for the same reason the packs do.
+ */
+export const VALID_CONVENTION =
+  'Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[carried YYYY-MM-DD, not refetched]** means earlier research was reused without refetching it. **[not researched]** means no source was consulted — the topic is open.';
+
+/**
  * A national pack that satisfies the six-section template, the check-date rule
  * and the freshness parser.
  *
@@ -131,6 +140,8 @@ export function validPack({name = 'Testland', recheck = '2099-01-01', notResearc
   return `# ${name}
 
 Not advice. Verify before relying on it.
+
+${VALID_CONVENTION}
 
 ## 1. Registration and formalities
 

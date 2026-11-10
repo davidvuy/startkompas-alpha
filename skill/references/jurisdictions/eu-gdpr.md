@@ -6,7 +6,7 @@ Read this together with the relevant national pack. Neither replaces the other.
 
 **This layer is preparation, not advice.** It records what EU regulator guidance states, with dates. Consequential data-protection questions need a qualified reviewer and the founder's own national supervisory authority.
 
-Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[not researched]** means no source was consulted.
+Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[carried YYYY-MM-DD, not refetched]** means earlier research was reused without refetching it. **[not researched]** means no source was consulted — the topic is open.
 
 ---
 

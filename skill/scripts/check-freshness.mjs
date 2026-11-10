@@ -50,7 +50,19 @@ const packs = readdirSync(packsDir)
 
 /** Pull the dated markers a pack is required to carry. */
 function inspect(file) {
-  const text = readFileSync(join(packsDir, file), 'utf8');
+  const raw = readFileSync(join(packsDir, file), 'utf8');
+
+  // The "Verification convention:" line DEFINES the markers, so it mentions
+  // every one of them. Counting it as an instance inflated each pack's open
+  // topics by one — the totals reported in commits and in the backlog were all
+  // one per pack too high — and worse, it meant a pack that closed its last
+  // open topic would fail the drift check: one marker in the body, no row in
+  // the table. The legend has to be excluded before anything is counted.
+  const text = raw
+    .split(/\r?\n/)
+    .filter((line) => !/^Verification convention:/.test(line))
+    .join('\n');
+
   const dates = (pattern) => [...text.matchAll(pattern)].map((m) => m[1]).sort();
 
   const due = /Next full recheck due:\s*\*\*(\d{4}-\d{2}-\d{2})\*\*/.exec(text)?.[1] ?? null;

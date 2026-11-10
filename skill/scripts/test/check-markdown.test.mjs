@@ -78,8 +78,10 @@ test('a table immediately after a heading passes', () => {
 });
 
 test('a table at the very end of a file passes', () => {
-  // No trailing newline: an off-by-one in the lookahead would fire here.
-  expectPass(`# Doc\n\n${GOOD_TABLE}`);
+  // The last row has no row after it, so an off-by-one in the separator
+  // lookahead would fire here. With the trailing newline the lookahead reads
+  // the empty final element, which is the case that used to be untested.
+  expectPass(`# Doc\n\n${GOOD_TABLE}\n`);
 });
 
 test('an escaped pipe inside a cell is content, not a cell boundary', () => {
@@ -96,6 +98,28 @@ test('two escaped pipes in one row still count as one cell', () => {
 test('an unescaped extra pipe is still caught', () => {
   // The fix must not have made the check blind: this is a genuinely ragged row.
   expectFail('# Doc\n\n| A | B |\n| --- | --- |\n| 1 | 2 | 3 |\n', /row has 3 cells/);
+});
+
+// --- End of file -------------------------------------------------------------
+
+test('a file with no newline at the end fails', () => {
+  // How a scripted edit announces itself. A batch rewrite of all seven packs
+  // stripped the final newline and nothing noticed until the bytes were
+  // inspected by hand.
+  expectFail('# Doc\n\nText with no trailing newline.', /no newline at end of file/);
+});
+
+test('a file ending in exactly one newline passes', () => {
+  expectPass('# Doc\n\nText.\n');
+});
+
+test('a file ending in several blank lines fails', () => {
+  expectFail('# Doc\n\nText.\n\n\n\n', /more than one blank line at the end/);
+});
+
+test('an empty file is not reported for a missing newline', () => {
+  // There is nothing to terminate, and reporting it would be noise.
+  expectPass('');
 });
 
 // --- Code fences -------------------------------------------------------------
