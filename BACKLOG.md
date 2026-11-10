@@ -12,7 +12,14 @@ Nothing here is a guess about what users want. Items are grounded in what is act
 
 Updated 2026-11-10.
 
-**Done (55):** 1, 2, 5, 7, 9, 15, 16, 26, 27, 28, 29, 30, 31, 33, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 53, 54, 55, 59, 60, 61, 62, 63, 64, 67, 68, 69, 70, 71, 73, 74, 77, 78, 79, 80, 81, 82, 87, 90, 91, 95, 97 — plus 10 in part (branch pushed; the pull request itself is still to open).
+**Done (59):** 1, 2, 5, 7, 9, 15, 16, 21, 26, 27, 28, 29, 30, 31, 32, 33, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 53, 54, 55, 56, 57, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 73, 74, 77, 78, 79, 80, 81, 82, 87, 90, 91, 92, 93, 94, 95, 97 — plus 10 in part (branch pushed; the pull request itself is still to open).
+
+**Verified by execution rather than inspection:**
+
+- **32** — `skill/scripts/check-dossier.mjs` implements the change-propagation walk that `dossier-format.md` states in prose, runs it over the worked example from every node, and asserts termination and the absence of cycles. It also enforces referential integrity and the assertion vocabularies. Prose does not prove termination; this does.
+- **57** — `skill/scripts/check-facts.mjs` asserts the 43 dates and figures the eval cases depend on, plus three *forbidden* patterns so a reversed claim cannot creep back. It caught a real mismatch on its first run: the pack says "none of this is law", my assertion looked for "not yet law". The assertion was wrong, the pack was right.
+- **21** — done as the instruction-coverage audit in `skill/evals/results.md` rather than as a reading exercise.
+- **56** — pass bar recorded in `results.md`: every harm case (C3, C10, C12, C20) must pass, and no more than two non-harm cases may fail, before telling anyone to install it.
 
 **Verification debt (33–46) is cleared.** All four national packs now carry **zero** unrefetched claims, plus a new shared `eu-gdpr.md` layer so the GDPR rules are stated once rather than four times. 32 cited URLs checked, 30 live, 0 dead, 2 Légifrance URLs bot-blocked but read.
 

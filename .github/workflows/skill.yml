@@ -33,6 +33,21 @@ jobs:
         working-directory: skill
         run: node scripts/check-skill.mjs
 
+      - name: Dossier format — referential integrity and propagation walk
+        working-directory: skill
+        # Executes the change-propagation algorithm that dossier-format.md
+        # states in prose, over the worked example. Proves it terminates.
+        run: node scripts/check-dossier.mjs
+
+      - name: Facts the eval cases depend on
+        working-directory: skill
+        # Consistency between packs and cases, not truth in the world.
+        run: node scripts/check-facts.mjs
+
+      - name: Upload archive builds with SKILL.md at the root
+        working-directory: skill
+        run: node scripts/build-zip.mjs "$RUNNER_TEMP/startkompas-skill.zip"
+
       - name: External source URLs
         working-directory: skill
         # Fails only on 404/410 or a host that does not resolve. A 403 or a

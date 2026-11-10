@@ -37,9 +37,20 @@ references/
     netherlands.md
     germany.md
     france.md
-evals/cases.md                   eighteen conversation cases to score per host
-scripts/check-skill.mjs          self-check (optional, stdlib only)
+  jurisdictions/eu-gdpr.md       shared GDPR layer, stated once not four times
+evals/cases.md                   twenty-two conversation cases to score per host
+evals/results.md                 coverage audit; no behavioural score yet
+scripts/                         five checks, standard library only
 ```
+
+| Script | What it proves |
+| --- | --- |
+| `check-skill.mjs` | Frontmatter, link integrity, reference reachability, host neutrality, no runtime coupling, size budget |
+| `check-dossier.mjs` | The change-propagation algorithm in `dossier-format.md` actually terminates, over the worked example |
+| `check-facts.mjs` | The dates and figures the eval cases encode are still in the packs, and no reversed claim has crept back |
+| `check-links.mjs` | Every cited source URL still resolves |
+| `check-freshness.mjs` | No pack is past its recheck date or carrying a claim over six months old |
+| `build-zip.mjs` | Builds the upload archive with `SKILL.md` at the root |
 
 ## Jurisdictions
 

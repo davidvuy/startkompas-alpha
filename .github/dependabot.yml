@@ -1,10 +1,17 @@
 version: 2
 updates:
+  # Backlog item 66: npm only exists for the legacy runtime at the repository
+  # root. skill/ has no dependencies, no package.json and no lockfile, so there
+  # is nothing for Dependabot to watch there. Do not add a skill/ entry — an
+  # ecosystem with no manifest produces noise, not updates.
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
     open-pull-requests-limit: 3
+  # Watches both workflows: quality.yml (runtime) and skill.yml. Action SHAs
+  # are pinned deliberately, so these pull requests are the mechanism that
+  # keeps the pins from rotting.
   - package-ecosystem: github-actions
     directory: /
     schedule:
