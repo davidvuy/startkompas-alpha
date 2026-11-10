@@ -27,8 +27,8 @@ Run `check-all.mjs`. The individual scripts exist for when you want one check's 
 
 | Budget | Covers | Why |
 | --- | --- | --- |
-| **192 KB** | `SKILL.md` + `references/` | Everything the model can actually load. This is the number that matters — it is what a conversation pays for. Currently ~143 KB. |
-| 384 KB | the whole folder | Loose, and only there to catch accidental bulk. `scripts/` and `evals/` are never read by a model. |
+| **256 KB** | `SKILL.md` + `references/` | Everything the model can actually load. This is the number that matters — it is what a conversation pays for. Raised from 192 KB on 2026-11-10 at 177.5 KB, on an explicit decision; the history is in the constant's comment. |
+| 512 KB | the whole folder | Loose, and only there to catch accidental bulk. `scripts/` and `evals/` are never read by a model. |
 
 Measuring only the folder — as this check first did — would have blocked adding a jurisdiction pack because the *tooling* had grown. That was a bug in the check, not a reason to trim content.
 

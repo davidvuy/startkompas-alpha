@@ -31,8 +31,16 @@ import {createReport} from './lib/report.mjs';
 //
 // Measuring only the folder — as this check first did — would have blocked
 // adding a jurisdiction pack because the *tooling* had grown. That was a bug.
-const MODEL_BUDGET_KB = 192;
-const FOLDER_BUDGET_KB = 384;
+//
+// History of the model budget, so a raise is never silent:
+//   192 KB  initial, set when the model-facing set was 142.7 KB
+//   256 KB  2026-11-10, raised at 177.5 KB — closing open topics adds verified
+//           content, and 14.5 KB of headroom was about to block that work.
+//           Raised on an explicit decision, not to make a red build green.
+// If this needs raising again, ask first whether the packs should be condensed
+// instead. Verified prose earns its space; restated prose does not.
+const MODEL_BUDGET_KB = 256;
+const FOLDER_BUDGET_KB = 512;
 
 // A description shorter than this cannot carry both scope and "when to use".
 const MIN_DESCRIPTION = 80;
