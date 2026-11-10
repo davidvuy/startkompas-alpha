@@ -160,32 +160,95 @@ for (const link of doc.links) {
 
 /**
  * Every record transitively downstream of `startId`.
- * Returns `terminated: false` if a bound is exceeded, which would mean the
- * documented walk can loop — the thing this check exists to rule out.
+ *
+ * Terminates structurally: a node is queued only on the transition into
+ * `reached`, so each is queued at most once and the queue drains in at most
+ * `ids.size` steps whatever the links look like.
  */
 function dependentsReachableFrom(startId) {
   const reached = new Set();
   const queue = [startId];
-  const bound = ids.size * ids.size + 10; // generous; a terminating walk never gets near it
-  let steps = 0;
 
   while (queue.length) {
-    if (++steps > bound) return {terminated: false, reached};
     for (const next of directDependents.get(queue.pop()) ?? []) {
       if (reached.has(next)) continue;
       reached.add(next);
       queue.push(next);
     }
   }
-  return {terminated: true, reached};
+  return reached;
 }
 
-for (const id of ids.keys()) {
-  const {terminated, reached} = dependentsReachableFrom(id);
-  if (!terminated) report.fail(id, 'change-propagation walk did not terminate');
-  // A cycle would make "revise only the dependents" ill-defined.
-  if (reached.has(id)) report.fail(id, 'dependency cycle: transitively its own dependent');
+/**
+ * Find a dependency cycle, if there is one, and return the nodes on it.
+ *
+ * One depth-first search with three-colour marking, which is O(records + links).
+ * This used to be a full reachability walk from every record, asking "is it its
+ * own dependent" — correct, but quadratic: 8000 records took 1.4 s and doubling
+ * the records quadrupled the time. A dossier is the one artefact here that grows
+ * without bound over a project's life, and this check is documented as safe to
+ * point at a real one, so the cost had to come down.
+ *
+ * Iterative rather than recursive on purpose: a long chain of dependents is the
+ * normal shape of a dossier, and recursion would overflow the stack on it.
+ *
+ * @returns {string[]} the cycle in order, or an empty array if the graph is acyclic
+ */
+function findCycle() {
+  const UNSEEN = 0;
+  const ON_PATH = 1; // in the current DFS path — reaching one of these is a cycle
+  const DONE = 2;
+
+  const colour = new Map();
+  for (const id of ids.keys()) colour.set(id, UNSEEN);
+
+  for (const start of ids.keys()) {
+    if (colour.get(start) !== UNSEEN) continue;
+
+    // Each frame keeps its own position in its neighbour list, so the walk
+    // resumes where it left off rather than restarting.
+    const stack = [{node: start, next: 0}];
+    colour.set(start, ON_PATH);
+
+    while (stack.length) {
+      const frame = stack.at(-1);
+      const neighbours = directDependents.get(frame.node) ?? [];
+
+      if (frame.next >= neighbours.length) {
+        colour.set(frame.node, DONE);
+        stack.pop();
+        continue;
+      }
+
+      const next = neighbours[frame.next];
+      frame.next += 1;
+
+      // A link may name an id that does not exist; section 2 already reported
+      // that, and this walk must not crash on it.
+      if (!colour.has(next)) continue;
+
+      if (colour.get(next) === ON_PATH) {
+        // The cycle is the tail of the current path, from `next` onwards.
+        const path = stack.map((entry) => entry.node);
+        return [...path.slice(path.indexOf(next)), next];
+      }
+
+      if (colour.get(next) === UNSEEN) {
+        colour.set(next, ON_PATH);
+        stack.push({node: next, next: 0});
+      }
+    }
+  }
+
+  return [];
 }
+
+// A cycle would make "revise only the dependents" ill-defined: there is no
+// order in which to revise. Naming the path makes it fixable — "transitively
+// its own dependent" left the reader to find the loop themselves.
+const cycle = findCycle();
+if (cycle.length)
+  report.fail(cycle[0], `dependency cycle: ${cycle.join(' -> ')}`);
 
 // --- 5. Report what the graph actually answers -------------------------------
 
@@ -195,7 +258,7 @@ console.log(`${ids.size} records, ${doc.links.length} declared links\n`);
 const impact = doc.assumptions
   .map((assumption) => ({
     id: assumption.id,
-    dependents: [...dependentsReachableFrom(assumption.id).reached],
+    dependents: [...dependentsReachableFrom(assumption.id)],
   }))
   .sort((a, b) => b.dependents.length - a.dependents.length);
 

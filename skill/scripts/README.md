@@ -15,7 +15,7 @@ Run `check-all.mjs`. The individual scripts exist for when you want one check's 
 | Script | Proves | Fails on | Network |
 | --- | --- | --- | --- |
 | `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, a reference linking outside the model-facing set, reintroduced runtime coupling, a named host, an undated or off-template pack, over budget, a binary | no |
-| `check-dossier.mjs` | The change-propagation algorithm in `references/dossier-format.md` terminates | Broken reference, duplicate id, invalid assertion value, a dependency cycle, a non-terminating walk | no |
+| `check-dossier.mjs` | The change-propagation algorithm in `references/dossier-format.md` terminates, and is acyclic | Broken reference, duplicate id, invalid assertion value, a dependency cycle — reported as the path round the loop | no |
 | `check-facts.mjs` | Packs and eval cases still agree | A fact a case depends on has moved, or a reversed claim has returned | no |
 | `check-freshness.mjs` | No pack is past its recheck date | Missing recheck date, overdue recheck, a verified claim older than 183 days | no |
 | `check-links.mjs` | Every cited source URL still resolves | 404, 410, or a host that does not resolve | **yes** |
@@ -38,6 +38,15 @@ Two seams make that possible, and neither is used by anything that ships:
 - **`probeUrl`'s injectable `fetch`**, so the dead-or-merely-awkward table is tested with no network and no local server. A link checker with flaky tests gets switched off, which is the exact failure this check exists to prevent.
 
 **Use the explicit glob.** Node's default discovery also loads any file under a directory called `test/`, which pulls in `test/helpers.mjs` as an empty test file.
+
+### What the suite is guarding, beyond correctness
+
+Two tests assert a **cost**, not a behaviour, because both were real regressions waiting to happen:
+
+- `mapPool` keeps workers busy rather than waiting for a batch. `check-links.mjs` used to slice URLs into fixed batches, so one government portal on a 15-second timeout idled five workers. The run went from about 5.0 s to 1.8 s.
+- `check-dossier.mjs` handles a large dossier in linear time. Cycle detection used to be a reachability walk from *every* record: 8000 records took 1.4 s and doubling the records quadrupled it. One depth-first search does it in about 60 ms, and the test uses 16000 records with a loose 3-second bound — wide enough not to be flaky on a busy runner, tight enough that a quadratic implementation cannot pass.
+
+A dossier is the one artefact here that grows without bound over a project's life, and this check is documented as safe to point at a real one, so its cost is part of its contract.
 
 ### What the suite found on its first run
 

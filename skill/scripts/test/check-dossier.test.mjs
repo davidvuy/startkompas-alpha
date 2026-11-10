@@ -203,24 +203,27 @@ test('a task done and reviewed with evidence passes', () => {
 
 // --- The propagation walk ----------------------------------------------------
 
-test('a two-record cycle is caught', () => {
+test('a two-record cycle is caught, and the path is named', () => {
   // The property the prose cannot establish: with A depending on B and B on A,
   // "revise only the dependents" has no answer.
-  expectFail(
+  const result = expectFail(
     validDossier({
       links: [
         {dependent_id: 'd1', prerequisite_id: 'r1', reason: 'forward'},
         {dependent_id: 'r1', prerequisite_id: 'd1', reason: 'back'},
       ],
     }),
-    /dependency cycle: transitively its own dependent/,
+    /dependency cycle:/,
   );
+  // Naming the loop is the point. The old message said only "transitively its
+  // own dependent" and left the reader to find it.
+  assert.match(result.output, /\b(d1 -> r1 -> d1|r1 -> d1 -> r1)\b/);
 });
 
-test('a longer cycle through a third record is caught too', () => {
+test('a longer cycle through a third record is caught, with all three hops', () => {
   // A direct A<->B cycle is the easy case. Three hops is where a naive
   // implementation stops noticing.
-  expectFail(
+  const result = expectFail(
     validDossier({
       links: [
         {dependent_id: 'd1', prerequisite_id: 'a1', reason: 'one'},
@@ -228,8 +231,53 @@ test('a longer cycle through a third record is caught too', () => {
         {dependent_id: 'a1', prerequisite_id: 'r1', reason: 'three'},
       ],
     }),
-    /dependency cycle/,
+    /dependency cycle:/,
   );
+  for (const id of ['a1', 'd1', 'r1']) {
+    assert.ok(result.output.includes(id), `the reported path should include ${id}`);
+  }
+});
+
+test('a cycle is found even when most of the graph is acyclic', () => {
+  // A single depth-first search has to keep looking past the clean components.
+  const sources = Array.from({length: 30}, (_, i) => ({id: `s${i}`, title: `source ${i}`}));
+  const chain = Array.from({length: 29}, (_, i) => ({
+    dependent_id: `s${i + 1}`,
+    prerequisite_id: `s${i}`,
+    reason: 'acyclic chain',
+  }));
+  expectFail(
+    validDossier({
+      sources,
+      facts: [{id: 'f1', assertion: 'reported', source_ids: ['s0']}],
+      links: [
+        ...chain,
+        {dependent_id: 'd1', prerequisite_id: 'r1', reason: 'forward'},
+        {dependent_id: 'r1', prerequisite_id: 'd1', reason: 'back'},
+      ],
+    }),
+    /dependency cycle:/,
+  );
+});
+
+test('a link naming an unknown id does not crash the cycle search', () => {
+  // Section 2 already reports the dangling reference; the walk must still
+  // finish so that report is printed rather than replaced by a stack trace.
+  const result = expectFail(
+    validDossier({
+      links: [{dependent_id: 'd1', prerequisite_id: 'ghost', reason: 'dangling'}],
+    }),
+    /points at unknown id ghost/,
+  );
+  assert.ok(!/dependency cycle/.test(result.output), 'a dangling link is not a cycle');
+});
+
+test('a self-loop is reported as the link error, not only as a cycle', () => {
+  const result = expectFail(
+    validDossier({links: [{dependent_id: 'd1', prerequisite_id: 'd1', reason: 'self'}]}),
+    /cannot be its own prerequisite/,
+  );
+  assert.match(result.output, /dependency cycle:/);
 });
 
 test('a deep acyclic chain passes and the walk terminates', () => {
@@ -246,6 +294,35 @@ test('a deep acyclic chain passes and the walk terminates', () => {
       links,
     }),
   );
+});
+
+test('a large dossier stays fast, so the quadratic walk cannot come back', () => {
+  // Cycle detection used to be a full reachability walk from every record.
+  // Correct, but quadratic: 8000 records took 1.4 s and doubling the records
+  // quadrupled it. One depth-first search is linear, and the same input now
+  // takes about 60 ms.
+  //
+  // The bound is deliberately loose. At this size the old implementation took
+  // roughly 5 s and the current one about 0.1 s, so 3 s separates them by a
+  // wide margin without being sensitive to a slow or busy CI runner.
+  const n = 16000;
+  const sources = Array.from({length: n}, (_, i) => ({id: `s${i}`, title: `source ${i}`}));
+  const links = Array.from({length: n - 1}, (_, i) => ({
+    dependent_id: `s${i + 1}`,
+    prerequisite_id: `s${i}`,
+    reason: 'chained',
+  }));
+
+  const started = Date.now();
+  expectPass(
+    validDossier({
+      sources,
+      facts: [{id: 'f1', assertion: 'reported', source_ids: ['s0']}],
+      links,
+    }),
+  );
+  const elapsed = Date.now() - started;
+  assert.ok(elapsed < 3000, `${n} records took ${elapsed} ms; expected well under 3000`);
 });
 
 test('the report states the impact of each assumption', () => {

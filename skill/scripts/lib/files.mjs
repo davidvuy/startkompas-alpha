@@ -14,9 +14,15 @@ import {join, relative, sep} from 'node:path';
  */
 export function listFiles(dir, {ext} = {}) {
   const found = [];
-  for (const entry of readdirSync(dir).sort()) {
-    const full = join(dir, entry);
-    if (statSync(full).isDirectory()) found.push(...listFiles(full, {ext}));
+  // withFileTypes gives the entry kind from the directory read itself, so there
+  // is no second stat() per entry.
+  const entries = readdirSync(dir, {withFileTypes: true}).sort((a, b) =>
+    a.name < b.name ? -1 : a.name > b.name ? 1 : 0,
+  );
+
+  for (const entry of entries) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) found.push(...listFiles(full, {ext}));
     else if (!ext || full.endsWith(ext)) found.push(full);
   }
   return found;
