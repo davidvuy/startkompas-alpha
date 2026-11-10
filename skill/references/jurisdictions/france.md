@@ -153,7 +153,7 @@ Two limits are written into it: the assessment applies **neither to the principa
 
 In force since **2018-10-01**, as amended by law 2018-287 of 2018-04-20, originally introduced by Ordinance 2016-131 of 2016-02-10.
 
-### So France has two routes, with different remedies
+### The two routes are alternatives, not a choice — resolved
 
 | | Art. L442-1 I C.com | Art. 1171 C.civ |
 | --- | --- | --- |
@@ -162,9 +162,17 @@ In force since **2018-10-01**, as amended by law 2018-287 of 2018-04-20, origina
 | Remedy | **civil liability and damages** | the clause is **deemed unwritten** — the rest of the contract stands |
 | Excluded | — | the principal object, and price adequacy |
 
-For a founder the practical difference is what they get: L442-1 compensates harm, art. 1171 **removes the clause**. Which one applies turns on whether the contract is an adhesion contract and whether the term was genuinely negotiable.
+**They do not apply cumulatively.** Source: [Cour de cassation, com., 26 January 2022, 20-16.782](https://www.legifrance.gouv.fr/juri/id/JURITEXT000045097530) · *published judgment* · **[checked 2026-11-10]**
 
-**Open:** the **interaction** between the two — whether art. 1171 is available where L442-1 applies, which is a contested question in French commercial practice — is **[not researched]**. There is Cour de cassation case law on it. Do not state which prevails; name both and send the founder to a French lawyer with the specific clause.
+The Court held that art. 1171 C.civ applies to contracts *"lorsqu'ils ne relèvent pas de l'article L. 442-6, I, 2° du code de commerce"* — **only where they do not fall under the specialized commercial provision** (then L442-6 I 2°, now L442-1 I 2°). The commercial rule is the special one and it **displaces** the civil-code rule within its scope.
+
+**So the earlier framing in this pack was wrong.** This is not a founder choosing their preferred remedy. For an ordinary commercial relationship inside L442-1's scope, the route is **L442-1 and its damages remedy**, and art. 1171 is unavailable.
+
+The judgment also shows how the boundary moves: it **allowed** art. 1171 for financial leasing by credit institutions and financing companies, precisely because their banking operations are excluded from the Code de commerce restrictive-practices provisions. So art. 1171 is the residual rule — it governs what the commercial code does not reach, including between commercial parties.
+
+What to tell a founder: establish first whether the relationship falls within L442-1. If it does, expect damages rather than clause removal — and if a counterparty's standard terms are the problem, that changes what is worth asking for in negotiation.
+
+**Open:** how the 2022 holding has been applied since, and the exact edge of L442-1 I 2°'s scope, are **[not researched]**.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet. Never draft a blanket liability waiver, a unilateral acceptance clause, an automatic renewal or an invented service guarantee.
 ---
@@ -243,7 +251,8 @@ Point a French founder at the CNIL's own checklist rather than paraphrasing it. 
 | Guichet unique mandatory since 2023-01-01; filing window, documents, free for micro, RDDCE receipt | 2026-11-10 | **Official page read** |
 | L442-1 I C.com: déséquilibre significatif triggers civil liability and damages | 2026-11-10 | **Primary legislation read and quoted** |
 | Art. 1171 C.civ: non-negotiable clause deemed unwritten; object and price excluded | 2026-11-10 | **Primary legislation read** |
-| Interaction between L442-1 and art. 1171 (contested; case law exists) | — | Not researched |
+| Interaction: art. 1171 applies only outside L442-1's scope | 2026-11-10 | **Resolved** — Cass. com. 26-01-2022, 20-16.782, judgment read |
+| How that 2022 holding has been applied since; the exact edge of L442-1 I 2° | — | Not researched |
 | L113-9 CPI: devolved to employer for employees and public agents, incl. documentation; contract may displace | 2026-11-10 | **Primary legislation read and quoted** |
 | L121-7 CPI: software moral rights narrowed — no veto on modification, no repentance or withdrawal | 2026-11-10 | **Primary legislation read** |
 | Client's permitted use for commissioned software (the French §31(5) equivalent) | — | Not researched |

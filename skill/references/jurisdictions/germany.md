@@ -186,7 +186,15 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 
 **The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle.
 
-**German specifics — which authority is competent.** Germany has **no single supervisory authority for business**. There are 17 state authorities plus the federal BfDI, and for a **private company the competent authority is the state (`Land`) authority where the company is established** — not the BfDI. The BfDI oversees federal public bodies and companies providing telecommunications and postal services. · *consistent secondary sources; the BfDI's own list was [not researched]* · **[checked 2026-11-10]**
+**German specifics — which authority is competent.** Germany has **no single supervisory authority for business**.
+
+Source: [BfDI — addresses of the Länder authorities](https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html) · *federal authority's own directory* · **[checked 2026-11-10]**
+
+The BfDI lists an authority for each of the **16 Länder**, and states that *"Neben der Aufsicht über die Landes- und Kommunalbehörden wird auch der nicht-öffentliche Bereich grundsätzlich von den Landesdatenschutzbehörden betreut"* — besides supervising state and municipal bodies, the Länder authorities **also generally supervise the private sector**.
+
+So for a **private company the competent authority is the `Land` authority where it is established**, not the BfDI. The BfDI oversees federal public bodies and companies providing telecommunications and postal services.
+
+A note on the count, because it varies in secondary sources: the BfDI directory lists **one entry per Land, so 16**. Totals of 17 or 18 circulate because at least one Land splits public-sector and private-sector supervision between separate authorities — **[not researched]** which, so do not quote a total. The number does not matter to a founder; the right `Land` does.
 
 Practical consequence: a founder cannot be told "contact the German DPA". Establish their `Land` first, then find that authority. A breach notification sent to the wrong authority is not a notification made.
 
@@ -214,7 +222,8 @@ The `BDSG` and the competent state authority's own guidance are **[not researche
 | How far trade custom under §310(1) rebuts that indication | — | Not researched |
 | §69b UrhG: employer for employees/service relationships; silent on commissioned work | 2026-11-10 | **Primary legislation read and quoted** |
 | §31(5) UrhG Zweckübertragungsregel: unnamed uses read by contract purpose; simple vs exclusive | 2026-11-10 | **Primary legislation read and quoted** |
-| Competent authority is the Land authority, not the BfDI | 2026-11-10 | Consistent secondary; BfDI list not read |
+| Competent authority is the Land authority, not the BfDI; 16 entries listed | 2026-11-10 | **BfDI's own directory read** |
+| Which Land splits public and private supervision (the 17/18 counts) | — | Not researched |
 | BDSG, and the competent Land authority's own guidance | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 

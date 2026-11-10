@@ -63,9 +63,27 @@ And there is a **15 working day** notification deadline when the Union threshold
 
 Note what this does **not** settle: it governs the **cross-border** exemption for a non-established person. It does not tell you what happens to a founder's **domestic** exemption when a domestic threshold is crossed mid-year — which is precisely the question the German pack records §19 UStG as being silent on. Two different thresholds, two different rules, and only one of them is answered here.
 
+## What counts toward the turnover — article 288
+
+Source: the same directive's amended **article 288** of the VAT Directive · **[checked 2026-11-10]**
+
+**Included** in the reference turnover:
+
+- the value of supplies of goods and services, *"in so far as they would be taxed were they supplied by a non-exempt taxable person"*
+- transactions exempt **with** deductibility of input VAT under art. 110, 111 or 125(1)
+- transactions exempt under art. 146 to 149 and art. 151, 152 and 153
+- transactions exempt under art. 138, where that exemption applies
+- **real estate transactions, the financial transactions in art. 135(1)(b)–(g), and insurance and reinsurance services — unless those are ancillary**
+
+**Excluded:** *"Disposals of the tangible or intangible capital assets of a taxable person shall not be taken into account for the purposes of calculating the turnover."*
+
+Two things a founder can get wrong here. First, **"exempt" does not mean "ignored"** — several categories of exempt transaction count toward the threshold, so a business can be pushed over it by turnover it charged no VAT on. Second, **selling equipment does not count**: disposing of capital assets is expressly left out, so a founder who sells a laptop or a domain name has not thereby moved closer to the threshold. That exclusion matches the one §19(2) UStG makes domestically for fixed assets.
+
+The financial-and-real-estate limb turns on whether those transactions are **ancillary**, which is a judgment rather than a lookup and is not resolved here.
+
 ## What this layer does not cover
 
-- The treatment of **exempt supplies** and which transactions fall outside the turnover calculation: **[not researched]**.
+- Whether a given financial or real estate transaction is **ancillary** for art. 288: **[not researched]**.
 - How each member state **implements** the notification and quarterly return in practice — the Dutch `opgaaf kwartaalomzet` is one implementation; the others are **[not researched]**.
 - What happens to a **domestic** exemption on a mid-year threshold crossing. See above: not an EU question.
 
@@ -80,7 +98,8 @@ Note what this does **not** settle: it governs the **cross-border** exemption fo
 | Quarterly return, content and one-month deadline | 2026-11-10 | **Primary EU legislation read** |
 | Mid-year Union threshold breach: exemption ceases immediately; 15 working day notice | 2026-11-10 | **Primary EU legislation read** |
 | Definitions of member-state and Union annual turnover | 2026-11-10 | **Primary EU legislation read** |
-| Treatment of exempt supplies in the turnover calculation | — | Not researched |
+| Art. 288: which supplies count, incl. some exempt ones; capital-asset disposals excluded | 2026-11-10 | **Primary EU legislation read and quoted** |
+| Whether a financial or real estate transaction is "ancillary" for art. 288 | — | Not researched |
 | Member-state implementation of notification and returns | — | Not researched |
 | Domestic exemption on a mid-year crossing | — | Not an EU question; see the national pack |
 
