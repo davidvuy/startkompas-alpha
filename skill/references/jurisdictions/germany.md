@@ -104,7 +104,33 @@ The BMF has issued successive letters on the obligatory e-invoice: one in **2024
 - **A non-objection period runs to 2026-12-31.** For e-invoices issued up to that date, deviations from the newer letter's additional requirements are not challenged provided the invoice conforms to the earlier 2024 and 2025 letters. That grace ends within weeks of this pack's check date.
 - The issuing obligation takes effect for many businesses from **2027-01-01**, consistent with the turnover threshold above.
 
-The BMF letters themselves are PDFs on `bundesfinanzministerium.de` and were **[not researched]** directly — the points above come from a chamber summary and corroborating professional commentary. Read the actual letter before relying on a detail of invoice content.
+### The BMF letters themselves — read
+
+Source: [BMF letter of 15 October 2026](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2026-10-15-obligatorische-elektronische-rechnung.pdf?__blob=publicationFile&v=2), *"Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025 — Ergänzende Regelungen"*, GZ III C 5 - S 7287 · *primary administrative guidance, PDF extracted and read* · **[checked 2026-11-10]**
+
+**Three letters, with their official citations:**
+
+| Date | Published |
+| --- | --- |
+| 15 October 2024 | BStBl I S. 1320 |
+| 15 October 2025 | BStBl I S. 1806 |
+| 15 October 2026 | this letter, GZ III C 5 - S 7287 |
+
+**The non-objection period, in the letter's own terms.** An e-invoice issued **up to 31 December 2026** that conforms to the 2024 and 2025 letters but not to the *additional* requirements of the 2026 letter will not be objected to — *"auch für den Vorsteuerabzug"*, **including for input VAT deduction**.
+
+That last clause is the practically important one: in that window a non-conforming invoice does not cost the **recipient** their deduction. And the window closes within weeks of this pack's check date.
+
+**What must sit in the structured part.** The structured part must carry enough to serve the invoice's control function. Specifically, **`Leistungsart`, `Leistungsumfang`, `Leistungsgehalt`** and where relevant **`Leistungsort`** must appear there clearly enough to permit an abstract determination of the remaining tax bases — distinguishing a supply of goods from a service, establishing the place of supply, checking the applied rate — plus, in principle, entitlement to input VAT deduction.
+
+**What may go in an embedded attachment**, and this is the line a service founder cares about: details **not required for the control function** may be sent in an embedded annex rather than the structured part. The letter's own example is *"Aufschlüsselung von Stundennachweisen"* — **a breakdown of time records**. So an hourly-billing founder does not need every logged hour in the structured data, provided the service type, scope and content are there.
+
+Two further allowances a founder may meet:
+
+- **Construction services:** where the `Leistungsverzeichnis` cannot be carried in the core data model, it is currently not objected to if the structured part lists only the individual trades with their sums, with a **human-readable embedded annex** giving the detail and a clear reference to it from the structured part.
+- **Gross-price EN 16931 invoices** issued up to **31 December 2027**: the structured part may carry only the totals per tax rate and exemption, the rate and the tax amount, with the itemised description in a referenced human-readable annex.
+- **Partial payments** under §14(5) UStG: deduct already-received amounts in the structured part as a sum in field **BT-113 (`Paid amount`)**, with the required detail in free-text field **BT-22 (`Invoice note`)**. The alternative unstructured-annex route from Rn. 48 of the 2024 letter may be used **until 2030-06-30**.
+
+**Corrections must also be e-invoices.** Where an e-invoice obligation exists, a correction under §31(5) UStDV has to be issued as an e-invoice too, using the correction invoice type — though the letter notes the type is not yet technically settled.
 
 For a solo founder the practical reading: **receive now, issue from 2028-01-01**, unless 2026 turnover exceeded €800,000 — unlikely within this pack's default scope. Confirm against the founder's own turnover rather than assuming the later phase.
 
@@ -212,7 +238,11 @@ The `BDSG` and the competent state authority's own guidance are **[not researche
 | Issuing from 2027-01-01 above €800,000; all from 2028-01-01 | 2026-11-10 | Official EU source read |
 | Email address sufficient for reception | 2026-11-10 | Official EU source read |
 | Formats XRechnung / ZUGFeRD 2.2.0 / Peppol BIS 3.0 | 2026-11-10 | Official EU source read |
-| BMF letters 2024, 2025-10-15, 2026-10-15; structured-part rule; non-objection to 2026-12-31 | 2026-11-10 | Chamber summary read; **BMF letters themselves not read** |
+| BMF letters 2024 (BStBl I 1320), 2025-10-15 (BStBl I 1806), 2026-10-15 (GZ III C 5 - S 7287) | 2026-11-10 | **BMF letter of 2026-10-15 extracted and read** |
+| Non-objection to 2026-12-31 incl. input VAT deduction | 2026-11-10 | **BMF letter read** |
+| Structured-part content rule; time records may go in an embedded annex | 2026-11-10 | **BMF letter read** |
+| Construction, gross-price and partial-payment allowances; corrections as e-invoices | 2026-11-10 | **BMF letter read** |
+| The 2024 and 2025 BMF letters themselves | — | Not researched — only the 2026 letter was read |
 | §18 EStG: freiberufliche categories, Katalogberufe, ähnliche Berufe | 2026-11-10 | **Primary legislation read and quoted** |
 | Registration route, chamber membership, Gewerbesteuer consequences | 2026-11-10 | Chamber guidance read |
 | Whether a software developer is `ingenieurähnlich` | — | Open by nature — a Steuerberater question, not researchable here |

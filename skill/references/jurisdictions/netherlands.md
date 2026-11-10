@@ -191,7 +191,36 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 - **Verwerkersovereenkomst** — the agreement must be in writing and must state that the processor acts **only on the controller's written instructions**.
 - **Datalek melden** — report to the AP **within 72 hours** of discovering the breach; the AP is explicit that failing to do so puts you in breach. A processor must warn its controller without undue delay.
 
-The AP publishes a `stappenplan` for controllers and one for acting on a data breach; neither was read here. · **[not researched]**
+### The AP's own step plan for a controller
+
+Source: [AP — `Aan de slag! Stappenplan voor de verwerkingsverantwoordelijke`](https://autoriteitpersoonsgegevens.nl/uploads/imported/avg_stappenplan_verwerkingsverantwoordelijke.pdf) · *national authority, PDF extracted and read* · **[checked 2026-11-10]**
+
+The most directly workable thing in this pack: a founder can sit down and go through it. Twelve items in three steps.
+
+**Step 1 — map what you process.** Where in your processes and systems; for what purpose (one file can serve several — a customer list is both contact and marketing); on what **lawful basis** for each purpose, and *if you cannot find one you may not process* — change the process or stop; **how long** you keep it, set in advance; whether anything goes **outside the EU**, checked first; and **who else receives it**, distinguishing processors from other controllers with their own purposes.
+
+**Step 2 — put it in a register**, recording per processing: the purpose, the categories of people, the data, the recipients, the retention period, and the security measures. Keep it current.
+
+**Step 3 — process carefully.** Ten items:
+
+| | |
+| --- | --- |
+| Data quality | Keep it correct; check periodically |
+| Inform people | An easy-to-find privacy statement. For consent, say in advance what the purpose is **and that consent can be withdrawn** |
+| Security | Assess the risk your processing creates and match the security to it — **digital and physical**, including door control and locked storage |
+| **Breach reporting** | Within 72 hours to the AP, at `datalekken.autoriteitpersoonsgegevens.nl`. Sometimes the people affected must be told too. **Have an action plan so everyone knows what to do** |
+| Processor agreements | Check you have one with each processor; if not, conclude one as soon as possible |
+| DPO | Only if you observe a large group or process special data of a large group — consistent with the art. 37(1) test in [eu-gdpr.md](eu-gdpr.md) §6 |
+| **DPIA** | Required before developing a new service or product with personal data where the privacy risk is high. The AP's examples of high risk include **processing with new technologies** |
+| Privacy policy | Not always mandatory, but advised: which rules staff follow, who decides on processing, who checks compliance |
+| Privacy by design and default | Build in security, **pseudonymise** where you do not need the link to a person, use privacy-protective settings as standard — and **write these requirements into your request for quotation** when buying or commissioning systems |
+| Handle data subject requests | Decide who receives, handles and answers them before the first one arrives |
+| Train staff | So they can recognise personal data and know the main rules |
+| Accountability | Be able to show with evidence how you comply: all processing (the register obligation), DPIA reports, and the rest |
+
+**Two things worth lifting out.** The AP's high-risk examples for a DPIA explicitly include **processing with new technologies** — independent confirmation of the point in [eu-gdpr.md](eu-gdpr.md) §6 that a founder routing real customer data through an AI tool is in DPIA territory. And the privacy-by-design item gives a concrete, cheap action most founders skip: **put the requirements in the quotation request**, before the system exists.
+
+**Open:** the AP's separate `stappenplan` for acting on a data breach, and the brochure this step plan accompanies, are **[not researched]**.
 ---
 
 ## Pack maintenance
@@ -218,7 +247,8 @@ The AP publishes a `stappenplan` for controllers and one for acting on a data br
 | Client's permitted use for commissioned software (the Dutch §31(5) equivalent) | — | Not researched |
 | The Contourenbrief of 2026-09-11 itself | — | Not researched — only secondary reporting of it |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
-| The AP's stappenplan documents | — | Not researched |
+| AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | **AP PDF extracted and read** |
+| The AP's separate data-breach stappenplan and the parent brochure | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier when the Q4 2026 internet consultation opens.
