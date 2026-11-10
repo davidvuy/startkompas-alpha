@@ -129,10 +129,39 @@ Two habits to avoid. **Do not reach for consent by default** — it has to be fr
 
 **Open:** the balancing test for (f), and whether a given outreach activity survives it, is **[not researched]** and is a judgment, not a lookup.
 
-## 8. What this layer does not cover
+## 8. Sending data outside the EEA
 
-- **International transfers** outside the EEA: **[not researched]**. If a provider processes data outside the EEA, this is a real gap.
-- **Data subject rights** and the deadlines for answering a request: **[not researched]**.
+Directly relevant: most AI tools a founder uses are operated from outside the EEA, and putting personal data into one is a transfer.
+
+Source: [Article 44 GDPR](https://gdpr-info.eu/art-44-gdpr/) · *verbatim reproduction on a secondary host* · **[checked 2026-11-10]**
+
+Article 44 sets the general principle: a transfer to a third country or international organisation *"shall take place only if"* the conditions in Chapter V are met. There are three routes:
+
+| Route | Article |
+| --- | --- |
+| An **adequacy decision** for the destination country | art. 45 |
+| **Appropriate safeguards**, including standard contractual clauses | art. 46 |
+| **Derogations** for specific situations | art. 49 |
+
+**For a founder this is a question about their provider, not about themselves.** A reputable provider will state which route it relies on — an adequacy decision, or SCCs in its data processing terms. The founder's job is to **read that and record it**, not to construct the safeguard. The pack's §2 processor-contract list is where it belongs.
+
+**Open:** which countries currently hold an adequacy decision, and the transfer-impact assessment that case law expects alongside SCCs, are **[not researched]**. Do not tell a founder a specific destination is adequate.
+
+## 9. Answering a data subject request — one month
+
+Source: [Article 12 GDPR](https://gdpr-info.eu/art-12-gdpr/) · *verbatim reproduction on a secondary host* · **[checked 2026-11-10]**
+
+- **One month from receipt** to provide information on the action taken.
+- Extendable by **two further months** where necessary given complexity and number of requests — but the controller must tell the person **within the first month**, with reasons.
+- If the controller **declines to act**, it must say so without delay and at the latest within one month, give the reasons, and tell the person they may **complain to a supervisory authority and seek a judicial remedy**.
+- A request made electronically gets an electronic answer, unless the person asks otherwise.
+
+Note what the extension is not: it is not a quiet grace period. Missing the first month without notifying is a breach of art. 12(3) even if the substantive answer eventually arrives.
+
+## 10. What this layer does not cover
+
+- Which third countries hold an **adequacy decision**, and transfer-impact assessment practice: **[not researched]**.
+- The **content** of each data subject right (access, erasure, portability and the rest) as opposed to the deadline for answering: **[not researched]**.
 - Sector rules (health, finance, children's data) are outside every pack's scope.
 - The national authority's own guidance, which often differs in emphasis and is the better source for a founder in that country — see the national pack.
 - The **EU AI Act** is a separate instrument and now has its own layer: [eu-ai-act.md](eu-ai-act.md). Using an AI tool on personal data engages both.
@@ -151,7 +180,10 @@ Two habits to avoid. **Do not reach for consent by default** — it has to be fr
 | Register exemption, art. 30(5), four conditions | 2026-11-10 | Article text read |
 | Six lawful bases, art. 6(1) | 2026-11-10 | Article text read |
 | Balancing test for legitimate interests, art. 6(1)(f) | — | Not researched |
-| International transfers outside the EEA; data subject rights deadlines | — | Not researched |
+| Transfers: art. 44 principle and the three routes (45/46/49) | 2026-11-10 | Article text read |
+| Art. 12(3) one month, two-month extension, refusal duties | 2026-11-10 | Article text read |
+| Which countries hold adequacy; transfer-impact assessment practice | — | Not researched |
+| The content of each individual data subject right | — | Not researched |
 
 Next full recheck due: **2027-05-10**. Earlier on any EDPB guidance update or an AI Act milestone affecting small businesses.
 

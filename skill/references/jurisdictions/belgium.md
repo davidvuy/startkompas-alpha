@@ -113,7 +113,31 @@ The regime sits in art. VI.91/1–VI.91/10 WER, introduced by the law of **4 Apr
 
 Sources · *secondary (legal commentary, mutually consistent)* · **[checked 2026-11-10]**. The FPS Economy brochure [*Gedaan met de wet van de sterkste, deel 4*](https://economie.fgov.be/sites/default/files/Files/Publications/files/gedaan-met-de-wet-van-de-sterkste-deel-4.pdf) is the official explainer, but its text could not be extracted on 2026-11-10 (subset-font PDF); its embedded metadata shows it was authored 2020-09-22 and last modified 2021-04-01, so it predates later case law and amendments.
 
-**Open: the contents of the black and grey lists are not recorded here**, because no primary source was successfully read. Do not state which specific clauses are blacklisted or greylisted from this pack. The primary text is art. VI.91/4 and VI.91/5 WER in the consolidated Code of Economic Law.
+### What is actually on the lists
+
+· *two independent law-firm sources, mutually consistent on the black list; the primary WER text was not read* · **[checked 2026-11-10]**
+
+**Black list — art. VI.91/4 WER. Four clauses, always unfair, no counter-evidence possible:**
+
+1. Binding one party irrevocably while the enterprise's own performance depends **solely on its own will** (a potestative clause)
+2. Giving the enterprise the **unilateral right to interpret** the contract terms
+3. Making the other party **waive all remedies** against the enterprise in a dispute
+4. Establishing **irrebuttably** that the other party accepted the terms, without a genuine prior opportunity to know them
+
+**Grey list — art. VI.91/5 WER. Eight clauses, presumed unfair, rebuttable:**
+
+1. Allowing the enterprise to **unilaterally change price, characteristics or terms** `zonder geldige reden`
+2. **Automatic renewal** of a fixed-term agreement without a reasonable notice period
+3. Shifting **economic risk** onto a party where it `normaliter` belongs to the other
+4. Inappropriately **excluding or limiting statutory rights** on non-performance or defective performance
+5. Binding the parties without a `redelijke opzegtermijn`
+6. **Exempting the enterprise from liability** for intent, gross negligence, or failure to perform an essential obligation
+7. **Restricting the means of evidence** available to the other party
+8. Setting damages `kennelijk niet evenredig` to the actual harm
+
+**What a founder should take from this.** Items 3 and 4 of the black list are the ones that catch ordinary drafting: a clause saying "the client waives any claim" is void outright, and so is "the client is deemed to have accepted these terms" where they never had a real chance to read them — which is also independently a ground under Dutch art. 6:233. Grey items 6 and 8 are where liability caps and penalty clauses live, and those are rebuttable rather than void, so they turn on justification.
+
+**Still open:** the primary WER text was not read, so treat the wording above as a faithful summary rather than the statute. Before relying on a specific item, read art. VI.91/4 and VI.91/5 in the consolidated Code of Economic Law. · **[not researched]**
 
 For the founder's own discussion sheet, cover: parties, the specific outcome promised, required inputs, exclusions, delivery window, how acceptance is demonstrated, price and payment, duration, exit, what happens on failure, support, and responsibility for data and rights. These are proposed agreement topics, not a legally sufficient contract.
 
@@ -175,7 +199,7 @@ Breach notification goes to the GBA, on the 72-hour clock in [eu-gdpr.md](eu-gdp
 | VAT exemption phased thresholds | 2026-11-10 | Secondary; instrument identified (law 2026-09-23, art. 26, art. 56ter VAT Code) |
 | EU-wide €100,000 cross-border threshold | 2026-11-10 | **Primary EU legislation read** — see eu-vat-sme.md |
 | Unfair terms: general norm, black and grey list structure | 2026-11-10 | Secondary legal commentary; primary WER text not read |
-| Contents of the black and grey lists | — | **Not researched** — do not state specific clauses |
+| Black list: 4 clauses; grey list: 8 clauses | 2026-11-10 | Two consistent law-firm sources; **primary WER text not read** |
 | Official unfair-terms brochure | 2026-11-10 | **Fetch succeeded but text not extractable**; metadata shows 2020-09 authored, 2021-04 modified |
 | Software ownership: author, employee, commissioned | 2026-11-10 | Official page read, with quoted rules |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
