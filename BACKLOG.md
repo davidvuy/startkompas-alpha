@@ -12,13 +12,23 @@ Nothing here is a guess about what users want. Items are grounded in what is act
 
 Updated 2026-11-10.
 
-**Done (41):** 1, 2, 5, 7, 9, 15, 16, 26, 27, 28, 29, 30, 31, 53, 54, 55, 59, 60, 61, 62, 63, 64, 67, 68, 69, 70, 71, 73, 74, 77, 78, 79, 80, 81, 82, 87, 90, 91, 95, 97 — plus 10 in part (branch pushed; the pull request itself is still to open).
+**Done (55):** 1, 2, 5, 7, 9, 15, 16, 26, 27, 28, 29, 30, 31, 33, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 53, 54, 55, 59, 60, 61, 62, 63, 64, 67, 68, 69, 70, 71, 73, 74, 77, 78, 79, 80, 81, 82, 87, 90, 91, 95, 97 — plus 10 in part (branch pushed; the pull request itself is still to open).
+
+**Verification debt (33–46) is cleared.** All four national packs now carry **zero** unrefetched claims, plus a new shared `eu-gdpr.md` layer so the GDPR rules are stated once rather than four times. 32 cited URLs checked, 30 live, 0 dead, 2 Légifrance URLs bot-blocked but read.
+
+What that research actually produced:
+
+- **Primary legislation read and quoted** for six provisions: §19 UStG, §69b UrhG, §310(1) BGB, art. L113-9 CPI, art. L442-1 I C.com, art. 7 Auteurswet.
+- **Two pack entries reversed.** The French PLF 2026 €25,000 carve-out was recorded as an open bill; it was rejected in November 2025. Dutch e-invoicing was recorded as Peppol-based; Peppol is recommended, not mandated.
+- **One claim demoted by checking it.** §19 UStG is *silent* on net-vs-gross, mid-year exit and founding-year projection — three things professional commentary states as fact.
+- **Three new cross-border findings** in `jurisdictions/README.md`: four different unfair-terms mechanisms with four different remedies; a genuine convergence on software ownership (none of the four transfers rights for commissioned work, so a founder keeps theirs by default); and the Dutch protection that switches off at 50 employees.
+- **Open topics rose from 18 to 26.** Resolving nine surfaced several that were previously invisible — that is honest accounting, not a regression.
 
 **Partly done:**
 
 - **47** — an instruction-coverage audit of all 22 cases is recorded in [skill/evals/results.md](skill/evals/results.md) and found four real gaps, now fixed. A **behavioural score on a host is still missing**, and that is the part that matters.
 - **22** — target corrected, see below.
-- **33–46** — verification debt: untouched. This is the moat and the largest remaining block.
+- **34, 35** — still open on purpose: the Belgian VAT phased schedule and the EU-wide €100,000 figure rest on secondary sources, and primary confirmation was not obtained.
 
 **Found while working, not in the original list:**
 

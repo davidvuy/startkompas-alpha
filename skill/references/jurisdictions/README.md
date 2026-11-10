@@ -6,6 +6,7 @@ A jurisdiction pack is a dated, sourced answer set for one country or region. It
 
 | Jurisdiction | File | Last checked | Covered from a read source | Open topics |
 | --- | --- | --- | --- | --- |
+| **EU — GDPR layer** (shared, not a country) | [eu-gdpr.md](eu-gdpr.md) | 2026-11-10 | Controller/processor test, processor-contract duties, sub-processor rule, register obligation, 72-hour breach notification, security principle | AI Act, transfers, DPIA thresholds, DPO requirement |
 | Belgium (federal; regional differences noted) | [belgium.md](belgium.md) | 2026-11-10 | Registration formalities, VAT exemption, B2B e-invoicing, unfair-terms structure, software ownership (3 rules), data protection roles and security | Black/grey list contents, Belgian DPA guidance |
 | Netherlands | [netherlands.md](netherlands.md) | 2026-11-10 | Registration test and KVK→Belastingdienst link, KOR incl. invoicing duties, EU-KOR, B2B/B2G e-invoicing, data protection | Agreements, ownership, AP guidance, registration fees |
 | Germany | [germany.md](germany.md) | 2026-11-10 | VAT §19 (primary law, quoted), B2B e-invoicing, BMF guidance points, data protection | Registration route, agreements/AGB, ownership, BDSG |
@@ -40,6 +41,39 @@ Thresholds diverge just as much:
 And the invoicing duty attached to the exemption inverts: a Dutch KOR user is **not required to issue an invoice at all**, while a Belgian founder under the exemption **must issue a structured electronic one**. Carrying either answer across a border produces a confidently wrong result.
 
 Any skill that answers these from a single "EU" position is wrong in at least three countries. That is the reason packs exist.
+
+### Four mechanisms for one idea — unfair terms between businesses
+
+Every one of the four controls unreasonable standard terms between businesses. No two do it the same way, and the **remedy** differs, which is what actually matters to a founder deciding whether a clause is worth fighting.
+
+| | Mechanism | Remedy |
+| --- | --- | --- |
+| Belgium | General norm **plus** a statutory black list (irrebuttable) and grey list (rebuttable), art. VI.91/3–91/5 WER | The term is unfair |
+| Germany | The §§308/309 catalogue is **disapplied** in B2B by §310(1) BGB, but the general §307 test survives | The term is ineffective |
+| Netherlands | Open test in art. 6:233 BW; the black and grey lists are **consumer-only**, but `reflexwerking` can import them for a small party. Art. 6:235 **excludes large parties** from the protection entirely | The term is voidable |
+| France | No catalogue; art. L442-1 I C.com prohibits imposing — or **attempting** to impose — obligations creating a `déséquilibre significatif` | **Civil liability and damages**, not automatic nullity |
+
+Two traps for anyone reasoning across borders:
+
+- **"B2B means the lists don't apply" is the German answer, and only the German one.** In Belgium the lists apply between businesses by design.
+- **Dutch protection depends on the founder's own size.** Under 50 employees and not publishing accounts, a founder is protected by 6:233 and may draw on the consumer lists. Past that, art. 6:235 removes the protection — the same clause, the same counterparty, a different outcome.
+
+### Where the four actually converge — software ownership
+
+Not everything diverges, and it is worth recording when it does not. All four give **employee-created** software to the employer by default, all four let a contract say otherwise, and **none of them transfers anything for commissioned work.**
+
+| | Employee-created software | Mechanism | Commissioned work |
+| --- | --- | --- | --- |
+| Belgium | employer gets the economic rights | official guidance, `behoudens andersluidende overeenkomst` | only **usage rights** pass; transfer of ownership must be **explicit and in writing** |
+| Netherlands | employer is **deemed the maker** | art. 7 Auteurswet, `fictief makerschap` | `overeenkomst van opdracht` does not qualify |
+| Germany | employer alone exercises **all** economic rights | §69b UrhG, employment and service relationships | statute is **silent** — covers neither |
+| France | rights **devolved** to the employer, incl. the documentation | art. L113-9 CPI | speaks only of `employés` |
+
+The Dutch construction is the outlier in *mechanism*: the employer becomes the author, not merely the rights holder, so moral rights sit differently there.
+
+**The consequence is the same in all four, and it matters for every founder using this skill.** A solo founder is a contractor, not their client's employee — so by default **they keep the rights** in what they build, and a client who wants them needs an express transfer. The mirror image also holds: a founder who *paid a freelancer* does not own the result merely by having paid.
+
+This convergence is itself a verified finding, not an assumption. Each pack cites its own primary source; none borrows another's.
 
 ## Using a pack
 

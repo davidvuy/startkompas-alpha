@@ -105,33 +105,59 @@ Recheck triggers: the Q4 2026 consultation opening; the bill's submission; any c
 
 ## 4. Agreements and unfair terms
 
-**[not researched]** for the Netherlands.
+Dutch law protects against unreasonable standard terms — and the protection is calibrated by **how big you are**, which cuts in a founder's favour.
 
-Use the universal topics in [../pilot-conditions.md](../pilot-conditions.md) §3 to prepare a discussion sheet. Do not state Dutch contract-law rules from this pack, and do not assume the Belgian position transfers — Belgium has a statutory black and grey list for B2B terms, and whether Dutch law has an equivalent for business counterparties is exactly the open question.
+· *secondary legal commentary, consistent; the Burgerlijk Wetboek text itself was [not researched]* · **[checked 2026-11-10]**
 
-Likely place to start: the general terms and conditions (`algemene voorwaarden`) provisions in Book 6 of the Burgerlijk Wetboek. That is a research prompt, **not** a finding. Confirm with a Dutch lawyer.
+| Provision | Effect |
+| --- | --- |
+| **art. 6:233 BW** | A term in general conditions is **voidable** if it is `onredelijk bezwarend` (unreasonably burdensome) given the nature and content of the agreement, how the conditions came about, the parties' mutually knowable interests and the other circumstances — **or** if the user did not give a reasonable opportunity to read the conditions |
+| **art. 6:235 BW** | **Large** parties cannot invoke 6:233 or 6:234: a legal entity that publishes its annual accounts, or has **50 or more employees** |
+| **art. 6:236 / 6:237 BW** | The black list (always unreasonably burdensome) and grey list (presumed so) apply **only against consumers** |
+| `reflexwerking` | Where a small entrepreneur's position closely resembles a consumer's, the appearance of a term on the consumer black or grey list is relevant to the open test in 6:233 |
 
+**For a solo founder this is favourable, and the opposite of the intuitive guess.** You are a small party, so 6:235 does not exclude you — you *can* invoke 6:233 against a larger counterparty's standard terms, and `reflexwerking` may import the consumer lists in your favour. The failure to give you a real chance to read the terms is itself a ground.
+
+The mirror image matters too: once a founder grows past 50 employees or publishes accounts, that protection disappears.
+
+Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet, and give the counterparty a genuine opportunity to read your own terms — under 6:233 that is not a formality.
+
+**Open:** the BW articles were not read in primary form, and the precise boundaries of `reflexwerking` are case law. Confirm with a Dutch lawyer before relying on either.
 ---
 
 ## 5. Ownership and permitted use
 
-**[not researched]** for the Netherlands.
+Source: [article 7 Auteurswet](https://wetten.overheid.nl/BWBR0001886/2026-01-01) · *primary legislation* · **[checked 2026-11-10]**
 
-Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline, which is jurisdiction-neutral. The *rules* on who owns commissioned software are not. The Belgian position is now recorded in detail — author retains ownership of commissioned software, only usage rights pass, transfer must be explicit and in writing — and must **not** be carried over, since Dutch `auteursrecht` may well differ on exactly this point.
+> *"Indien de arbeid, in dienst van een ander verricht, bestaat in het vervaardigen van bepaalde werken van letterkunde, wetenschap of kunst, dan wordt, tenzij tusschen partijen anders is overeengekomen, als de maker van die werken aangemerkt degene, in wiens dienst de werken zijn vervaardigd."*
+
+| Situation | Rule |
+| --- | --- |
+| Work created **in the service of another** (`in dienst`), where the job consists of creating such works | The **employer is deemed the maker** — not merely the holder of the rights. This is `fictief makerschap`. |
+| **Commissioned work** under an `overeenkomst van opdracht` | **Does not qualify.** Article 7 requires a `dienstbetrekking`; a contract for services does not meet it. · *secondary, consistent* |
+| Contrary agreement | Permitted — *"tenzij tusschen partijen anders is overeengekomen"*. Article 7 is `regelend recht`. |
+
+The Dutch construction is distinctive: the employer is treated as the **author**, where Germany and France transfer only the economic rights and Belgium transfers economic rights for employees. Moral rights therefore sit differently here. That difference is why the packs do not share this section.
+
+Practical consequence for a solo founder: article 7 does **not** apply to you, because a commission is not a `dienstbetrekking`. The default is that **you remain the maker and keep the rights** in commissioned software, and a client who wants them needs an agreed transfer. A founder who paid a freelancer gains nothing from article 7.
+
+**Open:** the default scope of a client's permitted use for commissioned software, and article 8 Auteurswet on works published by a legal person, are **[not researched]**.
+
+Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
 ---
 
-## 6. Data protection — roles, suppliers and security
+## 6. Data protection
 
-The GDPR applies directly, so the EU-level guidance used across packs applies here too. The supervisory authority is the **Autoriteit Persoonsgegevens**, whose own guidance is **[not researched]** and would be the better source for a Dutch founder.
+**The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle.
 
-- Roles: [EDPB — data controller or data processor](https://www.edpb.europa.eu/sme/learn-the-basics/data-controller-or-data-processor_en) · *EU regulator guidance* · **[checked 2026-11-10]**
-- Security: [EDPB — secure personal data](https://www.edpb.europa.eu/sme/be-compliant/secure-personal-data_en) · *EU regulator guidance* · **[checked 2026-11-10]**
+**Dutch specifics.** The supervisory authority is the **Autoriteit Persoonsgegevens (AP)**. Its own guidance confirms the three obligations a small Dutch business meets first · *official authority pages* · **[checked 2026-11-10]**:
 
-The controller/processor test, the required processor-contract terms, the written sub-processor authorization rule and the processor's continuing liability for its sub-processors are recorded in full in [belgium.md](belgium.md) §6 — that content is EU-level and applies identically here. The same applies to the security guidance, including the caution that its two numeric figures (8-character passwords, six-monthly authorization reviews) are general SME guidance and not legal requirements.
+- **Verwerkingsregister** — the `registerplicht`: keep an overview of all processing activities. The AP notes a well-maintained register is what lets you assess quickly which organisations and categories of data a breach affects.
+- **Verwerkersovereenkomst** — the agreement must be in writing and must state that the processor acts **only on the controller's written instructions**.
+- **Datalek melden** — report to the AP **within 72 hours** of discovering the breach; the AP is explicit that failing to do so puts you in breach. A processor must warn its controller without undue delay.
 
-EU AI Act applicability is not covered.
-
+The AP publishes a `stappenplan` for controllers and one for acting on a data breach; neither was read here. · **[not researched]**
 ---
 
 ## Pack maintenance
@@ -149,10 +175,10 @@ EU AI Act applicability is not covered.
 | EU-KOR start date 2025-01-01 | 2026-11-10 | Secondary; primary confirmation open |
 | Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | KVK pages read |
 | Registration fee, identification, timeframe | — | Not researched |
-| Agreements / unfair terms | — | Not researched |
-| Ownership of commissioned software | — | Not researched |
-| Autoriteit Persoonsgegevens guidance | — | Not researched |
-| EDPB roles and security guidance | 2026-11-10 | EU regulator guidance read |
+| 6:233 voidability, 6:235 large-party exclusion, consumer-only lists, reflexwerking | 2026-11-10 | Secondary consistent; BW text not read |
+| Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | **Primary legislation read and quoted** |
+| AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
+| GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier when the Q4 2026 internet consultation opens.
 

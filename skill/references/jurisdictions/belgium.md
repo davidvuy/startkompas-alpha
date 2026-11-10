@@ -143,34 +143,13 @@ Never infer ownership or clearance from payment alone, from the fact that AI gen
 
 ---
 
-## 6. Data protection — roles, suppliers and security
+## 6. Data protection
 
-The GDPR applies directly. The Belgian supervisory authority is the **Gegevensbeschermingsautoriteit / Autorité de protection des données**, whose own guidance is **[not researched]**.
+**The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle. Those rules are identical in all four packs and are not repeated here.
 
-### Controller or processor
+**Belgian specifics.** The supervisory authority is the **Gegevensbeschermingsautoriteit / Autorité de protection des données (GBA/APD)**. Its own guidance is **[not researched]** and would be the better source for a Belgian founder, including on whether a given breach is notifiable and how to notify it.
 
-Source: [EDPB — data controller or data processor](https://www.edpb.europa.eu/sme/learn-the-basics/data-controller-or-data-processor_en) · *EU regulator guidance* · **[checked 2026-11-10]**
-
-The test is decision-making authority: *"A data controller determines the purposes and means of processing personal data"*, while *"A processor acts under the instructions of the controller only, by processing personal data on behalf of the controller."* Whoever decides the **why** and **how** is the controller; whoever merely executes is the processor. Roles follow the actual purposes and instructions — never a product name or a contract title.
-
-A controller–processor contract must require the processor to: process only per instructions; keep authorized personnel under confidentiality; ensure security; obtain **written authorization before engaging sub-processors**; assist with data subject rights requests; support breach notification and impact assessments; delete or return data at the end; provide compliance documentation; and permit audits and inspections.
-
-Sub-processors need written authorization, and the processor must bind them to protection equivalent to the main contract. **The processor stays liable to the controller for its sub-processors' breaches** — directly relevant to a solo founder who resells or builds on another provider.
-
-### Security
-
-Source: [EDPB — secure personal data](https://www.edpb.europa.eu/sme/be-compliant/secure-personal-data_en) · *EU regulator guidance* · **[checked 2026-11-10]**
-
-Principle: *"appropriate technical and organisational measures to ensure a level of security of personal data appropriate to the risk"*, adapted to the state of the art, the processing context and the risk to individuals. Proportionality is the rule — not a fixed checklist.
-
-Measures it names: awareness sessions and documented procedures; a binding internal data protection policy; information classification; confidentiality agreements. Technically: automatic session lockout, maintained firewall and antivirus, automatic security updates, backed-up storage, limits on removable media; premises controls; unique user identifiers with no shared accounts; role-based access profiles; pseudonymization, anonymization, encryption and hash functions for integrity.
-
-**It does give two numeric figures:** a minimum password length of **8 characters** with upper case and special characters, and authorization reviews **every six months**. Treat these as that page's general guidance — a floor in a 2020s-era SME guide, not a Belgian legal requirement and not current best practice on password policy. Do not present either number as an obligation.
-
-For each promised recovery outcome record: the data set, backup owner and location, frequency, the loss and downtime the *founder* considers acceptable, the tested restore result, and unresolved failures. Demonstrate restore with synthetic data first. A successful tool test does not prove recovery of the business service.
-
-**EU AI Act applicability is not covered by this pack.** Keep it open rather than claiming an assessment.
-
+Belgian national provisions supplementing the GDPR are **[not researched]**.
 ---
 
 ## Pack maintenance
@@ -186,9 +165,9 @@ For each promised recovery outcome record: the data set, backup owner and locati
 | Contents of the black and grey lists | — | **Not researched** — do not state specific clauses |
 | Official unfair-terms brochure | 2026-11-10 | **Fetch succeeded but text not extractable**; metadata shows 2020-09 authored, 2021-04 modified |
 | Software ownership: author, employee, commissioned | 2026-11-10 | Official page read, with quoted rules |
-| EDPB controller/processor test and contract terms | 2026-11-10 | EU regulator guidance read |
-| EDPB security measures and its two numeric figures | 2026-11-10 | EU regulator guidance read |
-| Belgian DPA's own guidance | — | Not researched |
+| GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
+
+| Belgian DPA (GBA/APD) own guidance | — | Not researched |
 | EU AI Act applicability | — | Not researched |
 
 Next full recheck due: **2027-05-10**. Earlier if the e-invoicing law is adjusted for non-established taxpayers, or before 2027-01-01 for the VAT threshold step.

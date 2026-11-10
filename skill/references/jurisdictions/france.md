@@ -8,6 +8,8 @@ Out of scope and requiring separate research: consumer (B2C) sales, employees or
 
 Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[not researched]** means no source was consulted — the topic is open.
 
+Note for maintainers: **Légifrance returns 403 to automated link checks** while serving the pages normally to a reader. `scripts/check-links.mjs` therefore reports the two Légifrance citations below as `blocked`, not `dead`. Both articles were read on 2026-11-10. Do not "fix" those URLs.
+
 ---
 
 ## 1. Registration and formalities
@@ -105,33 +107,60 @@ Recheck triggers: before 2027-09-01; any change in the founder's size category; 
 
 ## 4. Agreements and unfair terms
 
-**[not researched]** for France.
+France takes a different route from its neighbours: no prohibited-clause list, but a **liability** rule.
 
-Use the universal topics in [../pilot-conditions.md](../pilot-conditions.md) §3 to prepare a discussion sheet. Do not state French contract-law positions from this pack, and do not carry the Belgian black-and-grey-list structure across — whether French law has an equivalent for business counterparties is the open question.
+Source: [article L442-1 I, Code de commerce](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000054716237) · *primary legislation* · **[checked 2026-11-10]**
 
-Likely place to start: the `Code de commerce` provisions on `déséquilibre significatif` in commercial relations, and the `Code civil` rules on `conditions générales`. A research prompt, **not** a finding. Confirm with a French lawyer.
+- **Who:** any person engaged in production, distribution or services activities.
+- **What is prohibited:** submitting, or attempting to submit, the other party to *"obligations créant un déséquilibre significatif dans les droits et obligations des parties"*. The same article also catches tender or competitive-bidding practices whose frequency or method creates such an imbalance.
+- **Consequence:** the author **incurs civil liability and must compensate the resulting harm**. It is a damages route, not automatic nullity of the clause.
 
+Note that the prohibition reaches an *attempt* to impose such obligations, and that `soumettre` implies the term was not genuinely negotiable.
+
+**Open:** article **1171 Code civil**, which concerns a non-negotiable clause creating a significant imbalance in a `contrat d'adhésion`, is the other half of this picture and was **[not researched]** — its interaction with L442-1, and whether it applies where L442-1 does, is exactly the question a French lawyer should answer. Do not state either provision's scope from this pack.
+
+Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet. Never draft a blanket liability waiver, a unilateral acceptance clause, an automatic renewal or an invented service guarantee.
 ---
 
 ## 5. Ownership and permitted use
 
-**[not researched]** for France.
+Source: [article L113-9 Code de la propriété intellectuelle](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000039279818) · *primary legislation* · **[checked 2026-11-10]**
 
-Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline, which is jurisdiction-neutral. French `droit d'auteur` on software — in particular the treatment of software created by an employee, which France handles distinctively — is **not** carried over from any other pack. The Belgian rules are recorded in detail in [belgium.md](belgium.md) §5 and must not be reused here.
+> *"Sauf dispositions statutaires ou stipulations contraires, les droits patrimoniaux sur les logiciels et leur documentation créés par un ou plusieurs employés dans l'exercice de leurs fonctions ou d'après les instructions de leur employeur sont dévolus à l'employeur"*
+
+| Situation | Rule |
+| --- | --- |
+| Software **and its documentation** created by an **employee** in the exercise of their duties, or on the employer's instructions | Economic rights are **devolved to the employer**, who alone may exercise them |
+| Agents of the State, public authorities and public administrative bodies | Same rule applies |
+| **Commissioned / freelance** work | **Not covered.** L113-9 speaks only of `employés`, so it transfers nothing for a contractor. |
+| Contrary agreement | Permitted — the rule opens with *"Sauf dispositions statutaires ou stipulations contraires"*, so a contract can displace it |
+
+Note that L113-9 expressly covers **the documentation** as well as the software, which the German and Dutch provisions do not spell out.
+
+Practical consequence for a solo founder: L113-9 does **not** apply to you, because you are not your client's employee. The default is that **you keep the economic rights** in commissioned software, and a client who wants them needs an express stipulation. A founder who paid a freelancer gains nothing from L113-9 either.
+
+**Open:** the default scope of a client's permitted use for commissioned software, and the French rules on moral rights in software, are **[not researched]**.
+
+Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
 ---
 
-## 6. Data protection — roles, suppliers and security
+## 6. Data protection
 
-The GDPR applies directly. The supervisory authority is the **CNIL**, which publishes extensive SME guidance of its own — **[not researched]** here, and the better source for a French founder.
+**The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle.
 
-- Roles: [EDPB — data controller or data processor](https://www.edpb.europa.eu/sme/learn-the-basics/data-controller-or-data-processor_en) · *EU regulator guidance* · **[checked 2026-11-10]**
-- Security: [EDPB — secure personal data](https://www.edpb.europa.eu/sme/be-compliant/secure-personal-data_en) · *EU regulator guidance* · **[checked 2026-11-10]**
+**French specifics.** The supervisory authority is the **CNIL**, which publishes unusually extensive small-business material — the richest national guidance of the four packs. · [cnil.fr — TPE/PME](https://www.cnil.fr/fr/thematiques/tpe-pme) · *official authority* · **[checked 2026-11-10]**
 
-The controller/processor test, the required processor-contract terms, the written sub-processor authorization rule and the processor's continuing liability are recorded in full in [belgium.md](belgium.md) §6 — EU-level content that applies identically here, as does the security guidance and the caution that its two numeric figures are general SME guidance rather than legal requirements.
+What it offers a founder:
 
-EU AI Act applicability is not covered.
+- **Four main actions** to start and maintain compliance, as its own entry point
+- a **GDPR guide for small and medium enterprises**, and a separate **TPE-PME verification checklist**
+- explicit emphasis on building a **`registre des traitements`** as the foundational document
+- a practical **FAQ** of the questions small businesses actually ask
+- **four fact sheets on generative AI** use — the only AI-specific national material any of these packs has found
+- online services for **notifying a data breach** and for compliance tooling
 
+Point a French founder at the CNIL's own checklist rather than paraphrasing it. The individual documents were **[not researched]** here; only the landing page was read.
 ---
 
 ## Pack maintenance
@@ -152,10 +181,10 @@ EU AI Act applicability is not covered.
 | Official start guide for 2026-09-01 | — | Not researched |
 | economie.gouv.fr reform page | 2026-11-10 | **Fetch failed, HTTP 403 — not read** |
 | Registration documents, fees, timelines | — | Not researched |
-| Agreements / unfair terms | — | Not researched |
-| Ownership of software | — | Not researched |
-| CNIL guidance | — | Not researched |
-| EDPB roles and security guidance | 2026-11-10 | EU regulator guidance read |
+| L442-1 I C.com: déséquilibre significatif triggers civil liability and damages | 2026-11-10 | **Primary legislation read and quoted** |
+| L113-9 CPI: devolved to employer for employees and public agents, incl. documentation; contract may displace | 2026-11-10 | **Primary legislation read and quoted** |
+| CNIL small-business offering incl. registre des traitements and AI fact sheets | 2026-11-10 | Official landing page read |
+| GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2027-09-01, when the issuing obligation reaches small businesses.
 

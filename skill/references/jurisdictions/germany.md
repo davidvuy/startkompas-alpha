@@ -91,33 +91,50 @@ Recheck triggers: 2026 turnover approaching €800,000; **before 2026-12-31**, w
 
 ## 4. Agreements and unfair terms
 
-**[not researched]** for Germany.
+**B2B is not unregulated, but the lists are switched off.**
 
-Use the universal topics in [../pilot-conditions.md](../pilot-conditions.md) §3 to prepare a discussion sheet. Do not state German contract-law positions from this pack, and do not carry across the Belgian black-and-grey-list structure.
+Source: [§310(1) BGB, official consolidated law text](https://www.gesetze-im-internet.de/bgb/__310.html) · *primary legislation* · **[checked 2026-11-10]**
 
-Likely place to start: the `AGB` (general terms) control provisions in the BGB, widely described as strict even between businesses. That description is a prompt to research, **not** a finding. Confirm with a German lawyer.
+Where standard terms (`AGB`) are used towards an `Unternehmer`, §310(1) disapplies **§305(2) and (3), §308 numbers 1 and 2 to 9, and the whole of §309** — that is, almost all of the specific prohibited-clause catalogue.
 
+**But §307(1) and (2) still apply**: the general test, that a term is ineffective if it unreasonably disadvantages the other party contrary to good faith. §310(1) also requires that *"auf die im Handelsverkehr geltenden Gewohnheiten und Gebräuche ist angemessen Rücksicht zu nehmen"* — appropriate consideration for trade customs and practices.
+
+So a founder cannot conclude "they are a business, anything goes". The catalogue is gone; the standard is not.
+
+**Open:** German case law is widely said to give the disapplied §§308/309 catalogue an indicative effect (`Indizwirkung`) when applying §307 in B2B. **This pack did not verify that**, and §310(1) does not say it. Do not state it as settled. · **[not researched]**
+
+Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet. Never draft a blanket liability waiver, a unilateral acceptance clause, an automatic renewal or an invented service guarantee — §307 is exactly where those fail. Leave enforceability to a German lawyer.
 ---
 
 ## 5. Ownership and permitted use
 
-**[not researched]** for Germany.
+Source: [§69b UrhG, official consolidated law text](https://www.gesetze-im-internet.de/urhg/__69b.html) · *primary legislation* · **[checked 2026-11-10]**
 
-Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline, which is jurisdiction-neutral. German rules on authorship and on rights in commissioned or employee-created software are **not** carried over from any other pack — German copyright law treats authorship distinctively, which is a reason to research rather than a conclusion. The Belgian rules in [belgium.md](belgium.md) §5 must not be reused here.
+> *"Wird ein Computerprogramm von einem Arbeitnehmer in Wahrnehmung seiner Aufgaben oder nach den Anweisungen seines Arbeitgebers geschaffen, so ist ausschließlich der Arbeitgeber zur Ausübung aller vermögensrechtlichen Befugnisse an dem Computerprogramm berechtigt"* — §69b(1)
+
+| Situation | Rule |
+| --- | --- |
+| Created by an **employee** in performance of their duties, or on the employer's instructions | The **employer alone** is entitled to exercise **all** economic rights |
+| Created in a **service relationship** (`Dienstverhältnis`) | Same, per §69b(2) |
+| **Commissioned / freelance** work | **The statute is silent.** §69b covers only employment and service relationships, so it does not transfer anything for a contractor. |
+
+Practical consequence for a solo founder: §69b does **not** apply to you, because you are not your client's employee. The default is therefore that **you keep the economic rights** in commissioned software, and a client who wants them needs an express assignment. Conversely, a founder who *paid a freelancer* does not thereby own the result — §69b gives them nothing.
+
+**Open:** what German law supplies *instead* of §69b for commissioned work — the default scope of the client's implied licence — is **[not researched]**. Do not state the extent of a client's permitted use from this pack.
+
+Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
 ---
 
-## 6. Data protection — roles, suppliers and security
+## 6. Data protection
 
-The GDPR applies directly. Germany additionally has the `BDSG` and **separate supervisory authorities per federal state**, so the competent authority depends on where the founder is established. Both the BDSG and the relevant state authority's guidance are **[not researched]**.
+**The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle.
 
-- Roles: [EDPB — data controller or data processor](https://www.edpb.europa.eu/sme/learn-the-basics/data-controller-or-data-processor_en) · *EU regulator guidance* · **[checked 2026-11-10]**
-- Security: [EDPB — secure personal data](https://www.edpb.europa.eu/sme/be-compliant/secure-personal-data_en) · *EU regulator guidance* · **[checked 2026-11-10]**
+**German specifics — which authority is competent.** Germany has **no single supervisory authority for business**. There are 17 state authorities plus the federal BfDI, and for a **private company the competent authority is the state (`Land`) authority where the company is established** — not the BfDI. The BfDI oversees federal public bodies and companies providing telecommunications and postal services. · *consistent secondary sources; the BfDI's own list was [not researched]* · **[checked 2026-11-10]**
 
-The controller/processor test, the required processor-contract terms, the written sub-processor authorization rule and the processor's continuing liability are recorded in full in [belgium.md](belgium.md) §6 — EU-level content that applies identically here, as does the security guidance and the caution that its two numeric figures are general SME guidance rather than legal requirements.
+Practical consequence: a founder cannot be told "contact the German DPA". Establish their `Land` first, then find that authority. A breach notification sent to the wrong authority is not a notification made.
 
-EU AI Act applicability is not covered.
-
+The `BDSG` and the competent state authority's own guidance are **[not researched]**.
 ---
 
 ## Pack maintenance
@@ -133,10 +150,10 @@ EU AI Act applicability is not covered.
 | Formats XRechnung / ZUGFeRD 2.2.0 / Peppol BIS 3.0 | 2026-11-10 | Official EU source read |
 | BMF letters 2024, 2025-10-15, 2026-10-15; structured-part rule; non-objection to 2026-12-31 | 2026-11-10 | Chamber summary read; **BMF letters themselves not read** |
 | Registration route (Gewerbe vs freier Beruf) | — | Not researched |
-| Agreements / AGB control | — | Not researched |
-| Ownership of commissioned software | — | Not researched |
-| BDSG and state supervisory guidance | — | Not researched |
-| EDPB roles and security guidance | 2026-11-10 | EU regulator guidance read |
+| §310(1) BGB: §§308/309 catalogue disapplied in B2B, §307 general test survives | 2026-11-10 | **Primary legislation read and quoted** |
+| §69b UrhG: employer for employees/service relationships; silent on commissioned work | 2026-11-10 | **Primary legislation read and quoted** |
+| Competent authority is the Land authority, not the BfDI | 2026-11-10 | Consistent secondary; BfDI list not read |
+| GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2026-12-31, when the BMF non-objection period ends, and before 2027-01-01 when the first issuing phase begins.
 
