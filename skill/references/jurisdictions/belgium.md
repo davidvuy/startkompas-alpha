@@ -186,6 +186,29 @@ Three distinct rules:
 
 Practical consequence for a pilot: a founder delivering commissioned software keeps ownership by default, and a client who wants the rights needs an explicit written transfer. A founder who *bought* work from a freelancer does **not** own it merely by having paid.
 
+### The statute behind that guidance, and what it makes unwaivable
+
+Source: [Wetboek van economisch recht, Boek XI, Titel 6 — computerprogramma's](https://www.ejustice.just.fgov.be/cgi_loi/change_lg.pl?language=nl&la=N&table_name=wet&cn=2014041960) · *primary legislation, articles read individually* · **[checked 2026-11-10]**
+
+**Art. XI.296 confirms the employment rule, and confirms its limit:**
+
+> *"Tenzij bij overeenkomst of statutair anders is bepaald, wordt alleen de werkgever geacht verkrijger te zijn van de vermogensrechten met betrekking tot computerprogramma's die zijn gemaakt door een of meer **werknemers of beambten** bij de uitoefening van hun taken of in opdracht van hun werkgever."*
+
+Note what the words do: the `opdracht` in that sentence is an instruction **from their own employer** to an employee or official. It is not a commission to an independent contractor, so XI.296 does not reach one. The guidance above is now backed by the text rather than only by the authority's summary.
+
+**Art. XI.299 to XI.301 set out what the lawful user may do** — and XI.301 states plainly which of it a contract cannot touch: *"Het bepaalde in de artikelen XI.299, §§ 2 en 3, en XI.300 is van dwingend recht."*
+
+| | What the lawful user may do | Can a contract remove it? |
+| --- | --- | --- |
+| XI.299 §1 | Acts necessary to use the program **for its intended purpose, including correcting errors** | **Yes** — the paragraph opens *"Tenzij bij overeenkomst uitdrukkelijk anders is bepaald"* |
+| XI.299 §2 | A **reservekopie** where necessary to use the program | **No** — `dwingend recht` |
+| XI.299 §3 | **Observe, study and test** the program's operation to determine the underlying ideas and principles, while lawfully loading, displaying, running, transmitting or storing it | **No** — `dwingend recht` |
+| XI.300 | **Reproduce and translate the code** where indispensable for interoperability of an independently created program, under three conditions, and with three bans on what the information may then be used for | **No** — `dwingend recht` |
+
+**This is the same structure as France's, from the same Directive — see the comparison in [README.md](README.md).** For a founder the reading is practical: you cannot contract a client out of their backup copy, their right to study the program, or their right to decompile it for interoperability. You *can* reserve error correction, and that is the term to think about deliberately rather than by accident.
+
+One more allocation worth knowing, from art. XI.298 c): the **first sale** in the EU of a copy of a program by or with the consent of the right holder **exhausts** the right to control distribution of that copy — except the right to control further **rental and lending**.
+
 Inventory separately: original work, customer inputs, collaborator contributions, third-party components, images and data, and generated output. For each record provenance, the actual licence, required notices, and intended use and distribution.
 
 Never infer ownership or clearance from payment alone, from the fact that AI generated something, or from a repository's top-level licence. Where rights are unresolved, resolve them with review or omit the material.
@@ -257,6 +280,11 @@ Source: [`Handleiding melden van een gegevensinbreuk`](https://www.gegevensbesch
 | Case law since the 2021 brochure | — | Not researched |
 | Official unfair-terms brochure | 2026-11-10 | **Extracted with pdftotext and read**; dated 2020-09 authored, 2021-04 modified |
 | Software ownership: author, employee, commissioned | 2026-11-10 | Official page read, with quoted rules |
+| Art. XI.296 WER: employer rule reaches only `werknemers of beambten` | 2026-11-10 | **Primary legislation read and quoted** |
+| Art. XI.299–XI.300: use for purpose, backup, study, decompilation | 2026-11-10 | **Primary legislation read per paragraph** |
+| Art. XI.301: XI.299 §§2–3 and XI.300 are `van dwingend recht`; §1 is not | 2026-11-10 | **Primary legislation read and quoted** |
+| Art. XI.298 c): EU exhaustion on first sale, except rental and lending | 2026-11-10 | **Primary legislation read** |
+| Belgian case law on what `dwingend recht` means for a non-compliant clause | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 | GBA: register duty for controllers and processors | 2026-11-10 | Authority page read |
 | `Wegwijs` and `13-stappenplan` are both **January 2018, CBPL-era** | 2026-11-10 | **Both extracted and read** — dates and imprint quoted |

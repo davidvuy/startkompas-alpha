@@ -88,15 +88,35 @@ This convergence is itself a verified finding, not an assumption. Each pack cite
 | Germany | **Purpose**. Where the types of use are not named, the scope is whatever the **shared contract purpose** implies | §31(5) UrhG |
 | Netherlands | **Form, then narrow construction**. A transfer needs writing **and a deed** (`akte`, art. 3:95 BW); an exclusive licence needs writing; a non-exclusive licence needs no form. What is granted by the maker covers **only** what is expressly stated or **necessarily** follows from the agreement's nature and purport — and that protection is disapplied for an art. 7 or art. 8 maker, so it follows the human creator | art. 2(3) and 2(5) Auteurswet |
 | France | **Itemisation, plus a floor that cannot be removed**. Each right transferred needs a **distinct mention**, and the domain of exploitation must be bounded as to **extent, destination, place and duration**. Separately, the lawful user keeps a statutory floor — use for its purpose, a backup copy, study and testing, interoperability decompilation — and stipulations against the last three are **void** | art. L131-3 and L122-6-1 CPI |
-| Belgium | **Usage rights, and nothing more.** Official guidance states rights are *"niet automatisch overgedragen"* for commissioned software: by default only **usage rights** pass and the author keeps ownership, and a transfer of the economic rights must be **explicit and in writing**. What that default use *covers* is **[not researched]**, and no primary statute has been read for it | official guidance, not legislation |
+| Belgium | **Usage rights, and nothing more.** Rights are *"niet automatisch overgedragen"* for commissioned software: by default only **usage rights** pass, the author keeps ownership, and a transfer of the economic rights must be **explicit and in writing**. Art. XI.296 WER confirms the employment rule reaches only `werknemers of beambten` | official guidance, plus art. XI.296 WER |
 
-Three things worth lifting out:
+Two things worth lifting out:
 
-- **France is the only one of the three with a mandatory floor.** Elsewhere the question is what the contract implies; in France part of the answer is fixed whatever the contract says. A clause removing a client's backup copy or interoperability right is void, not merely unusual.
 - **The Netherlands is the only one with a form requirement for ownership.** No deed, no transfer — so a Dutch founder cannot lose the copyright by invoice and a Dutch client cannot gain it by payment.
-- **Germany and the Netherlands both read silence against the grantee; France reads it against the drafting.** Same practical instruction, three different failure modes.
+- **Germany and the Netherlands read silence against the grantee; France reads it against the drafting.** Same practical instruction, different failure modes.
 
 The instruction that follows is the same in all four regardless: **name the types of use in writing.** Silence favours neither side; it just moves the decision to a court.
+
+### And a floor the contract cannot reach — with four different perimeters
+
+All four implement the EU Software Directive's user exceptions, so a founder could reasonably assume this part is harmonised and skip it. **It is not harmonised in the one respect that decides a negotiation: which of these rights a contract can take away.** All four articles were read individually.
+
+| | Use for its purpose, **incl. error correction** | Backup copy | Observe, study, test | Decompile for interoperability | Where the nullity rule sits |
+| --- | --- | --- | --- | --- | --- |
+| **Belgium** | XI.299 §1 — **waivable** (`Tenzij bij overeenkomst uitdrukkelijk anders is bepaald`) | XI.299 §2 — **unwaivable** | XI.299 §3 — **unwaivable** | XI.300 — **unwaivable** | XI.301: XI.299 §§2–3 and XI.300 are `van dwingend recht` |
+| **Germany** | §69d(1) — **waivable** (`soweit keine besonderen vertraglichen Bestimmungen vorliegen`) | §69d(2) — **unwaivable**, and the text says so twice | §69d(3) — **unwaivable** | §69e — **unwaivable** | §69g(2): terms contrary to §69d(2),(3),(5),(7) or §69e are `nichtig` |
+| **France** | L122-6-1 I — **waivable** as to error correction, which the author may reserve | L122-6-1 II — **unwaivable** | L122-6-1 III — **unwaivable** | L122-6-1 IV — **unwaivable** | L122-6-1 VIII: stipulations contrary to II, III and IV are void |
+| **Netherlands** | 45j — general rule **waivable**, but **loading, displaying and error correction cannot be contractually prohibited** | 45k — **no express nullity clause** | 45l — **no express nullity clause** | 45m — **no express nullity clause** | Only art. 45j, second sentence |
+
+**The Netherlands inverts the pattern the other three share.** In Belgium, Germany and France, error correction is the one thing a contract *can* take away, and the backup copy, study right and decompilation are the things it cannot. In the Dutch text, error correction is expressly protected and the other three carry no express nullity provision at all.
+
+**What a founder should do with that, stated carefully:**
+
+- **The advice "your client can always fix bugs" is true in the Netherlands and false in the other three.** In Belgium, Germany and France, error correction is a term to negotiate on purpose. A client who depends on the software and cannot fix it has a commercial problem no statute will solve.
+- **The advice "you cannot contract away a backup copy" is verified for Belgium, Germany and France** — a clause attempting it is void, not merely unusual.
+- **For the Netherlands, this pack does not say those three are waivable.** The absence of an express nullity clause in arts. 45k–45m is a fact about the text; whether Dutch law treats them as mandatory by another route is **[not researched]**. That is a reason to get Dutch advice on such a clause, not a reason to assume either answer.
+
+**Why this is in the README rather than stated once in a shared EU layer.** The shared layers exist for rules that are genuinely identical in all four — the GDPR register test, the VAT threshold ceiling. This one looked identical and is not. Writing it once would have erased the only part a founder needs: which of the four they are in.
 
 ### Same deadline, different machinery — notifying a data breach
 

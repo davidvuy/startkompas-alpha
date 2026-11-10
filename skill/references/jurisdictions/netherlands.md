@@ -200,6 +200,26 @@ This is the Dutch counterpart to Germany's §31(5) purpose rule, and it is **str
 
 **Still open:** whether, and how far, a **non-exclusive licence is implied** by a commission — the statute imposes no form requirement but does not say one arises. That is case law, and it is **[not researched]**. Likewise the practical content of *"aard en strekking"* for commissioned software: **[not researched]**.
 
+### Articles 45j–45m — and the Dutch inversion
+
+Source: [Auteurswet, Hoofdstuk VI, `Bijzondere bepalingen betreffende computerprogramma's`](https://wetten.overheid.nl/BWBR0001886/2026-01-01) · *primary legislation, articles read individually* · **[checked 2026-11-10]**
+
+The Netherlands has the same four software-user provisions as Belgium, Germany and France. **It arranges the unwaivable part differently, and the difference runs the opposite way.**
+
+| | What the lawful acquirer or user may do | Can a contract remove it? |
+| --- | --- | --- |
+| **45j** | Reproduction by the **rechtmatige verkrijger** necessary for the work's intended use — *"Tenzij anders is overeengekomen"*, so the general rule is displaceable. **But the second sentence is not:** reproduction in the course of **loading, displaying, or correcting errors** *"kan niet bij overeenkomst worden verboden"* | **The general rule yes; loading, displaying and error correction no** |
+| 45k | A **reservekopie** where necessary for the intended use | The text carries **no** express nullity clause |
+| 45l | **Observe, study and test** the work's operation to find the underlying ideas and principles, during acts they are authorised to perform under art. 45i | The text carries **no** express nullity clause |
+| 45m | Copy and translate the code where **indispensable for interoperability** of an independently created program, under three conditions, with three bans on reuse of the information | The text carries **no** express nullity clause |
+
+**This is the outlier among the four packs, in both directions at once.**
+
+- **Error correction is protected here and displaceable everywhere else.** Belgium (XI.299 §1), Germany (§69d(1)) and France (L122-6-1 I) all let a contract take error correction away. Art. 45j's second sentence does not. So a Dutch client cannot be contractually barred from fixing bugs — the reverse of the advice that holds in the other three.
+- **And the backup copy, the study right and decompilation carry no express nullity clause** in the articles read, where Belgium says `dwingend recht` (XI.301), Germany says `nichtig` (§69g(2)) and France says `réputées nulles` (L122-6-1 VIII).
+
+**Do not conclude from that silence that those three are waivable in the Netherlands.** All four states implement the same Software Directive, and Dutch doctrine may well treat them as mandatory by another route. What this pack establishes is that **the express nullity provision the other three have is not in the text of 45k, 45l or 45m** — and that is a reason to get Dutch advice on a clause touching them, not a reason to rely on either answer. **[not researched]**: whether 45k–45m are mandatory in Dutch law despite the absence of an express clause.
+
 Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
 ---
@@ -295,6 +315,10 @@ Source: [AP — `Vragenlijst meldformulier datalekken`](https://www.autoriteitpe
 | Art. 2(5): narrow construction disapplied for an art. 7 or art. 8 maker | 2026-11-10 | **Primary legislation read** |
 | Whether a non-exclusive licence is **implied** by a commission | — | **Not researched** — the statute imposes no form requirement but does not say one arises; this is case law |
 | What *"aard en strekking"* means for commissioned software in practice | — | Not researched |
+| Arts. 45j–45m: use for intended use, reservekopie, study, interoperability | 2026-11-10 | **Primary legislation read per article** |
+| Art. 45j second sentence: loading, displaying and error correction cannot be contractually prohibited | 2026-11-10 | **Primary legislation read and quoted** |
+| Arts. 45k–45m carry **no express nullity clause**, unlike BE, DE and FR | 2026-11-10 | **Primary legislation read** — stated as a fact about the text, not as a conclusion |
+| Whether 45k–45m are mandatory in Dutch law despite that silence | — | **Not researched** — the one question a clause touching them turns on |
 | The Contourenbrief of 2026-09-11 itself | — | Not researched — only secondary reporting of it |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
 | AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | **AP PDF extracted and read** |

@@ -42,6 +42,7 @@ const REQUIRED = [
   {case: '—', pack: 'belgium.md', label: 'Wegwijs is January 2018, CBPL-era', pattern: /\*\*January 2018\*\*/},
   {case: '—', pack: 'belgium.md', label: 'BOOST brochures attributed to KU Leuven', pattern: /CiTiP KU Leuven/},
   {case: '—', pack: 'belgium.md', label: 'breach filing needs the MijneGov role', pattern: /GBA_Documentum_Vertegenwoordiger/},
+  {case: '—', pack: 'belgium.md', label: 'XI.301 makes the software-user floor dwingend recht', pattern: /XI\.299, §§ 2 en 3, en XI\.300 is van dwingend recht/},
   {case: '—', pack: 'belgium.md', label: 'part 2 window is 21 calendar days', pattern: /21 calendar days/},
   {case: '—', pack: 'belgium.md', label: 'part 1 alone does not discharge the duty', pattern: /part 1 alone does not discharge the duty/i},
   {case: '—', pack: 'belgium.md', label: 'supplementing act identified, not read', pattern: /wet van 30 juli 2018/},
@@ -63,6 +64,7 @@ const REQUIRED = [
   {case: 'C14', pack: 'germany.md', label: 'no transitional rule for receiving', pattern: /no transition for receiving/i},
   {case: '—', pack: 'germany.md', label: 'retention period is eight years', pattern: /\*\*eight years\*\*/},
   {case: '—', pack: 'germany.md', label: 'validation may be relied on; keep the report', pattern: /validation report/i},
+  {case: '—', pack: 'germany.md', label: '§69g(2) voids terms against the user floor', pattern: /§ 69d Absatz 2, 3, 5 oder 7 oder zu § 69e stehen, sind nichtig/},
 
   // --- France ----------------------------------------------------------------
   {case: 'C15', pack: 'france.md', label: 'receiving in force from 2026-09-01', pattern: /2026-09-01/},
@@ -104,6 +106,11 @@ const REQUIRED = [
   // this pack must not be told payment or an invoice can transfer copyright.
   {case: '—', pack: 'netherlands.md', label: 'transfer needs a deed under art. 3:95 BW', pattern: /art\. 3:95 BW/},
   {case: '—', pack: 'netherlands.md', label: 'narrow construction follows the human creator', pattern: /not whoever holds the title/i},
+  // The Dutch software-user provisions invert the pattern of the other three.
+  // Both halves must survive: the protection of error correction, and the
+  // refusal to conclude anything from the silence in 45k-45m.
+  {case: '—', pack: 'netherlands.md', label: 'art. 45j protects error correction from contract', pattern: /kan niet bij overeenkomst\s+worden verboden/},
+  {case: '—', pack: 'netherlands.md', label: 'silence in 45k-45m is not read as waivable', pattern: /Do not conclude from that silence/i},
 
   // --- Shared EU layers ------------------------------------------------------
   {case: '—', pack: 'eu-gdpr.md', label: '72-hour notification', pattern: /72 hours/},

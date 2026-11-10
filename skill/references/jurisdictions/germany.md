@@ -257,6 +257,23 @@ Since §69b does not transfer anything for commissioned work, the client's posit
 
 So the useful instruction is not "you keep your rights" but: **name the types of use in writing**. Silence does not favour either party; it just makes the answer turn on what a court decides the purpose was.
 
+### The floor §31(5) cannot reach — §69d and §69g(2)
+
+Sources: [§69d UrhG](https://www.gesetze-im-internet.de/urhg/__69d.html) and [§69g UrhG](https://www.gesetze-im-internet.de/urhg/__69g.html) · *primary legislation read and quoted* · **[checked 2026-11-10]**
+
+§31(5) decides what the *contract* conveys. Separately, §69d gives whoever is entitled to use a copy a set of acts needing no consent, and **§69g(2) makes a contrary term void**: *"Vertragliche Bestimmungen, die in Widerspruch zu § 69d Absatz 2, 3, 5 oder 7 oder zu § 69e stehen, sind nichtig."*
+
+| | What | Can a contract remove it? |
+| --- | --- | --- |
+| §69d(1) | Acts under §69c no. 1 and 2 necessary for **use in accordance with the program's purpose, including error correction** | **Yes** — it applies only *"soweit keine besonderen vertraglichen Bestimmungen vorliegen"* |
+| §69d(2) | A **Sicherungskopie** by a person entitled to use the program, where needed to secure future use. The statute says directly that it *"darf nicht vertraglich untersagt werden"* | **No** |
+| §69d(3) | **Observe, study or test** the program's functioning to determine the underlying ideas and principles, during acts they are entitled to perform | **No** |
+| §69e | **Decompilation** for interoperability | **No** |
+
+So the German answer has two layers: a contract-dependent scope under §31(5), sitting on a statutory floor the contract cannot cut into. **Error correction is the one item in that floor a contract can displace** — the same asymmetry Belgium and France have, and the term worth settling on purpose. See the four-way comparison in [README.md](README.md).
+
+Also in §69d, and specific to Germany among these packs: **text and data mining** under §44b is expressly permitted for computer programs, including under §69c no. 2 — relevant to a founder whose product reads other software's output at scale. §69d(6) excludes §60d, so the research-TDM exception does not apply to programs.
+
 Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
 ---
@@ -320,6 +337,9 @@ The `BDSG` and the competent state authority's own guidance are **[not researche
 | Indizwirkung of §§308/309 under §307 in B2B | 2026-11-10 | **Resolved** — BGH NJW 2007, 3774 via consistent commentary; judgment not read |
 | How far trade custom under §310(1) rebuts that indication | — | Not researched |
 | §69b UrhG: employer for employees/service relationships; silent on commissioned work | 2026-11-10 | **Primary legislation read and quoted** |
+| §69d: use for purpose incl. error correction, Sicherungskopie, study, TDM under §44b | 2026-11-10 | **Primary legislation read and quoted** |
+| §69g(2): terms contrary to §69d(2),(3),(5),(7) or §69e are `nichtig`; §69d(1) is waivable | 2026-11-10 | **Primary legislation read and quoted** |
+| §69e itself, the decompilation conditions | — | Not researched — named by §69g(2), text not read |
 | §31(5) UrhG Zweckübertragungsregel: unnamed uses read by contract purpose; simple vs exclusive | 2026-11-10 | **Primary legislation read and quoted** |
 | Competent authority is the Land authority, not the BfDI; 16 entries listed | 2026-11-10 | **BfDI's own directory read** |
 | Which Land splits public and private supervision (the 17/18 counts) | — | Not researched |
