@@ -180,7 +180,8 @@ Breach notification goes to the GBA, on the 72-hour clock in [eu-gdpr.md](eu-gdp
 | Software ownership: author, employee, commissioned | 2026-11-10 | Official page read, with quoted rules |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
-| Belgian DPA (GBA/APD) own guidance | — | Not researched |
+| GBA: register duty for controllers and processors; named SME publications | 2026-11-10 | Authority pages read; individual publications not read |
+| Contents of the GBA's SME publications; Belgian national GDPR provisions | — | Not researched |
 | EU AI Act | 2026-11-10 | Factored into eu-ai-act.md |
 
 Next full recheck due: **2027-05-10**. Earlier if the e-invoicing law is adjusted for non-established taxpayers, or before 2027-01-01 for the VAT threshold step.

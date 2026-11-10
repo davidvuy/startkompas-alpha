@@ -219,10 +219,14 @@ Point a French founder at the CNIL's own checklist rather than paraphrasing it. 
 | Formats UBL 2.1 / CII / Factur-X | 2026-11-10 | Official EU source read |
 | Official start guide for 2026-09-01 | — | Not researched |
 | economie.gouv.fr reform page | 2026-11-10 | **Fetch failed, HTTP 403 — not read** |
-| Registration documents, fees, timelines | — | Not researched |
+| Guichet unique mandatory since 2023-01-01; filing window, documents, free for micro, RDDCE receipt | 2026-11-10 | **Official page read** |
 | L442-1 I C.com: déséquilibre significatif triggers civil liability and damages | 2026-11-10 | **Primary legislation read and quoted** |
+| Art. 1171 C.civ: non-negotiable clause deemed unwritten; object and price excluded | 2026-11-10 | **Primary legislation read** |
+| Interaction between L442-1 and art. 1171 (contested; case law exists) | — | Not researched |
 | L113-9 CPI: devolved to employer for employees and public agents, incl. documentation; contract may displace | 2026-11-10 | **Primary legislation read and quoted** |
+| Client's permitted use for commissioned software; moral rights in software | — | Not researched |
 | CNIL small-business offering incl. registre des traitements and AI fact sheets | 2026-11-10 | Official landing page read |
+| The CNIL's individual guides and TPE-PME checklist | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2027-09-01, when the issuing obligation reaches small businesses.

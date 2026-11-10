@@ -188,10 +188,17 @@ The `BDSG` and the competent state authority's own guidance are **[not researche
 | Email address sufficient for reception | 2026-11-10 | Official EU source read |
 | Formats XRechnung / ZUGFeRD 2.2.0 / Peppol BIS 3.0 | 2026-11-10 | Official EU source read |
 | BMF letters 2024, 2025-10-15, 2026-10-15; structured-part rule; non-objection to 2026-12-31 | 2026-11-10 | Chamber summary read; **BMF letters themselves not read** |
-| Registration route (Gewerbe vs freier Beruf) | — | Not researched |
+| §18 EStG: freiberufliche categories, Katalogberufe, ähnliche Berufe | 2026-11-10 | **Primary legislation read and quoted** |
+| Registration route, chamber membership, Gewerbesteuer consequences | 2026-11-10 | Chamber guidance read |
+| Whether a software developer is `ingenieurähnlich` | — | Open by nature — a Steuerberater question, not researchable here |
+| Municipal Gewerbeanmeldung documents and fees; the €24,500 allowance in §11 GewStG | — | Not researched |
 | §310(1) BGB: §§308/309 catalogue disapplied in B2B, §307 general test survives | 2026-11-10 | **Primary legislation read and quoted** |
+| Indizwirkung of §§308/309 under §307 in B2B | 2026-11-10 | **Resolved** — BGH NJW 2007, 3774 via consistent commentary; judgment not read |
+| How far trade custom under §310(1) rebuts that indication | — | Not researched |
 | §69b UrhG: employer for employees/service relationships; silent on commissioned work | 2026-11-10 | **Primary legislation read and quoted** |
+| What applies instead of §69b for commissioned work — the client's implied licence | — | Not researched |
 | Competent authority is the Land authority, not the BfDI | 2026-11-10 | Consistent secondary; BfDI list not read |
+| BDSG, and the competent Land authority's own guidance | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2026-12-31, when the BMF non-objection period ends, and before 2027-01-01 when the first issuing phase begins.

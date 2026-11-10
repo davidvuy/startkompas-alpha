@@ -39,16 +39,34 @@ function inspect(file) {
   const checked = dates(/\[checked (\d{4}-\d{2}-\d{2})/g);
   const carried = dates(/\[carried (\d{4}-\d{2}-\d{2})/g);
 
+  // The body marks gaps inline; the maintenance table lists them as rows. They
+  // drift — a topic gets researched, the prose is updated, the row is not. The
+  // two counts are not 1:1 (one sentence can cover several rows), so a mismatch
+  // is reported rather than failed. Zero on one side and not the other is
+  // unambiguous drift, and that does fail.
+  const bodyMarkers = (text.match(/\[not researched\]/g) ?? []).length;
+  const tableRows = (text.match(/^\|.+\|\s*—\s*\|\s*Not researched\s*\|/gim) ?? []).length;
+
   const entry = {
     pack: file,
     recheck_due: due,
     newest_checked: checked.at(-1) ?? null,
     oldest_checked: checked[0] ?? null,
     oldest_carried: carried[0] ?? null,
-    open_topics: (text.match(/\[not researched\]/g) ?? []).length,
+    open_topics: bodyMarkers,
+    open_rows: tableRows,
     problems: [],
     warnings: [],
   };
+
+  if (bodyMarkers > 0 && tableRows === 0)
+    entry.problems.push(
+      `${bodyMarkers} [not researched] marker(s) in the body but no "Not researched" row in the maintenance table — the table is stale`,
+    );
+  if (tableRows > 0 && bodyMarkers === 0)
+    entry.problems.push(
+      `${tableRows} "Not researched" row(s) in the maintenance table but no marker in the body — the table claims gaps the prose has closed`,
+    );
 
   if (!due) {
     entry.problems.push('no "Next full recheck due" date');
@@ -74,7 +92,9 @@ function inspect(file) {
   }
 
   if (entry.open_topics > 0)
-    entry.warnings.push(`${entry.open_topics} topic(s) marked [not researched]`);
+    entry.warnings.push(
+      `${entry.open_topics} topic(s) marked [not researched] in the body, ${entry.open_rows} row(s) in the table`,
+    );
 
   return entry;
 }

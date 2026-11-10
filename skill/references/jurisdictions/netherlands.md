@@ -192,11 +192,15 @@ The AP publishes a `stappenplan` for controllers and one for acting on a data br
 | EU-KOR: €100,000 Union threshold, national thresholds also apply, NL establishment, quarterly report | 2026-11-10 | Tax authority page read |
 | EU-KOR start date 2025-01-01 and €100,000 Union cap | 2026-11-10 | **Primary EU legislation read** — see eu-vat-sme.md |
 | Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | KVK pages read |
-| Registration fee, identification, timeframe | — | Not researched |
+| Registration fee €85.15, one-off, annually indexed | 2026-11-10 | **Official page read** |
+| Required identification documents and processing timeframe | — | Not researched |
 | Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-10 | **Primary legislation read per article and quoted** |
 | Consumer-only lists (6:236/6:237) and reflexwerking boundaries | 2026-11-10 | Secondary consistent; case law not read |
 | Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | **Primary legislation read and quoted** |
+| Client's permitted use for commissioned software; art. 8 Auteurswet | — | Not researched |
+| The Contourenbrief of 2026-09-11 itself | — | Not researched — only secondary reporting of it |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
+| The AP's stappenplan documents | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier when the Q4 2026 internet consultation opens.
