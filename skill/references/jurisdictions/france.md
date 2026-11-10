@@ -186,7 +186,20 @@ Note that L113-9 expressly covers **the documentation** as well as the software,
 
 Practical consequence for a solo founder: L113-9 does **not** apply to you, because you are not your client's employee. The default is that **you keep the economic rights** in commissioned software, and a client who wants them needs an express stipulation. A founder who paid a freelancer gains nothing from L113-9 either.
 
-**Open:** the default scope of a client's permitted use for commissioned software, and the French rules on moral rights in software, are **[not researched]**.
+### Moral rights in software are deliberately narrowed
+
+Source: [article L121-7 CPI](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006278899) · *primary legislation*, in force since 1994-05-11 · **[checked 2026-11-10]**
+
+Unlike authors of other works, a software author **cannot**, absent more favourable stipulations:
+
+1. **oppose modification** of the software by the right holder under art. L122-6, where the modification does not harm their honour or reputation
+2. exercise their **`droit de repentir` or `droit de retrait`** — the right to reconsider or withdraw the work
+
+**What this means for a founder.** French moral rights do not give you a veto after delivery. You cannot later object to a client modifying the software, and you cannot pull it back. If you need control over how the work evolves, it has to be a **contractual** term — the general `droit d'auteur` intuition that an author always retains a say does not hold for software.
+
+Note the opening words, though: *"sauf stipulation contraire plus favorable à l'auteur"*. The narrowing is a default, and a contract **can** restore more to the author. That is a drafting opportunity, not a fixed ceiling.
+
+**Open:** the default scope of a client's permitted use for commissioned software — the French equivalent of Germany's §31(5) purpose rule — is **[not researched]**.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
@@ -232,7 +245,8 @@ Point a French founder at the CNIL's own checklist rather than paraphrasing it. 
 | Art. 1171 C.civ: non-negotiable clause deemed unwritten; object and price excluded | 2026-11-10 | **Primary legislation read** |
 | Interaction between L442-1 and art. 1171 (contested; case law exists) | — | Not researched |
 | L113-9 CPI: devolved to employer for employees and public agents, incl. documentation; contract may displace | 2026-11-10 | **Primary legislation read and quoted** |
-| Client's permitted use for commissioned software; moral rights in software | — | Not researched |
+| L121-7 CPI: software moral rights narrowed — no veto on modification, no repentance or withdrawal | 2026-11-10 | **Primary legislation read** |
+| Client's permitted use for commissioned software (the French §31(5) equivalent) | — | Not researched |
 | CNIL small-business offering incl. registre des traitements and AI fact sheets | 2026-11-10 | Official landing page read |
 | The CNIL's individual guides and TPE-PME checklist | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |

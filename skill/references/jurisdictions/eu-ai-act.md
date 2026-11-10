@@ -29,7 +29,27 @@ That last row is the one that matters here. A founder drafting an offer with an 
 
 The Act distinguishes the party that **develops and places a system on the market** (provider) from the party that **uses it and ensures human oversight** (deployer).
 
-A founder using a commercial assistant is a **deployer**, not a provider. A founder who builds a product on top of a model and sells it may become a provider for that product — a different and heavier position, and **[not researched]** here.
+A founder using a commercial assistant is a **deployer**, not a provider.
+
+### When a deployer becomes a provider — article 25
+
+Source: [Article 25, AI Act](https://artificialintelligenceact.eu/article/25/) · *structured per-article reproduction* · **[checked 2026-11-10]**
+
+A distributor, importer or **deployer** is treated as the provider of a **high-risk** system in three cases:
+
+1. They **put their own name or trademark** on a high-risk system already placed on the market or put into service.
+2. They make a **substantial modification** after it was placed on the market, such that it affects compliance or changes the intended purpose, and it **remains high-risk** under art. 6.
+3. They **modify the intended purpose** of a general-purpose AI system that was not classified as high-risk, in a way that **turns it into** a high-risk system under art. 6.
+
+When that happens, the original provider **stops being the provider**, and must cooperate by supplying technical documentation, disclosing limitations and granting testing access — **unless** it had explicitly specified that the system must not be modified into a high-risk one.
+
+**The boundary that matters for a founder.** All three triggers require the system to **be or become high-risk**. White-labelling a general assistant for an ordinary, minimal-risk business purpose does not make a founder a provider under art. 25.
+
+But white-labelling it for a purpose the Act treats as high-risk does — and §1 names two that sit squarely in this skill's territory: **employment screening and credit scoring**. A founder who wraps a model in their own brand and sells it as a CV-screening tool has, on the face of art. 25, become the **provider** of a high-risk system, with the full provider obligations that follow. That is a different business, not a feature.
+
+Note the escape hatch in the last clause: a provider can contractually specify that its system must not be modified into a high-risk one. Read your vendor's terms — if they say that, the modification is a breach of contract as well as a regulatory step.
+
+**Open:** what the full provider obligations for a high-risk system actually are is **[not researched]** — deliberately, because a founder reaching that point needs a specialist, not a pack entry.
 
 ## 3. What actually binds a deployer outside high risk
 
@@ -103,7 +123,8 @@ Two of these are already behind us at this pack's check date, and **general appl
 | Art. 50 deployer transparency: three situations and their exceptions | 2026-11-10 | **Article text read** |
 | No further AI Act duties on a minimal-risk deployer | 2026-11-10 | Follows from the risk-based approach; not a provision read |
 | Marketing content as public-interest text under art. 50 | — | Not researched |
-| When a founder becomes a provider | — | Not researched |
+| Art. 25: three triggers by which a deployer becomes a provider — all require high risk | 2026-11-10 | **Article text read** |
+| The full provider obligations for a high-risk system | — | Not researched, deliberately — that founder needs a specialist |
 
 | National authorities and penalties | — | Not researched |
 

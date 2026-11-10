@@ -163,7 +163,19 @@ The Dutch construction is distinctive: the employer is treated as the **author**
 
 Practical consequence for a solo founder: article 7 does **not** apply to you, because a commission is not a `dienstbetrekking`. The default is that **you remain the maker and keep the rights** in commissioned software, and a client who wants them needs an agreed transfer. A founder who paid a freelancer gains nothing from article 7.
 
-**Open:** the default scope of a client's permitted use for commissioned software, and article 8 Auteurswet on works published by a legal person, are **[not researched]**.
+### Article 8 — a risk a founder would not guess
+
+Source: [art. 8 Auteurswet](https://www.wetboek.org/aw/8) · *primary legislation* · **[checked 2026-11-10]**
+
+> *"Indien eene openbare instelling, eene vereeniging, stichting of vennootschap, een werk als van haar afkomstig openbaar maakt, zonder daarbij eenig natuurlijk persoon als maker er van te vermelden, wordt zij, tenzij bewezen wordt, dat de openbaarmaking onder de bedoelde omstandigheden onrechtmatig was, als de maker van dat werk aangemerkt."*
+
+Where a public institution, association, foundation or company **publishes a work as its own without naming any natural person as maker**, that organisation is deemed the maker — unless it is proved the publication was unlawful in the circumstances.
+
+**Why this matters to a founder, and it is the opposite direction from art. 7.** Article 7 is about employment and does not reach an `opdracht`. Article 8 is about **publication**, and it does not care how the work was commissioned. So a client company that publishes the founder's work under its own name, without crediting them, can be **deemed the maker** of it.
+
+The protection is the rebuttal — proving the publication was unlawful — which is a dispute, not a safeguard. The practical instruction is simple and worth giving every time: **be named**. Put attribution in the deliverable and in the contract. For a Dutch founder that is not vanity; it is what keeps art. 8 from operating against them.
+
+**Open:** the default scope of a client's permitted use for commissioned software — the Dutch equivalent of Germany's §31(5) purpose rule — is **[not researched]**.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
@@ -202,7 +214,8 @@ The AP publishes a `stappenplan` for controllers and one for acting on a data br
 | Consumer-only lists (6:236/6:237) and reflexwerking boundaries | 2026-11-10 | Secondary consistent; case law not read |
 | Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | **Primary legislation read and quoted** |
 | Art. 7:400 BW defines opdracht as "other than under an employment contract" | 2026-11-10 | **Primary legislation read** |
-| Client's permitted use for commissioned software; art. 8 Auteurswet | — | Not researched |
+| Art. 8 Auteurswet: publisher deemed maker where no natural person is named | 2026-11-10 | **Primary legislation read and quoted** |
+| Client's permitted use for commissioned software (the Dutch §31(5) equivalent) | — | Not researched |
 | The Contourenbrief of 2026-09-11 itself | — | Not researched — only secondary reporting of it |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
 | The AP's stappenplan documents | — | Not researched |
