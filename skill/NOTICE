@@ -1,0 +1,23 @@
+Startkompas skill
+Copyright (c) 2026 Startkompas contributors. MIT (see LICENSE).
+
+All instruction text, references and the dossier format in this folder are
+original work, rewritten from the earlier MIT-licensed Startkompas skill
+instructions in this repository for host-neutral, runtime-free use.
+
+No third-party scaffold material is retained in this folder. In particular it
+contains no generated skill-creator scaffold, no Apache-2.0 licensed template
+material and no vendor-specific metadata file. The Apache-2.0 notice required by
+the earlier .agents/skills/startkompas copy therefore does not apply here; that
+earlier copy and its LICENSE-APACHE-2.0 remain unchanged in this repository.
+
+No bundled dependencies, fonts, images or other binary assets are included, so
+no dependency licence texts are required.
+
+Public-source facts in references/jurisdictions/ are summarized in original
+words with links to the official sources. No substantial source text is copied.
+Linking a source does not import its content or its terms into this licence, and
+the publishing bodies do not endorse this work.
+
+Nothing here is legal, tax, accounting or security advice, and no independent
+reviewer has reviewed it.
