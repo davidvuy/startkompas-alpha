@@ -117,6 +117,6 @@ The BDSG and the relevant state authority's own guidance are **[not researched]*
 | BDSG and state supervisory guidance | — | Not researched |
 | EDPB roles and security guidance | 2026-10-27 | Not refetched |
 
-Next full recheck due: **2027-05-10.** Earlier before 2027-01-01, when the first issuing phase begins.
+Next full recheck due: **2027-05-10**. Earlier before 2027-01-01, when the first issuing phase begins.
 
 No independent German legal, tax or security reviewer has reviewed this pack.

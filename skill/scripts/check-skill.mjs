@@ -131,10 +131,18 @@ if (existsSync(packDir)) {
 
 if (!existsSync(join(root, 'references'))) fail('references/', 'missing');
 
+// Backlog item 68: growth should be a decision, not a drift. Raise this
+// deliberately in a commit of its own if a pack genuinely needs the room.
+const SIZE_BUDGET_KB = 256;
 const bytes = files.reduce((sum, f) => sum + statSync(f).size, 0);
-notes.push(`${files.length} files, ${(bytes / 1024).toFixed(1)} KB total`);
-if (bytes > 512 * 1024)
-  fail('.', `skill is ${(bytes / 1024).toFixed(0)} KB; keep it lean enough to read`);
+notes.push(
+  `${files.length} files, ${(bytes / 1024).toFixed(1)} KB of ${SIZE_BUDGET_KB} KB budget`,
+);
+if (bytes > SIZE_BUDGET_KB * 1024)
+  fail(
+    '.',
+    `skill is ${(bytes / 1024).toFixed(0)} KB, over the ${SIZE_BUDGET_KB} KB budget; trim it or raise the budget on purpose`,
+  );
 
 const binary = files.filter((f) => /\.(mp4|png|jpg|jpeg|ttf|otf|woff2?|zip|pdf)$/i.test(f));
 for (const f of binary) fail(rel(f), 'binary asset does not belong in a skill');

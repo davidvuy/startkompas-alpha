@@ -116,6 +116,6 @@ Dutch-specific guidance from the Autoriteit Persoonsgegevens is **[not researche
 | Ownership of commissioned software | — | Not researched |
 | EDPB roles and security guidance | 2026-10-27 | Not refetched |
 
-Next full recheck due: **2027-05-10.** Earlier when the Dutch e-invoicing bill is published for consultation.
+Next full recheck due: **2027-05-10**. Earlier when the Dutch e-invoicing bill is published for consultation.
 
 No independent Dutch legal, tax or security reviewer has reviewed this pack.

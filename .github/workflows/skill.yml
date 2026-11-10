@@ -1,0 +1,103 @@
+name: Skill
+# Backlog items 59-64, 68. The skill has no dependencies, so none of these jobs
+# installs anything: no npm ci, no lockfile, no cache.
+on:
+  push:
+    branches: [main, skill-first]
+  pull_request:
+  schedule:
+    # Mondays 06:17 UTC. Packs rot silently; this is what makes it loud.
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: skill-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  structure:
+    name: Structure, links and host neutrality
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          package-manager-cache: false
+          node-version: '24.x'
+
+      - name: Frontmatter, links, runtime-freedom, host neutrality, size budget
+        working-directory: skill
+        run: node scripts/check-skill.mjs
+
+      - name: External source URLs
+        working-directory: skill
+        # Fails only on 404/410 or a host that does not resolve. A 403 or a
+        # redirect is reported, because official portals do both routinely.
+        run: node scripts/check-links.mjs
+
+      - name: Pack freshness
+        working-directory: skill
+        run: node scripts/check-freshness.mjs
+
+  stale-packs:
+    name: Open an issue for stale packs
+    # Only on the schedule: a pack going stale is not a reason to fail a PR.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          package-manager-cache: false
+          node-version: '24.x'
+
+      - name: Report freshness
+        id: freshness
+        working-directory: skill
+        run: |
+          set +e
+          node scripts/check-freshness.mjs > freshness.txt
+          echo "stale=$?" >> "$GITHUB_OUTPUT"
+          cat freshness.txt
+
+      - name: Open or update the recheck issue
+        if: steps.freshness.outputs.stale != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: 'Jurisdiction packs need a recheck'
+        working-directory: skill
+        run: |
+          set -euo pipefail
+          {
+            echo "A scheduled check found at least one jurisdiction pack past its recheck date,"
+            echo "or carrying a claim older than the six-month limit in"
+            echo "\`skill/references/jurisdictions/README.md\`."
+            echo
+            echo "A stale pack is worse than a missing one, because it reads as authoritative."
+            echo
+            echo '```'
+            cat freshness.txt
+            echo '```'
+            echo
+            echo "Recheck the flagged claims against their primary source, update the check date"
+            echo "even when nothing changed, and re-run the affected eval cases — they encode dates."
+            echo
+            echo "_Opened automatically by \`.github/workflows/skill.yml\`._"
+          } > body.md
+
+          existing=$(gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file body.md
+          else
+            gh issue create --title "$TITLE" --body-file body.md
+          fi

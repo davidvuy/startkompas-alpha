@@ -149,6 +149,6 @@ CNIL's own guidance is **[not researched]** and would be the better source for a
 | CNIL guidance | — | Not researched |
 | EDPB roles and security guidance | 2026-10-27 | Not refetched |
 
-Next full recheck due: **2027-05-10.** Earlier before 2027-09-01, when the issuing obligation reaches small businesses, and on enactment of the PLF 2026.
+Next full recheck due: **2027-05-10**. Earlier before 2027-09-01, when the issuing obligation reaches small businesses, and on enactment of the PLF 2026.
 
 No independent French legal, tax or security reviewer has reviewed this pack.
