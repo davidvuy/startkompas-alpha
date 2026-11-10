@@ -98,6 +98,38 @@ Do not generalize from Belgium or from any other pack. Rules that look similar b
 4. State plainly what you could not verify. An unchecked topic stays unresolved and keeps blocking the condition it blocks.
 5. Never produce a number — a threshold, rate, deadline or fee — that you did not read in a source you actually fetched in this session or that is not recorded in a pack. If asked for one you cannot verify, say so and name the body that publishes it.
 
+## The pack template
+
+Two kinds of file live here, distinguished by name:
+
+- **`eu-*.md` — a shared legal layer.** A rule that is identical across member states, stated once instead of four times. These have their own shape.
+- **anything else — a national pack.** These must follow the six-section template below, so a reader finds the same topic in the same place in every country.
+
+`scripts/check-skill.mjs` enforces the national template. If you reorder or rename a section, the build fails and names the section.
+
+```
+# <Country> — jurisdiction pack
+
+Scope: ...                       who this pack is for
+Out of scope: ...                what needs separate research
+**This pack is preparation, not advice.**
+Verification convention: ...     what [checked] and [not researched] mean
+
+## 1. Registration and formalities
+## 2. VAT — <the national scheme's own name>
+## 3. B2B e-invoicing — <its current status>
+## 4. Agreements and unfair terms
+## 5. Ownership and permitted use
+## 6. Data protection             national authority; link the shared EU layers
+
+## Pack maintenance
+| Claim | Check date | Status |   one row per substantive claim
+Next full recheck due: **YYYY-MM-DD**.
+<a line stating no independent reviewer has reviewed this pack>
+```
+
+Sections 2 and 3 take the local name and status after the dash. Sections 1, 4, 5 and 6 are fixed. Within a section, use the structure the existing packs use: a source line with its type and check date, then a table where there are distinct cases, then the practical consequence for a founder, then what remains open.
+
 ## Contributing a pack
 
 A pack is only worth having if it is verifiable. Requirements:

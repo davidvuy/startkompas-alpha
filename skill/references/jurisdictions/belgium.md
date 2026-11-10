@@ -10,7 +10,7 @@ Verification convention: **[checked YYYY-MM-DD]** means the source page was actu
 
 ---
 
-## 1. Starting as self-employed — formalities
+## 1. Registration and formalities
 
 Source: [FPS Economy — procedures for the self-employed](https://economie.fgov.be/en/themes/enterprises/starting-business/procedures-self-employed) · *official* · **[checked 2026-11-10]**
 
@@ -74,7 +74,7 @@ Recheck triggers: turnover approaching the threshold; the start of any calendar 
 
 ---
 
-## 3. B2B structured electronic invoicing — in force now
+## 3. B2B e-invoicing — in force now
 
 **Already in effect.** Applies to invoices *created, issued or sent* from **2026-01-01** (`opgemaakt, uitgereikt of verzonden vanaf 1 januari 2026`).
 
@@ -99,7 +99,7 @@ Recheck triggers: the announced legal adjustment for non-established taxpayers; 
 
 ---
 
-## 4. B2B agreements and unfair terms
+## 4. Agreements and unfair terms
 
 **B2B does not mean unrestricted contracting.** Belgian law applies unfair-terms control between businesses, in three layers.
 

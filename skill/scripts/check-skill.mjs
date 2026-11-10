@@ -143,7 +143,19 @@ for (const file of modelFacing) {
   }
 }
 
-// --- 6. Jurisdiction packs stay discoverable and dated -----------------------
+// --- 6. Jurisdiction packs stay discoverable, dated and on-template ----------
+// Naming convention: `eu-*.md` is a shared legal layer, anything else is a
+// national pack and must follow the six-section template so a reader can find
+// the same topic in the same place in every country.
+
+const NATIONAL_TEMPLATE = [
+  /^## 1\. Registration and formalities$/m,
+  /^## 2\. VAT — .+$/m,
+  /^## 3\. B2B e-invoicing — .+$/m,
+  /^## 4\. Agreements and unfair terms$/m,
+  /^## 5\. Ownership and permitted use$/m,
+  /^## 6\. Data protection$/m,
+];
 
 if (existsSync(packsDir)) {
   const index = existsSync(packIndexFile) ? readFileSync(packIndexFile, 'utf8') : '';
@@ -152,6 +164,9 @@ if (existsSync(packsDir)) {
   const packs = readdirSync(packsDir)
     .filter((file) => file.endsWith('.md') && file !== 'README.md')
     .sort();
+
+  const shared = packs.filter((pack) => pack.startsWith('eu-'));
+  const national = packs.filter((pack) => !pack.startsWith('eu-'));
 
   for (const pack of packs) {
     const where = `references/jurisdictions/${pack}`;
@@ -165,10 +180,24 @@ if (existsSync(packsDir)) {
       report.fail(where, 'no [checked YYYY-MM-DD] marker on any claim');
     if (!/Next full recheck due/i.test(text))
       report.fail(where, 'no recheck due date; packs rot silently without one');
+    if (!/not advice/i.test(text))
+      report.fail(where, 'no "not advice" line; every pack must disclaim it');
+  }
+
+  // The template applies to national packs only; shared layers have their own shape.
+  for (const pack of national) {
+    const text = readFileSync(join(packsDir, pack), 'utf8');
+    for (const [index_, heading] of NATIONAL_TEMPLATE.entries()) {
+      if (!heading.test(text))
+        report.fail(
+          `references/jurisdictions/${pack}`,
+          `section ${index_ + 1} missing or off-template; expected ${heading}. See the template in the pack index.`,
+        );
+    }
   }
 
   if (packs.length === 0) report.note('no jurisdiction packs');
-  else report.note(`${packs.length} jurisdiction pack(s): ${packs.join(', ')}`);
+  else report.note(`${national.length} national pack(s) on template, ${shared.length} shared layer(s)`);
 }
 
 // --- 7. Self-containment, size and no binaries -------------------------------

@@ -101,7 +101,7 @@
     },
     {
       "path": ".github/workflows/quality.yml",
-      "sha256": "896f046131145f44233fae6874106987b829898991519ce26345b978c75c8392"
+      "sha256": "e5500e59646b603bc227bf866a5ec8f5bf8ecf83111e2c6a04d249a291bdedca"
     },
     {
       "path": ".github/workflows/secrets.yml",
@@ -169,7 +169,7 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "4dc6eb02ef05533b3b9a4484443061a40e0680c324beb2c8a063b4675d72fcbe"
+      "sha256": "216e7cd21f85d47807d55306e4fc11b0801f5691120ee27e2dcc5efe5c892bed"
     },
     {
       "path": "docs/alpha-changelog.md",
@@ -310,6 +310,10 @@
     {
       "path": "docs/quickstart.nl.md",
       "sha256": "e14136ee6ca753821752b01441817335a8c971d2871e9d8234de569d097733df"
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "60ee9586815a6e54ab5669cf45c34cfc3f70780fbc366133a76507eb9e966822"
     },
     {
       "path": "docs/research-assistance-evaluation.md",
@@ -700,6 +704,10 @@
       "sha256": "abd0df9b885847aeaa3e05e689fa8a2efdcab156b60786364eff92231b2fa02e"
     },
     {
+      "path": "scripts/check-doc-links.mjs",
+      "sha256": "62c3231e8a0dc1f50523db9a33f213346494831cab3bfa512a24b73ae3117091"
+    },
+    {
       "path": "scripts/check-installed-skill.mjs",
       "sha256": "2830d5457d4a9276299d3e1fdd858fff1720f85c543f5c83c4e725b8d69cfbc2"
     },
@@ -725,7 +733,7 @@
     },
     {
       "path": "SECURITY.md",
-      "sha256": "4f9a0e582cbae42c1780c836875a25f5ab258cefbc5d30fbfb7271ecdc66652a"
+      "sha256": "5dc8ff5ef15cfe4f8fd7c0a46c570bba2b56f612035139c5c3f3c9681c02ac84"
     },
     {
       "path": "src/affected-sections.mjs",

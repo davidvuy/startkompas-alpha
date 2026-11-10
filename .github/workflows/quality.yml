@@ -51,4 +51,10 @@ jobs:
         with:
           package-manager-cache: false
           node-version: '26.7.0'
+
+      # Repository-wide, so it belongs in the job that runs once rather than
+      # across the six-way test matrix. No network and no dependencies.
+      - name: Relative markdown links across the repository
+        run: node scripts/check-doc-links.mjs
+
       - run: npm audit --omit=dev --audit-level=high
