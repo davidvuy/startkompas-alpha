@@ -660,6 +660,10 @@
       "sha256": "d16370dee889c4f01792412fca8cfd9a6ba85313d0b621ce5701648198698b77"
     },
     {
+      "path": "scripts/ci.test.mjs",
+      "sha256": "d83a6f2424a322d59948162fc9bb06a1c71f43f190110bb0fe1c1103f6e4958a"
+    },
+    {
       "path": "scripts/refresh-public-manifest.mjs",
       "sha256": "2ffbc424064acf3c48746e03e4d67f7708e0f93a13a4797ecbb23d07060ab20a"
     },
