@@ -76,6 +76,10 @@ const REQUIRED = [
   {case: 'C17', pack: 'france.md', label: 'current-year threshold EUR 41,250', pattern: /€41,250/},
   {case: '—', pack: 'france.md', label: 'ownership provision', pattern: /L113-9/},
   {case: '—', pack: 'france.md', label: 'unfair terms provision', pattern: /L442-1/},
+  // L122-6-1 VIII: the floor for a lawful software user is partly unwaivable.
+  // If this is ever softened to "the contract decides", the pack is wrong.
+  {case: '—', pack: 'france.md', label: 'L131-3 four-dimension delimitation', pattern: /\*\*extent\*\*, \*\*destination\*\*, \*\*place\*\* and \*\*duration\*\*/},
+  {case: '—', pack: 'france.md', label: 'L122-6-1 floor is partly unwaivable', pattern: /stipulations contrary to II, III and IV are \*\*void\*\*/},
   // The CNIL/Bpifrance PME guide is pre-GDPR-application. Losing the date would
   // turn awareness material from April 2018 back into current guidance.
   {case: '—', pack: 'france.md', label: 'CNIL/Bpifrance PME guide dated April 2018', pattern: /\*\*April 2018\*\*/},
@@ -96,6 +100,10 @@ const REQUIRED = [
   {case: '—', pack: 'netherlands.md', label: 'online form is the only channel', pattern: /only channel/i},
   {case: '—', pack: 'netherlands.md', label: 'follow-up notification within 4 weeks', pattern: /within 4 weeks/},
   {case: '—', pack: 'netherlands.md', label: 'reaching the FG is not awareness', pattern: /the DPO is not a buffer/i},
+  // Art. 2(3) Aw: ownership cannot pass without a deed. A founder relying on
+  // this pack must not be told payment or an invoice can transfer copyright.
+  {case: '—', pack: 'netherlands.md', label: 'transfer needs a deed under art. 3:95 BW', pattern: /art\. 3:95 BW/},
+  {case: '—', pack: 'netherlands.md', label: 'narrow construction follows the human creator', pattern: /not whoever holds the title/i},
 
   // --- Shared EU layers ------------------------------------------------------
   {case: '—', pack: 'eu-gdpr.md', label: '72-hour notification', pattern: /72 hours/},

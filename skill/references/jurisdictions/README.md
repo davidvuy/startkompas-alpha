@@ -81,7 +81,20 @@ The Dutch construction is the outlier in *mechanism*: the employer becomes the a
 
 This convergence is itself a verified finding, not an assumption. Each pack cites its own primary source; none borrows another's.
 
-**What the client *does* get is a separate question, and only Germany's answer is recorded.** §31(5) UrhG reads an unspecified grant narrowly: where the types of use are not named, the scope is whatever the **shared contract purpose** implies — so a client who commissioned software for internal use does not automatically acquire resale or sublicensing rights, and a founder who writes nothing down does not keep everything either. The equivalent default for the Netherlands and France is **[not researched]**.
+**What the client *does* get is a separate question, and all four now have an answer — but not to the same depth.** Three rest on primary legislation read per article; Belgium's rests on official guidance only, which the table says. Each reaches "write it down" by a different route, and the differences are drafting instructions, not trivia.
+
+| | Rule on an unwritten or vague grant | Primary source |
+| --- | --- | --- |
+| Germany | **Purpose**. Where the types of use are not named, the scope is whatever the **shared contract purpose** implies | §31(5) UrhG |
+| Netherlands | **Form, then narrow construction**. A transfer needs writing **and a deed** (`akte`, art. 3:95 BW); an exclusive licence needs writing; a non-exclusive licence needs no form. What is granted by the maker covers **only** what is expressly stated or **necessarily** follows from the agreement's nature and purport — and that protection is disapplied for an art. 7 or art. 8 maker, so it follows the human creator | art. 2(3) and 2(5) Auteurswet |
+| France | **Itemisation, plus a floor that cannot be removed**. Each right transferred needs a **distinct mention**, and the domain of exploitation must be bounded as to **extent, destination, place and duration**. Separately, the lawful user keeps a statutory floor — use for its purpose, a backup copy, study and testing, interoperability decompilation — and stipulations against the last three are **void** | art. L131-3 and L122-6-1 CPI |
+| Belgium | **Usage rights, and nothing more.** Official guidance states rights are *"niet automatisch overgedragen"* for commissioned software: by default only **usage rights** pass and the author keeps ownership, and a transfer of the economic rights must be **explicit and in writing**. What that default use *covers* is **[not researched]**, and no primary statute has been read for it | official guidance, not legislation |
+
+Three things worth lifting out:
+
+- **France is the only one of the three with a mandatory floor.** Elsewhere the question is what the contract implies; in France part of the answer is fixed whatever the contract says. A clause removing a client's backup copy or interoperability right is void, not merely unusual.
+- **The Netherlands is the only one with a form requirement for ownership.** No deed, no transfer — so a Dutch founder cannot lose the copyright by invoice and a Dutch client cannot gain it by payment.
+- **Germany and the Netherlands both read silence against the grantee; France reads it against the drafting.** Same practical instruction, three different failure modes.
 
 The instruction that follows is the same in all four regardless: **name the types of use in writing.** Silence favours neither side; it just moves the decision to a court.
 

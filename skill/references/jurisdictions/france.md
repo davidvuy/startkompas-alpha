@@ -249,7 +249,43 @@ Unlike authors of other works, a software author **cannot**, absent more favoura
 
 Note the opening words, though: *"sauf stipulation contraire plus favorable à l'auteur"*. The narrowing is a default, and a contract **can** restore more to the author. That is a drafting opportunity, not a fixed ceiling.
 
-**Open:** the default scope of a client's permitted use for commissioned software — the French equivalent of Germany's §31(5) purpose rule — is **[not researched]**.
+### What the client gets: France answers it twice
+
+France does not have a single purpose rule like Germany's §31(5) UrhG. It has a **ceiling on what a transfer can quietly sweep up**, and a **floor the contract cannot take away**. Both matter, and they pull in opposite directions.
+
+**The ceiling — art. L131-3 CPI**, *primary legislation read and quoted, in force since 1992-07-03* · **[checked 2026-11-10]** · [LEGIARTI000006278958](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006278958)
+
+> *"La transmission des droits de l'auteur est subordonnée à la condition que chacun des droits cédés fasse l'objet d'une mention distincte dans l'acte de cession et que le domaine d'exploitation des droits cédés soit délimité quant à son étendue et à sa destination, quant au lieu et quant à la durée."*
+
+Two requirements, and the second has **four dimensions**:
+
+| | Requirement |
+| --- | --- |
+| Each right | must carry a **distinct mention** in the deed of assignment — a blanket "all rights" clause does not satisfy this |
+| The domain of exploitation | must be delimited as to **extent**, **destination**, **place** and **duration** |
+
+This is stricter and more specific than either the German or the Dutch rule: Germany reads an unnamed use against the contract's purpose, the Netherlands reads a grant narrowly, and France requires the grant to have been **itemised and bounded in the first place**. For a founder drafting either side of a software contract, those four words are the checklist.
+
+**The floor — art. L122-6-1 CPI**, *primary legislation read, version in force 2021-11-26* · **[checked 2026-11-10]** · [LEGIARTI000044365559](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044365559)
+
+For software specifically, the person entitled to use it may do the following **without the author's authorisation**:
+
+| | What | Can the contract remove it? |
+| --- | --- | --- |
+| I | Acts under L122-6 1° and 2° that are **necessary to use the software in accordance with its purpose**, *"y compris pour corriger des erreurs"* | Partly — the author **may contractually reserve** error correction and set conditions for it |
+| II | A **backup copy** where necessary to preserve use of the software | **No** |
+| III | **Observe, study or test** the software's operation or security to determine the underlying ideas and principles, while performing operations they are entitled to perform | **No** |
+| IV | **Reproduce or translate the code** where indispensable to obtain interoperability information for independently created software, under conditions | **No** |
+
+Art. L122-6-1 VIII makes that explicit: *stipulations contrary to II, III and IV are **void***. And the same paragraph sets the outer limit the other way — none of this may harm the normal exploitation of the software or unjustifiably prejudice the author's legitimate interests.
+
+**What to tell a founder, in one line each:**
+
+- **Selling software or a licence:** itemise each right and bound it four ways, or L131-3 puts the scope in question. A clause saying "all rights, worldwide, forever" is not an itemisation.
+- **Buying or commissioning software:** you get the use-it-for-its-purpose floor plus a backup copy, study rights and interoperability decompilation, whatever the contract says. You do **not** get ownership, resale or sublicensing from that floor — see L113-9 above.
+- **The one term worth negotiating explicitly:** error correction. It is the only item in that list the author can reserve, and a client locked out of fixing bugs in software they depend on has a commercial problem the statute will not solve for them.
+
+**Still open:** how the courts apply the L131-3 delimitation to software contracts in practice, and the consequence of a defective delimitation — nullity of the clause, of the contract, or a narrow reading. **[not researched]**.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
@@ -309,7 +345,10 @@ Point a French founder at the CNIL's **current** pages, and at its register temp
 | How that 2022 holding has been applied since; the exact edge of L442-1 I 2° | — | Not researched |
 | L113-9 CPI: devolved to employer for employees and public agents, incl. documentation; contract may displace | 2026-11-10 | **Primary legislation read and quoted** |
 | L121-7 CPI: software moral rights narrowed — no veto on modification, no repentance or withdrawal | 2026-11-10 | **Primary legislation read** |
-| Client's permitted use for commissioned software (the French §31(5) equivalent) | — | Not researched |
+| L131-3: distinct mention per right; domain bounded as to extent, destination, place, duration | 2026-11-10 | **Primary legislation read and quoted** |
+| L122-6-1: use for its purpose incl. error correction, backup copy, study, interoperability | 2026-11-10 | **Primary legislation read** |
+| L122-6-1 VIII: stipulations against II, III and IV are **void**; error correction **may** be reserved | 2026-11-10 | **Primary legislation read** |
+| How courts apply the L131-3 delimitation to software, and the sanction for a defective one | — | **Not researched** |
 | CNIL small-business offering incl. registre des traitements and AI fact sheets | 2026-11-10 | Official landing page read |
 | TPE-PME check-list: four actions, register sheet contents, security hygiene | 2026-11-10 | **Extracted and read** |
 | CNIL/Bpifrance PME guide is dated **April 2018** and marked `non contractuel` | 2026-11-10 | **Extracted and read** — colophon quoted |

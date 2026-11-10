@@ -153,11 +153,11 @@ Source: [article 7 Auteurswet](https://wetten.overheid.nl/BWBR0001886/2026-01-01
 | --- | --- |
 | Work created **in the service of another** (`in dienst`), where the job consists of creating such works | The **employer is deemed the maker** — not merely the holder of the rights. This is `fictief makerschap`. |
 | **Commissioned work** under an `overeenkomst van opdracht` | **Does not qualify.** Article 7 requires a `dienstbetrekking`; a contract for services does not meet it. · *secondary, consistent* |
+| Contrary agreement | Permitted — *"tenzij tusschen partijen anders is overeengekomen"*. Article 7 is `regelend recht`. |
 
 What an `overeenkomst van opdracht` is, which is what makes that exclusion concrete: [art. 7:400 BW](https://www.wetboek.org/bw/7/400) · *primary legislation* · **[checked 2026-11-10]** — an agreement under which one party, the `opdrachtnemer`, undertakes to perform services for the other **other than under an employment contract**, excluding creating a tangible work, safekeeping goods, publishing, and transporting persons or goods.
 
 So the two are defined against each other: art. 7:400 says "not an employment contract", and art. 7 Auteurswet requires exactly that employment relationship. A founder engaged on an `opdracht` therefore falls outside art. 7 by definition, not by argument.
-| Contrary agreement | Permitted — *"tenzij tusschen partijen anders is overeengekomen"*. Article 7 is `regelend recht`. |
 
 The Dutch construction is distinctive: the employer is treated as the **author**, where Germany and France transfer only the economic rights and Belgium transfers economic rights for employees. Moral rights therefore sit differently here. That difference is why the packs do not share this section.
 
@@ -175,7 +175,30 @@ Where a public institution, association, foundation or company **publishes a wor
 
 The protection is the rebuttal — proving the publication was unlawful — which is a dispute, not a safeguard. The practical instruction is simple and worth giving every time: **be named**. Put attribution in the deliverable and in the contract. For a Dutch founder that is not vanity; it is what keeps art. 8 from operating against them.
 
-**Open:** the default scope of a client's permitted use for commissioned software — the Dutch equivalent of Germany's §31(5) purpose rule — is **[not researched]**.
+### Article 2 — what a client can actually acquire, and how
+
+Source: [art. 2 Auteurswet](https://wetten.overheid.nl/BWBR0001886/2026-01-01) · *primary legislation, read per paragraph* · **[checked 2026-11-10]**
+
+This is the Dutch counterpart to Germany's §31(5) purpose rule, and it is **stricter in two ways Germany is not**. Art. 2(3) in its own words:
+
+> *"De overeenkomst op grond waarvan het auteursrecht geheel of gedeeltelijk wordt overgedragen of waarin een exclusieve licentie wordt verleend, wordt schriftelijk aangegaan. De overdracht of de verlening van een exclusieve licentie door de maker (…) omvat alleen die bevoegdheden die uitdrukkelijk in de overeenkomst staan vermeld of die uit de aard en de strekking ervan noodzakelijkerwijs voortvloeien. De levering vereist voor overdracht geschiedt ingevolge artikel 95 van Boek 3 van het Burgerlijk Wetboek bij een daartoe bestemde akte."*
+
+| What the client wants | What it takes |
+| --- | --- |
+| **Ownership** (`overdracht`, whole or partial) | A **written** agreement, **and** delivery by a **deed** (`akte`) under art. 3:95 BW. Payment, an invoice or an email thread is not delivery |
+| An **exclusive** licence | A **written** agreement. No deed needed, but writing is not optional |
+| A **non-exclusive** licence | Art. 2(2) permits a licence for all or part of the copyright and imposes **no form requirement** on it. The writing rule in art. 2(3) reaches only transfers and exclusive licences |
+| Anything **not written down** | Read narrowly: a transfer or exclusive licence *by the maker* covers **only** the powers expressly stated, **or** those that *necessarily* follow from the agreement's nature and purport |
+
+**The narrow-construction rule protects the human creator specifically.** Art. 2(5) disapplies the second sentence of art. 2(3) — and the immunity from attachment in art. 2(4) — to a maker under **art. 7 or art. 8**. So an employer deemed the maker, or a company deemed the maker by publishing uncredited, does **not** get the benefit of narrow construction when it grants rights onward. The protection follows the person who created the work, not whoever holds the title.
+
+**What this means in practice, in both directions:**
+
+- **For the founder.** You cannot accidentally transfer ownership. No deed, no transfer — and an exclusive licence without writing does not bind you either. If a client claims they own the software because they paid for it, art. 2(3) is the answer.
+- **For the client, and this is the part founders get wrong when they are the buyer.** Paying a freelancer buys you no ownership and no exclusivity unless you executed the right instrument. A founder who commissioned work and wants to resell or sublicense it needs that in the document.
+- **For both.** Name the uses in writing. Under the narrow-construction rule, anything unnamed falls to whatever *necessarily* follows from the contract's nature and purport — which is the same decision a German court makes under §31(5) UrhG, decided by a court rather than by the parties.
+
+**Still open:** whether, and how far, a **non-exclusive licence is implied** by a commission — the statute imposes no form requirement but does not say one arises. That is case law, and it is **[not researched]**. Likewise the practical content of *"aard en strekking"* for commissioned software: **[not researched]**.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
@@ -268,7 +291,10 @@ Source: [AP — `Vragenlijst meldformulier datalekken`](https://www.autoriteitpe
 | Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | **Primary legislation read and quoted** |
 | Art. 7:400 BW defines opdracht as "other than under an employment contract" | 2026-11-10 | **Primary legislation read** |
 | Art. 8 Auteurswet: publisher deemed maker where no natural person is named | 2026-11-10 | **Primary legislation read and quoted** |
-| Client's permitted use for commissioned software (the Dutch §31(5) equivalent) | — | Not researched |
+| Art. 2 Aw: writing for transfer and exclusive licence; deed via art. 3:95 BW; narrow construction | 2026-11-10 | **Primary legislation read per paragraph and quoted** |
+| Art. 2(5): narrow construction disapplied for an art. 7 or art. 8 maker | 2026-11-10 | **Primary legislation read** |
+| Whether a non-exclusive licence is **implied** by a commission | — | **Not researched** — the statute imposes no form requirement but does not say one arises; this is case law |
+| What *"aard en strekking"* means for commissioned software in practice | — | Not researched |
 | The Contourenbrief of 2026-09-11 itself | — | Not researched — only secondary reporting of it |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
 | AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | **AP PDF extracted and read** |
