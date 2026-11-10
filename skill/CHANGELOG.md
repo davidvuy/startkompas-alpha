@@ -8,7 +8,7 @@ Separately versioned again is the dossier file format, currently `startkompas-do
 
 First release of the skill as a standalone, host-neutral, dependency-free folder.
 
-**What it is.** 38 files, of which **20 are model-facing at 235.1 KB** against a 256 KB budget; 329.6 KB for the whole folder. Installs by copying the folder into Claude Code, claude.ai or Codex. No Node, no npm, no dependencies, no server, no API key.
+**What it is.** 38 files; 20 of them model-facing at 234.0 KB, and 332.6 KB for the whole folder. The number that describes the actual cost is smaller: because references load on demand, a turn pays for `SKILL.md` (7.5 KB) plus **one** reference, so the **worst case is 42.6 KB**. Installs by copying the folder into Claude Code, claude.ai or Codex. No Node, no npm, no dependencies, no server, no API key.
 
 **Separated from the runtime.** The previously installed skill carried the whole repository as a runtime — 352 files, ~5.7 MB, plus ~23 MB of `node_modules` — to support ~30 KB of instructions, and six of its eleven references only pointed at files inside that runtime. Everything needed is now inside the folder.
 
@@ -22,7 +22,7 @@ First release of the skill as a standalone, host-neutral, dependency-free folder
 
 | Check | What it enforces |
 | --- | --- |
-| `check-skill.mjs` | Frontmatter, link integrity, reference reachability, host neutrality, no runtime coupling, the six-section pack template, and the 256 KB / 512 KB size budgets |
+| `check-skill.mjs` | Frontmatter, link integrity, reference reachability, host neutrality, no runtime coupling, the six-section pack template, and **four** size budgets — always-loaded, largest single reference, model-facing total, whole folder |
 | `check-dossier.mjs` | Runs the change-propagation walk over the worked example from every node, asserting termination and no cycles |
 | `check-facts.mjs` | 65 named claims the eval cases depend on, plus 3 forbidden patterns so a reversed claim cannot return |
 | `check-freshness.mjs` | Packs past their recheck date, and drift between a pack's body markers and its maintenance table |

@@ -298,7 +298,7 @@ This is the moat. Debt here is the only debt that degrades the product's actual 
 
 **67.** Verify the pinned action SHAs still resolve (`actions/checkout@3d3c42e…`, `actions/setup-node@949feb24…`). Pinning is right; pins still rot.
 
-**68.** Add a size guard: the skill is 119 KB. Fail above ~250 KB so growth is a decision, not a drift. — *[Done, and the guard is now the binding constraint. `check-skill.mjs` enforces two budgets: **256 KB** for the 20 model-facing files and **512 KB** for the whole folder. The model-facing set reached **235.1 KB** on 2026-11-10 after the jurisdiction research, so about 21 KB remains. Raising the budget again is a decision to make the skill more expensive on every turn; from here, pack work should compress rather than append.]*
+**68.** Add a size guard: the skill is 119 KB. Fail above ~250 KB so growth is a decision, not a drift. — *[Done, then redone, because the first version measured the wrong thing. A single aggregate budget priced **every** pack into **every** conversation, so closing a German open topic competed for budget with France — but references load on demand and a founder in Berlin never loads the French pack. `check-skill.mjs` now enforces four budgets: **10 KB** always-loaded (`SKILL.md`, paid on every turn), **48 KB** for the largest single reference (what one turn actually opens), **320 KB** model-facing total (a distribution and recheck bound), and 512 KB for the folder. It reports a **worst-case turn** of 42.6 KB. The constraint that bites is now the right one: `germany.md` at 35.0 KB of 48 KB, not an aggregate that penalised breadth.]*
 
 ## 7. Install and distribution
 
@@ -399,7 +399,7 @@ As at **2026-11-10**, end of day. Every number here is read from the repository,
 | Pack verification | All checked **2026-11-10**; next full recheck **2027-05-10**; none stale |
 | Open topics | **33**, each named in the pack that owns it. This number goes **up** when research succeeds, because closing a vague gap names two specific ones |
 | Eval cases | **22** written, **0 scored on any host** — still the largest single hole |
-| `skill/` | **38 files**, of which **20 are model-facing at 235.1 KB** against a 256 KB budget; whole folder 329.6 KB against 512 KB; **no dependencies** |
+| `skill/` | **38 files**; 20 model-facing at 234.0 KB, whole folder 332.6 KB, **no dependencies**. The cost that matters is the **worst-case turn: 42.6 KB** — `SKILL.md` at 7.5 KB plus the single largest reference at 35.0 KB |
 | Checks | 5, all passing: `check-skill`, `check-dossier`, `check-facts`, `check-freshness`, `check-links`. `check-facts` asserts **65** claims across 6 packs, including 3 forbidden patterns |
 | Cited URLs | **68** checked, 58 live, **none gone** |
 | Runtime | 94 `src/` modules, **565 passing tests**, frozen; 380 files in the repository overall |

@@ -21,16 +21,20 @@ Run `check-all.mjs`. The individual scripts exist for when you want one check's 
 | `check-links.mjs` | Every cited source URL still resolves | 404, 410, or a host that does not resolve | **yes** |
 | `build-zip.mjs` | The upload archive has `SKILL.md` at its root | `SKILL.md` not at the archive root | no |
 
-## The two size budgets
+## The four size budgets
 
-`check-skill.mjs` enforces two, because they measure different costs.
+`check-skill.mjs` enforces four, because they measure four different costs. They are listed in order of how much each one matters.
 
 | Budget | Covers | Why |
 | --- | --- | --- |
-| **256 KB** | `SKILL.md` + `references/` | Everything the model can actually load. This is the number that matters — it is what a conversation pays for. Raised from 192 KB on 2026-11-10 at 177.5 KB, on an explicit decision; the history is in the constant's comment. |
+| **10 KB** | `SKILL.md` alone | The host loads this on **every turn**, used or not. The most expensive kilobyte in the project, and the budget to defend hardest. |
+| **48 KB** | the **largest single** file in `references/` | Progressive disclosure means the model opens *one* pack. A founder in Berlin never pays for the French pack, so the per-conversation cost is `SKILL.md` plus the biggest thing it might open. |
+| 320 KB | `SKILL.md` + all of `references/` | A **distribution** bound, not a per-turn cost: how much a reader has to trust and a maintainer has to recheck. Deliberately the loosest of the three, so the ninth pack is not blocked by the eight a given conversation will not read. |
 | 512 KB | the whole folder | Loose, and only there to catch accidental bulk. `scripts/` and `evals/` are never read by a model. |
 
-Measuring only the folder — as this check first did — would have blocked adding a jurisdiction pack because the *tooling* had grown. That was a bug in the check, not a reason to trim content.
+The check also reports the **worst-case turn** — always-loaded plus the largest reference — which is the number to watch. At the last run it was 42.6 KB, against a model-facing total of 234.0 KB.
+
+**Two bugs of the same shape, both fixed.** Measuring only the folder, as this check first did, would have blocked adding a jurisdiction pack because the *tooling* had grown. Measuring only the aggregate, as it did next, had the same bug one level up: it priced every pack into every conversation and made closing an open topic in one country compete for budget with another country. A budget should charge for what is actually loaded.
 
 The same distinction is why references may only link to `SKILL.md` or to each other: if a reference pointed into `scripts/` or `evals/`, the model could be sent to a file that is not part of what it should be reading. That closure is enforced.
 

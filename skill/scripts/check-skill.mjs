@@ -19,27 +19,47 @@ import {skillRoot, skillFile, referencesDir, packsDir, packIndexFile} from './li
 import {listFiles, relativePosix, totalBytes, kb} from './lib/files.mjs';
 import {createReport} from './lib/report.mjs';
 
-// Two budgets, because they measure different costs.
+// Four budgets, because they measure four different costs. The order below is
+// the order of how much each one actually matters.
 //
-// MODEL_BUDGET_KB covers SKILL.md plus references/ — everything the model can
-// actually load. This is the number that matters: it is what a conversation
-// pays for. Raise it deliberately, in a commit of its own, when a pack needs
-// the room.
+// ALWAYS_BUDGET_KB — SKILL.md alone. The host loads this on every single turn
+// whether the skill is used or not, so a kilobyte here is the most expensive
+// kilobyte in the project. This is the budget to defend hardest.
 //
-// FOLDER_BUDGET_KB covers the whole folder, including scripts/ and evals/ that
-// no model ever reads. It exists only to catch accidental bulk, so it is loose.
+// REFERENCE_BUDGET_KB — the largest single file under references/. Progressive
+// disclosure means the model opens one pack, not all of them: a founder in
+// Berlin never pays for the French pack. So the real per-conversation cost is
+// SKILL.md plus the biggest thing it might open, not the sum of everything.
+//
+// MODEL_BUDGET_KB — SKILL.md plus all of references/. This is a *distribution*
+// bound, not a per-turn cost: it caps how much a reader has to trust and a
+// maintainer has to recheck. It is the loosest of the three model budgets on
+// purpose, because adding the ninth jurisdiction pack should not be blocked by
+// the eight that a given conversation will not read.
+//
+// FOLDER_BUDGET_KB — the whole folder, including scripts/ and evals/ that no
+// model ever reads. It exists only to catch accidental bulk.
 //
 // Measuring only the folder — as this check first did — would have blocked
 // adding a jurisdiction pack because the *tooling* had grown. That was a bug.
+// Measuring only the aggregate, as it did next, had the same shape of bug one
+// level up: it priced every pack into every conversation.
 //
-// History of the model budget, so a raise is never silent:
-//   192 KB  initial, set when the model-facing set was 142.7 KB
-//   256 KB  2026-11-10, raised at 177.5 KB — closing open topics adds verified
-//           content, and 14.5 KB of headroom was about to block that work.
-//           Raised on an explicit decision, not to make a red build green.
-// If this needs raising again, ask first whether the packs should be condensed
-// instead. Verified prose earns its space; restated prose does not.
-const MODEL_BUDGET_KB = 256;
+// History of these budgets, so a raise is never silent:
+//   192 KB  MODEL, initial, set when the model-facing set was 142.7 KB
+//   256 KB  MODEL, 2026-11-10, raised at 177.5 KB — closing open topics adds
+//           verified content, and 14.5 KB of headroom was about to block that
+//           work. Raised on an explicit decision, not to make a red build green.
+//   2026-11-10  ALWAYS and REFERENCE added, at SKILL.md 7.5 KB and a largest
+//           reference of 36.1 KB (germany.md). They encode what the aggregate
+//           could not: that the per-turn cost is bounded by one pack, and that
+//           SKILL.md growing is far worse than references/ growing.
+// Before raising MODEL again, ask whether the packs should be condensed. Before
+// raising ALWAYS, ask what behaviour the extra instruction buys. Verified prose
+// earns its space; restated prose does not.
+const ALWAYS_BUDGET_KB = 10;
+const REFERENCE_BUDGET_KB = 48;
+const MODEL_BUDGET_KB = 320;
 const FOLDER_BUDGET_KB = 512;
 
 // A description shorter than this cannot carry both scope and "when to use".
@@ -240,16 +260,44 @@ for (const file of markdown.filter((f) => rel(f).startsWith('references/'))) {
 
 if (!existsSync(referencesDir)) report.fail('references/', 'missing');
 
-const modelFiles = files.filter((f) => rel(f).startsWith('references/') || f === skillFile);
+const referenceFiles = files.filter((f) => rel(f).startsWith('references/'));
+const modelFiles = [skillFile, ...referenceFiles];
+const alwaysBytes = totalBytes([skillFile]);
 const modelBytes = totalBytes(modelFiles);
 const folderBytes = totalBytes(files);
 
+// The per-turn cost is SKILL.md plus whichever single reference gets opened,
+// so the largest reference is the one that bounds it.
+const largest = referenceFiles
+  .map((file) => ({file, bytes: totalBytes([file])}))
+  .sort((a, b) => b.bytes - a.bytes)[0];
+
+report.note(`always loaded: SKILL.md, ${kb(alwaysBytes)} KB of ${ALWAYS_BUDGET_KB} KB`);
+if (largest)
+  report.note(
+    `largest reference: ${rel(largest.file)}, ${kb(largest.bytes)} KB of ${REFERENCE_BUDGET_KB} KB`,
+  );
 report.note(
-  `model-facing: ${modelFiles.length} files, ${kb(modelBytes)} KB of ${MODEL_BUDGET_KB} KB`,
+  `worst-case turn: ${kb(alwaysBytes + (largest?.bytes ?? 0))} KB — SKILL.md plus one reference`,
+);
+report.note(
+  `model-facing total: ${modelFiles.length} files, ${kb(modelBytes)} KB of ${MODEL_BUDGET_KB} KB`,
 );
 report.note(
   `whole folder: ${files.length} files, ${kb(folderBytes)} KB of ${FOLDER_BUDGET_KB} KB`,
 );
+
+if (alwaysBytes > ALWAYS_BUDGET_KB * 1024)
+  report.fail(
+    'SKILL.md',
+    `${kb(alwaysBytes)} KB is over the ${ALWAYS_BUDGET_KB} KB always-loaded budget; this file is paid for on every turn, so move detail into a reference`,
+  );
+
+if (largest && largest.bytes > REFERENCE_BUDGET_KB * 1024)
+  report.fail(
+    rel(largest.file),
+    `${kb(largest.bytes)} KB is over the ${REFERENCE_BUDGET_KB} KB per-reference budget; split it rather than raising the budget, because one file is what a single turn pays for`,
+  );
 
 if (modelBytes > MODEL_BUDGET_KB * 1024)
   report.fail(

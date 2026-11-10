@@ -82,7 +82,7 @@ Recheck triggers: turnover approaching either threshold; the start of a new cale
 
 Sources · **[checked 2026-11-10]**
 - [European Commission — eInvoicing in Germany](https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467108886/eInvoicing+in+Germany) · *official EU source*
-- [IHK Köln summary of the BMF letter on the obligatory e-invoice](https://www.ihk.de/koeln/hauptnavigation/recht-steuern/steuern/bmf-schreiben-zur-e-rechnung-vom-15-10-2025-6774012) · *chamber of commerce summary of official guidance*
+- The three BMF letters themselves · *primary administrative guidance* — cited individually below. A chamber-of-commerce summary was used before they were read and has been **dropped**, because every claim it supported is now taken from the letters.
 
 | Date | Obligation |
 | --- | --- |
@@ -100,15 +100,7 @@ Accepted formats: **XRechnung** (the national standard), **ZUGFeRD 2.2.0** (XRec
 
 Legal basis: the `Wachstumschancengesetz` (Growth Opportunities Act), adopted **2024-03-22**, codified in **§14(2) and §27(38) UStG**.
 
-### Federal Ministry of Finance guidance
-
-The BMF has issued successive letters on the obligatory e-invoice: one dated **2024-10-15**, one dated **2025-10-15**, and one dated **2026-10-15**. What a chamber-of-commerce summary records, before the letters themselves were read below:
-
-- **Everything required on an invoice must sit in the structured part.** The mandatory particulars under §14(4) sentence 1 UStG — and §14a in special cases — must be in the structured portion of the e-invoice; supplementary information may be carried in an embedded attachment, but the tax-relevant details about the supply cannot be relegated there.
-- **A non-objection period runs to 2026-12-31.** For e-invoices issued up to that date, deviations from the newer letter's additional requirements are not challenged provided the invoice conforms to the earlier 2024 and 2025 letters. That grace ends within weeks of this pack's check date.
-- The issuing obligation takes effect for many businesses from **2027-01-01**, consistent with the turnover threshold above.
-
-### The BMF letters themselves — read
+### The 2026 letter — and how the three relate
 
 Source: [BMF letter of 15 October 2026](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2026-10-15-obligatorische-elektronische-rechnung.pdf?__blob=publicationFile&v=2), *"Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025 — Ergänzende Regelungen"*, GZ III C 5 - S 7287 · *primary administrative guidance, PDF extracted and read* · **[checked 2026-11-10]**
 
@@ -151,7 +143,7 @@ This is the most consequential line in these three letters for anyone this skill
 - A founder under §19 UStG (see §2) is **outside the issuing obligation entirely** — not deferred to 2028, outside it.
 - The **receiving** obligation still applies in full. The two are separate duties, and only one of them has an exemption here.
 - Any founder, exempt or not, may issue on paper for an invoice **at or under €250**.
-- But an electronic invoice in a **non-e-invoice format** needs the **recipient's consent** (§14(1) sentence 5 UStG). The letter says that consent needs no particular form and **can be given by conduct** (`konkludent`), and that a proper e-invoice never needs consent. So the safe default when in doubt is still to send a compliant e-invoice.
+- But an electronic invoice in a **non-e-invoice format** needs the **recipient's consent** (§14(1) sentence 5 UStG), while a proper e-invoice never does. So the safe default when in doubt is still to send a compliant e-invoice. What counts as consent is set out under Rn. 63 below.
 
 **Who you are billing does not get you out of it.** Rn. 17: where the obligation does apply, it applies even when the **recipient** is a Kleinunternehmer, a farmer under §24, or makes only exempt turnovers — its example is someone letting a flat. It also covers `Gutschriften` (§14(2) sentence 5), reverse-charge supplies under §13b where both parties are domestic, §24 flat-rate agriculture, §25 travel services and §25a margin scheme, and applies where only **part** of what is billed falls under the duty.
 
