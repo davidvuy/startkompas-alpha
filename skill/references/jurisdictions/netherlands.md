@@ -2,23 +2,31 @@
 
 Scope: a solo founder established in the Netherlands, selling a digital service to Dutch business customers, no employees, small bounded pilot.
 
-Out of scope and requiring separate research: consumer (B2C) sales, employees or subcontractors, regulated professions, cross-border supply, physical goods, payment or financial services, health data.
+Out of scope and requiring separate research: consumer (B2C) sales, employees or subcontractors, regulated professions, cross-border supply beyond the EU-KOR note below, physical goods, payment or financial services, health data.
 
 **This pack is preparation, not advice.** Consequential steps need a Dutch accountant or the Belastingdienst itself.
 
-Verification convention: **[checked 2026-11-10]** means the source page was fetched and read on that date. **[carried 2026-10-27, not refetched]** means it comes from earlier project research and was not re-read since. **[not researched]** means no source was consulted — the topic is open.
+Verification convention: **[checked YYYY-MM-DD]** means the source page was actually fetched and read on that date. **[not researched]** means no source was consulted — the topic is open.
 
 ---
 
 ## 1. Registration and formalities
 
-Entry point: [KVK — registration](https://www.kvk.nl/en/registration/) · *official chamber of commerce* · **[checked 2026-11-10 — navigation page only]**
+Sources · *official chamber of commerce* · **[checked 2026-11-10]**
+- [KVK — Business Register and the Tax Administration](https://www.kvk.nl/en/starting/business-register-and-tax-administration/)
+- [KVK — registration](https://www.kvk.nl/en/registration/)
 
-The page fetched is a navigation hub. It links to whether registration is required, valid proof of identity, who may register, the fee, and a dedicated `eenmanszaak` (sole proprietorship) route — but it did not itself state the rules. **Do not state Dutch registration requirements from this pack.** Open the specific KVK article or ask KVK directly.
+**Who must register.** All entrepreneurs and legal entities must register in the Handelsregister. The statutory test: you have an enterprise if you **independently supply goods or services to others with the intention to make a profit**. A hobby is not an enterprise — earning little or nothing from it means no registration, even if it takes a lot of time.
 
-Establish before proposing any administrative action: whether the founder is registered in the Handelsregister and under which activity (SBI) codes; whether they have a VAT identification number; whether they are in the KOR; and their legal form.
+A founder may register **at most one** `eenmanszaak`, though one sole proprietorship can carry several trade names and activities.
 
-Open: the relationship between KVK registration and Belastingdienst VAT identification is **[not researched]** in this pack.
+**Relationship to the Belastingdienst — resolved.** For a sole proprietor, KVK **passes the details to the Belastingdienst automatically**. The founder then receives the VAT number (`btw-nummer`) and the VAT identification number (`btw-id`) **by post** from the Belastingdienst. The KVK page gives no timeframe for that; secondary sources cite roughly two weeks or ten working days, which is **not confirmed by the official page** — do not quote a number.
+
+A `bv` or `nv` is different: that registration goes through a civil-law notary rather than automatically, and yields an RSIN.
+
+Establish before proposing any administrative action: whether the founder is registered and under which SBI activity codes; whether they hold a `btw-id`; whether they are in the KOR; and their legal form.
+
+Open: the registration fee, required identification and the processing timeframe are **[not researched]**.
 
 ---
 
@@ -37,15 +45,33 @@ Effect — the Belastingdienst describes the KOR as a VAT exemption:
 
 That last point is the trade-off. A founder with significant startup purchases may be worse off inside the KOR.
 
-**EU-KOR:** since **2025-01-01** an entrepreneur doing business in other EU countries may use the EU-KOR to obtain a VAT exemption for one or more EU countries where they operate. · **[checked 2026-11-10]** — the source did not state a separate threshold for it; treat the EU-KOR threshold as **unknown** and confirm before relying on it.
+### What still applies inside the KOR — resolved
 
-Open: which invoicing and administration obligations remain while in the KOR is **[not researched]** — the source page did not detail them. Do not assume the KOR removes invoicing duties.
+Source: [Belastingdienst — invoicing when you use the KOR](https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/administratie_bijhouden/facturen_maken/factuureisen/aangepaste_regels_facturen/u_maakt_gebruik_van_de_kleineondernemersregeling) · *primary official* · **[checked 2026-11-10]**
 
-Recheck triggers: turnover approaching €20,000; the start of a new calendar year; any customer in another EU country.
+- **Issuing an invoice is not required**: *"u bent niet verplicht om een factuur uit te reiken"*.
+- If you do issue one, you must **state on it that you use the KOR**: *"vermeldt u op de factuur dat u gebruik maakt van de kleineondernemersregeling"*.
+- **No VAT on the invoice**: *"U zet geen btw op de factuur"*.
+
+Reported but **not confirmed on a page read here**: a KOR user need not keep a full VAT administration but must retain **purchase invoices**. · *secondary* · **[checked 2026-11-10, needs primary confirmation]**
+
+Note the contrast with Belgium, where a business under the small-business exemption **must** issue structured e-invoices. The Dutch position is the opposite on both counts — no invoicing duty and no e-invoicing mandate. Do not carry either answer across.
+
+### EU-KOR — resolved
+
+Source: [Belastingdienst — kleineondernemersregeling in de EU (EU-KOR)](https://www.belastingdienst.nl/wps/wcm/connect/nl/btw/content/kleineondernemersregeling-in-de-europese-unie-eu-kor) · *primary official* · **[checked 2026-11-10]**
+
+- **Union turnover threshold: €100,000** — *"uw totale omzet in de EU is niet hoger dan € 100.000 per kalenderjaar"*, counting turnover in all EU countries including the Netherlands.
+- The **national threshold of each country also applies** where you use the exemption. Both limits must hold.
+- **Establishment requirement:** established in the Netherlands, with the principal place of business here if operating from several EU locations. A business not established in the EU cannot participate.
+- **Quarterly reporting:** an `opgaaf kwartaalomzet` to the Dutch tax authority, covering turnover achieved across the whole EU that quarter. This is a real recurring obligation that the domestic KOR does not have — do not present EU-KOR as simply "KOR but abroad".
+- Available since **2025-01-01** · *that start date is secondary; the official page read here did not state it* · **[needs primary confirmation]**
+
+Recheck triggers: turnover approaching €20,000 or €100,000; the start of a new calendar year; any customer in another EU country.
 
 ---
 
-## 3. B2B e-invoicing — no domestic mandate yet, one announced for 2030
+## 3. B2B e-invoicing — no domestic mandate yet
 
 **There is currently no mandatory domestic B2B e-invoicing obligation in the Netherlands.**
 
@@ -53,20 +79,27 @@ Source: [European Commission — eInvoicing in the Netherlands](https://ec.europ
 
 **B2G is different.** Suppliers to central government bodies must issue structured e-invoices in accepted formats since **2019-11-01**. A founder whose pilot customer is a central-government body is therefore already in scope. · **[checked 2026-11-10]**
 
-### Announced future obligation
+### Announced future obligation, and where the legislation actually stands
 
-| Date | Obligation |
+| Date | Planned obligation |
 | --- | --- |
-| 2030-07-01 | Mandatory e-invoicing for domestic **and** intra-EU B2B transactions |
+| 2030-07-01 | Mandatory e-invoicing for domestic **and** intra-EU B2B; reporting of intra-Community acquisitions |
 | 2031-07-01 | Digital reporting of domestic invoices to the Belastingdienst |
 
-The Netherlands chose a broad ViDA implementation — extending beyond the EU minimum to cover domestic B2B. The announced model is decentralised and Peppol-based, on EN 16931. Businesses in the KOR are reported to be **exempt from the domestic obligation**. The government announced this on **2026-09-11**; draft legislation for consultation was expected in Q4 2026. · *EC page plus secondary commentary* · **[checked 2026-11-10]**
+Legislative state, as reported · *secondary commentary, consistent across sources* · **[checked 2026-11-10]**
 
-**Open: not yet law.** These dates come from an announcement and a policy report, not from enacted legislation. Confirm against the actual bill before a founder plans around them. Four years out, the dates and the KOR carve-out can both still move.
+- **2026-09-11** — the State Secretary for Finance sent the House of Representatives a `Contourenbrief elektronisch factureren en rapporteren` setting out the cabinet's choices for implementing the EU ViDA directive. The Netherlands chose a **broad** implementation, extending beyond the EU minimum to cover domestic B2B.
+- **Q4 2026** — a public internet consultation on draft legislation is expected. That is **now**; check whether it has opened.
+- **Before the summer recess 2027** — target for submitting the bill to the House.
+- **Before 2028-07-01** — target for parliamentary passage.
+
+**Peppol is recommended, not mandated.** The announced model is decentralised and Peppol-based on EN 16931, but the obligation to use Peppol specifically has not been set. Businesses in the KOR are reported to be **exempt from the domestic obligation**.
+
+**Open: none of this is law.** It is a ministerial letter plus a policy report, with the bill not yet submitted. Confirm against the enacted text before any founder plans around it. Four years out, the dates, the Peppol choice and the KOR carve-out can all still move. The `Contourenbrief` itself was **[not researched]** — only secondary reporting of it.
 
 Formats and networks in Dutch use: Peppol network, Peppol BIS 3.0, SI-UBL 2.0, NLCIUS, and Digipoort as the central-government gateway. · **[checked 2026-11-10]**
 
-Recheck triggers: publication of the draft bill; any central-government or public-sector customer; a customer in another EU country.
+Recheck triggers: the Q4 2026 consultation opening; the bill's submission; any central-government or public-sector customer; a customer in another EU country.
 
 ---
 
@@ -74,9 +107,9 @@ Recheck triggers: publication of the draft bill; any central-government or publi
 
 **[not researched]** for the Netherlands.
 
-Use the universal topics in [../pilot-conditions.md](../pilot-conditions.md) §3 to prepare a discussion sheet. Do not state Dutch contract-law rules from this pack, and do not assume Belgian or German positions transfer.
+Use the universal topics in [../pilot-conditions.md](../pilot-conditions.md) §3 to prepare a discussion sheet. Do not state Dutch contract-law rules from this pack, and do not assume the Belgian position transfers — Belgium has a statutory black and grey list for B2B terms, and whether Dutch law has an equivalent for business counterparties is exactly the open question.
 
-Likely place to start: Dutch civil law on general terms and conditions (`algemene voorwaarden`) and the relevant provisions of Book 6 of the Burgerlijk Wetboek. Confirm with a Dutch lawyer before relying on any position.
+Likely place to start: the general terms and conditions (`algemene voorwaarden`) provisions in Book 6 of the Burgerlijk Wetboek. That is a research prompt, **not** a finding. Confirm with a Dutch lawyer.
 
 ---
 
@@ -84,20 +117,20 @@ Likely place to start: Dutch civil law on general terms and conditions (`algemen
 
 **[not researched]** for the Netherlands.
 
-Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline, which is jurisdiction-neutral. The *rules* on who owns commissioned software are not — do not carry the Belgian position over.
+Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline, which is jurisdiction-neutral. The *rules* on who owns commissioned software are not. The Belgian position is now recorded in detail — author retains ownership of commissioned software, only usage rights pass, transfer must be explicit and in writing — and must **not** be carried over, since Dutch `auteursrecht` may well differ on exactly this point.
 
 ---
 
 ## 6. Data protection — roles, suppliers and security
 
-The GDPR applies directly, so the EU-level guidance used across packs applies here too. The supervisory authority is the **Autoriteit Persoonsgegevens**.
+The GDPR applies directly, so the EU-level guidance used across packs applies here too. The supervisory authority is the **Autoriteit Persoonsgegevens**, whose own guidance is **[not researched]** and would be the better source for a Dutch founder.
 
-- Roles: [EDPB — data controller or data processor](https://www.edpb.europa.eu/sme/learn-the-basics/data-controller-or-data-processor_en) · *EU regulator guidance* · **[carried 2026-10-27, not refetched]**
-- Security: [EDPB — secure personal data](https://www.edpb.europa.eu/sme/be-compliant/secure-personal-data_en) · *EU regulator guidance* · **[carried 2026-10-27, not refetched]**
+- Roles: [EDPB — data controller or data processor](https://www.edpb.europa.eu/sme/learn-the-basics/data-controller-or-data-processor_en) · *EU regulator guidance* · **[checked 2026-11-10]**
+- Security: [EDPB — secure personal data](https://www.edpb.europa.eu/sme/be-compliant/secure-personal-data_en) · *EU regulator guidance* · **[checked 2026-11-10]**
 
-Roles follow the actual purposes and instructions, not a product name or a contract title. Measures must be proportionate to the actual risk and context. Map each real data flow before any real personal or confidential data enters an AI or supplier tool, and get actual authority first.
+The controller/processor test, the required processor-contract terms, the written sub-processor authorization rule and the processor's continuing liability for its sub-processors are recorded in full in [belgium.md](belgium.md) §6 — that content is EU-level and applies identically here. The same applies to the security guidance, including the caution that its two numeric figures (8-character passwords, six-monthly authorization reviews) are general SME guidance and not legal requirements.
 
-Dutch-specific guidance from the Autoriteit Persoonsgegevens is **[not researched]**. EU AI Act applicability is not covered.
+EU AI Act applicability is not covered.
 
 ---
 
@@ -107,15 +140,20 @@ Dutch-specific guidance from the Autoriteit Persoonsgegevens is **[not researche
 | --- | --- | --- |
 | No domestic B2B e-invoicing mandate in force | 2026-11-10 | Official EU source read |
 | B2G obligation since 2019-11-01 | 2026-11-10 | Official EU source read |
-| Announced 2030/2031 B2B mandate and KOR carve-out | 2026-11-10 | Announcement + policy report; not yet law |
+| Planned 2030/2031 dates, Peppol recommended not mandated, KOR carve-out | 2026-11-10 | Secondary; ministerial letter not read; **not law** |
+| Legislative timeline (consultation Q4 2026, bill 2027, passage 2028) | 2026-11-10 | Secondary, consistent |
 | KOR threshold €20,000 and its effects | 2026-11-10 | Tax authority page read |
-| EU-KOR available from 2025-01-01 | 2026-11-10 | Tax authority page read; threshold unknown |
-| KVK registration rules | 2026-11-10 | Navigation page only — **not established** |
-| Remaining obligations inside the KOR | — | Not researched |
+| KOR invoicing: not required, must state the scheme, no VAT | 2026-11-10 | Tax authority page read, wording quoted |
+| KOR: purchase invoices still retained | 2026-11-10 | Secondary; primary confirmation open |
+| EU-KOR: €100,000 Union threshold, national thresholds also apply, NL establishment, quarterly report | 2026-11-10 | Tax authority page read |
+| EU-KOR start date 2025-01-01 | 2026-11-10 | Secondary; primary confirmation open |
+| Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | KVK pages read |
+| Registration fee, identification, timeframe | — | Not researched |
 | Agreements / unfair terms | — | Not researched |
 | Ownership of commissioned software | — | Not researched |
-| EDPB roles and security guidance | 2026-10-27 | Not refetched |
+| Autoriteit Persoonsgegevens guidance | — | Not researched |
+| EDPB roles and security guidance | 2026-11-10 | EU regulator guidance read |
 
-Next full recheck due: **2027-05-10**. Earlier when the Dutch e-invoicing bill is published for consultation.
+Next full recheck due: **2027-05-10**. Earlier when the Q4 2026 internet consultation opens.
 
 No independent Dutch legal, tax or security reviewer has reviewed this pack.

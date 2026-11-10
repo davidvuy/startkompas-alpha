@@ -126,8 +126,8 @@ Tests the behaviour that a generic competitor cannot reproduce: a recorded, date
 
 **Prompt:** "I'm a French independent consultant invoicing French companies. Am I affected by the e-invoicing reform?"
 
-- Must: state that receiving has been mandatory since 2026-09-01 and that issuing reaches `indépendants` on 2027-09-01; state that an accredited platform (PDP) is required because the public company portal was abandoned in October 2024; mention the `TVA non applicable - article 293 B du CGI` invoice mention if the founder uses the franchise.
-- Must not: say the founder has years to prepare; suggest an email address suffices (that is the German answer); recommend a specific platform as endorsed; claim the reform does not apply to small businesses.
+- Must: state that receiving has been mandatory since 2026-09-01 and that issuing reaches `indépendants` on 2027-09-01; state that an accredited platform (PDP) is required because the public company portal was abandoned in October 2024; mention **e-reporting as a separate obligation** rather than implying e-invoicing is the whole of it, and that its date and scope for a micro-entreprise is unconfirmed; mention the `TVA non applicable - article 293 B du CGI` invoice mention if the founder uses the franchise.
+- Must not: say the founder has years to prepare; suggest an email address suffices (that is the German answer); recommend a specific platform as endorsed; claim the reform does not apply to small businesses; state an e-reporting date for micro-entreprises as if confirmed.
 
 ## C16 — Netherlands: announced is not enacted
 
@@ -136,12 +136,14 @@ Tests the behaviour that a generic competitor cannot reproduce: a recorded, date
 - Must: state that there is currently **no** domestic B2B mandate; distinguish the existing B2G obligation (since 2019-11-01) which applies if the customer is a central-government body; report the announced 2030-07-01 / 2031-07-01 dates **as an announcement with draft legislation pending**, not as law; note the reported KOR carve-out as reported.
 - Must not: tell the founder they must act now; present 2030 as settled law; omit the B2G distinction; carry over the Belgian or French timeline.
 
-## C17 — Abandoned reform still circulating
+## C17 — Two dead reforms still circulating
 
 **Prompt:** "My accountant mentioned the French VAT threshold is dropping to €25,000. Should I plan for that?"
 
-- Must: state that the single €25,000 threshold was introduced by the 2025 finance law, suspended on 2025-02-28 and definitively removed by the law of 2025-11-03; give the current €37,500 services threshold; separately note that the PLF 2026 is reported to propose €25,000 for `travaux immobiliers` only, as a **bill**, and ask whether the founder's activity involves building works.
-- Must not: confirm the drop as current; dismiss the accountant without explaining the history; present the PLF 2026 proposal as enacted.
+- Must: state that **no €25,000 threshold applies to anyone**, and distinguish the two failed attempts — the 2025 finance law's single €25,000 threshold (suspended 2025-02-28, repealed by loi n° 2025-1044 of 2025-11-03) and the PLF 2026 proposal of €25,000 for `travaux immobiliers`, **rejected by deputies in November 2025 and not adopted**; give the applicable figures, €37,500 previous year and €41,250 current year for services.
+- Must not: confirm the drop as current or upcoming; present the PLF 2026 carve-out as pending or enacted; dismiss the accountant without explaining why the figure is circulating.
+
+Rewritten 2026-11-10: the earlier version of this case treated the PLF 2026 carve-out as an open bill. It was rejected. **A stale eval asserting an outdated status marks correct behaviour as a failure** — this case is the worked example of why C4–C6 and C14–C18 must be rewritten on every pack recheck.
 
 ## C18 — Two jurisdictions in one question
 

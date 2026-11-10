@@ -4,12 +4,12 @@ A jurisdiction pack is a dated, sourced answer set for one country or region. It
 
 ## Available packs
 
-| Jurisdiction | File | Last checked | Fully covered | Open topics |
+| Jurisdiction | File | Last checked | Covered from a read source | Open topics |
 | --- | --- | --- | --- | --- |
-| Belgium (federal; regional differences noted) | [belgium.md](belgium.md) | 2026-11-10 | Registration, VAT exemption, B2B e-invoicing, B2B contract terms, software ownership, data protection, security | — |
-| Netherlands | [netherlands.md](netherlands.md) | 2026-11-10 | VAT (KOR), B2B/B2G e-invoicing, data protection | Registration rules, KOR invoicing duties, agreements, ownership |
-| Germany | [germany.md](germany.md) | 2026-11-10 | VAT (§19 UStG, primary law), B2B e-invoicing, data protection | Registration route, agreements/AGB, ownership, BDSG |
-| France | [france.md](france.md) | 2026-11-10 | VAT (franchise en base), B2B e-invoicing, registration portal, data protection | Registration detail, agreements, ownership, CNIL guidance |
+| Belgium (federal; regional differences noted) | [belgium.md](belgium.md) | 2026-11-10 | Registration formalities, VAT exemption, B2B e-invoicing, unfair-terms structure, software ownership (3 rules), data protection roles and security | Black/grey list contents, Belgian DPA guidance |
+| Netherlands | [netherlands.md](netherlands.md) | 2026-11-10 | Registration test and KVK→Belastingdienst link, KOR incl. invoicing duties, EU-KOR, B2B/B2G e-invoicing, data protection | Agreements, ownership, AP guidance, registration fees |
+| Germany | [germany.md](germany.md) | 2026-11-10 | VAT §19 (primary law, quoted), B2B e-invoicing, BMF guidance points, data protection | Registration route, agreements/AGB, ownership, BDSG |
+| France | [france.md](france.md) | 2026-11-10 | Registration portal, franchise thresholds (both years), e-invoicing, accredited-platform mandate, e-reporting, data protection | Agreements, ownership, CNIL guidance, e-reporting scope for micro |
 
 No other pack exists yet. A missing pack, or a topic marked open inside a pack, is a gap in **coverage** — **never** a finding that no requirement exists.
 
@@ -17,18 +17,29 @@ No other pack exists yet. A missing pack, or a topic marked open inside a pack, 
 
 Four neighbouring EU countries, one question — "must I send structured electronic invoices to my business customers?" — and four different answers as at 2026-11-10:
 
-| | Must receive | Must issue (small founder) | Route |
+| | Must receive | Must issue (small founder) | How |
 | --- | --- | --- | --- |
-| Belgium | since 2026-01-01 | **already, since 2026-01-01** | Peppol |
-| France | since 2026-09-01 | from **2027-09-01** | accredited private platform (PDP) |
-| Germany | since 2025-01-01 | from **2028-01-01** | email address suffices to receive |
-| Netherlands | no domestic mandate | announced for **2030-07-01** | Peppol (planned) |
+| Belgium | since 2026-01-01 | **already, since 2026-01-01** | Peppol network |
+| France | since 2026-09-01 | from **2027-09-01** | **accredited platform mandatory**, plus a separate e-reporting obligation |
+| Germany | since 2025-01-01 | from **2028-01-01** | **an email address suffices to receive**; BMF grace period ends 2026-12-31 |
+| Netherlands | no domestic mandate | announced for **2030-07-01**, not yet law | Peppol recommended, not mandated |
 
-The small-business VAT exemption also behaves differently: in Belgium it does **not** exempt a founder from issuing structured e-invoices, in Germany it does **not** exempt them from receiving, and in the Netherlands the announced mandate reportedly **does** carve out KOR businesses.
+Germany and France are the sharpest contrast: in Germany an email address satisfies the obligation, in France it cannot, because only an accredited platform may transmit. A single "EU answer" gets one of those two wrong by definition.
 
-Thresholds diverge just as much — €25,000 (BE, rising to €30,000 by 2031), €20,000 (NL), €25,000 **and** €100,000 together (DE), €37,500 for services (FR).
+The small-business VAT exemption behaves differently in all four: Belgium does **not** exempt a founder from *issuing* structured e-invoices; Germany does **not** exempt them from *receiving*; the Netherlands has no mandate at all and its announced one reportedly **does** carve out KOR businesses.
 
-Any skill that answers this from a single "EU" position is wrong in at least three countries. That is the reason packs exist.
+Thresholds diverge just as much:
+
+| | Small-business VAT threshold |
+| --- | --- |
+| Belgium | €25,000, rising €1,000/year from 2027 to €30,000 in 2031 |
+| Netherlands | €20,000 domestic; €100,000 Union-wide for the EU-KOR, with a quarterly report |
+| Germany | €25,000 previous year **and** €100,000 current year, both operative |
+| France | €37,500 previous year / €41,250 current year for services; €85,000 / €93,500 for sales |
+
+And the invoicing duty attached to the exemption inverts: a Dutch KOR user is **not required to issue an invoice at all**, while a Belgian founder under the exemption **must issue a structured electronic one**. Carrying either answer across a border produces a confidently wrong result.
+
+Any skill that answers these from a single "EU" position is wrong in at least three countries. That is the reason packs exist.
 
 ## Using a pack
 
