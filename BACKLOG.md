@@ -67,7 +67,23 @@ What remains is the jurisdiction rule, the four evidence steps, the four-part cl
 
 ## What is left, and why
 
-**Needs your decision (everything else branches on it):** 11, and therefore 6, 8, 12, 13, 14, 17, 18, 19, 20, 83–86, 88, 89.
+**Item 11 is decided.** The legacy runtime stays here, **frozen**: security, dependency and compatibility fixes only. Not split out, not deleted. The reasoning, the consequences and what would reverse it are in [DECISIONS.md](DECISIONS.md) entry 1.
+
+That resolved the whole block that depended on it:
+
+| Item | Outcome |
+| --- | --- |
+| 11 | Keep, frozen |
+| 12 | **Declined.** 13 published release tags reference the full tree; a history split orphans every one, for a project with zero users |
+| 13, 14 | Done — the README states the runtime is frozen and why it is kept |
+| 15, 16 | **Done by deletion.** `.agents/skills/startkompas/` removed. A copy of `skill/` there would have duplicated 19 model-facing files — worse than losing project-scoped discovery in a repo that *is* the skill's source |
+| 17 | **Done by deletion.** `scripts/install-skill.mjs` removed, along with `check-installed-skill.mjs` which tested what no longer exists |
+| 18 | **Kept.** `installation.json` guards runtime package integrity; `skill/` is deliberately excluded from it |
+| 19 | **Kept.** The 565 tests are the dossier format's reference implementation and they pass |
+| 20 | Done — `quality.yml` runs one job on push and the full six-way matrix weekly and on demand, cutting routine cost by about five sixths |
+| 83–85 | **Declined with reasoning.** Formatting a frozen component nobody reads buys nothing; the diff would be enormous. Do it first if the runtime is ever unfrozen |
+| 88, 89 | **Declined with reasoning.** Both findings stand and are recorded, but tidying a frozen component is not a security or compatibility fix |
+| 6, 8 | Done as far as keeping allows — `assets/README.md` and `docs/README.md` explain every file |
 
 **Needs a GitHub session I do not have:** 3 and 4 (repo description and topics), 10's pull request, 76's release, 96 (traffic — needs `gh auth login`).
 

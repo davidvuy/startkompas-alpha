@@ -16,7 +16,10 @@ const dependencyNotices={
  'node_modules/brotli':['brotli-README.md.txt','brotli-package.json.txt','brotli-decoder-notice-source.txt','swc-helpers-LICENSE.txt'],
  ...Object.fromEntries(['base64-js','clone','fflate','linebreak','pako','pdfkit','png-js','restructure','tiny-inflate','unicode-properties','unicode-trie'].map(name=>['node_modules/'+name,[name+'-LICENSE.txt']]))
 };
-export const requiredFiles=['package.json','package-lock.json','LICENSE','LICENSING.md','THIRD_PARTY_NOTICES.md','.agents/skills/startkompas/SKILL.md','.agents/skills/startkompas/LICENSE','.agents/skills/startkompas/NOTICE','.agents/skills/startkompas/LICENSE-APACHE-2.0','src/core-cli.mjs','schemas/dossier-v1.schema.json','schemas/dossier-v1.1.schema.json','examples/dossier-v1.1.json','docs/start-resume.md','docs/gebruiken.nl.md'];
+// The four .agents/skills/startkompas entries were removed on 2026-11-10 with
+// the deprecated runtime-coupled skill. See DECISIONS.md entry 1. The skill now
+// lives in skill/, which is deliberately outside this manifest.
+export const requiredFiles=['package.json','package-lock.json','LICENSE','LICENSING.md','THIRD_PARTY_NOTICES.md','src/core-cli.mjs','schemas/dossier-v1.schema.json','schemas/dossier-v1.1.schema.json','examples/dossier-v1.1.json','docs/start-resume.md','docs/gebruiken.nl.md'];
 export function verifyInstallation(directory,expectedRevision,expectedManifestHash){
  requireThat(/^[a-f0-9]{40}$/.test(expectedRevision??''),'Expected source revision required');
  requireThat(/^[a-f0-9]{64}$/.test(expectedManifestHash??''),'Trusted manifest SHA-256 required');
@@ -57,7 +60,10 @@ export function verifyInstallation(directory,expectedRevision,expectedManifestHa
   const notices=dependencyNotices[p]??[p.slice(13)+'.txt'];for(const notice of notices)requireThat(files.has('licenses/dependencies/'+notice),'Missing dependency notice: '+p);
  }
  for(const [name,version]of Object.entries(pkg.dependencies??{}))requireThat(lock.packages['node_modules/'+name]?.version===version,'Direct dependency not exact locked version');
- requireThat(/^name: startkompas\r?$/m.test(regular(path.join(root,'.agents/skills/startkompas/SKILL.md')).toString()),'Wrong skill identity');
- return {result:'pass',source_revision:expectedRevision,manifest_sha256:expectedManifestHash,files_verified:observed.length,locked_dependencies:deps.length,excluded_local_directories:['node_modules','.git'],installed_dependency_contents_verified:false,read_only:true,authenticity:'Only as trustworthy as the separately supplied digest/revision',release_approved:false};
+ // The identity check formerly read the bundled skill's frontmatter. That skill
+ // was removed (DECISIONS.md entry 1); package.json's own name identifies this
+ // package now.
+ requireThat(pkg.name==='startkompas','Wrong package identity');
+ return {result:'pass',source_revision:expectedRevision,manifest_sha256:expectedManifestHash,files_verified:observed.length,locked_dependencies:deps.length,excluded_local_directories:['node_modules','.git','skill'],installed_dependency_contents_verified:false,read_only:true,authenticity:'Only as trustworthy as the separately supplied digest/revision',release_approved:false};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(path.resolve(process.argv[1])).href){try{requireThat(process.argv.length===5,'Usage: node scripts/verify-installation.mjs <directory> <expected-source-revision> <trusted-manifest-sha256>');console.log(JSON.stringify(verifyInstallation(...process.argv.slice(2)),null,2));}catch(e){console.error(JSON.stringify({result:'fail',error:e.message}));process.exitCode=1;}}

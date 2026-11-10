@@ -1,7 +1,17 @@
-# Install and resume the public alpha
+# Install and resume the legacy runtime
 
-Extract or clone the complete repository into a new directory. Run `node scripts/install-skill.mjs`, install dependencies in the printed runtime directory, then open a fresh Codex chat and invoke `$startkompas`. The personal skill is the primary interface; the browser workspace is optional. Follow [the quickstart](../README.md) for prerequisites, installation, demo and a new project. Keep private dossiers outside the application directory. Never overwrite an existing installation or project.
+> **The skill installs separately and needs none of this** — copy one folder, see [`skill/INSTALL.md`](../skill/INSTALL.md). The bundled `.agents/skills/startkompas` skill and `scripts/install-skill.mjs` were **removed** on 2026-11-10; see [DECISIONS.md](../DECISIONS.md) entry 1.
 
-Run npm ci --ignore-scripts --no-audit --no-fund, then npm test. Use node src/startkompas.mjs --help. The bundled .agents/skills/startkompas directory is for project-local Codex discovery. Claude remains untested. The local browser project and offer flow was checked in Edge on Windows; other browser/OS combinations still need interactive validation.
+Extract or clone the repository into a new directory, then:
+
+```sh
+npm ci --ignore-scripts --no-audit --no-fund
+npm test
+node src/startkompas.mjs --help
+```
+
+Follow [the quickstart](quickstart.md) for the interactive menu, the fictional demo and creating a project. Keep private dossiers outside the application directory. Never overwrite an existing installation or project.
+
+The local browser project and offer flow was checked in Edge on Windows; other browser and OS combinations still need interactive validation.
 
 See [commands](commands.md), [core storage and recovery](core-route.md), [workflow changes](workflow-route.md) and [data handling](security-data-flows.md). Upgrades are explicit: keep the old app and backups, install the new app separately, test a copy/export before changing your project. Deleting the app does not delete separate private dossiers, exported copies or provider records. No automatic synchronization or provider-data deletion is supplied.

@@ -48,7 +48,7 @@ You do not need to name the skill — it is selected from its description.
 
 ## Jurisdictions
 
-The method is worldwide. The **rules** are not, so they live in packs. Four are verified, all checked 2026-11-10: **Belgium, Netherlands, Germany, France**.
+The method is worldwide. The **rules** are not, so they live in packs: four national ones — **Belgium, Netherlands, Germany, France** — plus two shared EU layers for the GDPR and the small-enterprise VAT scheme. All checked 2026-11-10.
 
 Why packs rather than one "EU" answer? Same question, same day, four different answers:
 
@@ -69,10 +69,10 @@ This repository contains two things. You almost certainly want the first.
 
 | | What it is | Install |
 | --- | --- | --- |
-| **`skill/`** | The product. 21 files of markdown, 119 KB, no dependencies. | Copy the folder — see [skill/INSTALL.md](skill/INSTALL.md). |
+| **`skill/`** | The product. 37 files of markdown, 230 KB, no dependencies. | Copy the folder — see [skill/INSTALL.md](skill/INSTALL.md). |
 | `src/`, `ui/`, `start.mjs` | A legacy local Node CLI and browser workspace from earlier alphas. Deterministic file operations with no AI host. | [Download alpha 14.2 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.14.2.zip), then `npm ci --ignore-scripts` and `node start.mjs`. |
 
-The legacy runtime is not required by the skill and is not the recommended route. It is kept for now because its storage and history tests are the origin of the dossier format. See [BACKLOG.md](BACKLOG.md) item 11 for its pending fate.
+The legacy runtime is not required by the skill and is not the recommended route. It is **frozen**: security, dependency and compatibility fixes only, no new features. It is kept rather than split out or deleted because `src/store.mjs`, `src/history.mjs` and `src/transfer.mjs` are the dossier format's reference implementation, with 565 passing tests behind them. The reasoning is in [DECISIONS.md](DECISIONS.md) entry 1.
 
 ### Repository layout
 
@@ -89,7 +89,6 @@ Every directory, so nothing here is a mystery. Directories with their own README
 | `templates/`, `modules/` | runtime | Document templates and packaged procedural modules |
 | [`assets/`](assets/README.md) | runtime + brand | Fonts for PDF export, brand images, demo captures |
 | `licenses/` | runtime | 28 dependency licence texts |
-| `.agents/` | **deprecated** | The original runtime-coupled skill. Superseded by `skill/` |
 | [`docs/`](docs/README.md) | mostly runtime | 53 files. The index classifies every one |
 | `scripts/` | repository | Packaging, manifest, secret scan, repo-wide link check |
 | `.github/` | repository | Two workflows — `quality.yml` (runtime) and `skill.yml` (skill) |
@@ -98,12 +97,12 @@ Root files: [`BACKLOG.md`](BACKLOG.md) is the 100-item plan, [`LICENSING.md`](LI
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and the [100-item backlog](BACKLOG.md), which is ordered basics-first and explicitly refuses new features until the basics are done.
+See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), the [100-item backlog](BACKLOG.md) — ordered basics-first and explicitly refusing new features until the basics are done — and [DECISIONS.md](DECISIONS.md) for structural choices and why they were made.
 
 Most useful contributions, in order:
 
 1. A verified jurisdiction pack for your country.
-2. A scored eval run — [skill/evals/cases.md](skill/evals/cases.md) has 18 cases and **none has been scored on any host yet**.
+2. A scored eval run — [skill/evals/cases.md](skill/evals/cases.md) has 22 cases and **none has been scored on any host yet**.
 3. A recheck of a stale claim in an existing pack, with its new date.
 
 [Ask a question](https://github.com/davidvuy/startkompas-alpha/discussions) · [Report a bug or suggest an improvement](https://github.com/davidvuy/startkompas-alpha/issues/new/choose) · [Report a vulnerability privately](https://github.com/davidvuy/startkompas-alpha/security/advisories/new)

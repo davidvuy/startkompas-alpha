@@ -10,7 +10,7 @@ Primary documentation consulted: [OpenAI CLI](https://learn.chatgpt.com/docs/cod
 
 SK09 update (2026-10-27): Node 26.7.0 now executes the minimal helper with Ajv 8.20.0 and the exact SK05 transitive lock. npm ci --ignore-scripts --no-audit --no-fund installs this local dependency set. Six process tests and one explicit source-skill CLI resumption passed; source-helper support remains limited to this environment and create-only format. No general installed-host support or recovery claim.
 
-SK10 tested installation (2026-10-27): project-local .agents/skills/startkompas in the complete allowlisted Node/helper package. A new CLI session invoked $startkompas by name and created a new synthetic dossier; a distinct session resumed it correctly. Source/installed validators and six tests passed. This narrows the earlier no-installed-route statement for this one Windows/Node26.7.0/CLI0.162.1+MXC route only. Implicit selection, other hosts/versions and production recovery remain untested. See evidence/sk10/report.md.
+SK10 tested installation (2026-10-27), **historical**: project-local `.agents/skills/startkompas` in the complete allowlisted Node/helper package. That directory was removed on 2026-11-10 (see ../DECISIONS.md entry 1); this record describes what was tested then, not the current layout. A new CLI session invoked $startkompas by name and created a new synthetic dossier; a distinct session resumed it correctly. Source/installed validators and six tests passed. This narrows the earlier no-installed-route statement for this one Windows/Node26.7.0/CLI0.162.1+MXC route only. Implicit selection, other hosts/versions and production recovery remain untested. See evidence/sk10/report.md.
 
 ## Current documentation qualification — 2026-10-28
 

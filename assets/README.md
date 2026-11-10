@@ -2,7 +2,7 @@
 
 3.1 MB across 11 files. **None of it is used by the skill**, which ships no binaries at all — `skill/scripts/check-skill.mjs` fails the build if one appears there. Everything here belongs to the legacy runtime or to this repository's own presentation.
 
-Recorded because 3 MB of unexplained binaries in a repository is a question waiting to be asked. Their future is part of [BACKLOG.md](../BACKLOG.md) items 6 and 11.
+Recorded because 3 MB of unexplained binaries in a repository is a question waiting to be asked. The runtime is frozen but kept ([DECISIONS.md](../DECISIONS.md) entry 1), so these stay with it.
 
 ## Fonts — a real runtime dependency
 
@@ -38,11 +38,11 @@ Permission to display and distribute these with the project does **not** imply a
 
 **These show terminal output from the legacy Node CLI.** They are rendered panels of real fictional output, not screen recordings and not customer results — that caveat was in the original README and still applies.
 
-They advertise the runtime. The README now leads with the skill, so the video is no longer linked from it and the five stills are reachable only through `docs/alpha-demo.md`. If the runtime is parked, these go with it; if the skill ever needs a demo, it needs a new one.
+They advertise the runtime. The README now leads with the skill, so the video is no longer linked from it and the five stills are reachable only through `docs/alpha-demo.md`. If the runtime is ever removed, these go with it. If the skill ever needs a demo, it needs a new one.
 
 ## Summary
 
-| Group | Size | Needed by | If the runtime is parked |
+| Group | Size | Needed by | If the runtime were ever removed |
 | --- | --- | --- | --- |
 | Fonts | 1122 KB | `src/pdf-render.mjs` | goes with it |
 | Demo captures | 851 KB | `docs/alpha-demo.md` | goes with it |

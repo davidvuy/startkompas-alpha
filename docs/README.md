@@ -2,7 +2,7 @@
 
 **If you came for the skill, none of this is it.** The skill documents itself: [`skill/README.md`](../skill/README.md), [`skill/INSTALL.md`](../skill/INSTALL.md) and the files under `skill/references/`.
 
-Everything in this directory describes either the **legacy Node runtime** (the CLI and browser workspace from earlier alphas) or the project's own governance. 53 files, 292 KB. It is indexed rather than pruned because the runtime's fate is still an open decision — see [BACKLOG.md](../BACKLOG.md) item 11.
+Everything in this directory describes either the **legacy Node runtime** (the CLI and browser workspace from earlier alphas) or the project's own governance. 53 files, 292 KB. It is indexed rather than pruned because the runtime is **frozen but kept** — see [DECISIONS.md](../DECISIONS.md) entry 1 for why it was neither split out nor deleted.
 
 Classification below is by evidence, not by guess: a file counted as runtime or UI contains `node src/`, `npm run`, or browser-workspace instructions.
 
@@ -39,7 +39,7 @@ The command surface of `src/`. None of it is needed to use the skill.
 | [core-route.md](core-route.md) | The `1.0.0`/`1.1.0` dossier core: guarded updates, export/restore, handoff |
 | [workflow-route.md](workflow-route.md) | Schema 1.1.0 material choices, change handling, reuse |
 | [runtime.md](runtime.md) | Runtime requirements and diagnostics |
-| [quickstart.md](quickstart.md) · [quickstart.nl.md](quickstart.nl.md) | First-result walkthroughs. The EN one still describes the old skill install |
+| [quickstart.md](quickstart.md) · [quickstart.nl.md](quickstart.nl.md) | The runtime's interactive menu, demo and project creation |
 | [start-resume.md](start-resume.md) · [gebruiken.nl.md](gebruiken.nl.md) | Minimal start and resume notes |
 | [alpha-workspace.md](alpha-workspace.md) · [alpha-workspace.nl.md](alpha-workspace.nl.md) | The guided founder workspace |
 | [daily-work.md](daily-work.md) | The `daily-cli` brief view |
@@ -86,8 +86,8 @@ Per-feature notes for the runtime's storage and research capabilities.
 Stated rather than quietly left for a reader to discover:
 
 - **12 of these files mention Codex** and **17 contain `node src/` commands.** The skill is host-neutral and needs neither.
-- `quickstart.md` still documents `node scripts/install-skill.mjs`, which installs the **old** runtime-coupled skill, not `skill/`.
+- **Resolved 2026-11-10:** `quickstart.md`, `start-resume.md` and `alpha-support.md` used to instruct installing the old runtime-coupled skill. That skill and its installer were removed ([DECISIONS.md](../DECISIONS.md) entry 1) and all three now point at `skill/INSTALL.md`.
 - `alpha-roadmap.md` and `alpha-progress.md` are superseded by `BACKLOG.md` but are kept as the historical record of what was planned and claimed.
 - Nothing in here has been rewritten for skill-first except `maintenance-readiness.md` and the banner on `support-matrix.md`.
 
-If the runtime is parked (BACKLOG item 11), most of this directory goes with it. The governance table is the part that would stay.
+The runtime is frozen, not parked, so this directory stays. If that decision is ever reversed ([DECISIONS.md](../DECISIONS.md) entry 1 lists what would reverse it), most of this goes with it and the governance table is the part that would remain.

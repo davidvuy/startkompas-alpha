@@ -26,7 +26,7 @@ MIT means a pack can be copied. What cannot be copied is the ongoing verificatio
 | Material | Scope and treatment |
 |---|---|
 | `modules/domain-index.json` | Contains plan-derived domain names and coverage. On 2026-10-30 the user expressly authorized including this derived index in davidvuy/startkompas-alpha. Redistribution as part of this alpha is permitted; this is not a blanket MIT grant over the original plan or other imported material. |
-| `.agents/skills/startkompas/**` | Deprecated runtime-coupled skill, retained for existing installations and pending removal. Its `NOTICE` and `LICENSE-APACHE-2.0` govern any retained generated scaffold material there and continue to apply to that copy only. |
+| `.agents/skills/startkompas/**` | **Removed on 2026-11-10** (see [DECISIONS.md](DECISIONS.md) entry 1). It carried the only Apache-2.0 scaffold material in this repository, along with its own `NOTICE` and `LICENSE-APACHE-2.0`. With it gone, no Apache-2.0 obligation remains in the working tree. Git history retains the files and their notices. |
 | Any attributed third-party material elsewhere | Its original licence and notices prevail. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). New copying requires a path/revision/notice entry before distribution. |
 | `assets/startkompas-logo.png`, `assets/startkompas-header.png` | User-supplied original logo retained unchanged; horizontal dark header derived using the built-in image tool at the user's request on 2026-10-30. Permission to display and distribute with this project does not imply a separate MIT grant over the logo or trademark rights. |
 | `assets/fonts/**` | Bundled for the legacy runtime's PDF export only. Governed by `assets/fonts/OFL.txt`, not by the root MIT licence. |

@@ -1,16 +1,56 @@
 name: Quality
+# The legacy Node runtime. See DECISIONS.md entry 1: it is frozen, so the
+# six-way matrix no longer runs on every push. One job guards routine changes;
+# the full matrix runs weekly and on demand.
+#
+# The skill has its own workflow, skill.yml, which needs no dependencies.
 on:
   push:
-    branches: [main]
+    branches: [main, skill-first]
   pull_request:
+  schedule:
+    # Sundays 05:23 UTC — the full cross-platform matrix.
+    - cron: '23 5 * * 0'
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
   group: quality-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+
 jobs:
+  # Routine guard: the lowest supported Node on one OS. package.json allows
+  # >=24, so this is the version most likely to catch an incompatibility.
   test:
+    name: Tests (ubuntu, Node 24)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          package-manager-cache: false
+          node-version: '24.x'
+
+      - name: Verify package inventory
+        run: node scripts/check-public-package.mjs
+      - name: Install locked dependencies without install scripts
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Product and security regressions
+        run: npm test
+      - name: Installation diagnostics
+        run: node src/startkompas.mjs doctor --json
+      - name: Fictional save and restore demo
+        run: node examples/demo-offer-change.mjs ../startkompas-ci-demo
+      - name: Fictional guided founder workflow
+        run: node examples/demo-founder-workflow.mjs ../startkompas-founder-ci-demo
+
+  # Full cross-platform coverage, kept but not paid for on every push.
+  matrix:
+    name: Tests (full matrix)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     strategy:
       fail-fast: false
       matrix:
@@ -26,20 +66,20 @@ jobs:
         with:
           package-manager-cache: false
           node-version: ${{ matrix.node }}
+
       - name: Verify package inventory
         run: node scripts/check-public-package.mjs
       - name: Install locked dependencies without install scripts
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Product and security regressions
         run: npm test
-      - name: Installed Codex skill lifecycle
-        run: node scripts/check-installed-skill.mjs
       - name: Installation diagnostics
         run: node src/startkompas.mjs doctor --json
       - name: Fictional save and restore demo
         run: node examples/demo-offer-change.mjs ../startkompas-ci-demo
       - name: Fictional guided founder workflow
         run: node examples/demo-founder-workflow.mjs ../startkompas-founder-ci-demo
+
   audit:
     runs-on: ubuntu-latest
     timeout-minutes: 5
@@ -50,10 +90,10 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           package-manager-cache: false
-          node-version: '26.7.0'
+          node-version: '24.x'
 
       # Repository-wide, so it belongs in the job that runs once rather than
-      # across the six-way test matrix. No network and no dependencies.
+      # across the test matrix. No network and no dependencies.
       - name: Relative markdown links across the repository
         run: node scripts/check-doc-links.mjs
 
