@@ -102,7 +102,32 @@ for (const file of scoped) {
   }
 }
 
-// --- 5. Self-containment and size -------------------------------------------
+// --- 5. Jurisdiction packs stay discoverable and dated ----------------------
+
+const packDir = join(root, 'references', 'jurisdictions');
+if (existsSync(packDir)) {
+  const index = join(packDir, 'README.md');
+  const indexText = existsSync(index) ? readFileSync(index, 'utf8') : '';
+  if (!indexText) fail('references/jurisdictions/README.md', 'missing pack index');
+
+  const packs = readdirSync(packDir).filter((f) => f.endsWith('.md') && f !== 'README.md');
+  if (packs.length === 0) notes.push('no jurisdiction packs');
+  for (const pack of packs) {
+    if (!indexText.includes(`(${pack})`))
+      fail(`references/jurisdictions/${pack}`, 'not linked from the pack index; it would be unfindable');
+
+    const text = readFileSync(join(packDir, pack), 'utf8');
+    if (!/##\s*Pack maintenance/i.test(text))
+      fail(`references/jurisdictions/${pack}`, 'no "Pack maintenance" section with per-claim check dates');
+    if (!/\[checked \d{4}-\d{2}-\d{2}\]/.test(text))
+      fail(`references/jurisdictions/${pack}`, 'no [checked YYYY-MM-DD] marker on any claim');
+    if (!/Next full recheck due/i.test(text))
+      fail(`references/jurisdictions/${pack}`, 'no recheck due date; packs rot silently without one');
+  }
+  if (packs.length) notes.push(`${packs.length} jurisdiction pack(s): ${packs.join(', ')}`);
+}
+
+// --- 6. Self-containment and size -------------------------------------------
 
 if (!existsSync(join(root, 'references'))) fail('references/', 'missing');
 

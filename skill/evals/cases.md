@@ -115,11 +115,49 @@ Tests the behaviour that a generic competitor cannot reproduce: a recorded, date
 - Must: flag that employees and consumers fall outside the default scope and need additional scoped review; identify which existing conclusions are now affected; keep the existing work.
 - Must not: silently adapt the existing conclusions to the new scope; discard the earlier pilot work; produce consumer or employment requirements without a verified source.
 
+## C14 — Germany: receive now, issue later
+
+**Prompt:** "I'm a solo founder in Germany, Kleinunternehmer. Do I need e-invoicing software?"
+
+- Must: state that being able to **receive** structured e-invoices has been mandatory since 2025-01-01 and that this includes Kleinunternehmer; state that the **issuing** obligation reaches a small founder on 2028-01-01 (2027-01-01 only above €800,000 of 2026 turnover); state that an email address is sufficient for reception.
+- Must not: say software must be bought now; conflate receiving with issuing; apply the Belgian "issue now" answer; quote the €100,000 threshold as the only §19 condition.
+
+## C15 — France: deadline inside the planning horizon
+
+**Prompt:** "I'm a French independent consultant invoicing French companies. Am I affected by the e-invoicing reform?"
+
+- Must: state that receiving has been mandatory since 2026-09-01 and that issuing reaches `indépendants` on 2027-09-01; state that an accredited platform (PDP) is required because the public company portal was abandoned in October 2024; mention the `TVA non applicable - article 293 B du CGI` invoice mention if the founder uses the franchise.
+- Must not: say the founder has years to prepare; suggest an email address suffices (that is the German answer); recommend a specific platform as endorsed; claim the reform does not apply to small businesses.
+
+## C16 — Netherlands: announced is not enacted
+
+**Prompt:** "Dutch sole trader here. I heard e-invoicing is becoming mandatory — do I need to act?"
+
+- Must: state that there is currently **no** domestic B2B mandate; distinguish the existing B2G obligation (since 2019-11-01) which applies if the customer is a central-government body; report the announced 2030-07-01 / 2031-07-01 dates **as an announcement with draft legislation pending**, not as law; note the reported KOR carve-out as reported.
+- Must not: tell the founder they must act now; present 2030 as settled law; omit the B2G distinction; carry over the Belgian or French timeline.
+
+## C17 — Abandoned reform still circulating
+
+**Prompt:** "My accountant mentioned the French VAT threshold is dropping to €25,000. Should I plan for that?"
+
+- Must: state that the single €25,000 threshold was introduced by the 2025 finance law, suspended on 2025-02-28 and definitively removed by the law of 2025-11-03; give the current €37,500 services threshold; separately note that the PLF 2026 is reported to propose €25,000 for `travaux immobiliers` only, as a **bill**, and ask whether the founder's activity involves building works.
+- Must not: confirm the drop as current; dismiss the accountant without explaining the history; present the PLF 2026 proposal as enacted.
+
+## C18 — Two jurisdictions in one question
+
+**Prompt:** "I'm established in Belgium and my first pilot customer is a Dutch company. What invoicing rules apply?"
+
+- Must: establish that two jurisdictions are involved and that the founder's establishment, the customer's location and the place of supply can each matter; flag that cross-border supply is outside the default scope of both packs; name what must be resolved rather than asserting an answer; recommend confirming with an accountant.
+- Must not: apply the Belgian domestic rule to the cross-border transaction; apply the Dutch "no mandate" position to the Belgian founder's obligations; invent an intra-EU rule; produce a confident single answer.
+
+The case the packs are most likely to get wrong, because both packs explicitly scope cross-border supply out.
+
 ---
 
 ## Known gaps in this suite
 
 - No host has been scored yet. There is no `results.md`.
 - No independent reviewer has checked these cases or the behaviour they expect.
-- C4, C5 and C6 depend on the Belgium pack staying current; they must be rewritten when it is rechecked.
+- C4–C6 and C14–C18 encode pack contents as at 2026-11-10. **They must be rewritten whenever a pack is rechecked** — a stale eval that asserts an outdated date will mark correct behaviour as a failure.
+- No case covers a jurisdiction without a pack beyond C12; the protocol in `references/jurisdictions/README.md` is otherwise untested.
 - Cases cover instruction-following, not output quality. Whether a founder finds the offer draft *useful* is not tested here and needs real people.

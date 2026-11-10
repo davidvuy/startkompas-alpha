@@ -4,11 +4,31 @@ A jurisdiction pack is a dated, sourced answer set for one country or region. It
 
 ## Available packs
 
-| Jurisdiction | File | Last checked | Coverage |
-| --- | --- | --- | --- |
-| Belgium (federal; Wallonia/Flanders/Brussels noted where they differ) | [belgium.md](belgium.md) | 2026-11-10 | Registration, VAT exemption, B2B e-invoicing, B2B contract terms, software ownership, data protection roles, security expectations |
+| Jurisdiction | File | Last checked | Fully covered | Open topics |
+| --- | --- | --- | --- | --- |
+| Belgium (federal; regional differences noted) | [belgium.md](belgium.md) | 2026-11-10 | Registration, VAT exemption, B2B e-invoicing, B2B contract terms, software ownership, data protection, security | — |
+| Netherlands | [netherlands.md](netherlands.md) | 2026-11-10 | VAT (KOR), B2B/B2G e-invoicing, data protection | Registration rules, KOR invoicing duties, agreements, ownership |
+| Germany | [germany.md](germany.md) | 2026-11-10 | VAT (§19 UStG, primary law), B2B e-invoicing, data protection | Registration route, agreements/AGB, ownership, BDSG |
+| France | [france.md](france.md) | 2026-11-10 | VAT (franchise en base), B2B e-invoicing, registration portal, data protection | Registration detail, agreements, ownership, CNIL guidance |
 
-No other pack exists yet. That is a gap in coverage, **never** a finding that another country has no requirements.
+No other pack exists yet. A missing pack, or a topic marked open inside a pack, is a gap in **coverage** — **never** a finding that no requirement exists.
+
+## Why these cannot be generalized
+
+Four neighbouring EU countries, one question — "must I send structured electronic invoices to my business customers?" — and four different answers as at 2026-11-10:
+
+| | Must receive | Must issue (small founder) | Route |
+| --- | --- | --- | --- |
+| Belgium | since 2026-01-01 | **already, since 2026-01-01** | Peppol |
+| France | since 2026-09-01 | from **2027-09-01** | accredited private platform (PDP) |
+| Germany | since 2025-01-01 | from **2028-01-01** | email address suffices to receive |
+| Netherlands | no domestic mandate | announced for **2030-07-01** | Peppol (planned) |
+
+The small-business VAT exemption also behaves differently: in Belgium it does **not** exempt a founder from issuing structured e-invoices, in Germany it does **not** exempt them from receiving, and in the Netherlands the announced mandate reportedly **does** carve out KOR businesses.
+
+Thresholds diverge just as much — €25,000 (BE, rising to €30,000 by 2031), €20,000 (NL), €25,000 **and** €100,000 together (DE), €37,500 for services (FR).
+
+Any skill that answers this from a single "EU" position is wrong in at least three countries. That is the reason packs exist.
 
 ## Using a pack
 
