@@ -62,7 +62,7 @@ test('a tree whose links all resolve passes', () => {
     'CONTRIBUTING.md': 'Back to [the readme](README.md).',
     'docs/one.md': 'Up to [the readme](../README.md).',
   });
-  assert.match(result.stdout, /3 markdown file\(s\), 4 relative link\(s\) checked/);
+  assert.match(result.stdout, /3 markdown file\(s\), 4 relative link\(s\) and 0 anchor\(s\) checked/);
 });
 
 test('a dead link fails and names both ends', () => {
@@ -88,15 +88,102 @@ test('external URLs are ignored', () => {
   const result = expectPass({
     'README.md': 'See [ext](https://example.com/x) and [plain](http://example.com).',
   });
-  assert.match(result.stdout, /0 relative link\(s\) checked/);
+  assert.match(result.stdout, /0 relative link\(s\) and 0 anchor\(s\) checked/);
 });
 
 test('mailto links are ignored', () => {
   expectPass({'README.md': 'Mail [us](mailto:someone@example.com).'});
 });
 
-test('a pure in-page anchor is ignored', () => {
+test('a pure in-page anchor that resolves passes', () => {
   expectPass({'README.md': '# Title\n\nJump to [section](#title).'});
+});
+
+// --- Anchors -----------------------------------------------------------------
+// A link to a renamed heading lands silently at the top of the document, which
+// is the one kind of broken link a reader does not notice.
+
+test('a pure in-page anchor pointing at no heading fails', () => {
+  const result = expectFail(
+    {'README.md': '# Title\n\nJump to [gone](#no-such-section).'},
+    /no such heading or id in this file/,
+  );
+  assert.match(result.output, /#no-such-section/);
+});
+
+test('a cross-file anchor that resolves passes', () => {
+  expectPass({
+    'README.md': 'See [the template](docs/guide.md#the-pack-template).',
+    'docs/guide.md': '# Guide\n\n## The pack template\n\nText.\n',
+  });
+});
+
+test('a cross-file anchor pointing at no heading fails, and says the file was found', () => {
+  // The distinction matters: a missing file and a missing heading need
+  // different fixes.
+  const result = expectFail(
+    {
+      'README.md': 'See [renamed](docs/guide.md#old-name).',
+      'docs/guide.md': '# Guide\n\n## New name\n\nText.\n',
+    },
+    /file exists, but it has no such heading or id/,
+  );
+  assert.match(result.output, /docs\/guide\.md#old-name/);
+});
+
+test('heading slugs drop punctuation and lowercase the rest, as GitHub does', () => {
+  expectPass({
+    'README.md': [
+      '[a](g.md#2-vat--the-national-scheme)',
+      '[b](g.md#what-the-client-actually-gets--315-urhg)',
+      '[c](g.md#ownership-and-permitted-use)',
+    ].join('\n'),
+    'g.md': [
+      '# G',
+      '',
+      '## 2. VAT — the national scheme',
+      'x',
+      '',
+      '## What the client actually gets — §31(5) UrhG',
+      'x',
+      '',
+      '## Ownership and permitted use',
+      'x',
+    ].join('\n'),
+  });
+});
+
+test('an explicit <a id> target counts as an anchor', () => {
+  // The backlog uses these for stable links to numbered items, which survive
+  // the item's wording changing.
+  expectPass({
+    'README.md': 'See [item 11](BACKLOG.md#11).',
+    'BACKLOG.md': '# Backlog\n\n<a id="11"></a>**11.** Decide the runtime.\n',
+  });
+});
+
+test('a heading inside a code fence does not provide an anchor', () => {
+  expectFail(
+    {
+      'README.md': 'See [fake](g.md#not-real).',
+      'g.md': '# G\n\n```\n## Not real\n```\n',
+    },
+    /no such heading or id/,
+  );
+});
+
+test('a repeated heading provides the numbered anchors GitHub generates', () => {
+  // Two headings with the same text become `name` and `name-1`.
+  expectPass({
+    'README.md': '[first](g.md#notes) and [second](g.md#notes-1)',
+    'g.md': '# G\n\n## Notes\n\nOne.\n\n## Notes\n\nTwo.\n',
+  });
+});
+
+test('an anchor on a non-markdown file is not checked', () => {
+  // A fragment on a LICENSE or a .json means nothing; asserting it would be a
+  // false positive.
+  expectPass({'README.md': 'See [licence](LICENSE#section).', LICENSE: 'MIT'});
 });
 
 // --- Anchors, directories and other near-misses ------------------------------

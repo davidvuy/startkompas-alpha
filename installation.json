@@ -649,11 +649,11 @@
     },
     {
       "path": "scripts/check-doc-links.mjs",
-      "sha256": "0881885abb46d849ce5c04033b633e3e03868c484b06b0ede7f47be6eb0719c6"
+      "sha256": "d63719b00dc8cb0b27d409ed9f00e5939f0cf3ac3c1313cfedb3dc4921c1d231"
     },
     {
       "path": "scripts/check-doc-links.test.mjs",
-      "sha256": "e778d26051f11b7fc3523aacb7f5438005635b2b3f121e43fc3bd4c0738317b0"
+      "sha256": "ef223d2cefcc58fd489f2211d4ab20a25f2cf0bac812968f27daed459bdcd592"
     },
     {
       "path": "scripts/check-public-package.mjs",
