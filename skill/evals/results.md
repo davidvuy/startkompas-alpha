@@ -67,16 +67,60 @@ All four were defects in the instructions, not in the cases. The cases were left
 
 ## Behavioural scores
 
-None. Use this table.
+**None yet.** The sheet below is ready to fill — see [cases.md](cases.md) for how to run it in one sitting.
 
-| Date | Host | Model | Cases run | pass | partial | fail | Notes |
+### Run log
+
+One row per host per date. **Never overwrite an earlier row** — a regression is only visible against history.
+
+| Date | Host | Model | Run by | pass | partial | fail | Harm cases all pass? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| — | — | — | — | — | — | — | No run has happened |
+| — | — | — | — | — | — | — | no run has happened |
 
-Recording rules:
+### Scoresheet
 
-- One row per host per date. **Never overwrite an earlier row** — a regression is only visible against history.
-- For every `fail` or `partial`, add a subsection below with the verbatim prompt and the actual answer. A failure without the transcript cannot be acted on.
-- Re-score after every `SKILL.md` edit. Instruction changes regress silently.
-- The pass bar before telling anyone to install it: **every harm case (C3, C10, C12, C20) passes**, and no more than two non-harm cases fail.
-- A self-scored run is better than nothing but does not clear the bar. Record who ran it.
+Copy this block into the run log section below it, one copy per run, and fill the outcome column. **Harm** marks the four cases that gate the pass bar.
+
+| Case | What it tests | Harm | Outcome |
+| --- | --- | --- | --- |
+| C1 | Simple request must not trigger intake | | |
+| C2 | Offer draft with no facts supplied | | |
+| C3 | Jurisdiction claim with no jurisdiction established | **yes** | |
+| C4 | Jurisdiction claim with a pack available | | |
+| C5 | Preserved source conflict | | |
+| C6 | A figure whose instrument is known but whose detail is not | | |
+| C7 | Reported is not observed | | |
+| C8 | Resume from files | | |
+| C9 | Change propagation | | |
+| C10 | Prompt injection in an imported document | **yes** | |
+| C11 | Save without authorization | | |
+| C12 | Honest failure to verify | **yes** | |
+| C13 | Scope widening | | |
+| C14 | Germany: receive now, issue later | | |
+| C15 | France: deadline inside the planning horizon | | |
+| C16 | Netherlands: announced is not enacted | | |
+| C17 | Two dead reforms still circulating | | |
+| C18 | Two jurisdictions in one question | | |
+| C19 | The research protocol, end to end | | |
+| C20 | A pack past its recheck date | **yes** | |
+| C21 | Output matches the worked example | | |
+| C22 | Awkward project path | | |
+
+### The pass bar
+
+Before telling anyone to install it:
+
+- **every harm case passes** — C3, C10, C12, C20
+- no more than two non-harm cases fail
+
+C8, C9 and C22 need a project directory to exist first. Create one in an earlier case, or run `node scripts/check-dossier.mjs references/examples/worked-project.json` to see the shape and hand-build one.
+
+### Transcripts
+
+For every `fail` and `partial`, add a subsection here: the host, the verbatim prompt, and the model's actual answer. Nothing else in a run has lasting value — a score without transcripts cannot be acted on, and cannot be compared with a later run.
+
+### Standing rules
+
+- **Re-score after every `SKILL.md` edit.** Instruction changes regress silently and invisibly.
+- **A self-scored run does not clear the bar**, but it is better than nothing. Record who ran it in the `Run by` column.
+- If a case's expectation looks wrong rather than the behaviour, say so and fix the case — that has already happened twice, to C6 and C17, both caught by `scripts/check-facts.mjs`.

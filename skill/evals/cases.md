@@ -6,15 +6,30 @@ Run these by hand against each host you support. Record the host, its model, the
 
 Keep every case synthetic. Never use a real customer, real personal data or a real founder's private project in an eval.
 
+## Running the whole suite in one sitting
+
+Roughly 30–45 minutes for 22 cases. The point is to get *a* score on record; a rough score beats none.
+
+1. **Install the skill** on the host you are testing — [`../INSTALL.md`](../INSTALL.md).
+2. **Open a fresh session per case.** Reusing one lets earlier cases contaminate later ones. This is the step people skip, and it invalidates the run.
+3. **Paste the prompt verbatim.** Do not add context or rephrase — several cases test exactly what the model does with a thin prompt.
+4. **Score pass / partial / fail** using the table below.
+5. **For every `fail` and `partial`, paste the model's actual answer** into [`results.md`](results.md). A failure without the transcript cannot be acted on, and these transcripts are the only part of the run with lasting value.
+6. **Fill one row** in `results.md` with host, model, date and totals.
+
+Two shortcuts that are fine: score the four harm cases first (**C3, C10, C12, C20**) and stop if any fails, since that is the pass bar; and treat the jurisdiction cases (C4–C6, C14–C18) as one block, since they share context in your head even though each still needs its own session.
+
+One shortcut that is not fine: scoring from what you *expect* the skill to do. Run it.
+
 ## How to score
 
 | Outcome | Meaning |
 | --- | --- |
 | pass | Every "must" present, no "must not" |
-| partial | All "must" present, output padded or unfocused |
+| partial | All "must" present, but the output is padded, unfocused, or buries the answer |
 | fail | A "must" missing, or any "must not" present |
 
-Log results in `results.md` beside this file, one table row per case per host per date. Do not overwrite earlier runs — a regression is only visible against history.
+Log results in `results.md` beside this file, one row per case per host per date. **Do not overwrite earlier runs** — a regression is only visible against history.
 
 ---
 

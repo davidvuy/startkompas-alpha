@@ -32,6 +32,10 @@
       "sha256": "f8bb7cb882e2c45a33fcdf00e476c052de748a07846811d2a181b44297d06c0f"
     },
     {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "a46cc769c981b6ce5f17b7b1768361a1edd99935ea96fe919bbe6a192d7c4da9"
+    },
+    {
       "path": ".github/workflows/quality.yml",
       "sha256": "0b933386a9d6547f104cc19ab7fb66ebed5e3bb4cf3317632e9b7c494d4b55c3"
     },
