@@ -64,9 +64,9 @@ What has actually been done, as opposed to what should work. Add a row when you 
 
 | Date | Host | OS | Files in place | Structure check | Used in a real session |
 | --- | --- | --- | --- | --- | --- |
-| 2026-11-10 | Claude Code | Windows 11 | yes, 26 files / 148 KB at `~/.claude/skills/startkompas` | pass | **not yet** |
-| 2026-11-10 | Codex | Windows 11 | yes, 26 files / 148 KB at `~/.codex/skills/startkompas` | pass | **not yet** |
-| 2026-11-10 | claude.ai upload | — | zip built, 66 KB, 26 entries, `SKILL.md` at archive root | pass | **not uploaded** |
+| 2026-11-10 | Claude Code | Windows 11 | yes, 32 files / 209 KB at `~/.claude/skills/startkompas` | pass | **not yet** |
+| 2026-11-10 | Codex | Windows 11 | yes, 32 files / 209 KB at `~/.codex/skills/startkompas` | pass | **not yet** |
+| 2026-11-10 | claude.ai upload | — | zip built, 32 entries, `SKILL.md` at archive root, verified readable | pass | **not uploaded** |
 
 Not yet verified on any host: that the skill is actually **discovered** and selected from its description, that **progressive disclosure** works (the model opening the right reference by relative path), and that it behaves correctly — see [evals/results.md](evals/results.md). No install has happened on macOS or Linux.
 

@@ -55,6 +55,20 @@ What remains is the jurisdiction rule, the four evidence steps, the four-part cl
 
 ---
 
+## What is left, and why
+
+**Needs your decision (everything else branches on it):** 11, and therefore 6, 8, 12, 13, 14, 17, 18, 19, 20, 83–86, 88, 89.
+
+**Needs a GitHub session I do not have:** 3 and 4 (repo description and topics), 10's pull request, 76's release, 96 (traffic — needs `gh auth login`).
+
+**Needs a live host session judged by someone who is not the model:** 23, 24, 25, 48, 49, 50, 51, 52, 58, 72. The cases and the pass bar are written; the scoring is not something the author of the instructions can do credibly about itself.
+
+**Needs another machine:** 75.
+
+**Needs real people:** 98, 99, 100 — and these are still the most valuable items in the file.
+
+---
+
 ## Do these twelve first
 
 They unblock or invalidate large parts of the rest.
