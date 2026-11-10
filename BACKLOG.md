@@ -6,6 +6,8 @@ Written 2026-11-10, against commit `3cc17e5` on branch `skill-first`.
 
 Nothing here is a guess about what users want. Items are grounded in what is actually in the repository today, with file references where they exist.
 
+**How to read this file.** The numbered list in sections 1 to 11 is the **original plan as written on 2026-11-10** and it is left as written, including the numbers it quoted at the time. It is a record of what was decided, not a status board. For the current state, read **Progress** and **What is left, and why** immediately below; where an item has been resolved, declined or superseded, those two sections say so and give the reason. Where an item's own text has since been shown to be wrong rather than merely done, the item carries a bracketed correction inline.
+
 ---
 
 ## Progress
@@ -31,15 +33,24 @@ Updated 2026-11-10.
 - **21** — done as the instruction-coverage audit in `skill/evals/results.md` rather than as a reading exercise.
 - **56** — pass bar recorded in `results.md`: every harm case (C3, C10, C12, C20) must pass, and no more than two non-harm cases may fail, before telling anyone to install it.
 
-**Verification debt (33–46) is cleared.** All four national packs now carry **zero** unrefetched claims, plus a new shared `eu-gdpr.md` layer so the GDPR rules are stated once rather than four times. 32 cited URLs checked, 30 live, 0 dead, 2 Légifrance URLs bot-blocked but read.
+**Verification debt (33–46) is worked through.** All four national packs carry **zero** unrefetched claims, plus three shared layers — `eu-gdpr.md`, `eu-vat-sme.md`, `eu-ai-act.md` — so the EU-level rules are stated once rather than four times. The per-item outcome is tabulated in [section 4](#4-verification-debt); several items are closed only as far as the primary source allows, and the packs say which.
 
-What that research actually produced:
+**First research wave** — what it produced:
 
 - **Primary legislation read and quoted** for six provisions: §19 UStG, §69b UrhG, §310(1) BGB, art. L113-9 CPI, art. L442-1 I C.com, art. 7 Auteurswet.
 - **Two pack entries reversed.** The French PLF 2026 €25,000 carve-out was recorded as an open bill; it was rejected in November 2025. Dutch e-invoicing was recorded as Peppol-based; Peppol is recommended, not mandated.
 - **One claim demoted by checking it.** §19 UStG is *silent* on net-vs-gross, mid-year exit and founding-year projection — three things professional commentary states as fact.
 - **Three new cross-border findings** in `jurisdictions/README.md`: four different unfair-terms mechanisms with four different remedies; a genuine convergence on software ownership (none of the four transfers rights for commissioned work, so a founder keeps theirs by default); and the Dutch protection that switches off at 50 employees.
 - **Open topics rose from 18 to 26.** Resolving nine surfaced several that were previously invisible — that is honest accounting, not a regression.
+
+**Second research wave — the PDF pile.** Official guidance that a normal fetch cannot read, because the PDFs use subset fonts. Extracted with `pdftotext` from Git for Windows and read in full: the Belgian unfair-terms brochure; four GBA SME publications plus the GBA breach manual; the AP controller step plan, the AP breach step plan and the AP's own list of the breach form's questions; the French `fiche 7` on e-reporting, the official start guide, the CNIL TPE-PME checklist and the CNIL/Bpifrance PME guide; and all three BMF e-invoicing letters. **Fourteen documents.** What it changed:
+
+- **One pack was contradicting the primary source.** Rn. 22 of the BMF letter of 2025-10-15 exempts **Kleinunternehmer** from issuing an e-invoice entirely, along with any invoice at or under €250. The pack had been telling exactly its own audience to prepare for a 2028 obligation they do not have. Corrected in three places, and `check-facts` now guards it.
+- **Two "authority guides" turned out to be pre-GDPR awareness material.** The Belgian `Wegwijs in de AVG voor KMO's` is January 2018 and issued by the **CBPL**; the CNIL/Bpifrance PME guide is **April 2018** and marked `Document non contractuel`. Both describe the GDPR in the future tense. Two further GBA brochures are a **KU Leuven** project deliverable, not supervisory doctrine. Each document is now dated and attributed rather than listed by title.
+- **The one current Belgian document is the breach manual**, versie 2.0 of **2026-02-02** — and it is the most operational material in any pack. It names its own trap: the art. 33 deadline can be lost to an unassigned MijneGov role.
+- **A third cross-border contrast**, in `jurisdictions/README.md`: art. 33 gives everyone the same 72 hours, and the machinery inside them is national. Belgium is a two-part filing with a hard 21-day window; the Netherlands is one form with a 4-week follow-up request. In both, it is the *completion* step that discharges art. 33 — so filing inside 72 hours and stopping is not compliance.
+- **The transitional/non-objection conflation fixed.** German transitional rules run to **2027-12-31**; the 2026-12-31 date is the non-objection period for a different letter's additional requirements.
+- **Open topics rose from 26 to 33** across the two waves, for the same reason as before.
 
 **Partly done:**
 
@@ -97,22 +108,22 @@ That resolved the whole block that depended on it:
 
 ## Do these twelve first
 
-They unblock or invalidate large parts of the rest.
+They unblock or invalidate large parts of the rest. **Eight of the twelve are closed. The four that are open are the four that need someone other than the model**, which is the honest summary of where this project stands.
 
-| | Item | Why first |
-| --- | --- | --- |
-| 1 | [#11](#11) Decide the runtime's fate | 30+ items below branch on this answer |
-| 2 | [#1](#1) Rewrite the root README install path | It currently sends every visitor down the 28 MB route |
-| 3 | [#47](#47) Score the 18 eval cases on one host | Until this exists, nobody knows the skill works |
-| 4 | [#69](#69) Install your own skill and use it | `~/.claude/skills/` does not exist on your machine |
-| 5 | [#59](#59) Run `check-skill.mjs` in CI | It currently runs nowhere |
-| 6 | [#99](#99) Watch one person install it, unaided | That number replaces every estimate in this file |
-| 7 | [#15](#15) Retire the old `.agents/` skill | Two skills in one repo confuses hosts and visitors |
-| 8 | [#3](#3) Fix the repo description and topics | Still says Codex-only, CLI, Node |
-| 9 | [#33](#33) Refetch the six carried Belgium claims | Dated claims are the product |
-| 10 | [#51](#51) Verify the harm cases C3 and C12 pass | Wrong tax answers are the real risk |
-| 11 | [#5](#5) Cut the README disclaimer density | 30 hedges in 94 lines |
-| 12 | [#98](#98) Ask five people the pre-product question | Everything else is downstream of the answer |
+| | Item | Why first | State |
+| --- | --- | --- | --- |
+| 1 | [#11](#11) Decide the runtime's fate | 30+ items below branch on this answer | **Done** — keep, frozen; [DECISIONS.md](DECISIONS.md) entry 1 |
+| 2 | [#1](#1) Rewrite the root README install path | It currently sends every visitor down the 28 MB route | **Done** — skill install is first, one line, no Node |
+| 3 | [#47](#47) Score the eval cases on one host | Until this exists, nobody knows the skill works | **Open — needs a host session judged by someone who is not the model.** The 22 cases and the pass bar are written |
+| 4 | [#69](#69) Install your own skill and use it | `~/.claude/skills/` does not exist on your machine | **Done** — installed in `~/.claude/skills/` and `~/.codex/skills/`, resynced on every change |
+| 5 | [#59](#59) Run `check-skill.mjs` in CI | It currently runs nowhere | **Done** — `skill.yml` runs all five checks, no `npm ci` |
+| 6 | [#99](#99) Watch one person install it, unaided | That number replaces every estimate in this file | **Open — needs a real person** |
+| 7 | [#15](#15) Retire the old `.agents/` skill | Two skills in one repo confuses hosts and visitors | **Done by deletion** |
+| 8 | [#3](#3) Fix the repo description and topics | Still says Codex-only, CLI, Node | **Open — needs the owner's GitHub session.** Paste-ready text prepared |
+| 9 | [#33](#33) Refetch the six carried Belgium claims | Dated claims are the product | **Done** — and the refetch corrected several of them |
+| 10 | [#51](#51) Verify the harm cases C3 and C12 pass | Wrong tax answers are the real risk | **Open — same blocker as item 47.** `check-facts.mjs` now guards the *facts* those cases rely on, which is not the same as scoring the behaviour |
+| 11 | [#5](#5) Cut the README disclaimer density | 30 hedges in 94 lines | **Done** |
+| 12 | [#98](#98) Ask five people the pre-product question | Everything else is downstream of the answer | **Open — needs real people** |
 
 ---
 
@@ -166,7 +177,7 @@ The repository now contains two different products. A visitor cannot tell which 
 
 **21.** Read `skill/SKILL.md` end to end as if you were the model. Every sentence that is a caveat rather than an instruction is weight carried on every single turn.
 
-**22.** `SKILL.md` is ~7 KB. Target under 5 KB by moving detail into references and keeping only decision rules at the top level.
+**22.** `SKILL.md` is ~7 KB. Target under 5 KB by moving detail into references and keeping only decision rules at the top level. — *[Correction: the 5 KB target was wrong. A coverage audit found the file was missing two load-bearing instructions, which were added, and it now sits at 7.5 KB. The real target is **under 8 KB with every section load-bearing**, tested by deleting a section and asking what behaviour is lost. Size is a proxy; the audit is the test.]*
 
 **23.** Verify the 666-character description actually routes: ask an in-scope question **without naming the skill** and see whether it triggers.
 
@@ -192,6 +203,27 @@ The repository now contains two different products. A visitor cannot tell which 
 
 This is the moat. Debt here is the only debt that degrades the product's actual value.
 
+**Where this section stands**, item by item, as at 2026-11-10. Every one has been worked; not every one is closed, and the difference matters more than the count.
+
+| Item | State | What actually happened |
+| --- | --- | --- |
+| 33 | **Closed** | All Belgium claims refetched and re-dated. The refetch *corrected* several of them rather than confirming them |
+| 34 | **Open** | The enacting instrument is now identified — law of 2026-09-23, art. 26, amending art. 56ter VAT Code — but the per-year figures still rest on professional commentary. The pack says so |
+| 35 | **Closed** | Primary EU legislation read; the €100,000 cap is art. 284(2)(a) |
+| 36 | **Closed as far as the source allows** | §19 UStG read directly and it is **silent** on all three claims. The pack now says the secondary basis is unidentified and sends the founder to a `Steuerberater`. That is the correct outcome, not a failure |
+| 37 | **Closed** | All three BMF letters — 2024-10-15, 2025-10-15, 2026-10-15 — extracted and read in full. This is what surfaced the Kleinunternehmer issuing exemption the pack had been contradicting |
+| 38 | **Mostly closed** | KVK pages read, registration fee confirmed from the official page. Required identification documents and the processing timeframe remain open |
+| 39 | **Mostly closed** | Tax-authority wording read and quoted: no invoice required, the scheme must be stated, no VAT charged. That purchase invoices are still retained rests on secondary sourcing and is flagged |
+| 40 | **Closed** | €100,000 Union threshold, start date 2025-01-01, both from primary EU legislation |
+| 41 | **Closed by another route** | `economie.gouv.fr` still returns 403 and the pack records that. The tax administration's own pages and the official `fiche` were read instead, which is a better source anyway |
+| 42 | **Closed** | The PLF 2026 `travaux immobiliers` carve-out was **rejected, not pending** — the entry was wrong in the other direction and is corrected |
+| 43 | **Partly** | The timeline is recorded from consistent secondary reporting; the `Contourenbrief` of 2026-09-11 itself has not been read |
+| 44 | **Closed** | Primary legislation read per article for all three, and the four mechanisms are contrasted in the packs' README |
+| 45 | **Closed for ownership, open for use** | All four jurisdictions' ownership rules read from primary sources and found to converge. What the *client* acquires is answered only for Germany (§31(5) UrhG); NL and FR are named as open |
+| 46 | **Partly** | AP material read in depth, CNIL material read and dated. For Germany the BfDI's directory of 16 Länder authorities is read, but the BDSG and the competent authority's own guidance are not |
+
+**The honest summary: the research succeeded, and the open-topic count went from 7 to 33 because of it.** Closing a vague gap reliably names two specific ones — "read the BMF guidance" became "read §27(38) UStG" and "read the GoBD letter". A rising number here is the method working, not the project slipping.
+
 <a id="33"></a>**33.** Refetch the six carried Belgium claims (FPS Economy procedures, `business.belgium.be/32`, the unfair-terms PDF, software ownership, both EDPB pages) and update their dates.
 
 **34.** Get primary confirmation of the Belgian VAT phased schedule from FPS Finance or the Official Gazette. It currently rests on two secondary sources.
@@ -200,7 +232,7 @@ This is the moat. Debt here is the only debt that degrades the product's actual 
 
 **36.** Confirm the German "net amounts / immediate exit / no founding-year projection" changes against the primary text or BMF guidance.
 
-**37.** Read the German BMF e-invoicing guidance — currently `[not researched]`.
+**37.** Read the German BMF e-invoicing guidance — currently `[not researched]`. — *[Done, and it was the highest-value item in this section. Reading Rn. 22 of the 2025-10-15 letter showed the pack had been telling Kleinunternehmer to prepare for an issuing obligation they are exempt from. An item written as "fill a gap" turned out to fix an error.]*
 
 **38.** Establish Dutch registration rules properly. The KVK page fetched was a navigation hub, so the pack honestly says *not established*.
 
@@ -210,7 +242,7 @@ This is the moat. Debt here is the only debt that degrades the product's actual 
 
 **41.** Retry `economie.gouv.fr` (HTTP 403 on 2026-11-10) or find the French administration's own PDP and e-reporting guidance.
 
-**42.** Track the French PLF 2026 to enactment; update or remove the `travaux immobiliers` entry.
+**42.** Track the French PLF 2026 to enactment; update or remove the `travaux immobiliers` entry. — *[Done, and the item's premise was wrong: the carve-out was **rejected**, not awaiting enactment. The entry said "pending" and now says "rejected".]*
 
 **43.** Track the Dutch e-invoicing bill into consultation — expected Q4 2026, which is **now**.
 
@@ -218,11 +250,11 @@ This is the moat. Debt here is the only debt that degrades the product's actual 
 
 **45.** Close "ownership of commissioned software" for NL, DE and FR.
 
-**46.** Add national DPA guidance: AP (NL), the relevant state authority plus BDSG (DE), CNIL (FR). Better sources for those founders than the EU-level pages.
+**46.** Add national DPA guidance: AP (NL), the relevant state authority plus BDSG (DE), CNIL (FR). Better sources for those founders than the EU-level pages. — *[Mostly done, with one finding the item did not anticipate: **"national DPA guidance" is not a single kind of thing.** The Belgian GBA's SME brochures are January 2018 CBPL-era material and two of them are a KU Leuven deliverable, not supervisory doctrine; the CNIL's main PME guide is April 2018 and marked `non contractuel`. Only the AP's material and the GBA's breach manual (versie 2.0 of 2026-02-02) are current. The packs now date and attribute each document rather than listing titles, because the date is what decides whether a founder can rely on it.]*
 
 ## 5. Evals — the real quality gate
 
-<a id="47"></a>**47.** Create `skill/evals/results.md` and score all 18 cases on one host. **This is the single most valuable item in the file.**
+<a id="47"></a>**47.** Create `skill/evals/results.md` and score all 18 cases on one host. **This is the single most valuable item in the file.** — *[Still true, and still the most valuable item. Two corrections: the suite grew to **22** cases, and `skill/evals/results.md` now exists as the scoring sheet with every case listed and unscored. What is missing is the scoring itself, which the author of the instructions cannot credibly do about its own output.]*
 
 **48.** Score the same 18 on a second host. The differences are the point.
 
@@ -266,7 +298,7 @@ This is the moat. Debt here is the only debt that degrades the product's actual 
 
 **67.** Verify the pinned action SHAs still resolve (`actions/checkout@3d3c42e…`, `actions/setup-node@949feb24…`). Pinning is right; pins still rot.
 
-**68.** Add a size guard: the skill is 119 KB. Fail above ~250 KB so growth is a decision, not a drift.
+**68.** Add a size guard: the skill is 119 KB. Fail above ~250 KB so growth is a decision, not a drift. — *[Done, and the guard is now the binding constraint. `check-skill.mjs` enforces two budgets: **256 KB** for the 20 model-facing files and **512 KB** for the whole folder. The model-facing set reached **235.1 KB** on 2026-11-10 after the jurisdiction research, so about 21 KB remains. Raising the budget again is a decision to make the skill more expensive on every turn; from here, pack work should compress rather than append.]*
 
 ## 7. Install and distribution
 
@@ -359,8 +391,18 @@ Deliberately refused. Each would add surface area before the basics above are do
 
 ## Status
 
-- 4 jurisdiction packs, all checked 2026-11-10, with 7 open topics between them.
-- 18 eval cases written, **0 scored on any host**.
-- `skill/` is 21 files, 119 KB, no dependencies; `check-skill.mjs` passes.
-- Runtime is 353 files, 565 passing tests, untouched on this branch.
-- No independent user, security or legal review of anything.
+As at **2026-11-10**, end of day. Every number here is read from the repository, not estimated.
+
+| | |
+| --- | --- |
+| Jurisdiction packs | **7** — Belgium, Netherlands, Germany, France, plus `eu-gdpr`, `eu-vat-sme`, `eu-ai-act` as shared layers |
+| Pack verification | All checked **2026-11-10**; next full recheck **2027-05-10**; none stale |
+| Open topics | **33**, each named in the pack that owns it. This number goes **up** when research succeeds, because closing a vague gap names two specific ones |
+| Eval cases | **22** written, **0 scored on any host** — still the largest single hole |
+| `skill/` | **38 files**, of which **20 are model-facing at 235.1 KB** against a 256 KB budget; whole folder 329.6 KB against 512 KB; **no dependencies** |
+| Checks | 5, all passing: `check-skill`, `check-dossier`, `check-facts`, `check-freshness`, `check-links`. `check-facts` asserts **65** claims across 6 packs, including 3 forbidden patterns |
+| Cited URLs | **68** checked, 58 live, **none gone** |
+| Runtime | 94 `src/` modules, **565 passing tests**, frozen; 380 files in the repository overall |
+| Reviews | **None.** No independent user, security, legal or tax review of anything |
+
+**The one-line version: the content is in better shape than the evidence that it works.** Four of the twelve priority items are open and all four need a person who is not the model — one host scoring session, one GitHub session, and five conversations with real founders.
