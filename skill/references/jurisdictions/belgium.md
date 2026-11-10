@@ -204,14 +204,18 @@ The GBA states that **both controllers and processors** must keep a register und
 
 ### Its SME publications — and a warning about one of them
 
-Titles from the GBA's own publication index · **[checked 2026-11-10]**:
+All four were extracted and read on **2026-11-10**. They are not one body of work, and the dates and authorship matter more than the titles:
 
-| Publication | Status |
-| --- | --- |
-| `Wegwijs in de AVG voor KMO's` | **Dated January 2018 and issued by the CBPL**, the GBA's predecessor — see below |
-| `FAQ-brochure voor KMO's` | **[not researched]** |
-| `13-stappenplan` | **[not researched]** |
-| `Als KMO omgaan met rechten van betrokkenen` | **[not researched]** |
+| Publication | Date | Who wrote it |
+| --- | --- | --- |
+| [`Wegwijs in de AVG voor KMO's`](https://www.gegevensbeschermingsautoriteit.be/publications/wegwijs-in-de-avg-voor-kmo-s.pdf) | **January 2018** | **The CBPL**, the GBA's predecessor — see below |
+| [`13-stappenplan`](https://www.gegevensbeschermingsautoriteit.be/publications/13-stappenplan.pdf) | **versie 2.0, January 2018** | The same CBPL-era material, printed by the Kamer van volksvertegenwoordigers, and it still refers the reader to *"de website van de Privacycommissie"* |
+| [`FAQ-brochure voor KMO's`](https://www.gegevensbeschermingsautoriteit.be/publications/faq-brochure-voor-kmo-s.pdf) | **26 July 2020** | **Els Kindt and Pauline Hellemans, CiTiP KU Leuven** — project BOOST, EU grant 874505, hosted by the GBA |
+| [`Als KMO omgaan met rechten van betrokkenen`](https://www.gegevensbeschermingsautoriteit.be/publications/boost-een-beknopte-handleiding-voor-kmo-s.pdf) | 2020, same project | The same BOOST authors |
+
+**Read the authorship line before you cite one of these as "the GBA's position."** The two 2020 BOOST brochures are an academic deliverable of an EU co-funded project, published on the GBA's site. They are better than the 2018 pair — post-application, and they cite case law such as *Fashion ID* on embedded social plug-ins — but they are a KU Leuven text, not supervisory doctrine. The FAQ says so itself: it is *"een aanvulling op"* the 2018 `Wegwijs`, it does not treat the GDPR in full, and it covers only five chosen topics — controller/processor, transparency, DPIA, the register, and the DPO.
+
+One thing the BOOST FAQ settles that the pack had left open: the Belgian act supplementing the GDPR is the **`wet van 30 juli 2018`** (`Gegevensbeschermingswet 2018`). Identified, **not read** — see the maintenance table.
 
 **The main SME guide predates the GDPR taking effect.** Extracted and read on 2026-11-10: it carries *"januari 2018"* on its own front matter, opens with *"Op 25 mei 2018 treedt de Algemene Verordening Gegevensbescherming (AVG) in werking"* in the **future tense**, and explains that the GBA *"zal"* replace the CBPL from that date. It is therefore **pre-application guidance, now over eight years old**, and it reflects no supervisory practice, no decisions and no case law since.
 
@@ -222,9 +226,21 @@ Two points from it that remain sound and are not GDPR restatement:
 - **The GDPR's impact depends on an SME's actual processing activities, not on SME status as such** — consistent with the four-condition register test in [eu-gdpr.md](eu-gdpr.md) §3.
 - A data subject may **complain to the GBA and go to the ordinary court at the same time**; nothing excludes doing both. So a sanction risk and a damages claim are not alternatives.
 
-Breach notification goes to the GBA, on the 72-hour clock in [eu-gdpr.md](eu-gdpr.md) §4.
+### Notifying a breach: set the account up before you need it
 
-**Open:** the individual publications above were not read, so do not quote their contents. Belgian national provisions supplementing the GDPR, and whether a specific breach is notifiable, remain **[not researched]** — the latter is a judgment for the founder with advice, not something this pack decides.
+Breach notification goes to the GBA on the 72-hour clock in [eu-gdpr.md](eu-gdpr.md) §4. How you actually file it is the GBA's own current document — and the only one of these publications that is genuinely current.
+
+Source: [`Handleiding melden van een gegevensinbreuk`](https://www.gegevensbeschermingsautoriteit.be/publications/handleiding-melden-van-een-gegevensinbreuk.pdf) · *the GBA's own procedural manual, **versie 2.0 of 2026-02-02*** (versie 1.0 was 2025-06-10) · **extracted and read [checked 2026-11-10]**
+
+- **A notification is two linked parts, and part 1 alone does not discharge the duty.** The manual is explicit: *"Om aan uw meldingsplicht te voldoen dient u ook deel 2 van het formulier in te vullen."*
+- **Part 2 needs a business account on the GBA portal** (`ondernemingsaccount`). For a controller in the Belgian `Kruispuntbank voor Ondernemingen`, logging in means authenticating through the **Federal Authentication Service (FAS)**, and only a person holding the MijneGov role **`GBA_Documentum_Vertegenwoordiger`** for that controller can get in.
+- **The GBA names the trap itself.** It writes that the art. 33 72-hour deadline *"kan in het gedrang komen"* if that role has not been assigned when the breach is discovered, or if the one authorised person is away. **So assign the role now, to more than one person, while nothing is wrong.** This is the cheapest item in this pack and the one a founder will otherwise meet at 3 a.m.
+- **The escape hatch, and its limit.** Precisely because of that, part 1 can be filed with **no account**: *Indienen als onderneming* → *Gegevensinbreuk (Deel 1)* → enter the KBO number and the sum check. It is only open to controllers with a KBO registration, and *not* to public bodies sharing a KBO number with others, because the GBA then has no safe way to attach part 1 to an account afterwards. Part 2 still requires the account; the filing is linked to it once you log in and appears under *Mijn taken*.
+- **You get 21 calendar days from filing part 1 to file part 2**, with reminder mails at 14 and 7 days remaining. Within those 21 days the notification can still be cancelled; after part 2 is filed it cannot.
+- **A saved draft hardens into the final answer.** If you use the interim save (`tijdelijke bewaaropdracht`) and then change nothing, *"zullen de waardes die u hebt ingevuld in deze bewaaropdracht op dag 21 als definitief worden beschouwd."* A placeholder left in a draft therefore becomes the filed statement.
+- **Expect no feedback.** Handling is in principle purely internal and you are not informed of it; if the GBA has questions it contacts you through the business account, with an email notification to the contact person and a stated reply deadline.
+
+**Open:** the `wet van 30 juli 2018` was identified but not read, so no Belgian supplementing provision is stated here. The BOOST brochures' substantive answers were not transcribed into this pack — read them at the source. Whether a specific breach is notifiable remains a judgment for the founder with advice, not something this pack decides.
 ---
 
 ## Pack maintenance
@@ -242,9 +258,14 @@ Breach notification goes to the GBA, on the 72-hour clock in [eu-gdpr.md](eu-gdp
 | Official unfair-terms brochure | 2026-11-10 | **Extracted with pdftotext and read**; dated 2020-09 authored, 2021-04 modified |
 | Software ownership: author, employee, commissioned | 2026-11-10 | Official page read, with quoted rules |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
-
-| GBA: register duty for controllers and processors; named SME publications | 2026-11-10 | Authority pages read; individual publications not read |
-| Contents of the GBA's SME publications; Belgian national GDPR provisions | — | Not researched |
+| GBA: register duty for controllers and processors | 2026-11-10 | Authority page read |
+| `Wegwijs` and `13-stappenplan` are both **January 2018, CBPL-era** | 2026-11-10 | **Both extracted and read** — dates and imprint quoted |
+| The two BOOST brochures are **KU Leuven, July 2020**, not GBA doctrine | 2026-11-10 | **Both extracted and read** — authorship and self-description quoted |
+| Breach filing: two parts, business account, FAS, `GBA_Documentum_Vertegenwoordiger` | 2026-11-10 | **GBA manual versie 2.0 of 2026-02-02 extracted and read** |
+| Breach filing: 21 calendar days for part 2, reminders at 14 and 7 days | 2026-11-10 | **Same manual read** — the most current GBA source in this pack |
+| Belgian supplementing act is the `wet van 30 juli 2018` | 2026-11-10 | **Identified** in the BOOST FAQ — **statute itself not read** |
+| What the `wet van 30 juli 2018` actually provides | — | **Not researched** |
+| Substantive answers in the two BOOST brochures | — | Not researched — provenance established, contents left at the source |
 | EU AI Act | 2026-11-10 | Factored into eu-ai-act.md |
 
 Next full recheck due: **2027-05-10**. Earlier if the e-invoicing law is adjusted for non-established taxpayers, or before 2027-01-01 for the VAT threshold step.

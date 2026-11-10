@@ -37,8 +37,14 @@ const REQUIRED = [
   {case: 'C6', pack: 'belgium.md', label: 'per-year figures still only commentary', pattern: /rest on professional commentary/i},
   {case: '—', pack: 'belgium.md', label: 'unfair terms black list article', pattern: /VI\.91\/4/},
   {case: '—', pack: 'belgium.md', label: 'software ownership: no automatic transfer', pattern: /niet automatisch overgedragen/},
-  // Same trap as the French guide below: the GBA's SME brochure is CBPL-era.
-  {case: '—', pack: 'belgium.md', label: 'GBA SME guide dated January 2018, issued by the CBPL', pattern: /Dated January 2018 and issued by the CBPL/},
+  // Same trap as the French guide below: two of the four SME brochures are
+  // CBPL-era, and the other two are a KU Leuven deliverable, not GBA doctrine.
+  {case: '—', pack: 'belgium.md', label: 'Wegwijs is January 2018, CBPL-era', pattern: /\*\*January 2018\*\*/},
+  {case: '—', pack: 'belgium.md', label: 'BOOST brochures attributed to KU Leuven', pattern: /CiTiP KU Leuven/},
+  {case: '—', pack: 'belgium.md', label: 'breach filing needs the MijneGov role', pattern: /GBA_Documentum_Vertegenwoordiger/},
+  {case: '—', pack: 'belgium.md', label: 'part 2 window is 21 calendar days', pattern: /21 calendar days/},
+  {case: '—', pack: 'belgium.md', label: 'part 1 alone does not discharge the duty', pattern: /part 1 alone does not discharge the duty/i},
+  {case: '—', pack: 'belgium.md', label: 'supplementing act identified, not read', pattern: /wet van 30 juli 2018/},
 
   // --- Germany ---------------------------------------------------------------
   {case: 'C14', pack: 'germany.md', label: 'receiving mandatory from 2025-01-01', pattern: /2025-01-01/},
