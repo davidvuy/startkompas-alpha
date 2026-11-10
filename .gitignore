@@ -1,1 +1,27 @@
 node_modules/
+
+# Editor and OS artifacts
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build, coverage and test output
+coverage/
+*.log
+npm-debug.log*
+.nyc_output/
+dist/
+*.tgz
+
+# Local release artifacts
+startkompas-skill*.zip
+
+# Never commit a private project or dossier
+project.json
+.history/
+/private/
+*-demo/

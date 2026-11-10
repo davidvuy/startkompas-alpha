@@ -2,157 +2,100 @@
   <img src="assets/startkompas-header.png" alt="Startkompas — Since 2026" width="900">
 </p>
 
-# Startkompas — public alpha
+# Startkompas
 
-Keep project decisions, unfinished work and the basis for your business drafts together. This early local Codex skill lets you save a draft, change a premise, see what needs review and resume later.
+A skill for AI assistants that helps a solo founder prepare a small B2B service pilot **and keeps the evidence straight** — what was reported, what was observed, what is still an assumption, and which conclusions depend on it.
 
-This is an experimental alpha. Independent user validation is still ahead. No measured time saving, business success or compliance outcome is promised. Download this repository using Code → Download ZIP, or clone https://github.com/davidvuy/startkompas-alpha. For feedback use https://github.com/davidvuy/startkompas-alpha/issues.
-
-See the release notes for the exact tested scope and pending browser checks. Earlier alpha releases remain available separately.
-
-## Start here
-
-[Download alpha 14.2 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.14.2.zip) · [Quickstart](docs/quickstart.md) · [Release notes](docs/alpha-changelog.md)
-
-Startkompas is a **Codex skill**. Describe your idea or task in chat; Codex uses the skill's guidance and bundled helpers to draft offers, preserve evidence and resume saved work. The browser workspace is optional.
-
-### Install the skill
-
-Prerequisites: Codex access, Node.js and npm. The helper CI tests Node 26.7.0 and 24.x. Extract the complete ZIP into a new folder, open a terminal there and run:
+Install by copying one folder:
 
 ```sh
-node scripts/install-skill.mjs
+cp -r skill ~/.claude/skills/startkompas
 ```
 
-The installer copies the complete skill and its runtime into `~/.codex/skills/startkompas` (or `$CODEX_HOME/skills/startkompas` when configured), verifies package consistency and refuses to overwrite an existing skill. Git is not required. It prints the runtime directory; enter that directory and run:
+No Node, no npm, no dependencies, no server, no API key. Works in Claude Code, claude.ai and Codex. Full per-host instructions: **[skill/INSTALL.md](skill/INSTALL.md)**.
 
-```sh
-npm ci --ignore-scripts --no-audit --no-fund
-```
+This is an experimental alpha. No independent user validation has happened, and no time saving or business outcome is claimed. See [Limits](#limits) at the bottom.
 
-Open a fresh Codex chat, select `$startkompas` and try:
+## Why use it
+
+Most assistants will cheerfully write you a business plan full of invented numbers. This one is built to refuse:
+
+- **Separates reported, observed, inferred and unknown**, and will not promote one to another without a source.
+- **Records every claim with its source and check date**, so in six months you can tell whether it still holds.
+- **Tracks which conclusions depend on which assumptions**, so when a supplier, price or customer changes you learn what needs re-reviewing instead of guessing.
+- **Keeps history** — a revision never erases the earlier decision or its reason.
+- **Checks jurisdiction-specific rules against a primary source** instead of answering from memory, and says so plainly when it cannot.
+
+Everything is stored as plain files in your own directory: see [skill/references/dossier-format.md](skill/references/dossier-format.md).
+
+## Try it
+
+Install, then in a new session:
 
 ```text
-Use $startkompas. Help me develop an offer for my B2B service idea. Ask for the missing facts, distinguish assumptions from evidence and save the result in my chosen private project directory.
+Help me draft an offer for my B2B service idea. Ask what you need to know,
+keep assumptions separate from evidence, and save our work in <a private directory>.
 ```
 
-To resume:
+To resume later:
 
 ```text
-Use $startkompas. Resume the dossier at <absolute private project path>. Read its saved state, explain what needs review and continue the next agreed task.
+Resume my project at <that directory>. Read the saved state, tell me what
+needs review, and continue the next task.
 ```
 
-No browser extension or additional model API key is required by the skill. Codex account limits still apply. Keep private projects outside the downloaded package and installed skill. If the skill does not appear, restart Codex and check that installation used the same Codex home. Automatic discovery across every host build is not yet verified.
+You do not need to name the skill — it is selected from its description.
 
-For an existing installation, preserve the old skill, install to a separate location with `node scripts/install-skill.mjs <new-directory>`, and check it before deliberately replacing your active copy. No dossier migration happens automatically. Do not install just `SKILL.md`: its supporting references and runtime are required.
+## Jurisdictions
 
-### Optional local menu
+The method is worldwide. The **rules** are not, so they live in packs. Four are verified, all checked 2026-11-10: **Belgium, Netherlands, Germany, France**.
 
-From the downloaded package, run `npm ci --ignore-scripts --no-audit --no-fund` and `node start.mjs` for deterministic demos and manual project operations. This menu makes no AI calls.
+Why packs rather than one "EU" answer? Same question, same day, four different answers:
 
-## Local browser workspace
+| Must I send structured B2B e-invoices? | |
+| --- | --- |
+| Belgium | already, since 2026-01-01 — including under the small-business VAT exemption |
+| France | from 2027-09-01 for small founders, via an accredited platform |
+| Germany | from 2028-01-01 — but must be able to *receive* since 2025-01-01 |
+| Netherlands | no domestic mandate; one announced for 2030-07-01 |
 
-Choose an existing projects parent outside the app and run `npm run ui -- ../my-projects`. Open the private session link printed by the terminal. Create a project through a three-step wizard, reuse optional context in your first offer, and explicitly confirm saving. Select sections for a report, preview and save a new local Markdown file. Archive projects without deleting their files and restore them through Show archived projects. Revise it later with a reason; previous versions remain intact. The server binds only to your computer, uses per-session access checks and makes no AI calls. See [workspace setup and limits](docs/local-ui.md). Keep the terminal open while using it.
+For any other country the skill follows the protocol in [skill/references/jurisdictions/README.md](skill/references/jurisdictions/README.md): use the universal topic list, check that jurisdiction's own official source, record it with a date — and **never state a threshold, rate or deadline it did not actually read**.
 
-## Review and revise documents
+Adding a pack for your country is the most useful contribution you can make. The bar is verifiability, not volume.
 
-Read saved document sections, see unanswered fields and their recorded basis, and revise one section without losing other manual text. Keep suggestions separate until you accept or reject them. Compare versions side by side, inspect affected-section explanations and review the complete new version before saving.
+## Which thing am I installing?
 
-For external use, select only the offer fields you want to include; all fields start excluded. Preview the exact text and save a separate local copy. No upload occurs, and later project changes do not alter that copy. See [document review, comparison and sharing](docs/local-ui.md).
+This repository contains two things. You almost certainly want the first.
 
-## Learning, review and recovery
+| | What it is | Install |
+| --- | --- | --- |
+| **`skill/`** | The product. 21 files of markdown, 119 KB, no dependencies. | Copy the folder — see [skill/INSTALL.md](skill/INSTALL.md). |
+| `src/`, `ui/`, `start.mjs` | A legacy local Node CLI and browser workspace from earlier alphas. Deterministic file operations with no AI host. | [Download alpha 14.2 (ZIP)](https://github.com/davidvuy/startkompas-alpha/archive/refs/tags/v0.1.0-alpha.14.2.zip), then `npm ci --ignore-scripts` and `node start.mjs`. |
 
-Capture sources and conversation notes, retain supporting and opposing findings, and prepare a small experiment without treating a plan as a result. Exchange selected mentor files through your own sharing route and deliberately review imported feedback.
+The legacy runtime is not required by the skill and is not the recommended route. It is kept for now because its storage and history tests are the origin of the dossier format. See [BACKLOG.md](BACKLOG.md) item 11 for its pending fate.
 
-Optional tab and disk recovery preserves unfinished inputs without restoring approval. Historical project reinstatement creates a new revision while retaining privacy removals and review requirements. Local PDF exports and reusable worksheets stay separate from source documents. See [release notes and verification limits](docs/alpha-changelog.md).
+## Contributing
 
-## Guided project work
+See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and the [100-item backlog](BACKLOG.md), which is ordered basics-first and explicitly refuses new features until the basics are done.
 
-Prepare an offer or interview guide, record assumptions and observations, connect decisions to their basis, and export a readable report without writing request JSON. [Product guide](docs/alpha-workspace.md) · [Browser workspace](docs/local-ui.md) · [Changes](docs/alpha-changelog.md).
+Most useful contributions, in order:
 
-~~~sh
-node src/startkompas.mjs workspace show ../my-project my-project
-node src/startkompas.mjs workspace draft ../my-project my-project offer
-node examples/demo-founder-workflow.mjs ../founder-demo
-~~~
+1. A verified jurisdiction pack for your country.
+2. A scored eval run — [skill/evals/cases.md](skill/evals/cases.md) has 18 cases and **none has been scored on any host yet**.
+3. A recheck of a stale claim in an existing pack, with its new date.
 
-The example uses fictional input and produces `workspace.md`, `report.md` and an export/restore check. Assumptions remain unknown; drafts are not approved business advice.
+[Ask a question](https://github.com/davidvuy/startkompas-alpha/discussions) · [Report a bug or suggest an improvement](https://github.com/davidvuy/startkompas-alpha/issues/new/choose) · [Report a vulnerability privately](https://github.com/davidvuy/startkompas-alpha/security/advisories/new)
 
-**Need help?** [Ask a question, report a bug or suggest an improvement](https://github.com/davidvuy/startkompas-alpha/issues/new/choose). [Join Discussions](https://github.com/davidvuy/startkompas-alpha/discussions) for general usage questions. Dutch and English are welcome. For sensitive vulnerabilities use [private security reporting](https://github.com/davidvuy/startkompas-alpha/security/advisories/new). Never put credentials or private dossiers in public issues. See [support and FAQ](docs/alpha-support.md).
+Dutch and English both welcome. Never put credentials, customer data or private dossiers in a public issue.
 
-[Watch the 40-second demo](assets/startkompas-demo.mp4) · [All five output previews](docs/alpha-demo.md#captured-founder-workflow)
+## Limits
 
-![Workspace output from the fictional founder demo](assets/demo-3.png)
+**Not advice.** Nothing the skill produces is legal, tax, accounting or security advice. Consequential obligations need a qualified, named, dated review in your own jurisdiction.
 
-The video and previews reformat actual CLI output. They are not screen recordings or customer results.
+**No validation.** No independent user, security, accessibility or legal review of any part of this has happened. The jurisdiction packs state per claim whether the source was actually read, carried from earlier research, or not researched at all — read those markers.
 
-**See it work:** follow the [fictional offer walkthrough](docs/alpha-demo.md), then use the guided setup below. See the [four-week improvement roadmap](docs/alpha-roadmap.md) for our priorities and ways to contribute.
+**Local files are not local processing.** Text you give your assistant can be processed and retained by its provider. Removing the skill does not erase your projects, your exports, or any provider's records.
 
-Run `node src/startkompas.mjs doctor`, then `node src/startkompas.mjs start` for guided setup without a JSON request. Use `overview <directory> <project-id> [nl|en]` for a readable summary and `compare <directory> <project-id> <older> <newer>` for saved changes. See [the alpha 2 guide](docs/alpha-improvements.md).
+**The format is deliberately modest.** It records attribution and keeps history. It does not encrypt, lock concurrent writers, survive power loss, or establish that any recorded claim is true.
 
-## Try the local helper
-
-Prerequisites: Node.js and npm; the reproducible development pin is 26.7.0. The Quality matrix exercises the helper on Windows, Linux and macOS with Node 26.7.0 and 24.x; inspect the latest successful run for the version you download. This does not establish Codex host compatibility or qualify arbitrary Node versions. Codex access is needed for AI-assisted use, with your provider's own quotas and charges. The following deterministic demo does not call an AI service.
-
-Extract the complete product package into a new directory. In that directory run:
-
-~~~powershell
-npm ci --ignore-scripts --no-audit --no-fund
-npm test
-node src/startkompas.mjs --help
-node examples/demo-offer-change.mjs ../my-first-startkompas-demo
-~~~
-
-The demo target must not already exist. It uses fictional business text, saves an offer, revises one outcome, retains the original and checks export/restore. It prints its checks and the created output paths.
-
-## Start your project
-
-Keep your private project outside the application folder. Use the guided setup, review the proposed details and confirm explicitly:
-
-~~~powershell
-node src/startkompas.mjs doctor
-node src/startkompas.mjs start
-~~~
-
-To resume, use your chosen directory and project ID:
-
-~~~powershell
-node src/startkompas.mjs overview ../my-private-project my-project en
-~~~
-
-Alternatively, for scripted setup, save this as a separate init.json file, adjusting the name:
-
-~~~json
-{"project_id":"my-project","name":"My business idea","first_task":{"id":"first-offer","title":"Draft my first offer"}}
-~~~
-
-~~~powershell
-node src/startkompas.mjs project init ../my-private-project ../init.json
-node src/startkompas.mjs project handoff ../my-private-project my-project
-~~~
-
-The project starts empty: it does not invent your budget, customers or demand. Use the command guide for intake, draft preparation and explicit saving. The first intake answer can now include its source in one proposed update. Keep the exact saved update request for retries.
-
-For AI-assisted use, open the extracted application folder in Codex. The package contains .agents/skills/startkompas; invoke Startkompas and explicitly identify the separate private project directory. Original local Codex trials are recorded, but automatic discovery in every current desktop build is not guaranteed. The helper commands above remain directly executable.
-
-## Give useful feedback
-
-Use the Issues tab of this repository for non-sensitive feedback. Report the package revision, operating system, Node version, what you tried, what you expected and what happened. Small fictional reproductions are best. Tell us whether you could install, get a useful result and resume without help. There is no automatic usage telemetry in the helper.
-
-Never attach private dossiers, customer data, credentials or full conversation logs to public issues. For sensitive reports use the Security tab and Report a vulnerability if available; otherwise do not submit details publicly. No response-time or support guarantee is offered for the alpha.
-
-## Limits and data
-
-Local dossiers do not make AI processing local: text supplied to Codex can be processed by its provider. Keep backups and inspect exports before sharing. Removing the application does not erase private projects, shared exports or provider records. Do not use draft business content as qualified legal, tax or security advice. The local browser workspace is available and has been exercised in Edge on Windows. Claude, a native mobile app and managed cloud services are not offered by this alpha; other browser/OS combinations still need interactive validation.
-
-The alpha1 baseline passed 167 source and clean-install tests. Alpha2 added onboarding and comparison. Alpha3 adds guided work, selective report export and recovery checks. See the public Quality and Secret scan workflows for current results. These are technical checks, not real-user validation.
-
-## Contribute or fork
-
-See [contribution guidance](CONTRIBUTING.md), the [four-week roadmap](docs/alpha-roadmap.md) and [the 50-item progress register](docs/alpha-progress.md). Focused fixes, clearer examples and fictional reproductions are useful contributions. If the project helps you, a star makes it easier to find again. No popularity or business outcome is promised.
-
-### Find and resume your work
-
-The local workspace includes fictional practice projects, optional tab-local form recovery, project search/sorting, saved-document inspection, original-record and dependency navigation, and read-only history comparisons. Offer conflicts can be compared before explicitly keeping your text against a newer revision; saving still needs a fresh preview and confirmation. Report a problem prepares a minimal technical report for review before copying. See [local workspace](docs/local-ui.md) for limits and data handling.
-
-Alpha 8 adds explicit on-disk setup/offer recovery copies, saved-draft text search, task focus/progress choices, historical offer reuse as a new explained version, recent-work shortcuts, offer field guidance and contextual error actions. Disk copies contain plaintext and remain until explicitly forgotten; this is manual recovery, not automatic saving.
+MIT — see [LICENSE](LICENSE), [LICENSING.md](LICENSING.md) and [skill/NOTICE](skill/NOTICE).

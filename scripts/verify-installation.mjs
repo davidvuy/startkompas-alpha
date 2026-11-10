@@ -38,7 +38,10 @@ export function verifyInstallation(directory,expectedRevision,expectedManifestHa
   for(const e of fs.readdirSync(dir,{withFileTypes:true})){
    const name=rel?rel+'/'+e.name:e.name,p=path.join(dir,e.name),st=fs.lstatSync(p);
    requireThat(!st.isSymbolicLink(),'Linked package entry refused');
-   if(!rel&&['node_modules','.git'].includes(e.name)){requireThat(st.isDirectory(),'Excluded local entry must be directory');continue;}
+   // skill/ is the standalone host-neutral skill, distributed by plain folder copy.
+   // It is deliberately outside this legacy runtime manifest and has its own check
+   // (skill/scripts/check-skill.mjs). The legacy installer must not copy it.
+   if(!rel&&['node_modules','.git','skill'].includes(e.name)){requireThat(st.isDirectory(),'Excluded local entry must be directory');continue;}
    if(st.isDirectory())walk(p,name);
    else {requireThat(st.isFile(),'Unsupported package entry');if(name==='installation.json')continue;requireThat(files.has(name),'Unlisted file: '+name);requireThat(digest(regular(p))===files.get(name),'File hash mismatch: '+name);observed.push(name);}
   }

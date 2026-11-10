@@ -1,6 +1,8 @@
 # Bounded compatibility evidence
 
-This matrix describes local development evidence as of 2026-11-03, not a promise that every public release contains these changes. Package version remains 0.1.0-alpha.12.1 across development commits; identify a tested build by its full source revision and installation manifest. No independent platform certification or customer validation is implied.
+> **This matrix describes the legacy Node runtime, not the `skill/` folder.** The skill has no dependencies and its own compatibility evidence is recorded in [skill/evals/cases.md](../skill/evals/cases.md) — where **nothing has been scored on any host yet**. Do not read this table as evidence about the skill.
+
+This matrix describes local development evidence as of 2026-11-03, not a promise that every public release contains these changes. The versions below were recorded while `package.json` read `0.1.0-alpha.12.1`; it now reads `0.1.0-alpha.14.2`, so these results do not describe the current package. Identify a tested build by its full source revision and installation manifest, never by the version string. No independent platform certification or customer validation is implied.
 
 | Combination | Evidence and boundary |
 | --- | --- |

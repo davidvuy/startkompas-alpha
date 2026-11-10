@@ -109,7 +109,7 @@
     },
     {
       "path": ".gitignore",
-      "sha256": "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97"
+      "sha256": "fb21a2774e45205796fa71005d8250757b3ef97adf0327c95b8910abd13612be"
     },
     {
       "path": "assets/demo-1.png",
@@ -154,6 +154,14 @@
     {
       "path": "assets/startkompas-logo.png",
       "sha256": "e937d9483a21c525220f89102d776e239deab4c4adf5add58eed050262d8caf3"
+    },
+    {
+      "path": "BACKLOG.md",
+      "sha256": "0c3608190c6605cc23070d469e16eb665471daa5b57dcbf6076c381b00c85c92"
+    },
+    {
+      "path": "CODE_OF_CONDUCT.md",
+      "sha256": "0d5e00923fb587ed42f92ae6883de7f05ddcb054f9d8a9250c96359ce2d5089e"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -361,7 +369,7 @@
     },
     {
       "path": "docs/support-matrix.md",
-      "sha256": "16d5a79c158297dfbe8f687e37e0c9cab1bb22ff278367ed4087b1cc47bd03b5"
+      "sha256": "f28c944f407b3ca02bf9781a1dfc4528b0754d5f9287bd41255146859f7579de"
     },
     {
       "path": "docs/text-import.md",
@@ -593,15 +601,15 @@
     },
     {
       "path": "package-lock.json",
-      "sha256": "7115881ffcdca889a279a0ad82ed10f12cdd08c61771780bc5af40e04319171c"
+      "sha256": "071cd4c69a308db30b8fbb8dd5ef74714eea62efc90eb2b83a6dae2d6cb5f0fd"
     },
     {
       "path": "package.json",
-      "sha256": "3f362b46f63d3d93241637dedf058bf155f4892a3b049063bb1d674fea91e5d4"
+      "sha256": "c6891e01420d97c7ebfabb3a77bc34f6eca03751acc267d35aeee163b348c3c4"
     },
     {
       "path": "README.md",
-      "sha256": "0f7c062fddbe64341ac1429a9c7fea759e0288c1849020c76ad29d2f2553aa3d"
+      "sha256": "fca3af53b71b0e1002f5efc78f0cfbfb528871e50bafceaf716f5155a770db44"
     },
     {
       "path": "schemas/cli-error-v1.schema.json",
@@ -709,7 +717,7 @@
     },
     {
       "path": "scripts/verify-installation.mjs",
-      "sha256": "352b3325760f4cd7455d641ff2e12970f4687886ca8fe7655b3d8e3c8f0f6302"
+      "sha256": "c35645b772e8c5291bb4202a6d365981a8ac49e6210da9f3bb608af904566923"
     },
     {
       "path": "SECURITY.md",
