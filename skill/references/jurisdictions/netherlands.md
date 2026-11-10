@@ -220,7 +220,31 @@ The most directly workable thing in this pack: a founder can sit down and go thr
 
 **Two things worth lifting out.** The AP's high-risk examples for a DPIA explicitly include **processing with new technologies** — independent confirmation of the point in [eu-gdpr.md](eu-gdpr.md) §6 that a founder routing real customer data through an AI tool is in DPIA territory. And the privacy-by-design item gives a concrete, cheap action most founders skip: **put the requirements in the quotation request**, before the system exists.
 
-**Open:** the AP's separate `stappenplan` for acting on a data breach, and the brochure this step plan accompanies, are **[not researched]**.
+### When it goes wrong: the AP's five steps
+
+Source: [AP — `Stappenplan: kom in actie bij een datalek`](https://autoriteitpersoonsgegevens.nl/uploads/imported/stappenplan_actie_datalek.pdf) · *national authority, PDF extracted and read* · **[checked 2026-11-10]**
+
+1. **Get an overview.** Analyse immediately: what happened, how big, and is it leaked, destroyed or altered data? If leaked, find out **who had or may have had access to which personal data** — you need this for every later step.
+2. **Limit the damage**, now, if anything can be done at all — its example is wiping a stolen laptop remotely. Estimate the risk at the same time.
+3. **Decide whether to notify the AP**, and if so within **72 hours** of discovery. You must, *unless it is unlikely the breach presents a risk* to rights and freedoms. **If you do not yet have the full picture, file a first notification inside 72 hours and a follow-up later** — do not let fact-finding run the clock out.
+4. **Decide whether to notify the people affected** — required where there is a **high** risk, and then as soon as possible.
+5. **Register it in your `datalekregister`, even when you do not notify the AP.**
+
+Then evaluate, to stop it happening again.
+
+### Know the form's questions before the clock starts
+
+Source: [AP — `Vragenlijst meldformulier datalekken`](https://www.autoriteitpersoonsgegevens.nl/documenten/vragenlijst-meldformulier-datalekken), `versie 1.1, augustus 2022` · *the AP's own list of the online form's questions, published so you can prepare* · **extracted and read [checked 2026-11-10]**. It carries a disclaimer: no rights can be derived from it and the AP may change it, so check the current version.
+
+- **The online form is the only channel.** The AP states it accepts breach notifications **only** through it — not by post, not by email. So a founder with no account and no overview still has to go through the form.
+- **What the AP expects you to have ready:** a contact person for its questions; your `FG` contact if you have one; the correspondence recording discovery; your **processing register (art. 30)** and your **breach register (art. 33(5))**; the measures you took to end the breach, the measures to prevent recurrence, and the measures that were *already* in place beforehand; and your DPIA if there is one. Add the investigation report for a hacking or malware incident, the processor agreement if a third party is involved, and the text you sent to data subjects if you had to inform them. **This is the real argument for the register: at 3 a.m. it is the only document that tells you who is affected.**
+- **Hacking, malware or phishing: the AP expects an investigation**, and names what it must cover — was there access to the personal data, were they copied, viewed or sent on, and **are there logs that let you rule that out**. A founder with no logging cannot answer the third question, and therefore cannot rule anything out. That is a reason to turn logging on before anything happens, not a reason to guess afterwards.
+- **Discovery is not the same as awareness, and the DPO is not a buffer.** The form asks for both dates. Awareness means the point at which **objective factors** made a breach probable. The AP says explicitly that the moment the incident reached the `FG` **cannot** be that point, because the `FG` does not carry the notification duty — and it will not accept that as a justification for a late filing. Filing later than 72 hours after awareness means answering an open question about **why**.
+- **Provisional or definitive.** You mark the notification as one or the other. If you are still establishing the nature and scope, mark it provisional and the AP **asks for a follow-up within 4 weeks**; needing longer must be motivated. With no definitive notification you may not have (fully) met art. 33, and the AP may open a further investigation.
+- **The breach register's minimum content**, per the same document: the facts — cause, what happened, which personal data — the consequences, and the measures taken to close the leak and prevent recurrence. Recording **why** you did or did not notify is *advised, not required*; do it anyway, because it is the reasoning you will be asked for.
+- Two scope notes: the Dutch notification duty sits in **four** statutes — `AVG`, `Tw`, `Wjsg`, `Wpg` — and for an ordinary business it is the AVG. The form also asks whether you have told **other** regulators, so check whether a second duty applies to your sector.
+
+**Open:** the brochure the controller step plan accompanies, the AP's example list of notifiable and non-notifiable breaches, and its ten tips on breach registration are **[not researched]**.
 ---
 
 ## Pack maintenance
@@ -248,7 +272,14 @@ The most directly workable thing in this pack: a founder can sit down and go thr
 | The Contourenbrief of 2026-09-11 itself | — | Not researched — only secondary reporting of it |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
 | AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | **AP PDF extracted and read** |
-| The AP's separate data-breach stappenplan and the parent brochure | — | Not researched |
+| AP breach stappenplan: five steps, first notification plus follow-up | 2026-11-10 | **AP PDF extracted and read** |
+| Online form is the only channel; what the AP expects you to have ready | 2026-11-10 | **AP `Vragenlijst` v1.1 extracted and read** |
+| Hacking/malware: investigation expected, and logs as the test | 2026-11-10 | **Same document read** |
+| Discovery vs awareness; reaching the `FG` is not awareness | 2026-11-10 | **Same document read** — AP wording quoted |
+| Follow-up notification requested within 4 weeks, longer must be motivated | 2026-11-10 | **Same document read** |
+| `Vragenlijst` is `versie 1.1, augustus 2022` and disclaims any rights | 2026-11-10 | **Same document read** — recheck for a newer version |
+| Notification duty sits in four statutes (AVG, Tw, Wjsg, Wpg) | 2026-11-10 | **Same document read**; the three others not examined |
+| Parent brochure, the notifiable/non-notifiable example list, the 10 registration tips | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier when the Q4 2026 internet consultation opens.

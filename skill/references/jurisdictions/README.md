@@ -85,6 +85,23 @@ This convergence is itself a verified finding, not an assumption. Each pack cite
 
 The instruction that follows is the same in all four regardless: **name the types of use in writing.** Silence favours neither side; it just moves the decision to a court.
 
+### Same deadline, different machinery — notifying a data breach
+
+Art. 33 GDPR gives every member state the same 72 hours. **How you actually file inside those 72 hours is national, undocumented in the Regulation, and different enough to cost a founder the deadline.** Two authorities have been read at this level of detail:
+
+| | How it is filed | What follows the first filing |
+| --- | --- | --- |
+| Belgium | **Two linked parts** on the GBA portal. Part 2 needs a business account, FAS authentication and the MijneGov role `GBA_Documentum_Vertegenwoordiger`. Part 1 can be filed with **no account**, using the KBO number | **21 calendar days** for part 2, reminders at 14 and 7 days. Cancellable until part 2 is filed, never after. Part 1 alone does **not** discharge the duty |
+| Netherlands | **One online form, and only that form** — the AP accepts no notification by post or email. No account or role is needed | Mark it **provisional or definitive**. If provisional, the AP asks for a follow-up **within 4 weeks**; longer must be motivated. With no definitive notification you may not have met art. 33 |
+
+Germany and France were **[not researched]** at this level — do not assume either resembles the two above.
+
+What transfers from these two to any jurisdiction:
+
+- **The deadline is not the only clock.** Both authorities expect a *completion* step weeks after the first filing, and in both it is the completion, not the first filing, that discharges art. 33. A founder who files inside 72 hours and stops is not finished.
+- **Set the access up before you need it.** The Belgian route is the clearest case — the GBA itself warns the 72 hours can be lost to an unassigned role — but the general rule is to find out now what account, role or form your authority requires, and give more than one person the keys.
+- **The register is the breach document.** Both authorities assume you can say *who is affected* on day one. Nothing else you have will tell you.
+
 ## Using a pack
 
 1. Establish the founder's country and region, the customers' country, and where the service is delivered. These can differ and each can matter.

@@ -84,6 +84,10 @@ const REQUIRED = [
   {case: '—', pack: 'netherlands.md', label: 'EU-KOR Union threshold', pattern: /€100,000/},
   {case: '—', pack: 'netherlands.md', label: 'ownership provision', pattern: /artikel 7 Auteurswet|article 7 Auteurswet/i},
   {case: '—', pack: 'netherlands.md', label: 'large-party exclusion', pattern: /6:235/},
+  // Breach filing: the AP's channel, its clock, and the trap it names itself.
+  {case: '—', pack: 'netherlands.md', label: 'online form is the only channel', pattern: /only channel/i},
+  {case: '—', pack: 'netherlands.md', label: 'follow-up notification within 4 weeks', pattern: /within 4 weeks/},
+  {case: '—', pack: 'netherlands.md', label: 'reaching the FG is not awareness', pattern: /the DPO is not a buffer/i},
 
   // --- Shared EU layers ------------------------------------------------------
   {case: '—', pack: 'eu-gdpr.md', label: '72-hour notification', pattern: /72 hours/},
