@@ -131,11 +131,35 @@ So the dividing line is not "domestic versus foreign". It is: **e-invoicing for 
 
 **How:** through an accredited platform, either entered directly or sent as a file from a compatible solution such as invoicing or point-of-sale software. The official, regularly updated [list of accredited platforms](https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees) is on `impots.gouv.fr`.
 
-**Sanction: €500 per missing transmission, capped at €15,000 per calendar year.** · *secondary; not stated in this fiche* · **[checked 2026-11-10, not primary-confirmed]**
-
 So a French founder has **two** obligations landing on 2027-09-01, and together they cover all of their turnover. Do not treat "I can send an e-invoice" as the whole obligation.
 
 **Open:** the **payment-data** strand (`e-reporting de paiement`) — who it binds, when and what it requires — is **[not researched]**. It is named in the official fiche as a separate pillar.
+
+### Sanctions, and the start-up tolerance
+
+Source: [impots.gouv.fr — `guide pratique de démarrage au 1er septembre 2026`](https://www.impots.gouv.fr/sites/default/files/media/1_metier/2_professionnel/EV/2_gestion/290_facturation_electronique/guide_pratique_facturation_electronique.pdf) · *official tax administration, PDF extracted and read* · **[checked 2026-11-10]**
+
+**The legal bases, as the guide cites them:**
+
+| Failure | Regime |
+| --- | --- |
+| Not issuing electronically | A fine **per invoice**, within the limits of **CGI art. 1737** |
+| Not transmitting data under arts. 290 and 290 A | **CGI art. 1788 D** |
+| Not using an accredited platform for **reception** | A `mise en demeure` first, with **three months to comply** before any fine applies. References: CGI art. 1737 IV bis; art. 289 bis |
+
+That three-month formal-notice step for reception is worth knowing: the reception obligation does not produce an immediate fine.
+
+**And the tolerance that matters most to a founder.** The guide states that during the start-up phase there will be **no sanctions against businesses that are having difficulty implementing the reform but are engaged in a serious compliance trajectory** — *"engagées dans une trajectoire sérieuse de mise en conformité"*. The administration will distinguish those from `inertie`, `évitement` or a durable refusal to enter the scheme.
+
+So the honest advice is not "you will be fined on 1 September". It is: **be demonstrably on a trajectory.** Being late while working on it is treated differently from ignoring it — and the distinction turns on evidence, which is exactly what this skill's records are for.
+
+**On the €500 / €15,000 figure** recorded earlier from secondary commentary: the official guide points to CGI art. 1788 D for the e-reporting regime rather than stating those amounts. Treat the figures as **not primary-confirmed** and cite the article instead.
+
+### You may start early, on purpose
+
+The guide confirms that a business whose issuing obligation only begins **2027-09-01 may voluntarily adopt e-invoicing before then** — to test its tools, train, and phase in exchanges with clients gradually.
+
+For a founder running a pilot that is a real option rather than a technicality: the deadline is a ceiling, not a start date, and going early converts a hard cutover into a controlled one.
 
 Formats in French use: **UBL 2.1**, **UN/CEFACT CII**, and **Factur-X** (the Franco-German hybrid). `Chorus Pro` remains the B2G system.
 
@@ -264,7 +288,7 @@ Point a French founder at the CNIL's own checklist rather than paraphrasing it. 
 | E-reporting exists as a separate obligation; from 2026-09-01 for GE/ETI | 2026-11-10 | Tax administration page read |
 | E-reporting date and scope for micro/indépendants | — | **Not researched** |
 | Formats UBL 2.1 / CII / Factur-X | 2026-11-10 | Official EU source read |
-| Official start guide for 2026-09-01 | — | Not researched |
+| Official start guide for 2026-09-01 | 2026-11-10 | **Extracted and read** |
 | Accredited-platform list (official, regularly updated) | 2026-11-10 | URL recorded from the official fiche |
 | economie.gouv.fr reform page | 2026-11-10 | **Fetch failed, HTTP 403 — not read** |
 | Guichet unique mandatory since 2023-01-01; filing window, documents, free for micro, RDDCE receipt | 2026-11-10 | **Official page read** |
