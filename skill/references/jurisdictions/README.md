@@ -81,6 +81,10 @@ The Dutch construction is the outlier in *mechanism*: the employer becomes the a
 
 This convergence is itself a verified finding, not an assumption. Each pack cites its own primary source; none borrows another's.
 
+**What the client *does* get is a separate question, and only Germany's answer is recorded.** §31(5) UrhG reads an unspecified grant narrowly: where the types of use are not named, the scope is whatever the **shared contract purpose** implies — so a client who commissioned software for internal use does not automatically acquire resale or sublicensing rights, and a founder who writes nothing down does not keep everything either. The equivalent default for the Netherlands and France is **[not researched]**.
+
+The instruction that follows is the same in all four regardless: **name the types of use in writing.** Silence favours neither side; it just moves the decision to a court.
+
 ## Using a pack
 
 1. Establish the founder's country and region, the customers' country, and where the service is delivered. These can differ and each can matter.

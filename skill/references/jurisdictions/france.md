@@ -109,7 +109,15 @@ The tax administration is explicit that **only** an accredited platform may prov
 
 Alongside e-invoicing, businesses must transmit **transaction data** and, in certain cases, **payment data** to the administration through an accredited platform (`e-reporting` / `transmission des données de transaction`). From 2026-09-01 this applies to large and mid-sized companies on the schedule above.
 
-Do not treat "I can send an e-invoice" as the whole obligation. Open: **the exact date and scope of e-reporting for a `micro-entreprise` or `indépendant` is [not researched]** — confirm it rather than assuming it mirrors the 2027-09-01 issuing date.
+**For a micro-entreprise, TPE or PME: e-reporting starts 2027-09-01** — the same date as their issuing obligation. · *consistent secondary commentary; the administration's own `fiche 7` on `impots.gouv.fr` is a PDF and was not parsed* · **[checked 2026-11-10]**
+
+What has to be transmitted is **the transactions that are not domestic B2B** — sales to consumers, exports and international operations. That is the part founders get wrong: e-invoicing covers business customers, e-reporting covers everything else.
+
+Transmission goes through an accredited platform, either by entering the data on the platform or by sending a file.
+
+**Sanction: €500 per missing transmission, capped at €15,000 per calendar year.** · *secondary* · **[checked 2026-11-10, not primary-confirmed]**
+
+So a French founder has **two** deadlines on 2027-09-01, not one, and they cover complementary halves of their turnover. Do not treat "I can send an e-invoice" as the whole obligation.
 
 Formats in French use: **UBL 2.1**, **UN/CEFACT CII**, and **Factur-X** (the Franco-German hybrid). `Chorus Pro` remains the B2G system.
 

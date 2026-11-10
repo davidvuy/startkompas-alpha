@@ -159,7 +159,24 @@ Source: [§69b UrhG, official consolidated law text](https://www.gesetze-im-inte
 
 Practical consequence for a solo founder: §69b does **not** apply to you, because you are not your client's employee. The default is therefore that **you keep the economic rights** in commissioned software, and a client who wants them needs an express assignment. Conversely, a founder who *paid a freelancer* does not thereby own the result — §69b gives them nothing.
 
-**Open:** what German law supplies *instead* of §69b for commissioned work — the default scope of the client's implied licence — is **[not researched]**. Do not state the extent of a client's permitted use from this pack.
+### What the client actually gets instead — §31(5) UrhG
+
+Source: [§31 UrhG, official consolidated law text](https://www.gesetze-im-internet.de/urhg/__31.html) · *primary legislation* · **[checked 2026-11-10]**
+
+Since §69b does not transfer anything for commissioned work, the client's position rests on the licence actually granted — and German law reads an unspecified grant **narrowly**.
+
+**The `Zweckübertragungsregel` in §31(5):** where the types of use (`Nutzungsarten`) are not specifically named, the scope is determined by *"der von beiden Partnern zugrunde gelegte Vertragszweck"* — the contract purpose **both** parties had in mind. The same test decides whether the right is simple or exclusive, how far it extends, and what restrictions apply.
+
+§31(1)–(3) distinguish the two kinds of grant:
+
+| | What the holder may do |
+| --- | --- |
+| **Simple** (`einfaches Nutzungsrecht`) | Use the work as permitted, *"ohne dass eine Nutzung durch andere ausgeschlossen ist"* — others may use it too |
+| **Exclusive** (`ausschließliches Nutzungsrecht`) | Use it *"unter Ausschluss aller anderen Personen"*, and grant further rights to third parties. The author may reserve specific uses for themselves |
+
+**Practical consequence, and it cuts both ways.** A client who commissioned software for their own internal use does **not** automatically acquire the right to resell it, sublicense it or use it for a different purpose — the grant reaches only as far as the shared contract purpose. Equally, a founder who writes nothing down does not keep everything: whatever the agreed purpose implies has passed.
+
+So the useful instruction is not "you keep your rights" but: **name the types of use in writing**. Silence does not favour either party; it just makes the answer turn on what a court decides the purpose was.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
@@ -196,7 +213,7 @@ The `BDSG` and the competent state authority's own guidance are **[not researche
 | Indizwirkung of §§308/309 under §307 in B2B | 2026-11-10 | **Resolved** — BGH NJW 2007, 3774 via consistent commentary; judgment not read |
 | How far trade custom under §310(1) rebuts that indication | — | Not researched |
 | §69b UrhG: employer for employees/service relationships; silent on commissioned work | 2026-11-10 | **Primary legislation read and quoted** |
-| What applies instead of §69b for commissioned work — the client's implied licence | — | Not researched |
+| §31(5) UrhG Zweckübertragungsregel: unnamed uses read by contract purpose; simple vs exclusive | 2026-11-10 | **Primary legislation read and quoted** |
 | Competent authority is the Land authority, not the BfDI | 2026-11-10 | Consistent secondary; BfDI list not read |
 | BDSG, and the competent Land authority's own guidance | — | Not researched |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |

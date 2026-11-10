@@ -153,6 +153,10 @@ Source: [article 7 Auteurswet](https://wetten.overheid.nl/BWBR0001886/2026-01-01
 | --- | --- |
 | Work created **in the service of another** (`in dienst`), where the job consists of creating such works | The **employer is deemed the maker** — not merely the holder of the rights. This is `fictief makerschap`. |
 | **Commissioned work** under an `overeenkomst van opdracht` | **Does not qualify.** Article 7 requires a `dienstbetrekking`; a contract for services does not meet it. · *secondary, consistent* |
+
+What an `overeenkomst van opdracht` is, which is what makes that exclusion concrete: [art. 7:400 BW](https://www.wetboek.org/bw/7/400) · *primary legislation* · **[checked 2026-11-10]** — an agreement under which one party, the `opdrachtnemer`, undertakes to perform services for the other **other than under an employment contract**, excluding creating a tangible work, safekeeping goods, publishing, and transporting persons or goods.
+
+So the two are defined against each other: art. 7:400 says "not an employment contract", and art. 7 Auteurswet requires exactly that employment relationship. A founder engaged on an `opdracht` therefore falls outside art. 7 by definition, not by argument.
 | Contrary agreement | Permitted — *"tenzij tusschen partijen anders is overeengekomen"*. Article 7 is `regelend recht`. |
 
 The Dutch construction is distinctive: the employer is treated as the **author**, where Germany and France transfer only the economic rights and Belgium transfers economic rights for employees. Moral rights therefore sit differently here. That difference is why the packs do not share this section.
@@ -197,6 +201,7 @@ The AP publishes a `stappenplan` for controllers and one for acting on a data br
 | Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-10 | **Primary legislation read per article and quoted** |
 | Consumer-only lists (6:236/6:237) and reflexwerking boundaries | 2026-11-10 | Secondary consistent; case law not read |
 | Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | **Primary legislation read and quoted** |
+| Art. 7:400 BW defines opdracht as "other than under an employment contract" | 2026-11-10 | **Primary legislation read** |
 | Client's permitted use for commissioned software; art. 8 Auteurswet | — | Not researched |
 | The Contourenbrief of 2026-09-11 itself | — | Not researched — only secondary reporting of it |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
