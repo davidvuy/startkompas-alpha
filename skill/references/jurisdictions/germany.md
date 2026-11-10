@@ -124,7 +124,23 @@ Where standard terms (`AGB`) are used towards an `Unternehmer`, §310(1) disappl
 
 So a founder cannot conclude "they are a business, anything goes". The catalogue is gone; the standard is not.
 
-**Open:** German case law is widely said to give the disapplied §§308/309 catalogue an indicative effect (`Indizwirkung`) when applying §307 in B2B. **This pack did not verify that**, and §310(1) does not say it. Do not state it as settled. · **[not researched]**
+### The catalogue comes back in through the general test
+
+**`Indizwirkung` — now verified, and it changes the practical answer.**
+
+The BGH holds that the strict clause prohibitions in §§308 and 309 carry an **indicative effect for invalidity under §307 in business dealings too**. A clause that would be prohibited against a consumer is therefore a **strong indication** that it unreasonably disadvantages a business counterparty as well.
+
+Source: BGH, NJW 2007, 3774 (VIII ZR 141/06) · *consistent professional commentary and chamber guidance; the judgment itself was not read* · **[checked 2026-11-10]**
+
+So the practical position is neither "the lists apply" nor "anything goes":
+
+1. §310(1) disapplies the catalogue **directly**.
+2. §307 still applies.
+3. The catalogue returns as **evidence** under §307 — not decisive, but a serious starting presumption against the clause.
+
+**For a founder drafting terms, treat §§308/309 as the list of clauses most likely to fail**, even in B2B. A blanket liability waiver is the standard example. The "it's B2B so the lists don't apply" reasoning is half an answer and the dangerous half.
+
+**Open:** the judgment itself was not read, and how far the indication can be rebutted by trade custom under §310(1)'s `Gewohnheiten und Gebräuche` clause is case-specific and **[not researched]**.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet. Never draft a blanket liability waiver, a unilateral acceptance clause, an automatic renewal or an invented service guarantee — §307 is exactly where those fail. Leave enforceability to a German lawyer.
 ---

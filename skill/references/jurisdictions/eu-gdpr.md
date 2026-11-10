@@ -110,10 +110,29 @@ Required where processing is *"likely to result in a high risk to the rights and
 
 **Where this can bite a founder.** The general rule in 35(1) mentions processing *using new technologies*. A founder putting real customer data through an AI tool for the first time is doing exactly that, and if the output materially affects those people, case 1 comes into view. So do not answer "no DPIA needed" from the fact that the founder is small — answer it from the three cases plus the general rule, and if real personal data is heading into an AI tool, flag the assessment as a question rather than settling it.
 
-## 7. What this layer does not cover
+## 7. Which lawful basis — article 6(1)
 
-- **International transfers** outside the EU: **[not researched]**. If a provider processes data outside the EEA, this is a real gap.
-- **Lawful bases** under art. 6, and which one a founder is relying on: **[not researched]**.
+Every processing operation needs one of six bases, and **the founder has to be able to name which**. Source: [Article 6 GDPR](https://gdpr-info.eu/art-6-gdpr/) · *verbatim reproduction on a secondary host* · **[checked 2026-11-10]**
+
+| | Basis | Covers |
+| --- | --- | --- |
+| (a) | **Consent** | The data subject consented, for one or more specific purposes |
+| (b) | **Contract** | Necessary to perform a contract with the data subject, or for pre-contractual steps at their request |
+| (c) | **Legal obligation** | Necessary to comply with a legal obligation on the controller |
+| (d) | **Vital interests** | Necessary to protect someone's vital interests |
+| (e) | **Public task** | Necessary for a task in the public interest or official authority |
+| (f) | **Legitimate interests** | The controller's or a third party's legitimate interests, unless overridden by the data subject's rights — with special weight for children |
+
+**For the pilots this skill supports, (b) and (f) carry almost everything.** Delivering an agreed service to a business customer's named contact is (b). A founder's own outreach or record-keeping is usually argued under (f), which requires actually weighing the interests rather than asserting them.
+
+Two habits to avoid. **Do not reach for consent by default** — it has to be freely given, specific and withdrawable, and for a service a customer asked for, (b) is both simpler and more robust. And **do not leave the basis unstated**: the register in §3 asks for purposes, and a purpose without a basis is an unfinished record.
+
+**Open:** the balancing test for (f), and whether a given outreach activity survives it, is **[not researched]** and is a judgment, not a lookup.
+
+## 8. What this layer does not cover
+
+- **International transfers** outside the EEA: **[not researched]**. If a provider processes data outside the EEA, this is a real gap.
+- **Data subject rights** and the deadlines for answering a request: **[not researched]**.
 - Sector rules (health, finance, children's data) are outside every pack's scope.
 - The national authority's own guidance, which often differs in emphasis and is the better source for a founder in that country — see the national pack.
 - The **EU AI Act** is a separate instrument and now has its own layer: [eu-ai-act.md](eu-ai-act.md). Using an AI tool on personal data engages both.
@@ -130,7 +149,9 @@ Required where processing is *"likely to result in a high risk to the rights and
 | DPO conditions, art. 37(1) | 2026-11-10 | Article text read |
 | DPIA conditions, art. 35(1) and 35(3) | 2026-11-10 | Article text read |
 | Register exemption, art. 30(5), four conditions | 2026-11-10 | Article text read |
-| International transfers; lawful bases under art. 6 | — | Not researched |
+| Six lawful bases, art. 6(1) | 2026-11-10 | Article text read |
+| Balancing test for legitimate interests, art. 6(1)(f) | — | Not researched |
+| International transfers outside the EEA; data subject rights deadlines | — | Not researched |
 
 Next full recheck due: **2027-05-10**. Earlier on any EDPB guidance update or an AI Act milestone affecting small businesses.
 

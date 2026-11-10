@@ -113,14 +113,26 @@ Recheck triggers: the Q4 2026 consultation opening; the bill's submission; any c
 
 Dutch law protects against unreasonable standard terms — and the protection is calibrated by **how big you are**, which cuts in a founder's favour.
 
-· *secondary legal commentary, consistent; the Burgerlijk Wetboek text itself was [not researched]* · **[checked 2026-11-10]**
+Sources · **[checked 2026-11-10]**
+- [art. 6:233 BW](https://www.wetboek.org/bw/6/233) and [art. 6:235 BW](https://www.wetboek.org/bw/6/235) · *primary legislation, read per article*
+- the consumer-list and `reflexwerking` points · *secondary legal commentary, consistent*
+
+**Art. 6:233** makes a term in general conditions **voidable** on either of two grounds, quoted:
+
+> *"indien het, gelet op de aard en de overige inhoud van de overeenkomst, de wijze waarop de voorwaarden zijn tot stand gekomen, de wederzijds kenbare belangen van partijen en de overige omstandigheden van het geval, onredelijk bezwarend is voor de wederpartij"*
+
+> *"indien de gebruiker aan de wederpartij niet een redelijke mogelijkheid heeft geboden om van de algemene voorwaarden kennis te nemen"*
+
+The second ground is independent of content: **failing to give the counterparty a real chance to read the terms is itself enough**, however reasonable the terms are.
 
 | Provision | Effect |
 | --- | --- |
-| **art. 6:233 BW** | A term in general conditions is **voidable** if it is `onredelijk bezwarend` (unreasonably burdensome) given the nature and content of the agreement, how the conditions came about, the parties' mutually knowable interests and the other circumstances — **or** if the user did not give a reasonable opportunity to read the conditions |
-| **art. 6:235 BW** | **Large** parties cannot invoke 6:233 or 6:234: a legal entity that publishes its annual accounts, or has **50 or more employees** |
-| **art. 6:236 / 6:237 BW** | The black list (always unreasonably burdensome) and grey list (presumed so) apply **only against consumers** |
-| `reflexwerking` | Where a small entrepreneur's position closely resembles a consumer's, the appearance of a term on the consumer black or grey list is relevant to the open test in 6:233 |
+| **art. 6:233 BW** | Voidable on either ground above |
+| **art. 6:235(1) BW** | Cannot be invoked by a party with **50 or more persons employed**, or by a legal entity that had **most recently published its annual accounts** at the time the agreement was concluded |
+| **art. 6:236 / 6:237 BW** | The black list (always unreasonably burdensome) and grey list (presumed so) apply **only against consumers** · *secondary* |
+| `reflexwerking` | Where a small entrepreneur's position closely resembles a consumer's, a term's appearance on the consumer black or grey list is relevant to the open test in 6:233 · *secondary* |
+
+Note for maintainers: a fetch of the full Boek 6 BW page on `wetten.overheid.nl` returned text that was **not** art. 6:233 — a large-document extraction failure, not a source disagreement. The per-article pages above were used instead, and they confirm what the earlier secondary sources said. Do not "correct" these figures from a whole-book fetch.
 
 **For a solo founder this is favourable, and the opposite of the intuitive guess.** You are a small party, so 6:235 does not exclude you — you *can* invoke 6:233 against a larger counterparty's standard terms, and `reflexwerking` may import the consumer lists in your favour. The failure to give you a real chance to read the terms is itself a ground.
 
@@ -181,7 +193,8 @@ The AP publishes a `stappenplan` for controllers and one for acting on a data br
 | EU-KOR start date 2025-01-01 and €100,000 Union cap | 2026-11-10 | **Primary EU legislation read** — see eu-vat-sme.md |
 | Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | KVK pages read |
 | Registration fee, identification, timeframe | — | Not researched |
-| 6:233 voidability, 6:235 large-party exclusion, consumer-only lists, reflexwerking | 2026-11-10 | Secondary consistent; BW text not read |
+| Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-10 | **Primary legislation read per article and quoted** |
+| Consumer-only lists (6:236/6:237) and reflexwerking boundaries | 2026-11-10 | Secondary consistent; case law not read |
 | Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | **Primary legislation read and quoted** |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
