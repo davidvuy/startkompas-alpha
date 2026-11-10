@@ -32,9 +32,13 @@ const REQUIRED = [
   {case: 'C5', pack: 'belgium.md', label: 'Walloon abolition date', pattern: /2025-10-01/},
   {case: 'C5', pack: 'belgium.md', label: 'conflict preserved as a conflict', pattern: /source conflict/i},
   {case: 'C6', pack: 'belgium.md', label: '2029 threshold is EUR 28,000', pattern: /\|\s*2029\s*\|\s*€28,000\s*\|/},
-  {case: 'C6', pack: 'belgium.md', label: 'enacting instrument identified', pattern: /law of 2026-09-23/i},
-  {case: 'C6', pack: 'belgium.md', label: 'amended VAT Code article named', pattern: /article 56ter/i},
-  {case: 'C6', pack: 'belgium.md', label: 'per-year figures still only commentary', pattern: /rest on professional commentary/i},
+  {case: 'C6', pack: 'belgium.md', label: 'enacting instrument identified', pattern: /DOC 56 1593\/001/},
+  {case: 'C6', pack: 'belgium.md', label: 'amended VAT Code article named', pattern: /art\. 56ter/i},
+  // The figures are primary-confirmed from the bill; the ENACTMENT is not. Both
+  // halves have to survive, because stating these amounts as law would send a
+  // founder into 2027 on a threshold that may never have been promulgated.
+  {case: 'C6', pack: 'belgium.md', label: 'amending article is 25, not 26', pattern: /\*\*Article 25\*\* of that bill replaces/},
+  {case: 'C6', pack: 'belgium.md', label: 'publication is unverified and said to be', pattern: /do not tell a founder these amounts are law/i},
   {case: '—', pack: 'belgium.md', label: 'unfair terms black list article', pattern: /VI\.91\/4/},
   {case: '—', pack: 'belgium.md', label: 'software ownership: no automatic transfer', pattern: /niet automatisch overgedragen/},
   // Same trap as the French guide below: two of the four SME brochures are
@@ -141,6 +145,16 @@ const FORBIDDEN = [
     pack: 'belgium.md',
     label: 'must not claim the Walloon proof is still required',
     pattern: /must obtain (the )?basic[- ]management/i,
+  },
+  // A pack may legitimately QUOTE a claim it has withdrawn, inside the
+  // correction that withdraws it — belgium.md §2 does exactly that, and the
+  // first version of this pattern fired on the correction itself. So a
+  // forbidden pattern has to match the assertive form only. Here the quotation
+  // is introduced by `*"`, which the lookbehind excludes.
+  {
+    pack: 'belgium.md',
+    label: 'the phased VAT thresholds must not read as enacted law',
+    pattern: /(?<!\*")now enacted, not a bill/i,
   },
 ];
 

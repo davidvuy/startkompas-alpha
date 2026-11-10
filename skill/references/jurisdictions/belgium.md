@@ -45,26 +45,36 @@ Recheck trigger: a change of region; the activity turning out to be a regulated 
 
 ## 2. VAT — small-business exemption regime
 
-Current threshold: **€25,000** annual Belgian turnover, excluding VAT, for 2026.
+Current threshold **in force**: **€25,000** annual Belgian turnover, excluding VAT. This is the figure to use today.
 
-Scheduled phased increase, from **2027-01-01**, rising €1,000 per year:
+### The phased increase: the figures are confirmed, the enactment is not
+
+Source: [Chamber of Representatives, **DOC 56 1593/001** of **2026-06-15**](https://www.dekamer.be/FLWB/PDF/56/1593/56K1593001.pdf), `Wetsontwerp op de reductie van de kosten II`, Title 5 · *official parliamentary document, PDF extracted and the enacting articles read in both languages* · **[checked 2026-11-10]**
+
+**Article 25** of that bill replaces the first paragraph of art. 56ter §1 of the VAT Code, and the 2° of art. 56ter §2 first paragraph, with these amounts:
 
 | Year | Threshold |
 | --- | --- |
-| 2026 | €25,000 |
+| **2026** | **€25,000** — in force now, unchanged by this bill |
 | 2027 | €26,000 |
 | 2028 | €27,000 |
 | 2029 | €28,000 |
 | 2030 | €29,000 |
-| 2031 and after | €30,000 |
+| 2031 and following | €30,000 |
 
-Legal basis — **now enacted, not a bill**: the **law of 2026-09-23**, published in the Belgian Official Journal on **2026-10-07**. Its **article 26** amends **article 56ter of the Belgian VAT Code**, entering into force **2027-01-01**. (The Chamber approved it on 2026-09-17.) · *secondary, consistent and specific* · **[checked 2026-11-10]**
+**Article 26** of the bill is not an amending provision — it is the entry into force: *"Het artikel 25 treedt in werking op 1 januari 2027."*
 
-Sources · *both secondary (professional commentary), mutually consistent* · **[checked 2026-11-10]**
-- [vereniginginfo.be](https://www.vereniginginfo.be/blog/vzws/btw-vrijstellingsregeling-kleine-ondernemingen-van-25000-naar-30000-euro/302/)
-- [btw-lijn.be](https://www.btw-lijn.be/wetsontwerp-verhoging-omzetdrempel-vrijstelling-kleine-onderneming-ingediend/)
+**Status, stated exactly.** This is a **bill**, and the amounts above are its proposed text:
 
-The phased figures themselves still rest on professional commentary rather than an FPS Finance page, but the **instrument is now identified** (law of 2026-09-23, art. 26, amending art. 56ter VAT Code), which is what a founder's accountant needs to check. Headlines reading "threshold raised to €30,000" remain misleading — €30,000 applies only from 2031.
+- Tabled in the Chamber on **2026-06-15** as DOC 56 1593/001; the Council of State raised no objection. · *bill read directly*
+- **Approved by the Chamber on 2026-09-17.** · *secondary — reported by [vereniginginfo.be](https://www.vereniginginfo.be/blog/vzws/btw-vrijstellingsregeling-kleine-ondernemingen-van-25000-naar-30000-euro/302/) on 2026-09-25, which calls it a `wetsontwerp goedgekeurd`*
+- **Publication in the Belgisch Staatsblad: not verified.** An attempt on 2026-11-10 to locate a promulgated law and its publication date found nothing. **So do not tell a founder these amounts are law.** Chamber approval is the decisive parliamentary step, so enactment is likely — but royal assent and publication are what make it law, and neither has been seen here.
+
+**Correction recorded, because this pack previously got it wrong.** An earlier version of this entry stated the basis as *"now enacted, not a bill: the law of 2026-09-23, published 2026-10-07, article 26 amends article 56ter"*. Reading the primary document on 2026-11-10 showed three errors: the amending article is **25**, not 26 — 26 is the entry-into-force clause; the instrument is a **bill of 2026-06-15**, not a law of 2026-09-23; and neither of the two secondary sources then cited ever claimed publication. One of them is dated 2026-06-26 and says only *"In de Kamer is een wetsontwerp ingediend"*. **The pack asserted enactment that its own sources did not support** — the same class of error as the French PLF 2026 entry, in the opposite direction.
+
+Also established from the bill, and not previously recorded: art. 56ter was **inserted by the law of 2024-03-21** and **amended by the law of 2026-02-10**. Those are the instruments behind the €25,000 figure that *is* in force.
+
+Headlines reading "threshold raised to €30,000" are misleading twice over: €30,000 applies only from **2031**, and only if the bill is enacted.
 
 What the exemption does: supply without charging VAT, relieved of periodic VAT returns, while keeping the VAT identification. The trade-off is **loss of input VAT deduction** on purchases and investments relating to the exempt activity. · **[checked 2026-11-10]**
 
@@ -273,7 +283,12 @@ Source: [`Handleiding melden van een gegevensinbreuk`](https://www.gegevensbesch
 | Start-up formalities and responsible bodies | 2026-11-10 | Official page read |
 | Basic-management three-way conflict | 2026-11-10 | All three sources read; conflict preserved |
 | B2B e-invoicing scope and start date | 2026-11-10 | Primary official source read |
-| VAT exemption phased thresholds | 2026-11-10 | Secondary; instrument identified (law 2026-09-23, art. 26, art. 56ter VAT Code) |
+| €25,000 threshold in force for 2026 | 2026-11-10 | Confirmed; inserted by law of 2024-03-21, amended by law of 2026-02-10 **as the bill recites** — neither law read |
+| Phased figures 2027–2031 (€26,000 → €30,000) | 2026-11-10 | **Primary parliamentary text read** — DOC 56 1593/001 of 2026-06-15, art. 25 |
+| Art. 26 of the bill is the entry-into-force clause, not an amending article | 2026-11-10 | **Primary parliamentary text read and quoted** |
+| Whether the bill has been promulgated and published | — | **Not verified.** Chamber approval on 2026-09-17 is **secondary only**; no Staatsblad publication found on 2026-11-10. **Do not state the figures as law** |
+| **Corrected on 2026-11-10:** this entry previously asserted "now enacted… law of 2026-09-23… article 26 amends" | 2026-11-10 | **Withdrawn.** Three errors, none supported by the sources then cited — see §2 |
+| The laws of 2024-03-21 and 2026-02-10 themselves | — | Not researched — named by the bill, texts not read |
 | EU-wide €100,000 cross-border threshold | 2026-11-10 | **Primary EU legislation read** — see eu-vat-sme.md |
 | Unfair terms: general norm, black and grey list structure | 2026-11-10 | Secondary legal commentary; primary WER text not read |
 | Black list (4) and grey list (8) with official examples; scope, dates, exclusions, two-aspect test | 2026-11-10 | **Official FPS Economy brochure extracted and read**; statute itself not read |
