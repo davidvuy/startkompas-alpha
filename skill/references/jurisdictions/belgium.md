@@ -147,9 +147,22 @@ Never infer ownership or clearance from payment alone, from the fact that AI gen
 
 **The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle. Those rules are identical in all four packs and are not repeated here.
 
-**Belgian specifics.** The supervisory authority is the **Gegevensbeschermingsautoriteit / Autorité de protection des données (GBA/APD)**. Its own guidance is **[not researched]** and would be the better source for a Belgian founder, including on whether a given breach is notifiable and how to notify it.
+**Belgian specifics.** The supervisory authority is the **Gegevensbeschermingsautoriteit / Autorité de protection des données (GBA/APD)**, and it publishes more SME-specific material than most — point a Belgian founder at these rather than paraphrasing them.
 
-Belgian national provisions supplementing the GDPR are **[not researched]**.
+Source: [GBA — register van de verwerkingsactiviteiten](https://www.gegevensbeschermingsautoriteit.be/professioneel/avg/register-van-verwerkingsactiviteiten/wie-moet-het-register-van-de-verwerkingsactiviteiten-bijhouden) · *national supervisory authority* · **[checked 2026-11-10]**
+
+The GBA states that **both controllers and processors** must keep a register under art. 30.1, and that this applies **even to organisations not established in the EEA** where the GDPR reaches them. The under-250 exemption and the four conditions that cancel it are in [eu-gdpr.md](eu-gdpr.md) §3 — walk those rather than assuming a small founder is exempt.
+
+Its SME publications, named so a founder can find them · *titles from the GBA's own publication index* · **[checked 2026-11-10, individual documents not read]**:
+
+- `Wegwijs in de AVG voor KMO's` — a guide for small and medium enterprises
+- `FAQ-brochure voor KMO's`
+- `13-stappenplan` — a thirteen-step plan
+- `Als KMO omgaan met rechten van betrokkenen` — handling data subject rights as an SME
+
+Breach notification goes to the GBA, on the 72-hour clock in [eu-gdpr.md](eu-gdpr.md) §4.
+
+**Open:** the individual publications above were not read, so do not quote their contents. Belgian national provisions supplementing the GDPR, and whether a specific breach is notifiable, remain **[not researched]** — the latter is a judgment for the founder with advice, not something this pack decides.
 ---
 
 ## Pack maintenance
@@ -168,7 +181,7 @@ Belgian national provisions supplementing the GDPR are **[not researched]**.
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 
 | Belgian DPA (GBA/APD) own guidance | — | Not researched |
-| EU AI Act applicability | — | Not researched |
+| EU AI Act | 2026-11-10 | Factored into eu-ai-act.md |
 
 Next full recheck due: **2027-05-10**. Earlier if the e-invoicing law is adjusted for non-established taxpayers, or before 2027-01-01 for the VAT threshold step.
 

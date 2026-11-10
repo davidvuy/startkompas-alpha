@@ -43,9 +43,28 @@ An unsigned template is not a contract. A customer's approval is not a lawful ba
 
 ## 3. Register of processing activities
 
-Keeping an overview of your processing activities is an obligation, not a nicety — the `verwerkingsregister` / `registre des traitements` / `Verzeichnis von Verarbeitungstätigkeiten`.
+The `verwerkingsregister` / `registre des traitements` / `Verzeichnis von Verarbeitungstätigkeiten`.
 
-A maintained register is also what makes a breach assessment possible at speed: without it you cannot say quickly which categories of data and which people a breach touched. · *national authority guidance, consistent* · **[checked 2026-11-10]**
+**Article 30(1)** requires a controller to record: its own identity and contact details, the purposes of processing, the categories of data subjects and of personal data, the categories of recipients, third-country transfers and their safeguards, the envisaged erasure periods, and a general description of the security measures.
+
+### The under-250 exemption, and why it probably does not help you
+
+Article 30(5) exempts *"an enterprise or an organisation employing fewer than 250 persons"* — **unless** any one of four conditions applies:
+
+1. the processing is likely to result in a risk to the rights and freedoms of data subjects
+2. **the processing is not occasional**
+3. it involves special categories of data (art. 9(1))
+4. it involves personal data on criminal convictions and offences (art. 10)
+
+Source: [Article 30 GDPR](https://gdpr-info.eu/art-30-gdpr/) · *verbatim reproduction on a secondary host; the authoritative text is Regulation (EU) 2016/679 on EUR-Lex* · **[checked 2026-11-10]**
+
+**A solo founder is under 250 persons and still almost certainly needs a register.** Condition 2 is the one that bites: keeping a customer list, running a pilot, invoicing people — that is regular, ongoing processing, not occasional. The exemption is written for the organisation that processes personal data once in a while, not for one whose ordinary business involves it.
+
+So: do not tell a founder the exemption covers them because they are small. Walk the four conditions. If any applies, the register is required. If none applies, say which reading got you there, because it is the unusual answer.
+
+A maintained register is also what makes a breach assessment possible at speed: without it you cannot say quickly which categories of data and which people a breach touched — which matters against the 72-hour clock below. · *national authority guidance, consistent* · **[checked 2026-11-10]**
+
+**What a missing register costs.** The Belgian authority states that absence of a register, or poorly discharging the obligation, can be fined up to €10,000,000 or, for a business, 2% of total worldwide annual turnover in the preceding financial year, whichever is higher. That is the art. 83(4) tier, not a Belgian specialty. · *national authority guidance* · **[checked 2026-11-10]**
 
 ## 4. Data breach notification — 72 hours
 
@@ -67,12 +86,37 @@ Measures the page names — organisational: awareness sessions, documented opera
 
 Treat both as that page's general SME guidance — **not** a legal requirement, and not current best practice on passwords, where length-first policies and breached-password screening have displaced short-but-complex rules. Do not present either number as an obligation, and do not reproduce the 8-character figure as a recommendation.
 
-## 6. What this layer does not cover
+## 6. Does a solo founder need a DPO, or a DPIA?
 
-- **EU AI Act applicability: [not researched]** in any pack. Keep it open rather than claiming an assessment.
-- International transfers, DPIA thresholds, and whether a founder needs a DPO: **[not researched]**.
+Usually no, on both counts — but check the conditions rather than assuming, and say which one you checked.
+
+### Data protection officer — article 37(1)
+
+A DPO is required only where one of three things is true. Source: [Article 37 GDPR](https://gdpr-info.eu/art-37-gdpr/) · *verbatim reproduction on a secondary host* · **[checked 2026-11-10]**
+
+1. the processing is by a **public authority or body**, other than courts acting judicially
+2. the **core activities** require **regular and systematic monitoring of data subjects on a large scale**
+3. the **core activities** consist of **large-scale** processing of special categories (art. 9) or criminal-offence data (art. 10)
+
+A one-person B2B service pilot normally meets none of them. Note the two qualifiers doing the work: **core activities** and **large scale**. Processing a customer list is neither, even though it is regular.
+
+### Impact assessment — article 35
+
+Required where processing is *"likely to result in a high risk to the rights and freedoms of natural persons"*, assessed **before** the processing starts. Art. 35(3) names three cases that always require one. Source: [Article 35 GDPR](https://gdpr-info.eu/art-35-gdpr/) · *verbatim reproduction on a secondary host* · **[checked 2026-11-10]**
+
+1. systematic evaluation of personal aspects by automated processing, **including profiling**, producing legal or similarly significant effects
+2. **large-scale** processing of special category or criminal-offence data
+3. **systematic monitoring of a publicly accessible area** on a large scale
+
+**Where this can bite a founder.** The general rule in 35(1) mentions processing *using new technologies*. A founder putting real customer data through an AI tool for the first time is doing exactly that, and if the output materially affects those people, case 1 comes into view. So do not answer "no DPIA needed" from the fact that the founder is small — answer it from the three cases plus the general rule, and if real personal data is heading into an AI tool, flag the assessment as a question rather than settling it.
+
+## 7. What this layer does not cover
+
+- **International transfers** outside the EU: **[not researched]**. If a provider processes data outside the EEA, this is a real gap.
+- **Lawful bases** under art. 6, and which one a founder is relying on: **[not researched]**.
 - Sector rules (health, finance, children's data) are outside every pack's scope.
 - The national authority's own guidance, which often differs in emphasis and is the better source for a founder in that country — see the national pack.
+- The **EU AI Act** is a separate instrument and now has its own layer: [eu-ai-act.md](eu-ai-act.md). Using an AI tool on personal data engages both.
 
 ## Pack maintenance
 
@@ -83,8 +127,10 @@ Treat both as that page's general SME guidance — **not** a legal requirement, 
 | Security principle, named measures, and the two numeric figures | 2026-11-10 | EU regulator guidance read |
 | Register of processing activities obligation | 2026-11-10 | National authority guidance, consistent |
 | 72-hour controller notification; processor warns without undue delay | 2026-11-10 | National authority guidance, consistent |
-| EU AI Act applicability | — | Not researched |
-| Transfers, DPIA thresholds, DPO requirement | — | Not researched |
+| DPO conditions, art. 37(1) | 2026-11-10 | Article text read |
+| DPIA conditions, art. 35(1) and 35(3) | 2026-11-10 | Article text read |
+| Register exemption, art. 30(5), four conditions | 2026-11-10 | Article text read |
+| International transfers; lawful bases under art. 6 | — | Not researched |
 
 Next full recheck due: **2027-05-10**. Earlier on any EDPB guidance update or an AI Act milestone affecting small businesses.
 

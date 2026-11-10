@@ -24,9 +24,15 @@ A founder may register **at most one** `eenmanszaak`, though one sole proprietor
 
 A `bv` or `nv` is different: that registration goes through a civil-law notary rather than automatically, and yields an RSIN.
 
+**Cost: €85.15, one-off.** Source: [KVK — registration fee](https://www.kvk.nl/en/registration/registration-fee/) · *official chamber of commerce* · **[checked 2026-11-10]**
+
+It covers registering a new company or organisation in the Handelsregister, including a restart, takeover, demerger or merger that produces a new KVK number. KVK invoices by email or post depending on how you registered, payable through a payment portal. It is **tax-deductible** and **updated annually** for inflation — so quote it as "€85.15 as at 2026-11-10", not as a fixed figure. A Business Register extract is a separate optional cost.
+
+Note the contrast with France, where registering a micro-entreprise is **free**.
+
 Establish before proposing any administrative action: whether the founder is registered and under which SBI activity codes; whether they hold a `btw-id`; whether they are in the KOR; and their legal form.
 
-Open: the registration fee, required identification and the processing timeframe are **[not researched]**.
+**Open:** the required identification documents and the processing timeframe are **[not researched]**. The commonly cited "two weeks" for the `btw-id` is not on any page read here.
 
 ---
 

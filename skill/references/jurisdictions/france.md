@@ -20,9 +20,27 @@ All business creation, modification, document filing and cessation declarations 
 
 The portal describes itself as *"Le guichet unique pour les déclarations de création, de modification, de dépôt de document et de cessation d'entreprise"*. Informational content is open; submitting a declaration requires an INPI account.
 
-Establish before proposing any administrative action: the founder's legal form (`micro-entreprise`, `entreprise individuelle`, `société`); their SIREN/SIRET; their APE activity code; their VAT position; and whether the activity is regulated.
+Since **2023-01-01** every creation, modification and cessation formality must go through this portal; there is no paper or alternative route.
 
-Open: the specific documents, fees and timelines for each form are **[not researched]**.
+### Deadline, documents and cost
+
+Source: [service-public.gouv.fr — micro-entreprise registration formalities](https://entreprendre.service-public.gouv.fr/vosdroits/F36746?lang=en) · *official government information service* · **[checked 2026-11-10]**
+
+**Timing — a real window, in both directions.** File **at the earliest one month before** starting the activity, and **within 15 days after** the start date at the latest. A founder who starts quietly and registers later has a 15-day limit, not an open one.
+
+**Documents:**
+- proof of the business address, such as a water, electricity or gas bill
+- a copy of the founder's ID and a `déclaration sur l'honneur` of non-conviction
+- for a regulated activity, the authorisation, diploma or title permitting it
+- a `Cape` contract copy, if there is one
+- for married founders, spouse notification certificates
+- for a purchase, lease or succession of a business, the deed and publication certificates
+
+**Cost: registration is free** for commercial, craft and liberal activities. Only `agents commerciaux` pay, at €23.21 for the SFCR register.
+
+**What you get.** On filing, a `Récépissé de Dépôt de Dossier de Création d'Entreprise` (RDDCE), valid up to one month, which **already lets you deal with public and private bodies** while registration completes. On completion, a certificate carrying the identification numbers — `Siren` and `APE` code.
+
+Establish before proposing any administrative action: the founder's legal form (`micro-entreprise`, `entreprise individuelle`, `société`); their SIREN/SIRET; their APE activity code; their VAT position; and whether the activity is regulated.
 
 ---
 

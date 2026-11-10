@@ -12,11 +12,34 @@ Verification convention: **[checked YYYY-MM-DD]** means the source was actually 
 
 ## 1. Registration and formalities
 
-**[not researched]** for Germany.
+**One question decides the whole route: `Gewerbe` or `freier Beruf`?** It changes which body you register with, whether you join a chamber, and whether you pay trade tax. Establish it before proposing any administrative step.
 
-Establish before proposing any administrative action: the founder's legal form; whether the activity is a `Gewerbe` or a `freier Beruf`, because the registration route differs; whether they have registered with the tax office and hold a `Steuernummer`; whether they hold a VAT identification number; and whether the activity falls under the `Handwerksordnung` with its own entry requirements.
+### The distinction
 
-Likely responsible bodies to check directly: the local `Gewerbeamt` for a `Gewerbeanmeldung`, the `Finanzamt` for tax registration, the `IHK` or `HWK` for chamber membership, and `ELSTER` for the tax questionnaire. **Do not state the steps, fees or deadlines from this pack** — none were verified.
+Source: [§18 EStG, official consolidated law text](https://www.gesetze-im-internet.de/estg/__18.html) · *primary legislation* · **[checked 2026-11-10]**
+
+§18(1) no. 1 covers *"die selbständig ausgeübte wissenschaftliche, künstlerische, schriftstellerische, unterrichtende oder erzieherische Tätigkeit"* — independently exercised scientific, artistic, writing, teaching or educational activity — plus an enumerated list of `Katalogberufe` (doctors, dentists, vets, lawyers, notaries, patent attorneys, **engineers, architects**, accountants, tax advisers, **journalists, translators** and others) **and `ähnliche Berufe`**, similar professions.
+
+Anything self-employed that is not in §18 and not agriculture or forestry is normally a `Gewerbe`.
+
+**For a software founder this is a genuinely open question, not a formality.** `Ingenieur` is a Katalogberuf, so developers often argue `ingenieurähnlich` — but that turns on the specific activity and qualifications, and a "similar profession" must share essentially all the defining features of the listed one. Do not decide it in a chat. Flag it as the question that determines everything below, and route it to a `Steuerberater`.
+
+### What follows from each
+
+Source: [IHK Köln — Gewerbe oder freier Beruf](https://www.ihk.de/koeln/hauptnavigation/gruendung-finanzierung-nachfolge/abgrenzung-freiberufler-vs-gewerbetreibende-5137676) · *chamber of commerce guidance* · **[checked 2026-11-10]**
+
+| | `Freiberufler` | `Gewerbetreibender` |
+| --- | --- | --- |
+| Register with | **Finanzamt only** — apply for a `Steuernummer` directly | **Gewerbeamt** first, which issues a `Gewerbeschein` and notifies the Finanzamt |
+| `Gewerbeanmeldung` | **Not required** | Required |
+| Chamber membership | Not subject to IHK membership | Subject to IHK membership |
+| `Gewerbesteuer` | **Not subject to it** | Subject, with a standard allowance of **€24,500** of profit per year before it applies |
+
+**Who decides:** the competent `Finanzamt`, on the basis of the activity description in the `Fragebogen zur steuerlichen Erfassung` (filed via `ELSTER`). Its determination is decisive **regardless of how the founder describes themselves or whether they already registered with a Gewerbeamt**. A founder who assumed `Freiberufler` and is reclassified owes trade tax they did not plan for.
+
+Also establish: the legal form; whether they already hold a `Steuernummer` and a VAT identification number; and whether the activity falls under the `Handwerksordnung`, which carries its own entry requirements and `HWK` membership.
+
+**Open:** the specific documents, fees and processing times for a `Gewerbeanmeldung` vary by municipality and are **[not researched]**. The €24,500 allowance is from chamber guidance, not read in §11 GewStG. Do not state either as verified.
 
 ---
 
