@@ -160,7 +160,16 @@ const RUNTIME_SMELLS = [
 ];
 
 // Scope: the always-loaded SKILL.md plus everything it can pull in.
-const modelFacing = [skillFile, ...markdown.filter((file) => rel(file).startsWith('references/'))];
+//
+// `skillFile` is included only when it exists. Section 1 already reports a
+// missing SKILL.md, and the run must survive to print that: reading it blindly
+// here threw ENOENT and killed the process, so the one thing a contributor
+// needed to be told was replaced by a stack trace.
+const presentSkillFile = existsSync(skillFile) ? [skillFile] : [];
+const modelFacing = [
+  ...presentSkillFile,
+  ...markdown.filter((file) => rel(file).startsWith('references/')),
+];
 
 for (const file of modelFacing) {
   const text = readFileSync(file, 'utf8');
@@ -261,8 +270,8 @@ for (const file of markdown.filter((f) => rel(f).startsWith('references/'))) {
 if (!existsSync(referencesDir)) report.fail('references/', 'missing');
 
 const referenceFiles = files.filter((f) => rel(f).startsWith('references/'));
-const modelFiles = [skillFile, ...referenceFiles];
-const alwaysBytes = totalBytes([skillFile]);
+const modelFiles = [...presentSkillFile, ...referenceFiles];
+const alwaysBytes = totalBytes(presentSkillFile);
 const modelBytes = totalBytes(modelFiles);
 const folderBytes = totalBytes(files);
 

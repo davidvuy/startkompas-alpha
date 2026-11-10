@@ -20,6 +20,28 @@ Run `check-all.mjs`. The individual scripts exist for when you want one check's 
 | `check-freshness.mjs` | No pack is past its recheck date | Missing recheck date, overdue recheck, a verified claim older than 183 days | no |
 | `check-links.mjs` | Every cited source URL still resolves | 404, 410, or a host that does not resolve | **yes** |
 | `build-zip.mjs` | The upload archive has `SKILL.md` at its root | `SKILL.md` not at the archive root | no |
+| `test/*.test.mjs` | **The checks above actually catch what they claim to** | A check that passes a tree it should reject | no |
+
+## Who checks the checkers
+
+```sh
+node --test "scripts/test/*.test.mjs"
+```
+
+`check-all.mjs` runs this first, because a broken check invalidates every result below it.
+
+**The tests are mostly negative.** CI already proves the checks pass on a correct tree; what it cannot prove is that they would notice a broken one, and a check that silently passes everything is worse than no check because it is trusted. So each test builds a tree that is correct except for one deliberate defect, then asserts that the check fails **and names the problem** — an exit code alone does not tell a contributor what to fix.
+
+Two seams make that possible, and neither is used by anything that ships:
+
+- **`STARTKOMPAS_SKILL_ROOT`** overrides the tree a check inspects, so a real check can be pointed at a fixture. Without it the only tree the checks could examine is the correct one.
+- **`probeUrl`'s injectable `fetch`**, so the dead-or-merely-awkward table is tested with no network and no local server. A link checker with flaky tests gets switched off, which is the exact failure this check exists to prevent.
+
+**Use the explicit glob.** Node's default discovery also loads any file under a directory called `test/`, which pulls in `test/helpers.mjs` as an empty test file.
+
+### What the suite found on its first run
+
+The first negative test written — "missing `SKILL.md` fails" — failed. `check-skill.mjs` reported the missing file in section 1 and then crashed with an unhandled `ENOENT` in section 4, because two later sections read `SKILL.md` without checking it was there. A contributor whose `SKILL.md` was missing got a stack trace instead of the one sentence that would have told them why. That is the argument for this directory in one example.
 
 ## The four size budgets
 

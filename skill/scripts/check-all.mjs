@@ -19,6 +19,17 @@ const quiet = args.has('--quiet');
 
 const CHECKS = [
   {
+    // First, because a broken checker invalidates every result below it. These
+    // are mostly negative tests: they build a tree with one deliberate defect
+    // and assert the check notices. The explicit glob matters — Node's default
+    // discovery also loads any file under a `test/` directory, which would pull
+    // in test/helpers.mjs as an empty test file.
+    script: 'test/*.test.mjs',
+    argv: ['--test', join(scriptsDir, 'test', '*.test.mjs')],
+    proves: 'the checks themselves still catch what they are supposed to catch',
+    network: false,
+  },
+  {
     script: 'check-skill.mjs',
     proves: 'structure, links, reachability, host neutrality, size budget',
     network: false,
@@ -55,7 +66,7 @@ for (const check of CHECKS) {
 
   if (!quiet) console.log(`\n=== ${check.script} — ${check.proves} ===`);
 
-  const run = spawnSync(process.execPath, [join(scriptsDir, check.script)], {
+  const run = spawnSync(process.execPath, check.argv ?? [join(scriptsDir, check.script)], {
     stdio: quiet ? 'pipe' : 'inherit',
     shell: false,
     windowsHide: true,

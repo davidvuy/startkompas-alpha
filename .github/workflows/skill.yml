@@ -16,8 +16,41 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  structure:
-    name: Structure, links and host neutrality
+  checks:
+    # Everything that needs no network, on both path conventions. The checks
+    # walk directories and format relative paths, so Windows is not a courtesy
+    # here — it is where a separator bug would actually appear. The suite is a
+    # couple of seconds and installs nothing, so the second runner is close to
+    # free. macOS is omitted deliberately: its path semantics match Linux, so it
+    # would buy coverage that ubuntu already gives.
+    name: Checks and tests (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          package-manager-cache: false
+          node-version: '24.x'
+
+      # One entrypoint, so CI and a developer's terminal run exactly the same
+      # thing. See skill/scripts/README.md for what each check proves. The first
+      # check it runs is the test suite over the checks themselves.
+      - name: All skill checks, offline
+        working-directory: skill
+        run: node scripts/check-all.mjs --offline
+
+  links:
+    # Separated because it is the only check that touches the network: a
+    # government portal having a bad morning should not look like a Windows
+    # path bug, and one OS is enough to learn that a URL is gone.
+    name: Cited source URLs
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -29,11 +62,9 @@ jobs:
           package-manager-cache: false
           node-version: '24.x'
 
-      # One entrypoint, so CI and a developer's terminal run exactly the same
-      # thing. See skill/scripts/README.md for what each check proves.
-      - name: All skill checks
+      - name: Probe every cited URL
         working-directory: skill
-        run: node scripts/check-all.mjs
+        run: node scripts/check-links.mjs
 
       - name: Upload archive builds with SKILL.md at the root
         working-directory: skill
