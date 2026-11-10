@@ -148,6 +148,10 @@
       "sha256": "0dab92d0544f7b233403f14b84a663bdbfa746982eda629e7f4f9ffe1b036feb"
     },
     {
+      "path": "assets/README.md",
+      "sha256": "7d1c30c17493a387134344a9ae07d5e5733cd2bf148d75d453fbd716e47c5a81"
+    },
+    {
       "path": "assets/startkompas-demo.mp4",
       "sha256": "10404f9fefe7681e71da8c53518e1894746c2d31c92d6248b991f7f00e4214c2"
     },
@@ -161,7 +165,7 @@
     },
     {
       "path": "BACKLOG.md",
-      "sha256": "4f32ee165b3ac9e9a1fc86ef786f1ae9ce1d2afee3bd3c802e8f8bc166e5ff7a"
+      "sha256": "cdf4941d6eb4c1ce1cebc56997e21203f5bf14a016ab7d86cef1068783e63adf"
     },
     {
       "path": "CODE_OF_CONDUCT.md",
@@ -617,7 +621,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "fca3af53b71b0e1002f5efc78f0cfbfb528871e50bafceaf716f5155a770db44"
+      "sha256": "65cab7f742e2884953bf6f01626e54d26a3e844e093667641e6fa3e044bd5266"
     },
     {
       "path": "schemas/cli-error-v1.schema.json",

@@ -74,6 +74,28 @@ This repository contains two things. You almost certainly want the first.
 
 The legacy runtime is not required by the skill and is not the recommended route. It is kept for now because its storage and history tests are the origin of the dossier format. See [BACKLOG.md](BACKLOG.md) item 11 for its pending fate.
 
+### Repository layout
+
+Every directory, so nothing here is a mystery. Directories with their own README are linked.
+
+| Path | Belongs to | What it is |
+| --- | --- | --- |
+| **[`skill/`](skill/README.md)** | **the skill** | The product. Markdown, no dependencies, six self-checks |
+| `src/` | runtime | 94 modules: the CLI, dossier store, history, transfer, PDF export |
+| `ui/` | runtime | The optional loopback browser workspace |
+| `tests/` | runtime | 63 files, 565 tests |
+| `schemas/` | runtime | 21 JSON schemas for the CLI's request and result shapes |
+| `examples/` | runtime | Fictional demos and request fixtures |
+| `templates/`, `modules/` | runtime | Document templates and packaged procedural modules |
+| [`assets/`](assets/README.md) | runtime + brand | Fonts for PDF export, brand images, demo captures |
+| `licenses/` | runtime | 28 dependency licence texts |
+| `.agents/` | **deprecated** | The original runtime-coupled skill. Superseded by `skill/` |
+| [`docs/`](docs/README.md) | mostly runtime | 53 files. The index classifies every one |
+| `scripts/` | repository | Packaging, manifest, secret scan, repo-wide link check |
+| `.github/` | repository | Two workflows — `quality.yml` (runtime) and `skill.yml` (skill) |
+
+Root files: [`BACKLOG.md`](BACKLOG.md) is the 100-item plan, [`LICENSING.md`](LICENSING.md) the per-path licence scope, `installation.json` the legacy install manifest, `start.mjs` the runtime's interactive menu.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and the [100-item backlog](BACKLOG.md), which is ordered basics-first and explicitly refuses new features until the basics are done.

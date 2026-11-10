@@ -14,6 +14,16 @@ Updated 2026-11-10.
 
 **Done (59):** 1, 2, 5, 7, 9, 15, 16, 21, 26, 27, 28, 29, 30, 31, 32, 33, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 53, 54, 55, 56, 57, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 73, 74, 77, 78, 79, 80, 81, 82, 87, 90, 91, 92, 93, 94, 95, 97 — plus 10 in part (branch pushed; the pull request itself is still to open).
 
+**Organization and cleanliness pass (2026-11-10), after the work above:**
+
+- **6 and 8 answered as far as item 11 allows.** `docs/README.md` classifies all 53 docs by evidence (14 governance, 21 runtime CLI, 7 browser UI, 11 feature notes) and states the staleness openly. `assets/README.md` explains all 3.1 MB — which 1.1 MB is a real `pdf-render.mjs` dependency, which 851 KB shows the *runtime* rather than the skill, and that the README banner is 1.1 MB for one decorative image. Neither deletes anything; that is item 11's call.
+- **My own duplication removed.** Six check scripts had three copies of a directory walk, three of a reporting block, six hand-rolled root resolutions, and two different functions both named `walk`. Now `scripts/lib/` plus a single `check-all.mjs` entrypoint that CI and a terminal both run. Total lines went *up* (732 → 935, of which 72 is the new entrypoint and 93 the lib); the duplication went to zero.
+- **One pack template, enforced.** The four national packs now share six fixed sections, `check-skill.mjs` fails and names an off-template section, and the template is documented where a contributor looks. That new check immediately caught a real omission: both EU layers lacked the "not advice" line every national pack carries.
+- **`CONTRIBUTING.md` split** by which half you are contributing to, since `skill/` needs no install and the runtime needs `npm ci` plus the manifest refresh.
+- **`SECURITY.md` rewritten** to name the skill's actual attack surface — prompt injection, context-packet exfiltration, unauthorized writes, a pack asserting what its source does not say — plus an explicit "not a vulnerability" list.
+- **`scripts/check-doc-links.mjs`**, new: 104 markdown files, 189 relative links, all resolve. It exists because a throwaway one-liner reported a dozen dead links that were all false positives from its own broken path handling.
+- **Repository layout table** in the README, so all 14 directories are accounted for.
+
 **Verified by execution rather than inspection:**
 
 - **32** — `skill/scripts/check-dossier.mjs` implements the change-propagation walk that `dossier-format.md` states in prose, runs it over the worked example from every node, and asserts termination and the absence of cycles. It also enforces referential integrity and the assertion vocabularies. Prose does not prove termination; this does.
