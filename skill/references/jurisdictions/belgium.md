@@ -111,33 +111,58 @@ Recheck triggers: the announced legal adjustment for non-established taxpayers; 
 
 The regime sits in art. VI.91/1–VI.91/10 WER, introduced by the law of **4 April 2019**, with the unfair-terms provisions applying from **2020-12-01**. Its stated aim is protecting smaller businesses against counterparties they are economically dependent on — which is the founder's likely position in a pilot.
 
-Sources · *secondary (legal commentary, mutually consistent)* · **[checked 2026-11-10]**. The FPS Economy brochure [*Gedaan met de wet van de sterkste, deel 4*](https://economie.fgov.be/sites/default/files/Files/Publications/files/gedaan-met-de-wet-van-de-sterkste-deel-4.pdf) is the official explainer, but its text could not be extracted on 2026-11-10 (subset-font PDF); its embedded metadata shows it was authored 2020-09-22 and last modified 2021-04-01, so it predates later case law and amendments.
+Source: the FPS Economy brochure [*Gedaan met de wet van de sterkste, deel 4*](https://economie.fgov.be/sites/default/files/Files/Publications/files/gedaan-met-de-wet-van-de-sterkste-deel-4.pdf) · *official explainer, text extracted and read* · **[checked 2026-11-10]**. Its embedded metadata dates it 2020-09 authored, 2021-04 modified, so it predates later case law.
 
-### What is actually on the lists
+### Scope — four limits the brochure states
 
-· *two independent law-firm sources, mutually consistent on the black list; the primary WER text was not read* · **[checked 2026-11-10]**
+- Applies to **all businesses regardless of legal form**.
+- Only to agreements **concluded after 2020-12-01**, the entry into force. An older contract is outside it.
+- **Does not apply to financial services or public procurement.**
+- Covers **every clause** — both standard terms and ones you individually negotiated. And it does **not matter** whether a party is strong or dependent: *"waar het om gaat is de beoordeling of het betrokken beding al dan niet onrechtmatig is."*
 
-**Black list — art. VI.91/4 WER. Four clauses, always unfair, no counter-evidence possible:**
+### The subject-matter exclusion is conditional on transparency
 
-1. Binding one party irrevocably while the enterprise's own performance depends **solely on its own will** (a potestative clause)
-2. Giving the enterprise the **unilateral right to interpret** the contract terms
-3. Making the other party **waive all remedies** against the enterprise in a dispute
-4. Establishing **irrebuttably** that the other party accepted the terms, without a genuine prior opportunity to know them
+Clauses about the **subject matter itself** — the service, the goods, the agreed price — are outside the review, **provided they are formulated transparently**. Where they are not clear and comprehensible, they **can** be reviewed.
 
-**Grey list — art. VI.91/5 WER. Eight clauses, presumed unfair, rebuttable:**
+The brochure's own examples of what that catches: extra costs buried in the small print and not included in the quoted price, or a service that normally forms part of the offering but is excluded in the fine print.
 
-1. Allowing the enterprise to **unilaterally change price, characteristics or terms** `zonder geldige reden`
-2. **Automatic renewal** of a fixed-term agreement without a reasonable notice period
-3. Shifting **economic risk** onto a party where it `normaliter` belongs to the other
-4. Inappropriately **excluding or limiting statutory rights** on non-performance or defective performance
-5. Binding the parties without a `redelijke opzegtermijn`
-6. **Exempting the enterprise from liability** for intent, gross negligence, or failure to perform an essential obligation
-7. **Restricting the means of evidence** available to the other party
-8. Setting damages `kennelijk niet evenredig` to the actual harm
+Everything else — price adjustment, termination, penalties, jurisdiction, exclusion or limitation of liability — is tested on **two** aspects: **transparency** (can the other business see and understand the economic and legal consequences?) and **balance** (does it create too great an imbalance against the party agreeing to it?). The assessment weighs the circumstances of conclusion, the nature of the products, trade usages, and the other clauses of this or any related agreement.
 
-**What a founder should take from this.** Items 3 and 4 of the black list are the ones that catch ordinary drafting: a clause saying "the client waives any claim" is void outright, and so is "the client is deemed to have accepted these terms" where they never had a real chance to read them — which is also independently a ground under Dutch art. 6:233. Grey items 6 and 8 are where liability caps and penalty clauses live, and those are rebuttable rather than void, so they turn on justification.
+### Black list — art. VI.91/4 WER: four clauses, always unfair, no counter-evidence
 
-**Still open:** the primary WER text was not read, so treat the wording above as a faithful summary rather than the statute. Before relying on a specific item, read art. VI.91/4 and VI.91/5 in the consolidated Code of Economic Law. · **[not researched]**
+With the brochure's own examples, which are more useful than the abstractions:
+
+| | Clause | The brochure's example |
+| --- | --- | --- |
+| 1 | You are bound while the **counterparty can make its own commitment depend on its own will** | You place an order; the supplier's terms say its management must confirm the request before it becomes final |
+| 2 | Only the counterparty **reserves the right to interpret** a clause | A telecom operator may demand a guarantee for consumption it finds "abnormally high", with no threshold in the contract, so it decides what is abnormal |
+| 3 | **Excluding or limiting access to a court** — waiving legal action in a dispute | A clause forbidding you from joining a collective redress action |
+| 4 | Establishing **knowledge or acceptance** of other clauses you could not actually read before concluding | "You accept the general terms", where those terms were never communicated before the contract was concluded |
+
+### Grey list — art. VI.91/5 WER: eight clauses, presumed unfair, rebuttable
+
+| | Clause | The brochure's example |
+| --- | --- | --- |
+| 1 | **Unilateral change** of price, terms or characteristics, unless the business shows valid reasons | Changing the price of an ongoing service with no justification |
+| 2 | **Automatic renewal or extension** without specifying a reasonable notice period | A one-year supply contract that renews with no window to opt out beforehand |
+| 3 | Placing **economic risk** on a party who in principle should not bear it, **without economic consideration** | A supplier obliged to take back unsold goods with no compensation; a seller bearing theft risk after delivery with nothing in return |
+| 4 | **Excluding or limiting the other party's rights** on non-performance or defective performance, without valid reason | **Delivering technological services *"zoals ze zijn"* or *"volgens beschikbaarheid"* — "as is" or "as available" — limiting liability when it does not work** |
+| 5 | The **absence of a reasonable notice period**. Reasonableness is sector-dependent; the right not to be bound for life and to change business partner is treated as essential, balanced against giving the other side time to adapt and find a replacement | — |
+| 6 | **Exempting the business from liability** for fraud, serious fault, that of its employees, or failure to perform its principal services | An architect limiting his statutory supervisory duty to a periodic site visit |
+| 7 | **Restricting the means of evidence** the other party may use | Only documents the business itself issues may be used against it; or an app it provides to customers may never be used as evidence against it |
+| 8 | **Excessive damages clauses** for non-performance or delay — where the stipulated sum is clearly above a reasonable estimate of the harm | A flat 10% of the unpaid amount, **cumulated** with €20 per reminder **and** default interest. The flat sum is deemed to cover all extrajudicial recovery costs, reminders included |
+
+**Third category — the general norm.** Beyond both lists, a clause can be unfair simply because, in the circumstances, it creates a manifest imbalance between the parties' rights and obligations.
+
+### What a founder should take from this
+
+**Grey item 4 is the one that hits a software founder directly.** An *"as is"* or *"as available"* clause for a technological service is on the grey list by name. Almost every SaaS and software agreement has one. It is not void, but it is **presumed unfair** — so a founder relying on it must be able to justify it, and a founder *facing* one has a presumption on their side.
+
+Black items 3 and 4 catch ordinary drafting: "the client waives any claim" is void outright, and so is "the client is deemed to have accepted these terms" where they never had a real chance to read them — which is also independently a ground under Dutch art. 6:233.
+
+Grey item 8 is worth reading before drafting a late-payment clause: the example condemns exactly the common stack of a percentage **plus** per-reminder fees **plus** interest, and says the flat sum is taken to cover the reminders.
+
+**Still open:** this is the official explainer, not the statute. Before relying on a specific item, read art. VI.91/4 and VI.91/5 in the consolidated Code of Economic Law, and check for case law since 2021 — the brochure predates it. · **[not researched]**
 
 For the founder's own discussion sheet, cover: parties, the specific outcome promised, required inputs, exclusions, delivery window, how acceptance is demonstrated, price and payment, duration, exit, what happens on failure, support, and responsibility for data and rights. These are proposed agreement topics, not a legally sufficient contract.
 
@@ -199,8 +224,9 @@ Breach notification goes to the GBA, on the 72-hour clock in [eu-gdpr.md](eu-gdp
 | VAT exemption phased thresholds | 2026-11-10 | Secondary; instrument identified (law 2026-09-23, art. 26, art. 56ter VAT Code) |
 | EU-wide €100,000 cross-border threshold | 2026-11-10 | **Primary EU legislation read** — see eu-vat-sme.md |
 | Unfair terms: general norm, black and grey list structure | 2026-11-10 | Secondary legal commentary; primary WER text not read |
-| Black list: 4 clauses; grey list: 8 clauses | 2026-11-10 | Two consistent law-firm sources; **primary WER text not read** |
-| Official unfair-terms brochure | 2026-11-10 | **Fetch succeeded but text not extractable**; metadata shows 2020-09 authored, 2021-04 modified |
+| Black list (4) and grey list (8) with official examples; scope, dates, exclusions, two-aspect test | 2026-11-10 | **Official FPS Economy brochure extracted and read**; statute itself not read |
+| Case law since the 2021 brochure | — | Not researched |
+| Official unfair-terms brochure | 2026-11-10 | **Extracted with pdftotext and read**; dated 2020-09 authored, 2021-04 modified |
 | Software ownership: author, employee, commissioned | 2026-11-10 | Official page read, with quoted rules |
 | GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
 

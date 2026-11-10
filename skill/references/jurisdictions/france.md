@@ -109,15 +109,33 @@ The tax administration is explicit that **only** an accredited platform may prov
 
 Alongside e-invoicing, businesses must transmit **transaction data** and, in certain cases, **payment data** to the administration through an accredited platform (`e-reporting` / `transmission des données de transaction`). From 2026-09-01 this applies to large and mid-sized companies on the schedule above.
 
-**For a micro-entreprise, TPE or PME: e-reporting starts 2027-09-01** — the same date as their issuing obligation. · *consistent secondary commentary; the administration's own `fiche 7` on `impots.gouv.fr` is a PDF and was not parsed* · **[checked 2026-11-10]**
+Source: [impots.gouv.fr — `fiche 7`, transmission des données de transaction](https://www.impots.gouv.fr/sites/default/files/media/1_metier/2_professionnel/EV/2_gestion/290_facturation_electronique/fiche-7_tpe_transmission-des-donnees-de-transaction.pdf) · *official tax administration, updated October 2026, text extracted and read* · **[checked 2026-11-10]**
 
-What has to be transmitted is **the transactions that are not domestic B2B** — sales to consumers, exports and international operations. That is the part founders get wrong: e-invoicing covers business customers, e-reporting covers everything else.
+**The reform has three pillars, not two.** E-invoicing covers transactions with VAT-taxable suppliers and clients **established in France**. It is completed by two further strands: **`e-reporting de transactions`** and **`e-reporting de paiement`** — transaction data and payment data.
 
-Transmission goes through an accredited platform, either by entering the data on the platform or by sending a file.
+**Who is in scope for transaction e-reporting?** Yes, if either or both of:
 
-**Sanction: €500 per missing transmission, capped at €15,000 per calendar year.** · *secondary* · **[checked 2026-11-10, not primary-confirmed]**
+1. **B2C** — sales or services to natural or legal persons **not subject to VAT** (the fiche names individuals and non-profit associations), **in France as well as abroad**.
+2. **International B2B** — purchases or sales of goods or services with VAT-taxable suppliers or clients established **inside or outside the EU** — **except imports of goods**, which already go to Customs.
 
-So a French founder has **two** deadlines on 2027-09-01, not one, and they cover complementary halves of their turnover. Do not treat "I can send an e-invoice" as the whole obligation.
+So the dividing line is not "domestic versus foreign". It is: **e-invoicing for French VAT-taxable counterparties, e-reporting for everyone else**, whether they are a French consumer or a German business.
+
+**When: from 2027-09-01** — and the **frequency depends on the founder's VAT regime** (`franchise en base`, or `régime réel normal` monthly or quarterly). There is no single cadence; establish the regime before stating one.
+
+**What data — far less than a founder might fear:**
+
+| Situation | What is sent |
+| --- | --- |
+| Sales to non-taxable persons | **Daily turnover**, split by VAT rate where needed. Globalised per day, **not transaction by transaction**, and **no personal data at all** |
+| International B2B | Part of the invoice data — the same fields as the e-invoice, **except the SIREN number** |
+
+**How:** through an accredited platform, either entered directly or sent as a file from a compatible solution such as invoicing or point-of-sale software. The official, regularly updated [list of accredited platforms](https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees) is on `impots.gouv.fr`.
+
+**Sanction: €500 per missing transmission, capped at €15,000 per calendar year.** · *secondary; not stated in this fiche* · **[checked 2026-11-10, not primary-confirmed]**
+
+So a French founder has **two** obligations landing on 2027-09-01, and together they cover all of their turnover. Do not treat "I can send an e-invoice" as the whole obligation.
+
+**Open:** the **payment-data** strand (`e-reporting de paiement`) — who it binds, when and what it requires — is **[not researched]**. It is named in the official fiche as a separate pillar.
 
 Formats in French use: **UBL 2.1**, **UN/CEFACT CII**, and **Factur-X** (the Franco-German hybrid). `Chorus Pro` remains the B2G system.
 
@@ -247,6 +265,7 @@ Point a French founder at the CNIL's own checklist rather than paraphrasing it. 
 | E-reporting date and scope for micro/indépendants | — | **Not researched** |
 | Formats UBL 2.1 / CII / Factur-X | 2026-11-10 | Official EU source read |
 | Official start guide for 2026-09-01 | — | Not researched |
+| Accredited-platform list (official, regularly updated) | 2026-11-10 | URL recorded from the official fiche |
 | economie.gouv.fr reform page | 2026-11-10 | **Fetch failed, HTTP 403 — not read** |
 | Guichet unique mandatory since 2023-01-01; filing window, documents, free for micro, RDDCE receipt | 2026-11-10 | **Official page read** |
 | L442-1 I C.com: déséquilibre significatif triggers civil liability and damages | 2026-11-10 | **Primary legislation read and quoted** |
