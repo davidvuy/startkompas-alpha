@@ -48,7 +48,7 @@ Art. 5(1) first subparagraph now runs **(a), (b), (ba), (bb), (c), (d), (e), (f)
 
 **Art. 5(1a) is the part a founder shipping a generative feature needs**, because it decides when *supplying* such a system is itself prohibited. Placing on the market or putting into service is prohibited only where (i) that generation or manipulation **is the intended purpose** of the system, or (ii) the system's design, training, architecture, capabilities or user-facing functionality make it a **reasonably foreseeable and reproducible outcome, without requiring significant technical modification**, and the system lacks reasonable and adequate technical safety measures. Art. 5(1b) adds that manipulation which does not increase the exposure of depicted intimate parts or alter the nature of depicted sexually explicit activity is not manipulation for (ba).
 
-So a founder adding image or voice generation to a product has a concrete, datable question to answer before 2026-12-02: whether their safety measures are adequate, in a regime where art. 5 carries the **highest** penalty tier — see §5.
+So a founder adding image or voice generation to a product has a concrete, datable question to answer before 2026-12-02: whether their safety measures are adequate, in a regime where art. 5 carries the **highest** penalty tier — see §6.
 
 ## 2. Provider or deployer
 
@@ -85,9 +85,90 @@ Two contract points follow directly from the article, and both are worth raising
 
 **Art. 25(4), amended in 2026, has an open-source carve-out worth knowing.** A provider of a high-risk system and a third party supplying a model, tools, services, components or processes integrated into it must specify by **written agreement** the information, capabilities and technical access needed for compliance. That duty **does not apply** to third parties making tools, services, processes or components available to the public under a **free and open-source licence**, other than general-purpose AI models. So integrating an OSS component imposes no written-agreement duty on its maintainer — and leaves the integrating provider to meet art. 16 without it.
 
-**Open:** what the art. 16 provider obligations actually require is **[not researched]** — deliberately, because a founder reaching that point needs a specialist, not a pack entry.
+### What article 16 actually requires of a high-risk provider
 
-## 3. What actually binds a deployer outside high risk
+Source: [Article 16, consolidated](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02024R1689-20260727) · *the authoritative text* · **[checked 2026-11-11]**
+
+This layer left art. 16 open on the ground that a founder reaching it needs a specialist. That is still true, and it is **not** a reason to leave them unable to see the size of the step. Twelve obligations, each pointing somewhere else in the Regulation:
+
+| | A provider of a high-risk AI system shall | Where the work is |
+| --- | --- | --- |
+| (a) | ensure the system complies with the Section 2 requirements | arts. 8 to 15 |
+| (b) | put its name, trade name or trade mark and a contact address on the system, its packaging or its documentation | — |
+| (c) | **have a quality management system in place** | art. 17 |
+| (d) | keep the technical documentation | art. 18 |
+| (e) | keep the automatically generated logs, where under its control | art. 19 |
+| (f) | **put the system through a conformity assessment before placing it on the market** | art. 43 |
+| (g) | draw up an EU declaration of conformity | art. 47 |
+| (h) | **affix the CE marking** | art. 48 |
+| (i) | register | art. 49(1) |
+| (j) | take corrective action and provide information | art. 20 |
+| (k) | demonstrate conformity on a national authority's reasoned request | — |
+| (l) | meet the accessibility requirements of Directives (EU) 2016/2102 and (EU) 2019/882 | — |
+
+**Points (c), (f) and (h) are the answer to "how bad is it".** A quality management system, a conformity assessment and a CE marking are product-regulation machinery, on the model of a medical device or a machine — not a policy document and a privacy notice. Telling a founder that becoming a high-risk provider is a documentation exercise is the misreading this table exists to prevent.
+
+**Open:** what arts. 8 to 15, 17, 18 and 43 require in detail is **[not researched]**, and deliberately: at that point the question is a specialist engagement, and the useful service this layer can perform is to say so before a founder has built the thing.
+
+## 3. Is it high-risk? Article 6, and the 2026 carve-out
+
+Source: [Article 6 and Annex III, consolidated](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02024R1689-20260727) · *the authoritative text* · **[checked 2026-11-11]**
+
+Everything above turns on whether a system is high-risk, and this layer left art. 6 open until 2026-11-11. There are **two independent routes in**, and the Omnibus amendment rewrote the first one.
+
+### Route one — a safety component of a regulated product, article 6(1)
+
+Both conditions must hold: the system is intended to be used as a **safety component** of a product covered by the Union harmonisation legislation in Annex I, or is itself such a product; **and** that product must undergo a **third-party conformity assessment** under that legislation.
+
+**Three paragraphs added in 2026 narrow this considerably, and they are the most founder-relevant thing in the article.** Art. 6(1a):
+
+> *"AI systems that are solely used for non-safety related aspects of user assistance, performance optimisation, service efficiency, automation or convenience or quality control shall not qualify as safety components."*
+
+`User assistance`, `service efficiency`, `convenience` — that is the description of most software a founder builds. Art. 3(14) defines a `safety component` as one *“which fulfils a safety function for that product or AI system, or the failure or malfunctioning of which endangers the health and safety of persons or property”* — two limbs. **Paragraph 1a cuts into the first limb** by naming uses that cannot count as a safety function, and **paragraph 1b preserves the second** almost word for word. So the carve-out is about what you claim the feature does, not about what happens when it breaks. Two limits on the carve-out: art. 6(1b) puts back anything *"the failure or malfunctioning of which would endanger health and safety"*, and art. 6(1c) says a product that needs third-party assessment **only** for non-health-and-safety reasons — its example is radio spectrum or electromagnetic interference — does not satisfy condition (b) at all.
+
+Anything citing art. 6(1) without these three paragraphs is describing the 2024 text. See §0.
+
+### Route two — Annex III, article 6(2), and the derogation that profiling cancels
+
+Art. 6(2): the systems listed in Annex III are high-risk. Five of its eight areas can plausibly describe something a founder builds, and two of them routinely do:
+
+| Annex III area | What it names, in the parts a founder could build |
+| --- | --- |
+| 1. Biometrics | remote biometric identification; biometric categorisation by sensitive or protected attributes; **emotion recognition**. Expressly *not* biometric verification whose sole purpose is confirming someone is who they claim to be |
+| 3. Education and vocational training | determining access or admission; **evaluating learning outcomes**, including to steer the learning process; assessing the level of education someone will receive; **detecting prohibited behaviour during tests** |
+| **4. Employment, workers' management and access to self-employment** | **recruitment or selection — "in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates"**; and decisions on terms, promotion or termination, task allocation based on behaviour or traits, and **monitoring or evaluating performance and behaviour** |
+| **5. Essential private and public services** | **evaluating creditworthiness or establishing a credit score** — "with the exception of AI systems used for the purpose of detecting financial fraud"; risk assessment and pricing for life and health insurance; emergency-call triage |
+| 2. Critical infrastructure | safety components in critical digital infrastructure, road traffic, water, gas, heating or electricity |
+
+Areas 6, 7 and 8 — law enforcement, migration and border control, and the administration of justice and democratic processes — are outside anything this skill supports.
+
+**An HR screening tool is the clearest case in the whole Regulation.** Annex III point 4(a) names analysing and filtering job applications and evaluating candidates. [france-data-protection.md](france-data-protection.md) records that the CNIL also puts recruitment by selection algorithm on its mandatory impact-assessment list, and [germany-data-protection.md](germany-data-protection.md) that the German list catches AI evaluating people. **The same product is high-risk under this Regulation and a listed DPIA under two national data-protection lists.** A founder who builds it is not in "use AI carefully" territory; they are in the art. 16 table above.
+
+**Art. 6(3) offers a way out, and it is narrower than it looks.** An Annex III system is not high-risk where it *"does not pose a significant risk of harm to the health, safety or fundamental rights of natural persons, including by not materially influencing the outcome of decision making"* **and** one of four conditions applies: the system performs a **narrow procedural task**; it **improves the result of a previously completed human activity**; it detects decision-making patterns or deviations and is **not meant to replace or influence** the earlier human assessment without proper human review; or it performs a **preparatory task** to a relevant assessment.
+
+Then the sting:
+
+> *"Notwithstanding the first subparagraph, an AI system referred to in Annex III shall always be considered to be high-risk where the AI system performs profiling of natural persons."*
+
+**Profiling cancels the derogation outright.** Whatever the four conditions say, an Annex III system that profiles people is high-risk. And profiling is the thing these products do.
+
+**Using the derogation is not free either.** Art. 6(4): a provider who considers an Annex III system not high-risk *"shall document its assessment before that system is placed on the market or put into service"*, is subject to the **registration obligation in art. 49(2)**, and must hand the documentation to national authorities on request. So the escape route is itself a documented, registered decision — which is the same shape as the impact-assessment decisions in [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md): a reasoned "no" on the record, not silence.
+
+**Open:** art. 6(5) required the Commission to publish, by **2026-02-02**, guidelines on the practical implementation of this article *"together with a comprehensive list of practical examples of use cases of AI systems that are high-risk and not high-risk"*. Whether it did, and what the examples say, is **[not researched]** — and it is the single most useful document a founder could be pointed at on this question, so it is the first thing to look for on a recheck. Annex I, the harmonisation legislation behind route one, is **[not researched]** too.
+
+### Article 4a — special-category data for bias detection is a permission, not a duty
+
+Art. 4a, added in 2026, lets providers of high-risk systems *"exceptionally"* process special categories of personal data to the extent strictly necessary for bias detection and correction under art. 10(2)(f) and (g), subject to six cumulative conditions: no other data including synthetic or anonymised data would do; technical limits on re-use plus state-of-the-art security and pseudonymisation; access strictly controlled and documented; **no transmission to or access by other parties**; deletion once the bias is corrected or the retention period ends, whichever is first; and — the cross-layer point — **the art. 30 GDPR record of processing must state why the special-category processing was strictly necessary and why other data would not have achieved it.** That is a concrete entry for the register described in [eu-gdpr.md](eu-gdpr.md) §3, created by a different instrument.
+
+Art. 4a(2) extends the same permission, on the same conditions, to providers and deployers of **other** AI systems and models and to deployers of high-risk ones, where the processing is strictly necessary against biases likely to affect health and safety, harm fundamental rights or lead to discrimination prohibited by Union law. So an ordinary deployer is inside this article.
+
+And its last sentence is the one to read twice:
+
+> *"This paragraph does not create any obligation to conduct such bias detection and correction."*
+
+A founder should not be told the AI Act requires them to bias-test their tool on special-category data. It permits it, narrowly, if they choose to.
+
+## 4. What actually binds a deployer outside high risk
 
 Two things, and only two: article 4 and parts of article 50. Both are in force.
 
@@ -105,7 +186,7 @@ The last sentence is the whole of the proportionality, and it is in the statute 
 
 **Honest reading for a one-person business:** the obligation is real but proportionate and not prescriptive. "Staff and other persons dealing with the operation" is, for a solo founder, essentially themselves and anyone they bring in. There is no form to file and no certificate to obtain. Do not inflate it into a compliance project, and do not dismiss it as inapplicable — it is the one AI Act duty that reaches an ordinary small deployer.
 
-**On whether it carries a fine, be precise.** Art. 4 is **not** among the provisions enumerated in art. 99(4), the 3% tier — that list names arts. 16, 22, 23, 24, 25(2) and (4), 26, the notified-body articles and art. 50. But art. 99(1) requires Member States to lay down penalties *"applicable to any infringement of this Regulation by operators"*, so "no fine attaches to art. 4" is not a safe statement either. What can be said: an art. 4 breach is not in the enumerated tier, and the national regime decides the rest. The national regimes are **[not researched]** — see §6.
+**On whether it carries a fine, be precise.** Art. 4 is **not** among the provisions enumerated in art. 99(4), the 3% tier — that list names arts. 16, 22, 23, 24, 25(2) and (4), 26, the notified-body articles and art. 50. But art. 99(1) requires Member States to lay down penalties *"applicable to any infringement of this Regulation by operators"*, so "no fine attaches to art. 4" is not a safe statement either. What can be said: an art. 4 breach is not in the enumerated tier, and the national regime decides the rest. The national regimes are **[not researched]** — see §7.
 
 ### Article 50 — transparency, in three specific situations
 
@@ -137,7 +218,7 @@ Art. 26, the deployer obligations, is by its own terms limited to **deployers of
 
 **And it is the AI Act only.** Art. 50(6) says expressly that arts. 50(1) to (4) are *"without prejudice to other transparency obligations laid down in Union or national law"*. The GDPR applies in full and independently — see [eu-gdpr.md](eu-gdpr.md). Never read "minimal risk under the AI Act" as "no rules apply".
 
-## 4. Dates
+## 5. Dates
 
 Source: art. 113 of the consolidated text, **as amended by Regulation (EU) 2026/1744** · *primary legislation* · **[checked 2026-11-11]**
 
@@ -156,9 +237,9 @@ Source: art. 113 of the consolidated text, **as amended by Regulation (EU) 2026/
 
 **The nearest date is 2026-12-02**, and it is the only row that can newly prohibit something a founder is already doing. The two high-risk rows were moved out by the Omnibus — 2027-12-02 and 2028-08-02 are the amended dates, and the original art. 113(3)(c) said 2027-08-02 for Annex I, so a summary written before July 2026 has this wrong in both directions.
 
-**The AI literacy item is the one that actually reaches a small deployer.** It has been in force since 2025-02-02 — over a year and a half at this check date — and art. 4 is in §3.
+**The AI literacy item is the one that actually reaches a small deployer.** It has been in force since 2025-02-02 — over a year and a half at this check date — and art. 4 is in §4.
 
-## 5. Penalties
+## 6. Penalties
 
 Source: art. 99 of the consolidated text, **paras 1 and 6a as amended in 2026** · *primary legislation* · **[checked 2026-11-11]**
 
@@ -176,12 +257,14 @@ For a solo founder the percentage is far below the cash figure, so the operative
 
 Art. 99(1), as amended, leaves the rules themselves to national law — which may include warnings and non-monetary measures — and requires Member States to *"take into account the interests of SMEs, including start-ups, and SMCs, and their economic viability when imposing penalties"*. **So the ceilings above are the Union's limits, not a national tariff.**
 
-## 6. What this layer does not cover
+## 7. What this layer does not cover
 
 - The **art. 16 provider obligations** for a high-risk system, and what becoming a provider costs. This is the heaviest open question here.
 - Whether a founder's **marketing content** can amount to text `published to inform the public on matters of public interest` under art. 50(4). The limb reads as aimed at publishing, not business documents, but the boundary is **[not researched]**.
-- **National market-surveillance authorities and the national penalty regimes** made under art. 99(1): **[not researched]**. The Union ceilings are in §5; what any Member State imposes is not.
-- Art. 6 itself — the high-risk classification rules, including the art. 6(1a), (1b) and (1c) paragraphs added in 2026: **[not researched]**.
+- **National market-surveillance authorities and the national penalty regimes** made under art. 99(1): **[not researched]**. The Union ceilings are in §6; what any Member State imposes is not.
+- The art. 6(5) Commission guidelines and the comprehensive list of practical examples that were due by 2026-02-02: **[not researched]**, and the first thing to look for on a recheck — §3 says why.
+- Annex I, the Union harmonisation legislation behind art. 6(1): **[not researched]**.
+- Arts. 8 to 15, 17, 18 and 43 — what a high-risk provider's obligations contain: **[not researched]**, deliberately; §2 gives the shape and says why the detail is a specialist engagement.
 - The interaction with the GDPR, which is a separate instrument — see [eu-gdpr.md](eu-gdpr.md). Using an AI tool on personal data engages both. Art. 4a, added in 2026, permits processing special categories of personal data for bias detection under strict conditions, and was **[not researched]**.
 
 ## Pack maintenance
@@ -213,9 +296,15 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 99(1) as amended: national rules, and Member States must weigh SME economic viability | 2026-11-11 | Primary — consolidated article read |
 | No further AI Act duties on a minimal-risk deployer | 2026-11-11 | Unconfirmed — art. 26 is limited to high-risk deployers by its own terms and Chapter III Sections 1–3 are deferred, but this is an argument from absence; the whole Regulation was not read |
 | Marketing content as public-interest text under art. 50(4) | — | Open — not yet researched |
-| The art. 16 provider obligations for a high-risk system | — | Open — deliberately; a founder who reaches that point needs a specialist, not a pack entry |
+| Art. 16's twelve obligations, including a quality management system, a conformity assessment and CE marking | 2026-11-11 | Primary — read and tabulated; what each referenced article contains is still open, deliberately |
+| Art. 6(1) two cumulative conditions, and the 2026 paragraphs 1a, 1b and 1c | 2026-11-11 | Primary — read and quoted; 1a excludes user assistance, service efficiency and convenience from being safety components |
+| Annex III areas 1 to 5, including recruitment and candidate evaluation by name | 2026-11-11 | Primary — read; areas 6 to 8 are outside this skill's scope and were read only far enough to say so |
+| Art. 6(3) derogation, its four conditions, and that profiling always cancels it | 2026-11-11 | Primary — read and quoted |
+| Art. 6(4): using the derogation requires a documented assessment and art. 49(2) registration | 2026-11-11 | Primary — read |
+| Art. 4a: special-category processing for bias detection is a permission with six conditions, and creates no duty to bias-test | 2026-11-11 | Primary — read and quoted, both paragraphs |
+| The art. 6(5) guidelines and practical examples due 2026-02-02 | — | Open — not researched; it is the document a founder would most want |
+| Annex I; arts. 8 to 15, 17, 18 and 43 | — | Open — not researched, deliberately for the second group |
 | National authorities and the national penalty regimes under art. 99(1) | — | Open — not yet researched |
-| Art. 6 high-risk classification, incl. the 2026 paragraphs 1a, 1b and 1c | — | Open — not yet researched |
 | Art. 4a, added in 2026: special-category processing for bias detection | — | Open — read in passing, not worked through |
 
 Next full recheck due: **2027-05-10**. Earlier before **2026-12-02**, when the two new art. 5 prohibitions begin to apply, and before 2027-12-02, when high-risk obligations reach Annex III systems. Also on any further amending regulation — the Omnibus shows the Act is being amended, so check EUR-Lex for a newer consolidated date before trusting this file.

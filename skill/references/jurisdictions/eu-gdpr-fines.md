@@ -30,7 +30,7 @@ Do not present either figure as what a solo founder would actually be fined; the
 | Special rule for SMEs and start-ups | **none — the regulation has no SME tier** | art. 99(6): *"whichever thereof is lower"* |
 | So for a founder with little turnover | the percentage is small, so the **flat €10m / €20m amount** is the operative ceiling | the **percentage** is the operative ceiling |
 
-The practical effect is the reverse of what a founder would guess from the headline numbers: the AI Act scales its maximum down to a small business and the GDPR does not. See [eu-ai-act.md](eu-ai-act.md) §5 for the other half. This is a comparison of two texts both read in full, not a view on how either is enforced.
+The practical effect is the reverse of what a founder would guess from the headline numbers: the AI Act scales its maximum down to a small business and the GDPR does not. See [eu-ai-act.md](eu-ai-act.md) §6 for the other half. This is a comparison of two texts both read in full, not a view on how either is enforced.
 
 ### Article 83 is not the whole penalty picture — article 84
 

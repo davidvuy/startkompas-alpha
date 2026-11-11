@@ -123,6 +123,8 @@ The `verwerkingsregister` / `registre des traitements` / `Verzeichnis von Verarb
 
 Those qualifiers are not an escape. They are why a register may legitimately say *"retention not yet determined"* for a pilot and still be a register — which is a better answer to a founder than a blank field or an invented number.
 
+One entry the article itself does not mention: **art. 4a of the AI Act requires the art. 30 record to state why processing special categories of personal data for bias detection was strictly necessary** and why other data would not have done — a register field created by a different instrument. See [eu-ai-act.md](eu-ai-act.md) §3.
+
 Art. 30(3): the record *"shall be in writing, including in electronic form"* — a spreadsheet is fine. Art. 30(4): the controller or processor *"shall make the record available to the supervisory authority on request"*. **The register is not filed anywhere.** Nobody receives it, no portal takes it; it has to exist and be producible. A founder who asks where to submit it has the wrong model of the obligation.
 
 ### A processor's register is a different and shorter list — article 30(2)

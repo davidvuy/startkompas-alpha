@@ -287,6 +287,23 @@ export const REQUIRED = [
   // generated asset needs a disclosure.
   {case: '—', pack: 'eu-ai-act.md', label: 'deep fake requires resemblance and false authenticity', pattern: /resembles existing/},
   {case: '—', pack: 'eu-ai-act.md', label: 'provider status does not depend on risk tier', pattern: /does not depend on risk tier/},
+  // Art. 6 read on 2026-11-11. Three things have to survive together, because
+  // each one alone gives a founder the wrong answer: the 2026 carve-out that
+  // takes ordinary software out of "safety component", the Annex III entry
+  // that names recruitment screening, and the sentence that cancels the
+  // derogation for anything that profiles people.
+  {case: '—', pack: 'eu-ai-act.md', label: 'art. 6(1a) excludes convenience features from safety components', pattern: /solely used for non-safety related aspects of user assistance/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'the two limbs of the safety-component definition', pattern: /fulfils a safety function for that product or AI system/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'Annex III names recruitment screening', pattern: /to analyse and filter job applications/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'profiling cancels the art. 6(3) derogation', pattern: /always be considered to be high-risk where the AI system performs profiling/},
+  // Using the derogation is itself a documented, registered decision.
+  {case: '—', pack: 'eu-ai-act.md', label: 'art. 6(4) requires documentation and registration', pattern: /registration obligation in art\. 49\(2\)/},
+  // CE marking is the fact that tells a founder high risk is product
+  // regulation and not a policy exercise.
+  {case: '—', pack: 'eu-ai-act.md', label: 'art. 16 requires a QMS, a conformity assessment and CE marking', pattern: /affix the CE marking/},
+  // Art. 4a is a permission. Its last sentence is the guard against reading it
+  // as a duty to bias-test on special-category data.
+  {case: '—', pack: 'eu-ai-act.md', label: 'art. 4a creates no obligation to bias-test', pattern: /does not create any obligation to conduct such bias detection/},
 ];
 
 /**
