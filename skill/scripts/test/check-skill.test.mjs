@@ -283,6 +283,52 @@ function packWithLine(heading, line) {
   return packTree(validPack().replace(`${heading}\n`, `${heading}\n\n${line}\n`));
 }
 
+test('a marker carrying commentary inside the brackets fails', () => {
+  // Two packs had grown a fourth marker form by putting prose inside the
+  // brackets. The marker is the one thing in a pack that is parsed rather than
+  // read — check-freshness pulls dates out of it — so a marker nobody holds to
+  // the legend is a marker whose next variant may not parse at all.
+  const result = expectFail(
+    packWithLine(
+      '## 1. Registration and formalities',
+      'Something. · **[checked 2026-11-10, needs primary confirmation]**',
+    ),
+    /is not one of the three the legend defines/,
+  );
+  assert.match(result.output, /source-type note/, 'the message must say where the prose belongs');
+});
+
+test('an em-dashed aside inside a marker fails too', () => {
+  expectFail(
+    packWithLine(
+      '## 1. Registration and formalities',
+      'Something. · **[checked 2026-11-10 — primary source silent]**',
+    ),
+    /is not one of the three the legend defines/,
+  );
+});
+
+test('all three defined marker forms pass, including the legend defining them', () => {
+  // The legend itself contains [checked YYYY-MM-DD] and [carried YYYY-MM-DD,
+  // not refetched] in order to define them, so the literal placeholder form
+  // has to be accepted or every pack fails on its own legend.
+  expectPass(
+    packWithLine(
+      '## 1. Registration and formalities',
+      'Something. · **[carried 2026-05-01, not refetched]** and **[not researched]** elsewhere.',
+    ),
+  );
+});
+
+test('a malformed date inside an otherwise correct marker fails', () => {
+  // `[checked 2026-11]` would slip past check-freshness, whose pattern needs a
+  // full date to match at all — so the marker would simply not be counted.
+  expectFail(
+    packWithLine('## 1. Registration and formalities', 'Something. · **[checked 2026-11]**'),
+    /is not one of the three the legend defines/,
+  );
+});
+
 test('calling a non-authoritative host "primary legislation" fails and names the host', () => {
   // "Primary" must mean authoritative, not official. A Belgian e-invoicing FAQ
   // and three Belastingdienst pages were labelled "primary official", which

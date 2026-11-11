@@ -263,6 +263,30 @@ if (existsSync(packsDir)) {
       conventions.set(convention, {pack});
     }
 
+    // The legend defines exactly three markers, so exactly three forms may
+    // appear. Two packs had grown a fourth by putting prose inside the
+    // brackets — `[checked 2026-11-10 — primary source silent, secondary basis
+    // unidentified]` and `[checked 2026-11-10, needs primary confirmation]`.
+    //
+    // Both read fine and both are a problem: the marker is the one thing in a
+    // pack that is parsed rather than read, and check-freshness pulls dates out
+    // of it. A marker carrying commentary is a marker whose shape nobody is
+    // holding to the legend, and the next variant may not parse at all. The
+    // commentary belongs in the `· *source type* ·` note beside it.
+    for (const marker of text.match(/\[(?:checked|carried)[^\]]*\]/g) ?? []) {
+      const conforms =
+        /^\[checked \d{4}-\d{2}-\d{2}\]$/.test(marker) ||
+        /^\[carried \d{4}-\d{2}-\d{2}, not refetched\]$/.test(marker) ||
+        /^\[checked YYYY-MM-DD\]$/.test(marker) || // the legend defining itself
+        /^\[carried YYYY-MM-DD, not refetched\]$/.test(marker);
+
+      if (!conforms)
+        report.fail(
+          where,
+          `marker "${marker}" is not one of the three the legend defines; put the explanation in the source-type note instead of inside the brackets`,
+        );
+    }
+
     // "Primary" must mean authoritative, not official. See the pack index,
     // "Primary means authoritative, not official": a statute, a directive, a
     // judgment or a bill is primary; a tax authority's website, a ministry's

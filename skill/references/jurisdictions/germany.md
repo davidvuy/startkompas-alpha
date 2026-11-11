@@ -68,7 +68,9 @@ Three claims circulate widely in professional commentary: that the amounts are *
 
 Read directly on 2026-11-10, **§19 UStG is silent on all three.** It states the two thresholds as conditions and gives no net/gross characterization, no mid-year consequence and no founding-year rule.
 
-So those claims do not rest on §19 itself. They may follow from other provisions, from the transitional rules, or from administrative guidance — but **this pack has not identified their source**, and they must not be presented as statutory. For a founder near a threshold, mid-year behaviour is exactly the consequential question: send it to a `Steuerberater` rather than answering it from here. · **[checked 2026-11-10 — primary source silent, secondary basis unidentified]**
+So those claims do not rest on §19 itself. They may follow from other provisions, from the transitional rules, or from administrative guidance — but **this pack has not identified their source**, and they must not be presented as statutory. For a founder near a threshold, mid-year behaviour is exactly the consequential question: send it to a `Steuerberater` rather than answering it from here. · *the primary source was read and is silent; the secondary basis is unidentified* · **[checked 2026-11-10]**
+
+**That the statute is silent here is a fact about Germany, not about the question.** France states both mid-year rules on the face of its official page — see [france.md](france.md) §2 — and the directive settles it for the cross-border exemption only, in [eu-vat-sme.md](eu-vat-sme.md). So a founder asking "what happens if I go over in July?" has a published answer in France and none in the German statute. Do not fill the German gap with the French rule.
 
 Effect of the regime: no VAT on invoices, and **no input VAT deduction** in return.
 

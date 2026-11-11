@@ -52,7 +52,7 @@ Honest note on the original extraction: it did **not** reduce total lines — 73
 
 | Script | Proves | Fails on | Network |
 | --- | --- | --- | --- |
-| `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, a reference linking outside the model-facing set, reintroduced runtime coupling, a named host, an undated or off-template pack, a source on a non-authoritative host called "primary", over budget, a binary, a file rewritten with CRLF line endings | no |
+| `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, a reference linking outside the model-facing set, reintroduced runtime coupling, a named host, an undated or off-template pack, a verification marker outside the three the legend defines, a source on a non-authoritative host called "primary", over budget, a binary, a file rewritten with CRLF line endings | no |
 | `check-markdown.mjs` | The markdown renders as written | A table split by a blank line, a ragged row, a separator with no header, a duplicate heading, a `---` that turns the paragraph above it into a heading, an unclosed code fence, a missing final newline | no |
 | `check-dossier.mjs` | The change-propagation algorithm in `references/dossier-format.md` terminates, and is acyclic | Broken reference, duplicate id, invalid assertion value, a dependency cycle — reported as the path round the loop | no |
 | `check-facts.mjs` | Packs and eval cases still agree | A fact a case depends on has moved, or a reversed claim has returned | no |
@@ -132,6 +132,7 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | `check-skill.mjs` — "not advice" | A real omission: both EU layers lacked the disclaimer the national packs carry |
 | `check-skill.mjs` — line endings | The section exists because of a real one: a Python helper used for a one-line substitution rewrote `check-freshness.mjs` as CRLF, and `git diff --stat` reported 449 changed lines where 103 were real |
 | `check-skill.mjs` — "primary" | Four real mislabels: a Belgian e-invoicing FAQ and three Belastingdienst pages were cited as *primary official*, which reads as though the statute had been read when it had not |
+| `check-skill.mjs` — markers | Two real ones: `[checked 2026-11-10, needs primary confirmation]` and `[checked 2026-11-10 — primary source silent, secondary basis unidentified]`, a fourth marker form growing inside the brackets of the only field in a pack that is parsed rather than read |
 | `check-markdown.mjs` | A real defect: a maintenance-table row in `eu-ai-act.md` separated from its table by a blank line, and two empty headings in `docs/local-ui.md`. Then seven more: every section divider in the four national packs sat directly under a paragraph, so seven closing paragraphs were rendering as `<h2>` |
 | `check-facts.mjs` | Four real mismatches, listed above |
 | `check-freshness.mjs` | Three packs whose recheck date did not parse, because the period sat inside the bold. Then, once the Status column became a vocabulary: an `Unconfirmed` row in `belgium.md` dated `—`, hiding that the Staatsblad really had been searched, and five `Elsewhere` rows dated as though a check had happened in a pack that only points elsewhere |

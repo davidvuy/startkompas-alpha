@@ -59,7 +59,7 @@ Source: [Belastingdienst — invoicing when you use the KOR](https://www.belasti
 - If you do issue one, you must **state on it that you use the KOR**: *"vermeldt u op de factuur dat u gebruik maakt van de kleineondernemersregeling"*.
 - **No VAT on the invoice**: *"U zet geen btw op de factuur"*.
 
-Reported but **not confirmed on a page read here**: a KOR user need not keep a full VAT administration but must retain **purchase invoices**. · *secondary* · **[checked 2026-11-10, needs primary confirmation]**
+Reported but **not confirmed on a page read here**: a KOR user need not keep a full VAT administration but must retain **purchase invoices**. · *secondary, and it still needs primary confirmation* · **[checked 2026-11-10]**
 
 Note the contrast with Belgium, where a business under the small-business exemption **must** issue structured e-invoices. The Dutch position is the opposite on both counts — no invoicing duty and no e-invoicing mandate. Do not carry either answer across.
 

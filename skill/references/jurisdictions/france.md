@@ -279,7 +279,9 @@ Note the opening words, though: *"sauf stipulation contraire plus favorable à l
 
 France does not have a single purpose rule like Germany's §31(5) UrhG. It has a **ceiling on what a transfer can quietly sweep up**, and a **floor the contract cannot take away**. Both matter, and they pull in opposite directions.
 
-**The ceiling — art. L131-3 CPI**, *primary legislation read and quoted, in force since 1992-07-03* · **[checked 2026-11-10]** · [LEGIARTI000006278958](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006278958)
+#### The ceiling — art. L131-3 CPI
+
+Source: [article L131-3 CPI](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000006278958) · *primary legislation, in force since 1992-07-03* · **[checked 2026-11-10]**
 
 > *"La transmission des droits de l'auteur est subordonnée à la condition que chacun des droits cédés fasse l'objet d'une mention distincte dans l'acte de cession et que le domaine d'exploitation des droits cédés soit délimité quant à son étendue et à sa destination, quant au lieu et quant à la durée."*
 
@@ -292,7 +294,9 @@ Two requirements, and the second has **four dimensions**:
 
 This is stricter and more specific than either the German or the Dutch rule: Germany reads an unnamed use against the contract's purpose, the Netherlands reads a grant narrowly, and France requires the grant to have been **itemised and bounded in the first place**. For a founder drafting either side of a software contract, those four words are the checklist.
 
-**The floor — art. L122-6-1 CPI**, *primary legislation read, version in force 2021-11-26* · **[checked 2026-11-10]** · [LEGIARTI000044365559](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044365559)
+#### The floor — art. L122-6-1 CPI
+
+Source: [article L122-6-1 CPI](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000044365559) · *primary legislation, version in force 2021-11-26* · **[checked 2026-11-10]**
 
 For software specifically, the person entitled to use it may do the following **without the author's authorisation**:
 
