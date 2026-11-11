@@ -174,6 +174,10 @@ export const REQUIRED = [
 
   // --- Shared EU layers ------------------------------------------------------
   {case: '—', pack: 'eu-gdpr.md', label: '72-hour notification', pattern: /72 hours/},
+  // The layer's opening told a reader the national packs hold only the name of
+  // the authority. After the national statutes were read that was badly wrong,
+  // and it is the sentence that decides whether the national pack is opened.
+  {case: '—', pack: 'eu-gdpr.md', label: 'the national packs carry more than the authority', pattern: /Reading this layer without the national pack gives the wrong answer/},
   // Patterns tolerate markdown emphasis: the text reads "**not** a legal requirement".
   {case: '—', pack: 'eu-gdpr.md', label: 'password figure flagged as not a requirement', pattern: /a legal requirement/i},
   {case: '—', pack: 'eu-gdpr.md', label: 'processor liability for sub-processors', pattern: /liable to the controller for its sub-processors/i},

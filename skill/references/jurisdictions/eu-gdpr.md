@@ -1,6 +1,8 @@
 # EU — GDPR layer
 
-**This is a shared layer, not a country.** The GDPR applies directly in every EU member state, so the rules below hold identically in the Belgium, Netherlands, Germany and France packs. Each national pack carries only what is *national*: which supervisory authority is competent, and what that authority publishes.
+**This is a shared layer, not a country.** The GDPR applies directly in every EU member state, so the articles below hold identically in the Belgium, Netherlands, Germany and France packs.
+
+**What the national packs carry is not only the name of the authority.** It was that until 2026-11-11, and it is now considerably more, because the Regulation leaves openings and each member state has used them differently: a national duty to appoint a data protection officer where art. 37(1) requires none, a binding national list of processing needing an impact assessment under art. 35(4), the age of consent between 13 and 16 under art. 8, exceptions to the arts. 9 and 10 prohibitions, and — under art. 84 — penalties beyond the art. 83 fines, including **criminal** ones in two of these four countries. **Reading this layer without the national pack gives the wrong answer on each of those.**
 
 Read this together with the relevant national pack. Neither replaces the other.
 

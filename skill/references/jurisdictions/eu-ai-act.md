@@ -1,6 +1,6 @@
 # EU — AI Act
 
-**This is a shared layer, not a country.** Regulation (EU) 2024/1689 applies across the Union, so it holds identically in the Belgium, Netherlands, Germany and France packs. National market-surveillance authorities differ; the obligations do not.
+**This is a shared layer, not a country.** Regulation (EU) 2024/1689 applies across the Union, so it holds identically in the Belgium, Netherlands, Germany and France packs. The Regulation's own obligations hold identically. **What each member state adds under arts. 99(1) and 84 does not** — Germany's `KI-MIG` creates offences of its own, with its own ceiling, which §7 reads. So the authority differs, and so can the price of breaching a duty.
 
 **This layer is preparation, not advice.** It records what the articles themselves state, with dates. Whether a specific system or use is in scope is a legal question for a qualified reviewer.
 
@@ -35,7 +35,7 @@ Source: [European Commission — regulatory framework for AI](https://digital-st
 
 That last row is the one that matters here. A founder drafting an offer with an assistant, or using one to summarize their own notes, is in the bottom tier on the Commission's own description.
 
-**But two uses within this skill's own territory sit higher.** Screening candidates is named as high risk, and credit scoring likewise. A founder whose pilot *is* a hiring or lending tool is not in the bottom tier, and that changes everything — treat it as outside this pack and route it to a specialist.
+**But two uses within this skill's own territory sit higher.** Screening candidates is named as high risk, and credit scoring likewise. A founder whose pilot *is* a hiring or lending tool is not in the bottom tier, and that changes everything. **§3 below gives the statutory basis** — Annex III names both — and §2 gives the twelve obligations that follow. Read those before concluding anything, and then route the founder to a specialist: the pack can tell them they are in it and roughly what it costs, not how to get out.
 
 ### Do not quote a count of the prohibitions
 
@@ -281,7 +281,7 @@ Read that beside §3: Annex III points 4 and 5 are employment and essential serv
 
 ## 8. What this layer does not cover
 
-- The **art. 16 provider obligations** for a high-risk system, and what becoming a provider costs. This is the heaviest open question here.
+- **What each of art. 16's twelve obligations actually requires.** The obligations themselves are listed in §2; the articles they point to — arts. 8 to 15, 17, 18 and 43 — are the open part, and are listed separately below.
 - Whether a founder's **marketing content** can amount to text `published to inform the public on matters of public interest` under art. 50(4). The limb reads as aimed at publishing, not business documents, but the boundary is **[not researched]**.
 - **National market-surveillance authorities and the national penalty regimes** made under art. 99(1): read for **Germany** in §7, **[not researched]** for Belgium, the Netherlands and France. The Union ceilings are in §6; what any Member State imposes is not.
 - The art. 6(5) Commission guidelines and the comprehensive list of practical examples that were due by 2026-02-02: **[not researched]**, and the first thing to look for on a recheck — §3 says why.
