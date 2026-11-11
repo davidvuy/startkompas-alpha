@@ -32,7 +32,15 @@ Do not present either figure as what a solo founder would actually be fined; the
 
 The practical effect is the reverse of what a founder would guess from the headline numbers: the AI Act scales its maximum down to a small business and the GDPR does not. See [eu-ai-act.md](eu-ai-act.md) §5 for the other half. This is a comparison of two texts both read in full, not a view on how either is enforced.
 
-### Three things in article 83 a founder can actually influence
+### Article 83 is not the whole penalty picture — article 84
+
+Art. 84(1) obliges every member state to *"lay down the rules on other penalties applicable to infringements of this Regulation in particular for infringements which are not subject to administrative fines pursuant to Article 83"*, effective, proportionate and dissuasive.
+
+So the two tiers above are the **administrative** ceiling, and a member state may add to them. Belgium is the pack's worked example and what it added is **criminal**: art. 222 of the `wet van 30 juli 2018` punishes processing without a lawful basis under art. 6 GDPR with a fine of up to **€120,000**, and art. 225 lets the court order the judgment published in newspapers at the convicted person's expense. Read [belgium.md](belgium.md) §6 for which of its fourteen cases require serious negligence or malice and which do not.
+
+Germany and the Netherlands add no criminal layer of this kind in anything these packs have read, and the Dutch art. 14(3) UAVG simply adopts the art. 83 amounts. **So "the maximum fine" has a different answer per member state even though art. 83 is identical**, and a founder asking what it costs to get the lawful basis wrong needs the national pack, not this annex.
+
+## Three things in article 83 a founder can actually influence
 
 Art. 83(2) lists eleven matters an authority must have *"due regard"* to. Most are not a founder's to move. Three are:
 

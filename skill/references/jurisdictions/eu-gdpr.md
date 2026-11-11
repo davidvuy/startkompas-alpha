@@ -278,7 +278,7 @@ Art. 6(1) opens: *"Processing shall be lawful only if and to the extent that at 
 
 Point (f) does not apply to public authorities performing their tasks (art. 6(1), second subparagraph), and bases (c) and (e) must be laid down in Union or Member State law (art. 6(3)) — neither is usually a founder's question.
 
-Two habits to avoid. **Do not reach for consent by default** — it has to be freely given, specific and withdrawable, and for a service a customer asked for, (b) is both simpler and more robust where it applies. And **do not leave the basis unstated**: the register in §3 asks for purposes, and a purpose without a basis is an unfinished record.
+Two habits to avoid. **Do not reach for consent by default** — it has to be freely given, specific and withdrawable, and for a service a customer asked for, (b) is both simpler and more robust where it applies. And **do not leave the basis unstated**: the register in §3 asks for purposes, and a purpose without a basis is an unfinished record. In Belgium it is more than untidy — art. 222 of the `wet van 30 juli 2018` makes processing without a lawful basis a criminal offence carrying up to €120,000, which is the sharpest reason in any of these packs to be able to name the basis per purpose. See [belgium.md](belgium.md) §6 and [eu-gdpr-fines.md](eu-gdpr-fines.md).
 
 ### (b) does not cover a B2B contact, and that is the trap in a B2B pilot
 

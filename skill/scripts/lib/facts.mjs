@@ -208,6 +208,23 @@ export const REQUIRED = [
   {case: '—', pack: 'germany-data-protection.md', label: 'the DPF condition is per provider', pattern: /DPF list of the US Department of Commerce/},
   {case: '—', pack: 'germany-data-protection.md', label: 'freelancers are inside the private-sector authority', pattern: /freiberuflich Tätigen/},
 
+  // --- Belgium — the 2018 act and the GBA's own list --------------------------
+  // Art. 222 is the only national penalty in these packs that is criminal, and
+  // its point 1° states no mental element where 2° and 4° require serious
+  // negligence or malice. Losing that asymmetry turns a sharp warning vague.
+  {case: '—', pack: 'belgium.md', label: 'art. 222 criminal fine ceiling', pattern: /€120,000/},
+  {case: '—', pack: 'belgium.md', label: 'the lawful-basis offence states no mental element', pattern: /\*\*none stated\*\*/},
+  {case: '—', pack: 'belgium.md', label: 'the court may order the judgment published', pattern: /published in whole or in extract/},
+  // Arts. 58 and 59 of the Belgian act are an impact-assessment duty for Titel 2
+  // authorities, not for businesses. The pack has to keep saying so, because
+  // the GBA's own art. 35(4) decision cites them and a reader follows that.
+  {case: '—', pack: 'belgium.md', label: 'arts. 58 and 59 bind authorities, not businesses', pattern: /they bind police and judicial authorities, not a founder/},
+  {case: '—', pack: 'belgium.md', label: 'the age of consent is 13', pattern: /door kinderen van 13 jaar of ouder/},
+  {case: '—', pack: 'belgium.md', label: 'the penalties were restated with effect from 2026-09-01', pattern: /W 2026-03-30\/01/},
+  {case: '—', pack: 'belgium.md', label: 'the GBA list entry with no scale qualifier', pattern: /no scale qualifier at all/},
+  {case: '—', pack: 'belgium.md', label: 'the GBA reviews its list six-monthly', pattern: /Zesmaandelijks wordt de lijst/},
+  {case: '—', pack: 'eu-gdpr-fines.md', label: 'art. 84 means art. 83 is not the whole picture', pattern: /other penalties applicable to infringements/},
+
   // --- Netherlands — data protection annex -----------------------------------
   // The Dutch art. 35(4) list is broader than the Regulation in one entry and
   // silent where the German list is explicit. Both halves have to survive:
