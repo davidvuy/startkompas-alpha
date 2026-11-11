@@ -117,8 +117,8 @@ export const REQUIRED = [
   // The CNIL/Bpifrance PME guide is pre-GDPR-application. Losing the date would
   // turn awareness material from April 2018 back into current guidance.
   {case: '—', pack: 'france.md', label: 'CNIL/Bpifrance PME guide dated April 2018', pattern: /\*\*April 2018\*\*/},
-  {case: '—', pack: 'france.md', label: 'effort scales with data, not headcount', pattern: /not the size or headcount/i},
-  {case: '—', pack: 'france.md', label: '3-year inactivity retention, and its provenance', pattern: /3 years from the end of the commercial relationship/i},
+  {case: '—', pack: 'france-data-protection.md', label: 'effort scales with data, not headcount', pattern: /not the size or headcount/i},
+  {case: '—', pack: 'france-data-protection.md', label: '3-year inactivity retention, and its provenance', pattern: /3 years from the end of the commercial relationship/i},
 
   // --- Netherlands -----------------------------------------------------------
   {case: 'C16', pack: 'netherlands.md', label: 'no domestic B2B mandate', pattern: /no business-to-business \(B2B\) mandate/},
@@ -207,6 +207,21 @@ export const REQUIRED = [
   {case: '—', pack: 'germany-data-protection.md', label: 'its scope excludes high-risk processing', pattern: /kein KI-Startup/},
   {case: '—', pack: 'germany-data-protection.md', label: 'the DPF condition is per provider', pattern: /DPF list of the US Department of Commerce/},
   {case: '—', pack: 'germany-data-protection.md', label: 'freelancers are inside the private-sector authority', pattern: /freiberuflich Tätigen/},
+
+  // --- France — the CNIL's two lists -----------------------------------------
+  // France is the only jurisdiction in these packs whose authority has used
+  // art. 35(5). The exemption and its carve-out have to survive together: the
+  // under-250 figure without "excluding profiling" would read as a general
+  // small-business exemption, which is the opposite of what the list says.
+  {case: '—', pack: 'france-data-protection.md', label: 'France has an art. 35(5) list', pattern: /only one of these four with an exemption list/i},
+  {case: '—', pack: 'france-data-protection.md', label: 'the under-250 HR exemption excludes profiling', pattern: /with the exception of any recourse to profiling/},
+  {case: '—', pack: 'france-data-protection.md', label: 'recruitment by selection algorithm is on the required list', pattern: /recruitment assisted by a selection algorithm/},
+  {case: '—', pack: 'france-data-protection.md', label: 'ad personalisation on external data is on the required list', pattern: /personalising online advertising/},
+  {case: '—', pack: 'france-data-protection.md', label: 'in doubt, the CNIL recommends doing one', pattern: /where there is doubt about whether an assessment is needed/},
+  // The blocked source is a finding, not an omission. If this sentence goes,
+  // the open rows read as nobody having tried.
+  {case: '—', pack: 'france-data-protection.md', label: 'Legifrance is recorded as blocked, not unexamined', pattern: /bot-protection challenge instead of the page/},
+  {case: '—', pack: 'france-data-protection.md', label: 'the count of the French list is deliberately withheld', pattern: /count is deliberately not quoted here/},
 
   // --- Belgium — the 2018 act and the GBA's own list --------------------------
   // Art. 222 is the only national penalty in these packs that is criminal, and

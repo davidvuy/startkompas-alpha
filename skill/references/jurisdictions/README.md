@@ -18,6 +18,7 @@ A jurisdiction pack is a dated, sourced answer set for one country or region. It
 | Germany — B2B e-invoicing (annex to the German pack) | [germany-e-invoicing.md](germany-e-invoicing.md) | 2026-11-11 | **§27(38) UStG tabulated**, the three BMF letters `Randnummer` by `Randnummer`, the error taxonomy, eight-year retention, **§33 UStDV's carve-out from the €250 relief** | GoBD letter; §27(15) and (18); whether a late paper invoice for a 2026 turnover is covered |
 | Germany — data protection (annex to the German pack) | [germany-data-protection.md](germany-data-protection.md) | 2026-11-11 | **§38 BDSG, whose sentence 2 compels a DPO with no employees at all**, §6(4) dismissal protection, §40 BDSG and the Bavaria split, the **DSK art. 35(4) list and its entry 11 on AI customer interaction**, and the **BayLDA checklist for the solo self-employed** | Other Land splits; the other 16 DSK entries; the BayLDA contract template; §§22, 26 and 32–37 BDSG |
 | France | [france.md](france.md) | 2026-11-10 | **Guichet unique with the filing window, documents and zero cost**, franchise thresholds (both years), e-invoicing, accredited-platform mandate, e-reporting, **L442-1 I and art. 1171 as two routes**, **L113-9 CPI**, CNIL's SME offering | e-reporting scope for micro; L442-1/1171 interaction; client's permitted use and moral rights; CNIL's individual guides; the official start guide |
+| France — data protection (annex to the French pack) | [france-data-protection.md](france-data-protection.md) | 2026-11-11 | **Both** CNIL impact-assessment lists — the only art. 35(5) exemption list among these four — which art. 35(4) types reach a one-person business (**HR profiling, recruitment algorithms, ad personalisation on bought-in data**), the **under-250 HR exemption excluding profiling** and the supplier-administration one, the CNIL's SME documents with their dates, and **what the Légifrance bot wall means for this pack** | `Loi n° 78-17` and the `Code pénal` provisions — **blocked, not unexamined**; the CNIL's `référentiels` and cookie guidelines |
 
 No other pack exists yet. A missing pack, or a topic marked open inside a pack, is a gap in **coverage** — **never** a finding that no requirement exists.
 
@@ -140,19 +141,22 @@ What transfers from these two to any jurisdiction:
 - **Set the access up before you need it.** The Belgian route is the clearest case — the GBA itself warns the 72 hours can be lost to an unassigned role — but the general rule is to find out now what account, role or form your authority requires, and give more than one person the keys.
 - **The register is the breach document.** Both authorities assume you can say *who is affected* on day one. Nothing else you have will tell you.
 
-### Same article, two national lists — when is an impact assessment compulsory?
+### Same article, four national lists — when is an impact assessment compulsory?
 
-Art. 35(4) GDPR obliges **every** supervisory authority to publish a list of the processing that requires an impact assessment. Those lists are not summaries of the Regulation; they are additional, binding enumerations, and two of them are now read in full.
+Art. 35(4) GDPR obliges **every** supervisory authority to publish a list of the processing that requires an impact assessment. Those lists are not summaries of the Regulation; they are additional, binding enumerations, and all four of these are now read in full.
 
 | | Entries | An AI tool that converses with customers | The entry most likely to catch a one-person B2B business |
 | --- | --- | --- | --- |
-| Germany — the DSK's joint list | 17 | **Entry 11 names it**: AI used to steer interaction with data subjects or to evaluate them, with `Kundensupport mittels künstlicher Intelligenz` as its named field of use | that same entry |
-| Netherlands — the AP's `Besluit` | 17 | **not named.** It can still need an assessment through the general rule or the innovation criterion — but that is an argument, not a list | **entry 15**, profiling, which drops art. 35(3)(a)'s requirement that decisions with legal effect follow |
-| Belgium — GBA decision 01/2019 | **8** | **not named** | **entry 2**, third-party data used to decide to refuse or end a service contract — **and it carries no scale qualifier at all** |
+| Germany — the DSK's joint list | 17 | **entry 11 names it**: AI used to steer interaction with data subjects or to evaluate them, with `Kundensupport mittels künstlicher Intelligenz` as its named field of use | that same entry |
+| Netherlands — the AP's `Besluit` | 17 | not named. It can still need an assessment through the general rule or the innovation criterion — but that is an argument, not a list | **entry 15**, profiling, which drops art. 35(3)(a)'s requirement that decisions with legal effect follow |
+| Belgium — GBA decision 01/2019 | **8** | not named | **entry 2**, third-party data used to decide to refuse or end a service contract — **and it carries no scale qualifier at all** |
+| France — CNIL `Délibération 2018-327` | unnumbered | not named | **profiling for HR purposes**, whose own examples include recruitment assisted by a selection algorithm; and **profiling on externally sourced data**, whose examples include personalising online advertising |
 
-So the same AI pilot is a listed case in Germany and an argument in the other two; a profiling feature art. 35(3)(a) would let past is listed in the Netherlands; and a credit check before onboarding one client is listed in Belgium however small it is. France's list is **[not researched]**.
+So the same AI pilot is a listed case in Germany and an argument in the other three; a profiling feature art. 35(3)(a) would let past is listed in the Netherlands; a credit check before onboarding one client is listed in Belgium however small it is; and in France a recruitment-screening algorithm or an ad-personalisation model is listed on its own terms.
 
-Belgium also commits to revisiting its list every six months, which neither of the others does — so the three lists are not even equally stable.
+**And only France has published the other half of the article.** Art. 35(5) *permits* an authority to list processing for which no assessment is required, and the CNIL has: `Délibération 2019-118` exempts, among others, human-resources administration by organisations of **fewer than 250 persons** — expressly *excluding* any profiling — and supplier-relationship administration. The other three authorities, as read, publish the mandatory list only.
+
+Belgium also commits to revisiting its list every six months, which none of the others does, so the four lists are not even equally stable.
 
 What transfers: **"do I need an impact assessment" cannot be answered from the Regulation alone**, and the answer does not cross a border. Neither does the DPO question beside it — §38 BDSG compels a German one-person business to appoint one in cases where the Dutch `UAVG` and the Belgian `wet van 30 juli 2018` require nothing at all. Nor does the consequence of getting the lawful basis wrong: in Belgium art. 222 of that act makes processing without one a criminal offence carrying up to €120,000, where the other two leave it to the administrative fine.
 
@@ -185,6 +189,8 @@ Three kinds of file live here, distinguished by name:
 `scripts/check-skill.mjs` enforces all three rules. If you reorder or rename a section the build fails and names the section; if an annex is unlinked from its pack it says so, and it finds the pack from the filename, so there is no list to keep in sync. The parent is the **longest** prefix of the annex's own name that is itself a pack, so `eu-gdpr-fines.md` belongs to `eu-gdpr.md` and not to an `eu.md` that does not exist — and `eu-vat-sme.md`, which has no pack prefix at all, stays a layer.
 
 **Write an annex only when a pack is over budget.** Splitting on taste instead costs the reader a second file to open for no gain. The check reports every file's size against the budget, so the moment to split is the moment it fails.
+
+A consequence to expect: because the trigger is size and not subject, **the same topic can sit in the pack in one country and in an annex in another** — data protection is in `belgium.md` itself but in an annex for Germany, the Netherlands and France. So always start from the pack's own section, which keeps the answer, and follow its pointer for the working.
 
 ```
 # <Country> — jurisdiction pack

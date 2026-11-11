@@ -58,7 +58,7 @@ Source: [AP — data protection impact assessment (DPIA)](https://www.autoriteit
 - **A DPIA is not a lawful basis.** If the processing is on the list you must still check you have one, and without it you may not process *"regardless of the outcomes of any DPIA"*.
 - **One divergence to handle carefully.** The AP's page summarises the GDPR's own DPIA cases as **four**, splitting criminal-offence data into a case of its own and stating it **without a large-scale qualifier**. Art. 35(3)(b) GDPR, read in [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md), has it as one point covering special categories **or** criminal data, *"processing on a large scale"*. The statute is the rule; the AP's reading is broader. Where they differ, say so rather than choosing.
 
-Whether the AP has published an art. 35(5) list of processing for which **no** assessment is required is **[not researched]**.
+Whether the AP has published an art. 35(5) list of processing for which **no** assessment is required is **[not researched]**. France has published one, and it is the only art. 35(5) list any of these packs has read — see [france-data-protection.md](france-data-protection.md) for what a list of that kind actually contains.
 
 ## The AP's own step plan for a controller
 
