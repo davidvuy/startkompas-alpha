@@ -224,6 +224,7 @@ So the practical position is neither "the lists apply" nor "anything goes":
 **Open:** the judgment itself was not read, and how far the indication can be rebutted by trade custom under §310(1)'s `Gewohnheiten und Gebräuche` clause is case-specific and **[not researched]**.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet. Never draft a blanket liability waiver, a unilateral acceptance clause, an automatic renewal or an invented service guarantee — §307 is exactly where those fail. Leave enforceability to a German lawyer.
+
 ---
 
 ## 5. Ownership and permitted use
@@ -297,6 +298,7 @@ A note on the count, because it varies in secondary sources: the BfDI directory 
 Practical consequence: a founder cannot be told "contact the German DPA". Establish their `Land` first, then find that authority. A breach notification sent to the wrong authority is not a notification made.
 
 The `BDSG` and the competent state authority's own guidance are **[not researched]**.
+
 ---
 
 ## Pack maintenance

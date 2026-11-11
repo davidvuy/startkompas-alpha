@@ -76,9 +76,9 @@ Also established from the bill, and not previously recorded: art. 56ter was **in
 
 Headlines reading "threshold raised to €30,000" are misleading twice over: €30,000 applies only from **2031**, and only if the bill is enacted.
 
-What the exemption does: supply without charging VAT, relieved of periodic VAT returns, while keeping the VAT identification. The trade-off is **loss of input VAT deduction** on purchases and investments relating to the exempt activity. · **[checked 2026-11-10]**
+What the exemption does: supply without charging VAT, relieved of periodic VAT returns, while keeping the VAT identification. The trade-off is **loss of input VAT deduction** on purchases and investments relating to the exempt activity. This describes the regime art. 56ter of the VAT Code establishes; it is not taken from a source read for this pack, and the Code itself has not been read here.
 
-Separate EU cross-border scheme — **now primary-confirmed**: the €100,000 Union annual turnover cap comes from art. 284(2)(a) of Council Directive (EU) 2020/285 and applies from 2025-01-01, alongside the national threshold. See [eu-vat-sme.md](eu-vat-sme.md). · **[checked 2026-11-10]**
+Separate EU cross-border scheme: the €100,000 Union annual turnover cap comes from art. 284(2)(a) of Council Directive (EU) 2020/285 and applies from 2025-01-01, alongside the national threshold. Read and quoted from EUR-Lex in [eu-vat-sme.md](eu-vat-sme.md), which is where that claim and its check date are maintained.
 
 Recheck triggers: turnover approaching the threshold; the start of any calendar year; any cross-border customer.
 
@@ -97,7 +97,7 @@ Source: [official e-invoicing FAQ — general B2B questions](https://efactuur.be
 | Special agricultural flat-rate regime | In scope **at least for receiving** B2B invoices (`minstens voor het ontvangen van B2B-facturen`) |
 | VAT taxpayer not established in Belgium, without a fixed establishment, even if VAT-identified here | **Out of scope** — the FAQ notes the law will be adjusted on this point |
 | Selling only to consumers (B2C) | Not mandatory |
-| A person with only article 44 VAT-exempt activities | **Unknown** — the FAQ does not address this case. Do not infer either way. |
+| A person with only article 44 VAT-exempt activities | **Unknown** — the FAQ does not address this case, and no other source was consulted for it: **[not researched]**. Do not infer either way. |
 
 Format and transport: a structured electronic invoice over the **Peppol** network. Legal hook: new article 53, §2bis of the Belgian VAT Code.
 
@@ -111,6 +111,8 @@ Recheck triggers: the announced legal adjustment for non-established taxpayers; 
 
 ## 4. Agreements and unfair terms
 
+Source for this whole section: the FPS Economy brochure [*Gedaan met de wet van de sterkste, deel 4*](https://economie.fgov.be/sites/default/files/Files/Publications/files/gedaan-met-de-wet-van-de-sterkste-deel-4.pdf) · *official explainer, text extracted and read* · **[checked 2026-11-10]**. Its embedded metadata dates it 2020-09 authored, 2021-04 modified, so it predates later case law. The provision numbers and examples below are the brochure's; the WER text itself has not been read for this section.
+
 **B2B does not mean unrestricted contracting.** Belgian law applies unfair-terms control between businesses, in three layers.
 
 | Layer | Provision | Effect |
@@ -120,8 +122,6 @@ Recheck triggers: the announced legal adjustment for non-established taxpayers; 
 | **Grey list** | art. VI.91/5 WER | Presumed unfair, but the presumption is rebuttable |
 
 The regime sits in art. VI.91/1–VI.91/10 WER, introduced by the law of **4 April 2019**, with the unfair-terms provisions applying from **2020-12-01**. Its stated aim is protecting smaller businesses against counterparties they are economically dependent on — which is the founder's likely position in a pilot.
-
-Source: the FPS Economy brochure [*Gedaan met de wet van de sterkste, deel 4*](https://economie.fgov.be/sites/default/files/Files/Publications/files/gedaan-met-de-wet-van-de-sterkste-deel-4.pdf) · *official explainer, text extracted and read* · **[checked 2026-11-10]**. Its embedded metadata dates it 2020-09 authored, 2021-04 modified, so it predates later case law.
 
 ### Scope — four limits the brochure states
 
@@ -168,7 +168,7 @@ With the brochure's own examples, which are more useful than the abstractions:
 
 **Grey item 4 is the one that hits a software founder directly.** An *"as is"* or *"as available"* clause for a technological service is on the grey list by name. Almost every SaaS and software agreement has one. It is not void, but it is **presumed unfair** — so a founder relying on it must be able to justify it, and a founder *facing* one has a presumption on their side.
 
-Black items 3 and 4 catch ordinary drafting: "the client waives any claim" is void outright, and so is "the client is deemed to have accepted these terms" where they never had a real chance to read them — which is also independently a ground under Dutch art. 6:233.
+Black items 3 and 4 catch ordinary drafting: "the client waives any claim" is void outright, and so is "the client is deemed to have accepted these terms" where they never had a real chance to read them — which is also independently a ground under Dutch art. 6:233 — see [netherlands.md](netherlands.md).
 
 Grey item 8 is worth reading before drafting a late-payment clause: the example condemns exactly the common stack of a percentage **plus** per-reminder fees **plus** interest, and says the flat sum is taken to cover the reminders.
 
@@ -274,6 +274,7 @@ Source: [`Handleiding melden van een gegevensinbreuk`](https://www.gegevensbesch
 - **Expect no feedback.** Handling is in principle purely internal and you are not informed of it; if the GBA has questions it contacts you through the business account, with an email notification to the contact person and a stated reply deadline.
 
 **Open:** the `wet van 30 juli 2018` was identified but not read, so no Belgian supplementing provision is stated here. The BOOST brochures' substantive answers were not transcribed into this pack — read them at the source. Whether a specific breach is notifiable remains a judgment for the founder with advice, not something this pack decides.
+
 ---
 
 ## Pack maintenance
@@ -291,8 +292,10 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Whether the bill has been promulgated and published | 2026-11-10 | Unconfirmed — Chamber approval on 2026-09-17 is secondary only, and no Staatsblad publication was found on 2026-11-10. **Do not state the figures as law** |
 | **Corrected on 2026-11-10:** this entry previously asserted "now enacted… law of 2026-09-23… article 26 amends" | 2026-11-10 | Withdrawn — three errors, none supported by the sources then cited; see §2 |
 | The laws of 2024-03-21 and 2026-02-10 themselves | — | Open — named by the bill, their texts not read |
-| EU-wide €100,000 cross-border threshold | 2026-11-10 | Primary — Directive (EU) 2020/285, read in eu-vat-sme.md |
-| Unfair terms: general norm, black and grey list structure | 2026-11-10 | Secondary — legal commentary; the WER text itself not read |
+| EU-wide €100,000 cross-border threshold | — | Elsewhere — Directive (EU) 2020/285, read and quoted in eu-vat-sme.md |
+| What the exemption itself does: no VAT charged, no periodic returns, no input deduction | — | Open — described from general knowledge of art. 56ter; the VAT Code was not read for it |
+| Whether e-invoicing binds a person with only art. 44 exempt activities | — | Open — the official FAQ does not address the case and nothing else was consulted |
+| Unfair terms: general norm, black and grey list structure, and the art. VI.91 numbering | 2026-11-10 | Authority — the FPS Economy brochure, which is the only source §4 rests on. An earlier version of this row credited "legal commentary", which the pack never cited anywhere |
 | Black list (4) and grey list (8) with official examples; scope, dates, exclusions, two-aspect test | 2026-11-10 | Authority — FPS Economy brochure extracted and read; the statute itself not read |
 | Case law since the 2021 brochure | — | Open — not yet researched |
 | Official unfair-terms brochure | 2026-11-10 | Authority — extracted and read; its metadata dates it 2020-09 authored, 2021-04 modified, so it predates later case law |

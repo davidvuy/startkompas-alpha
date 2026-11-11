@@ -4,8 +4,8 @@
 //
 //   node scripts/check-markdown.mjs
 //
-// The packs carry 71 tables and 620 rows, and almost every verified claim in
-// this project lives in one of them. A single blank line inside a table splits
+// Almost every verified claim in this project lives in a table — run the check
+// to see how many. A single blank line inside a table splits
 // it into two, so the rows below the gap lose their header and render as a
 // stray one-column table — the claim is still in the file, and a reader sees
 // something else. That has now happened twice: once in netherlands.md, caught
@@ -22,7 +22,7 @@ import {listFiles, relativePosix} from './lib/files.mjs';
 import {createReport} from './lib/report.mjs';
 
 const report = createReport({
-  ok: 'tables are well-formed, headings are unique and every file ends cleanly.',
+  ok: 'tables are well-formed, headings are unique, dividers divide, and every file ends cleanly.',
 });
 
 const isRow = (line) => /^\s*\|/.test(line);
@@ -67,8 +67,17 @@ for (const file of listFiles(skillRoot, {ext: '.md'})) {
   let inFence = false;
   const headings = new Map();
 
+  // A file opening with `---` has YAML frontmatter, whose closing fence sits
+  // directly under the last key. That is correct and must not be reported.
+  let inFrontmatter = lines[0] === '---';
+
   for (const [index, line] of lines.entries()) {
     const lineNumber = index + 1;
+
+    if (inFrontmatter) {
+      if (index > 0 && /^(-{3,}|={3,})\s*$/.test(line)) inFrontmatter = false;
+      continue;
+    }
 
     // A fenced block may contain anything, including example tables.
     if (/^\s*(```|~~~)/.test(line)) {
@@ -76,6 +85,26 @@ for (const file of listFiles(skillRoot, {ext: '.md'})) {
       continue;
     }
     if (inFence) continue;
+
+    // --- A divider that eats the paragraph above it -------------------------
+    // `---` directly under a paragraph is a setext heading underline, not a
+    // thematic break: the paragraph becomes an <h2>. Seven section dividers in
+    // the packs were written that way, so seven closing paragraphs rendered as
+    // headings — mostly the "Open:" note that says what the section does not
+    // cover, which is exactly the sentence a reader should not see promoted
+    // into the table of contents.
+    //
+    // Invisible in a diff, invisible in a terminal, and one blank line fixes
+    // it. Table separators are excluded: a `| --- |` row is matched elsewhere,
+    // and a bare `---` under a table row is a malformed table, not this.
+    if (/^(-{3,}|={3,})\s*$/.test(line)) {
+      const previous = lines[index - 1];
+      if (previous !== undefined && previous.trim() !== '' && !isRow(previous))
+        report.fail(
+          `${where}:${lineNumber}`,
+          `"${line.trim()}" directly under text makes the line above it a heading, not a divider; put a blank line between them`,
+        );
+    }
 
     // --- Headings: a duplicate breaks every anchor link to it ---------------
     const heading = /^(#{2,6})\s+(.*\S)\s*$/.exec(line);

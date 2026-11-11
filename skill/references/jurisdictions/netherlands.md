@@ -141,6 +141,7 @@ The mirror image matters too: once a founder grows past 50 employees or publishe
 Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet, and give the counterparty a genuine opportunity to read your own terms — under 6:233 that is not a formality.
 
 **Open:** the BW articles were not read in primary form, and the precise boundaries of `reflexwerking` are case law. Confirm with a Dutch lawyer before relying on either.
+
 ---
 
 ## 5. Ownership and permitted use
@@ -288,6 +289,7 @@ Source: [AP — `Vragenlijst meldformulier datalekken`](https://www.autoriteitpe
 - Two scope notes: the Dutch notification duty sits in **four** statutes — `AVG`, `Tw`, `Wjsg`, `Wpg` — and for an ordinary business it is the AVG. The form also asks whether you have told **other** regulators, so check whether a second duty applies to your sector.
 
 **Open:** the brochure the controller step plan accompanies, the AP's example list of notifiable and non-notifiable breaches, and its ten tips on breach registration are **[not researched]**.
+
 ---
 
 ## Pack maintenance

@@ -217,6 +217,7 @@ What to tell a founder: establish first whether the relationship falls within L4
 **Open:** how the 2022 holding has been applied since, and the exact edge of L442-1 I 2°'s scope, are **[not researched]**.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet. Never draft a blanket liability waiver, a unilateral acceptance clause, an automatic renewal or an invented service guarantee.
+
 ---
 
 ## 5. Ownership and permitted use
@@ -318,6 +319,7 @@ What they say that still holds:
 - For security it defers to the **ANSSI/CPME** `12 règles essentielles pour sécuriser vos équipements numériques` and to its own `guide sécurité des données personnelles`. Neither was read here.
 
 Point a French founder at the CNIL's **current** pages, and at its register template, rather than at these two PDFs or at a paraphrase of them.
+
 ---
 
 ## Pack maintenance

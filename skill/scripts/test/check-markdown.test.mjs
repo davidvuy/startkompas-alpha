@@ -100,6 +100,60 @@ test('an unescaped extra pipe is still caught', () => {
   expectFail('# Doc\n\n| A | B |\n| --- | --- |\n| 1 | 2 | 3 |\n', /row has 3 cells/);
 });
 
+// --- Dividers that eat the paragraph above them ------------------------------
+
+test('a --- directly under a paragraph fails, because it makes that paragraph a heading', () => {
+  // Seven real ones, one in every pack that has a section divider. The
+  // swallowed paragraph was usually the "Open:" note saying what the section
+  // does not cover — the last sentence that should be promoted to a heading.
+  const result = expectFail(
+    '# A\n\nSomething true.\n---\n\n## Next\n\nMore.\n',
+    /makes the line above it a heading/,
+  );
+  assert.match(result.output, /doc\.md:4/, 'the message must point at the divider');
+  assert.match(result.output, /blank line/, 'and say how to fix it');
+});
+
+test('a === directly under a paragraph fails the same way', () => {
+  // The h1 form of the same mistake.
+  expectFail('# A\n\nSomething true.\n===\n\nMore.\n', /makes the line above it a heading/);
+});
+
+test('a --- with a blank line above it is a divider and passes', () => {
+  expectPass('# A\n\nSomething true.\n\n---\n\n## Next\n\nMore.\n');
+});
+
+test('the closing fence of YAML frontmatter is not reported', () => {
+  // SKILL.md and every issue template open with frontmatter, whose closing ---
+  // sits directly under the last key. Reporting that would fail the real tree
+  // on its most important file.
+  const result = withTree(
+    {'SKILL.md': '---\nname: x\ndescription: y\n---\n\n# Title\n\nBody.\n'},
+    (root) => runCheck('check-markdown.mjs', root),
+  );
+  assert.equal(result.code, 0, `expected a pass, got:\n${result.output}`);
+});
+
+test('frontmatter does not suppress the rule for the rest of the file', () => {
+  // The frontmatter state must be left behind at the closing fence, or a file
+  // with frontmatter would be exempt from every check below it.
+  const result = withTree(
+    {'SKILL.md': '---\nname: x\n---\n\n# Title\n\nSomething true.\n---\n\nMore.\n'},
+    (root) => runCheck('check-markdown.mjs', root),
+  );
+  assert.notEqual(result.code, 0, `expected a failure, got a pass:\n${result.output}`);
+  assert.match(result.output, /makes the line above it a heading/);
+});
+
+test('a --- directly under a table row is a real divider and passes', () => {
+  // Written expecting a failure, and the check was right: a setext underline
+  // only promotes a PARAGRAPH, and a table row is not one, so `---` closing a
+  // table is an ordinary thematic break. Excluding table rows from the rule is
+  // therefore correctness, not a convenience — and the packs do end sections
+  // on a table.
+  expectPass('# A\n\n| H |\n| --- |\n| r |\n---\n\nMore.\n');
+});
+
 // --- End of file -------------------------------------------------------------
 
 test('a file with no newline at the end fails', () => {
