@@ -154,6 +154,9 @@ Each of these has exactly **one** check that uses it, plus its test. They are in
 | `citations.mjs` | `check-links.mjs` | Decides which URLs get probed at all. A URL it fails to see is a claim whose evidence is never checked, so it is worth testing without a network |
 | `probe.mjs` | `check-links.mjs` | Decides what each HTTP response *means*. Takes an injectable `fetch`, so the dead-or-merely-awkward table is tested with no network and no server |
 | `facts.mjs` | `check-facts.mjs` | The assertion tables **and** a pure `evaluate()`. The tables are data that goes wrong in specific ways — a duplicate label, a pattern naming a pack that no longer exists — so they are tested as data |
+| `graph.mjs` | `check-dossier.mjs` | The two walks over a dossier's links: reachability, and one depth-first search for a cycle. Takes an adjacency map and nothing else |
+
+**`graph.mjs` is the clearest case for this split.** Inline, the only way to exercise a cycle was to build a whole valid dossier around it — eight collections and a dozen fields of unrelated fixture per case — so the interesting shapes went untested because each cost twenty lines to set up. With an adjacency map as the input, a graph is one line, and the cases that matter are now covered: a diamond that a visited-set-only implementation would misreport as a loop, a cycle in a disconnected component, a cycle buried behind a forty-node acyclic chain, a 50,000-node chain that would overflow a recursive search, and a linearity guard at 40,000 nodes. `check-dossier.mjs` went from 247 lines to 176.
 
 **`facts.mjs` is the one surprise in here**, since it holds claims about German VAT rather than general-purpose code. It sits in `lib/` for the structural reason above, not because it is reusable. If you are looking for the fact assertions, start from `check-facts.mjs`, which is a 34-line CLI around it.
 

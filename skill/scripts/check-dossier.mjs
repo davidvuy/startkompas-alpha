@@ -23,6 +23,7 @@ import {join, resolve} from 'node:path';
 
 import {examplesDir} from './lib/paths.mjs';
 import {createReport} from './lib/report.mjs';
+import {adjacencyOf, findCycle, reachableFrom} from './lib/graph.mjs';
 
 const EXPECTED_FORMAT = 'startkompas-dossier/1';
 
@@ -160,102 +161,19 @@ for (const assumption of doc.assumptions) {
 // dossier-format.md: "Walk links to find every dependent of the changed
 // prerequisite, transitively." Prose does not prove termination; this does.
 
-/** prerequisiteId -> ids that declare it as a prerequisite */
-const directDependents = new Map();
-for (const link of doc.links) {
-  if (!directDependents.has(link.prerequisite_id)) directDependents.set(link.prerequisite_id, []);
-  directDependents.get(link.prerequisite_id).push(link.dependent_id);
-}
+// prerequisiteId -> ids that declare it as a prerequisite. The graph walks
+// themselves are in lib/graph.mjs, where they can be tested on a one-line
+// graph instead of a whole valid dossier.
+const directDependents = adjacencyOf(
+  doc.links.map((link) => ({from: link.prerequisite_id, to: link.dependent_id})),
+);
 
-/**
- * Every record transitively downstream of `startId`.
- *
- * Terminates structurally: a node is queued only on the transition into
- * `reached`, so each is queued at most once and the queue drains in at most
- * `ids.size` steps whatever the links look like.
- */
-function dependentsReachableFrom(startId) {
-  const reached = new Set();
-  const queue = [startId];
-
-  while (queue.length) {
-    for (const next of directDependents.get(queue.pop()) ?? []) {
-      if (reached.has(next)) continue;
-      reached.add(next);
-      queue.push(next);
-    }
-  }
-  return reached;
-}
-
-/**
- * Find a dependency cycle, if there is one, and return the nodes on it.
- *
- * One depth-first search with three-colour marking, which is O(records + links).
- * This used to be a full reachability walk from every record, asking "is it its
- * own dependent" — correct, but quadratic: 8000 records took 1.4 s and doubling
- * the records quadrupled the time. A dossier is the one artefact here that grows
- * without bound over a project's life, and this check is documented as safe to
- * point at a real one, so the cost had to come down.
- *
- * Iterative rather than recursive on purpose: a long chain of dependents is the
- * normal shape of a dossier, and recursion would overflow the stack on it.
- *
- * @returns {string[]} the cycle in order, or an empty array if the graph is acyclic
- */
-function findCycle() {
-  const UNSEEN = 0;
-  const ON_PATH = 1; // in the current DFS path — reaching one of these is a cycle
-  const DONE = 2;
-
-  const colour = new Map();
-  for (const id of ids.keys()) colour.set(id, UNSEEN);
-
-  for (const start of ids.keys()) {
-    if (colour.get(start) !== UNSEEN) continue;
-
-    // Each frame keeps its own position in its neighbour list, so the walk
-    // resumes where it left off rather than restarting.
-    const stack = [{node: start, next: 0}];
-    colour.set(start, ON_PATH);
-
-    while (stack.length) {
-      const frame = stack.at(-1);
-      const neighbours = directDependents.get(frame.node) ?? [];
-
-      if (frame.next >= neighbours.length) {
-        colour.set(frame.node, DONE);
-        stack.pop();
-        continue;
-      }
-
-      const next = neighbours[frame.next];
-      frame.next += 1;
-
-      // A link may name an id that does not exist; section 2 already reported
-      // that, and this walk must not crash on it.
-      if (!colour.has(next)) continue;
-
-      if (colour.get(next) === ON_PATH) {
-        // The cycle is the tail of the current path, from `next` onwards.
-        const path = stack.map((entry) => entry.node);
-        return [...path.slice(path.indexOf(next)), next];
-      }
-
-      if (colour.get(next) === UNSEEN) {
-        colour.set(next, ON_PATH);
-        stack.push({node: next, next: 0});
-      }
-    }
-  }
-
-  return [];
-}
+const dependentsReachableFrom = (startId) => reachableFrom(directDependents, startId);
 
 // A cycle would make "revise only the dependents" ill-defined: there is no
 // order in which to revise. Naming the path makes it fixable — "transitively
 // its own dependent" left the reader to find the loop themselves.
-const cycle = findCycle();
+const cycle = findCycle(directDependents, ids.keys());
 if (cycle.length)
   report.fail(cycle[0], `dependency cycle: ${cycle.join(' -> ')}`);
 
