@@ -208,6 +208,12 @@ export const REQUIRED = [
   {case: '—', pack: 'germany-data-protection.md', label: 'the DPF condition is per provider', pattern: /DPF list of the US Department of Commerce/},
   {case: '—', pack: 'germany-data-protection.md', label: 'freelancers are inside the private-sector authority', pattern: /freiberuflich Tätigen/},
 
+  // Art. 6:235(3) BW is the paragraph that can cost a founder the unfair-terms
+  // protection the rest of §4 describes, and it turns on their own conduct
+  // rather than their size. It was found only by reading the official text.
+  {case: '—', pack: 'netherlands.md', label: 'art. 6:235(3) excludes a repeat user of its own terms', pattern: /meermalen dezelfde of nagenoeg dezelfde algemene voorwaarden/},
+  {case: '—', pack: 'netherlands.md', label: 'art. 7:401 standard of care', pattern: /zorg van een goed opdrachtnemer/},
+
   // --- France — the CNIL's two lists -----------------------------------------
   // France is the only jurisdiction in these packs whose authority has used
   // art. 35(5). The exemption and its carve-out have to survive together: the
@@ -356,6 +362,16 @@ export const FORBIDDEN = [
     pack: 'belgium.md',
     label: 'the phased VAT thresholds must not read as enacted law',
     pattern: /(?<!\*")now enacted, not a bill/i,
+  },
+  // Withdrawn on 2026-11-11 against the official text of art. 6:235 BW: being
+  // small is not enough, because paragraph 3 excludes any party that
+  // repeatedly uses its own standard terms. The corrected sentence says
+  // "6:235(1) does not exclude you", which this pattern does not match, so no
+  // lookbehind is needed — the bare paragraph reference is the claim itself.
+  {
+    pack: 'netherlands.md',
+    label: 'must not say size alone preserves the unfair-terms protection',
+    pattern: /6:235 does not exclude you/,
   },
   // Withdrawn on 2026-11-11: the official page gives thresholds per category
   // and a non-interference rule only for avocats and authors. The pack states

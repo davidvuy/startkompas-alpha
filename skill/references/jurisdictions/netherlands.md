@@ -147,7 +147,7 @@ Recheck triggers: the Q4 2026 consultation opening; the bill's submission; any c
 Dutch law protects against unreasonable standard terms — and the protection is calibrated by **how big you are**, which cuts in a founder's favour.
 
 Sources · **[checked 2026-11-10]**
-- [art. 6:233 BW](https://wetboek.org/bw/6/233) and [art. 6:235 BW](https://wetboek.org/bw/6/235) · *read per article on `wetboek.org`, a third-party reproduction, not the official portal*
+- [art. 6:233 BW](https://wetten.overheid.nl/BWBR0005289) and [art. 6:235 BW](https://wetten.overheid.nl/BWBR0005289) · *primary legislation, read on the official portal in the version `Geldend van 16-07-2026`* · **[checked 2026-11-11]**
 - the consumer-list and `reflexwerking` points · *secondary legal commentary, consistent*
 
 **Art. 6:233** makes a term in general conditions **voidable** on either of two grounds, quoted:
@@ -162,12 +162,20 @@ The second ground is independent of content: **failing to give the counterparty 
 | --- | --- |
 | **art. 6:233 BW** | Voidable on either ground above |
 | **art. 6:235(1) BW** | Cannot be invoked by a party with **50 or more persons employed**, or by a legal entity that had **most recently published its annual accounts** at the time the agreement was concluded |
-| **art. 6:236 / 6:237 BW** | The black list (always unreasonably burdensome) and grey list (presumed so) apply **only against consumers** · *secondary* |
+| **art. 6:236 / 6:237 BW** | The black list (deemed unreasonably onerous) and the grey list (presumed so) open with the same words: *“Bij een overeenkomst tussen een gebruiker en een wederpartij, **natuurlijk persoon, die niet handelt in de uitoefening van een beroep of bedrijf**”*. Read that test, not “consumer” |
 | `reflexwerking` | Where a small entrepreneur's position closely resembles a consumer's, a term's appearance on the consumer black or grey list is relevant to the open test in 6:233 · *secondary* |
 
-Note for maintainers: a fetch of the full Boek 6 BW page on `wetten.overheid.nl` returned text that was **not** art. 6:233 — a large-document extraction failure, not a source disagreement. The per-article pages above were used instead, and they confirm what the earlier secondary sources said. Do not "correct" these figures from a whole-book fetch.
+Note for maintainers, kept because the workaround is reusable: a plain fetch of the Boek 6 BW page on `wetten.overheid.nl` returns the wrong part of a 351,743-character document, which is how these articles came to rest on a reproduction in the first place. Reading them on 2026-11-11 worked by loading the page in a browser and slicing it to the article in the page itself, so only the article is ever extracted. The same method read art. 7:400 out of Boek 7, which is over a million characters. It is a tooling limit, not a source disagreement — and it was worth defeating: the reproduction had been right about arts. 233 and 235(1) and silent about art. 235(3), which is the paragraph that matters most to the reader of this section.
 
-**For a solo founder this is favourable, and the opposite of the intuitive guess.** You are a small party, so 6:235 does not exclude you — you *can* invoke 6:233 against a larger counterparty's standard terms, and `reflexwerking` may import the consumer lists in your favour. The failure to give you a real chance to read the terms is itself a ground.
+**For a solo founder this is usually favourable — but article 6:235 has two more paragraphs, and one of them can take it away.**
+
+- **Art. 6:235(3):** the grounds in arts. 233 and 234 *"kan geen beroep worden gedaan door een partij die meermalen dezelfde of nagenoeg dezelfde algemene voorwaarden in haar overeenkomsten gebruikt"* — **a party that itself repeatedly uses the same or nearly the same general terms cannot invoke them.** Nothing about size. A founder who has their own standard terms and uses them with every client is inside this paragraph, and the protection the rest of this section describes is gone.
+- **Art. 6:235(2):** the art. 233(a) ground may **also** be invoked by a party for whom the terms were used by an authorised representative, provided the counterparty repeatedly concludes contracts on the same or nearly the same terms.
+- **Art. 6:235(4):** the limitation period of art. 3:52(1)(d) BW starts on the day after the term is invoked against you — so the clock runs from the moment the other side relies on the clause, not from signature.
+
+Paragraph 3 is the one to raise before anything else in this section, because it is the only one that turns on the founder's **own** conduct rather than their size, and because §4's own advice — have your own terms, and give the counterparty a real chance to read them — is what puts a founder inside it. Whether using one set of terms repeatedly in a handful of pilots is enough to engage art. 6:235(3) is a judgment for a Dutch lawyer; the statute sets no number. Do not tell a founder they are protected because they are small without raising it.
+
+Subject to that, the size calibration still cuts in a small party's favour. You are a small party, so art. 6:235(1) does not exclude you — you *can* invoke 6:233 against a larger counterparty's standard terms, and `reflexwerking` may import the consumer lists in your favour. The failure to give you a real chance to read the terms is itself a ground.
 
 The mirror image matters too: once a founder grows past 50 employees or publishes accounts, that protection disappears.
 
@@ -189,7 +197,11 @@ Source: [article 7 Auteurswet](https://wetten.overheid.nl/BWBR0001886/2026-01-01
 | **Commissioned work** under an `overeenkomst van opdracht` | **Does not qualify.** Article 7 requires a `dienstbetrekking`; a contract for services does not meet it. · *secondary, consistent* |
 | Contrary agreement | Permitted — *"tenzij tusschen partijen anders is overeengekomen"*. Article 7 is `regelend recht`. |
 
-What an `overeenkomst van opdracht` is, which is what makes that exclusion concrete: [art. 7:400 BW](https://wetboek.org/bw/7/400) · *read on `wetboek.org`, a third-party reproduction, not the official portal* · **[checked 2026-11-10]** — an agreement under which one party, the `opdrachtnemer`, undertakes to perform services for the other **other than under an employment contract**, excluding creating a tangible work, safekeeping goods, publishing, and transporting persons or goods.
+What an `overeenkomst van opdracht` is, which is what makes that exclusion concrete: [art. 7:400 BW](https://wetten.overheid.nl/BWBR0005290) · *primary legislation, read on the official portal in the version `Geldend van 08-10-2026`* · **[checked 2026-11-11]** — an agreement under which one party, the `opdrachtnemer`, undertakes to perform services for the other **other than under an employment contract**, excluding creating a tangible work, safekeeping goods, publishing, and transporting persons or goods.
+
+**And art. 7:400(1) excludes four things as well as employment.** An `opdracht` is work that consists of something *other than* bringing about **a work of a material nature**, keeping things, publishing works, or transporting persons or goods. Each of those has its own title in Boek 7, so a founder whose deliverable is physical is under `aanneming van werk` and not under this regime at all — which matters because the ownership rule above is keyed to the contract type. For software and services the exclusion does not bite.
+
+Two more provisions a service founder is actually held to. **Art. 7:400(2)**: arts. 401 to 412 apply *"tenzij iets anders voortvloeit uit de wet, de inhoud of aard van de overeenkomst van opdracht of van een andere rechtshandeling, of de gewoonte"* — so most of the `opdracht` regime is a **default** that the contract, the nature of the engagement or custom can displace, which is the same `regelend recht` character as art. 7 Auteurswet above. And **art. 7:401**: *"De opdrachtnemer moet bij zijn werkzaamheden de zorg van een goed opdrachtnemer in acht nemen"* — the statutory standard of care a pilot is measured against, and the one sentence to put in front of a founder who asks what they are promising.
 
 So the two are defined against each other: art. 7:400 says "not an employment contract", and art. 7 Auteurswet requires exactly that employment relationship. A founder engaged on an `opdracht` therefore falls outside art. 7 by definition, not by argument.
 
@@ -297,10 +309,15 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | Authority — KVK pages read |
 | Registration fee €85.15, one-off, annually indexed | 2026-11-10 | Authority — official KVK page read |
 | Required identification documents and processing timeframe | — | Open — not yet researched |
-| Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-10 | Secondary — read per article on `wetboek.org`, a third-party reproduction. The official `wetten.overheid.nl` page for Boek 6 is one document of roughly 243,000 characters and could not be fetched far enough to reach art. 233 on 2026-11-11; upgrading needs the BWB XML or a per-article route |
-| Consumer-only lists (6:236/6:237) and reflexwerking boundaries | 2026-11-10 | Secondary — consistent across sources; the case law not read |
+| Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-11 | Primary — both articles read on `wetten.overheid.nl`, version `Geldend van 16-07-2026`, by slicing the 351,743-character document in the browser |
+| **Corrected on 2026-11-11:** the pack said a small party can invoke art. 6:233 | 2026-11-11 | Withdrawn — art. 6:235(3) excludes any party that itself repeatedly uses the same or nearly the same general terms, whatever its size, which is most founders with standard terms |
+| Art. 6:235(2) representative-used terms; 6:235(4) when the art. 3:52 clock starts | 2026-11-11 | Primary — read |
+| Arts. 6:236 and 6:237 open on a natural person not acting in the course of a profession or business | 2026-11-11 | Primary — both openings read on `wetten.overheid.nl` and quoted; it is narrower than “consumer” and excludes a sole trader acting in business |
+| Where `reflexwerking` extends those lists to a small entrepreneur, and its boundaries | 2026-11-10 | Secondary — consistent across commentary; the case law is not published free of charge and was not read |
 | Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | Primary — statute read and quoted |
-| Art. 7:400 BW defines opdracht as "other than under an employment contract" | 2026-11-10 | Secondary — read on `wetboek.org`; the official Boek 7 page is about 296,000 characters and the same fetch limit applies |
+| Art. 7:400(1) defines opdracht as "other than under an employment contract", and excludes four other contract types | 2026-11-11 | Primary — read on `wetten.overheid.nl`, version `Geldend van 08-10-2026`; Boek 7 is 1,054,732 characters and was sliced in the browser |
+| Art. 7:400(2): arts. 401 to 412 are defaults the contract, its nature or custom can displace | 2026-11-11 | Primary — read and quoted |
+| Art. 7:401: the `zorg van een goed opdrachtnemer` standard | 2026-11-11 | Primary — read and quoted |
 | Art. 8 Auteurswet: a public institution, association, foundation or company that publishes a work as its own without naming a natural person is **presumed** the maker, rebuttably | 2026-11-11 | Primary — refetched on the official `wetten.overheid.nl` consolidation, replacing a `wetboek.org` citation that had been labelled primary. Quote and version date confirmed |
 | Art. 2 Aw: writing for transfer and exclusive licence; deed via art. 3:95 BW; narrow construction | 2026-11-10 | Primary — statute read per paragraph and quoted |
 | Art. 2(5): narrow construction disapplied for an art. 7 or art. 8 maker | 2026-11-10 | Primary — statute read |
