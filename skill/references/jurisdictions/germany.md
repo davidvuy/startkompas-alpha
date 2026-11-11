@@ -82,7 +82,7 @@ Recheck triggers: turnover approaching either threshold; the start of a new cale
 
 Sources · **[checked 2026-11-10]**
 - [European Commission — eInvoicing in Germany](https://ec.europa.eu/digital-building-blocks/sites/spaces/DIGITAL/pages/467108886/eInvoicing+in+Germany) · *official EU source*
-- The three BMF letters themselves · *primary administrative guidance* — cited individually below. A chamber-of-commerce summary was used before they were read and has been **dropped**, because every claim it supported is now taken from the letters.
+- The three BMF letters themselves · *administrative guidance, first-hand* — cited individually below. A chamber-of-commerce summary was used before they were read and has been **dropped**, because every claim it supported is now taken from the letters.
 
 | Date | Obligation |
 | --- | --- |
@@ -114,7 +114,7 @@ All three were extracted and read in full on **2026-11-10**. They **amend**, not
 
 ### The 2026 letter — the additional requirements, and a window closing
 
-Source: [BMF letter of 15 October 2026](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2026-10-15-obligatorische-elektronische-rechnung.pdf?__blob=publicationFile&v=2), *"Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025 — Ergänzende Regelungen"*, GZ III C 5 - S 7287 · *primary administrative guidance, PDF extracted and read* · **[checked 2026-11-10]**
+Source: [BMF letter of 15 October 2026](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2026-10-15-obligatorische-elektronische-rechnung.pdf?__blob=publicationFile&v=2), *"Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025 — Ergänzende Regelungen"*, GZ III C 5 - S 7287 · *administrative guidance, first-hand: the letter itself, PDF extracted and read* · **[checked 2026-11-10]**
 
 **The non-objection period, in the letter's own terms.** An e-invoice issued **up to 31 December 2026** that conforms to the 2024 and 2025 letters but not to the *additional* requirements of the 2026 letter will not be objected to — *"auch für den Vorsteuerabzug"*, **including for input VAT deduction**.
 
@@ -134,7 +134,7 @@ Two further allowances a founder may meet:
 
 ### The 2025 letter — read, and it changes the answer for a Kleinunternehmer
 
-Source: [BMF letter of 15 October 2025](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2025-10-15-einfuehrung-obligatorische-e-rechnung.pdf?__blob=publicationFile&v=5), GZ III C 2 - S 7287-a/00019/007/243, 33 pages · *primary administrative guidance, PDF extracted and read* · **[checked 2026-11-10]**
+Source: [BMF letter of 15 October 2025](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2025-10-15-einfuehrung-obligatorische-e-rechnung.pdf?__blob=publicationFile&v=5), GZ III C 2 - S 7287-a/00019/007/243, 33 pages · *administrative guidance, first-hand: the letter itself, PDF extracted and read* · **[checked 2026-11-10]**
 
 **It amends the 2024 letter rather than replacing it** — it restates specific `Randnummern` of the 2024 letter with the changes in bold. So both remain live, and a citation to one of them is a citation to a specific Rn., not to "the BMF's position" generally.
 
@@ -170,7 +170,7 @@ This is the most consequential line in these three letters for anyone this skill
 
 ### The 2024 letter — where the transitional rules actually live
 
-Source: [BMF letter of 15 October 2024](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2024-10-15-obligatorische-elektronische-rechnung.pdf?__blob=publicationFile&v=4), BStBl I S. 1320 · *primary administrative guidance, PDF extracted and read* · **[checked 2026-11-10]**. The PDF is not at the path the filename pattern suggests; it is linked from the HTML landing page of the same name.
+Source: [BMF letter of 15 October 2024](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2024-10-15-obligatorische-elektronische-rechnung.pdf?__blob=publicationFile&v=4), BStBl I S. 1320 · *administrative guidance, first-hand: the letter itself, PDF extracted and read* · **[checked 2026-11-10]**. The PDF is not at the path the filename pattern suggests; it is linked from the HTML landing page of the same name.
 
 Rn. 62 to 65 are the transitional rules the later letters keep pointing at. In the letter's own terms:
 

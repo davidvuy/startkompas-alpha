@@ -40,7 +40,7 @@ Establish before proposing any administrative action: whether the founder is reg
 
 Threshold: **€20,000** turnover per calendar year.
 
-Source: [Belastingdienst — kleineondernemersregeling](https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/hoe_werkt_de_btw/kleineondernemersregeling/) · *primary official (tax authority)* · **[checked 2026-11-10]**
+Source: [Belastingdienst — kleineondernemersregeling](https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/hoe_werkt_de_btw/kleineondernemersregeling/) · *the tax authority's own guidance, not the Wet OB* · **[checked 2026-11-10]**
 
 Eligible: natural persons (sole traders), combinations of natural persons such as partnerships, and legal entities such as foundations, associations and limited companies.
 
@@ -53,7 +53,7 @@ That last point is the trade-off. A founder with significant startup purchases m
 
 ### What still applies inside the KOR — resolved
 
-Source: [Belastingdienst — invoicing when you use the KOR](https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/administratie_bijhouden/facturen_maken/factuureisen/aangepaste_regels_facturen/u_maakt_gebruik_van_de_kleineondernemersregeling) · *primary official* · **[checked 2026-11-10]**
+Source: [Belastingdienst — invoicing when you use the KOR](https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/administratie_bijhouden/facturen_maken/factuureisen/aangepaste_regels_facturen/u_maakt_gebruik_van_de_kleineondernemersregeling) · *the tax authority's own guidance* · **[checked 2026-11-10]**
 
 - **Issuing an invoice is not required**: *"u bent niet verplicht om een factuur uit te reiken"*.
 - If you do issue one, you must **state on it that you use the KOR**: *"vermeldt u op de factuur dat u gebruik maakt van de kleineondernemersregeling"*.
@@ -65,7 +65,7 @@ Note the contrast with Belgium, where a business under the small-business exempt
 
 ### EU-KOR — resolved
 
-Source: [Belastingdienst — kleineondernemersregeling in de EU (EU-KOR)](https://www.belastingdienst.nl/wps/wcm/connect/nl/btw/content/kleineondernemersregeling-in-de-europese-unie-eu-kor) · *primary official* · **[checked 2026-11-10]**
+Source: [Belastingdienst — kleineondernemersregeling in de EU (EU-KOR)](https://www.belastingdienst.nl/wps/wcm/connect/nl/btw/content/kleineondernemersregeling-in-de-europese-unie-eu-kor) · *the tax authority's own guidance* · **[checked 2026-11-10]**
 
 - **Union turnover threshold: €100,000** — *"uw totale omzet in de EU is niet hoger dan € 100.000 per kalenderjaar"*, counting turnover in all EU countries including the Netherlands.
 - The **national threshold of each country also applies** where you use the exemption. Both limits must hold.

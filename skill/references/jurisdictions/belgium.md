@@ -88,7 +88,7 @@ Recheck triggers: turnover approaching the threshold; the start of any calendar 
 
 **Already in effect.** Applies to invoices *created, issued or sent* from **2026-01-01** (`opgemaakt, uitgereikt of verzonden vanaf 1 januari 2026`).
 
-Source: [official e-invoicing FAQ — general B2B questions](https://efactuur.belgium.be/nl/FAQ/algemene-vragen-b2b) · *primary official* · **[checked 2026-11-10]**
+Source: [official e-invoicing FAQ — general B2B questions](https://efactuur.belgium.be/nl/FAQ/algemene-vragen-b2b) · *the administration's own FAQ, not the statute* · **[checked 2026-11-10]**
 
 | Situation | Position |
 | --- | --- |

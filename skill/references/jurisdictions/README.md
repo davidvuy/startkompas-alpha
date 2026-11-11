@@ -209,6 +209,22 @@ Put everything specific in the detail: which article, which letter, whether the 
 
 `Open` is the one label whose detail is close to mandatory, because "no answer" is not useful on its own. Say why it is open: not yet researched, researched but inconclusive, or deliberately left to a professional.
 
+### "Primary" means authoritative, not official
+
+The first three labels are a judgment about **what kind of thing the source is**, and the inline `· *source type* ·` note on each claim in the body must agree with it. The distinction that keeps getting lost:
+
+| | |
+| --- | --- |
+| **Primary** | the text that *is* the rule — a statute, a directive, a published judgment, a bill. Nothing else is primary, however official its publisher |
+| **Authority** | a publication by the body that issues or supervises the rule: a tax authority's website, a supervisory authority's manual, a ministry's circular, a chamber's guidance, a government FAQ |
+| **Secondary** | everything else, including a verbatim reproduction of a statute on a third-party host |
+
+**A government website is `Authority`, not `Primary`.** This was wrong in three packs: a Belgian e-invoicing FAQ and three Belastingdienst pages were labelled *primary official*, which reads as though the statute had been read when it had not. "Official" describes who published it; "primary" describes whether it is the rule itself. A ministry can publish a perfectly official document that is nonetheless one step away from the law — a German `BMF-Schreiben` binds the tax administration, not the courts, so it is `Authority` even though the ministry wrote it and the pack read the letter itself.
+
+**A verbatim reproduction is `Secondary`.** `gdpr-info.eu` and `wetboek.org` carry accurate text, and the packs use them. But if the reproduction is wrong, the claim is wrong, so the evidence is only as good as the host. Name the host in the detail and say what the authoritative source would be, so the row reads as an upgrade waiting to happen rather than as a finished one.
+
+Where the official source exists and is reachable, use it. Where it exists and is not — `wetten.overheid.nl` serves each Book of the Civil Code as one document of a quarter of a million characters — say that in the detail, so the next maintainer does not repeat the attempt blind.
+
 ## Contributing a pack
 
 A pack is only worth having if it is verifiable. Requirements:

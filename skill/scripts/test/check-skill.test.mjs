@@ -278,6 +278,52 @@ test('a shared eu-* layer is not held to the national template', () => {
   });
 });
 
+/** A pack with `line` inserted just under one of its section headings. */
+function packWithLine(heading, line) {
+  return packTree(validPack().replace(`${heading}\n`, `${heading}\n\n${line}\n`));
+}
+
+test('calling a non-authoritative host "primary legislation" fails and names the host', () => {
+  // "Primary" must mean authoritative, not official. A Belgian e-invoicing FAQ
+  // and three Belastingdienst pages were labelled "primary official", which
+  // reads as though the statute had been read when it had not.
+  const result = expectFail(
+    packWithLine(
+      '## 2. VAT — the fixture scheme',
+      'Source: [KOR](https://www.belastingdienst.nl/kor) · *primary official* · **[checked 2026-11-10]**',
+    ),
+    /www\.belastingdienst\.nl/,
+  );
+  assert.match(result.output, /not known to serve authoritative text/);
+  assert.match(result.output, /AUTHORITATIVE_TEXT_HOSTS/, 'the message must say how to allow a host');
+});
+
+test('an authoritative host may be called primary', () => {
+  expectPass(
+    packWithLine(
+      '## 5. Ownership and permitted use',
+      'Source: [art. 7 Aw](https://wetten.overheid.nl/BWBR0001886) · *primary legislation* · **[checked 2026-11-10]**',
+    ),
+  );
+});
+
+test('a Primary row in the maintenance table does not trip the host rule', () => {
+  // The table has its own vocabulary and names no host, so judging it by the
+  // same rule would fail every pack over a row that is correct.
+  expectPass(packTree(validPack().replace('| Authority — fixture |', '| Primary — statute read |')));
+});
+
+test('the word primary with no link on the line is left alone', () => {
+  // Without a URL there is no host to judge, and prose about primary sources
+  // is not a citation.
+  expectPass(
+    packWithLine(
+      '## 4. Agreements and unfair terms',
+      'Source: the statute itself · *primary legislation, read on paper* · **[checked 2026-11-10]**',
+    ),
+  );
+});
+
 // --- Budgets and bulk — section 8 --------------------------------------------
 
 test('SKILL.md over the always-loaded budget fails and says to move detail out', () => {

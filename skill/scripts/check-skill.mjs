@@ -191,6 +191,23 @@ for (const file of modelFacing) {
 // national pack and must follow the six-section template so a reader can find
 // the same topic in the same place in every country.
 
+// Hosts that serve the authoritative text of a rule, so a source on one of
+// them may be called primary. This is deliberately a short allowlist rather
+// than a test for ".gov"-ness: bundesfinanzministerium.de is as official as a
+// host gets, and a BMF letter still is not the statute.
+//
+// Adding a country means adding its legislation portal here, which is the
+// right amount of friction — it makes a contributor state that the host
+// carries the rule itself, rather than inferring it from the domain.
+const AUTHORITATIVE_TEXT_HOSTS = [
+  /(^|\.)eur-lex\.europa\.eu$/, // EU legislation as published
+  /(^|\.)legifrance\.gouv\.fr$/, // French codes and case law
+  /(^|\.)wetten\.overheid\.nl$/, // Dutch consolidated legislation
+  /(^|\.)gesetze-im-internet\.de$/, // German federal law
+  /(^|\.)ejustice\.just\.fgov\.be$/, // Belgian Staatsblad and codes
+  /(^|\.)dekamer\.be$/, // Belgian bills as tabled
+];
+
 const NATIONAL_TEMPLATE = [
   /^## 1\. Registration and formalities$/m,
   /^## 2\. VAT — .+$/m,
@@ -244,6 +261,31 @@ if (existsSync(packsDir)) {
       );
     } else if (!conventions.size) {
       conventions.set(convention, {pack});
+    }
+
+    // "Primary" must mean authoritative, not official. See the pack index,
+    // "Primary means authoritative, not official": a statute, a directive, a
+    // judgment or a bill is primary; a tax authority's website, a ministry's
+    // circular and a government FAQ are that body's own guidance, one step
+    // from the law. Three packs had it wrong — a Belgian e-invoicing FAQ and
+    // three Belastingdienst pages were labelled "primary official", which
+    // reads as though the statute had been read when it had not.
+    //
+    // Only the inline `· *type* ·` note is examined, and only when it sits on
+    // a line carrying a link, because that is where the host can be judged.
+    for (const line of text.split('\n')) {
+      if (line.startsWith('|')) continue; // the maintenance table has its own vocabulary
+      const label = /·\s*\*([^*]*primary[^*]*)\*/i.exec(line)?.[1];
+      if (!label) continue;
+
+      for (const url of [...line.matchAll(/\]\((https?:\/\/[^)\s]+)\)/g)].map((m) => m[1])) {
+        const host = URL.canParse(url) ? new URL(url).hostname : null;
+        if (host && !AUTHORITATIVE_TEXT_HOSTS.some((pattern) => pattern.test(host)))
+          report.fail(
+            where,
+            `calls ${host} "${label}", but that host is not known to serve authoritative text. Either use the issuing body's own word for it, or add the host to AUTHORITATIVE_TEXT_HOSTS and say why it serves the rule itself`,
+          );
+      }
     }
   }
 
