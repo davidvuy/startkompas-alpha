@@ -131,6 +131,30 @@ So the phase-in table in [germany.md](germany.md) §3 is **confirmed twice over*
 
 ---
 
+## The GoBD change that the e-invoicing mandate forced
+
+Source: [BMF, `GoBD; 2. Änderung aufgrund verschiedener gesetzlicher Änderungen`, 14 July 2025, GZ IV D 2 - S 0316/00128/005/088](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.pdf?__blob=publicationFile&v=4) · *the ministry's own letter; it binds the tax administration, not the courts* · **[checked 2026-11-12]**
+
+**Read what this is before using it.** The `GoBD` are the rules on keeping and retaining books and records electronically. The letter read here is the **amendment**, four pages and eleven numbered changes — not the GoBD themselves. What it establishes is what changed and when; the body of the GoBD is **[not researched]**.
+
+It also corrects the chain this pack recorded. The GoBD were published by the letter of **2019-11-28** (BStBl I S. 1269), amended by the letter of **2024-03-11** (BStBl I S. 374), and then by this one. The pack previously named the first and the last and not the middle. New Rz. 185: the version of 14 July 2025 applies **with effect from 2025-07-14**.
+
+Five changes reach a one-person business, and four of them take work away:
+
+| | What changed | What it means |
+| --- | --- | --- |
+| **Rz. 118** | a received structured data set — an e-invoice — needs, *"abweichend zu § 147 Absatz 2 Nr. 1 AO"*, only **content** identity and not **visual** identity | no image copy of an incoming e-invoice |
+| **Rz. 119** | for e-invoices under §14(1) sentences 3 and 6 UStG *"ist es ausreichend, wenn nur der strukturierte Teil aufbewahrt wird"* | **keep the XML, not the PDF** — unless the human-readable part of a hybrid invoice carries *additional or differing* information that matters for taxation, its example being booking notes |
+| **Rz. 76** | with an invoicing program, no image copy of the **outgoing** invoice need be stored from creation, *"wenn jederzeit auf Anforderung ein inhaltlich identisches Mehrstück der Ausgangsrechnung erstellt werden kann"* | you do not have to archive every PDF you send, **if** you can reproduce an identical one on demand |
+| **Rz. 121** | a payment service's technical confirmation of an electronic payment is **not** subject to retention | unless it is used as a booking voucher, is the only settlement document with that service, or is the only thing separating cash from non-cash entries in the cash book |
+| **Rz. 131** | incoming electronic business letters and vouchers must be kept **in the format in which they were received** | an XML invoice stays XML, a PDF bank statement stays PDF. Conversion is allowed under Rz. 135, and where OCR enriches an image, **the information it produces must be kept too**, after verification and correction |
+
+**The reading a founder should take from Rz. 76 and 119 together.** The instinct on receiving a ZUGFeRD invoice is to save the PDF, because that is the part a human can read. The GoBD now say the opposite: the structured part is the one that must survive, and Rz. 125's recast example 10 makes it explicit that *"der strukturierte Datenteil (XML-Datei) vorhanden ist, der nicht durch eine Formatumwandlung (z. B. in TIFF) gelöscht werden darf"* — what matters is not whether the recipient reads only the image, but that the XML exists and is not destroyed by converting the file. **Deleting the XML and keeping a PDF is the failure mode this amendment is written against**, and it is exactly what a tidy-minded founder would do.
+
+None of this shortens the **eight years** in §14b(1) UStG above. It changes *what* has to be kept, not *how long*.
+
+**And one thing it adds rather than removes.** New Rz. 166 on indirect data access (`Z2`): the tax authority may require the taxpayer to run the machine evaluation themselves, or have a commissioned third party run it, and hand over the result in machine-evaluable format or grant read-only access afterwards — limited to the evaluation capabilities already present in the taxpayer's or the third party's system. So a founder's bookkeeping tool may be asked to produce an export, and "my software cannot do that" is a real limit on what can be demanded rather than a problem to be solved under time pressure.
+
 ## Pack maintenance
 
 One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
@@ -160,7 +184,14 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | §27(38) UStG: three derogation cases, all for issuing/transmitting; the €800,000 limit in no. 2 only; **no turnover limit on the EDI route** in no. 3 | 2026-11-11 | Primary — statute read and the three cases tabulated. It bears out Rn. 62 and sharpens Rn. 64/65 |
 | Whether anything covers a paper invoice **transmitted** after 2026-12-31 for a 2026 turnover | — | Open — no. 1's transmission date has passed and no. 2's turnover window has not opened; the BMF may read Rn. 63 more generously |
 | §27(15) and (18) are 2009 and 2011 commencement rules for earlier versions of §14, and carve nothing out of the phase-in | 2026-11-11 | Primary — both read; a negative result, recorded because the cross-reference invites a search |
-| GoBD letter of 2019-11-28 as amended 2025-07-14 (non-VAT retention) | — | Open — not yet researched |
+| The GoBD chain: published 2019-11-28, amended 2024-03-11, amended again 2025-07-14 with effect from that date | 2026-11-12 | Primary — the 2025 amendment letter read; it names both earlier instruments. The pack previously omitted the 2024 amendment |
+| Rz. 118 and 119: content identity suffices for a received structured record, and keeping the structured part alone is enough | 2026-11-12 | Authority — the amendment read and quoted |
+| Rz. 76: no image copy of an outgoing invoice need be stored if an identical duplicate can be produced on demand | 2026-11-12 | Authority — read and quoted |
+| Rz. 121: a payment service's technical confirmation is not retention-bound, with three exceptions | 2026-11-12 | Authority — read |
+| Rz. 131: incoming records keep their received format, and OCR-derived information must be kept too | 2026-11-12 | Authority — read |
+| Rz. 125 example 10: the structured part must not be destroyed by a format conversion | 2026-11-12 | Authority — read and quoted |
+| Rz. 166: indirect data access is limited to the evaluation capabilities already in the taxpayer's system | 2026-11-12 | Authority — read |
+| The body of the GoBD itself, as opposed to this amendment | — | Open — only the four-page amendment was read |
 | The phase-in dates, the reception duty, the accepted formats and the email-address relief | — | Elsewhere — stated and maintained in germany.md §3 |
 
 Next full recheck due: **2027-05-10**. Earlier before 2026-12-31, when the BMF non-objection period ends, and before 2027-01-01 when the first issuing phase begins. Also before 2027-12-31, when the transitional rules of the 2024 letter run out.

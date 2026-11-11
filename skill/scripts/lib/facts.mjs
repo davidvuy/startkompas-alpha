@@ -80,6 +80,12 @@ export const REQUIRED = [
   {case: 'C14', pack: 'germany-e-invoicing.md', label: 'Kleinunternehmer exempt from issuing, not deferred', pattern: /never has to issue an e-invoice/i},
   {case: 'C14', pack: 'germany-e-invoicing.md', label: 'no transitional rule for receiving', pattern: /no transition for receiving/i},
   {case: '—', pack: 'germany-e-invoicing.md', label: 'BMF grace period end', pattern: /2026-12-31/},
+  // The GoBD amendment of 2025-07-14. The trap it is written against is the
+  // tidy-minded founder who keeps the readable PDF and lets a conversion
+  // delete the XML, which is the part that must survive.
+  {case: '—', pack: 'germany-e-invoicing.md', label: 'the structured part is the one to keep', pattern: /ist es ausreichend, wenn nur der strukturierte Teil aufbewahrt wird/},
+  {case: '—', pack: 'germany-e-invoicing.md', label: 'a format conversion must not delete the XML', pattern: /nicht durch eine Formatumwandlung/},
+  {case: '—', pack: 'germany-e-invoicing.md', label: 'the GoBD amendment does not shorten the eight years', pattern: /It changes \*what\* has to be kept, not \*how long\*/},
   {case: '—', pack: 'germany-e-invoicing.md', label: 'retention period is eight years', pattern: /\*\*eight years\*\*/},
   {case: '—', pack: 'germany-e-invoicing.md', label: 'validation may be relied on; keep the report', pattern: /validation report/i},
   // §27(38) is the whole transition, and the letters never put its three cases
