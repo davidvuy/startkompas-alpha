@@ -33,7 +33,7 @@ test('the baseline fixture passes, so every failure below is caused by its defec
   expectPass(baseTree());
 });
 
-// --- Frontmatter -------------------------------------------------------------
+// --- Frontmatter — check-skill.mjs section 1 ---------------------------------
 
 test('missing SKILL.md fails', () => {
   expectFail({'references/method.md': VALID_REFERENCE}, /SKILL\.md.*missing/);
@@ -91,7 +91,7 @@ test('a description that never says when to use the skill fails', () => {
   );
 });
 
-// --- Links and reachability --------------------------------------------------
+// --- Links and reachability — sections 2, 3 and 7 ----------------------------
 
 test('a dead relative link fails', () => {
   expectFail(
@@ -127,7 +127,7 @@ test('a reference linking outside the model-facing set fails', () => {
   );
 });
 
-// --- Runtime coupling and host neutrality ------------------------------------
+// --- Runtime coupling and host neutrality — sections 4 and 5 -----------------
 
 test('a dependency install step in a reference fails', () => {
   expectFail(
@@ -160,7 +160,7 @@ test('naming a host in SKILL.md fails too', () => {
   );
 });
 
-// --- Jurisdiction packs ------------------------------------------------------
+// --- Jurisdiction packs — section 6 ------------------------------------------
 
 /** A tree with one national pack, correctly indexed. */
 function packTree(packBody, {index = '[testland.md](testland.md)'} = {}) {
@@ -278,7 +278,7 @@ test('a shared eu-* layer is not held to the national template', () => {
   });
 });
 
-// --- Budgets and bulk --------------------------------------------------------
+// --- Budgets and bulk — section 8 --------------------------------------------
 
 test('SKILL.md over the always-loaded budget fails and says to move detail out', () => {
   const padding = '\nFiller line that exists only to inflate the file past 10 KB.';
@@ -339,7 +339,7 @@ test('a binary asset in the tree fails', () => {
   expectFail({...baseTree(), 'assets/logo.png': 'not really a png'}, /binary asset does not belong/);
 });
 
-// --- Reporting contract ------------------------------------------------------
+// --- Reporting contract — cross-cutting, via lib/report.mjs ------------------
 
 test('problems go to stderr and the happy path says nothing to stderr', () => {
   // CI and humans both rely on this split; it is easy to break by editing

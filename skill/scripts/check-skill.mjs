@@ -258,7 +258,7 @@ if (existsSync(packsDir)) {
   else report.note(`${national.length} national pack(s) on template, ${shared.length} shared layer(s)`);
 }
 
-// --- 7. The model-facing set is closed --------------------------------------
+// --- 7. The model-facing set is closed ---------------------------------------
 // If a reference linked into scripts/ or evals/, the model could be pointed at
 // a file that is not part of what it should be reading.
 

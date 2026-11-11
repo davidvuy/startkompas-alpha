@@ -50,6 +50,8 @@ test('the directory still looks the way these tests assume', () => {
   assert.ok(checkScripts.length >= 4, `only ${checkScripts.length} check scripts found`);
 });
 
+// --- Nothing runs unless check-all.mjs knows about it ------------------------
+
 test('check-all.mjs runs every check script in the directory', () => {
   // The real risk: someone adds check-whatever.mjs, runs it by hand, and it
   // never runs again because CI only calls check-all.
@@ -78,6 +80,8 @@ test('every check in check-all.mjs says what it proves', () => {
     assert.ok(/network:\s*(true|false)/.test(block), `${name} does not declare whether it needs the network`);
   }
 });
+
+// --- Nothing is findable unless the README names it --------------------------
 
 test('every script is listed in scripts/README.md', () => {
   for (const name of scripts) {
@@ -130,6 +134,8 @@ test('every script is executable as a program and says what it is for', () => {
   }
 });
 
+// --- Nothing is tested unless a file is named after it -----------------------
+
 test('every script and every lib module has a test file named after it', () => {
   // One-to-one naming, so a developer can find the tests for X by looking for
   // X.test.mjs. It was not one-to-one: probe.mjs had its own file while pool,
@@ -180,6 +186,33 @@ test('every test file covers something that exists', () => {
   }
 });
 
+// --- A long file needs a map at the top of it --------------------------------
+
+test("every numbered section is named by its test file's section banners", () => {
+  // The cross-reference that answers "where are the tests for section 6?".
+  // Grouping tests by the check section they cover only helps if every section
+  // is accounted for, so a new section added with no tests shows up here rather
+  // than as silence.
+  for (const name of scripts) {
+    const source = readFileSync(join(scriptsDir, name), 'utf8');
+    const sections = [...source.matchAll(/^\/\/ --- (\d+)\./gm)].map((match) => match[1]);
+    if (sections.length === 0) continue;
+
+    const testFile = join(scriptsDir, 'test', `${name.replace(/\.mjs$/, '')}.test.mjs`);
+    const banners = [...readFileSync(testFile, 'utf8').matchAll(/^\/\/ --- .*$/gm)]
+      .map((match) => match[0])
+      .join('\n');
+
+    for (const section of sections) {
+      assert.match(
+        banners,
+        new RegExp(`\\b${section}\\b`),
+        `${name} has a section ${section} that no banner in ${name.replace(/\.mjs$/, '')}.test.mjs claims to cover`,
+      );
+    }
+  }
+});
+
 test('a script with numbered sections lists them in its header, and the list matches', () => {
   // A long check is navigable only if its header is a map of it. check-skill.mjs
   // had eight `--- n. ---` banners and a header listing seven, so the one a
@@ -198,6 +231,8 @@ test('a script with numbered sections lists them in its header, and the list mat
     );
   }
 });
+
+// --- A file's kind is visible from the file itself ---------------------------
 
 test('library modules are not executable programs', () => {
   // lib/ is imported, never run. A shebang there suggests otherwise.

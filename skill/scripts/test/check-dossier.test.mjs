@@ -66,7 +66,7 @@ test('the fixture dossier passes, so every failure below is its defect', () => {
   expectPass(validDossier());
 });
 
-// --- Shape -------------------------------------------------------------------
+// --- Shape — check-dossier.mjs section 1 -------------------------------------
 
 test('a missing file exits non-zero with the path', () => {
   const result = withTree({'nothing.txt': ''}, (root) =>
@@ -104,7 +104,7 @@ test('a collection that is not an array fails and stops before the later checks'
   );
 });
 
-// --- Referential integrity ---------------------------------------------------
+// --- Referential integrity — section 2 ---------------------------------------
 
 test('a duplicate id fails and names both collections', () => {
   expectFail(
@@ -151,7 +151,7 @@ test('a link with no reason fails', () => {
   );
 });
 
-// --- Vocabularies and the format's own rules ---------------------------------
+// --- Vocabularies and the format's own rules — section 3 ---------------------
 
 test('a fact with an assertion outside the vocabulary fails', () => {
   expectFail(
@@ -201,7 +201,7 @@ test('a task done and reviewed with evidence passes', () => {
   );
 });
 
-// --- The propagation walk ----------------------------------------------------
+// --- The propagation walk — sections 4 and 5 ---------------------------------
 
 test('a two-record cycle is caught, and the path is named', () => {
   // The property the prose cannot establish: with A depending on B and B on A,
