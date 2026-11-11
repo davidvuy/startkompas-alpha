@@ -54,7 +54,7 @@ Updated 2026-11-10.
 
 **Partly done:**
 
-- **47** — an instruction-coverage audit of all 22 cases is recorded in [skill/evals/results.md](skill/evals/results.md) and found four real gaps, now fixed. A **behavioural score on a host is still missing**, and that is the part that matters.
+- **47** — an instruction-coverage audit of the first 22 cases is recorded in [skill/evals/results.md](skill/evals/results.md) and found four real gaps, now fixed. A **behavioural score on a host is still missing**, and that is the part that matters.
 - **22** — target corrected, see below.
 - **34** — the **enacting instrument is now identified**: the Belgian law of 2026-09-23, published 2026-10-07, article 26 amending article 56ter of the VAT Code, in force 2027-01-01. The year-by-year figures still rest on professional commentary rather than an FPS Finance page, so this is improved but not closed.
 - **35** — **closed.** The €100,000 is art. 284(2)(a) of Council Directive (EU) 2020/285, with a €85,000 ceiling on national thresholds in art. 284(1), applicable from 2025-01-01 per art. 3(1). Read from EUR-Lex and factored into a second shared layer, `eu-vat-sme.md`.

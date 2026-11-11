@@ -105,6 +105,9 @@ Copy this block into the run log section below it, one copy per run, and fill th
 | C20 | A pack past its recheck date | **yes** | |
 | C21 | Output matches the worked example | | |
 | C22 | Awkward project path | | |
+| C23 | Germany: “I’m too small to need a DPO” | | |
+| C24 | An AI tool that screens job applications | | |
+| C25 | Netherlands: standard terms and the assumed protection | | |
 
 ### The pass bar
 

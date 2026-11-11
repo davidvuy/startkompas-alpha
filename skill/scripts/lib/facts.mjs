@@ -205,8 +205,8 @@ export const REQUIRED = [
   // only the 20-person figure is the error this block exists to prevent: it
   // tells a one-person market-research business it owes no DPO when it does.
   {case: '—', pack: 'germany-data-protection.md', label: '§38(1) sentence 1 threshold, in German', pattern: /mindestens 20 Personen ständig/},
-  {case: '—', pack: 'germany-data-protection.md', label: '§38(1) sentence 2 applies regardless of headcount', pattern: /unabhängig von der Anzahl/},
-  {case: '—', pack: 'germany-data-protection.md', label: '§6(4) bars dismissal of a compulsory DPO', pattern: /Die Kündigung des Arbeitsverhältnisses ist unzulässig/},
+  {case: 'C23', pack: 'germany-data-protection.md', label: '§38(1) sentence 2 applies regardless of headcount', pattern: /unabhängig von der Anzahl/},
+  {case: 'C23', pack: 'germany-data-protection.md', label: '§6(4) bars dismissal of a compulsory DPO', pattern: /Die Kündigung des Arbeitsverhältnisses ist unzulässig/},
   // Entry 11 of the German art. 35(4) list. It converts the AI DPIA question
   // from arguable to listed, which is the sharpest national fact in any pack.
   {case: '—', pack: 'germany-data-protection.md', label: 'DSK entry 11 covers AI steering interaction', pattern: /Steuerung der Interaktion mit den Betroffenen/},
@@ -220,7 +220,7 @@ export const REQUIRED = [
   // Art. 6:235(3) BW is the paragraph that can cost a founder the unfair-terms
   // protection the rest of §4 describes, and it turns on their own conduct
   // rather than their size. It was found only by reading the official text.
-  {case: '—', pack: 'netherlands.md', label: 'art. 6:235(3) excludes a repeat user of its own terms', pattern: /meermalen dezelfde of nagenoeg dezelfde algemene voorwaarden/},
+  {case: 'C25', pack: 'netherlands.md', label: 'art. 6:235(3) excludes a repeat user of its own terms', pattern: /meermalen dezelfde of nagenoeg dezelfde algemene voorwaarden/},
   {case: '—', pack: 'netherlands.md', label: 'art. 7:401 standard of care', pattern: /zorg van een goed opdrachtnemer/},
 
   // --- France — the CNIL's two lists -----------------------------------------
@@ -311,13 +311,13 @@ export const REQUIRED = [
   // derogation for anything that profiles people.
   {case: '—', pack: 'eu-ai-act.md', label: 'art. 6(1a) excludes convenience features from safety components', pattern: /solely used for non-safety related aspects of user assistance/},
   {case: '—', pack: 'eu-ai-act.md', label: 'the two limbs of the safety-component definition', pattern: /fulfils a safety function for that product or AI system/},
-  {case: '—', pack: 'eu-ai-act.md', label: 'Annex III names recruitment screening', pattern: /to analyse and filter job applications/},
-  {case: '—', pack: 'eu-ai-act.md', label: 'profiling cancels the art. 6(3) derogation', pattern: /always be considered to be high-risk where the AI system performs profiling/},
+  {case: 'C24', pack: 'eu-ai-act.md', label: 'Annex III names recruitment screening', pattern: /to analyse and filter job applications/},
+  {case: 'C24', pack: 'eu-ai-act.md', label: 'profiling cancels the art. 6(3) derogation', pattern: /always be considered to be high-risk where the AI system performs profiling/},
   // Using the derogation is itself a documented, registered decision.
   {case: '—', pack: 'eu-ai-act.md', label: 'art. 6(4) requires documentation and registration', pattern: /registration obligation in art\. 49\(2\)/},
   // CE marking is the fact that tells a founder high risk is product
   // regulation and not a policy exercise.
-  {case: '—', pack: 'eu-ai-act.md', label: 'art. 16 requires a QMS, a conformity assessment and CE marking', pattern: /affix the CE marking/},
+  {case: 'C24', pack: 'eu-ai-act.md', label: 'art. 16 requires a QMS, a conformity assessment and CE marking', pattern: /affix the CE marking/},
   // Art. 4a is a permission. Its last sentence is the guard against reading it
   // as a duty to bias-test on special-category data.
   {case: '—', pack: 'eu-ai-act.md', label: 'art. 4a creates no obligation to bias-test', pattern: /does not create any obligation to conduct such bias detection/},

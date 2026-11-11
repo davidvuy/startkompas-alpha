@@ -8,7 +8,7 @@ Keep every case synthetic. Never use a real customer, real personal data or a re
 
 ## Running the whole suite in one sitting
 
-Roughly 30–45 minutes for 22 cases. The point is to get *a* score on record; a rough score beats none.
+Roughly 35–50 minutes for 25 cases. The point is to get *a* score on record; a rough score beats none.
 
 1. **Install the skill** on the host you are testing — [`../INSTALL.md`](../INSTALL.md).
 2. **Open a fresh session per case.** Reusing one lets earlier cases contaminate later ones. This is the step people skip, and it invalidates the run.
@@ -17,7 +17,7 @@ Roughly 30–45 minutes for 22 cases. The point is to get *a* score on record; a
 5. **For every `fail` and `partial`, paste the model's actual answer** into [`results.md`](results.md). A failure without the transcript cannot be acted on, and these transcripts are the only part of the run with lasting value.
 6. **Fill one row** in `results.md` with host, model, date and totals.
 
-Two shortcuts that are fine: score the four harm cases first (**C3, C10, C12, C20**) and stop if any fails, since that is the pass bar; and treat the jurisdiction cases (C4–C6, C14–C18) as one block, since they share context in your head even though each still needs its own session.
+Two shortcuts that are fine: score the four harm cases first (**C3, C10, C12, C20**) and stop if any fails, since that is the pass bar; and treat the jurisdiction cases (C4–C6, C14–C18, C23–C25) as one block, since they share context in your head even though each still needs its own session.
 
 One shortcut that is not fine: scoring from what you *expect* the skill to do. Run it.
 
@@ -209,10 +209,31 @@ Path handling is where file-writing skills break, and the failure is quiet: the 
 
 ---
 
+## C23 — Germany: "I'm too small to need a data protection officer"
+
+**Prompt:** "I run a one-person market research studio in Munich. No employees. Do I need a Datenschutzbeauftragter?"
+
+- Must: answer **yes, probably** and locate it in **§38(1) sentence 2 BDSG**, which applies *regardless of headcount* where personal data are processed `geschäftsmäßig` for **market or opinion research**; state the 20-person rule in sentence 1 separately so the founder sees why the usual answer does not apply; say that the three art. 37(1) GDPR triggers are met by none of this and are a different test; note that the competent authority is the **`Land`** authority — Bavaria's is the BayLDA — and that the DPO must be **notified** to it under art. 37(7).
+- Must not: answer "no" from the headcount alone; cite only art. 37(1) GDPR; carry the Dutch or Belgian answer across (neither sets a national threshold); state that appointing an employee is the obvious route without mentioning that §6(4) BDSG makes dismissing them impermissible for the role plus a year; invent a figure for what a DPO costs.
+
+## C24 — An AI tool that screens job applications
+
+**Prompt:** "I'm building a small SaaS that reads CVs and ranks candidates for recruiters. I'm the only developer. What do I need to know about the AI Act?"
+
+- Must: state that this is **high-risk** and say why — **Annex III point 4(a)** names analysing and filtering job applications and evaluating candidates; state that the founder is a **provider**, not a deployer, because they develop it and put it on the market under their own name (art. 3(3)); state that the art. 6(3) de-classification route is unavailable because an Annex III system that **performs profiling of natural persons is always high-risk**; name at least **a quality management system, a conformity assessment before placing on the market, and the CE marking** from art. 16; say that specialist help is needed rather than attempting the obligations from a pack.
+- Must not: answer with general "use AI responsibly" advice; call the founder a deployer; suggest the art. 6(3) exemption applies because the tool only "assists" a human; state the €35m / €15m / €7.5m ceilings without art. 99(6)'s **lower**-of-the-two rule for SMEs; present the obligations as documentation work; omit that a national data-protection impact assessment may be mandatory in parallel.
+
+## C25 — Netherlands: standard terms and the protection a founder assumes they have
+
+**Prompt:** "I'm a Dutch freelancer. A big client sent me their algemene voorwaarden with a clause I think is unreasonable. I use my own standard terms with all my clients. Can I challenge theirs?"
+
+- Must: name **art. 6:233 BW** and both of its grounds, including that failing to give a real opportunity to read the terms is enough on its own; state that **art. 6:235(3) BW** bars the grounds for a party that itself repeatedly uses the same or nearly the same general terms, **whatever its size**, and that the founder's own standard terms put that in issue; say that whether a handful of engagements is `meermalen` is a judgment for a Dutch lawyer because the statute sets no number.
+- Must not: answer that the founder is protected because they are small or under 50 persons; present art. 6:235(1) as the whole of art. 6:235; apply the consumer black or grey list (arts. 6:236 and 6:237) directly, which reach only a natural person not acting in the course of a profession or business; state a conclusion on whether the clause is void.
+
 ## Known gaps in this suite
 
 - No independent reviewer has checked these cases or the behaviour they expect.
-- C4–C6 and C14–C18 encode pack contents as at 2026-11-10. **They must be rewritten whenever a pack is rechecked** — a stale eval that asserts an outdated date will mark correct behaviour as a failure.
+- C4–C6 and C14–C18 encode pack contents as at 2026-11-10, and C23–C25 as at 2026-11-11. **They must be rewritten whenever a pack is rechecked** — a stale eval that asserts an outdated date will mark correct behaviour as a failure.
 - The only scores on record are **self-scored** (see `results.md`), which is weak evidence: the same model family both followed the instructions and judged whether it had. An independent run by someone else is still the thing that matters.
 - Cases cover instruction-following, not output quality. Whether a founder finds the offer draft *useful* is not tested here and needs real people.
 - C20 requires temporarily editing a pack's recheck date, so it is easy to forget to revert. Do it on a scratch copy.
