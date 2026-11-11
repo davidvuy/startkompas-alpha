@@ -45,15 +45,36 @@ Source: [§11 GewStG, official consolidated law text](https://www.gesetze-im-int
 
 Three details the chamber summary did not carry:
 
-- The base is the **`Gewerbeertrag`**, not profit. Trade income is profit as modified by the additions and reductions of §§8–9 GewStG, which are **[not researched]** here.
+- The base is the **`Gewerbeertrag`**, not profit. Trade income is profit as modified by the additions and reductions of §§8–9 GewStG — read below.
 - It is **rounded down to a full €100** before the allowance is applied, and the allowance is capped at the rounded figure — so it cannot create a negative base.
 - §11(2): the `Steuermesszahl` is **3.5%**, applied to what is left. The municipality's `Hebesatz` then multiplies that, and varies by municipality.
 
 **The practical consequence is about legal form, not about trade tax rates.** A founder who incorporates for liability reasons loses a €24,500 allowance they had as a sole trader. That is a `Steuerberater` conversation before the legal form is chosen, not after.
 
+#### §§8 and 9 — what turns profit into `Gewerbeertrag`, and the €200,000 that keeps a founder out of it
+
+Sources: [§8 GewStG](https://www.gesetze-im-internet.de/gewstg/__8.html) and [§9 GewStG](https://www.gesetze-im-internet.de/gewstg/__9.html) · *primary legislation* · **[checked 2026-11-11]**
+
+**§8 adds back financing costs, and the shape of it matters more than the list.** Under §8 Nr. 1 a quarter of the *sum* of six items is added back to the profit — but only *"soweit die Summe den Betrag von 200 000 Euro übersteigt"*, **to the extent the sum exceeds €200,000.** The six, with the fraction each contributes to that sum:
+
+| | What enters the sum | At |
+| --- | --- | --- |
+| a | interest on debts, and discounts on selling receivables | **in full** |
+| b | annuities and permanent charges | in full |
+| c | a silent partner's profit share | in full |
+| d | rent, lease and **leasing instalments** for **movable** fixed assets owned by someone else | **one fifth** — and **half of that** for electric vehicles, qualifying plug-in hybrids, and bicycles that are not motor vehicles |
+| e | rent and lease for **immovable** fixed assets owned by someone else — office and workshop rent | **one half** |
+| f | expenses for the **temporary grant of rights, in particular concessions and licences** | **one quarter** |
+
+Two readings a founder will want. **Office rent is in it**, at half into the sum and then a quarter of the total, so about 12.5% of the rent — above the allowance. And **software and other licence fees are in it** under (f), at a quarter into the sum and then a quarter again, so about 6.25% — which is not obvious from "trade tax is a tax on profit". Point (f) excludes licences that only permit sub-licensing, and expenses that form the base for the `Künstlersozialabgabe` under §25 KSVG.
+
+**The practical answer for a one-person business is still "none of this applies".** Reaching €200,000 of interest, rent and licence fees is a different size of business. But the €200,000 is an allowance on the *sum*, not on each item, so it is the figure to watch if a founder signs a long office lease and a large software contract in the same year — and the pack can now say that from the statute rather than leaving it open.
+
+**§9 reduces, and only one of its heads is likely to reach a founder.** §9 Nr. 1 sentence 1 cuts *"die im Erhebungszeitraum als Betriebsausgabe erfasste Grundsteuer"* for real property in the business assets — the property tax actually booked as an expense. Note the current wording: this is the tax recorded, not a percentage of an assessed value. Its sentence 2 is the extended reduction for businesses that only manage their own property, which is not founder territory. §9 Nr. 5 reduces donations and membership fees to tax-privileged purposes paid out of business funds, and §9 Nr. 3 reduces the part of trade income attributable to a foreign permanent establishment. The remaining heads — Nr. 1a, 2, 2a, 2b, 7 and 8 — concern partnership and corporate shareholdings and are **[not researched]**.
+
 Also establish: the legal form; whether they already hold a `Steuernummer` and a VAT identification number; and whether the activity falls under the `Handwerksordnung`, which carries its own entry requirements and `HWK` membership.
 
-**Open:** the specific documents, fees and processing times for a `Gewerbeanmeldung` vary by municipality and are **[not researched]**, as are the §§8–9 GewStG additions and reductions that determine the `Gewerbeertrag`.
+**Open:** the specific documents, fees and processing times for a `Gewerbeanmeldung` vary by municipality and are **[not researched]**.
 
 ---
 
@@ -323,7 +344,11 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Whether a software developer is `ingenieurähnlich` | — | Open — open by nature; a Steuerberater question, not researchable here |
 | §11 GewStG: €24,500 allowance for **natural persons and partnerships only**, capped at the Gewerbeertrag rounded down to €100; `Steuermesszahl` 3.5% | 2026-11-11 | Primary — statute read and quoted. A GmbH or UG gets no allowance, which the chamber summary did not say |
 | Municipal Gewerbeanmeldung documents and fees | — | Open — vary by municipality, not yet researched |
-| §§8–9 GewStG additions and reductions, which determine the Gewerbeertrag | — | Open — named by §11, their text not read |
+| §8 Nr. 1: a quarter of a six-item sum, added back only above €200,000; office rent at one half and licence fees at one quarter into that sum | 2026-11-11 | Primary — statute read and tabulated |
+| §8 Nr. 1(d): the movable-asset fraction is halved for electric vehicles, qualifying plug-in hybrids and non-motorised bicycles | 2026-11-11 | Primary — read |
+| §9 Nr. 1 sentence 1 reduces the `Grundsteuer` actually booked as an expense, not a percentage of an assessed value | 2026-11-11 | Primary — read and quoted |
+| §9 Nr. 5 donations and Nr. 3 foreign permanent establishment | 2026-11-11 | Primary — read, not detailed |
+| §9 Nr. 1a, 2, 2a, 2b, 7 and 8 | — | Open — shareholding heads, not researched |
 | §310(1) BGB: §§308/309 catalogue disapplied in B2B, §307 general test survives | 2026-11-10 | Primary — statute read and quoted |
 | Indizwirkung of §§308/309 under §307 in B2B | 2026-11-10 | Secondary — BGH NJW 2007, 3774 via consistent commentary; the judgment itself not read |
 | How far trade custom under §310(1) rebuts that indication | — | Open — not yet researched |

@@ -41,6 +41,12 @@ export const REQUIRED = [
 
   // --- Germany ---------------------------------------------------------------
   {case: 'C14', pack: 'germany.md', label: 'receiving mandatory from 2025-01-01', pattern: /2025-01-01/},
+  // §8 Nr. 1 is an allowance on the SUM, not on each item, and the two items a
+  // software founder meets — office rent and licence fees — are the least
+  // obvious members of it.
+  {case: '—', pack: 'germany.md', label: 'the §8 Nr. 1 allowance is on the sum', pattern: /soweit die Summe den Betrag von 200 000 Euro übersteigt/},
+  {case: '—', pack: 'germany.md', label: 'licence fees enter the trade-tax add-back', pattern: /temporary grant of rights, in particular concessions and licences/},
+  {case: '—', pack: 'germany.md', label: '§9 Nr. 1 cuts the Grundsteuer actually booked', pattern: /die im Erhebungszeitraum als Betriebsausgabe erfasste Grundsteuer/},
   {case: 'C14', pack: 'germany.md', label: 'issuing threshold EUR 800,000', pattern: /€800,000/},
   {case: 'C14', pack: 'germany.md', label: 'all businesses from 2028-01-01', pattern: /2028-01-01/},
   {case: 'C14', pack: 'germany.md', label: 'email address suffices to receive', pattern: /email address is sufficient/i},
