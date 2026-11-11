@@ -40,6 +40,16 @@ Two seams make that possible, and neither is used by anything that ships:
 
 **Use the explicit glob.** Node's default discovery also loads any file under a directory called `test/`, which pulls in `test/helpers.mjs` as an empty test file.
 
+### One test file per subject
+
+`X.mjs` is tested by `X.test.mjs`, for every script and every lib module. So the tests for `pool.mjs` are in `pool.test.mjs`, and a missing test file is a visible gap rather than nothing at all. Two tests in `conventions.test.mjs` enforce it in both directions: nothing untested, and no test file left behind after its subject was renamed.
+
+It was not always one-to-one. `probe.mjs` had its own file while `pool`, `citations`, `files` and `report` were bundled into a `lib.test.mjs`, so finding `pool`'s tests meant grepping for them. Splitting that file changed no assertions — the same 212 tests passed before and after.
+
+Three files cover something other than a single module: `conventions.test.mjs` (how this directory hangs together), `evals.test.mjs` (that `evals/cases.md` and `results.md` agree), and `helpers.mjs`, which is fixtures rather than tests.
+
+**One exemption, and it is checked.** `check-facts.mjs` has no test of its own, because it is a CLI over `lib/facts.mjs` and every decision is there. A test requires each exempt script to stay under 100 lines, so the exemption cannot quietly grow to cover something substantial. It already caught one: `check-all.mjs` was on that list at 103 lines, and looking properly turned up three things worth asserting — including that a child killed by a signal is a failure, not a pass, which `status !== 0` alone does not catch.
+
 ### What the suite is guarding, beyond correctness
 
 Two tests assert a **cost**, not a behaviour, because both were real regressions waiting to happen:

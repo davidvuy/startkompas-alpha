@@ -29,6 +29,22 @@ const checkScripts = scripts.filter(
 const checkAll = readFileSync(join(scriptsDir, 'check-all.mjs'), 'utf8');
 const readme = readFileSync(join(scriptsDir, 'README.md'), 'utf8');
 
+/**
+ * Scripts with no logic of their own, so no test file named after them.
+ *
+ * Only `check-facts.mjs` qualifies: it is a CLI over `lib/facts.mjs`, which
+ * carries every decision and is tested directly as `facts.test.mjs`.
+ *
+ * `check-all.mjs` was on this list and should not have been — the rule below
+ * caught it at 103 lines, and looking properly found three things worth
+ * asserting, including that a child killed by a signal is a failure rather than
+ * a pass. It now has `check-all.test.mjs`.
+ *
+ * The test after this one keeps the list honest by requiring every entry to
+ * actually be small, so the exemption cannot grow to cover an untested script.
+ */
+const THIN_CLIS = new Set(['check-facts.mjs']);
+
 test('the directory still looks the way these tests assume', () => {
   assert.ok(scripts.includes('check-all.mjs'), 'no check-all.mjs');
   assert.ok(checkScripts.length >= 4, `only ${checkScripts.length} check scripts found`);
@@ -111,6 +127,56 @@ test('every script is executable as a program and says what it is for', () => {
       /^\/\/\s+node scripts\//m.test(text),
       `${name} does not show how to invoke it`,
     );
+  }
+});
+
+test('every script and every lib module has a test file named after it', () => {
+  // One-to-one naming, so a developer can find the tests for X by looking for
+  // X.test.mjs. It was not one-to-one: probe.mjs had its own file while pool,
+  // citations, files and report were bundled into a lib.test.mjs, so finding
+  // pool's tests meant grepping. One-to-one also makes a coverage gap visible
+  // as a missing file rather than as nothing at all.
+  const testFiles = new Set(readdirSync(join(scriptsDir, 'test')));
+
+  for (const name of [...scripts, ...readdirSync(join(scriptsDir, 'lib'))]) {
+    if (THIN_CLIS.has(name)) continue;
+
+    const expected = `${name.replace(/\.mjs$/, '')}.test.mjs`;
+    assert.ok(
+      testFiles.has(expected),
+      `${name} has no ${expected}; name the tests after what they cover`,
+    );
+  }
+});
+
+test('the thin-CLI exemption only covers scripts that really are thin', () => {
+  // The exemption above is the kind of thing that quietly grows to cover a
+  // 300-line script nobody tested. Verified rather than asserted: each exempt
+  // file has to stay small, and its logic has to live in a lib that is tested.
+  for (const name of THIN_CLIS) {
+    const lines = readFileSync(join(scriptsDir, name), 'utf8').split('\n').length;
+    assert.ok(
+      lines <= 100,
+      `${name} is ${lines} lines and exempt from needing its own tests; either test it or move its logic into lib/`,
+    );
+  }
+});
+
+test('every test file covers something that exists', () => {
+  // The other direction: a test file left behind after its subject was renamed
+  // still passes, and still looks like coverage.
+  const covered = new Set([
+    ...scripts.map((name) => name.replace(/\.mjs$/, '')),
+    ...readdirSync(join(scriptsDir, 'lib')).map((name) => name.replace(/\.mjs$/, '')),
+    // Files that cover the directory rather than one module.
+    'conventions',
+    'evals',
+  ]);
+
+  for (const name of readdirSync(join(scriptsDir, 'test'))) {
+    if (!name.endsWith('.test.mjs')) continue;
+    const subject = name.replace(/\.test\.mjs$/, '');
+    assert.ok(covered.has(subject), `${name} covers "${subject}", which no longer exists`);
   }
 });
 

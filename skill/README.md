@@ -46,7 +46,7 @@ evals/
   cases.md                          22 conversation cases to score per host
   results.md                        coverage audit; no behavioural score yet
 
-scripts/                            six checks + lib, standard library only
+scripts/                            the checks, their lib and their tests
 ```
 
 ## Checks
@@ -55,7 +55,7 @@ scripts/                            six checks + lib, standard library only
 node scripts/check-all.mjs
 ```
 
-Six checks, no dependencies. See [scripts/README.md](scripts/README.md) for what each one proves and the conventions they follow.
+One command, no dependencies. It runs every check, starting with the tests over the checks themselves — because a broken check invalidates every result after it. The command prints what it ran; [scripts/README.md](scripts/README.md) says what each one proves, what it fails on, and the conventions they all follow.
 
 They verify **structure**, not behaviour. For behaviour, run [evals/cases.md](evals/cases.md) by hand against your host and record the outcome in [evals/results.md](evals/results.md) — which is still empty of behavioural scores.
 

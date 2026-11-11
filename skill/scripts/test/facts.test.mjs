@@ -1,4 +1,9 @@
-// Two different things are tested here.
+// Unit tests for lib/facts.mjs — the assertion tables and the matcher over them.
+//
+// Named after the lib rather than after check-facts.mjs, because that script is
+// a 34-line CLI around this module: everything worth asserting is here.
+//
+// Two different things are tested.
 //
 // 1. The assertion TABLES, as data. They go wrong in ways that produce a green
 //    build: an entry naming a pack that no longer exists, two entries with the

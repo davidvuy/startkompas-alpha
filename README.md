@@ -80,20 +80,32 @@ Every directory, so nothing here is a mystery. Directories with their own README
 
 | Path | Belongs to | What it is |
 | --- | --- | --- |
-| **[`skill/`](skill/README.md)** | **the skill** | The product. Markdown, no dependencies, six self-checks |
+| **[`skill/`](skill/README.md)** | **the skill** | The product. Markdown, no dependencies. Its own checks and tests are in [`skill/scripts/`](skill/scripts/README.md) |
 | `src/` | runtime | 94 modules: the CLI, dossier store, history, transfer, PDF export |
 | `ui/` | runtime | The optional loopback browser workspace |
-| `tests/` | runtime | 63 files, 565 tests |
+| `tests/` | runtime | The runtime's tests — see *Where the tests are* below |
 | `schemas/` | runtime | 21 JSON schemas for the CLI's request and result shapes |
 | `examples/` | runtime | Fictional demos and request fixtures |
 | `templates/`, `modules/` | runtime | Document templates and packaged procedural modules |
 | [`assets/`](assets/README.md) | runtime + brand | Fonts for PDF export, brand images, demo captures |
 | `licenses/` | runtime | 28 dependency licence texts |
 | [`docs/`](docs/README.md) | mostly runtime | 53 files. The index classifies every one |
-| `scripts/` | repository | Packaging, manifest, secret scan, repo-wide link check |
+| `scripts/` | repository | Packaging, manifest, secret scan, repo-wide link check — and the tests for them |
 | `.github/` | repository | Two workflows — `quality.yml` (runtime) and `skill.yml` (skill) |
 
 Root files: [`BACKLOG.md`](BACKLOG.md) is the 100-item plan, [`LICENSING.md`](LICENSING.md) the per-path licence scope, `installation.json` the legacy install manifest, `start.mjs` the runtime's interactive menu.
+
+### Where the tests are
+
+Three suites, in three places, because they test three different things. Each sits beside the code it covers rather than in one pile.
+
+| Command | Covers | Needs `npm ci` |
+| --- | --- | --- |
+| `node skill/scripts/check-all.mjs` | The skill: every check over its content, and first of all the tests over those checks. See [`skill/scripts/README.md`](skill/scripts/README.md) | no |
+| `npm run test:scripts` | The repository's own scripts — the doc-link checker and the CI definitions | no |
+| `npm test` | The legacy runtime. Frozen, so these change only for security, dependency and compatibility fixes | **yes** |
+
+Run counts from the commands rather than from this page; they move with every change, and a number copied into prose goes stale the same day.
 
 ## Contributing
 

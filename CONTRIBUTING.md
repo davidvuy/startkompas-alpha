@@ -17,7 +17,7 @@ cd skill
 node scripts/check-all.mjs
 ```
 
-Six checks, standard library only. [`skill/scripts/README.md`](skill/scripts/README.md) says what each one proves and what it fails on.
+One command, standard library only, no install step. It runs every check and, first, the tests over the checks themselves. [`skill/scripts/README.md`](skill/scripts/README.md) says what each one proves and what it fails on.
 
 ### The most useful contributions, in order
 
