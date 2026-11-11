@@ -59,9 +59,56 @@ Source: [Belastingdienst — invoicing when you use the KOR](https://www.belasti
 - If you do issue one, you must **state on it that you use the KOR**: *"vermeldt u op de factuur dat u gebruik maakt van de kleineondernemersregeling"*.
 - **No VAT on the invoice**: *"U zet geen btw op de factuur"*.
 
-Reported but **not confirmed on a page read here**: a KOR user need not keep a full VAT administration but must retain **purchase invoices**. · *secondary, and it still needs primary confirmation* · **[checked 2026-11-10]**
+**Confirmed on 2026-11-11:** a KOR user need not issue invoices or file returns, and must still retain **purchase invoices** — see below.
 
 Note the contrast with Belgium, where a business under the small-business exemption **must** issue structured e-invoices. The Dutch position is the opposite on both counts — no invoicing duty and no e-invoicing mandate. Do not carry either answer across.
+
+### Crossing €20,000 ends it the same day, not at year end
+
+Source: [Belastingdienst — `Wat betekent meedoen met de kleineondernemersregeling (KOR)?`](https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/hoe_werkt_de_btw/kleineondernemersregeling/wat-betekent-meedoen-met-de-kleineondernemersregeling/wat-betekent-meedoen-met-de-kleineondernemersregeling) · *national tax authority* · **[checked 2026-11-11]**
+
+Two different rules for leaving, and the difference is the whole point:
+
+| Leaving the KOR | When it takes effect |
+| --- | --- |
+| **by choice** — you may deregister at any moment | the **first day of the next quarter** |
+| **because turnover passed €20,000 in one calendar year** | *"moet u zich meteen afmelden voor de KOR. Uw afmelding gaat dan direct in"* — **immediately** |
+
+So a founder who crosses in June does not finish the year exempt. That matches the Union-threshold rule in [eu-vat-sme.md](eu-vat-sme.md) and France's `seuil majoré`, and it is the opposite of the comfortable assumption that thresholds are settled at year end. **Watch the running total, not the annual figure.**
+
+### Four conditions on the turnover count that a founder will not guess
+
+Source: [Belastingdienst — `Voorwaarden voor deelname aan de kleineondernemersregeling (KOR)`](https://www.belastingdienst.nl/wps/wcm/connect/nl/btw/content/kor-voorwaarden) · *national tax authority* · **[checked 2026-11-11]**
+
+- **The €20,000 must hold for the calendar year you register in *and* the year before it.** A good year disqualifies you for the next one.
+- **Inside the KOR, your turnover is simply what you charge**, because there is no VAT in it. Outside it, the VAT you charge does not count toward the figure.
+- **Counted:** supplies taxed with Dutch VAT, **and certain VAT-exempt turnover**. Which exempt turnover counts is the member-state implementation of art. 288 of the VAT Directive — see [eu-vat-sme.md](eu-vat-sme.md).
+- **Not counted:** VAT on private use; **investment goods used in the business**; **domestic supplies where the VAT is reverse-charged to you as the customer**; supplies taxed in another country; an intra-Community acquisition.
+
+### The KOR belongs to the entrepreneur, not to the activity
+
+The same page states it twice, with worked examples, because it is the rule people get wrong: *"De keuze voor de KOR geldt namelijk per ondernemer en niet per onderneming of per verrichte activiteit."*
+
+- One `eenmanszaak` doing two unrelated things under **two subnumbers** is **one** entrepreneur. Add the turnover of all subnumbers together, and if you choose the KOR it applies to **all** of them. Its own example: a hairdresser who also does administrative work cannot apply the KOR to the consumer-facing half and charge VAT to business clients on the other.
+- But an `eenmanszaak` and a `vof` are **two** entrepreneurs, assessed separately. Its example has the sole trader inside the KOR while the partnership, over €20,000, cannot use it.
+
+For a founder adding a second line of business, that is a decision point: the new activity does not get its own threshold, and it cannot opt out on its own.
+
+### Five things the KOR switches off or revokes
+
+From the same page, and none of them follows from "I do not charge VAT":
+
+| | What happens |
+| --- | --- |
+| **Article 23 licence** (import VAT deferred to the return) | *"Dan trekken wij deze vergunning in wanneer u zich aanmeldt voor de KOR"* — withdrawn on joining |
+| **The import scheme (`Invoerregeling`, IOSS)** | cannot be combined with the KOR; end that participation first |
+| **Opted-taxed letting of immovable property to a business** | not available inside the KOR, and an existing option stops — no VAT on the rent from then on |
+| **Previously deducted input VAT** | may have to be **revised** (`btw-herziening`) on joining |
+| **Two supplies stay under normal VAT rules even inside the KOR** | supplying **immovable property used in the business**, and supplying a **new or nearly new means of transport to another EU country** |
+
+That last row is the same carve-out Germany makes in §19(6) UStG for new vehicles — see [germany.md](germany.md) §2. Two member states, two national schemes, the same hole in both.
+
+**And the purchase-invoice question is settled.** The page states it twice: *"U moet wel uw inkoopfacturen bewaren"* — you do not have to issue invoices, you do not file returns, and you still **keep your purchase invoices**. This pack previously carried that as secondary and unconfirmed.
 
 ### EU-KOR — resolved
 
@@ -303,7 +350,13 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | The KOR is under evaluation, including a possible threshold increase | 2026-11-11 | Authority — annex §6.c read; a live recheck trigger for the €20,000 figure in §2 |
 | KOR threshold €20,000 and its effects | 2026-11-10 | Authority — Belastingdienst page read |
 | KOR invoicing: not required, must state the scheme, no VAT | 2026-11-10 | Authority — Belastingdienst page read, wording quoted |
-| KOR: purchase invoices still retained | 2026-11-10 | Secondary — primary confirmation still open |
+| KOR: purchase invoices still retained | 2026-11-11 | Authority — the Belastingdienst states it twice on its own KOR page, read and quoted |
+| Crossing €20,000 mid-year forces immediate deregistration; a voluntary exit takes effect from the next quarter | 2026-11-11 | Authority — read and quoted |
+| The €20,000 must hold for the registration year and the year before | 2026-11-11 | Authority — read |
+| What counts and what does not toward the €20,000, including reverse-charged purchases and investment goods | 2026-11-11 | Authority — read; which exempt turnover counts is the art. 288 implementation and is not itemised |
+| The KOR applies per entrepreneur, across all subnumbers, and cannot be split by activity | 2026-11-11 | Authority — read and quoted, with the authority's own two examples |
+| Joining withdraws an art. 23 licence, bars the Invoerregeling and opted-taxed letting, and may trigger btw-herziening | 2026-11-11 | Authority — read |
+| Immovable property used in the business and new means of transport stay under normal VAT rules inside the KOR | 2026-11-11 | Authority — read |
 | EU-KOR: €100,000 Union threshold, national thresholds also apply, NL establishment, quarterly report | 2026-11-10 | Authority — Belastingdienst page read |
 | EU-KOR start date 2025-01-01 and €100,000 Union cap | 2026-11-10 | Primary — Directive (EU) 2020/285, read in eu-vat-sme.md |
 | Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | Authority — KVK pages read |

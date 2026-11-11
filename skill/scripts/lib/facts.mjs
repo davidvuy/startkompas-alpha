@@ -263,6 +263,14 @@ export const REQUIRED = [
   {case: '—', pack: 'eu-vat-sme.md', label: 'national threshold ceiling', pattern: /€85,000/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'Union turnover cap article', pattern: /284\(2\)\(a\)/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'the EUR 100,000 coincidence trap is named', pattern: /coincidence is a live trap/i},
+  // The Dutch KOR, read on 2026-11-11. The mid-year rule and the
+  // per-entrepreneur rule are the two a founder gets wrong by assuming:
+  // that a threshold settles at year end, and that a second activity gets
+  // its own allowance.
+  {case: '—', pack: 'netherlands.md', label: 'crossing EUR 20,000 ends the KOR immediately', pattern: /Uw afmelding gaat dan direct in/},
+  {case: '—', pack: 'netherlands.md', label: 'the KOR is per entrepreneur, not per activity', pattern: /per ondernemer en niet per onderneming of per verrichte activiteit/},
+  {case: '—', pack: 'netherlands.md', label: 'purchase invoices must be kept inside the KOR', pattern: /U moet wel uw inkoopfacturen bewaren/},
+  {case: '—', pack: 'netherlands.md', label: 'reverse-charged purchases do not count toward the threshold', pattern: /reverse-charged to you as the customer/},
 
   // --- EU AI Act -------------------------------------------------------------
   // The Act is being amended. Losing the amending instrument's identity would

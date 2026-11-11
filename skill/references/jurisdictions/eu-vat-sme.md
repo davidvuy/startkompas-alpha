@@ -69,7 +69,7 @@ Note what this does **not** settle: it governs the **cross-border** exemption fo
 | **Germany** | §19 UStG was read directly and is **silent**. The pack records the claims circulating about it as having no identified statutory basis — see [germany.md](germany.md) §2 |
 | **Belgium, Netherlands** | **[not researched]** |
 
-So "what happens if I go over mid-year" has a clear answer in one of the four packs, no answer in the statute of another, and no answer yet in two. Do not carry the French rule across a border; the French page's own history shows the rule can change even within one country, since it says the immediate cessation is *"et non plus au premier jour du mois du dépassement"*.
+So "what happens if I go over mid-year" now has a clear answer in two of the four packs — and the two agree, which one data point could not show: **both the French `seuil majoré` and the Dutch KOR end the exemption on the day, not at year end.** Germany's statute is silent and Belgium is unread. Do not carry the French rule across a border; the French page's own history shows the rule can change even within one country, since it says the immediate cessation is *"et non plus au premier jour du mois du dépassement"*.
 
 ## What counts toward the turnover — article 288
 
