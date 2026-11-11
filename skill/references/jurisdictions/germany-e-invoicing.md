@@ -30,7 +30,12 @@ Three things this table makes visible that the letters alone do not:
 - **The €800,000 limit sits in no. 2 only.** No. 3 has no turnover condition, so in 2027 a business above €800,000 may **not** send paper but **may** still invoice by EDI if the recipient agrees. The letters state both reliefs without putting them side by side, and they are not symmetric.
 - **Each case carries two dates**, one for when the turnover was executed and one for when the invoice may still be transmitted — and they do not overlap between the cases. A paper invoice **sent** in January 2027 for a December 2026 supply is past no. 1's transmission date, while no. 2 covers only turnovers executed after 2026-12-31. Whether anything closes that gap is **[not researched]**: Rn. 63 of the 2024 letter is phrased around the date the turnover was executed, so the BMF may read it more generously than the statute's wording does. Do not reassure a founder about a late paper invoice on the strength of this pack.
 
-§27(38) closes with *"Die Absätze 15 und 18 bleiben unberührt"* — §27(15) and (18) are unaffected and were **[not researched]**.
+§27(38) closes with *"Die Absätze 15 und 18 bleiben unberührt"*, and that sentence reads like a hidden exception. **It is not one.** Both paragraphs were read on 2026-11-11 and both are historical commencement rules for earlier versions of §14:
+
+- **§27(15):** §14(2) sentence 1 no. 2 and §14(3) no. 2, *"in der jeweils ab 1. Januar 2009 geltenden Fassung"*, apply to all invoices for turnover executed after **2008-12-31**.
+- **§27(18):** §14(1) and (3), in the version applying from **1 July 2011**, apply to all invoices for turnover executed after **2011-06-30**.
+
+So the sentence preserves two transitions from 2009 and 2011 and carves nothing out of the phase-in above. A reader who meets it should stop looking there — worth stating, because an unexamined cross-reference inside a transitional provision is exactly where a reader expects the catch to be. · Source: [§27 UStG](https://www.gesetze-im-internet.de/ustg_1980/__27.html) · *primary legislation* · **[checked 2026-11-11]**
 
 ## The three BMF letters — how to read them
 
@@ -154,7 +159,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Rn. 68: BMF letter of 2012-07-02 (BStBl I S. 726) repealed from end-2024 | 2026-11-10 | Authority — 2024 letter read |
 | §27(38) UStG: three derogation cases, all for issuing/transmitting; the €800,000 limit in no. 2 only; **no turnover limit on the EDI route** in no. 3 | 2026-11-11 | Primary — statute read and the three cases tabulated. It bears out Rn. 62 and sharpens Rn. 64/65 |
 | Whether anything covers a paper invoice **transmitted** after 2026-12-31 for a 2026 turnover | — | Open — no. 1's transmission date has passed and no. 2's turnover window has not opened; the BMF may read Rn. 63 more generously |
-| §27(15) and (18) UStG, left unaffected by §27(38) | — | Open — named by the statute, their text not read |
+| §27(15) and (18) are 2009 and 2011 commencement rules for earlier versions of §14, and carve nothing out of the phase-in | 2026-11-11 | Primary — both read; a negative result, recorded because the cross-reference invites a search |
 | GoBD letter of 2019-11-28 as amended 2025-07-14 (non-VAT retention) | — | Open — not yet researched |
 | The phase-in dates, the reception duty, the accepted formats and the email-address relief | — | Elsewhere — stated and maintained in germany.md §3 |
 

@@ -321,6 +321,12 @@ export const REQUIRED = [
   // Art. 4a is a permission. Its last sentence is the guard against reading it
   // as a duty to bias-test on special-category data.
   {case: '—', pack: 'eu-ai-act.md', label: 'art. 4a creates no obligation to bias-test', pattern: /does not create any obligation to conduct such bias detection/},
+  // Germany's national regime, read on 2026-11-11. The €50,000 and the art.
+  // 86(1) offence are the two a founder can act on; the authority is the
+  // answer to a question the German annex recorded as unsettled in May 2025.
+  {case: '—', pack: 'eu-ai-act.md', label: 'the Bundesnetzagentur is the German authority', pattern: /Die Bundesnetzagentur ist die für die Einhaltung der Verordnung/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'the German national offences are capped at EUR 50,000', pattern: /Geldbuße bis zu fünfzigtausend Euro/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'failing to explain a high-risk decision is a German offence', pattern: /explanation required by \*\*art\. 86\(1\)\*\*/},
 ];
 
 /**
