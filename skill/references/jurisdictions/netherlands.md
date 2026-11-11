@@ -85,25 +85,58 @@ Source: [European Commission — eInvoicing in the Netherlands](https://ec.europ
 
 **B2G is different.** Suppliers to central government bodies must issue structured e-invoices in accepted formats since **2019-11-01**. A founder whose pilot customer is a central-government body is therefore already in scope. · **[checked 2026-11-10]**
 
-### Announced future obligation, and where the legislation actually stands
+### Announced future obligation — now read in the letter itself
 
-| Date | Planned obligation |
+Source: `Contourenbrief elektronisch factureren en rapporteren`, [Tweede Kamer 31066-1576](https://www.tweedekamer.nl/kamerstukken/brieven_regering/detail?id=2026Z18679&did=2026D42856) of **2026-09-11**, signed E. Eerenberg, staatssecretaris van Financiën, together with its `Bijlage 1` (`Contouren elektronisch factureren en rapporteren`, document 2026D42857) · *the government's own letter to parliament, first-hand: both the letter and the annex extracted and read. A statement of intent, not law* · **[checked 2026-11-11]**
+
+This pack previously carried these dates from secondary reporting, with the letter itself marked as not researched. It has now been read, and the annex is where the cabinet's reasoning actually sits.
+
+**The phasing the cabinet prefers**, quoted from the annex:
+
+| Date | Obligation |
 | --- | --- |
-| 2030-07-01 | Mandatory e-invoicing for domestic **and** intra-EU B2B; reporting of intra-Community acquisitions |
-| 2031-07-01 | Digital reporting of domestic invoices to the Belastingdienst |
+| **2030-07-01** | *"invoering van binnenlandse en intracommunautaire e-facturatie en digitale rapportage voor EU-transacties (inclusief verwervingen)"* |
+| **2031-07-01** | *"invoering van de digitale rapportageverplichting voor binnenlandse transacties"* |
 
-Legislative state, as reported · *secondary commentary, consistent across sources* · **[checked 2026-11-10]**
+Both dates and the whole timetable below are confirmed by the primary document. The deliberate sequencing is the point: e-invoicing first, domestic reporting a year later, *"geeft ruimte om te leren en bij te sturen waar nodig"*.
 
-- **2026-09-11** — the State Secretary for Finance sent the House of Representatives a `Contourenbrief elektronisch factureren en rapporteren` setting out the cabinet's choices for implementing the EU ViDA directive. The Netherlands chose a **broad** implementation, extending beyond the EU minimum to cover domestic B2B.
-- **Q4 2026** — a public internet consultation on draft legislation is expected. That is **now**; check whether it has opened.
-- **Before the summer recess 2027** — target for submitting the bill to the House.
-- **Before 2028-07-01** — target for parliamentary passage.
+**The timetable, from the letter's closing paragraph:**
 
-**Peppol is recommended, not mandated.** The announced model is decentralised and Peppol-based on EN 16931, but the obligation to use Peppol specifically has not been set. Businesses in the KOR are reported to be **exempt from the domestic obligation**.
+- **this autumn (2026)** — *"Beoogd is om dit najaar de internetconsultatie te starten"*. That is now; check whether it has opened.
+- **before the 2027 summer recess** — *"voor het zomerreces van 2027 het wetsvoorstel bij uw Kamer in te dienen"*.
+- **before 2028-07-01** — *"Het streven is om de parlementaire behandeling af te ronden voor 1 juli 2028"*, two years before entry into force, explicitly to leave a test phase for businesses and the Belastingdienst.
 
-**Open: none of this is law.** It is a ministerial letter plus a policy report, with the bill not yet submitted. Confirm against the enacted text before any founder plans around it. Four years out, the dates, the Peppol choice and the KOR carve-out can all still move. The `Contourenbrief` itself was **[not researched]** — only secondary reporting of it.
+The letter also records that the draft bill goes to the **Autoriteit Persoonsgegevens** for advice on suitability, subsidiarity, proportionality and legal certainty, and that the cabinet will amend the text if the AP finds it wanting. So the e-invoicing file and the data-protection file in §6 below meet in the same bill.
 
-Formats and networks in Dutch use: Peppol network, Peppol BIS 3.0, SI-UBL 2.0, NLCIUS, and Digipoort as the central-government gateway. · **[checked 2026-11-10]**
+#### EN 16931 only — and the letter does not mention Peppol
+
+This pack previously said *"Peppol is recommended, not mandated. The announced model is decentralised and Peppol-based on EN 16931."* **The annex mentions Peppol nowhere at all**, and does not describe the model as decentralised. Both were carried from secondary reporting.
+
+What the cabinet actually chose is narrower and more definite: prescribe **only** EN 16931 and allow no other invoice norm — *"Door alleen de EN16931 voor te schrijven en geen andere factuurnormen toe te staan komt er uniformering en efficiëntie"*. The directive would have permitted additional national norms for domestic transactions; the Netherlands declines that option.
+
+Two consequences worth telling a founder. EN 16931 (Commission Implementing Decision (EU) 2017/1870) admits **only two syntaxes, UBL 2.1 and UN/CEFACT CII**, which the annex names as a drawback for sectors on their own formats such as `DICO` and `GS1`. And since Peppol is a *network* while EN 16931 is a *format*, "Peppol" is how a Dutch business is likely to send an EN 16931 invoice in practice without that being what the law requires — do not conflate the two, and do not present the network as an obligation.
+
+#### The KOR carve-out, stated properly
+
+The old wording — "businesses in the KOR are reported to be exempt from the domestic obligation" — was both unsourced and incomplete in the way that matters most to this pack's default founder.
+
+The cabinet's position in §6.c of the annex is to keep the KOR's existing `factureringsontheffing` in place, and it spells out what that leaves:
+
+> KOR users would be *"gevrijwaard van een verplichting tot elektronische facturatie en digitale rapportage en enkel in staat moeten zijn om een e-factuur te **ontvangen** van andere ondernemers"*
+
+So, under the proposal: **exempt from issuing and from reporting, but required to be able to receive.** That is the same receive-versus-issue split the Belgian and German packs turn on, and the Dutch pack had only half of it. A Dutch founder under the KOR planning for 2030 needs an inbox that can take a structured invoice, not an invoicing tool.
+
+Three more things the annex settles:
+
+- **No extra micro-business threshold.** The cabinet considered a separate exemption threshold below the KOR and rejected it: the KOR already *"op logische wijze"* provides one at €20,000, so an additional turnover threshold is *"dubbel en niet noodzakelijk"*. EY had advised against phasing by company size at all.
+- **Why the KOR survives.** *"reeds enkele honderdduizenden ondernemers"* use it, and imposing the obligation on them would have *"zeer ingrijpende gevolgen voor de gehele bedrijfsvoering"*. There is, the annex says, no policy reason to abolish it.
+- **Opting in does not pull in the reporting.** If parties agree commercially to e-invoice anyway, the KOR is no obstacle — *"In dat geval bestaat echter geen verplichting om de gegevens uit de factuur te rapporteren"*. So a KOR founder who chooses to send structured invoices does not thereby acquire a reporting duty.
+
+The annex adds that the KOR is **currently under evaluation**, including whether to raise its threshold — judged on the KOR's own purpose of easing administrative burden rather than through ViDA. That is a live recheck trigger for §2's €20,000 figure.
+
+**Still: none of this is law.** It is a ministerial letter and its annex, setting out `kabinetsuitgangspunten`, with the bill not yet in internet consultation. Confirm against the enacted text before any founder plans around it. Four years out, the dates, the norm choice and the KOR carve-out can all still move — and the annex itself describes them as preferences, not decisions.
+
+Formats and networks in Dutch use: Peppol network, Peppol BIS 3.0, SI-UBL 2.0, NLCIUS, and Digipoort as the central-government gateway. These describe current practice and the B2G channel, not the future obligation. · *from the European Commission page cited above* · **[checked 2026-11-10]**
 
 Recheck triggers: the Q4 2026 consultation opening; the bill's submission; any central-government or public-sector customer; a customer in another EU country.
 
@@ -300,8 +333,15 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | --- | --- | --- |
 | No domestic B2B e-invoicing mandate in force | 2026-11-10 | Authority — official EU source read |
 | B2G obligation since 2019-11-01 | 2026-11-10 | Authority — official EU source read |
-| Planned 2030/2031 dates, Peppol recommended not mandated, KOR carve-out | 2026-11-10 | Secondary — the ministerial letter itself not read. **These dates are not law** |
-| Legislative timeline (consultation Q4 2026, bill 2027, passage 2028) | 2026-11-10 | Secondary — consistent across sources |
+| Phasing: 2030-07-01 e-invoicing plus EU-transaction reporting, 2031-07-01 domestic reporting | 2026-11-11 | Authority — the Contourenbrief annex read and both dates quoted. **Still not law**: a letter and its annex, bill not yet in consultation |
+| Legislative timetable: consultation this autumn, bill before the 2027 summer recess, passage before 2028-07-01 | 2026-11-11 | Authority — the letter read and its closing paragraph quoted |
+| The draft bill goes to the Autoriteit Persoonsgegevens for advice | 2026-11-11 | Authority — the letter read |
+| **Corrected on 2026-11-11:** this pack said the announced model is "decentralised and Peppol-based" and that Peppol is recommended | 2026-11-11 | Withdrawn — the annex does not mention Peppol at all, nor describe the model as decentralised. Both came from secondary reporting |
+| The cabinet will prescribe EN 16931 only, allowing no other invoice norm, and EN 16931 admits only UBL 2.1 and UN/CEFACT CII | 2026-11-11 | Authority — annex §7 read and the `kabinetsuitgangspunt` quoted |
+| KOR users would be exempt from **issuing** and reporting but required to be able to **receive** | 2026-11-11 | Authority — annex §6.c read and quoted. The pack previously had only the exemption half |
+| No additional micro-business threshold below the KOR: `dubbel en niet noodzakelijk` | 2026-11-11 | Authority — annex §5 read and quoted |
+| A KOR user who opts into e-invoicing commercially acquires no reporting duty | 2026-11-11 | Authority — annex §6.c read and quoted |
+| The KOR is under evaluation, including a possible threshold increase | 2026-11-11 | Authority — annex §6.c read; a live recheck trigger for the €20,000 figure in §2 |
 | KOR threshold €20,000 and its effects | 2026-11-10 | Authority — Belastingdienst page read |
 | KOR invoicing: not required, must state the scheme, no VAT | 2026-11-10 | Authority — Belastingdienst page read, wording quoted |
 | KOR: purchase invoices still retained | 2026-11-10 | Secondary — primary confirmation still open |
@@ -323,7 +363,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 45j second sentence: loading, displaying and error correction cannot be contractually prohibited | 2026-11-10 | Primary — statute read and quoted |
 | Arts. 45k–45m carry **no express nullity clause**, unlike BE, DE and FR | 2026-11-10 | Primary — statute read; stated as a fact about the text, not as a conclusion |
 | Whether 45k–45m are mandatory in Dutch law despite that silence | — | Open — the one question a clause touching them turns on |
-| The Contourenbrief of 2026-09-11 itself | — | Open — only secondary reporting of it was read |
+| Whether the internet consultation has opened, and what the draft bill says | — | Open — the consultation was expected this autumn and was not checked |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Authority — AP pages read |
 | AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | Authority — AP PDF extracted and read |
 | AP breach stappenplan: five steps, first notification plus follow-up | 2026-11-10 | Authority — AP PDF extracted and read |

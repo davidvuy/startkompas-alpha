@@ -99,6 +99,13 @@ export const REQUIRED = [
   {case: 'C16', pack: 'netherlands.md', label: 'B2G since 2019-11-01', pattern: /2019-11-01/},
   {case: 'C16', pack: 'netherlands.md', label: 'announced date 2030-07-01', pattern: /2030-07-01/},
   {case: 'C16', pack: 'netherlands.md', label: 'announced, not law', pattern: /none of this is law/i},
+  // Read in the Contourenbrief and its annex on 2026-11-11. The receive/issue
+  // split is the one that decides what this pack's default founder has to
+  // build: the pack previously carried only the exemption half, which would
+  // have told a KOR founder they need nothing at all by 2030.
+  {case: 'C16', pack: 'netherlands.md', label: 'KOR users must still be able to receive', pattern: /in staat moeten zijn om een e-factuur te \*\*ontvangen\*\*/},
+  {case: 'C16', pack: 'netherlands.md', label: 'EN 16931 only, no other invoice norm', pattern: /geen andere factuurnormen toe te staan/},
+  {case: 'C16', pack: 'netherlands.md', label: 'the annex does not mention Peppol', pattern: /mentions Peppol nowhere at all/i},
   {case: '—', pack: 'netherlands.md', label: 'KOR threshold EUR 20,000', pattern: /€20,000/},
   {case: '—', pack: 'netherlands.md', label: 'KOR: invoice not required', pattern: /niet verplicht om een factuur uit te reiken/},
   {case: '—', pack: 'netherlands.md', label: 'EU-KOR Union threshold', pattern: /€100,000/},
@@ -143,6 +150,16 @@ export const FORBIDDEN = [
     label: 'Peppol must not be stated as mandated',
     pattern: /Peppol[- ]based model is mandated|Peppol is mandated/i,
   },
+  // There is deliberately NO entry here for "decentralised and Peppol-based",
+  // the other claim withdrawn on 2026-11-11. The lookbehind device used above
+  // cannot work for it: the pack withdraws that claim by quoting the whole
+  // sentence it used to carry, and the `*"` that opens the quotation sits too
+  // far from the words to be matched by a lookbehind of any fixed shape.
+  //
+  // It needs no entry, because the REQUIRED entry "the annex does not mention
+  // Peppol" already guards it from the other side — restoring the claim means
+  // deleting the sentence that says the annex mentions Peppol nowhere, and
+  // that fails. One guard that works beats two that fight each other.
   {
     pack: 'belgium.md',
     label: 'must not claim the Walloon proof is still required',
