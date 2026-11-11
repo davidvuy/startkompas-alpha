@@ -64,8 +64,22 @@ export const REQUIRED = [
   {case: 'C15', pack: 'france.md', label: 'mandatory invoice mention', pattern: /article 293 B du CGI/},
   {case: 'C15', pack: 'france.md', label: 'accredited platform mandatory', pattern: /accredited platform is mandatory/i},
   {case: 'C15', pack: 'france.md', label: 'e-reporting is separate', pattern: /E-reporting is a second, separate obligation/i},
-  {case: 'C17', pack: 'france.md', label: 'repealing law number', pattern: /loi n° 2025-1044/},
+  // This entry used to require the law number `loi n° 2025-1044` to be present,
+  // which meant the check was enforcing a claim the pack could not support.
+  // Refetching the official page on 2026-11-11 confirmed the abandonment and
+  // nothing else: no law number, no date, no suspension. So what must survive
+  // is the verified fact plus the warning not to cite the number — the same
+  // two-part shape as the Belgian threshold entry below.
+  {case: 'C17', pack: 'france.md', label: 'single €25,000 threshold recorded as abandoned', pattern: /abandonnée/},
+  {case: 'C17', pack: 'france.md', label: 'the law number is flagged as unconfirmed', pattern: /do not cite the law number/i},
   {case: 'C17', pack: 'france.md', label: 'PLF 2026 carve-out was rejected', pattern: /rejected/i},
+  // The mid-year rules are the one place France answers what §19 UStG does not.
+  // Losing either half would leave a founder with half a rule, which is worse
+  // than none: the seuil gives the rest of the year, the majoré gives nothing.
+  {case: '—', pack: 'france.md', label: 'crossing the seuil takes effect the following 1 January', pattern: /dès le 1er janvier de l'année suivante/},
+  {case: '—', pack: 'france.md', label: 'crossing the seuil majoré takes effect immediately', pattern: /cesse de s'appliquer dès le 1er jour du dépassement/},
+  {case: '—', pack: 'france.md', label: 'and expressly no longer from the first of the month', pattern: /et non plus au premier jour du mois du dépassement/},
+  {case: '—', pack: 'france.md', label: 'the mention is required by art. 293 E, not 293 B', pattern: /293 E CGI/},
   {case: 'C17', pack: 'france.md', label: 'services threshold EUR 37,500', pattern: /€37,500/},
   {case: 'C17', pack: 'france.md', label: 'current-year threshold EUR 41,250', pattern: /€41,250/},
   {case: '—', pack: 'france.md', label: 'ownership provision', pattern: /L113-9/},
@@ -143,6 +157,15 @@ export const FORBIDDEN = [
     pack: 'belgium.md',
     label: 'the phased VAT thresholds must not read as enacted law',
     pattern: /(?<!\*")now enacted, not a bill/i,
+  },
+  // Withdrawn on 2026-11-11: the official page gives thresholds per category
+  // and a non-interference rule only for avocats and authors. The pack states
+  // the old rule once, inside the paragraph that withdraws it, so the
+  // lookbehind excludes that introduction — same device as the entry above.
+  {
+    pack: 'france.md',
+    label: 'the withdrawn mixed-activity rule must not be asserted again',
+    pattern: /(?<!previously stated that )total turnover must stay under the sales threshold/i,
   },
 ];
 /**

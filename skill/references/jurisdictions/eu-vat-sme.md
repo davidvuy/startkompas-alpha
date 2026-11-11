@@ -61,7 +61,15 @@ Both are **exclusive of VAT** and measured **per calendar year**, not rolling.
 
 And there is a **15 working day** notification deadline when the Union threshold is breached — separate from, and much shorter than, the quarterly return.
 
-Note what this does **not** settle: it governs the **cross-border** exemption for a non-established person. It does not tell you what happens to a founder's **domestic** exemption when a domestic threshold is crossed mid-year — which is precisely the question the German pack records §19 UStG as being silent on. Two different thresholds, two different rules, and only one of them is answered here.
+Note what this does **not** settle: it governs the **cross-border** exemption for a non-established person. It does not tell you what happens to a founder's **domestic** exemption when a domestic threshold is crossed mid-year. That is a national question, and the national packs answer it very differently:
+
+| Pack | What happens on a mid-year domestic crossing |
+| --- | --- |
+| **France** | Stated on the face of the official page. Crossing the `seuil` (N-1) means VAT from 1 January of the following year; crossing the `seuil majoré` (N) ends the franchise *"dès le 1er jour du dépassement"* — see [france.md](france.md) §2 |
+| **Germany** | §19 UStG was read directly and is **silent**. The pack records the claims circulating about it as having no identified statutory basis — see [germany.md](germany.md) §2 |
+| **Belgium, Netherlands** | **[not researched]** |
+
+So "what happens if I go over mid-year" has a clear answer in one of the four packs, no answer in the statute of another, and no answer yet in two. Do not carry the French rule across a border; the French page's own history shows the rule can change even within one country, since it says the immediate cessation is *"et non plus au premier jour du mois du dépassement"*.
 
 ## What counts toward the turnover — article 288
 
@@ -85,7 +93,7 @@ The financial-and-real-estate limb turns on whether those transactions are **anc
 
 - Whether a given financial or real estate transaction is **ancillary** for art. 288: **[not researched]**.
 - How each member state **implements** the notification and quarterly return in practice — the Dutch `opgaaf kwartaalomzet` is one implementation; the others are **[not researched]**.
-- What happens to a **domestic** exemption on a mid-year threshold crossing. See above: not an EU question.
+- What happens to a **domestic** exemption on a mid-year threshold crossing. Not an EU question — see the per-pack table above, where France answers it, Germany's statute is silent, and two packs have not researched it.
 
 ## Pack maintenance
 
@@ -103,7 +111,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 288: which supplies count, incl. some exempt ones; capital-asset disposals excluded | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex, quoted |
 | Whether a financial or real estate transaction is "ancillary" for art. 288 | — | Open — not yet researched |
 | Member-state implementation of notification and returns | — | Open — not yet researched |
-| Domestic exemption on a mid-year crossing | — | Elsewhere — a national question, not an EU one; see the relevant national pack |
+| Domestic exemption on a mid-year crossing | — | Elsewhere — a national question, not an EU one. Answered in france.md, recorded as statutorily unanswered in germany.md, open in the other two |
 
 Next full recheck due: **2027-05-10**. Earlier on any amendment to the SME scheme or a member state changing its national figure.
 

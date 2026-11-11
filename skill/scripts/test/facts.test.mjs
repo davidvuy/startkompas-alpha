@@ -169,6 +169,49 @@ test('the same claim asserted rather than quoted does trip the rule', () => {
   );
 });
 
+test('the second withdrawn claim is excluded inside its correction and caught outside it', () => {
+  // france.md §2 withdrew the mixed-activity rule on 2026-11-11, after the
+  // official page turned out not to state it. The pack keeps the old wording
+  // once, inside the paragraph that withdraws it, so the same lookbehind
+  // device as the Belgian entry applies — and the same two-sided test, because
+  // a guard that cannot fire is not a guard.
+  const inCorrection =
+    'This pack previously stated that total turnover must stay under the sales threshold ' +
+    'and the services part under the services threshold.';
+  const asserted =
+    '**Mixed activities:** total turnover must stay under the sales threshold and the ' +
+    'services part under the services threshold.';
+
+  const quoted = evaluate(serve(inCorrection, "france.md")).problems;
+  assert.ok(
+    !quoted.some((p) => p.message.includes('withdrawn mixed-activity rule')),
+    'the pack must be allowed to show what it withdrew',
+  );
+
+  const restored = evaluate(serve(asserted, "france.md")).problems;
+  assert.ok(
+    restored.some((p) => p.message.includes('withdrawn mixed-activity rule')),
+    'and must be stopped from asserting it again',
+  );
+});
+
+test('no required entry demands a claim the packs disclaim', () => {
+  // A real inversion, found on 2026-11-11: check-facts REQUIRED the string
+  // `loi n° 2025-1044` to be present in france.md, so it was enforcing a law
+  // number the pack had no source for. A required fact must be something a
+  // pack asserts, never something it warns against.
+  //
+  // The general form cannot be tested, so this pins the specific trap: the
+  // number may still appear in the correction, but nothing may require it.
+  const demandsTheLawNumber = REQUIRED.some((entry) =>
+    entry.pattern.source.includes('2025-1044'),
+  );
+  assert.ok(
+    !demandsTheLawNumber,
+    'loi n° 2025-1044 is unconfirmed; requiring it would re-enforce a withdrawn claim',
+  );
+});
+
 test('each pack is read once however many assertions reference it', () => {
   let reads = 0;
   evaluate((pack) => {

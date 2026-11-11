@@ -8,7 +8,7 @@ Out of scope and requiring separate research: consumer (B2C) sales, employees or
 
 Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[carried YYYY-MM-DD, not refetched]** means earlier research was reused without refetching it. **[not researched]** means no source was consulted — the topic is open.
 
-Note for maintainers: **Légifrance returns 403 to automated link checks** while serving the pages normally to a reader. `scripts/check-links.mjs` therefore reports the two Légifrance citations below as `blocked`, not `dead`. Both articles were read on 2026-11-10. Do not "fix" those URLs.
+Note for maintainers: **Légifrance returns 403 to automated link checks** while serving the pages normally to a reader. `scripts/check-links.mjs` therefore reports every Légifrance citation in this pack as `blocked`, not `dead` — run the check to see how many. Each was read in a browser on the date its marker gives. Do not "fix" those URLs, and do not treat `blocked` as a reason to drop one.
 
 ---
 
@@ -48,32 +48,57 @@ Establish before proposing any administrative action: the founder's legal form (
 
 The test uses **two** thresholds per activity: the previous calendar year and the current calendar year. It is not a "base plus tolerance" — both figures are operative, as in the German two-threshold test.
 
-| Activity | Previous calendar year | Current calendar year |
-| --- | --- | --- |
-| `Prestations de services` and `activités libérales` (excluding on-site consumption and accommodation) | **€37,500** | **€41,250** |
-| `Ventes`, on-site consumption and `hébergement` | **€85,000** | **€93,500** |
+Source: [service-public.gouv.fr — franchise en base de TVA](https://entreprendre.service-public.gouv.fr/vosdroits/F21746) · *official government information service, `Vérifié le 01 janvier 2026`* · **[checked 2026-11-11]**. Everything in this section comes from that page unless another source is named.
 
-Sources · **[checked 2026-11-10]**
-- [service-public.gouv.fr — franchise en base de TVA](https://entreprendre.service-public.gouv.fr/vosdroits/F21746) · *official government information service*, page's own update date **2026-01-01**
-- Threshold structure corroborated by professional commentary reporting the restoring law's own wording · *secondary*
+The page's own names for the two figures are worth keeping, because they are what an `expert-comptable` will say: the **`seuil`** is the previous calendar year (N-1) and the **`seuil majoré`** is the current year (N).
+
+| Activity, in the page's own categories | `seuil` (N-1) | `seuil majoré` (N) |
+| --- | --- | --- |
+| `Activité de prestation de services` | **€37,500** | **€41,250** |
+| `Activité libérale` (except `avocat`) | **€37,500** | **€41,250** |
+| `Activité commerciale et d'hébergement` | **€85,000** | **€93,500** |
+
+The page states for 2026: *"les seuils de franchise en base de TVA française applicables restent **inchangés**"*.
 
 A digital B2B service normally falls under `prestations de services`, so **€37,500 / €41,250** is the relevant pair for this pack's default founder.
+
+The page carries further pairs for `avocats` (€50,000 / €55,000 regulated, €35,000 / €38,500 otherwise) and for authors and performers (€50,000 / €55,000 for works and rights, €35,000 / €38,500 for other author activities). Those are outside this pack's scope and are named only so a founder in one of them is not given the services figure by mistake.
 
 **Mandatory invoice mention.** Every invoice or statement issued under the franchise must carry:
 
 > `TVA non applicable - article 293 B du CGI`
 
-Omitting it exposes the business to penalties on audit. This is concrete and checkable — verify the founder's invoice template actually contains it. · **[checked 2026-11-10]**
-
-**Mixed activities:** where a founder both sells and provides services, total turnover must stay under the sales threshold **and** the services part under the services threshold. Breaching either takes the whole activity out of the regime. · *secondary* · **[checked 2026-11-10]**
+The page gives the obligation as *"doit figurer sur chaque facture ou note d'honoraires"* and cites **art. 293 E CGI** as its legal basis — note that 293 B is what the sentence *says*, while 293 E is what *requires* it. On the consequence it is specific: *"l'entreprise s'expose à un redressement fiscal pour non-respect du formalisme administratif en cas de contrôle fiscal"*. This is concrete and checkable — verify the founder's invoice template actually contains it.
 
 Effect: no VAT charged, and no input VAT recovered.
+
+### Crossing a threshold — France answers what Germany's statute does not
+
+This is the one place the four packs diverge sharply, and the French answer is the clearest of them.
+
+| What is exceeded | When the franchise stops |
+| --- | --- |
+| the **`seuil`** (N-1 turnover above €37,500 / €85,000) | VAT applies *"dès le 1er janvier de l'année suivante"* — from 1 January of the following year |
+| the **`seuil majoré`** (N turnover above €41,250 / €93,500) | the franchise *"cesse de s'appliquer dès le 1er jour du dépassement"* — from the **first day of the overrun itself** |
+| **€100,000 of EU turnover**, for an EU-established business | ends *"dès le 1er jour de dépassement"* |
+
+Two things a founder must not miss. First, the majoré rule bites **immediately**, not at the end of the month: the page says so expressly, *"et non plus au premier jour du mois du dépassement"*, which means it used to be the month and a founder working from older advice will get it wrong. From that day, operations are taxable and invoices must show the VAT.
+
+Second, the two rules do different things — the `seuil` gives you the rest of the year, the `seuil majoré` gives you nothing. Compare the German pack, where §19 UStG was read directly and is **silent** on mid-year consequences, and [eu-vat-sme.md](eu-vat-sme.md), where the directive answers this only for the cross-border exemption. France states it on the face of the official page.
+
+**Mixed activities are not answered here.** Where a founder both sells and provides services, this pack previously stated that total turnover must stay under the sales threshold **and** the services part under the services threshold, with a breach of either ending the regime. The official page does **not** say that: it gives the thresholds per category, advises keeping accounts that show the categories separately — *"Il est important de tenir une comptabilité laissant apparaître les différentes catégories de recettes"* — and states a non-interference rule only for `avocats` and authors, which does not transfer. **[not researched]** for a sales-plus-services business; send it to an `expert-comptable` rather than restating the old rule.
 
 ### Resolved history — the €25,000 thresholds that did not happen
 
 Both attempts failed. Preserved because founders and advisers still cite them.
 
-**The 2025 single threshold.** The `loi de finances` for 2025 (article 32) introduced a **single €25,000 threshold** for all activities. It was **suspended on 2025-02-28**, then **repealed by loi n° 2025-1044 of 2025-11-03**, *"visant à garantir un cadre fiscal stable pour les micro-entrepreneurs et les petites entreprises"*, which abrogated article 32 and restored the earlier thresholds listed above. · *secondary, consistent across sources; corroborated by the official page* · **[checked 2026-11-10]**
+**The 2025 single threshold.** The `loi de finances` for 2025 (article 32) introduced a **single €25,000 threshold** for all activities, and it never took effect.
+
+What the official page actually says, and all it says: *"La proposition issue de la loi de finances pour 2025 visant à instaurer un seuil unique de franchise en base de TVA de 25 000 € a été **abandonnée**."* · **[checked 2026-11-11]**
+
+That is enough for a founder, and it is where the verified trail stops. This pack previously added that the measure was **suspended on 2025-02-28** and then **repealed by loi n° 2025-1044 of 2025-11-03**, *"visant à garantir un cadre fiscal stable pour les micro-entrepreneurs et les petites entreprises"*. Refetching the official page on 2026-11-11 confirmed the abandonment and **not** the law number, the date, or the suspension — the page mentions none of them, and the secondary source those details came from was never recorded here. Légifrance, which would settle it, returns 403 to this project's link checker.
+
+**So treat the law number as unconfirmed.** Do not cite `loi n° 2025-1044` to a founder as the instrument. Say the single €25,000 threshold was abandoned and the earlier thresholds stand, which is what the official page supports.
 
 **The PLF 2026 construction carve-out — rejected.** Article 25 of the `projet de loi de finances` for 2026 proposed €37,500 generally with **€25,000 for `prestations de services de travaux immobiliers`** (building works). **Deputies rejected it in November 2025 and it was not adopted.** No change to the thresholds was carried in the final law. · *secondary, consistent* · **[checked 2026-11-10]**
 
@@ -328,15 +353,20 @@ One row per substantive claim. The Status column uses the seven labels defined i
 
 | Claim | Check date | Status |
 | --- | --- | --- |
-| Franchise thresholds, both years, both activity groups | 2026-11-10 | Authority — official page read, updated 2026-01-01; secondary on the structure |
-| Mandatory mention `TVA non applicable - article 293 B du CGI` | 2026-11-10 | Authority — official page read |
-| Mixed-activity rule | 2026-11-10 | Secondary — no official source read |
-| 2025 single €25,000 threshold repealed by loi n° 2025-1044 of 2025-11-03 | 2026-11-10 | Secondary — consistent across sources; the law number was not read in the Journal Officiel |
+| Franchise thresholds: `seuil` and `seuil majoré`, all five activity categories | 2026-11-11 | Authority — the official page refetched and its own category names and figures quoted; `Vérifié le 01 janvier 2026` |
+| Mandatory mention `TVA non applicable - article 293 B du CGI`, required by art. 293 E CGI, and the `redressement fiscal` on omission | 2026-11-11 | Authority — official page read and quoted, including the 293 B / 293 E distinction |
+| **Corrected on 2026-11-11:** this pack stated a mixed-activity rule (both thresholds, breach of either ends the regime) | 2026-11-11 | Withdrawn — the official page does not state it. It gives thresholds per category and a non-interference rule only for `avocats` and authors, which does not transfer. The secondary source was never recorded |
+| The single €25,000 threshold was **abandoned** | 2026-11-11 | Authority — the official page says `abandonnée`, quoted |
+| That it was suspended on 2025-02-28 and repealed by loi n° 2025-1044 of 2025-11-03 | 2026-11-11 | Unconfirmed — the official page mentions no law number, date or suspension, and the secondary source was never recorded. Légifrance returns 403 here. **Do not cite the law number** |
 | PLF 2026 €25,000 for travaux immobiliers **rejected, not adopted** | 2026-11-10 | Secondary — consistent across sources; resolves an earlier open question |
 | Receiving mandatory from 2026-09-01 | 2026-11-10 | Authority — official EU source read |
 | Issuing: GE/ETI 2026-09-01, PME/TPE/micro 2027-09-01 | 2026-11-10 | Authority — official EU source read |
 | Accredited platform mandatory; only a PDP provides full functions; 3-year accreditation | 2026-11-10 | Authority — impots.gouv.fr page read |
 | E-reporting exists as a separate obligation; from 2026-09-01 for GE/ETI | 2026-11-10 | Authority — impots.gouv.fr page read |
+| Crossing the `seuil`: VAT from 1 January of the following year | 2026-11-11 | Authority — official page read and quoted |
+| Crossing the `seuil majoré`: franchise ends on the first day of the overrun, expressly no longer the first day of the month | 2026-11-11 | Authority — official page read and quoted. Answers for France what §19 UStG is silent on for Germany |
+| Crossing €100,000 of EU turnover ends the franchise from the first day of the overrun | 2026-11-11 | Authority — official page read; the directive side is in eu-vat-sme.md |
+| What the mixed-activity rule actually is | — | Open — the official page does not address a sales-plus-services business |
 | E-reporting date and scope for micro/indépendants | — | Open — not yet researched |
 | Formats UBL 2.1 / CII / Factur-X | 2026-11-10 | Authority — official EU source read |
 | Official start guide for 2026-09-01 | 2026-11-10 | Authority — official PDF extracted and read |
