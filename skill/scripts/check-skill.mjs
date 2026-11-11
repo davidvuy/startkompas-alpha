@@ -26,7 +26,7 @@ import {createReport} from './lib/report.mjs';
 // five size budgets". Change a number there and here together.
 const ALWAYS_BUDGET_KB = 10; // SKILL.md alone — paid on every turn, used or not
 const REFERENCE_BUDGET_KB = 48; // largest single reference — what one turn opens
-const MODEL_BUDGET_KB = 320; // SKILL.md + references/ — a distribution bound
+const MODEL_BUDGET_KB = 384; // SKILL.md + references/ — a distribution bound. Raised from 320 on 2026-11-11
 const FOLDER_BUDGET_KB = 512; // the folder as installed, tests excluded
 const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
 

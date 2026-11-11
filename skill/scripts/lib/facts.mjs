@@ -159,6 +159,30 @@ export const REQUIRED = [
   {case: '—', pack: 'eu-vat-sme.md', label: 'national threshold ceiling', pattern: /€85,000/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'Union turnover cap article', pattern: /284\(2\)\(a\)/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'the EUR 100,000 coincidence trap is named', pattern: /coincidence is a live trap/i},
+
+  // --- EU AI Act -------------------------------------------------------------
+  // The Act is being amended. Losing the amending instrument's identity would
+  // send the next maintainer back to the 2024 text, which is what most
+  // reproductions still carry.
+  {case: '—', pack: 'eu-ai-act.md', label: 'the amending regulation is named', pattern: /Regulation \(EU\) 2026\/1744/},
+  // This is the sentence that guards the superseded art. 4 wording. There is
+  // deliberately NO forbidden entry for "to their best extent": the layer must
+  // be able to quote that phrase as the wording it replaced, and both the
+  // warning and the withdrawal row quote it inside emphasis, so no lookbehind
+  // can tell an assertion from the record of its replacement. Restoring the old
+  // wording as current means deleting this sentence, which fails here instead.
+  {case: '—', pack: 'eu-ai-act.md', label: 'the replaced art. 4 wording is flagged as replaced', pattern: /quoting law that was replaced/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'art. 4 binds deployers, from 2025-02-02', pattern: /2025-02-02/},
+  // The nearest date in the layer, and the only one that can newly prohibit
+  // something a founder is already doing.
+  {case: '—', pack: 'eu-ai-act.md', label: 'the two new art. 5 prohibitions apply from 2026-12-02', pattern: /2026-12-02/},
+  // Quoting €35m to a solo founder is not merely alarming, it is wrong for
+  // them: art. 99(6) makes the percentage the operative ceiling for an SME.
+  {case: '—', pack: 'eu-ai-act.md', label: 'art. 99(6) gives SMEs the lower of the two ceilings', pattern: /whichever thereof is lower/},
+  // Art. 3(60) has two limbs, and without them the layer told founders every
+  // generated asset needs a disclosure.
+  {case: '—', pack: 'eu-ai-act.md', label: 'deep fake requires resemblance and false authenticity', pattern: /resembles existing/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'provider status does not depend on risk tier', pattern: /does not depend on risk tier/},
 ];
 
 /**

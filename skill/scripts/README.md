@@ -150,13 +150,23 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | --- | --- | --- |
 | **10 KB** | `SKILL.md` alone | The host loads this on **every turn**, used or not. The most expensive kilobyte in the project, and the budget to defend hardest. |
 | **48 KB** | the **largest single** file in `references/` | Progressive disclosure means the model opens *one* pack. A founder in Berlin never pays for the French pack, so the per-conversation cost is `SKILL.md` plus the biggest thing it might open. |
-| 320 KB | `SKILL.md` + all of `references/` | A **distribution** bound, not a per-turn cost: how much a reader has to trust and a maintainer has to recheck. Deliberately loose, so the ninth pack is not blocked by the eight a given conversation will not read. |
+| 384 KB | `SKILL.md` + all of `references/` | A **distribution** bound, not a per-turn cost: how much a reader has to trust and a maintainer has to recheck. Deliberately loose, so the tenth pack is not blocked by the nine a given conversation will not read. |
 | 512 KB | the folder as installed, **excluding** `scripts/test/` | Loose, and only there to catch accidental bulk. |
 | 192 KB | `scripts/test/` alone | Test code is *deliberate* bulk. Giving it its own bound keeps a runaway fixture catchable without letting a fixture compete with a jurisdiction pack. |
 
 The check also reports the **worst-case turn** — always-loaded plus the largest reference — which is the number to watch. Run it rather than trusting a figure quoted in a document; that is why it prints them.
 
 **The same bug three times, each a level further out.** Measuring only the folder, as this check first did, would have blocked adding a jurisdiction pack because the *tooling* had grown. Measuring only the aggregate, as it did next, priced every pack into every conversation, so closing an open topic in one country competed for budget with another country. Then the test suite reached 95 KB and started drawing on the same 512 KB as the packs, so a new fixture would have blocked a new pack. In each case the fix was the same: **charge for what is actually loaded, by whoever actually loads it.**
+
+### Why the aggregate moved a third time, to 384 KB
+
+It is the budget that has moved most — 192, 256, 320, now 384, see the history below — which is itself the reason to record the argument each time.
+
+The AI Act layer went 371 bytes over after being rewritten from the consolidated regulation. Trimming 371 bytes was possible and would have been the wrong fix: by then the **nine** files in `references/jurisdictions/` were 261 KB of the 320 KB on their own, leaving 59 KB for the method references — so a tenth pack of ordinary size could not have fitted whatever anyone trimmed. The number had quietly become the thing its own entry above says it must not be: a bound that blocks a new country.
+
+384 KB is 320 plus 64, which is one more file at the 48 KB per-reference ceiling plus margin. **The per-turn budgets were not touched**, because those are the ones a user pays: `SKILL.md` is 7.7 KB of 10 KB and the largest reference 43.1 KB of 48 KB.
+
+So the rule for the next contributor: this budget tracks the number of jurisdictions, and running into it is a prompt to **re-derive it from the pack count**, not to shave sentences out of sourced law. The per-turn budgets are the ones to defend by splitting, and `germany-e-invoicing.md` is what that looks like.
 
 **And a message bug worth remembering.** `kb()` rounds, so a file one byte over the 10 KB budget reported `10.0 KB is over the 10 KB budget` — which reads as the check contradicting itself, and whose first interpretation is that the check is broken. `overBudget()` states the excess in bytes instead: `10.0 KB, over the 10 KB always-loaded budget by 1 byte`.
 
@@ -170,6 +180,7 @@ Kept here so a raise is never silent. The constants live in `check-skill.mjs`; c
 | 2026-11-10 | model-facing 192 → 256 KB | Raised at 177.5 KB. Closing open topics adds verified content, and 14.5 KB of headroom was about to block that work — raised on an explicit decision, not to turn a red build green |
 | 2026-11-10 | **10 KB** always-loaded and **48 KB** per-reference added | SKILL.md was 7.5 KB and the largest reference 36.1 KB. They encode what the aggregate could not: the per-turn cost is bounded by one pack, and SKILL.md growing is far worse than `references/` growing |
 | 2026-11-11 | model-facing 256 → 320 KB, and **192 KB** test budget added | The test suite had reached 95 KB. Nothing was over budget; the point was that it was about to be, for the wrong reason — a fixture and a jurisdiction pack drawing on the same 512 KB |
+| 2026-11-11 | model-facing 320 → **384 KB** | Raised at 320.4 KB, from the pack count rather than from the overage: nine jurisdiction files held 261 KB of it, so a tenth pack could not have fitted at any amount of trimming. 384 is one more file at the 48 KB per-reference ceiling plus margin. Reasoned through above |
 
 **Before raising one, ask what it is telling you.** Before raising the model-facing budget, ask whether the packs should be condensed instead. Before raising the always-loaded budget, ask what behaviour the extra instruction buys. Verified prose earns its space; restated prose does not.
 
