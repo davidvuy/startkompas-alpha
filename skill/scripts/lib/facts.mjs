@@ -20,6 +20,12 @@ export const REQUIRED = [
   {case: 'C5', pack: 'belgium.md', label: 'Walloon abolition date', pattern: /2025-10-01/},
   {case: 'C5', pack: 'belgium.md', label: 'conflict preserved as a conflict', pattern: /source conflict/i},
   {case: 'C6', pack: 'belgium.md', label: '2029 threshold is EUR 28,000', pattern: /\|\s*2029\s*\|\s*€28,000\s*\|/},
+  // The EU side of the Belgian threshold. Both halves matter: the 2013
+  // authorisation explains the figure, and the 2020 directive explains why a
+  // raise no longer needs one — which stops "the EU allows it" being read as
+  // "it is in force".
+  {case: '—', pack: 'belgium.md', label: 'the EU authorisation behind the EUR 25,000', pattern: /2013\/53\/EU/},
+  {case: '—', pack: 'belgium.md', label: 'a raise needs no derogation now', pattern: /a derogation is no longer needed/i},
   {case: 'C6', pack: 'belgium.md', label: 'enacting instrument identified', pattern: /DOC 56 1593\/001/},
   {case: 'C6', pack: 'belgium.md', label: 'amended VAT Code article named', pattern: /art\. 56ter/i},
   // The figures are primary-confirmed from the bill; the ENACTMENT is not. Both

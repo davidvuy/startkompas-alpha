@@ -67,7 +67,8 @@ Note what this does **not** settle: it governs the **cross-border** exemption fo
 | --- | --- |
 | **France** | Stated on the face of the official page. Crossing the `seuil` (N-1) means VAT from 1 January of the following year; crossing the `seuil majoré` (N) ends the franchise *"dès le 1er jour du dépassement"* — see [france.md](france.md) §2 |
 | **Germany** | §19 UStG was read directly and is **silent**. The pack records the claims circulating about it as having no identified statutory basis — see [germany.md](germany.md) §2 |
-| **Belgium, Netherlands** | **[not researched]** |
+| **Netherlands** | **The exemption ends immediately.** The Belastingdienst draws the distinction itself: a voluntary exit from the KOR takes effect from the first day of the next quarter, but crossing €20,000 in a calendar year means *"u zich meteen afmelden ... Uw afmelding gaat dan direct in"* — see [netherlands.md](netherlands.md) §2 |
+| **Belgium** | **[not researched]**, and not for want of trying — the row in the table below says what was tried and what stopped it |
 
 So "what happens if I go over mid-year" now has a clear answer in two of the four packs — and the two agree, which one data point could not show: **both the French `seuil majoré` and the Dutch KOR end the exemption on the day, not at year end.** Germany's statute is silent and Belgium is unread. Do not carry the French rule across a border; the French page's own history shows the rule can change even within one country, since it says the immediate cessation is *"et non plus au premier jour du mois du dépassement"*.
 
@@ -93,7 +94,7 @@ The financial-and-real-estate limb turns on whether those transactions are **anc
 
 - Whether a given financial or real estate transaction is **ancillary** for art. 288: **[not researched]**.
 - How each member state **implements** the notification and quarterly return in practice — the Dutch `opgaaf kwartaalomzet` is one implementation; the others are **[not researched]**.
-- What happens to a **domestic** exemption on a mid-year threshold crossing. Not an EU question — see the per-pack table above, where France answers it, Germany's statute is silent, and two packs have not researched it.
+- What happens to a **domestic** exemption on a mid-year threshold crossing. Not an EU question — see the per-pack table above, where France and the Netherlands answer it, Germany's statute is silent, and Belgium have not researched it.
 
 ## Pack maintenance
 
@@ -110,8 +111,10 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Definitions of member-state and Union annual turnover | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex |
 | Art. 288: which supplies count, incl. some exempt ones; capital-asset disposals excluded | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex, quoted |
 | Whether a financial or real estate transaction is "ancillary" for art. 288 | — | Open — not yet researched |
+| The Dutch mid-year rule: the domestic exemption ends immediately | 2026-11-11 | Authority — the Belastingdienst's own KOR page, read and quoted in [netherlands.md](netherlands.md) |
+| The Belgian mid-year rule | — | Open — art. 56bis WBTW and `KB nr. 19` identified. Justel serves only metadata for both; its `article_body.pl` route does serve full text, but **as published**, and `KB nr. 19` as published in 2014 carries a €15,000 threshold, so it cannot answer a 2026 question. The consolidated text is what is missing |
 | Member-state implementation of notification and returns | — | Open — not yet researched |
-| Domestic exemption on a mid-year crossing | — | Elsewhere — a national question, not an EU one. Answered in france.md, recorded as statutorily unanswered in germany.md, open in the other two |
+| Domestic exemption on a mid-year crossing | — | Elsewhere — a national question, not an EU one. Answered in france.md and netherlands.md, recorded as statutorily unanswered in germany.md, open in belgium.md |
 
 Next full recheck due: **2027-05-10**. Earlier on any amendment to the SME scheme or a member state changing its national figure.
 

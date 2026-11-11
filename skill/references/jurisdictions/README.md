@@ -258,6 +258,8 @@ The first three labels are a judgment about **what kind of thing the source is**
 
 The Dutch civil-code rows were the last of that kind, and they were held back by a tooling limit rather than a judgment: `wetten.overheid.nl` serves each Book of the Civil Code as one document — Boek 6 is 351,743 characters and Boek 7 over a million — and a plain fetch of it returns the wrong part. **Loading the page in a browser and slicing it to the article inside the page solves it**, and reading art. 6:235 that way immediately falsified one of the pack's claims. If a row says a statute could not be reached, try that before accepting it.
 
+**And when a route works, check what version it gives you.** `ejustice.just.fgov.be` serves only metadata on its Justel pages, while its `article_body.pl` route — publication date plus `numac` — serves the full text **as published**. For a 1969 code amended monthly, or a 2014 decree whose threshold has since changed, that is the wrong version and worse than nothing: `KB nr. 19` as published reads €15,000 where the current figure is €25,000. A route that returns text is not the same as a route that returns the law in force.
+
 Where the official source exists and is reachable, use it. Where it exists and is not — `wetten.overheid.nl` serves each Book of the Civil Code as one document of a quarter of a million characters — say that in the detail, so the next maintainer does not repeat the attempt blind.
 
 ## Contributing a pack
