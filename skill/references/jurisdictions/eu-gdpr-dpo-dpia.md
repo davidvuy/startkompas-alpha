@@ -30,7 +30,7 @@ Art. 37(1) is not the whole answer, and the GDPR layer gave the impression it wa
 
 > *"In cases other than those referred to in paragraph 1, the controller or processor … may or, **where required by Union or Member State law shall**, designate a data protection officer."*
 
-**A member state may require a DPO where the GDPR does not.** Germany is the standing example: the BDSG sets a national threshold by headcount engaged in automated processing, so a German business can owe a DPO on a staff count alone while meeting none of the three art. 37(1) triggers. The national provision is **[not researched]** here and is listed as open in [germany.md](germany.md).
+**A member state may require a DPO where the GDPR does not.** Germany is the worked example, and it is worse than a headcount: §38(1) BDSG adds a 20-person threshold in its first sentence and then, in its second, four triggers that apply **regardless of how many people are involved** — including any processing that needs a DPIA, and market or opinion research. So a one-person German business can owe a DPO from its first client. Read [germany-data-protection.md](germany-data-protection.md), which quotes both sentences; what other member states do is **[not researched]**.
 
 So the answer to "do I need a DPO" is art. 37(1) **and then** the national pack. Answering it from the GDPR layer alone is answering half of it.
 
@@ -57,7 +57,9 @@ The three cases are not the whole answer either:
 - **Art. 35(4):** each supervisory authority *"shall establish and make public a list of the kind of processing operations which are subject to the requirement"*. Not optional, and not advisory — it is the authority's own enumeration of what triggers 35(1) in its country.
 - **Art. 35(5):** the authority *"may also"* publish a list of operations for which **no** assessment is required. That one is permissive, so some countries have it and some do not.
 
-Which means a complete DPIA answer is: the general rule, the three cases in 35(3), **and the founder's own authority's art. 35(4) list**. The contents of those national lists are **[not researched]** here, and the Dutch authority's list is already an open topic in [netherlands.md](netherlands.md). Do not tell a founder no assessment is needed without saying that the national list was not checked.
+Which means a complete DPIA answer is: the general rule, the three cases in 35(3), **and the founder's own authority's art. 35(4) list**.
+
+**Germany's list is read, and it answers the AI question this section leaves open.** Entry 11 of the joint German list covers AI used to steer interaction with data subjects or to evaluate them, with AI-based customer support as its named field of use — so in Germany that is not an arguable case but a listed one. See [germany-data-protection.md](germany-data-protection.md). The other national lists are **[not researched]** here, and the Dutch authority's is already an open topic in [netherlands.md](netherlands.md). Do not tell a founder no assessment is needed without saying which national list was checked.
 
 ## What an assessment must contain — article 35(7)
 
@@ -79,11 +81,11 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | DPO conditions, art. 37(1), with "controller and the processor" and the corrected limb 3 | 2026-11-11 | Primary — article text read on EUR-Lex, replacing a secondary reproduction |
 | Art. 37(4): Member State law may require a DPO where art. 37(1) does not | 2026-11-11 | Primary — read and quoted |
 | Art. 37(5)–(7): qualification, staff or contract, contact details published | 2026-11-11 | Primary — read |
-| The German national DPO threshold under the BDSG | — | Open — named here, researched in neither layer; it is germany.md's to close |
+| The German national DPO duty under §38 BDSG, including the triggers with no headcount | — | Elsewhere — read on 2026-11-11 and maintained in [germany-data-protection.md](germany-data-protection.md) |
 | **Corrected on 2026-11-11:** art. 35(3) case 1 was given without `and extensive` | 2026-11-11 | Withdrawn — the statute requires a *systematic and extensive* evaluation; the missing word widened the case |
 | DPIA conditions, art. 35(1) and 35(3) | 2026-11-11 | Primary — article text read on EUR-Lex, replacing a secondary reproduction |
 | Art. 35(4) authorities must publish a list of operations requiring a DPIA; 35(5) may publish the converse | 2026-11-11 | Primary — read |
-| Contents of the national art. 35(4) lists | — | Open — not researched; the Dutch one is already open in netherlands.md |
+| Contents of the national art. 35(4) lists | — | Open — Germany's is read in [germany-data-protection.md](germany-data-protection.md); no other is |
 | Art. 35(7) four minimum contents; 35(9) views of data subjects; 35(11) review | 2026-11-11 | Primary — read |
 | Controller and processor roles, registers, breach notification, security, lawful basis, transfers and data subject requests | — | Elsewhere — everything else about the GDPR is in [eu-gdpr.md](eu-gdpr.md) |
 

@@ -183,6 +183,30 @@ export const REQUIRED = [
   {case: '—', pack: 'eu-gdpr-dpo-dpia.md', label: 'art. 35(3) case 1 keeps "and extensive"', pattern: /systematic and extensive/},
   {case: '—', pack: 'eu-gdpr-dpo-dpia.md', label: 'national law can require a DPO under art. 37(4)', pattern: /where required by Union or Member State law shall/},
   {case: '—', pack: 'eu-gdpr-dpo-dpia.md', label: 'the art. 35(4) national list is mandatory', pattern: /shall establish and make public a list/},
+  // The national hooks are only useful if they point somewhere. Both were
+  // closed for Germany on 2026-11-11, and the sentence that carries the
+  // surprise — a DPO with no employees — has to survive here too, because this
+  // is the file a reader reaches the question from.
+  {case: '—', pack: 'eu-gdpr-dpo-dpia.md', label: 'the German DPO triggers ignore headcount', pattern: /regardless of how many people are involved/},
+  {case: '—', pack: 'eu-gdpr.md', label: 'the password figures are two authorities, not a rule', pattern: /minimum of \*\*12\*\* characters/},
+  {case: '—', pack: 'eu-gdpr.md', label: 'the one adequacy answer the packs hold is the DPF', pattern: /EU–US Data Protection Framework/},
+
+  // --- Germany — data protection annex ---------------------------------------
+  // §38(1) has two sentences and the second has no headcount at all. Quoting
+  // only the 20-person figure is the error this block exists to prevent: it
+  // tells a one-person market-research business it owes no DPO when it does.
+  {case: '—', pack: 'germany-data-protection.md', label: '§38(1) sentence 1 threshold, in German', pattern: /mindestens 20 Personen ständig/},
+  {case: '—', pack: 'germany-data-protection.md', label: '§38(1) sentence 2 applies regardless of headcount', pattern: /unabhängig von der Anzahl/},
+  {case: '—', pack: 'germany-data-protection.md', label: '§6(4) bars dismissal of a compulsory DPO', pattern: /Die Kündigung des Arbeitsverhältnisses ist unzulässig/},
+  // Entry 11 of the German art. 35(4) list. It converts the AI DPIA question
+  // from arguable to listed, which is the sharpest national fact in any pack.
+  {case: '—', pack: 'germany-data-protection.md', label: 'DSK entry 11 covers AI steering interaction', pattern: /Steuerung der Interaktion mit den Betroffenen/},
+  // The checklist is version 0.9 and scoped to retail. Losing either would turn
+  // a provisional draft for a different business type into general authority.
+  {case: '—', pack: 'germany-data-protection.md', label: 'the BayLDA checklist is a provisional draft', pattern: /Version \*\*0\.9\*\*|Version 0\.9/},
+  {case: '—', pack: 'germany-data-protection.md', label: 'its scope excludes high-risk processing', pattern: /kein KI-Startup/},
+  {case: '—', pack: 'germany-data-protection.md', label: 'the DPF condition is per provider', pattern: /DPF list of the US Department of Commerce/},
+  {case: '—', pack: 'germany-data-protection.md', label: 'freelancers are inside the private-sector authority', pattern: /freiberuflich Tätigen/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'national threshold ceiling', pattern: /€85,000/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'Union turnover cap article', pattern: /284\(2\)\(a\)/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'the EUR 100,000 coincidence trap is named', pattern: /coincidence is a live trap/i},

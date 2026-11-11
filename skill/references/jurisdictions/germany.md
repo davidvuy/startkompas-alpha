@@ -293,11 +293,9 @@ The BfDI lists an authority for each of the **16 Länder**, and states that *"Ne
 
 So for a **private company the competent authority is the `Land` authority where it is established**, not the BfDI. The BfDI oversees federal public bodies and companies providing telecommunications and postal services.
 
-A note on the count, because it varies in secondary sources: the BfDI directory lists **one entry per Land, so 16**. Totals of 17 or 18 circulate because at least one Land splits public-sector and private-sector supervision between separate authorities — **[not researched]** which, so do not quote a total. The number does not matter to a founder; the right `Land` does.
-
 Practical consequence: a founder cannot be told "contact the German DPA". Establish their `Land` first, then find that authority. A breach notification sent to the wrong authority is not a notification made.
 
-The `BDSG` and the competent state authority's own guidance are **[not researched]**.
+**The German specifics beyond that are in [germany-data-protection.md](germany-data-protection.md):** §40 BDSG and which Land authority is competent when there are several establishments, **§38 BDSG — under which a DPO is compulsory with no employees at all**, the dismissal protection a compulsory DPO acquires, the German art. 35(4) DPIA list and **the entry on it that covers AI customer interaction**, and the BayLDA's own checklist for a one-person business.
 
 ---
 
@@ -336,7 +334,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | §31(5) UrhG Zweckübertragungsregel: unnamed uses read by contract purpose; simple vs exclusive | 2026-11-10 | Primary — statute read and quoted |
 | Competent authority is the Land authority, not the BfDI; 16 entries listed | 2026-11-10 | Authority — the BfDI's own directory read |
 | Which Land splits public and private supervision (the 17/18 counts) | — | Open — not yet researched |
-| BDSG, and the competent Land authority's own guidance | — | Open — not yet researched |
+| The BDSG, the DSK art. 35(4) list and the competent Land authority's own guidance | — | Elsewhere — researched on 2026-11-11 and maintained in [germany-data-protection.md](germany-data-protection.md) |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2026-12-31, when the BMF non-objection period ends, and before 2027-01-01 when the first issuing phase begins. Also before 2027-12-31, when the transitional rules of the 2024 letter run out.

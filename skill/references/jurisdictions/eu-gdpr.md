@@ -223,6 +223,8 @@ Measures the page names — organisational: awareness sessions, documented opera
 
 Treat both as that page's general SME guidance — **not** a legal requirement, and not current best practice on passwords, where length-first policies and breached-password screening have displaced short-but-complex rules. Do not present either number as an obligation, and do not reproduce the 8-character figure as a recommendation.
 
+**Two regulators, two numbers, and neither is the rule.** A German Land authority's own 2025 checklist for one-person businesses asks for a minimum of **12** characters — see [germany-data-protection.md](germany-data-protection.md). That is the plainest demonstration of what these figures are: each authority's current expectation, not a requirement anyone can cite. Cite art. 32(1) below for the obligation and the founder's own authority for the number.
+
 ### Article 32(1) — where the proportionality comes from, and the four measures it does name
 
 Source: [Article 32 GDPR, consolidated](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A02016R0679-20160504) · *the authoritative text* · **[checked 2026-11-11]**
@@ -330,7 +332,9 @@ There are three routes a founder will meet:
 
 **This is a question about the founder's provider, but it stays the founder's obligation.** Art. 44 binds the controller; a reputable provider will state which route it relies on — an adequacy decision, or SCCs in its data processing terms — and the founder's job is to **read that, record it, and keep it with the art. 30(1) transfer entry**. They do not construct the safeguard; they do answer for having checked one exists. Telling a founder it is "the provider's problem" is the version of this section to avoid.
 
-**Open:** which countries currently hold an adequacy decision, and the transfer-impact assessment that case law expects alongside SCCs, are **[not researched]**. Do not tell a founder a specific destination is adequate.
+**One partial answer, and it is per provider rather than per country.** A German Land authority tells a one-person business that transfers to the US may rest on the **EU–US Data Protection Framework** — on the stated condition that the specific provider is listed on the DPF list of the US Department of Commerce, and with the note that where it is not, the transfer needs other guarantees such as the Commission's standard contractual clauses. See [germany-data-protection.md](germany-data-protection.md). So for the US the question is answered about the **provider**, not about the country.
+
+**Open:** the adequacy decisions themselves, which other countries hold one, and the transfer-impact assessment that case law expects alongside SCCs, are **[not researched]**. Do not tell a founder a specific destination is adequate on this layer's authority.
 
 ## 9. Answering a data subject request — one month
 

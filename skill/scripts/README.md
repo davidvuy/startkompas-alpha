@@ -152,7 +152,7 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | --- | --- | --- |
 | **10 KB** | `SKILL.md` alone | The host loads this on **every turn**, used or not. The most expensive kilobyte in the project, and the budget to defend hardest. |
 | **48 KB** | the **largest single** file in `references/` | Progressive disclosure means the model opens *one* pack. A founder in Berlin never pays for the French pack, so the per-conversation cost is `SKILL.md` plus the biggest thing it might open. |
-| 384 KB | `SKILL.md` + all of `references/` | A **distribution** bound, not a per-turn cost: how much a reader has to trust and a maintainer has to recheck. Deliberately loose, so the tenth pack is not blocked by the nine a given conversation will not read. |
+| 512 KB | `SKILL.md` + all of `references/` | A **distribution** bound, not a per-turn cost: how much a reader has to trust and a maintainer has to recheck. Deliberately loose, so a new jurisdiction is never blocked by the ones a given conversation will not read. |
 | 192 KB | `scripts/` and `docs/` as installed — everything shipped that the model never reads | Loose, and only there to catch accidental bulk on the half a turn never pays for. |
 | 192 KB | `scripts/test/` alone | Test code is *deliberate* bulk. Giving it its own bound keeps a runaway fixture catchable without letting a fixture compete with a jurisdiction pack. |
 
@@ -162,15 +162,19 @@ The check also reports the **worst-case turn** — always-loaded plus the larges
 
 **The same bug four times, each a level further out.** Measuring only the folder, as this check first did, would have blocked adding a jurisdiction pack because the *tooling* had grown. Measuring only the aggregate, as it did next, priced every pack into every conversation, so closing an open topic in one country competed for budget with another country. Then the test suite reached 95 KB and started drawing on the same 512 KB as the packs, so a new fixture would have blocked a new pack. Then the folder budget itself failed when a pack grew — with the message *"something bulky got in"*, which sends a maintainer looking for a stray binary instead of at the budget that was actually exceeded. In each case the fix was the same: **charge for what is actually loaded, by whoever actually loads it**, and let a failure name the half that caused it.
 
-### Why the aggregate moved a third time, to 384 KB
+### Why the aggregate is derived from a jurisdiction and not from a file
 
-It is the budget that has moved most — 192, 256, 320, now 384, see the history below — which is itself the reason to record the argument each time.
+It is the budget that has moved most — 192, 256, 320, 384, now 512, see the history below — which is itself the reason to record the argument each time. The last two moves happened on the same day, and that is worth explaining rather than hiding, because the first of them used the wrong unit.
 
-The AI Act layer went 371 bytes over after being rewritten from the consolidated regulation. Trimming 371 bytes was possible and would have been the wrong fix: by then the **nine** files in `references/jurisdictions/` were 261 KB of the 320 KB on their own, leaving 59 KB for the method references — so a tenth pack of ordinary size could not have fitted whatever anyone trimmed. The number had quietly become the thing its own entry above says it must not be: a bound that blocks a new country.
+**The move to 384.** The AI Act layer went 371 bytes over after being rewritten from the consolidated regulation. Trimming 371 bytes was possible and would have been the wrong fix: by then the **nine** files in `references/jurisdictions/` were 261 KB of the 320 KB on their own, leaving 59 KB for the method references — so a tenth pack of ordinary size could not have fitted whatever anyone trimmed. The number had quietly become the thing its own entry above says it must not be: a bound that blocks a new country. 384 KB was set as 320 plus 64: **one more file at the 48 KB per-reference ceiling, plus margin.**
 
-384 KB is 320 plus 64, which is one more file at the 48 KB per-reference ceiling plus margin. **The per-turn budgets were not touched**, because those are the ones a user pays: `SKILL.md` is 7.7 KB of 10 KB and the largest reference 43.1 KB of 48 KB.
+**Why that unit was wrong, five hours later.** Reading the GDPR onto EUR-Lex and the BDSG onto `gesetze-im-internet.de` produced two more annexes for the GDPR layer and one for the German pack, and the set reached 380.9 KB of 384. The derivation had assumed a jurisdiction costs one file. It no longer does: **Germany is three files and 75 KB** — the pack, the e-invoicing annex and the data-protection annex — and that is what a country looks like once its statutes are actually read rather than summarised. A per-file bound cannot hold a per-country unit.
 
-So the rule for the next contributor: this budget tracks the number of jurisdictions, and running into it is a prompt to **re-derive it from the pack count**, not to shave sentences out of sourced law. The per-turn budgets are the ones to defend by splitting, and `germany-e-invoicing.md` is what that looks like.
+So 512 KB, derived as the set as it stands plus one more country at the size the most-worked country has reached, rounded up a step: 380.9 + 75.3 = 456.2, and the next 64 KB step above that is 512.
+
+**The per-turn budgets were not touched, and annexing improved them.** Those are the ones a user pays: `SKILL.md` is 7.5 KB of 10 KB, the largest single reference 45.0 KB of 48 KB, and the worst-case turn **fell from 62.5 KB this morning to 52.5 KB** even as the distributed set grew by a third. That is the whole argument for splitting rather than raising the per-reference budget, and for keeping the two kinds of budget separate.
+
+So the rule for the next contributor: this budget tracks **jurisdictions, not files**, and running into it is a prompt to re-derive it from what one fully-worked country now costs — never to shave sentences out of sourced law. The per-turn budgets are the ones to defend by splitting, and `germany-e-invoicing.md`, `eu-gdpr-fines.md`, `eu-gdpr-dpo-dpia.md` and `germany-data-protection.md` are what that looks like.
 
 **And a message bug worth remembering.** `kb()` rounds, so a file one byte over the 10 KB budget reported `10.0 KB is over the 10 KB budget` — which reads as the check contradicting itself, and whose first interpretation is that the check is broken. `overBudget()` states the excess in bytes instead: `10.0 KB, over the 10 KB always-loaded budget by 1 byte`.
 
@@ -180,11 +184,12 @@ Kept here so a raise is never silent. The constants live in `check-skill.mjs`; c
 
 | Date | Change | At the time |
 | --- | --- | --- |
-| — | **320 KB** model-facing, initially 192 KB | Set when the model-facing set was 142.7 KB |
+| — | model-facing, initially **192 KB** | Set when the model-facing set was 142.7 KB |
 | 2026-11-10 | model-facing 192 → 256 KB | Raised at 177.5 KB. Closing open topics adds verified content, and 14.5 KB of headroom was about to block that work — raised on an explicit decision, not to turn a red build green |
 | 2026-11-10 | **10 KB** always-loaded and **48 KB** per-reference added | SKILL.md was 7.5 KB and the largest reference 36.1 KB. They encode what the aggregate could not: the per-turn cost is bounded by one pack, and SKILL.md growing is far worse than `references/` growing |
 | 2026-11-11 | model-facing 256 → 320 KB, and **192 KB** test budget added | The test suite had reached 95 KB. Nothing was over budget; the point was that it was about to be, for the wrong reason — a fixture and a jurisdiction pack drawing on the same 512 KB |
 | 2026-11-11 | model-facing 320 → **384 KB** | Raised at 320.4 KB, from the pack count rather than from the overage: nine jurisdiction files held 261 KB of it, so a tenth pack could not have fitted at any amount of trimming. 384 is one more file at the 48 KB per-reference ceiling plus margin. Reasoned through above |
+| 2026-11-11 | model-facing 384 → **512 KB** | Hit at 380.9 KB the same day, after the GDPR and BDSG reads produced three annexes. Re-derived from the unit that was wrong in the row above: a jurisdiction, not a file. Germany is now three files and 75 KB, so the set plus one more country at that size is 456 KB, and the next step is 512. The worst-case turn fell to 52.5 KB over the same work |
 | 2026-11-11 | the **512 KB** folder budget replaced by a **192 KB** support budget, with the folder total derived as 576 KB | Hit at 511.6 KB while reading the GDPR onto EUR-Lex. It was not a raise: 384 model-facing plus 160 KB of legitimate `scripts/` and `docs/` already exceeded 512, so the folder number had become unreachable for the same structural reason as the aggregate above. Splitting it puts the failure on the half that grew — and the half the model never reads is where *"something bulky got in"* actually belongs |
 
 **Before raising one, ask what it is telling you.** Before raising the model-facing budget, ask whether the packs should be condensed instead. Before raising the always-loaded budget, ask what behaviour the extra instruction buys. Verified prose earns its space; restated prose does not.

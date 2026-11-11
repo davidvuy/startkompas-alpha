@@ -26,7 +26,12 @@ import {createReport} from './lib/report.mjs';
 // five size budgets". Change a number there and here together.
 const ALWAYS_BUDGET_KB = 10; // SKILL.md alone — paid on every turn, used or not
 const REFERENCE_BUDGET_KB = 48; // largest single reference — what one turn opens
-const MODEL_BUDGET_KB = 384; // SKILL.md + references/ — a distribution bound. Raised from 320 on 2026-11-11
+// SKILL.md + references/ — a distribution bound. Raised from 320 to 384 and
+// then to 512 on 2026-11-11: see scripts/README.md, "Why the aggregate is
+// derived from a jurisdiction and not from a file". 384 allowed one more
+// reference at the 48 KB ceiling, which stopped being the unit of growth the
+// moment a country needed annexes — Germany is three files and 75 KB.
+const MODEL_BUDGET_KB = 512;
 const SUPPORT_BUDGET_KB = 192; // scripts/ and docs/ as installed — code the model never reads
 const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
 

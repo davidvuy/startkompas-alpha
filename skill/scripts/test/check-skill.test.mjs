@@ -543,7 +543,17 @@ test('bulk in scripts/ fails the support budget, not the model-facing one', () =
   // And it must not be reported as a model-facing problem, because the model
   // never reads it: the folder line carries the sum of the two budgets.
   assert.doesNotMatch(result.output, /model-facing budget/);
-  assert.match(result.output, /folder without tests: .* of 576 KB/);
+
+  // The folder figure must be exactly the two halves added up. Asserted as
+  // arithmetic rather than as a number, because the first version of this test
+  // hard-coded 576 and broke the next time the model-facing budget moved —
+  // which is the opposite of what a derived budget is for.
+  const budgetOf = (label) =>
+    Number(new RegExp(`${label}: .* of (\\d+) KB`).exec(result.output)?.[1]);
+  assert.equal(
+    budgetOf('folder without tests'),
+    budgetOf('model-facing total') + budgetOf('support files'),
+  );
 });
 
 test('a binary asset in the tree fails', () => {
