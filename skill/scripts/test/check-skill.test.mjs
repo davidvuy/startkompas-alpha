@@ -8,7 +8,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 
-import {baseTree, runCheck, withTree, VALID_REFERENCE, VALID_CONVENTION, validPack} from './helpers.mjs';
+import {baseTree, runCheck, withTree, VALID_REFERENCE, VALID_CONVENTION, validAnnex, validPack} from './helpers.mjs';
 
 /** A tree that passes, so a negative result can only come from the defect. */
 function expectPass(files) {
@@ -276,6 +276,66 @@ test('a shared eu-* layer is not held to the national template', () => {
       '',
     ].join('\n'),
   });
+});
+
+// --- Annexes — a pack's own overflow file ------------------------------------
+// `<country>-<topic>.md` beside `<country>.md` is an annex: exempt from the
+// template, because it covers one section rather than six, but reachable only
+// through its pack, so the pack must link it.
+
+/** A pack plus an annex to it, both indexed, with `patch` applied to the pack. */
+function annexTree(patch = (pack) => pack) {
+  return {
+    ...baseTree({
+      'references/method.md': '# Method\n\nSee [packs](jurisdictions/README.md).\n',
+    }),
+    'references/jurisdictions/README.md':
+      '# Packs\n\n- [testland.md](testland.md)\n- [testland-topic.md](testland-topic.md)\n',
+    'references/jurisdictions/testland.md': patch(
+      validPack().replace(
+        '## 3. B2B e-invoicing — not in force',
+        '## 3. B2B e-invoicing — not in force\n\nDetail in [testland-topic.md](testland-topic.md).',
+      ),
+    ),
+    'references/jurisdictions/testland-topic.md': validAnnex(),
+  };
+}
+
+test('an annex is not held to the national template', () => {
+  expectPass(annexTree());
+});
+
+test('an annex its pack does not link fails, and names the pack', () => {
+  // Being in the index is not enough. A reader who opened testland.md to
+  // answer a question in section 3 would never learn the detail exists.
+  const result = expectFail(
+    annexTree((pack) => pack.replace('\n\nDetail in [testland-topic.md](testland-topic.md).', '')),
+    /does not link it/,
+  );
+  assert.match(result.output, /testland\.md/);
+});
+
+test('an annex still has to carry the common pack rules', () => {
+  const tree = annexTree();
+  tree['references/jurisdictions/testland-topic.md'] = validAnnex().replace(
+    'Next full recheck due',
+    'Maybe recheck sometime',
+  );
+  expectFail(tree, /no recheck due date/);
+});
+
+test('a hyphenated name with no pack beside it is a national pack, not an annex', () => {
+  // The parent is found by filename and nothing else, so the rule has to say
+  // what happens when the prefix matches no pack: `a-land.md` stands alone and
+  // the six sections still apply to it.
+  const tree = {
+    ...baseTree({
+      'references/method.md': '# Method\n\nSee [packs](jurisdictions/README.md).\n',
+    }),
+    'references/jurisdictions/README.md': '# Packs\n\n- [a-land.md](a-land.md)\n',
+    'references/jurisdictions/a-land.md': validAnnex(),
+  };
+  expectFail(tree, /section 1 missing or off-template/);
 });
 
 /** A pack with `line` inserted just under one of its section headings. */

@@ -11,7 +11,8 @@ A jurisdiction pack is a dated, sourced answer set for one country or region. It
 | **EU — AI Act** (shared, not a country) | [eu-ai-act.md](eu-ai-act.md) | 2026-11-10 | Four risk tiers, provider versus deployer, **what actually binds a small deployer** (art. 4 AI literacy and art. 50 transparency, both quoted), the phased dates — general applicability arrived 2026-08-02 | When a founder becomes a provider; whether marketing counts as public-interest text |
 | Belgium (federal; regional differences noted) | [belgium.md](belgium.md) | 2026-11-10 | Registration formalities with the three-way competence conflict, VAT exemption with its enacting law, B2B e-invoicing, unfair-terms structure, software ownership (3 rules), GBA's named SME material | Black/grey list contents; the GBA publications' contents; Belgian national GDPR provisions |
 | Netherlands | [netherlands.md](netherlands.md) | 2026-11-10 | Registration test, KVK→Belastingdienst link and the **€85.15 fee**, KOR incl. invoicing duties, EU-KOR, B2B/B2G e-invoicing, **art. 6:233 and 6:235 quoted**, **art. 7 Auteurswet**, AP's three duties | Identification documents and timeframe; client's permitted use and art. 8 Auteurswet; the Contourenbrief; AP stappenplan |
-| Germany | [germany.md](germany.md) | 2026-11-10 | **§18 EStG and the Gewerbe/freier Beruf route**, VAT §19 quoted, B2B e-invoicing with BMF points, **§310(1) BGB plus the BGH Indizwirkung**, **§69b UrhG**, which Land authority is competent | `ingenieurähnlich` (open by nature); municipal Gewerbeanmeldung detail; trade-custom rebuttal; commissioned-work licence; BDSG |
+| Germany | [germany.md](germany.md) | 2026-11-11 | **§18 EStG and the Gewerbe/freier Beruf route**, **all six subsections of §19 UStG incl. the five-year waiver lock**, **§34a UStDV invoice particulars**, **§11 GewStG read**, **§310(1) BGB plus the BGH Indizwirkung**, **§69b/§69d/§69e UrhG**, which Land authority is competent | `ingenieurähnlich` (open by nature); municipal Gewerbeanmeldung detail; §§8–9 GewStG; trade-custom rebuttal; BDSG |
+| Germany — B2B e-invoicing (annex to the German pack) | [germany-e-invoicing.md](germany-e-invoicing.md) | 2026-11-11 | **§27(38) UStG tabulated**, the three BMF letters `Randnummer` by `Randnummer`, the error taxonomy, eight-year retention, **§33 UStDV's carve-out from the €250 relief** | GoBD letter; §27(15) and (18); whether a late paper invoice for a 2026 turnover is covered |
 | France | [france.md](france.md) | 2026-11-10 | **Guichet unique with the filing window, documents and zero cost**, franchise thresholds (both years), e-invoicing, accredited-platform mandate, e-reporting, **L442-1 I and art. 1171 as two routes**, **L113-9 CPI**, CNIL's SME offering | e-reporting scope for micro; L442-1/1171 interaction; client's permitted use and moral rights; CNIL's individual guides; the official start guide |
 
 No other pack exists yet. A missing pack, or a topic marked open inside a pack, is a gap in **coverage** — **never** a finding that no requirement exists.
@@ -155,12 +156,15 @@ Do not generalize from Belgium or from any other pack. Rules that look similar b
 
 ## The pack template
 
-Two kinds of file live here, distinguished by name:
+Three kinds of file live here, distinguished by name:
 
 - **`eu-*.md` — a shared legal layer.** A rule that is identical across member states, stated once instead of four times. These have their own shape.
-- **anything else — a national pack.** These must follow the six-section template below, so a reader finds the same topic in the same place in every country.
+- **`<country>.md` — a national pack.** These must follow the six-section template below, so a reader finds the same topic in the same place in every country.
+- **`<country>-<topic>.md` — an annex to that pack**, for one section that outgrew the per-reference budget. [germany-e-invoicing.md](germany-e-invoicing.md) is the first. An annex is exempt from the template, because it covers one topic rather than six, but it still carries the convention line, a maintenance table and a recheck date, and **its pack must link it** — otherwise a reader working through the pack never learns it exists.
 
-`scripts/check-skill.mjs` enforces the national template. If you reorder or rename a section, the build fails and names the section.
+`scripts/check-skill.mjs` enforces all three rules. If you reorder or rename a section the build fails and names the section; if an annex is unlinked from its pack it says so, and it finds the pack from the filename, so there is no list to keep in sync.
+
+**Write an annex only when a pack is over budget.** Splitting on taste instead costs the reader a second file to open for no gain. The check reports every file's size against the budget, so the moment to split is the moment it fails.
 
 ```
 # <Country> — jurisdiction pack

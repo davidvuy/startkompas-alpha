@@ -182,6 +182,35 @@ No independent reviewer has reviewed this pack.
 }
 
 /**
+ * An annex to a national pack: everything a pack must carry except the
+ * six-section template, which it is exempt from because it covers one topic.
+ *
+ * @param {{name?: string, recheck?: string}} [options]
+ */
+export function validAnnex({name = 'Testland — one topic', recheck = '2099-01-01'} = {}) {
+  return `# ${name}
+
+Annex to the fixture pack. Not advice. Verify before relying on it.
+
+${VALID_CONVENTION}
+
+## The one topic this annex covers
+
+Something. · **[checked 2026-11-10]**
+
+## Pack maintenance
+
+| Claim | Check date | Status |
+| --- | --- | --- |
+| Everything above | 2026-11-10 | Authority — fixture |
+
+Next full recheck due: **${recheck}**.
+
+No independent reviewer has reviewed this annex.
+`;
+}
+
+/**
  * The smallest tree that passes check-skill, as a base for negative fixtures.
  * Spread it and override one entry.
  */

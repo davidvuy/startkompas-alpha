@@ -48,15 +48,41 @@ export const REQUIRED = [
   {case: '—', pack: 'germany.md', label: 'BMF grace period end', pattern: /2026-12-31/},
   {case: '—', pack: 'germany.md', label: 'ownership provision', pattern: /§69b UrhG/},
   {case: '—', pack: 'germany.md', label: 'unfair terms provision', pattern: /§310\(1\) BGB/},
+  {case: 'C14', pack: 'germany.md', label: 'small-amount invoice ceiling', pattern: /€250/},
+  {case: '—', pack: 'germany.md', label: '§69g(2) voids terms against the user floor', pattern: /§ 69d Absatz 2, 3, 5 oder 7 oder zu § 69e stehen, sind nichtig/},
+  // §69e grants very little, and the condition founders skip is that the
+  // interoperability information must not already be available to them — so
+  // asking for it is the first step, not a courtesy.
+  {case: '—', pack: 'germany.md', label: '§69e decompilation requires the information not be available', pattern: /noch nicht ohne weiteres zugänglich gemacht/},
+  // §19(1) has two sentences and the pack used to quote one of them under the
+  // heading "in full". Sentence 2 is where the filing relief lives.
+  {case: '—', pack: 'germany.md', label: '§19(1) sentence 2 disapplies the declaration duties', pattern: /No VAT `Voranmeldungen` and no annual VAT return/},
+  // Declining the exemption is not a reversible setting, and this is the only
+  // number in §2 that can cost a founder five years.
+  {case: '—', pack: 'germany.md', label: '§19(3) waiver binds five calendar years', pattern: /It binds for at least five calendar years/},
+  // "No VAT on the invoice" is not "nothing on the invoice": §34a requires the
+  // exemption to be stated, and a bare invoice with no VAT line fails it.
+  {case: '—', pack: 'germany.md', label: '§34a requires the exemption to be stated on the invoice', pattern: /the Kleinunternehmer exemption applies/},
+  // §11 GewStG gives the allowance to natural persons and partnerships. A
+  // founder who incorporates loses it, which is a legal-form question.
+  {case: '—', pack: 'germany.md', label: '€24,500 allowance is not available to a GmbH', pattern: /natürlichen Personen sowie bei Personengesellschaften/},
+
+  // --- Germany — e-invoicing annex -------------------------------------------
   // Rn. 22 of the 2025 BMF letter: a Kleinunternehmer is exempt from ISSUING,
   // not merely deferred. Losing this silently would make the pack overstate the
   // obligation for exactly the founders it is written for.
-  {case: 'C14', pack: 'germany.md', label: 'Kleinunternehmer exempt from issuing, not deferred', pattern: /never has to issue an e-invoice/i},
-  {case: 'C14', pack: 'germany.md', label: 'small-amount invoice ceiling', pattern: /€250/},
-  {case: 'C14', pack: 'germany.md', label: 'no transitional rule for receiving', pattern: /no transition for receiving/i},
-  {case: '—', pack: 'germany.md', label: 'retention period is eight years', pattern: /\*\*eight years\*\*/},
-  {case: '—', pack: 'germany.md', label: 'validation may be relied on; keep the report', pattern: /validation report/i},
-  {case: '—', pack: 'germany.md', label: '§69g(2) voids terms against the user floor', pattern: /§ 69d Absatz 2, 3, 5 oder 7 oder zu § 69e stehen, sind nichtig/},
+  {case: 'C14', pack: 'germany-e-invoicing.md', label: 'Kleinunternehmer exempt from issuing, not deferred', pattern: /never has to issue an e-invoice/i},
+  {case: 'C14', pack: 'germany-e-invoicing.md', label: 'no transitional rule for receiving', pattern: /no transition for receiving/i},
+  {case: '—', pack: 'germany-e-invoicing.md', label: 'BMF grace period end', pattern: /2026-12-31/},
+  {case: '—', pack: 'germany-e-invoicing.md', label: 'retention period is eight years', pattern: /\*\*eight years\*\*/},
+  {case: '—', pack: 'germany-e-invoicing.md', label: 'validation may be relied on; keep the report', pattern: /validation report/i},
+  // §27(38) is the whole transition, and the letters never put its three cases
+  // side by side. Two of them are easy to merge by mistake.
+  {case: '—', pack: 'germany-e-invoicing.md', label: '§27(38) has exactly three derogation cases', pattern: /exactly three numbered cases/},
+  {case: '—', pack: 'germany-e-invoicing.md', label: 'the EDI route carries no turnover limit', pattern: /no turnover condition/},
+  // The €250 relief does not reach a reverse-charge invoice. The pack stated
+  // the relief without the carve-out until §33 UStDV was read.
+  {case: '—', pack: 'germany-e-invoicing.md', label: '§33 sentence 3 removes the €250 relief for §3c/§6a/§13b', pattern: /sentence 3 removes sentences 1 and 2/},
 
   // --- France ----------------------------------------------------------------
   {case: 'C15', pack: 'france.md', label: 'receiving in force from 2026-09-01', pattern: /2026-09-01/},
@@ -164,6 +190,16 @@ export const FORBIDDEN = [
     pack: 'belgium.md',
     label: 'must not claim the Walloon proof is still required',
     pattern: /must obtain (the )?basic[- ]management/i,
+  },
+  // §19(1) UStG has two sentences. The pack quoted sentence 1 under the words
+  // "§19(1) in full" and so missed sentence 2, which is where the exemption
+  // from the VAT filing duties lives. The maintenance table records that
+  // correction and quotes the old wording in backticks, which the lookbehind
+  // excludes — the same device as the Belgian entries above.
+  {
+    pack: 'germany.md',
+    label: 'must not call one sentence of §19(1) the whole paragraph',
+    pattern: /(?<!`)§19\(1\) in full/,
   },
   // A pack may legitimately QUOTE a claim it has withdrawn, inside the
   // correction that withdraws it — belgium.md §2 does exactly that, and the

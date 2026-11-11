@@ -187,9 +187,20 @@ for (const file of modelFacing) {
 }
 
 // --- 6. Jurisdiction packs stay discoverable, dated and on-template ----------
-// Naming convention: `eu-*.md` is a shared legal layer, anything else is a
-// national pack and must follow the six-section template so a reader can find
-// the same topic in the same place in every country.
+// Naming convention, three kinds of file:
+//
+//   eu-*.md          a shared legal layer; it has its own shape.
+//   <country>.md     a national pack. It must follow the six-section template
+//                    so a reader finds the same topic in the same place in
+//                    every country.
+//   <country>-*.md   an annex to that national pack, for one topic that
+//                    outgrew the per-reference budget. It is exempt from the
+//                    template — it covers one section, not six — but it must
+//                    be linked from its own pack, or a reader working through
+//                    the pack would never reach it.
+//
+// The parent is found by filename, not by a manifest: germany-e-invoicing.md
+// is an annex because germany.md exists beside it. Nothing to keep in sync.
 
 // Hosts that serve the authoritative text of a rule, so a source on one of
 // them may be called primary. This is deliberately a short allowlist rather
@@ -226,7 +237,19 @@ if (existsSync(packsDir)) {
     .sort();
 
   const shared = packs.filter((pack) => pack.startsWith('eu-'));
-  const national = packs.filter((pack) => !pack.startsWith('eu-'));
+  const stems = new Set(packs.map((pack) => pack.replace(/\.md$/, '')));
+
+  // `germany-e-invoicing.md` is an annex to `germany.md`; `eu-vat-sme.md` is
+  // already a shared layer, so the hyphen in its name never reaches here.
+  const parentOf = (pack) => {
+    const stem = pack.replace(/\.md$/, '');
+    const cut = stem.indexOf('-');
+    const parent = cut < 0 ? null : stem.slice(0, cut);
+    return parent && stems.has(parent) ? `${parent}.md` : null;
+  };
+
+  const annexes = packs.filter((pack) => !shared.includes(pack) && parentOf(pack));
+  const national = packs.filter((pack) => !shared.includes(pack) && !annexes.includes(pack));
 
   // The first pack's convention line becomes the one every other must match.
   const conventions = new Map();
@@ -313,7 +336,20 @@ if (existsSync(packsDir)) {
     }
   }
 
-  // The template applies to national packs only; shared layers have their own shape.
+  // An annex is only reachable through its pack, so the pack has to link it.
+  // Being in the index is not enough: a reader who opened germany.md to answer
+  // an e-invoicing question would otherwise never learn the detail exists.
+  for (const pack of annexes) {
+    const parent = parentOf(pack);
+    if (!read(join(packsDir, parent)).includes(`(${pack})`))
+      report.fail(
+        `references/jurisdictions/${pack}`,
+        `an annex to ${parent}, but ${parent} does not link it; a reader working through the pack would never reach it`,
+      );
+  }
+
+  // The template applies to national packs only; shared layers and annexes
+  // have their own shape.
   for (const pack of national) {
     const text = read(join(packsDir, pack));
     for (const [index_, heading] of NATIONAL_TEMPLATE.entries()) {
@@ -326,7 +362,10 @@ if (existsSync(packsDir)) {
   }
 
   if (packs.length === 0) report.note('no jurisdiction packs');
-  else report.note(`${national.length} national pack(s) on template, ${shared.length} shared layer(s)`);
+  else
+    report.note(
+      `${national.length} national pack(s) on template, ${shared.length} shared layer(s), ${annexes.length} annex(es)`,
+    );
 }
 
 // --- 7. The model-facing set is closed ---------------------------------------
