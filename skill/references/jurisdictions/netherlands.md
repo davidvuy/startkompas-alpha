@@ -309,7 +309,7 @@ The Netherlands has the same four software-user provisions as Belgium, Germany a
 **This is the outlier among the four packs, in both directions at once.**
 
 - **Error correction is protected here and displaceable everywhere else.** Belgium (XI.299 §1), Germany (§69d(1)) and France (L122-6-1 I) all let a contract take error correction away. Art. 45j's second sentence does not. So a Dutch client cannot be contractually barred from fixing bugs — the reverse of the advice that holds in the other three.
-- **And the backup copy, the study right and decompilation carry no express nullity clause** in the articles read, where Belgium says `dwingend recht` (XI.301), Germany says `nichtig` (§69g(2)) and France says `réputées nulles` (L122-6-1 VIII).
+- **And the backup copy, the study right and decompilation carry no express nullity clause** in the articles read, where Belgium says `van dwingend recht` (XI.301) and Germany says `nichtig` (§69g(2)) — both quoted from the statutes in their own packs — and France declares such stipulations **void** in art. L122-6-1 VIII.
 
 **Do not conclude from that silence that those three are waivable in the Netherlands — the Directive says they are not.**
 
@@ -387,6 +387,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Arts. 45j–45m: use for intended use, reservekopie, study, interoperability | 2026-11-10 | Primary — statute read per article |
 | Art. 45j second sentence: loading, displaying and error correction cannot be contractually prohibited | 2026-11-10 | Primary — statute read and quoted |
 | Arts. 45k–45m carry **no express nullity clause**, unlike BE, DE and FR | 2026-11-10 | Primary — statute read; stated as a fact about the text, not as a conclusion |
+| **Corrected on 2026-11-11:** the French nullity wording was given as `réputées nulles` in backticks | 2026-11-11 | Withdrawn — [france.md](france.md) records art. L122-6-1 VIII only in English paraphrase, so no French wording for it has been read in these packs; Légifrance was unreachable on 2026-11-11 to settle it. The Belgian and German terms beside it are quoted from their own statutes and stand |
 | Art. 8 of Directive 2009/24/EC: clauses contrary to arts. 6, 5(2) and 5(3) are null and void | 2026-11-11 | Primary — the directive read and quoted; it is the instrument all four packs implement |
 | Art. 5(1): use for the intended purpose applies only “in the absence of specific contractual provisions”, so art. 45j sentence 2 is more protective than the Directive requires | 2026-11-11 | Primary — read and quoted |
 | How a Dutch court gives effect to art. 8 given the silence in 45k–45m | — | Open — the question a clause touching them turns on; the Directive answers what is void, not by what route |

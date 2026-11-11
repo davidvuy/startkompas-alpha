@@ -215,6 +215,12 @@ export const REQUIRED = [
   {case: '—', pack: 'germany-data-protection.md', label: 'the BayLDA checklist is a provisional draft', pattern: /Version \*\*0\.9\*\*|Version 0\.9/},
   {case: '—', pack: 'germany-data-protection.md', label: 'its scope excludes high-risk processing', pattern: /kein KI-Startup/},
   {case: '—', pack: 'germany-data-protection.md', label: 'the DPF condition is per provider', pattern: /DPF list of the US Department of Commerce/},
+  // §42 BDSG. Both halves matter: the German offence needs scale plus a
+  // commercial purpose, which is why it must not be read as the Belgian one,
+  // and §42(4) protects the breach notification from being used against its
+  // maker — the answer to a question a founder asks before notifying.
+  {case: '—', pack: 'germany-data-protection.md', label: '§42 BDSG needs scale and a commercial purpose', pattern: /large number of persons\*\*, without entitlement, \*\*acting commercially\*\*/},
+  {case: '—', pack: 'germany-data-protection.md', label: '§42(4) protects the notification from its maker', pattern: /nur mit Zustimmung des Meldepflichtigen/},
   {case: '—', pack: 'germany-data-protection.md', label: 'freelancers are inside the private-sector authority', pattern: /freiberuflich Tätigen/},
 
   // Art. 6:235(3) BW is the paragraph that can cost a founder the unfair-terms

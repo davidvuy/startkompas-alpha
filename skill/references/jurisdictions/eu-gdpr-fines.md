@@ -38,7 +38,7 @@ Art. 84(1) obliges every member state to *"lay down the rules on other penalties
 
 So the two tiers above are the **administrative** ceiling, and a member state may add to them. Belgium is the pack's worked example and what it added is **criminal**: art. 222 of the `wet van 30 juli 2018` punishes processing without a lawful basis under art. 6 GDPR with a fine of up to **€120,000**, and art. 225 lets the court order the judgment published in newspapers at the convicted person's expense. Read [belgium.md](belgium.md) §6 for which of its fourteen cases require serious negligence or malice and which do not.
 
-Germany and the Netherlands add no criminal layer of this kind in anything these packs have read, and the Dutch art. 14(3) UAVG simply adopts the art. 83 amounts. **So "the maximum fine" has a different answer per member state even though art. 83 is identical**, and a founder asking what it costs to get the lawful basis wrong needs the national pack, not this annex.
+**Germany has one too, and it is shaped very differently**: §42 BDSG carries up to three years' imprisonment, but only for conduct involving a large number of people plus a commercial purpose, or a profit or harm motive — see [germany-data-protection.md](germany-data-protection.md), which tabulates the two against each other. The Dutch `UAVG` adds no criminal layer in anything these packs have read, and its art. 14(3) simply adopts the art. 83 amounts. **So "the maximum fine" has a different answer per member state even though art. 83 is identical**, and a founder asking what it costs to get the lawful basis wrong needs the national pack, not this annex.
 
 ## Three things in article 83 a founder can actually influence
 

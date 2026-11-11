@@ -53,6 +53,22 @@ So appointing a member of staff as a compulsory DPO gives them near-untouchable 
 
 Do not present this as employment-law advice. Present it as a reason to decide **who** the DPO is before deciding **that** there is one.
 
+## Germany criminalises it too, but on a much higher threshold than Belgium
+
+Source: [§42 BDSG, official consolidated law text](https://www.gesetze-im-internet.de/bdsg_2018/__42.html) · *primary legislation* · **[checked 2026-11-11]**
+
+Art. 84 GDPR obliges every member state to lay down penalties beyond the art. 83 fines, and [eu-gdpr-fines.md](eu-gdpr-fines.md) uses Belgium as its worked example. Germany has one as well, and the two are shaped very differently:
+
+| | Germany, §42 BDSG | Belgium, art. 222 of the `wet van 30 juli 2018` |
+| --- | --- | --- |
+| The offence a business could commit | §42(1): knowingly transmitting or otherwise making accessible **non-publicly-available personal data of a large number of persons**, without entitlement, **acting commercially**. §42(2): processing such data without entitlement, or obtaining it by false statements, **for consideration or intending to enrich or to harm** | processing **without a lawful basis** under art. 6 GDPR, with **no mental element stated** in that point |
+| Penalty | **up to three years' imprisonment** or a fine under §42(1); up to two years or a fine under §42(2) | a fine of up to **€120,000**, and the court may order the judgment published |
+| Who can set it going | **only on application** (§42(3)) by the data subject, the controller, the Federal Commissioner or the supervisory authority | the ordinary route for a criminal offence |
+
+**So the German offence is far harder to commit and far worse to be convicted of.** It needs scale plus a commercial purpose, or a profit or harm motive; an ordinary founder who simply cannot name a lawful basis is nowhere near it. The Belgian provision reaches that founder on its face. Neither of those is a reason to relax in the other country — it is a reason not to carry either answer across the border.
+
+**And §42(4) answers a question a founder will ask before notifying a breach.** A notification under art. 33 or a communication to data subjects under art. 34(1) *"darf in einem Strafverfahren gegen den Meldepflichtigen ... nur mit Zustimmung des Meldepflichtigen ... verwendet werden"* — it may be used in criminal proceedings **against the person who made it** only with their consent. So the 72-hour notification in [eu-gdpr.md](eu-gdpr.md) §4 cannot be turned into the evidence for a §42 prosecution of the notifier. Read that beside art. 83(2)(h) in [eu-gdpr-fines.md](eu-gdpr-fines.md), under which notifying is an express mitigating factor: in Germany the law protects the notification from both directions. Whether any equivalent exists in the other three is **[not researched]**.
+
 ## The German art. 35(4) DPIA list puts AI customer interaction on it
 
 Source: [DSK — `Liste von Verarbeitungsvorgängen nach Art. 35 Abs. 4 DS-GVO für den nicht-öffentlichen Bereich`, Version 1.1 of 2018-10-17](https://www.datenschutzkonferenz-online.de/media/ah/20181017_ah_DSK_DSFA_Muss-Liste_Version_1.1_Deutsch.pdf) · *the joint publication of all German supervisory authorities, titled as the art. 35(4) list* · **[checked 2026-11-11]**
@@ -110,6 +126,9 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | The contents of the BayLDA's `Formulierungshilfe` for a processor contract | — | Open — the template was linked but not read |
 | Item 15: a processor contract for an AI tool, usually the paid tier, plus a check that inputs and outputs are not reused for product improvement | 2026-11-11 | Authority — read and quoted |
 | Item 15 footnote: no GDPR duty to disclose AI-generated content, art. 50 AI Act unclear for human-posted output, and Germany had not settled its AI Act authority as at 2025-05-13 | 2026-11-11 | Authority — read; it is that authority's reading of another instrument, so treat the AI Act question as open |
+| §42 BDSG: criminal liability needs scale plus a commercial purpose, or a profit or harm motive, and is prosecuted only on application | 2026-11-11 | Primary — read and tabulated against the Belgian provision |
+| §42(4): an art. 33 or art. 34 notification may be used against its maker in criminal proceedings only with consent | 2026-11-11 | Primary — read and quoted |
+| Whether Belgium, the Netherlands or France has an equivalent use immunity | — | Open — not researched |
 | §26, §22 and §§32 to 37 BDSG — employee data, special categories, restrictions on data subject rights | — | Open — not researched |
 | Which authority is competent, as a founder needs to be told it | — | Elsewhere — stated in [germany.md](germany.md) §6, which this annex expands |
 
