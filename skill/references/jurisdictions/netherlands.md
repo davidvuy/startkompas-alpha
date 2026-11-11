@@ -268,60 +268,7 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 - **Verwerkersovereenkomst** — the agreement must be in writing and must state that the processor acts **only on the controller's written instructions**.
 - **Datalek melden** — report to the AP **within 72 hours** of discovering the breach; the AP is explicit that failing to do so puts you in breach. A processor must warn its controller without undue delay.
 
-### The AP's own step plan for a controller
-
-Source: [AP — `Aan de slag! Stappenplan voor de verwerkingsverantwoordelijke`](https://autoriteitpersoonsgegevens.nl/uploads/imported/avg_stappenplan_verwerkingsverantwoordelijke.pdf) · *national authority, PDF extracted and read* · **[checked 2026-11-10]**
-
-The most directly workable thing in this pack: a founder can sit down and go through it. Twelve items in three steps.
-
-**Step 1 — map what you process.** Where in your processes and systems; for what purpose (one file can serve several — a customer list is both contact and marketing); on what **lawful basis** for each purpose, and *if you cannot find one you may not process* — change the process or stop; **how long** you keep it, set in advance; whether anything goes **outside the EU**, checked first; and **who else receives it**, distinguishing processors from other controllers with their own purposes.
-
-**Step 2 — put it in a register**, recording per processing: the purpose, the categories of people, the data, the recipients, the retention period, and the security measures. Keep it current.
-
-**Step 3 — process carefully.** Ten items:
-
-| | |
-| --- | --- |
-| Data quality | Keep it correct; check periodically |
-| Inform people | An easy-to-find privacy statement. For consent, say in advance what the purpose is **and that consent can be withdrawn** |
-| Security | Assess the risk your processing creates and match the security to it — **digital and physical**, including door control and locked storage |
-| **Breach reporting** | Within 72 hours to the AP, at `datalekken.autoriteitpersoonsgegevens.nl`. Sometimes the people affected must be told too. **Have an action plan so everyone knows what to do** |
-| Processor agreements | Check you have one with each processor; if not, conclude one as soon as possible |
-| DPO | Only if you observe a large group or process special data of a large group — consistent with the art. 37(1) test in [eu-gdpr.md](eu-gdpr.md) §6 |
-| **DPIA** | Required before developing a new service or product with personal data where the privacy risk is high. The AP's examples of high risk include **processing with new technologies** |
-| Privacy policy | Not always mandatory, but advised: which rules staff follow, who decides on processing, who checks compliance |
-| Privacy by design and default | Build in security, **pseudonymise** where you do not need the link to a person, use privacy-protective settings as standard — and **write these requirements into your request for quotation** when buying or commissioning systems |
-| Handle data subject requests | Decide who receives, handles and answers them before the first one arrives |
-| Train staff | So they can recognise personal data and know the main rules |
-| Accountability | Be able to show with evidence how you comply: all processing (the register obligation), DPIA reports, and the rest |
-
-**Two things worth lifting out.** The AP's high-risk examples for a DPIA explicitly include **processing with new technologies** — independent confirmation of the point in [eu-gdpr.md](eu-gdpr.md) §6 that a founder routing real customer data through an AI tool is in DPIA territory. And the privacy-by-design item gives a concrete, cheap action most founders skip: **put the requirements in the quotation request**, before the system exists.
-
-### When it goes wrong: the AP's five steps
-
-Source: [AP — `Stappenplan: kom in actie bij een datalek`](https://autoriteitpersoonsgegevens.nl/uploads/imported/stappenplan_actie_datalek.pdf) · *national authority, PDF extracted and read* · **[checked 2026-11-10]**
-
-1. **Get an overview.** Analyse immediately: what happened, how big, and is it leaked, destroyed or altered data? If leaked, find out **who had or may have had access to which personal data** — you need this for every later step.
-2. **Limit the damage**, now, if anything can be done at all — its example is wiping a stolen laptop remotely. Estimate the risk at the same time.
-3. **Decide whether to notify the AP**, and if so within **72 hours** of discovery. You must, *unless it is unlikely the breach presents a risk* to rights and freedoms. **If you do not yet have the full picture, file a first notification inside 72 hours and a follow-up later** — do not let fact-finding run the clock out.
-4. **Decide whether to notify the people affected** — required where there is a **high** risk, and then as soon as possible.
-5. **Register it in your `datalekregister`, even when you do not notify the AP.**
-
-Then evaluate, to stop it happening again.
-
-### Know the form's questions before the clock starts
-
-Source: [AP — `Vragenlijst meldformulier datalekken`](https://www.autoriteitpersoonsgegevens.nl/documenten/vragenlijst-meldformulier-datalekken), `versie 1.1, augustus 2022` · *the AP's own list of the online form's questions, published so you can prepare* · **extracted and read [checked 2026-11-10]**. It carries a disclaimer: no rights can be derived from it and the AP may change it, so check the current version.
-
-- **The online form is the only channel.** The AP states it accepts breach notifications **only** through it — not by post, not by email. So a founder with no account and no overview still has to go through the form.
-- **What the AP expects you to have ready:** a contact person for its questions; your `FG` contact if you have one; the correspondence recording discovery; your **processing register (art. 30)** and your **breach register (art. 33(5))**; the measures you took to end the breach, the measures to prevent recurrence, and the measures that were *already* in place beforehand; and your DPIA if there is one. Add the investigation report for a hacking or malware incident, the processor agreement if a third party is involved, and the text you sent to data subjects if you had to inform them. **This is the real argument for the register: at 3 a.m. it is the only document that tells you who is affected.**
-- **Hacking, malware or phishing: the AP expects an investigation**, and names what it must cover — was there access to the personal data, were they copied, viewed or sent on, and **are there logs that let you rule that out**. A founder with no logging cannot answer the third question, and therefore cannot rule anything out. That is a reason to turn logging on before anything happens, not a reason to guess afterwards.
-- **Discovery is not the same as awareness, and the DPO is not a buffer.** The form asks for both dates. Awareness means the point at which **objective factors** made a breach probable. The AP says explicitly that the moment the incident reached the `FG` **cannot** be that point, because the `FG` does not carry the notification duty — and it will not accept that as a justification for a late filing. Filing later than 72 hours after awareness means answering an open question about **why**.
-- **Provisional or definitive.** You mark the notification as one or the other. If you are still establishing the nature and scope, mark it provisional and the AP **asks for a follow-up within 4 weeks**; needing longer must be motivated. With no definitive notification you may not have (fully) met art. 33, and the AP may open a further investigation.
-- **The breach register's minimum content**, per the same document: the facts — cause, what happened, which personal data — the consequences, and the measures taken to close the leak and prevent recurrence. Recording **why** you did or did not notify is *advised, not required*; do it anyway, because it is the reasoning you will be asked for.
-- Two scope notes: the Dutch notification duty sits in **four** statutes — `AVG`, `Tw`, `Wjsg`, `Wpg` — and for an ordinary business it is the AVG. The form also asks whether you have told **other** regulators, so check whether a second duty applies to your sector.
-
-**Open:** the brochure the controller step plan accompanies, the AP's example list of notifiable and non-notifiable breaches, and its ten tips on breach registration are **[not researched]**.
+**The Dutch specifics beyond those three are in [netherlands-data-protection.md](netherlands-data-protection.md):** what the `UAVG` adds and — more usefully — what it does **not** add, **the AP's binding art. 35(4) list of 17 processing types**, the AP's twelve-item step plan for a controller, its five steps for a breach, and the questions its notification form asks before the 72-hour clock runs out.
 
 ---
 
@@ -364,16 +311,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Arts. 45k–45m carry **no express nullity clause**, unlike BE, DE and FR | 2026-11-10 | Primary — statute read; stated as a fact about the text, not as a conclusion |
 | Whether 45k–45m are mandatory in Dutch law despite that silence | — | Open — the one question a clause touching them turns on |
 | Whether the internet consultation has opened, and what the draft bill says | — | Open — the consultation was expected this autumn and was not checked |
-| AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Authority — AP pages read |
-| AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | Authority — AP PDF extracted and read |
-| AP breach stappenplan: five steps, first notification plus follow-up | 2026-11-10 | Authority — AP PDF extracted and read |
-| Online form is the only channel; what the AP expects you to have ready | 2026-11-10 | Authority — AP `Vragenlijst` v1.1 extracted and read |
-| Hacking/malware: investigation expected, and logs as the test | 2026-11-10 | Authority — the same AP document |
-| Discovery vs awareness; reaching the `FG` is not awareness | 2026-11-10 | Authority — the same AP document; its wording quoted |
-| Follow-up notification requested within 4 weeks, longer must be motivated | 2026-11-10 | Authority — the same AP document |
-| `Vragenlijst` is `versie 1.1, augustus 2022` and disclaims any rights | 2026-11-10 | Authority — the same AP document; recheck for a newer version |
-| Notification duty sits in four statutes (AVG, Tw, Wjsg, Wpg) | 2026-11-10 | Authority — the same AP document; the three other statutes not examined |
-| Parent brochure, the notifiable/non-notifiable example list, the 10 registration tips | — | Open — not yet researched |
+| The UAVG, the AP art. 35(4) DPIA list, and the three AP step-plan documents | — | Elsewhere — read on 2026-11-10 and 2026-11-11 and maintained in [netherlands-data-protection.md](netherlands-data-protection.md) |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier when the Q4 2026 internet consultation opens.

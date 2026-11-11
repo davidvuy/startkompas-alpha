@@ -138,9 +138,9 @@ export const REQUIRED = [
   {case: '—', pack: 'netherlands.md', label: 'ownership provision', pattern: /artikel 7 Auteurswet|article 7 Auteurswet/i},
   {case: '—', pack: 'netherlands.md', label: 'large-party exclusion', pattern: /6:235/},
   // Breach filing: the AP's channel, its clock, and the trap it names itself.
-  {case: '—', pack: 'netherlands.md', label: 'online form is the only channel', pattern: /only channel/i},
-  {case: '—', pack: 'netherlands.md', label: 'follow-up notification within 4 weeks', pattern: /within 4 weeks/},
-  {case: '—', pack: 'netherlands.md', label: 'reaching the FG is not awareness', pattern: /the DPO is not a buffer/i},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'online form is the only channel', pattern: /only channel/i},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'follow-up notification within 4 weeks', pattern: /within 4 weeks/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'reaching the FG is not awareness', pattern: /the DPO is not a buffer/i},
   // Art. 2(3) Aw: ownership cannot pass without a deed. A founder relying on
   // this pack must not be told payment or an invoice can transfer copyright.
   {case: '—', pack: 'netherlands.md', label: 'transfer needs a deed under art. 3:95 BW', pattern: /art\. 3:95 BW/},
@@ -207,6 +207,21 @@ export const REQUIRED = [
   {case: '—', pack: 'germany-data-protection.md', label: 'its scope excludes high-risk processing', pattern: /kein KI-Startup/},
   {case: '—', pack: 'germany-data-protection.md', label: 'the DPF condition is per provider', pattern: /DPF list of the US Department of Commerce/},
   {case: '—', pack: 'germany-data-protection.md', label: 'freelancers are inside the private-sector authority', pattern: /freiberuflich Tätigen/},
+
+  // --- Netherlands — data protection annex -----------------------------------
+  // The Dutch art. 35(4) list is broader than the Regulation in one entry and
+  // silent where the German list is explicit. Both halves have to survive:
+  // the first stops a founder relying on art. 35(3)(a)'s legal-effects limb,
+  // the second stops the German answer being carried across the border.
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'entry 15 omits the legal-effects limb', pattern: /drops that second limb/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'the Dutch list has no AI entry', pattern: /what is not on the list: artificial intelligence/i},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'the list is a formal Besluit under art. 35(4)', pattern: /gelet op artikel 35, vierde lid/},
+  // Art. 40 UAVG is the provision a founder would otherwise read as a way out
+  // of art. 22(1). It is not: it excludes profiling-based decisions.
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'art. 40 UAVG excludes profiling', pattern: /anders dan op basis van profilering/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'the UAVG sets no national DPO duty', pattern: /\*\*None\.\*\* The word `functionaris` appears twice/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'the AP test for systematic excludes incidental processing', pattern: /ad hoc or incidentally are not systematic/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'declining a DPIA must be substantiated', pattern: /substantiate properly why you choose not to carry out a DPIA/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'national threshold ceiling', pattern: /€85,000/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'Union turnover cap article', pattern: /284\(2\)\(a\)/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'the EUR 100,000 coincidence trap is named', pattern: /coincidence is a live trap/i},

@@ -1,0 +1,153 @@
+# Netherlands — data protection (annex)
+
+**This is an annex to [netherlands.md](netherlands.md) §6, not a pack of its own.** It exists because the Dutch pack was at 44.1 KB of this skill's 48 KB per-reference budget before the `UAVG` was read at all. The EU rules are in [eu-gdpr.md](eu-gdpr.md) and its annexes; §6 of the pack names the three obligations the AP puts first. Everything else Dutch is here.
+
+**This annex is preparation, not advice.** It records what the Dutch statute and the AP's own publications state, with dates, and keeps the two apart — an article is the rule, the authority's page is the authority's reading of it. Consequential data-protection questions need a qualified reviewer and the AP itself.
+
+Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[carried YYYY-MM-DD, not refetched]** means earlier research was reused without refetching it. **[not researched]** means no source was consulted — the topic is open.
+
+---
+
+## What the UAVG adds, and the three things it does not
+
+Source: [Uitvoeringswet Algemene verordening gegevensbescherming, `BWBR0040940`](https://wetten.overheid.nl/BWBR0040940) · *primary legislation, the version `Geldend van 01-09-2026`* · **[checked 2026-11-11]**
+
+The `UAVG` is a lean implementing act: five chapters, and most of its substance is **exceptions to the prohibitions in arts. 9 and 10 GDPR** rather than duties of its own. For a one-person B2B pilot the three absences matter more than anything present.
+
+| | The Netherlands |
+| --- | --- |
+| A **national DPO threshold** under art. 37(4) GDPR | **None.** The word `functionaris` appears twice in the whole act, neither time as a duty to designate one. So the art. 37(1) test in [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md) is the whole answer here — unlike Germany, where §38 BDSG compels one with no employees at all ([germany-data-protection.md](germany-data-protection.md)) |
+| Anything about the **register** of processing activities | **Nothing.** Art. 30 GDPR, including its under-250 exemption, applies unmodified |
+| A different **fine** ceiling | **None.** Art. 14(3) UAVG: the AP *"kan in geval van overtreding van het bepaalde in artikel 83, vierde, vijfde of zesde lid, van de verordening een bestuurlijke boete opleggen van ten hoogste de in deze leden genoemde bedragen"* — the Regulation's own amounts, and so no Dutch SME reduction either. See [eu-gdpr-fines.md](eu-gdpr-fines.md) |
+
+Four provisions that do add something, in the order a founder is likely to meet them:
+
+- **Art. 40 — automated individual decision-making.** The exception to the art. 22(1) GDPR prohibition is narrow twice over: it covers automated decisions *"anders dan op basis van profilering"* — **other than on the basis of profiling** — and then only where necessary for a legal obligation or a task in the public interest. **For a private business building a profiling-based automated decision, the UAVG opens no door at all.** Art. 40(3) does give private controllers a concrete test for the "appropriate measures" the article requires: they are in any case taken where **the right to human intervention, the right for the person to put their point of view, and the right to contest the decision** are secured. That is three features, not a policy document.
+- **Art. 29 — biometric data.** The art. 9(1) prohibition does not apply where processing is *"noodzakelijk is voor authenticatie of omwille van beveiligingsdoeleinden"* — and then only so far as necessary for a **substantial public interest** in lawful access to places, buildings, services, products, information systems or work-process systems. A fingerprint login added for convenience is not obviously inside that, and the AP's own art. 35(4) list puts biometric identification on the mandatory-DPIA list as well.
+- **Art. 5 — consent below 16.** Where art. 8 GDPR does not apply and the data subject has not reached **sixteen**, the legal representative's consent is required instead of theirs. Art. 8 GDPR covers information-society services; art. 5 UAVG extends the same age to consent generally.
+- **The DPO's secrecy duty.** A `functionaris voor gegevensbescherming` *"is verplicht tot geheimhouding van hetgeen hem op grond van een klacht of een verzoek van betrokkene is bekend geworden, tenzij de betrokkene in bekendmaking toestemt"* — bound to secrecy about what a complaint or a data subject's request tells them, unless that person consents. The parallel German provision is §6(5) BDSG.
+
+The act's own header on 2026-11-11 warned of *"Wijziging(en) zonder datum inwerkingtreding"* — amendments passed with no commencement date yet. What they change is **[not researched]**, and it is the reason to refetch this before relying on it. Arts. 30 to 33's health and criminal-data exceptions, and arts. 41 onwards on limits to data subject rights, are **[not researched]** beyond what is quoted here.
+
+## The AP's art. 35(4) list — 17 types, and the one that is broader than the Regulation
+
+Source: [`Besluit lijst verwerkingen persoonsgegevens waarvoor een gegevensbeschermingseffectbeoordeling (DPIA) verplicht is`, `BWBR0042812`](https://wetten.overheid.nl/BWBR0042812/2019-11-27) · *primary — a published decision of the AP, in force since 2019-11-27 and with no later version* · **[checked 2026-11-11]**
+
+[eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md) establishes that art. 35(4) GDPR obliges every supervisory authority to publish a list of processing requiring an impact assessment. The Dutch one is a formal `Besluit`, made *"gelet op artikel 35, vierde lid, in samenhang bezien met artikel 57, eerste lid, onder k"*, published in Staatscourant 2019 nr. 64418 and still the only version.
+
+**How it is built.** Its preamble sets out the **nine criteria** from the Article 29 Working Party's WP 248 guidelines — evaluation or scoring; automated decision-making with legal or similar effect; systematic monitoring; sensitive or highly personal data; large-scale processing; matching or combining datasets; vulnerable data subjects; innovative use of new technological or organisational solutions; and processing that prevents people exercising a right or using a service — and then **tags every entry with the criteria it invokes**. The consistency mechanism under art. 35(6) was applied, and that is what added biometric data as a category.
+
+The 17 types: heimelijk onderzoek; zwarte lijsten; fraudebestrijding; creditscores; financiële situatie; genetische gegevens; gezondheidsgegevens; samenwerkingsverbanden; cameratoezicht; flexibel cameratoezicht; controle werknemers; locatiegegevens; communicatiegegevens; internet of things; **profilering**; observatie en beïnvloeding van gedrag; biometrische gegevens.
+
+**Almost every entry requires `grootschalig` or `stelselmatige monitoring`, and entry 15 does not.** Entry 15, `Profilering`, reads: *"Systematische en uitgebreide beoordeling van persoonlijke aspecten van natuurlijke personen gebaseerd op geautomatiseerde verwerking (profilering), zoals bijvoorbeeld beoordeling van beroepsprestaties, prestaties van leerlingen, economische situatie, gezondheid, persoonlijke voorkeuren of interesses, betrouwbaarheid of gedrag."*
+
+Compare art. 35(3)(a) GDPR, which requires the same systematic and extensive evaluation **and** that decisions are based on it *"that produce legal effects concerning the natural person or similarly significantly affect"* them. **Entry 15 drops that second limb.** On the face of the Dutch list, an automated assessment of someone's preferences, interests, reliability or behaviour is a mandatory-DPIA case whether or not any decision with legal effect follows — which is the common shape of a lead-scoring or personalisation feature. Do not tell a Dutch founder the GDPR's "decisions with legal effect" qualifier gets them out of it.
+
+Two other entries worth knowing: entry 1 requires a DPIA for an employer's **covert camera surveillance** of staff *"ook in incidentele gevallen"* — even in isolated cases — because of the unequal power relationship; and entry 2, black lists, is tied to art. 33(4)(c) UAVG.
+
+**And what is not on the list: artificial intelligence.** There is no AI entry. The same AI-assisted customer-support pilot that is **on** the German list, as entry 11 of the DSK's list ([germany-data-protection.md](germany-data-protection.md)), is **not** named on the Dutch one. It can still require a DPIA — through criterion 8, innovative use of new technology, through entry 15 if it evaluates people, and through art. 35(1) itself — but in the Netherlands that is an argument to be made, where in Germany it is a list to be read. **This is the clearest example in any of these packs of why a national list is part of the test and not a convenience.**
+
+### What the AP says about using it
+
+Source: [AP — data protection impact assessment (DPIA)](https://www.autoriteitpersoonsgegevens.nl/en/themes/basic-gdpr/gdpr-in-practice/data-protection-impact-assessment-dpia) · *national supervisory authority* · **[checked 2026-11-11]**
+
+- **The list is not exhaustive**, which the `Besluit` itself also says: a processing operation that is not on it may still be high-risk and need an assessment.
+- **"Processing operations that take place ad hoc or incidentally are not systematic processing operations."** That is the AP's own test for `stelselmatig`, and it is the sentence that keeps a one-off from counting.
+- **Two of the nine criteria is the AP's rule of thumb** for needing a DPIA.
+- **Deciding not to do one is itself an accountable decision.** *"Even if you meet none or only one of these criteria, you must be able to substantiate properly why you choose not to carry out a DPIA. This is part of your duty of accountability."* Three sources in these packs now say the same thing in three languages — record the reason.
+- **A DPIA is not a lawful basis.** If the processing is on the list you must still check you have one, and without it you may not process *"regardless of the outcomes of any DPIA"*.
+- **One divergence to handle carefully.** The AP's page summarises the GDPR's own DPIA cases as **four**, splitting criminal-offence data into a case of its own and stating it **without a large-scale qualifier**. Art. 35(3)(b) GDPR, read in [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md), has it as one point covering special categories **or** criminal data, *"processing on a large scale"*. The statute is the rule; the AP's reading is broader. Where they differ, say so rather than choosing.
+
+Whether the AP has published an art. 35(5) list of processing for which **no** assessment is required is **[not researched]**.
+
+## The AP's own step plan for a controller
+
+Source: [AP — `Aan de slag! Stappenplan voor de verwerkingsverantwoordelijke`](https://autoriteitpersoonsgegevens.nl/uploads/imported/avg_stappenplan_verwerkingsverantwoordelijke.pdf) · *national authority, PDF extracted and read* · **[checked 2026-11-10]**
+
+The most directly workable thing in either Dutch file: a founder can sit down and go through it. Twelve items in three steps.
+
+**Step 1 — map what you process.** Where in your processes and systems; for what purpose (one file can serve several — a customer list is both contact and marketing); on what **lawful basis** for each purpose, and *if you cannot find one you may not process* — change the process or stop; **how long** you keep it, set in advance; whether anything goes **outside the EU**, checked first; and **who else receives it**, distinguishing processors from other controllers with their own purposes.
+
+**Step 2 — put it in a register**, recording per processing: the purpose, the categories of people, the data, the recipients, the retention period, and the security measures. Keep it current.
+
+**Step 3 — process carefully.** Ten items:
+
+| | |
+| --- | --- |
+| Data quality | Keep it correct; check periodically |
+| Inform people | An easy-to-find privacy statement. For consent, say in advance what the purpose is **and that consent can be withdrawn** |
+| Security | Assess the risk your processing creates and match the security to it — **digital and physical**, including door control and locked storage |
+| **Breach reporting** | Within 72 hours to the AP, at `datalekken.autoriteitpersoonsgegevens.nl`. Sometimes the people affected must be told too. **Have an action plan so everyone knows what to do** |
+| Processor agreements | Check you have one with each processor; if not, conclude one as soon as possible |
+| DPO | Only if you observe a large group or process special data of a large group — consistent with the art. 37(1) test in [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md), and the `UAVG` adds nothing to it |
+| **DPIA** | Required before developing a new service or product with personal data where the privacy risk is high. The AP's examples of high risk include **processing with new technologies** |
+| Privacy policy | Not always mandatory, but advised: which rules staff follow, who decides on processing, who checks compliance |
+| Privacy by design and default | Build in security, **pseudonymise** where you do not need the link to a person, use privacy-protective settings as standard — and **write these requirements into your request for quotation** when buying or commissioning systems |
+| Handle data subject requests | Decide who receives, handles and answers them before the first one arrives |
+| Train staff | So they can recognise personal data and know the main rules |
+| Accountability | Be able to show with evidence how you comply: all processing (the register obligation), DPIA reports, and the rest |
+
+**Two things worth lifting out.** The AP's high-risk examples for a DPIA explicitly include **processing with new technologies** — independent confirmation of the point in [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md) that a founder routing real customer data through an AI tool is in DPIA territory. And the privacy-by-design item gives a concrete, cheap action most founders skip: **put the requirements in the quotation request**, before the system exists.
+
+## When it goes wrong: the AP's five steps
+
+Source: [AP — `Stappenplan: kom in actie bij een datalek`](https://autoriteitpersoonsgegevens.nl/uploads/imported/stappenplan_actie_datalek.pdf) · *national authority, PDF extracted and read* · **[checked 2026-11-10]**
+
+1. **Get an overview.** Analyse immediately: what happened, how big, and is it leaked, destroyed or altered data? If leaked, find out **who had or may have had access to which personal data** — you need this for every later step.
+2. **Limit the damage**, now, if anything can be done at all — its example is wiping a stolen laptop remotely. Estimate the risk at the same time.
+3. **Decide whether to notify the AP**, and if so within **72 hours** of discovery. You must, *unless it is unlikely the breach presents a risk* to rights and freedoms. **If you do not yet have the full picture, file a first notification inside 72 hours and a follow-up later** — do not let fact-finding run the clock out.
+4. **Decide whether to notify the people affected** — required where there is a **high** risk, and then as soon as possible.
+5. **Register it in your `datalekregister`, even when you do not notify the AP.**
+
+Then evaluate, to stop it happening again.
+
+## Know the form's questions before the clock starts
+
+Source: [AP — `Vragenlijst meldformulier datalekken`](https://www.autoriteitpersoonsgegevens.nl/documenten/vragenlijst-meldformulier-datalekken), `versie 1.1, augustus 2022` · *the AP's own list of the online form's questions, published so you can prepare* · **extracted and read [checked 2026-11-10]**. It carries a disclaimer: no rights can be derived from it and the AP may change it, so check the current version.
+
+- **The online form is the only channel.** The AP states it accepts breach notifications **only** through it — not by post, not by email. So a founder with no account and no overview still has to go through the form.
+- **What the AP expects you to have ready:** a contact person for its questions; your `FG` contact if you have one; the correspondence recording discovery; your **processing register (art. 30)** and your **breach register (art. 33(5))**; the measures you took to end the breach, the measures to prevent recurrence, and the measures that were *already* in place beforehand; and your DPIA if there is one. Add the investigation report for a hacking or malware incident, the processor agreement if a third party is involved, and the text you sent to data subjects if you had to inform them. **This is the real argument for the register: at 3 a.m. it is the only document that tells you who is affected.**
+- **Hacking, malware or phishing: the AP expects an investigation**, and names what it must cover — was there access to the personal data, were they copied, viewed or sent on, and **are there logs that let you rule that out**. A founder with no logging cannot answer the third question, and therefore cannot rule anything out. That is a reason to turn logging on before anything happens, not a reason to guess afterwards.
+- **Discovery is not the same as awareness, and the DPO is not a buffer.** The form asks for both dates. Awareness means the point at which **objective factors** made a breach probable. The AP says explicitly that the moment the incident reached the `FG` **cannot** be that point, because the `FG` does not carry the notification duty — and it will not accept that as a justification for a late filing. Filing later than 72 hours after awareness means answering an open question about **why**.
+- **Provisional or definitive.** You mark the notification as one or the other. If you are still establishing the nature and scope, mark it provisional and the AP **asks for a follow-up within 4 weeks**; needing longer must be motivated. With no definitive notification you may not have (fully) met art. 33, and the AP may open a further investigation.
+- **The breach register's minimum content**, per the same document: the facts — cause, what happened, which personal data — the consequences, and the measures taken to close the leak and prevent recurrence. Recording **why** you did or did not notify is *advised, not required*; do it anyway, because it is the reasoning you will be asked for.
+- Two scope notes: the Dutch notification duty sits in **four** statutes — `AVG`, `Tw`, `Wjsg`, `Wpg` — and for an ordinary business it is the AVG. The form also asks whether you have told **other** regulators, so check whether a second duty applies to your sector.
+
+**Open:** the brochure the controller step plan accompanies, the AP's example list of notifiable and non-notifiable breaches, and its ten tips on breach registration are **[not researched]**.
+
+## Pack maintenance
+
+One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
+
+| Claim | Check date | Status |
+| --- | --- | --- |
+| The UAVG sets no national DPO threshold, nothing on the register, and no different fine ceiling | 2026-11-11 | Primary — the act read; `functionaris` occurs twice and neither is a duty to designate |
+| Art. 14(3) UAVG: the AP may fine up to the art. 83(4)–(6) amounts | 2026-11-11 | Primary — read and quoted |
+| Art. 40 UAVG excludes profiling-based automated decisions from its exception, and gives three concrete measures for private controllers | 2026-11-11 | Primary — read and quoted |
+| Art. 29 UAVG: biometrics for authentication or security, limited to a substantial public interest in lawful access | 2026-11-11 | Primary — read and quoted |
+| Art. 5 UAVG: sixteen, and beyond art. 8 GDPR's information-society services | 2026-11-11 | Primary — read |
+| The DPO's secrecy duty about complaints and data subject requests | 2026-11-11 | Primary — read and quoted |
+| The act has amendments with no commencement date as at 2026-11-11 | 2026-11-11 | Primary — the act's own header; what they change is open |
+| Arts. 30–33 and 41 onwards of the UAVG | — | Open — not read beyond what is quoted |
+| The Dutch art. 35(4) list is a formal `Besluit`, 17 types, built on the nine WP 248 criteria, in force since 2019-11-27 with no later version | 2026-11-11 | Primary — the `Besluit` read in full on wetten.overheid.nl |
+| Entry 15, `Profilering`, omits art. 35(3)(a)'s legal-effects limb | 2026-11-11 | Primary — both texts read; the comparison is of wording |
+| Entry 1 requires a DPIA for covert staff cameras even in isolated cases | 2026-11-11 | Primary — read and quoted |
+| No AI entry on the Dutch list, where the German list has one | 2026-11-11 | Primary — both lists read in full |
+| The AP's test for `stelselmatig`, its two-criteria rule of thumb, and that declining a DPIA must be substantiated | 2026-11-11 | Authority — the AP's own page read and quoted |
+| The AP's page states the GDPR's DPIA cases as four, criminal data without a scale qualifier | 2026-11-11 | Authority — read; recorded as a divergence from art. 35(3)(b), not resolved |
+| Whether the AP publishes an art. 35(5) exemption list | — | Open — not researched |
+| AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Authority — AP pages read |
+| AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | Authority — AP PDF extracted and read |
+| AP breach stappenplan: five steps, first notification plus follow-up | 2026-11-10 | Authority — AP PDF extracted and read |
+| Online form is the only channel; what the AP expects you to have ready | 2026-11-10 | Authority — AP `Vragenlijst` v1.1 extracted and read |
+| Hacking/malware: investigation expected, and logs as the test | 2026-11-10 | Authority — the same AP document |
+| Discovery vs awareness; reaching the `FG` is not awareness | 2026-11-10 | Authority — the same AP document; its wording quoted |
+| Follow-up notification requested within 4 weeks, longer must be motivated | 2026-11-10 | Authority — the same AP document |
+| `Vragenlijst` is `versie 1.1, augustus 2022` and disclaims any rights | 2026-11-10 | Authority — the same AP document; recheck for a newer version |
+| Notification duty sits in four statutes (AVG, Tw, Wjsg, Wpg) | 2026-11-10 | Authority — the same AP document; the three other statutes not examined |
+| Parent brochure, the notifiable/non-notifiable example list, the 10 registration tips | — | Open — not yet researched |
+| Registration, VAT, e-invoicing, agreements and ownership | — | Elsewhere — those are [netherlands.md](netherlands.md)'s sections 1 to 5 |
+
+Next full recheck due: **2027-05-10**. Earlier if the UAVG's pending amendments commence, or if the AP issues a version 2 of its art. 35(4) list.
+
+No independent Dutch legal reviewer has reviewed this annex.
