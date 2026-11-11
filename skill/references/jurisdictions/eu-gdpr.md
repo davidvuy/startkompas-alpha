@@ -4,7 +4,7 @@
 
 Read this together with the relevant national pack. Neither replaces the other.
 
-**This layer is preparation, not advice.** It records what EU regulator guidance states, with dates. Consequential data-protection questions need a qualified reviewer and the founder's own national supervisory authority.
+**This layer is preparation, not advice.** It records what the Regulation's own articles and EU regulator guidance state, with dates, and keeps the two apart — an article is the rule, a regulator's page is that regulator's reading of it. Consequential data-protection questions need a qualified reviewer and the founder's own national supervisory authority.
 
 Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[carried YYYY-MM-DD, not refetched]** means earlier research was reused without refetching it. **[not researched]** means no source was consulted — the topic is open.
 
@@ -43,9 +43,13 @@ An unsigned template is not a contract. A customer's approval is not a lawful ba
 
 ## 3. Register of processing activities
 
+Source: [Article 30 GDPR](https://gdpr-info.eu/art-30-gdpr/) · *verbatim reproduction on a secondary host; the authoritative text is Regulation (EU) 2016/679 on EUR-Lex* · **[checked 2026-11-10]**
+
 The `verwerkingsregister` / `registre des traitements` / `Verzeichnis von Verarbeitungstätigkeiten`.
 
 **Article 30(1)** requires a controller to record: its own identity and contact details, the purposes of processing, the categories of data subjects and of personal data, the categories of recipients, third-country transfers and their safeguards, the envisaged erasure periods, and a general description of the security measures.
+
+**The duty is not only the controller's.** The Belgian authority states it plainly: *"De verwerkingsverantwoordelijke en de verwerkers moeten een Register van de verwerkingsactiviteiten bijhouden"* — controllers **and** processors, under art. 30(1), and also where they are not established in the EEA but the GDPR applies to them. A founder who processes a client's data on that client's instructions therefore keeps a register of their own. Where someone is both, the GBA accepts one register with a section per role. · Source: [GBA — wie moet het register bijhouden](https://www.gegevensbeschermingsautoriteit.be/professioneel/avg/register-van-verwerkingsactiviteiten/wie-moet-het-register-van-de-verwerkingsactiviteiten-bijhouden) · *national supervisory authority* · **[checked 2026-11-11]**
 
 ### The under-250 exemption, and why it probably does not help you
 
@@ -56,21 +60,39 @@ Article 30(5) exempts *"an enterprise or an organisation employing fewer than 25
 3. it involves special categories of data (art. 9(1))
 4. it involves personal data on criminal convictions and offences (art. 10)
 
-Source: [Article 30 GDPR](https://gdpr-info.eu/art-30-gdpr/) · *verbatim reproduction on a secondary host; the authoritative text is Regulation (EU) 2016/679 on EUR-Lex* · **[checked 2026-11-10]**
-
 **A solo founder is under 250 persons and still almost certainly needs a register.** Condition 2 is the one that bites: keeping a customer list, running a pilot, invoicing people — that is regular, ongoing processing, not occasional. The exemption is written for the organisation that processes personal data once in a while, not for one whose ordinary business involves it.
 
 So: do not tell a founder the exemption covers them because they are small. Walk the four conditions. If any applies, the register is required. If none applies, say which reading got you there, because it is the unusual answer.
 
-A maintained register is also what makes a breach assessment possible at speed: without it you cannot say quickly which categories of data and which people a breach touched — which matters against the 72-hour clock below. · *national authority guidance, consistent* · **[checked 2026-11-10]**
+The GBA's own page on who must keep a register does not mention the 250 figure at all, so do not expect a national authority to walk a founder through the exemption. Art. 30(5) is where it lives.
 
-**What a missing register costs.** The Belgian authority states that absence of a register, or poorly discharging the obligation, can be fined up to €10,000,000 or, for a business, 2% of total worldwide annual turnover in the preceding financial year, whichever is higher. That is the art. 83(4) tier, not a Belgian specialty. · *national authority guidance* · **[checked 2026-11-10]**
+A maintained register is also what makes a breach assessment possible at speed: without it you cannot say quickly which categories of data and which people a breach touched — which matters against the 72-hour clock below. That is reasoning from the two obligations, not a rule either of them states.
+
+### What a missing register costs
+
+Source: [Article 83 GDPR](https://gdpr-info.eu/art-83-gdpr/) · *verbatim reproduction on a secondary host* · **[checked 2026-11-11]**
+
+Art. 83(4) sets fines *"up to 10 000 000 EUR, or in the case of an undertaking, up to 2 % of the total worldwide annual turnover of the preceding financial year, whichever is higher"*, and its point (a) covers *"the obligations of the controller and the processor pursuant to Articles 8, 11, 25 to 39 and 42 and 43"*. Article 30 sits inside that range, so the register duty is in this tier.
+
+**This is the lower of the two tiers.** Art. 83(5) sets 20 000 000 EUR or 4%, and covers the processing principles (arts. 5, 6, 7, 9), the data subject rights in arts. 12 to 22, and the third-country transfers in arts. 44 to 49. So a missing register is penalised less heavily than processing with no lawful basis — worth knowing, and not a reason to relax, since both tiers are stated as maxima that a national authority applies using the art. 83(2) criteria.
+
+Do not present either figure as what a solo founder would actually be fined. These are ceilings for undertakings of any size.
 
 ## 4. Data breach notification — 72 hours
 
-A controller must report a qualifying personal data breach to its supervisory authority **within 72 hours of becoming aware of it**.
+Source: [Article 33 GDPR](https://gdpr-info.eu/art-33-gdpr/) · *verbatim reproduction on a secondary host* · **[checked 2026-11-11]**
 
-A **processor** must warn its controller **without undue delay** — in practice immediately, with further detail following in stages as it is established. The processor does not notify the authority; the controller does. · *national authority guidance, consistent* · **[checked 2026-11-10]**
+A controller must notify its supervisory authority *"without undue delay and, where feasible, not later than 72 hours after having become aware of it"* (art. 33(1)).
+
+Three things in that paragraph a founder should not miss:
+
+- **Not every breach is notifiable.** The duty falls away where the breach *"is unlikely to result in a risk to the rights and freedoms of natural persons"* — a judgment that has to be made and recorded, not assumed either way.
+- **Late is not barred, but it is explained.** *"Where the notification to the supervisory authority is not made within 72 hours, it shall be accompanied by reasons for the delay."* Missing the clock is not the end of the obligation; it adds one.
+- **Partial is allowed.** Art. 33(4): where the information cannot all be given at once, it *"may be provided in phases without undue further delay"*. This is what the Dutch and Belgian authorities implement as a first notification plus a follow-up.
+
+A **processor** must notify *"the controller without undue delay after becoming aware of a personal data breach"* (art. 33(2)). The processor does not notify the authority; the controller does. Note the asymmetry: the processor's duty carries **no outer deadline** in the article, only "without undue delay" — so a processor who waits two days has not used up a 72-hour allowance of its own, it has eaten the controller's.
+
+And art. 33(5) requires the controller to document *every* breach — *"the facts relating to the personal data breach, its effects and the remedial action taken"* — including the ones it decided not to notify, in a form that lets the authority verify compliance. The decision not to notify is itself a record you must be able to produce.
 
 Decide, before a pilot starts, who would notify whom and from which address. A 72-hour clock is not the moment to discover that the answer is unclear.
 
@@ -175,8 +197,14 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Controller/processor test and quoted wording | 2026-11-10 | Authority — EDPB SME guidance read |
 | Processor contract duties, sub-processor authorization, processor liability | 2026-11-10 | Authority — EDPB SME guidance read |
 | Security principle, named measures, and the two numeric figures | 2026-11-10 | Authority — EDPB SME guidance read |
-| Register of processing activities obligation | 2026-11-10 | Authority — national authority guidance, consistent across the national packs |
-| 72-hour controller notification; processor warns without undue delay | 2026-11-10 | Authority — national authority guidance, consistent across the national packs |
+| Art. 30(1) register contents | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |
+| The register duty binds processors as well as controllers, and non-EEA ones | 2026-11-11 | Authority — the GBA's own page read and quoted in Dutch |
+| **Corrected on 2026-11-11:** the €10m/2% figures were attributed to a statement by the Belgian authority | 2026-11-11 | Withdrawn — that page carries no fine figures at all; refetched and confirmed it does not. The figures were right but the source was not |
+| Art. 83(4) €10m/2% tier, and that point (a) covers arts. 25 to 39 | 2026-11-11 | Secondary — article text read and quoted; art. 30 confirmed to fall inside the range |
+| Art. 83(5) 20m/4% is the higher tier, and what it covers | 2026-11-11 | Secondary — article text read |
+| Art. 33(1) 72 hours, the unlikely-to-risk carve-out, reasons for delay | 2026-11-11 | Secondary — article text read and quoted |
+| Art. 33(2) processor notifies the controller, with no outer deadline | 2026-11-11 | Secondary — article text read and quoted |
+| Art. 33(4) phased information; art. 33(5) document every breach | 2026-11-11 | Secondary — article text read and quoted |
 | DPO conditions, art. 37(1) | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |
 | DPIA conditions, art. 35(1) and 35(3) | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |
 | Register exemption, art. 30(5), four conditions | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |

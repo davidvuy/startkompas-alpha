@@ -114,7 +114,7 @@ Recheck triggers: the Q4 2026 consultation opening; the bill's submission; any c
 Dutch law protects against unreasonable standard terms — and the protection is calibrated by **how big you are**, which cuts in a founder's favour.
 
 Sources · **[checked 2026-11-10]**
-- [art. 6:233 BW](https://www.wetboek.org/bw/6/233) and [art. 6:235 BW](https://www.wetboek.org/bw/6/235) · *primary legislation, read per article*
+- [art. 6:233 BW](https://wetboek.org/bw/6/233) and [art. 6:235 BW](https://wetboek.org/bw/6/235) · *read per article on `wetboek.org`, a third-party reproduction, not the official portal*
 - the consumer-list and `reflexwerking` points · *secondary legal commentary, consistent*
 
 **Art. 6:233** makes a term in general conditions **voidable** on either of two grounds, quoted:
@@ -155,7 +155,7 @@ Source: [article 7 Auteurswet](https://wetten.overheid.nl/BWBR0001886/2026-01-01
 | **Commissioned work** under an `overeenkomst van opdracht` | **Does not qualify.** Article 7 requires a `dienstbetrekking`; a contract for services does not meet it. · *secondary, consistent* |
 | Contrary agreement | Permitted — *"tenzij tusschen partijen anders is overeengekomen"*. Article 7 is `regelend recht`. |
 
-What an `overeenkomst van opdracht` is, which is what makes that exclusion concrete: [art. 7:400 BW](https://www.wetboek.org/bw/7/400) · *primary legislation* · **[checked 2026-11-10]** — an agreement under which one party, the `opdrachtnemer`, undertakes to perform services for the other **other than under an employment contract**, excluding creating a tangible work, safekeeping goods, publishing, and transporting persons or goods.
+What an `overeenkomst van opdracht` is, which is what makes that exclusion concrete: [art. 7:400 BW](https://wetboek.org/bw/7/400) · *read on `wetboek.org`, a third-party reproduction, not the official portal* · **[checked 2026-11-10]** — an agreement under which one party, the `opdrachtnemer`, undertakes to perform services for the other **other than under an employment contract**, excluding creating a tangible work, safekeeping goods, publishing, and transporting persons or goods.
 
 So the two are defined against each other: art. 7:400 says "not an employment contract", and art. 7 Auteurswet requires exactly that employment relationship. A founder engaged on an `opdracht` therefore falls outside art. 7 by definition, not by argument.
 
@@ -165,7 +165,7 @@ Practical consequence for a solo founder: article 7 does **not** apply to you, b
 
 ### Article 8 — a risk a founder would not guess
 
-Source: [art. 8 Auteurswet](https://www.wetboek.org/aw/8) · *primary legislation* · **[checked 2026-11-10]**
+Source: [art. 8 Auteurswet](https://wetten.overheid.nl/BWBR0001886/2026-01-01) · *primary legislation, the official portal — the same consolidation as arts. 2 and 7 above, `Geldend van 01-01-2026`* · **[checked 2026-11-11]**
 
 > *"Indien eene openbare instelling, eene vereeniging, stichting of vennootschap, een werk als van haar afkomstig openbaar maakt, zonder daarbij eenig natuurlijk persoon als maker er van te vermelden, wordt zij, tenzij bewezen wordt, dat de openbaarmaking onder de bedoelde omstandigheden onrechtmatig was, als de maker van dat werk aangemerkt."*
 
@@ -308,11 +308,11 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | Authority — KVK pages read |
 | Registration fee €85.15, one-off, annually indexed | 2026-11-10 | Authority — official KVK page read |
 | Required identification documents and processing timeframe | — | Open — not yet researched |
-| Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-10 | Primary — statute read per article and quoted |
+| Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-10 | Secondary — read per article on `wetboek.org`, a third-party reproduction. The official `wetten.overheid.nl` page for Boek 6 is one document of roughly 243,000 characters and could not be fetched far enough to reach art. 233 on 2026-11-11; upgrading needs the BWB XML or a per-article route |
 | Consumer-only lists (6:236/6:237) and reflexwerking boundaries | 2026-11-10 | Secondary — consistent across sources; the case law not read |
 | Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | Primary — statute read and quoted |
-| Art. 7:400 BW defines opdracht as "other than under an employment contract" | 2026-11-10 | Primary — statute read |
-| Art. 8 Auteurswet: publisher deemed maker where no natural person is named | 2026-11-10 | Primary — statute read and quoted |
+| Art. 7:400 BW defines opdracht as "other than under an employment contract" | 2026-11-10 | Secondary — read on `wetboek.org`; the official Boek 7 page is about 296,000 characters and the same fetch limit applies |
+| Art. 8 Auteurswet: a public institution, association, foundation or company that publishes a work as its own without naming a natural person is **presumed** the maker, rebuttably | 2026-11-11 | Primary — refetched on the official `wetten.overheid.nl` consolidation, replacing a `wetboek.org` citation that had been labelled primary. Quote and version date confirmed |
 | Art. 2 Aw: writing for transfer and exclusive licence; deed via art. 3:95 BW; narrow construction | 2026-11-10 | Primary — statute read per paragraph and quoted |
 | Art. 2(5): narrow construction disapplied for an art. 7 or art. 8 maker | 2026-11-10 | Primary — statute read |
 | Whether a non-exclusive licence is **implied** by a commission | — | Open — the statute imposes no form requirement but does not say one arises; this is case law |
