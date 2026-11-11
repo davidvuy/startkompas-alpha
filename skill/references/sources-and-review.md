@@ -14,6 +14,22 @@ Unknown dates stay `null`. Never estimate a date, and never use today's date as 
 
 Prefer the relevant primary source. A user report, a vendor page or a professional commentary is not automatically primary evidence — label it for what it is. Where only secondary sources are available, say so and mark primary confirmation as open.
 
+## Do not quote a count
+
+A number of items — prohibitions, conditions, list entries, exceptions — is almost never stated by the legal text. It comes from how whoever reproduced it laid it out, and it changes when the text is amended.
+
+Three claims in the jurisdiction packs were wrong this way at once: "nine prohibited practices" where the article has ten lettered points and had eight; "the four-condition art. 30(5) exemption" where the statute writes one sentence with three limbs, the third carrying two alternatives; and a French list whose entries are not numbered at all.
+
+**Walk the facts; give the article. Quote a count only when the source itself numbers the items**, and even then say which version you counted — a count is the first thing an amendment breaks.
+
+## A source you could not reach is a finding
+
+If a source is unreachable, record **what you tried and what stopped you**, not silence. "Blocked" and "not yet researched" tell a reader to do different things.
+
+Two kinds show up in practice. A **bot-protection challenge or CAPTCHA is never to be worked around** — note the host, the date and that the page was not served, and use a different source or leave the topic open. A **document too large to fetch** is a tooling limit, not a source problem: say so, and say what would get past it, because the next person may have the tool you lacked. One national civil code sat behind that for a day and was read in the end by loading the page and slicing it to the article inside the page.
+
+Either way the row says blocked rather than unexamined, so nobody re-does the attempt blind, and nobody mistakes an obstacle for an answer.
+
 ## Keep four review dimensions separate
 
 These are four different judgments. Collapsing them is the most common way a register becomes misleading.

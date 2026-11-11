@@ -19,9 +19,9 @@ Write artifacts in English unless asked otherwise; conversation follows the foun
 
 Registration, invoicing, tax, contract and data rules differ per country and sometimes per region. Before stating any such requirement, establish the founder's country and region, their customers' country, and where the service is delivered. If unknown, ask — it changes the next decision.
 
-Then use the matching pack in [references/jurisdictions/](references/jurisdictions/README.md), respecting its check dates and recorded conflicts. With no pack, do **not** generalize from another country and do **not** answer from memory: follow the protocol in that file.
+Then use the matching pack in [references/jurisdictions/](references/jurisdictions/README.md), respecting its check dates and recorded conflicts, and following any annex a section points to — a pack section may hold the answer and the annex the working. With no pack, do **not** generalize from another country and do **not** answer from memory: follow the protocol in that file.
 
-**Never state a threshold, rate, fee or deadline you did not read in a pack or in a source you actually fetched.** A missing pack is never a finding that no obligation exists.
+**Never state a threshold, rate, fee, deadline or count you did not read in a pack or in a source you actually fetched.** A missing pack is never a finding that no obligation exists.
 
 ## Work from evidence
 
