@@ -274,6 +274,29 @@ A pack is only worth having if it is verifiable. Requirements:
 - Add the pack to the table above with its check date and coverage.
 - A pack is preparation, not qualified advice. Say so in the pack.
 
+### Cold-read a pack you have edited more than once
+
+Every check in `scripts/` tests a file against a rule. None of them reads it as a reader. That gap has a predictable shape, and on 2026-11-11 it produced ten defects across three files in one sitting:
+
+- `netherlands.md` §4 ended with **"the BW articles were not read in primary form"**, four paragraphs below a source line saying they had been, that day, with a note explaining how.
+- Its unfair-terms table answered *"Can a contract remove it?"* with **"the text carries no express nullity clause"** — true about the Dutch text and the wrong answer to the question, since a directive voids such clauses. A reader scanning the table took away "yes".
+- `eu-gdpr.md` opened with **"each national pack carries only what is national: which supervisory authority is competent"**, after the national packs had acquired a DPO duty, four disagreeing impact-assessment lists, two ages of consent and criminal penalties in two countries. That is the sentence deciding whether the national pack is opened at all.
+- `eu-ai-act.md` §1 routed a hiring tool **"outside this pack"** two sections before the pack acquired the article that governs it.
+
+Every one of those sentences was true when written, is defensible in isolation, and passes every structural rule. They break because **a correction lands in one place and the sentence framing it stays where it is.**
+
+So: **a pack edited more than once in a sitting gets read end to end before the sitting ends.** Not diffed — read. What to look for, in rough order of damage:
+
+| Look for | Because |
+| --- | --- |
+| The **opening** paragraph of the file and of each section | it is what a reader acts on, and it is the furthest from where you were editing |
+| Any **`[not researched]`** note near something you researched | the two drift apart silently and contradict each other |
+| **Table cells** that answer something other than their column header | a table is scanned, not read, so a wrong cell travels further than a wrong sentence |
+| Sentences saying a topic is **"outside this pack"** or **"open"** | those are the ones a new section makes false |
+| The same fact stated **twice** in consecutive paragraphs | one of them arrived with an edit and neither was removed |
+
+A cold read of a 45 KB pack takes a few minutes and has so far found defects at a rate nothing else matches.
+
 ## Review cadence
 
 Packs rot. Thresholds move, obligations phase in, portals move URLs. A pack with a stale check date is a liability, because it reads as authoritative.

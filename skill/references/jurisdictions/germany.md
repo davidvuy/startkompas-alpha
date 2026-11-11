@@ -306,7 +306,7 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 
 **The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle.
 
-**German specifics — which authority is competent.** Germany has **no single supervisory authority for business**.
+**German specifics start with the authority and do not end there.** Germany has **no single supervisory authority for business** — and beyond that it adds a duty to appoint a data protection officer that the GDPR does not, a binding national list of processing needing an impact assessment, and criminal liability. The authority first, because everything else routes through it:
 
 Source: [BfDI — addresses of the Länder authorities](https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html) · *federal authority's own directory* · **[checked 2026-11-10]**
 
@@ -316,7 +316,7 @@ So for a **private company the competent authority is the `Land` authority where
 
 Practical consequence: a founder cannot be told "contact the German DPA". Establish their `Land` first, then find that authority. A breach notification sent to the wrong authority is not a notification made.
 
-**The German specifics beyond that are in [germany-data-protection.md](germany-data-protection.md):** §40 BDSG and which Land authority is competent when there are several establishments, **§38 BDSG — under which a DPO is compulsory with no employees at all**, the dismissal protection a compulsory DPO acquires, the German art. 35(4) DPIA list and **the entry on it that covers AI customer interaction**, and the BayLDA's own checklist for a one-person business.
+**The German specifics beyond that are in [germany-data-protection.md](germany-data-protection.md):** §40 BDSG and which Land authority is competent when there are several establishments, **§38 BDSG — under which a DPO is compulsory with no employees at all** — the dismissal protection a compulsory DPO acquires, **§42 BDSG's criminal liability and the use immunity it gives a breach notification**, the German art. 35(4) DPIA list and **the entry on it that covers AI customer interaction**, and the BayLDA's own checklist for a one-person business.
 
 ---
 

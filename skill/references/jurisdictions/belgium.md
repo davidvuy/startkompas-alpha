@@ -233,7 +233,7 @@ Never infer ownership or clearance from payment alone, from the fact that AI gen
 
 **The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle. Those rules are identical in all four packs and are not repeated here.
 
-**Belgian specifics.** The supervisory authority is the **Gegevensbeschermingsautoriteit / Autorité de protection des données (GBA/APD)**, and it publishes more SME-specific material than most — point a Belgian founder at these rather than paraphrasing them.
+**Belgian specifics go well beyond the authority — Belgium is the one of these four that makes processing without a lawful basis a crime.** The supervisory authority is the **Gegevensbeschermingsautoriteit / Autorité de protection des données (GBA/APD)**, and it publishes more SME-specific material than most — point a Belgian founder at these rather than paraphrasing them.
 
 **[belgium-data-protection.md](belgium-data-protection.md) holds the Belgian layer:** the GBA's register guidance and its SME publications with the warning about two of them, the two-part breach portal and the account you need before the clock starts, **the `wet van 30 juli 2018` read — including art. 222, under which processing without a lawful basis is a criminal offence carrying up to €120,000** — and **the GBA's eight-entry art. 35(4) list, whose second entry has no scale qualifier at all**.
 
