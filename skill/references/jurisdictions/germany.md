@@ -301,52 +301,54 @@ The `BDSG` and the competent state authority's own guidance are **[not researche
 
 ## Pack maintenance
 
+One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
+
 | Claim | Check date | Status |
 | --- | --- | --- |
-| §19 UStG thresholds €25,000 / €100,000, both operative | 2026-11-10 | **Primary legislation read and quoted** |
-| Gesamtumsatz from vereinnahmten Entgelten; fixed assets excluded | 2026-11-10 | Primary legislation read |
-| Net amounts / immediate mid-year exit / no founding-year projection | 2026-11-10 | **Primary source checked and is silent; secondary basis unidentified — do not state as statutory** |
-| E-invoice receiving mandatory from 2025-01-01, incl. Kleinunternehmer | 2026-11-10 | Official EU source read |
-| Issuing from 2027-01-01 above €800,000; all from 2028-01-01 | 2026-11-10 | Official EU source read |
-| Email address sufficient for reception | 2026-11-10 | Official EU source read |
-| Formats XRechnung / ZUGFeRD 2.2.0 / Peppol BIS 3.0 | 2026-11-10 | Official EU source read |
-| BMF letters 2024 (BStBl I 1320), 2025-10-15 (BStBl I 1806), 2026-10-15 (GZ III C 5 - S 7287) | 2026-11-10 | **BMF letter of 2026-10-15 extracted and read** |
-| Non-objection to 2026-12-31 incl. input VAT deduction | 2026-11-10 | **BMF letter read** |
-| Structured-part content rule; time records may go in an embedded annex | 2026-11-10 | **BMF letter read** |
-| Construction, gross-price and partial-payment allowances; corrections as e-invoices | 2026-11-10 | **BMF letter read** |
-| 2025 letter amends, not replaces, the 2024 letter; GZ III C 2 - S 7287-a/00019/007/243 | 2026-11-10 | **BMF letter of 2025-10-15 extracted and read** (33 pages) |
-| 2024 letter's citation is **BStBl I S. 1320** | 2026-11-10 | **Confirmed in the 2025 letter's own text** — primary cross-reference |
-| Rn. 22: ≤€250 invoices, **Kleinunternehmer invoices** and transport tickets may always be `sonstige Rechnung` | 2026-11-10 | **2025 letter read** — UStDV provisions named in the letter |
-| Consent for a non-e-invoice electronic format: no form required, may be implied | 2026-11-10 | **2025 letter read** (§14(1) s. 5 UStG) |
-| Rn. 17: duty applies though the recipient is a Kleinunternehmer or wholly exempt; Gutschrift, §13b, §24, §25, §25a | 2026-11-10 | **2025 letter read** |
-| Rn. 6a/6b/35a: format vs business-rule vs content error, and their differing VAT effect | 2026-11-10 | **2025 letter read** |
-| May rely on a validation application; keep the validation report; it does not replace your own check | 2026-11-10 | **2025 letter read** (Rn. 35a) |
-| Rn. 60: §14b(1) **eight-year** retention; structured part unaltered; non-GoBD storage not per se a breach | 2026-11-10 | **2025 letter read** |
-| Rn. 51a/51b: no correction for a mere §17 change; correction needed for a change of scope | 2026-11-10 | **2025 letter read** |
-| Transitional rules run to **2027-12-31**, distinct from the 2026-12-31 non-objection period | 2026-11-10 | **2025 letter's Anwendungsregelung read** |
-| Rn. 62: **no** transitional rule for receiving; §27(38) covers issuing only | 2026-11-10 | **2024 letter extracted and read** — wording quoted |
-| Rn. 63: paper always permissible to end-2026; consent needs no form, AGB or conduct suffices | 2026-11-10 | **2024 letter read** |
-| Rn. 64: €800,000 is `Gesamtumsatz` per §19 in the **preceding** year; Organkreis / Gutschrift / third-party rules | 2026-11-10 | **2024 letter read** — the phase-in table is now primary-confirmed |
-| Rn. 65: EDI under Recommendation 94/820/EC permitted to end-2027 with consent | 2026-11-10 | **2024 letter read** |
-| Rn. 68: BMF letter of 2012-07-02 (BStBl I S. 726) repealed from end-2024 | 2026-11-10 | **2024 letter read** |
-| Whether §27(38) UStG itself reads as the letter describes | — | Not researched — the statute was not read for this section |
-| GoBD letter of 2019-11-28 as amended 2025-07-14 (non-VAT retention) | — | Not researched |
-| §18 EStG: freiberufliche categories, Katalogberufe, ähnliche Berufe | 2026-11-10 | **Primary legislation read and quoted** |
-| Registration route, chamber membership, Gewerbesteuer consequences | 2026-11-10 | Chamber guidance read |
-| Whether a software developer is `ingenieurähnlich` | — | Open by nature — a Steuerberater question, not researchable here |
-| Municipal Gewerbeanmeldung documents and fees; the €24,500 allowance in §11 GewStG | — | Not researched |
-| §310(1) BGB: §§308/309 catalogue disapplied in B2B, §307 general test survives | 2026-11-10 | **Primary legislation read and quoted** |
-| Indizwirkung of §§308/309 under §307 in B2B | 2026-11-10 | **Resolved** — BGH NJW 2007, 3774 via consistent commentary; judgment not read |
-| How far trade custom under §310(1) rebuts that indication | — | Not researched |
-| §69b UrhG: employer for employees/service relationships; silent on commissioned work | 2026-11-10 | **Primary legislation read and quoted** |
-| §69d: use for purpose incl. error correction, Sicherungskopie, study, TDM under §44b | 2026-11-10 | **Primary legislation read and quoted** |
-| §69g(2): terms contrary to §69d(2),(3),(5),(7) or §69e are `nichtig`; §69d(1) is waivable | 2026-11-10 | **Primary legislation read and quoted** |
-| §69e itself, the decompilation conditions | — | Not researched — named by §69g(2), text not read |
-| §31(5) UrhG Zweckübertragungsregel: unnamed uses read by contract purpose; simple vs exclusive | 2026-11-10 | **Primary legislation read and quoted** |
-| Competent authority is the Land authority, not the BfDI; 16 entries listed | 2026-11-10 | **BfDI's own directory read** |
-| Which Land splits public and private supervision (the 17/18 counts) | — | Not researched |
-| BDSG, and the competent Land authority's own guidance | — | Not researched |
-| GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
+| §19 UStG thresholds €25,000 / €100,000, both operative | 2026-11-10 | Primary — statute read and quoted |
+| Gesamtumsatz from vereinnahmten Entgelten; fixed assets excluded | 2026-11-10 | Primary — statute read |
+| Net amounts / immediate mid-year exit / no founding-year projection | 2026-11-10 | Unconfirmed — §19 UStG was read and is silent on all three, and the secondary basis is unidentified. **Do not state these as statutory** |
+| E-invoice receiving mandatory from 2025-01-01, incl. Kleinunternehmer | 2026-11-10 | Authority — official EU source read |
+| Issuing from 2027-01-01 above €800,000; all from 2028-01-01 | 2026-11-10 | Authority — official EU source read |
+| Email address sufficient for reception | 2026-11-10 | Authority — official EU source read |
+| Formats XRechnung / ZUGFeRD 2.2.0 / Peppol BIS 3.0 | 2026-11-10 | Authority — official EU source read |
+| BMF letters 2024 (BStBl I 1320), 2025-10-15 (BStBl I 1806), 2026-10-15 (GZ III C 5 - S 7287) | 2026-11-10 | Authority — BMF letter of 2026-10-15 extracted and read |
+| Non-objection to 2026-12-31 incl. input VAT deduction | 2026-11-10 | Authority — BMF letter read |
+| Structured-part content rule; time records may go in an embedded annex | 2026-11-10 | Authority — BMF letter read |
+| Construction, gross-price and partial-payment allowances; corrections as e-invoices | 2026-11-10 | Authority — BMF letter read |
+| 2025 letter amends, not replaces, the 2024 letter; GZ III C 2 - S 7287-a/00019/007/243 | 2026-11-10 | Authority — BMF letter of 2025-10-15 extracted and read, 33 pages |
+| 2024 letter's citation is **BStBl I S. 1320** | 2026-11-10 | Authority — confirmed in the 2025 letter's own text, a cross-reference inside the source |
+| Rn. 22: ≤€250 invoices, **Kleinunternehmer invoices** and transport tickets may always be `sonstige Rechnung` | 2026-11-10 | Authority — 2025 letter read; the UStDV provisions it names were not read themselves |
+| Consent for a non-e-invoice electronic format: no form required, may be implied | 2026-11-10 | Authority — 2025 letter read, on §14(1) s. 5 UStG |
+| Rn. 17: duty applies though the recipient is a Kleinunternehmer or wholly exempt; Gutschrift, §13b, §24, §25, §25a | 2026-11-10 | Authority — 2025 letter read |
+| Rn. 6a/6b/35a: format vs business-rule vs content error, and their differing VAT effect | 2026-11-10 | Authority — 2025 letter read |
+| May rely on a validation application; keep the validation report; it does not replace your own check | 2026-11-10 | Authority — 2025 letter read, Rn. 35a |
+| Rn. 60: §14b(1) **eight-year** retention; structured part unaltered; non-GoBD storage not per se a breach | 2026-11-10 | Authority — 2025 letter read |
+| Rn. 51a/51b: no correction for a mere §17 change; correction needed for a change of scope | 2026-11-10 | Authority — 2025 letter read |
+| Transitional rules run to **2027-12-31**, distinct from the 2026-12-31 non-objection period | 2026-11-10 | Authority — the 2025 letter's Anwendungsregelung read |
+| Rn. 62: **no** transitional rule for receiving; §27(38) covers issuing only | 2026-11-10 | Authority — 2024 letter extracted and read; wording quoted |
+| Rn. 63: paper always permissible to end-2026; consent needs no form, AGB or conduct suffices | 2026-11-10 | Authority — 2024 letter read |
+| Rn. 64: €800,000 is `Gesamtumsatz` per §19 in the **preceding** year; Organkreis / Gutschrift / third-party rules | 2026-11-10 | Authority — 2024 letter read; the phase-in table is now confirmed from the letter itself |
+| Rn. 65: EDI under Recommendation 94/820/EC permitted to end-2027 with consent | 2026-11-10 | Authority — 2024 letter read |
+| Rn. 68: BMF letter of 2012-07-02 (BStBl I S. 726) repealed from end-2024 | 2026-11-10 | Authority — 2024 letter read |
+| Whether §27(38) UStG itself reads as the letter describes | — | Open — the statute was not read for this section |
+| GoBD letter of 2019-11-28 as amended 2025-07-14 (non-VAT retention) | — | Open — not yet researched |
+| §18 EStG: freiberufliche categories, Katalogberufe, ähnliche Berufe | 2026-11-10 | Primary — statute read and quoted |
+| Registration route, chamber membership, Gewerbesteuer consequences | 2026-11-10 | Authority — chamber guidance read |
+| Whether a software developer is `ingenieurähnlich` | — | Open — open by nature; a Steuerberater question, not researchable here |
+| Municipal Gewerbeanmeldung documents and fees; the €24,500 allowance in §11 GewStG | — | Open — not yet researched |
+| §310(1) BGB: §§308/309 catalogue disapplied in B2B, §307 general test survives | 2026-11-10 | Primary — statute read and quoted |
+| Indizwirkung of §§308/309 under §307 in B2B | 2026-11-10 | Secondary — BGH NJW 2007, 3774 via consistent commentary; the judgment itself not read |
+| How far trade custom under §310(1) rebuts that indication | — | Open — not yet researched |
+| §69b UrhG: employer for employees/service relationships; silent on commissioned work | 2026-11-10 | Primary — statute read and quoted |
+| §69d: use for purpose incl. error correction, Sicherungskopie, study, TDM under §44b | 2026-11-10 | Primary — statute read and quoted |
+| §69g(2): terms contrary to §69d(2),(3),(5),(7) or §69e are `nichtig`; §69d(1) is waivable | 2026-11-10 | Primary — statute read and quoted |
+| §69e itself, the decompilation conditions | — | Open — named by §69g(2), its text not read |
+| §31(5) UrhG Zweckübertragungsregel: unnamed uses read by contract purpose; simple vs exclusive | 2026-11-10 | Primary — statute read and quoted |
+| Competent authority is the Land authority, not the BfDI; 16 entries listed | 2026-11-10 | Authority — the BfDI's own directory read |
+| Which Land splits public and private supervision (the 17/18 counts) | — | Open — not yet researched |
+| BDSG, and the competent Land authority's own guidance | — | Open — not yet researched |
+| GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2026-12-31, when the BMF non-objection period ends, and before 2027-01-01 when the first issuing phase begins. Also before 2027-12-31, when the transitional rules of the 2024 letter run out.
 

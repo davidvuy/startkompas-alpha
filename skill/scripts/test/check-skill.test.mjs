@@ -339,6 +339,45 @@ test('a binary asset in the tree fails', () => {
   expectFail({...baseTree(), 'assets/logo.png': 'not really a png'}, /binary asset does not belong/);
 });
 
+// --- Line endings — section 9 ------------------------------------------------
+
+test('a file converted to CRLF fails and says to normalise it', () => {
+  // The defect this section exists for. A tool rewrote check-freshness.mjs with
+  // the platform's line endings, and `git diff --stat` then reported 449
+  // changed lines where 103 were real — an unreviewable diff, invisible in a
+  // terminal, that nothing in the project objected to.
+  const base = baseTree();
+  const result = expectFail(
+    {...base, 'references/method.md': base['references/method.md'].replaceAll('\n', '\r\n')},
+    /uses CRLF line endings/,
+  );
+  assert.match(result.output, /references\/method\.md/, 'the message must name the file');
+  assert.match(result.output, /every other file here uses LF/);
+});
+
+test('a file with only some CRLF lines is reported as mixed, with both counts', () => {
+  // The harder case to spot by eye, and the one a half-applied edit produces.
+  // Both counts go in the message because "mixed" alone does not say which way
+  // to normalise.
+  const base = baseTree();
+  const result = expectFail(
+    {...base, 'references/method.md': base['references/method.md'].replace('# Method', '# Method\r')},
+    /mixes line endings/,
+  );
+  assert.match(result.output, /1 CRLF and \d+ LF/);
+});
+
+test('CRLF bytes inside a binary are not reported as a line-ending problem', () => {
+  // A binary already fails section 8. Reading it as text and complaining about
+  // its line endings too would add a second, misleading message about bytes
+  // that are not lines at all.
+  const result = expectFail(
+    {...baseTree(), 'assets/icon.ttf': 'not really a font\r\nbut it has CRLF bytes\r\n'},
+    /binary asset does not belong in a skill/,
+  );
+  assert.doesNotMatch(result.output, /line endings/);
+});
+
 // --- Reporting contract — cross-cutting, via lib/report.mjs ------------------
 
 test('problems go to stderr and the happy path says nothing to stderr', () => {

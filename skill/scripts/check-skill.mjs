@@ -12,6 +12,7 @@
 //   6. jurisdiction packs stay discoverable, dated and on-template
 //   7. no reference links outside the model-facing set
 //   8. every size budget is met and no binaries ship
+//   9. every text file uses LF, so a tool cannot turn an edit into a whole-file diff
 
 import {readFileSync, existsSync, readdirSync} from 'node:fs';
 import {dirname, join, resolve} from 'node:path';
@@ -29,6 +30,10 @@ const MODEL_BUDGET_KB = 320; // SKILL.md + references/ — a distribution bound
 const FOLDER_BUDGET_KB = 512; // the folder as installed, tests excluded
 const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
 
+// A skill is text. Section 8 rejects these outright; section 9 skips them,
+// because "line endings" means nothing in a font or a video.
+const BINARY = /\.(mp4|png|jpg|jpeg|ttf|otf|woff2?|zip|pdf)$/i;
+
 // Frontmatter limits. A description shorter than MIN cannot carry both the
 // skill's scope and when to use it, which is what a host routes on.
 const MIN_DESCRIPTION = 80;
@@ -40,7 +45,7 @@ const files = listFiles(skillRoot);
 const rel = (file) => relativePosix(skillRoot, file);
 const markdown = files.filter((file) => file.endsWith('.md'));
 
-// Eight sections below look at the same files. Reading each one once keeps the
+// The nine sections below look at the same files. Reading each one once keeps the
 // check honest as well as quick: two sections reading a file separately can
 // disagree about its contents if it changes mid-run, and the pack loop used to
 // read every pack twice.
@@ -344,7 +349,37 @@ if (testBytes > TEST_BUDGET_KB * 1024)
     `${overBudget(testBytes, TEST_BUDGET_KB, 'test-suite')}; a fixture has probably grown instead of a test being added`,
   );
 
-for (const file of files.filter((f) => /\.(mp4|png|jpg|jpeg|ttf|otf|woff2?|zip|pdf)$/i.test(f)))
+for (const file of files.filter((file) => BINARY.test(file)))
   report.fail(rel(file), 'binary asset does not belong in a skill');
+
+// --- 9. Every text file uses LF ----------------------------------------------
+// The skill is developed on Windows and on Linux, and CI runs both. A tool that
+// rewrites a file with the platform's own line endings turns a three-line edit
+// into a whole-file diff: the change becomes unreviewable, and the next genuine
+// edit to that file collides with it. It is invisible in a terminal, which is
+// why it needs a check rather than attention.
+//
+// This happened: a one-line substitution run through a Python helper converted
+// check-freshness.mjs to CRLF, and `git diff --stat` reported 449 changed lines
+// where 103 were real. Nothing in the project would have objected.
+//
+// LF, not CRLF, because every other file here already uses it and git is
+// configured to leave line endings alone.
+//
+// Binaries are skipped: section 8 already rejects them, and reading one as text
+// would report line endings in bytes that are not lines.
+for (const file of files.filter((file) => !BINARY.test(file))) {
+  const text = read(file);
+  const crlf = (text.match(/\r\n/g) ?? []).length;
+  if (!crlf) continue;
+
+  const lf = (text.match(/(?<!\r)\n/g) ?? []).length;
+  report.fail(
+    rel(file),
+    lf
+      ? `mixes line endings: ${crlf} CRLF and ${lf} LF. Normalise the whole file to LF`
+      : `uses CRLF line endings on all ${crlf} lines; every other file here uses LF, so this makes the next diff unreadable`,
+  );
+}
 
 report.finish();

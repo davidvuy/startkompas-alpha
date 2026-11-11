@@ -185,6 +185,30 @@ Next full recheck due: **YYYY-MM-DD**.
 
 Sections 2 and 3 take the local name and status after the dash. Sections 1, 4, 5 and 6 are fixed. Within a section, use the structure the existing packs use: a source line with its type and check date, then a table where there are distinct cases, then the practical consequence for a founder, then what remains open.
 
+### The Status column is a fixed vocabulary
+
+Every row's Status cell **begins with one of these seven labels**, optionally followed by ` — ` and free prose. Nothing else is allowed, and `scripts/check-freshness.mjs` fails on an unknown label.
+
+| Label | What it asserts | What a maintainer does with it |
+| --- | --- | --- |
+| `Primary` | the authoritative text itself was read — statute, directive, judgment, bill | nothing until the text is amended |
+| `Authority` | an official regulator, tax-authority or chamber publication was read; the statute behind it was not | recheck when the authority republishes; upgrade to `Primary` where the claim is consequential |
+| `Secondary` | only commentary, news, or a third-party reproduction was read | upgrade — this is the weakest basis a claim may rest on |
+| `Unconfirmed` | the pack states something its sources do not establish — a source was checked and was silent or contradicted it, a fetch failed, or the claim rests on inference | either find the real basis or remove the claim. Never leave a consequential one here |
+| `Withdrawn` | the claim was wrong and has been corrected in the pack | keep the row. It is the record of the correction |
+| `Open` | this pack does not answer it | research it, or accept it as out of reach and say so in the detail |
+| `Elsewhere` | answered in a shared `eu-*.md` layer rather than here | nothing; maintain it in that layer |
+
+Three things this buys, which 90 hand-written phrasings did not:
+
+- **It is scannable.** A maintainer picking up a pack reads one column and knows what to do, instead of parsing a different sentence per row.
+- **It is countable.** `Open` is the row shape `check-freshness.mjs` compares against the `[not researched]` markers in the body, so the two cannot drift apart unnoticed.
+- **Bold means something again.** The label is plain text. Reserve bold inside the detail for a warning a reader must not miss — `**Do not state the figures as law**`.
+
+Put everything specific in the detail: which article, which letter, whether the pack quotes the source verbatim, what was *not* read. `Primary — §19 UStG, quoted` and `Authority — BMF letter of 2025-10-15, 33 pages extracted` both say more than the label alone, and both still scan.
+
+`Open` is the one label whose detail is close to mandatory, because "no answer" is not useful on its own. Say why it is open: not yet researched, researched but inconclusive, or deliberately left to a professional.
+
 ## Contributing a pack
 
 A pack is only worth having if it is verifiable. Requirements:

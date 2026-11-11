@@ -132,9 +132,11 @@ export function validPack({name = 'Testland', recheck = '2099-01-01', notResearc
     (_, i) => `\n- Open topic ${i + 1} is **[not researched]**.\n`,
   ).join('');
 
+  // Status cells use the vocabulary from references/jurisdictions/README.md,
+  // which check-freshness.mjs enforces. An Open row takes — for a date.
   const tableRows = Array.from(
     {length: notResearched},
-    (_, i) => `| Open topic ${i + 1} | — | Not researched |\n`,
+    (_, i) => `| Open topic ${i + 1} | — | Open — fixture |\n`,
   ).join('');
 
   return `# ${name}
@@ -171,7 +173,7 @@ ${bodyMarkers}
 
 | Claim | Check date | Status |
 | --- | --- | --- |
-| Everything above | 2026-11-10 | Fixture |
+| Everything above | 2026-11-10 | Authority — fixture |
 ${tableRows}
 Next full recheck due: **${recheck}**.
 

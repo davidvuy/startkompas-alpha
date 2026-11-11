@@ -292,45 +292,47 @@ Source: [AP — `Vragenlijst meldformulier datalekken`](https://www.autoriteitpe
 
 ## Pack maintenance
 
+One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
+
 | Claim | Check date | Status |
 | --- | --- | --- |
-| No domestic B2B e-invoicing mandate in force | 2026-11-10 | Official EU source read |
-| B2G obligation since 2019-11-01 | 2026-11-10 | Official EU source read |
-| Planned 2030/2031 dates, Peppol recommended not mandated, KOR carve-out | 2026-11-10 | Secondary; ministerial letter not read; **not law** |
-| Legislative timeline (consultation Q4 2026, bill 2027, passage 2028) | 2026-11-10 | Secondary, consistent |
-| KOR threshold €20,000 and its effects | 2026-11-10 | Tax authority page read |
-| KOR invoicing: not required, must state the scheme, no VAT | 2026-11-10 | Tax authority page read, wording quoted |
-| KOR: purchase invoices still retained | 2026-11-10 | Secondary; primary confirmation open |
-| EU-KOR: €100,000 Union threshold, national thresholds also apply, NL establishment, quarterly report | 2026-11-10 | Tax authority page read |
-| EU-KOR start date 2025-01-01 and €100,000 Union cap | 2026-11-10 | **Primary EU legislation read** — see eu-vat-sme.md |
-| Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | KVK pages read |
-| Registration fee €85.15, one-off, annually indexed | 2026-11-10 | **Official page read** |
-| Required identification documents and processing timeframe | — | Not researched |
-| Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-10 | **Primary legislation read per article and quoted** |
-| Consumer-only lists (6:236/6:237) and reflexwerking boundaries | 2026-11-10 | Secondary consistent; case law not read |
-| Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | **Primary legislation read and quoted** |
-| Art. 7:400 BW defines opdracht as "other than under an employment contract" | 2026-11-10 | **Primary legislation read** |
-| Art. 8 Auteurswet: publisher deemed maker where no natural person is named | 2026-11-10 | **Primary legislation read and quoted** |
-| Art. 2 Aw: writing for transfer and exclusive licence; deed via art. 3:95 BW; narrow construction | 2026-11-10 | **Primary legislation read per paragraph and quoted** |
-| Art. 2(5): narrow construction disapplied for an art. 7 or art. 8 maker | 2026-11-10 | **Primary legislation read** |
-| Whether a non-exclusive licence is **implied** by a commission | — | **Not researched** — the statute imposes no form requirement but does not say one arises; this is case law |
-| What *"aard en strekking"* means for commissioned software in practice | — | Not researched |
-| Arts. 45j–45m: use for intended use, reservekopie, study, interoperability | 2026-11-10 | **Primary legislation read per article** |
-| Art. 45j second sentence: loading, displaying and error correction cannot be contractually prohibited | 2026-11-10 | **Primary legislation read and quoted** |
-| Arts. 45k–45m carry **no express nullity clause**, unlike BE, DE and FR | 2026-11-10 | **Primary legislation read** — stated as a fact about the text, not as a conclusion |
-| Whether 45k–45m are mandatory in Dutch law despite that silence | — | **Not researched** — the one question a clause touching them turns on |
-| The Contourenbrief of 2026-09-11 itself | — | Not researched — only secondary reporting of it |
-| AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Official authority pages read |
-| AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | **AP PDF extracted and read** |
-| AP breach stappenplan: five steps, first notification plus follow-up | 2026-11-10 | **AP PDF extracted and read** |
-| Online form is the only channel; what the AP expects you to have ready | 2026-11-10 | **AP `Vragenlijst` v1.1 extracted and read** |
-| Hacking/malware: investigation expected, and logs as the test | 2026-11-10 | **Same document read** |
-| Discovery vs awareness; reaching the `FG` is not awareness | 2026-11-10 | **Same document read** — AP wording quoted |
-| Follow-up notification requested within 4 weeks, longer must be motivated | 2026-11-10 | **Same document read** |
-| `Vragenlijst` is `versie 1.1, augustus 2022` and disclaims any rights | 2026-11-10 | **Same document read** — recheck for a newer version |
-| Notification duty sits in four statutes (AVG, Tw, Wjsg, Wpg) | 2026-11-10 | **Same document read**; the three others not examined |
-| Parent brochure, the notifiable/non-notifiable example list, the 10 registration tips | — | Not researched |
-| GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
+| No domestic B2B e-invoicing mandate in force | 2026-11-10 | Authority — official EU source read |
+| B2G obligation since 2019-11-01 | 2026-11-10 | Authority — official EU source read |
+| Planned 2030/2031 dates, Peppol recommended not mandated, KOR carve-out | 2026-11-10 | Secondary — the ministerial letter itself not read. **These dates are not law** |
+| Legislative timeline (consultation Q4 2026, bill 2027, passage 2028) | 2026-11-10 | Secondary — consistent across sources |
+| KOR threshold €20,000 and its effects | 2026-11-10 | Authority — Belastingdienst page read |
+| KOR invoicing: not required, must state the scheme, no VAT | 2026-11-10 | Authority — Belastingdienst page read, wording quoted |
+| KOR: purchase invoices still retained | 2026-11-10 | Secondary — primary confirmation still open |
+| EU-KOR: €100,000 Union threshold, national thresholds also apply, NL establishment, quarterly report | 2026-11-10 | Authority — Belastingdienst page read |
+| EU-KOR start date 2025-01-01 and €100,000 Union cap | 2026-11-10 | Primary — Directive (EU) 2020/285, read in eu-vat-sme.md |
+| Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | Authority — KVK pages read |
+| Registration fee €85.15, one-off, annually indexed | 2026-11-10 | Authority — official KVK page read |
+| Required identification documents and processing timeframe | — | Open — not yet researched |
+| Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-10 | Primary — statute read per article and quoted |
+| Consumer-only lists (6:236/6:237) and reflexwerking boundaries | 2026-11-10 | Secondary — consistent across sources; the case law not read |
+| Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | Primary — statute read and quoted |
+| Art. 7:400 BW defines opdracht as "other than under an employment contract" | 2026-11-10 | Primary — statute read |
+| Art. 8 Auteurswet: publisher deemed maker where no natural person is named | 2026-11-10 | Primary — statute read and quoted |
+| Art. 2 Aw: writing for transfer and exclusive licence; deed via art. 3:95 BW; narrow construction | 2026-11-10 | Primary — statute read per paragraph and quoted |
+| Art. 2(5): narrow construction disapplied for an art. 7 or art. 8 maker | 2026-11-10 | Primary — statute read |
+| Whether a non-exclusive licence is **implied** by a commission | — | Open — the statute imposes no form requirement but does not say one arises; this is case law |
+| What *"aard en strekking"* means for commissioned software in practice | — | Open — not yet researched |
+| Arts. 45j–45m: use for intended use, reservekopie, study, interoperability | 2026-11-10 | Primary — statute read per article |
+| Art. 45j second sentence: loading, displaying and error correction cannot be contractually prohibited | 2026-11-10 | Primary — statute read and quoted |
+| Arts. 45k–45m carry **no express nullity clause**, unlike BE, DE and FR | 2026-11-10 | Primary — statute read; stated as a fact about the text, not as a conclusion |
+| Whether 45k–45m are mandatory in Dutch law despite that silence | — | Open — the one question a clause touching them turns on |
+| The Contourenbrief of 2026-09-11 itself | — | Open — only secondary reporting of it was read |
+| AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Authority — AP pages read |
+| AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | Authority — AP PDF extracted and read |
+| AP breach stappenplan: five steps, first notification plus follow-up | 2026-11-10 | Authority — AP PDF extracted and read |
+| Online form is the only channel; what the AP expects you to have ready | 2026-11-10 | Authority — AP `Vragenlijst` v1.1 extracted and read |
+| Hacking/malware: investigation expected, and logs as the test | 2026-11-10 | Authority — the same AP document |
+| Discovery vs awareness; reaching the `FG` is not awareness | 2026-11-10 | Authority — the same AP document; its wording quoted |
+| Follow-up notification requested within 4 weeks, longer must be motivated | 2026-11-10 | Authority — the same AP document |
+| `Vragenlijst` is `versie 1.1, augustus 2022` and disclaims any rights | 2026-11-10 | Authority — the same AP document; recheck for a newer version |
+| Notification duty sits in four statutes (AVG, Tw, Wjsg, Wpg) | 2026-11-10 | Authority — the same AP document; the three other statutes not examined |
+| Parent brochure, the notifiable/non-notifiable example list, the 10 registration tips | — | Open — not yet researched |
+| GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier when the Q4 2026 internet consultation opens.
 

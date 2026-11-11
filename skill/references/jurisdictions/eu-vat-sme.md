@@ -89,19 +89,21 @@ The financial-and-real-estate limb turns on whether those transactions are **anc
 
 ## Pack maintenance
 
+One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
+
 | Claim | Check date | Status |
 | --- | --- | --- |
-| National threshold ceiling €85,000, art. 284(1) | 2026-11-10 | **Primary EU legislation read and quoted** |
-| Union annual turnover €100,000, art. 284(2)(a) | 2026-11-10 | **Primary EU legislation read and quoted** |
-| Adoption by 2024-12-31, application from 2025-01-01, art. 3(1) | 2026-11-10 | Primary EU legislation read |
-| Prior notification, EX identifier, 35 working days | 2026-11-10 | **Primary EU legislation read** |
-| Quarterly return, content and one-month deadline | 2026-11-10 | **Primary EU legislation read** |
-| Mid-year Union threshold breach: exemption ceases immediately; 15 working day notice | 2026-11-10 | **Primary EU legislation read** |
-| Definitions of member-state and Union annual turnover | 2026-11-10 | **Primary EU legislation read** |
-| Art. 288: which supplies count, incl. some exempt ones; capital-asset disposals excluded | 2026-11-10 | **Primary EU legislation read and quoted** |
-| Whether a financial or real estate transaction is "ancillary" for art. 288 | — | Not researched |
-| Member-state implementation of notification and returns | — | Not researched |
-| Domestic exemption on a mid-year crossing | — | Not an EU question; see the national pack |
+| National threshold ceiling €85,000, art. 284(1) | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex, quoted |
+| Union annual turnover €100,000, art. 284(2)(a) | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex, quoted |
+| Adoption by 2024-12-31, application from 2025-01-01, art. 3(1) | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex |
+| Prior notification, EX identifier, 35 working days | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex |
+| Quarterly return, content and one-month deadline | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex |
+| Mid-year Union threshold breach: exemption ceases immediately; 15 working day notice | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex |
+| Definitions of member-state and Union annual turnover | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex |
+| Art. 288: which supplies count, incl. some exempt ones; capital-asset disposals excluded | 2026-11-10 | Primary — Directive (EU) 2020/285 on EUR-Lex, quoted |
+| Whether a financial or real estate transaction is "ancillary" for art. 288 | — | Open — not yet researched |
+| Member-state implementation of notification and returns | — | Open — not yet researched |
+| Domestic exemption on a mid-year crossing | — | Elsewhere — a national question, not an EU one; see the relevant national pack |
 
 Next full recheck due: **2027-05-10**. Earlier on any amendment to the SME scheme or a member state changing its national figure.
 

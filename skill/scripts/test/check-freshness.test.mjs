@@ -162,10 +162,10 @@ test('a carried claim warns but does not fail', () => {
 
 test('open topics in the body with no table rows fails as table drift', () => {
   const pack = validPack({recheck: isoDaysFromNow(200), notResearched: 2}).replace(
-    /\| Open topic \d+ \| — \| Not researched \|\n/g,
+    /\| Open topic \d+ \| — \| Open — fixture \|\n/g,
     '',
   );
-  expectFail({'testland.md': pack}, /no "Not researched" row in the maintenance table/);
+  expectFail({'testland.md': pack}, /no Open row in the maintenance table/);
 });
 
 test('table rows with no body markers fails as the opposite drift', () => {
@@ -204,7 +204,7 @@ test('open topics on both sides pass and are counted as a warning', () => {
   const result = expectPass({
     'testland.md': validPack({recheck: isoDaysFromNow(200), notResearched: 3}),
   });
-  assert.match(result.output, /3 topic\(s\) marked \[not researched\] in the body, 3 row\(s\)/);
+  assert.match(result.output, /3 topic\(s\) marked \[not researched\] in the body, 3 Open row\(s\)/);
   assert.match(result.output, /3 open topic\(s\) named/);
 });
 
@@ -264,4 +264,101 @@ test('every pack is inspected, not just the first', () => {
   );
   assert.match(result.output, /b-land\.md/);
   assert.match(result.output, /overdue by 9 days/);
+});
+
+// --- The Status vocabulary ---------------------------------------------------
+// references/jurisdictions/README.md fixes seven labels for the Status column.
+// Before it did, the column was free text — 180 rows carried about 90 distinct
+// phrasings — and this check matched one spelling of one of them literally, so
+// more than half the Open rows were invisible to it. Every pack reported fewer
+// open rows than it had, and a pack that wrote its rows any other way would
+// have reported zero and failed as "the table is stale" while being correct.
+//
+// So the vocabulary is only worth having if an unknown label is loud.
+
+/** Swap the Status cell of the fixture's one dated row. */
+function withStatus(status, {recheck = isoDaysFromNow(200)} = {}) {
+  return validPack({recheck}).replace('| Authority — fixture |', `| ${status} |`);
+}
+
+test('each of the seven labels is accepted on its own', () => {
+  for (const label of ['Primary', 'Authority', 'Secondary', 'Unconfirmed', 'Withdrawn']) {
+    expectPass({'testland.md': withStatus(label)});
+  }
+});
+
+test('a label is accepted with detail after an em dash', () => {
+  expectPass({'testland.md': withStatus('Primary — §19 UStG, quoted')});
+});
+
+test('a status that starts with no known label fails and names the vocabulary', () => {
+  const result = expectFail({'testland.md': withStatus('Official page read')}, /does not start with/);
+  assert.match(result.output, /Primary\/Authority\/Secondary/, 'the message should list the labels');
+  assert.match(result.output, /README\.md/, 'and point at where they are defined');
+});
+
+test('the old free-text phrasings are rejected, not quietly tolerated', () => {
+  // The exact strings the packs used to carry. If any of these ever passes
+  // again, the column has gone back to being prose.
+  for (const stale of [
+    '**Primary legislation read and quoted**',
+    'Official EU source read',
+    'Not researched',
+    'Factored into eu-gdpr.md',
+    '**Same document read**',
+  ]) {
+    expectFail({'testland.md': withStatus(stale)}, /does not start with/);
+  }
+});
+
+test('a label that is only a prefix of a word is not accepted', () => {
+  // "Opening hours" starts with "Open" but is not the label. Requiring either
+  // the bare label or `label — ` is what keeps the match from being a prefix
+  // test, which would let a sentence beginning with a label word slip through
+  // and be counted as an Open row.
+  expectFail({'testland.md': withStatus('Opening balance read')}, /does not start with/);
+});
+
+test('an Open row carrying a check date fails', () => {
+  // Open means the pack has no answer, so there is nothing to have checked on
+  // a date. A dated Open row is normally one that has since been researched
+  // and whose label was never updated.
+  const pack = validPack({recheck: isoDaysFromNow(200), notResearched: 1}).replace(
+    '| Open topic 1 | — | Open — fixture |',
+    '| Open topic 1 | 2026-11-10 | Open — fixture |',
+  );
+  expectFail({'testland.md': pack}, /Open row carries check date/);
+});
+
+test('a dated label with no check date fails', () => {
+  // The opposite mistake, and the more misleading one: an undated Unconfirmed
+  // row hides that a source really was checked and really did fail to support
+  // the claim. That happened in belgium.md and this is what caught it.
+  const pack = validPack({recheck: isoDaysFromNow(200)}).replace(
+    '| Everything above | 2026-11-10 | Authority — fixture |',
+    '| Everything above | — | Unconfirmed — the Staatsblad was searched and had nothing |',
+  );
+  expectFail({'testland.md': pack}, /no check date/);
+});
+
+test('Elsewhere and Open both take a dateless row', () => {
+  const pack = validPack({recheck: isoDaysFromNow(200)}).replace(
+    '| Everything above | 2026-11-10 | Authority — fixture |',
+    '| Everything above | 2026-11-10 | Authority — fixture |\n| GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |',
+  );
+  expectPass({'testland.md': pack});
+});
+
+test('a pack with no maintenance table at all fails', () => {
+  const pack = validPack({recheck: isoDaysFromNow(200)}).replace('## Pack maintenance', '## Notes');
+  expectFail({'testland.md': pack}, /no "## Pack maintenance" table/);
+});
+
+test('--json reports the label tally, so the mix can be tracked over time', () => {
+  // 75 Authority rows against 42 Primary ones is a fact about how much of the
+  // packs rests on regulator guidance rather than legislation. It was not
+  // knowable while the column was prose.
+  const result = expectPass({'testland.md': withStatus('Secondary — commentary only')}, ['--json']);
+  const parsed = JSON.parse(result.stdout);
+  assert.deepEqual(parsed.packs[0].status_labels, {Secondary: 1});
 });

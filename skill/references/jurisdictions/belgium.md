@@ -278,38 +278,40 @@ Source: [`Handleiding melden van een gegevensinbreuk`](https://www.gegevensbesch
 
 ## Pack maintenance
 
+One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
+
 | Claim | Check date | Status |
 | --- | --- | --- |
-| Start-up formalities and responsible bodies | 2026-11-10 | Official page read |
-| Basic-management three-way conflict | 2026-11-10 | All three sources read; conflict preserved |
-| B2B e-invoicing scope and start date | 2026-11-10 | Primary official source read |
-| €25,000 threshold in force for 2026 | 2026-11-10 | Confirmed; inserted by law of 2024-03-21, amended by law of 2026-02-10 **as the bill recites** — neither law read |
-| Phased figures 2027–2031 (€26,000 → €30,000) | 2026-11-10 | **Primary parliamentary text read** — DOC 56 1593/001 of 2026-06-15, art. 25 |
-| Art. 26 of the bill is the entry-into-force clause, not an amending article | 2026-11-10 | **Primary parliamentary text read and quoted** |
-| Whether the bill has been promulgated and published | — | **Not verified.** Chamber approval on 2026-09-17 is **secondary only**; no Staatsblad publication found on 2026-11-10. **Do not state the figures as law** |
-| **Corrected on 2026-11-10:** this entry previously asserted "now enacted… law of 2026-09-23… article 26 amends" | 2026-11-10 | **Withdrawn.** Three errors, none supported by the sources then cited — see §2 |
-| The laws of 2024-03-21 and 2026-02-10 themselves | — | Not researched — named by the bill, texts not read |
-| EU-wide €100,000 cross-border threshold | 2026-11-10 | **Primary EU legislation read** — see eu-vat-sme.md |
-| Unfair terms: general norm, black and grey list structure | 2026-11-10 | Secondary legal commentary; primary WER text not read |
-| Black list (4) and grey list (8) with official examples; scope, dates, exclusions, two-aspect test | 2026-11-10 | **Official FPS Economy brochure extracted and read**; statute itself not read |
-| Case law since the 2021 brochure | — | Not researched |
-| Official unfair-terms brochure | 2026-11-10 | **Extracted with pdftotext and read**; dated 2020-09 authored, 2021-04 modified |
-| Software ownership: author, employee, commissioned | 2026-11-10 | Official page read, with quoted rules |
-| Art. XI.296 WER: employer rule reaches only `werknemers of beambten` | 2026-11-10 | **Primary legislation read and quoted** |
-| Art. XI.299–XI.300: use for purpose, backup, study, decompilation | 2026-11-10 | **Primary legislation read per paragraph** |
-| Art. XI.301: XI.299 §§2–3 and XI.300 are `van dwingend recht`; §1 is not | 2026-11-10 | **Primary legislation read and quoted** |
-| Art. XI.298 c): EU exhaustion on first sale, except rental and lending | 2026-11-10 | **Primary legislation read** |
-| Belgian case law on what `dwingend recht` means for a non-compliant clause | — | Not researched |
-| GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
-| GBA: register duty for controllers and processors | 2026-11-10 | Authority page read |
-| `Wegwijs` and `13-stappenplan` are both **January 2018, CBPL-era** | 2026-11-10 | **Both extracted and read** — dates and imprint quoted |
-| The two BOOST brochures are **KU Leuven, July 2020**, not GBA doctrine | 2026-11-10 | **Both extracted and read** — authorship and self-description quoted |
-| Breach filing: two parts, business account, FAS, `GBA_Documentum_Vertegenwoordiger` | 2026-11-10 | **GBA manual versie 2.0 of 2026-02-02 extracted and read** |
-| Breach filing: 21 calendar days for part 2, reminders at 14 and 7 days | 2026-11-10 | **Same manual read** — the most current GBA source in this pack |
-| Belgian supplementing act is the `wet van 30 juli 2018` | 2026-11-10 | **Identified** in the BOOST FAQ — **statute itself not read** |
-| What the `wet van 30 juli 2018` actually provides | — | **Not researched** |
-| Substantive answers in the two BOOST brochures | — | Not researched — provenance established, contents left at the source |
-| EU AI Act | 2026-11-10 | Factored into eu-ai-act.md |
+| Start-up formalities and responsible bodies | 2026-11-10 | Authority — FPS Economy page read |
+| Basic-management three-way conflict | 2026-11-10 | Authority — all three official portals read; **conflict preserved deliberately** |
+| B2B e-invoicing scope and start date | 2026-11-10 | Authority — the official e-invoicing FAQ, not the statute |
+| €25,000 threshold in force for 2026 | 2026-11-10 | Primary — the bill recites it as inserted by the law of 2024-03-21 and amended by that of 2026-02-10; neither amending law read |
+| Phased figures 2027–2031 (€26,000 → €30,000) | 2026-11-10 | Primary — DOC 56 1593/001 of 2026-06-15, art. 25 |
+| Art. 26 of the bill is the entry-into-force clause, not an amending article | 2026-11-10 | Primary — the bill's own art. 26, quoted |
+| Whether the bill has been promulgated and published | 2026-11-10 | Unconfirmed — Chamber approval on 2026-09-17 is secondary only, and no Staatsblad publication was found on 2026-11-10. **Do not state the figures as law** |
+| **Corrected on 2026-11-10:** this entry previously asserted "now enacted… law of 2026-09-23… article 26 amends" | 2026-11-10 | Withdrawn — three errors, none supported by the sources then cited; see §2 |
+| The laws of 2024-03-21 and 2026-02-10 themselves | — | Open — named by the bill, their texts not read |
+| EU-wide €100,000 cross-border threshold | 2026-11-10 | Primary — Directive (EU) 2020/285, read in eu-vat-sme.md |
+| Unfair terms: general norm, black and grey list structure | 2026-11-10 | Secondary — legal commentary; the WER text itself not read |
+| Black list (4) and grey list (8) with official examples; scope, dates, exclusions, two-aspect test | 2026-11-10 | Authority — FPS Economy brochure extracted and read; the statute itself not read |
+| Case law since the 2021 brochure | — | Open — not yet researched |
+| Official unfair-terms brochure | 2026-11-10 | Authority — extracted and read; its metadata dates it 2020-09 authored, 2021-04 modified, so it predates later case law |
+| Software ownership: author, employee, commissioned | 2026-11-10 | Authority — FPS Economy page read, its rules quoted |
+| Art. XI.296 WER: employer rule reaches only `werknemers of beambten` | 2026-11-10 | Primary — WER text read and quoted |
+| Art. XI.299–XI.300: use for purpose, backup, study, decompilation | 2026-11-10 | Primary — WER text read per paragraph |
+| Art. XI.301: XI.299 §§2–3 and XI.300 are `van dwingend recht`; §1 is not | 2026-11-10 | Primary — WER text read and quoted |
+| Art. XI.298 c): EU exhaustion on first sale, except rental and lending | 2026-11-10 | Primary — WER text read |
+| Belgian case law on what `dwingend recht` means for a non-compliant clause | — | Open — not yet researched |
+| GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
+| GBA: register duty for controllers and processors | 2026-11-10 | Authority — GBA page read |
+| `Wegwijs` and `13-stappenplan` are both **January 2018, CBPL-era** | 2026-11-10 | Authority — both extracted and read; dates and imprint quoted, and both are CBPL-era |
+| The two BOOST brochures are **KU Leuven, July 2020**, not GBA doctrine | 2026-11-10 | Secondary — both extracted and read; KU Leuven, not GBA doctrine. Authorship and self-description quoted |
+| Breach filing: two parts, business account, FAS, `GBA_Documentum_Vertegenwoordiger` | 2026-11-10 | Authority — GBA manual versie 2.0 of 2026-02-02, extracted and read |
+| Breach filing: 21 calendar days for part 2, reminders at 14 and 7 days | 2026-11-10 | Authority — the same manual; the most current GBA source in this pack |
+| Belgian supplementing act is the `wet van 30 juli 2018` | 2026-11-10 | Secondary — identified in the BOOST FAQ; the statute itself not read |
+| What the `wet van 30 juli 2018` actually provides | — | Open — not yet researched |
+| Substantive answers in the two BOOST brochures | — | Open — provenance established, contents left at the source |
+| EU AI Act | — | Elsewhere — maintained in eu-ai-act.md |
 
 Next full recheck due: **2027-05-10**. Earlier if the e-invoicing law is adjusted for non-established taxpayers, or before 2027-01-01 for the VAT threshold step.
 

@@ -322,41 +322,43 @@ Point a French founder at the CNIL's **current** pages, and at its register temp
 
 ## Pack maintenance
 
+One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
+
 | Claim | Check date | Status |
 | --- | --- | --- |
-| Franchise thresholds, both years, both activity groups | 2026-11-10 | Official page read (updated 2026-01-01) + secondary on structure |
-| Mandatory mention `TVA non applicable - article 293 B du CGI` | 2026-11-10 | Official page read |
-| Mixed-activity rule | 2026-11-10 | Secondary only |
-| 2025 single €25,000 threshold repealed by loi n° 2025-1044 of 2025-11-03 | 2026-11-10 | Secondary, consistent; law number not read in the Journal Officiel |
-| PLF 2026 €25,000 for travaux immobiliers **rejected, not adopted** | 2026-11-10 | **Resolved** — secondary, consistent |
-| Receiving mandatory from 2026-09-01 | 2026-11-10 | Official EU source read |
-| Issuing: GE/ETI 2026-09-01, PME/TPE/micro 2027-09-01 | 2026-11-10 | Official EU source read |
-| Accredited platform mandatory; only a PDP provides full functions; 3-year accreditation | 2026-11-10 | Tax administration page read |
-| E-reporting exists as a separate obligation; from 2026-09-01 for GE/ETI | 2026-11-10 | Tax administration page read |
-| E-reporting date and scope for micro/indépendants | — | **Not researched** |
-| Formats UBL 2.1 / CII / Factur-X | 2026-11-10 | Official EU source read |
-| Official start guide for 2026-09-01 | 2026-11-10 | **Extracted and read** |
-| Accredited-platform list (official, regularly updated) | 2026-11-10 | URL recorded from the official fiche |
-| economie.gouv.fr reform page | 2026-11-10 | **Fetch failed, HTTP 403 — not read** |
-| Guichet unique mandatory since 2023-01-01; filing window, documents, free for micro, RDDCE receipt | 2026-11-10 | **Official page read** |
-| L442-1 I C.com: déséquilibre significatif triggers civil liability and damages | 2026-11-10 | **Primary legislation read and quoted** |
-| Art. 1171 C.civ: non-negotiable clause deemed unwritten; object and price excluded | 2026-11-10 | **Primary legislation read** |
-| Interaction: art. 1171 applies only outside L442-1's scope | 2026-11-10 | **Resolved** — Cass. com. 26-01-2022, 20-16.782, judgment read |
-| How that 2022 holding has been applied since; the exact edge of L442-1 I 2° | — | Not researched |
-| L113-9 CPI: devolved to employer for employees and public agents, incl. documentation; contract may displace | 2026-11-10 | **Primary legislation read and quoted** |
-| L121-7 CPI: software moral rights narrowed — no veto on modification, no repentance or withdrawal | 2026-11-10 | **Primary legislation read** |
-| L131-3: distinct mention per right; domain bounded as to extent, destination, place, duration | 2026-11-10 | **Primary legislation read and quoted** |
-| L122-6-1: use for its purpose incl. error correction, backup copy, study, interoperability | 2026-11-10 | **Primary legislation read** |
-| L122-6-1 VIII: stipulations against II, III and IV are **void**; error correction **may** be reserved | 2026-11-10 | **Primary legislation read** |
-| How courts apply the L131-3 delimitation to software, and the sanction for a defective one | — | **Not researched** |
-| CNIL small-business offering incl. registre des traitements and AI fact sheets | 2026-11-10 | Official landing page read |
-| TPE-PME check-list: four actions, register sheet contents, security hygiene | 2026-11-10 | **Extracted and read** |
-| CNIL/Bpifrance PME guide is dated **April 2018** and marked `non contractuel` | 2026-11-10 | **Extracted and read** — colophon quoted |
-| Occasional processing need not be registered; register sits with the company head | 2026-11-10 | **Extracted and read** (April 2018 guide) |
-| 3-year inactivity retention for customer and prospect data | 2026-11-10 | **Read in the April 2018 guide**, whose figure may since have moved — current référentiels not read |
-| CNIL cookie doctrine as it stands now | — | **Not researched** — only the April 2018 statement was read |
-| CNIL `guide sécurité des données personnelles`; ANSSI/CPME 12 règles | — | Not researched |
-| GDPR layer | 2026-11-10 | Factored into eu-gdpr.md |
+| Franchise thresholds, both years, both activity groups | 2026-11-10 | Authority — official page read, updated 2026-01-01; secondary on the structure |
+| Mandatory mention `TVA non applicable - article 293 B du CGI` | 2026-11-10 | Authority — official page read |
+| Mixed-activity rule | 2026-11-10 | Secondary — no official source read |
+| 2025 single €25,000 threshold repealed by loi n° 2025-1044 of 2025-11-03 | 2026-11-10 | Secondary — consistent across sources; the law number was not read in the Journal Officiel |
+| PLF 2026 €25,000 for travaux immobiliers **rejected, not adopted** | 2026-11-10 | Secondary — consistent across sources; resolves an earlier open question |
+| Receiving mandatory from 2026-09-01 | 2026-11-10 | Authority — official EU source read |
+| Issuing: GE/ETI 2026-09-01, PME/TPE/micro 2027-09-01 | 2026-11-10 | Authority — official EU source read |
+| Accredited platform mandatory; only a PDP provides full functions; 3-year accreditation | 2026-11-10 | Authority — impots.gouv.fr page read |
+| E-reporting exists as a separate obligation; from 2026-09-01 for GE/ETI | 2026-11-10 | Authority — impots.gouv.fr page read |
+| E-reporting date and scope for micro/indépendants | — | Open — not yet researched |
+| Formats UBL 2.1 / CII / Factur-X | 2026-11-10 | Authority — official EU source read |
+| Official start guide for 2026-09-01 | 2026-11-10 | Authority — official PDF extracted and read |
+| Accredited-platform list (official, regularly updated) | 2026-11-10 | Authority — the URL was recorded from the official fiche; the list itself not read |
+| economie.gouv.fr reform page | 2026-11-10 | Unconfirmed — the fetch failed with HTTP 403, so the page was not read |
+| Guichet unique mandatory since 2023-01-01; filing window, documents, free for micro, RDDCE receipt | 2026-11-10 | Authority — official page read |
+| L442-1 I C.com: déséquilibre significatif triggers civil liability and damages | 2026-11-10 | Primary — Legifrance article read and quoted |
+| Art. 1171 C.civ: non-negotiable clause deemed unwritten; object and price excluded | 2026-11-10 | Primary — Legifrance article read |
+| Interaction: art. 1171 applies only outside L442-1's scope | 2026-11-10 | Primary — Cass. com. 26-01-2022, 20-16.782, the judgment itself read |
+| How that 2022 holding has been applied since; the exact edge of L442-1 I 2° | — | Open — not yet researched |
+| L113-9 CPI: devolved to employer for employees and public agents, incl. documentation; contract may displace | 2026-11-10 | Primary — Legifrance article read and quoted |
+| L121-7 CPI: software moral rights narrowed — no veto on modification, no repentance or withdrawal | 2026-11-10 | Primary — Legifrance article read |
+| L131-3: distinct mention per right; domain bounded as to extent, destination, place, duration | 2026-11-10 | Primary — Legifrance article read and quoted |
+| L122-6-1: use for its purpose incl. error correction, backup copy, study, interoperability | 2026-11-10 | Primary — Legifrance article read |
+| L122-6-1 VIII: stipulations against II, III and IV are **void**; error correction **may** be reserved | 2026-11-10 | Primary — Legifrance article read |
+| How courts apply the L131-3 delimitation to software, and the sanction for a defective one | — | Open — not yet researched |
+| CNIL small-business offering incl. registre des traitements and AI fact sheets | 2026-11-10 | Authority — CNIL landing page read |
+| TPE-PME check-list: four actions, register sheet contents, security hygiene | 2026-11-10 | Authority — official PDF extracted and read |
+| CNIL/Bpifrance PME guide is dated **April 2018** and marked `non contractuel` | 2026-11-10 | Authority — extracted and read; colophon quoted, and it is dated April 2018 |
+| Occasional processing need not be registered; register sits with the company head | 2026-11-10 | Authority — extracted and read, from the April 2018 guide |
+| 3-year inactivity retention for customer and prospect data | 2026-11-10 | Authority — read in the April 2018 guide, whose figure may since have moved; the current référentiels not read |
+| CNIL cookie doctrine as it stands now | — | Open — only the April 2018 statement was read |
+| CNIL `guide sécurité des données personnelles`; ANSSI/CPME 12 règles | — | Open — not yet researched |
+| GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2027-09-01, when the issuing obligation reaches small businesses.
 

@@ -168,22 +168,24 @@ Note what the extension is not: it is not a quiet grace period. Missing the firs
 
 ## Pack maintenance
 
+One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
+
 | Claim | Check date | Status |
 | --- | --- | --- |
-| Controller/processor test and quoted wording | 2026-11-10 | EU regulator guidance read |
-| Processor contract duties, sub-processor authorization, processor liability | 2026-11-10 | EU regulator guidance read |
-| Security principle, named measures, and the two numeric figures | 2026-11-10 | EU regulator guidance read |
-| Register of processing activities obligation | 2026-11-10 | National authority guidance, consistent |
-| 72-hour controller notification; processor warns without undue delay | 2026-11-10 | National authority guidance, consistent |
-| DPO conditions, art. 37(1) | 2026-11-10 | Article text read |
-| DPIA conditions, art. 35(1) and 35(3) | 2026-11-10 | Article text read |
-| Register exemption, art. 30(5), four conditions | 2026-11-10 | Article text read |
-| Six lawful bases, art. 6(1) | 2026-11-10 | Article text read |
-| Balancing test for legitimate interests, art. 6(1)(f) | — | Not researched |
-| Transfers: art. 44 principle and the three routes (45/46/49) | 2026-11-10 | Article text read |
-| Art. 12(3) one month, two-month extension, refusal duties | 2026-11-10 | Article text read |
-| Which countries hold adequacy; transfer-impact assessment practice | — | Not researched |
-| The content of each individual data subject right | — | Not researched |
+| Controller/processor test and quoted wording | 2026-11-10 | Authority — EDPB SME guidance read |
+| Processor contract duties, sub-processor authorization, processor liability | 2026-11-10 | Authority — EDPB SME guidance read |
+| Security principle, named measures, and the two numeric figures | 2026-11-10 | Authority — EDPB SME guidance read |
+| Register of processing activities obligation | 2026-11-10 | Authority — national authority guidance, consistent across the national packs |
+| 72-hour controller notification; processor warns without undue delay | 2026-11-10 | Authority — national authority guidance, consistent across the national packs |
+| DPO conditions, art. 37(1) | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |
+| DPIA conditions, art. 35(1) and 35(3) | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |
+| Register exemption, art. 30(5), four conditions | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |
+| Six lawful bases, art. 6(1) | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |
+| Balancing test for legitimate interests, art. 6(1)(f) | — | Open — not yet researched |
+| Transfers: art. 44 principle and the three routes (45/46/49) | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |
+| Art. 12(3) one month, two-month extension, refusal duties | 2026-11-10 | Secondary — article text read on gdpr-info.eu, a verbatim reproduction, not EUR-Lex |
+| Which countries hold adequacy; transfer-impact assessment practice | — | Open — not yet researched |
+| The content of each individual data subject right | — | Open — not yet researched |
 
 Next full recheck due: **2027-05-10**. Earlier on any EDPB guidance update or an AI Act milestone affecting small businesses.
 

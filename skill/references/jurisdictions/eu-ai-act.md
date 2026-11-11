@@ -113,19 +113,21 @@ Two of these are already behind us at this pack's check date, and **general appl
 
 ## Pack maintenance
 
+One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
+
 | Claim | Check date | Status |
 | --- | --- | --- |
-| Four risk tiers; most applications minimal risk | 2026-11-10 | Official EU source read |
-| Employment screening and credit scoring named as high risk | 2026-11-10 | Official EU source read |
-| Provider versus deployer distinction | 2026-11-10 | Official EU source read |
-| Phased application dates | 2026-11-10 | Official EU source read |
-| Art. 4 AI literacy: binds deployers, from 2025-02-02 | 2026-11-10 | **Article text read and quoted** |
-| Art. 50 deployer transparency: three situations and their exceptions | 2026-11-10 | **Article text read** |
-| No further AI Act duties on a minimal-risk deployer | 2026-11-10 | Follows from the risk-based approach; not a provision read |
-| Marketing content as public-interest text under art. 50 | — | Not researched |
-| Art. 25: three triggers by which a deployer becomes a provider — all require high risk | 2026-11-10 | **Article text read** |
-| The full provider obligations for a high-risk system | — | Not researched, deliberately — that founder needs a specialist |
-| National authorities and penalties | — | Not researched |
+| Four risk tiers; most applications minimal risk | 2026-11-10 | Authority — European Commission page read |
+| Employment screening and credit scoring named as high risk | 2026-11-10 | Authority — European Commission page read |
+| Provider versus deployer distinction | 2026-11-10 | Authority — European Commission page read |
+| Phased application dates | 2026-11-10 | Authority — European Commission page read |
+| Art. 4 AI literacy: binds deployers, from 2025-02-02 | 2026-11-10 | Secondary — art. 4 quoted, but from a per-article reproduction, not the Official Journal |
+| Art. 50 deployer transparency: three situations and their exceptions | 2026-11-10 | Secondary — article text read on a per-article reproduction, not the Official Journal |
+| No further AI Act duties on a minimal-risk deployer | 2026-11-10 | Unconfirmed — follows from the risk-based approach; no provision saying so was read |
+| Marketing content as public-interest text under art. 50 | — | Open — not yet researched |
+| Art. 25: three triggers by which a deployer becomes a provider — all require high risk | 2026-11-10 | Secondary — article text read on a per-article reproduction, not the Official Journal |
+| The full provider obligations for a high-risk system | — | Open — deliberately; a founder who reaches that point needs a specialist, not a pack entry |
+| National authorities and penalties | — | Open — not yet researched |
 
 Next full recheck due: **2027-05-10**. Earlier before 2027-12-02, when high-risk obligations reach sensitive areas.
 

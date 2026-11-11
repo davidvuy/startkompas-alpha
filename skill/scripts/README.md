@@ -52,11 +52,11 @@ Honest note on the original extraction: it did **not** reduce total lines — 73
 
 | Script | Proves | Fails on | Network |
 | --- | --- | --- | --- |
-| `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, a reference linking outside the model-facing set, reintroduced runtime coupling, a named host, an undated or off-template pack, over budget, a binary | no |
+| `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, a reference linking outside the model-facing set, reintroduced runtime coupling, a named host, an undated or off-template pack, over budget, a binary, a file rewritten with CRLF line endings | no |
 | `check-markdown.mjs` | The markdown renders as written | A table split by a blank line, a ragged row, a separator with no header, a duplicate heading, an unclosed code fence, a missing final newline | no |
 | `check-dossier.mjs` | The change-propagation algorithm in `references/dossier-format.md` terminates, and is acyclic | Broken reference, duplicate id, invalid assertion value, a dependency cycle — reported as the path round the loop | no |
 | `check-facts.mjs` | Packs and eval cases still agree | A fact a case depends on has moved, or a reversed claim has returned | no |
-| `check-freshness.mjs` | No pack is past its recheck date | Missing recheck date, overdue recheck, an impossible date, a verified claim older than 183 days | no |
+| `check-freshness.mjs` | No pack is past its recheck date, and its maintenance table is still machine-readable | Missing recheck date, overdue recheck, an impossible date, a verified claim older than 183 days, a Status cell outside the seven-label vocabulary, an `Open` row carrying a check date or a dated label missing one | no |
 | `check-links.mjs` | Every cited source URL still resolves, and every anchor with it | 404, 410, or a host that does not resolve | **yes** |
 | `build-zip.mjs` | The upload archive has `SKILL.md` at its root | `SKILL.md` not at the archive root | no |
 | `test/*.test.mjs` | **The checks above actually catch what they claim to** | A check that passes a tree it should reject | no |
@@ -130,9 +130,10 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | `check-skill.mjs` — template | An off-template `## 4.` heading in `germany.md`, introduced on purpose and reverted |
 | `check-skill.mjs` — closure | A reference linking to `../evals/cases.md`, introduced on purpose and reverted |
 | `check-skill.mjs` — "not advice" | A real omission: both EU layers lacked the disclaimer the national packs carry |
+| `check-skill.mjs` — line endings | The section exists because of a real one: a Python helper used for a one-line substitution rewrote `check-freshness.mjs` as CRLF, and `git diff --stat` reported 449 changed lines where 103 were real |
 | `check-markdown.mjs` | A real defect: a maintenance-table row in `eu-ai-act.md` separated from its table by a blank line, and two empty headings in `docs/local-ui.md` |
 | `check-facts.mjs` | Four real mismatches, listed above |
-| `check-freshness.mjs` | Three packs whose recheck date did not parse, because the period sat inside the bold |
+| `check-freshness.mjs` | Three packs whose recheck date did not parse, because the period sat inside the bold. Then, once the Status column became a vocabulary: an `Unconfirmed` row in `belgium.md` dated `—`, hiding that the Staatsblad really had been searched, and five `Elsewhere` rows dated as though a check had happened in a pack that only points elsewhere |
 | `check-links.mjs` | A `wetten.overheid.nl` redirect to a dated URL, and a moved CNIL page |
 | `check-dossier.mjs` | Not yet on real content — but its tests break it on purpose, including a three-hop cycle and a dangling link |
 | `test/conventions.test.mjs` | A deliberately added `--- 9. ---` section with no tests, and `lib/graph.mjs` added without a README entry |

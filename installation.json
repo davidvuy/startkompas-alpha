@@ -101,7 +101,7 @@
     },
     {
       "path": "BACKLOG.md",
-      "sha256": "fc2b637cd10aa6c0b99358eb6d03da5edab802f28a9b5ddf0754aacf0f110962"
+      "sha256": "3f48a1ca6844a324daeeb8e09f15145513a289f899944d8489e9795edee38d1b"
     },
     {
       "path": "CODE_OF_CONDUCT.md",
@@ -109,7 +109,7 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "sha256": "216e7cd21f85d47807d55306e4fc11b0801f5691120ee27e2dcc5efe5c892bed"
+      "sha256": "99e5a9ef64d7a30ef90cd8a11d6ac3135969b11040d40a82a27666265994bfca"
     },
     {
       "path": "DECISIONS.md",
@@ -561,7 +561,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "f359165616ac84365425fc130c0267b4ba1df4595f6a773b4ffcb3f0493a6384"
+      "sha256": "f807cbc94d08bc4edd34c55be0b4b46ed74d5683a4769f802765f2b36cab7356"
     },
     {
       "path": "schemas/cli-error-v1.schema.json",
