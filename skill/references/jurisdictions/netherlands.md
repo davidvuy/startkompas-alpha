@@ -76,7 +76,7 @@ Two different rules for leaving, and the difference is the whole point:
 
 So a founder who crosses in June does not finish the year exempt. That matches the Union-threshold rule in [eu-vat-sme.md](eu-vat-sme.md) and France's `seuil majoré`, and it is the opposite of the comfortable assumption that thresholds are settled at year end. **Watch the running total, not the annual figure.**
 
-### Four conditions on the turnover count that a founder will not guess
+### What counts toward the €20,000, and what a founder will not guess
 
 Source: [Belastingdienst — `Voorwaarden voor deelname aan de kleineondernemersregeling (KOR)`](https://www.belastingdienst.nl/wps/wcm/connect/nl/btw/content/kor-voorwaarden) · *national tax authority* · **[checked 2026-11-11]**
 
@@ -191,11 +191,11 @@ Recheck triggers: the Q4 2026 consultation opening; the bill's submission; any c
 
 ## 4. Agreements and unfair terms
 
-Dutch law protects against unreasonable standard terms — and the protection is calibrated by **how big you are**, which cuts in a founder's favour.
+Dutch law protects against unreasonable standard terms. The protection is calibrated partly by **how big you are**, which cuts in a founder's favour — and partly by **whether you use standard terms of your own**, which cuts the other way and is the half this section used to miss.
 
-Sources · **[checked 2026-11-10]**
-- [art. 6:233 BW](https://wetten.overheid.nl/BWBR0005289) and [art. 6:235 BW](https://wetten.overheid.nl/BWBR0005289) · *primary legislation, read on the official portal in the version `Geldend van 16-07-2026`* · **[checked 2026-11-11]**
-- the consumer-list and `reflexwerking` points · *secondary legal commentary, consistent*
+Sources
+- [arts. 6:233, 6:235, 6:236 and 6:237 BW](https://wetten.overheid.nl/BWBR0005289) · *primary legislation, read on the official portal in the version `Geldend van 16-07-2026`* · **[checked 2026-11-11]**
+- the `reflexwerking` doctrine, which is case law and not in the articles · *secondary legal commentary, consistent* · **[checked 2026-11-10]**
 
 **Art. 6:233** makes a term in general conditions **voidable** on either of two grounds, quoted:
 
@@ -228,7 +228,7 @@ The mirror image matters too: once a founder grows past 50 employees or publishe
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet, and give the counterparty a genuine opportunity to read your own terms — under 6:233 that is not a formality.
 
-**Open:** the BW articles were not read in primary form, and the precise boundaries of `reflexwerking` are case law. Confirm with a Dutch lawyer before relying on either.
+**Open:** the precise boundaries of `reflexwerking`, and what counts as `meermalen` under art. 6:235(3), are case law and **[not researched]** — the Dutch case law is not published free of charge. The articles themselves were read in primary form on 2026-11-11. Confirm either question with a Dutch lawyer before relying on it.
 
 ---
 
@@ -244,9 +244,9 @@ Source: [article 7 Auteurswet](https://wetten.overheid.nl/BWBR0001886/2026-01-01
 | **Commissioned work** under an `overeenkomst van opdracht` | **Does not qualify.** Article 7 requires a `dienstbetrekking`; a contract for services does not meet it. · *secondary, consistent* |
 | Contrary agreement | Permitted — *"tenzij tusschen partijen anders is overeengekomen"*. Article 7 is `regelend recht`. |
 
-What an `overeenkomst van opdracht` is, which is what makes that exclusion concrete: [art. 7:400 BW](https://wetten.overheid.nl/BWBR0005290) · *primary legislation, read on the official portal in the version `Geldend van 08-10-2026`* · **[checked 2026-11-11]** — an agreement under which one party, the `opdrachtnemer`, undertakes to perform services for the other **other than under an employment contract**, excluding creating a tangible work, safekeeping goods, publishing, and transporting persons or goods.
+What an `overeenkomst van opdracht` is, which is what makes that exclusion concrete: [art. 7:400 BW](https://wetten.overheid.nl/BWBR0005290) · *primary legislation, read on the official portal in the version `Geldend van 08-10-2026`* · **[checked 2026-11-11]** — an agreement under which one party, the `opdrachtnemer`, undertakes to perform services for the other **other than under an employment contract**.
 
-**And art. 7:400(1) excludes four things as well as employment.** An `opdracht` is work that consists of something *other than* bringing about **a work of a material nature**, keeping things, publishing works, or transporting persons or goods. Each of those has its own title in Boek 7, so a founder whose deliverable is physical is under `aanneming van werk` and not under this regime at all — which matters because the ownership rule above is keyed to the contract type. For software and services the exclusion does not bite.
+**Art. 7:400(1) excludes four other contract types as well as employment**: work consisting of bringing about **a work of a material nature**, keeping things, publishing works, or transporting persons or goods. Each has its own title in Boek 7, so a founder whose deliverable is physical is under `aanneming van werk` and outside this regime — which matters because the ownership rule above is keyed to the contract type. For software and services the exclusion does not bite.
 
 Two more provisions a service founder is actually held to. **Art. 7:400(2)**: arts. 401 to 412 apply *"tenzij iets anders voortvloeit uit de wet, de inhoud of aard van de overeenkomst van opdracht of van een andere rechtshandeling, of de gewoonte"* — so most of the `opdracht` regime is a **default** that the contract, the nature of the engagement or custom can displace, which is the same `regelend recht` character as art. 7 Auteurswet above. And **art. 7:401**: *"De opdrachtnemer moet bij zijn werkzaamheden de zorg van een goed opdrachtnemer in acht nemen"* — the statutory standard of care a pilot is measured against, and the one sentence to put in front of a founder who asks what they are promising.
 
@@ -302,9 +302,9 @@ The Netherlands has the same four software-user provisions as Belgium, Germany a
 | | What the lawful acquirer or user may do | Can a contract remove it? |
 | --- | --- | --- |
 | **45j** | Reproduction by the **rechtmatige verkrijger** necessary for the work's intended use — *"Tenzij anders is overeengekomen"*, so the general rule is displaceable. **But the second sentence is not:** reproduction in the course of **loading, displaying, or correcting errors** *"kan niet bij overeenkomst worden verboden"* | **The general rule yes; loading, displaying and error correction no** |
-| 45k | A **reservekopie** where necessary for the intended use | The text carries **no** express nullity clause |
-| 45l | **Observe, study and test** the work's operation to find the underlying ideas and principles, during acts they are authorised to perform under art. 45i | The text carries **no** express nullity clause |
-| 45m | Copy and translate the code where **indispensable for interoperability** of an independently created program, under three conditions, with three bans on reuse of the information | The text carries **no** express nullity clause |
+| 45k | A **reservekopie** where necessary for the intended use | **No** — art. 8 of the Software Directive voids such a clause, though the Dutch text says so nowhere; see below |
+| 45l | **Observe, study and test** the work's operation to find the underlying ideas and principles, during acts they are authorised to perform under art. 45i | **No** — art. 8 of the Software Directive voids such a clause, though the Dutch text says so nowhere; see below |
+| 45m | Copy and translate the code where **indispensable for interoperability** of an independently created program, under three conditions, with three bans on reuse of the information | **No** — art. 8 of the Software Directive voids such a clause, though the Dutch text says so nowhere; see below |
 
 **This is the outlier among the four packs, in both directions at once.**
 
