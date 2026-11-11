@@ -34,6 +34,13 @@ const REFERENCE_BUDGET_KB = 48; // largest single reference — what one turn op
 const MODEL_BUDGET_KB = 512;
 const SUPPORT_BUDGET_KB = 192; // scripts/ and docs/ as installed — code the model never reads
 const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
+// scripts/lib/facts.mjs is a table of one assertion per verified claim, so it
+// grows with the packs by design — 25 KB at 101 assertions, 39 KB at 174 on the
+// same day. Charging it to the support budget meant a newly verified claim
+// competed with the tooling that verifies claims, which is the same mistake as
+// letting a test fixture compete with a jurisdiction pack. Same remedy.
+const ASSERTIONS_BUDGET_KB = 64;
+const ASSERTIONS_FILE = 'scripts/lib/facts.mjs';
 
 // The installed folder is the two halves above, so it needs no number of its
 // own. It had one until 2026-11-11, fixed at 512 KB, and it failed first when
@@ -41,7 +48,7 @@ const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
 // maintainer looking for a stray binary instead of at the budget that had
 // actually been exceeded. Deriving it keeps the total reported and puts each
 // failure on the half that caused it.
-const FOLDER_BUDGET_KB = MODEL_BUDGET_KB + SUPPORT_BUDGET_KB;
+const FOLDER_BUDGET_KB = MODEL_BUDGET_KB + SUPPORT_BUDGET_KB + ASSERTIONS_BUDGET_KB;
 
 // A skill is text. Section 8 rejects these outright; section 9 skips them,
 // because "line endings" means nothing in a font or a video.
@@ -356,6 +363,33 @@ if (existsSync(packsDir)) {
     }
   }
 
+  // --- Cross-references by section number ------------------------------------
+  // The packs point at each other by section: "see [eu-gdpr.md](eu-gdpr.md) §4".
+  // Renumbering a section breaks every one of those silently — the link still
+  // resolves, the number now names something else, and nothing in the rendered
+  // page looks wrong. Two layers were renumbered on 2026-11-11 and the
+  // references were fixed by hand, which is exactly the method this check
+  // replaces.
+  //
+  // Only `](target.md) §N` is matched: a link followed by a section number. A
+  // statute reference like "§19(6) UStG" carries no link and is not touched,
+  // and `§§` is skipped because a range is not a single section.
+  for (const pack of packs) {
+    const where = `references/jurisdictions/${pack}`;
+    const text = read(join(packsDir, pack));
+
+    for (const [, target, section] of text.matchAll(/\]\(([^)\s]+\.md)\)\s+§(?!§)(\d+)/g)) {
+      const file = target.split('/').pop();
+      if (!packs.includes(file)) continue; // links out of the folder are section 7's job
+      const sections = read(join(packsDir, file));
+      if (!new RegExp(`^##\\s+${section}\\.`, 'm').test(sections))
+        report.fail(
+          where,
+          `points at ${file} §${section}, which has no "## ${section}." heading; a section was renumbered and this reference was left behind`,
+        );
+    }
+  }
+
   // An annex is only reachable through its pack, so the pack has to link it.
   // Being in the index is not enough: a reader who opened germany.md to answer
   // an e-invoicing question would otherwise never learn the detail exists.
@@ -417,8 +451,12 @@ const modelBytes = totalBytes(modelFiles);
 // the same budget as the packs would mean a new fixture could block a new pack.
 const testFiles = files.filter((f) => rel(f).startsWith('scripts/test/'));
 const installedFiles = files.filter((f) => !rel(f).startsWith('scripts/test/'));
-const supportFiles = installedFiles.filter((f) => !modelFiles.includes(f));
+const assertionFiles = files.filter((f) => rel(f) === ASSERTIONS_FILE);
+const supportFiles = installedFiles.filter(
+  (f) => !modelFiles.includes(f) && !assertionFiles.includes(f),
+);
 const testBytes = totalBytes(testFiles);
+const assertionBytes = totalBytes(assertionFiles);
 const supportBytes = totalBytes(supportFiles);
 const folderBytes = totalBytes(installedFiles);
 
@@ -441,6 +479,9 @@ report.note(
 );
 report.note(
   `support files: ${supportFiles.length} files, ${kb(supportBytes)} KB of ${SUPPORT_BUDGET_KB} KB`,
+);
+report.note(
+  `assertion table: ${ASSERTIONS_FILE}, ${kb(assertionBytes)} KB of ${ASSERTIONS_BUDGET_KB} KB`,
 );
 report.note(
   `folder without tests: ${installedFiles.length} files, ${kb(folderBytes)} KB of ${FOLDER_BUDGET_KB} KB`,
@@ -470,6 +511,12 @@ if (modelBytes > MODEL_BUDGET_KB * 1024)
 // No separate check on the folder total: it is the sum of the model-facing and
 // support halves, so exceeding it means exceeding one of them, and both are
 // checked above and below with a message that names the right half.
+if (assertionBytes > ASSERTIONS_BUDGET_KB * 1024)
+  report.fail(
+    ASSERTIONS_FILE,
+    `${overBudget(assertionBytes, ASSERTIONS_BUDGET_KB, 'assertion-table')}; it holds one entry per verified claim, so re-derive this from the claim count rather than deleting assertions`,
+  );
+
 if (supportBytes > SUPPORT_BUDGET_KB * 1024)
   report.fail(
     'scripts/ + docs/',

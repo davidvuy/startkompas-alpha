@@ -405,7 +405,7 @@ What is true as at **2026-11-10** and does *not* drift with the next commit:
 | --- | --- |
 | Pack coverage | Four national packs — Belgium, Netherlands, Germany, France — plus shared `eu-gdpr`, `eu-vat-sme` and `eu-ai-act` layers for rules that are genuinely identical across them, and seven annexes for topics that outgrew their file |
 | Pack verification | All checked **2026-11-10** or **2026-11-11**; next full recheck **2027-05-10** |
-| Size budgets | **10 KB** always-loaded, **48 KB** largest single reference, **512 KB** model-facing total, **192 KB** support, **192 KB** tests; the installed folder is derived as 576 KB. These are decisions, not measurements — each one, and when it last moved, is in `skill/scripts/README.md` |
+| Size budgets | **10 KB** always-loaded, **48 KB** largest single reference, **512 KB** model-facing total, **192 KB** support, **64 KB** assertion table, **192 KB** tests; the installed folder is derived as 768 KB. These are decisions, not measurements — each one, and when it last moved, is in `skill/scripts/README.md` |
 | Dependencies | **None.** `skill/` installs by copying a folder |
 | Eval scoring | **Zero cases scored on any host.** Still the largest single hole, and the one thing on this list that no amount of further work by the model can close |
 | Runtime | 94 `src/` modules, 565 passing tests, **frozen** — [DECISIONS.md](DECISIONS.md) entry 1 |

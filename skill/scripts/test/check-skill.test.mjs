@@ -367,6 +367,43 @@ test('a shared layer may have an annex, and the layer must still link it', () =>
   assert.match(result.output, /eu-testland\.md/);
 });
 
+// --- Cross-references by section number --------------------------------------
+// `[other.md](other.md) §4` keeps resolving as a link after §4 becomes §5, so
+// nothing breaks visibly and the reader is sent to the wrong section.
+
+/** Two packs, one pointing into the other at `section`. */
+function crossRefTree(section) {
+  return {
+    ...baseTree({
+      'references/method.md': '# Method\n\nSee [packs](jurisdictions/README.md).\n',
+    }),
+    'references/jurisdictions/README.md':
+      '# Packs\n\n- [testland.md](testland.md)\n- [otherland.md](otherland.md)\n',
+    'references/jurisdictions/testland.md': validPack().replace(
+      '## 3. B2B e-invoicing — not in force',
+      `## 3. B2B e-invoicing — not in force\n\nSee [otherland.md](otherland.md) §${section}.`,
+    ),
+    'references/jurisdictions/otherland.md': validPack(),
+  };
+}
+
+test('a section reference into another pack must name a section that exists', () => {
+  expectPass(crossRefTree(2));
+  const result = expectFail(crossRefTree(9), /has no "## 9\." heading/);
+  assert.match(result.output, /renumbered/);
+});
+
+test('a statute reference is not mistaken for a section reference', () => {
+  // "§19(6) UStG" and "§§8–9 GewStG" appear all over the packs with no link in
+  // front of them, and a range is not a single section. Neither may fire.
+  const tree = crossRefTree(1);
+  tree['references/jurisdictions/testland.md'] = validPack().replace(
+    '## 3. B2B e-invoicing — not in force',
+    '## 3. B2B e-invoicing — not in force\n\nUnder §19(6) UStG and §§8–9 GewStG, see [otherland.md](otherland.md) §§1–2.',
+  );
+  expectPass(tree);
+});
+
 test('a hyphen inside a layer name does not make it an annex', () => {
   // `eu-vat-sme.md` has no `eu-vat.md` and no `eu.md` beside it, so the search
   // for a parent must come up empty and leave it a shared layer — which is
@@ -544,16 +581,31 @@ test('bulk in scripts/ fails the support budget, not the model-facing one', () =
   // never reads it: the folder line carries the sum of the two budgets.
   assert.doesNotMatch(result.output, /model-facing budget/);
 
-  // The folder figure must be exactly the two halves added up. Asserted as
+  // The folder figure must be exactly the parts added up. Asserted as
   // arithmetic rather than as a number, because the first version of this test
   // hard-coded 576 and broke the next time the model-facing budget moved —
-  // which is the opposite of what a derived budget is for.
+  // which is the opposite of what a derived budget is for. It then caught the
+  // assertion table being split out, which is the same check working.
   const budgetOf = (label) =>
     Number(new RegExp(`${label}: .* of (\\d+) KB`).exec(result.output)?.[1]);
   assert.equal(
     budgetOf('folder without tests'),
-    budgetOf('model-facing total') + budgetOf('support files'),
+    budgetOf('model-facing total') + budgetOf('support files') + budgetOf('assertion table'),
   );
+});
+
+test('the assertion table is charged apart from the tooling that reads it', () => {
+  // facts.mjs grows by one entry per verified claim. Charging it to the
+  // support budget would let a newly verified fact compete with the scripts,
+  // which is the mistake the test budget already exists to prevent.
+  const result = withTree(
+    {...baseTree(), 'scripts/lib/facts.mjs': 'x'.repeat(80 * 1024)},
+    (root) => runCheck('check-skill.mjs', root),
+  );
+  assert.match(result.output, /over the 64 KB assertion-table budget/);
+  assert.match(result.output, /re-derive this from the claim count/);
+  // And it must not be counted twice: the support line excludes it.
+  assert.match(result.output, /support files: 0 files, 0\.0 KB/);
 });
 
 test('a binary asset in the tree fails', () => {

@@ -52,7 +52,7 @@ Honest note on the original extraction: it did **not** reduce total lines — 73
 
 | Script | Proves | Fails on | Network |
 | --- | --- | --- | --- |
-| `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, a reference linking outside the model-facing set, reintroduced runtime coupling, a named host, an undated or off-template pack, an annex its own pack does not link, a verification marker outside the three the legend defines, a source on a non-authoritative host called "primary", over budget, a binary, a file rewritten with CRLF line endings | no |
+| `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, a reference linking outside the model-facing set, reintroduced runtime coupling, a named host, an undated or off-template pack, an annex its own pack does not link, **a cross-reference to a section number that no longer exists**, a verification marker outside the three the legend defines, a source on a non-authoritative host called "primary", over budget, a binary, a file rewritten with CRLF line endings | no |
 | `check-markdown.mjs` | The markdown renders as written | A table split by a blank line, a ragged row, a separator with no header, a duplicate heading, a `---` that turns the paragraph above it into a heading, an unclosed code fence, a missing final newline | no |
 | `check-dossier.mjs` | The change-propagation algorithm in `references/dossier-format.md` terminates, and is acyclic | Broken reference, duplicate id, invalid assertion value, a dependency cycle — reported as the path round the loop | no |
 | `check-facts.mjs` | Packs and eval cases still agree | A fact a case depends on has moved, or a reversed claim has returned | no |
@@ -136,6 +136,8 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | `check-skill.mjs` — annex linked | Both halves of the annex rule were switched off in turn and the two tests watched fail: treating an annex as a national pack again reinstated the off-template failure, and skipping the link rule let an annex no reader could reach pass |
 | `check-skill.mjs` — 48 KB budget | Two real ones. `germany.md` reached 54.9 KB after §19 UStG and §27(38) were read in full, which is why the first annex exists; then `eu-gdpr.md` reached 52.5 KB after its eight articles were read on EUR-Lex. Both times the check said to split rather than raise the budget, and the worst-case turn fell — 62.5 → 50.6 KB, then 60.1 → 51.1 KB |
 | `check-skill.mjs` — annex of a layer | Classifying by the `eu-` prefix before resolving a parent made `eu-gdpr-fines.md` a shared layer, which silently exempted it from the only rule that keeps an annex reachable. Watched fail with the old single-hyphen `parentOf` restored, which resolved it to an `eu.md` that does not exist |
+| `check-skill.mjs` — section references | Watched fail both ways on 2026-11-11: with the rule disabled a pack pointing at `§9` of a five-section pack passed, and with it on the real tree it passed, confirming that two renumberings earlier the same day had been fixed completely by hand. That hand-fixing is what the rule replaces |
+| `check-skill.mjs` — assertion budget | Hit at 183.1 KB of the 192 KB support budget with nothing wasteful in it: `facts.mjs` had grown from 25 KB to 39 KB in a day because every verified claim adds an entry. Split out rather than raised, and the arithmetic test caught the derived folder total the moment it did |
 | `check-skill.mjs` — support budget | A real one at 511.6 KB of the old 512 KB folder budget, reported as *"something bulky got in"* when what had grown was a verified pack. Watched fail again with the new budget raised, to confirm the test fails for the right reason |
 | `check-markdown.mjs` | A real defect: a maintenance-table row in `eu-ai-act.md` separated from its table by a blank line, and two empty headings in `docs/local-ui.md`. Then seven more: every section divider in the four national packs sat directly under a paragraph, so seven closing paragraphs were rendering as `<h2>` |
 | `check-facts.mjs` | Four real mismatches, listed above |
@@ -144,9 +146,9 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | `check-dossier.mjs` | Not yet on real content — but its tests break it on purpose, including a three-hop cycle and a dangling link |
 | `test/conventions.test.mjs` | A deliberately added `--- 9. ---` section with no tests, and `lib/graph.mjs` added without a README entry |
 
-## The five size budgets
+## The six size budgets
 
-`check-skill.mjs` enforces five, because they measure five different costs. They are listed in order of how much each one matters.
+`check-skill.mjs` enforces six, because they measure six different costs. They are listed in order of how much each one matters.
 
 | Budget | Covers | Why |
 | --- | --- | --- |
@@ -155,8 +157,9 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | 512 KB | `SKILL.md` + all of `references/` | A **distribution** bound, not a per-turn cost: how much a reader has to trust and a maintainer has to recheck. Deliberately loose, so a new jurisdiction is never blocked by the ones a given conversation will not read. |
 | 192 KB | `scripts/` and `docs/` as installed — everything shipped that the model never reads | Loose, and only there to catch accidental bulk on the half a turn never pays for. |
 | 192 KB | `scripts/test/` alone | Test code is *deliberate* bulk. Giving it its own bound keeps a runaway fixture catchable without letting a fixture compete with a jurisdiction pack. |
+| 64 KB | `scripts/lib/facts.mjs` alone | The assertion table holds one entry per verified claim, so it grows with the packs **by design** — 25 KB at 101 assertions and 39 KB at 174 on the same day. Charged apart for the same reason as the tests: a newly verified fact must not compete with the tooling that verifies facts. |
 
-The folder as installed has no budget of its own: it is the model-facing half plus the support half, so `FOLDER_BUDGET_KB` is **derived** as 384 + 192 = 576 KB and only reported. Exceeding it means exceeding one of the two, and each of those fails with a message that names the right half.
+The folder as installed has no budget of its own: it is the model-facing set plus the support files plus the assertion table, so `FOLDER_BUDGET_KB` is **derived** as 512 + 192 + 64 = 768 KB and only reported. Exceeding it means exceeding one of the three, and each of those fails with a message that names the right one. A test asserts that arithmetic rather than the number, after the first version hard-coded 576 and broke on the next raise — then caught the assertion table being split out, which is the same check working.
 
 The check also reports the **worst-case turn** — always-loaded plus the largest reference — which is the number to watch. Run it rather than trusting a figure quoted in a document; that is why it prints them.
 
@@ -191,6 +194,7 @@ Kept here so a raise is never silent. The constants live in `check-skill.mjs`; c
 | 2026-11-11 | model-facing 320 → **384 KB** | Raised at 320.4 KB, from the pack count rather than from the overage: nine jurisdiction files held 261 KB of it, so a tenth pack could not have fitted at any amount of trimming. 384 is one more file at the 48 KB per-reference ceiling plus margin. Reasoned through above |
 | 2026-11-11 | model-facing 384 → **512 KB** | Hit at 380.9 KB the same day, after the GDPR and BDSG reads produced three annexes. Re-derived from the unit that was wrong in the row above: a jurisdiction, not a file. Germany is now three files and 75 KB, so the set plus one more country at that size is 456 KB, and the next step is 512. The worst-case turn fell to 52.5 KB over the same work |
 | 2026-11-11 | the **512 KB** folder budget replaced by a **192 KB** support budget, with the folder total derived as 576 KB | Hit at 511.6 KB while reading the GDPR onto EUR-Lex. It was not a raise: 384 model-facing plus 160 KB of legitimate `scripts/` and `docs/` already exceeded 512, so the folder number had become unreachable for the same structural reason as the aggregate above. Splitting it puts the failure on the half that grew — and the half the model never reads is where *"something bulky got in"* actually belongs |
+| 2026-11-11 | **64 KB** assertion-table budget added, and the folder total re-derived as 768 KB | Hit at 183.1 KB of 192 KB support with no waste: `scripts/lib/facts.mjs` is one entry per verified claim and had gone from 25 KB at 101 assertions to 39 KB at 174 in a day. Charged apart for the reason the test suite already is — a newly verified fact must not compete with the tooling that verifies facts. 64 KB is roughly another 170 assertions |
 
 **Before raising one, ask what it is telling you.** Before raising the model-facing budget, ask whether the packs should be condensed instead. Before raising the always-loaded budget, ask what behaviour the extra instruction buys. Verified prose earns its space; restated prose does not.
 
