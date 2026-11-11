@@ -31,13 +31,13 @@ export const REQUIRED = [
   {case: '—', pack: 'belgium.md', label: 'software ownership: no automatic transfer', pattern: /niet automatisch overgedragen/},
   // Same trap as the French guide below: two of the four SME brochures are
   // CBPL-era, and the other two are a KU Leuven deliverable, not GBA doctrine.
-  {case: '—', pack: 'belgium.md', label: 'Wegwijs is January 2018, CBPL-era', pattern: /\*\*January 2018\*\*/},
-  {case: '—', pack: 'belgium.md', label: 'BOOST brochures attributed to KU Leuven', pattern: /CiTiP KU Leuven/},
-  {case: '—', pack: 'belgium.md', label: 'breach filing needs the MijneGov role', pattern: /GBA_Documentum_Vertegenwoordiger/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'Wegwijs is January 2018, CBPL-era', pattern: /\*\*January 2018\*\*/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'BOOST brochures attributed to KU Leuven', pattern: /CiTiP KU Leuven/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'breach filing needs the MijneGov role', pattern: /GBA_Documentum_Vertegenwoordiger/},
   {case: '—', pack: 'belgium.md', label: 'XI.301 makes the software-user floor dwingend recht', pattern: /XI\.299, §§ 2 en 3, en XI\.300 is van dwingend recht/},
-  {case: '—', pack: 'belgium.md', label: 'part 2 window is 21 calendar days', pattern: /21 calendar days/},
-  {case: '—', pack: 'belgium.md', label: 'part 1 alone does not discharge the duty', pattern: /part 1 alone does not discharge the duty/i},
-  {case: '—', pack: 'belgium.md', label: 'supplementing act identified, not read', pattern: /wet van 30 juli 2018/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'part 2 window is 21 calendar days', pattern: /21 calendar days/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'part 1 alone does not discharge the duty', pattern: /part 1 alone does not discharge the duty/i},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'supplementing act identified, not read', pattern: /wet van 30 juli 2018/},
 
   // --- Germany ---------------------------------------------------------------
   {case: 'C14', pack: 'germany.md', label: 'receiving mandatory from 2025-01-01', pattern: /2025-01-01/},
@@ -233,17 +233,17 @@ export const REQUIRED = [
   // Art. 222 is the only national penalty in these packs that is criminal, and
   // its point 1° states no mental element where 2° and 4° require serious
   // negligence or malice. Losing that asymmetry turns a sharp warning vague.
-  {case: '—', pack: 'belgium.md', label: 'art. 222 criminal fine ceiling', pattern: /€120,000/},
-  {case: '—', pack: 'belgium.md', label: 'the lawful-basis offence states no mental element', pattern: /\*\*none stated\*\*/},
-  {case: '—', pack: 'belgium.md', label: 'the court may order the judgment published', pattern: /published in whole or in extract/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'art. 222 criminal fine ceiling', pattern: /€120,000/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'the lawful-basis offence states no mental element', pattern: /\*\*none stated\*\*/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'the court may order the judgment published', pattern: /published in whole or in extract/},
   // Arts. 58 and 59 of the Belgian act are an impact-assessment duty for Titel 2
   // authorities, not for businesses. The pack has to keep saying so, because
   // the GBA's own art. 35(4) decision cites them and a reader follows that.
-  {case: '—', pack: 'belgium.md', label: 'arts. 58 and 59 bind authorities, not businesses', pattern: /they bind police and judicial authorities, not a founder/},
-  {case: '—', pack: 'belgium.md', label: 'the age of consent is 13', pattern: /door kinderen van 13 jaar of ouder/},
-  {case: '—', pack: 'belgium.md', label: 'the penalties were restated with effect from 2026-09-01', pattern: /W 2026-03-30\/01/},
-  {case: '—', pack: 'belgium.md', label: 'the GBA list entry with no scale qualifier', pattern: /no scale qualifier at all/},
-  {case: '—', pack: 'belgium.md', label: 'the GBA reviews its list six-monthly', pattern: /Zesmaandelijks wordt de lijst/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'arts. 58 and 59 bind authorities, not businesses', pattern: /they bind police and judicial authorities, not a founder/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'the age of consent is 13', pattern: /door kinderen van 13 jaar of ouder/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'the penalties were restated with effect from 2026-09-01', pattern: /W 2026-03-30\/01/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'the GBA list entry with no scale qualifier', pattern: /no scale qualifier at all/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'the GBA reviews its list six-monthly', pattern: /Zesmaandelijks wordt de lijst/},
   {case: '—', pack: 'eu-gdpr-fines.md', label: 'art. 84 means art. 83 is not the whole picture', pattern: /other penalties applicable to infringements/},
 
   // --- Netherlands — data protection annex -----------------------------------
