@@ -150,6 +150,9 @@ export const REQUIRED = [
   // refusal to conclude anything from the silence in 45k-45m.
   {case: '—', pack: 'netherlands.md', label: 'art. 45j protects error correction from contract', pattern: /kan niet bij overeenkomst\s+worden verboden/},
   {case: '—', pack: 'netherlands.md', label: 'silence in 45k-45m is not read as waivable', pattern: /Do not conclude from that silence/i},
+  // The directive settles what the Dutch text leaves unsaid. Without this the
+  // pack reads as if the silence were simply unresolved.
+  {case: '—', pack: 'netherlands.md', label: 'art. 8 of the Software Directive voids such clauses', pattern: /shall be null and void/},
 
   // --- Shared EU layers ------------------------------------------------------
   {case: '—', pack: 'eu-gdpr.md', label: '72-hour notification', pattern: /72 hours/},

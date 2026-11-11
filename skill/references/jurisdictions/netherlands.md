@@ -311,7 +311,15 @@ The Netherlands has the same four software-user provisions as Belgium, Germany a
 - **Error correction is protected here and displaceable everywhere else.** Belgium (XI.299 §1), Germany (§69d(1)) and France (L122-6-1 I) all let a contract take error correction away. Art. 45j's second sentence does not. So a Dutch client cannot be contractually barred from fixing bugs — the reverse of the advice that holds in the other three.
 - **And the backup copy, the study right and decompilation carry no express nullity clause** in the articles read, where Belgium says `dwingend recht` (XI.301), Germany says `nichtig` (§69g(2)) and France says `réputées nulles` (L122-6-1 VIII).
 
-**Do not conclude from that silence that those three are waivable in the Netherlands.** All four states implement the same Software Directive, and Dutch doctrine may well treat them as mandatory by another route. What this pack establishes is that **the express nullity provision the other three have is not in the text of 45k, 45l or 45m** — and that is a reason to get Dutch advice on a clause touching them, not a reason to rely on either answer. **[not researched]**: whether 45k–45m are mandatory in Dutch law despite the absence of an express clause.
+**Do not conclude from that silence that those three are waivable in the Netherlands — the Directive says they are not.**
+
+Source: [Directive 2009/24/EC on the legal protection of computer programs](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32009L0024) · *the directive all four packs implement* · **[checked 2026-11-11]**
+
+Art. 8, second paragraph: *“Any contractual provisions contrary to Article 6 or to the exceptions provided for in Article 5(2) and (3) shall be null and void.”* Art. 5(2) is the back-up copy, art. 5(3) the right to observe, study and test, and art. 6 is decompilation — the three the Dutch text is silent about. Art. 5(2) goes further still and says in the exception itself that the back-up *“may not be prevented by contract”*.
+
+And the one the Directive leaves open is the one art. 45j protects: art. 5(1) applies *“in the absence of specific contractual provisions”*, so **use for the intended purpose, including error correction, is contractually variable at Directive level** — which makes art. 45j sentence 2 more protective than the Directive requires, not less.
+
+So the Dutch position is the reverse of how the silence reads: the Netherlands wrote in a protection the Directive did not demand and left out the one it did. Belgium (art. XI.301 WER), Germany (§69g(2) UrhG) and France (L122-6-1 VIII) each transposed art. 8 expressly. **A clause in a Dutch contract purporting to bar a back-up, study or decompilation is contrary to art. 8 of the Directive**, and the question that remains is how a Dutch court gives effect to that — directive-conform interpretation of art. 45k to 45m, or some other route — not whether the clause is good. **How a Dutch court gives effect to art. 8 — directive-conform interpretation of arts. 45k to 45m, or another route — is [not researched]** and is a question for a Dutch lawyer. What this pack establishes is the shape of the problem: **the express nullity provision the other three states wrote is not in the text of 45k, 45l or 45m, and the Directive behind all four says such clauses are null and void.** That is a reason to get Dutch advice on a clause touching them, and not a reason to rely on the silence in either direction.
 
 Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory discipline. Never infer ownership or clearance from payment alone, from AI generation, or from a repository's top-level licence.
 
@@ -379,7 +387,9 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Arts. 45j–45m: use for intended use, reservekopie, study, interoperability | 2026-11-10 | Primary — statute read per article |
 | Art. 45j second sentence: loading, displaying and error correction cannot be contractually prohibited | 2026-11-10 | Primary — statute read and quoted |
 | Arts. 45k–45m carry **no express nullity clause**, unlike BE, DE and FR | 2026-11-10 | Primary — statute read; stated as a fact about the text, not as a conclusion |
-| Whether 45k–45m are mandatory in Dutch law despite that silence | — | Open — the one question a clause touching them turns on |
+| Art. 8 of Directive 2009/24/EC: clauses contrary to arts. 6, 5(2) and 5(3) are null and void | 2026-11-11 | Primary — the directive read and quoted; it is the instrument all four packs implement |
+| Art. 5(1): use for the intended purpose applies only “in the absence of specific contractual provisions”, so art. 45j sentence 2 is more protective than the Directive requires | 2026-11-11 | Primary — read and quoted |
+| How a Dutch court gives effect to art. 8 given the silence in 45k–45m | — | Open — the question a clause touching them turns on; the Directive answers what is void, not by what route |
 | Whether the internet consultation has opened, and what the draft bill says | — | Open — the consultation was expected this autumn and was not checked |
 | The UAVG, the AP art. 35(4) DPIA list, and the three AP step-plan documents | — | Elsewhere — read on 2026-11-10 and 2026-11-11 and maintained in [netherlands-data-protection.md](netherlands-data-protection.md) |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
