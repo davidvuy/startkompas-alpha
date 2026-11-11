@@ -69,6 +69,19 @@ The check also reports the **worst-case turn** — always-loaded plus the larges
 
 **The same bug three times, each a level further out.** Measuring only the folder, as this check first did, would have blocked adding a jurisdiction pack because the *tooling* had grown. Measuring only the aggregate, as it did next, priced every pack into every conversation, so closing an open topic in one country competed for budget with another country. Then the test suite reached 95 KB and started drawing on the same 512 KB as the packs, so a new fixture would have blocked a new pack. In each case the fix was the same: **charge for what is actually loaded, by whoever actually loads it.**
 
+### When a budget was last changed, and why
+
+Kept here so a raise is never silent. The constants live in `check-skill.mjs`; change them there and this table together.
+
+| Date | Change | At the time |
+| --- | --- | --- |
+| — | **320 KB** model-facing, initially 192 KB | Set when the model-facing set was 142.7 KB |
+| 2026-11-10 | model-facing 192 → 256 KB | Raised at 177.5 KB. Closing open topics adds verified content, and 14.5 KB of headroom was about to block that work — raised on an explicit decision, not to turn a red build green |
+| 2026-11-10 | **10 KB** always-loaded and **48 KB** per-reference added | SKILL.md was 7.5 KB and the largest reference 36.1 KB. They encode what the aggregate could not: the per-turn cost is bounded by one pack, and SKILL.md growing is far worse than `references/` growing |
+| 2026-11-11 | model-facing 256 → 320 KB, and **192 KB** test budget added | The test suite had reached 95 KB. Nothing was over budget; the point was that it was about to be, for the wrong reason — a fixture and a jurisdiction pack drawing on the same 512 KB |
+
+**Before raising one, ask what it is telling you.** Before raising the model-facing budget, ask whether the packs should be condensed instead. Before raising the always-loaded budget, ask what behaviour the extra instruction buys. Verified prose earns its space; restated prose does not.
+
 **And a message bug worth remembering.** `kb()` rounds, so a file one byte over the 10 KB budget reported `10.0 KB is over the 10 KB budget` — which reads as the check contradicting itself, and whose first interpretation is that the check is broken. `overBudget()` states the excess in bytes instead: `10.0 KB, over the 10 KB always-loaded budget by 1 byte`.
 
 The same distinction is why references may only link to `SKILL.md` or to each other: if a reference pointed into `scripts/` or `evals/`, the model could be sent to a file that is not part of what it should be reading. That closure is enforced.
@@ -101,17 +114,40 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | `check-links.mjs` | A `wetten.overheid.nl` redirect to a dated URL, and a moved CNIL page |
 | `check-dossier.mjs` | Not yet — the worked example has been correct since it was written. Break it on purpose if you change the walk. |
 
-## `lib/`
+## How this directory is laid out
 
-Three modules, extracted because the same code had been written three and six times over.
+Three kinds of file, and the kind tells you what to expect:
 
-| Module | Holds |
-| --- | --- |
-| `paths.mjs` | The directories every check needs, resolved once from the lib's own location — so a script works from any cwd |
-| `files.mjs` | Recursive sorted file listing, forward-slash path formatting, size helpers |
-| `report.mjs` | One reporting shape: `note` / `warn` / `fail` / `finish`, so every check's output and exit behaviour match |
+| Where | What it is | Rule |
+| --- | --- | --- |
+| `scripts/*.mjs` | **Runnable programs.** Each has a shebang, a header saying why it exists, and a usage line | Reserved for programs. A module that is only imported does not belong here, and `test/conventions.test.mjs` enforces that |
+| `scripts/lib/*.mjs` | **Imported modules.** No shebang, never executed directly | See the two groups below |
+| `scripts/test/*.test.mjs` | **Tests**, plus `helpers.mjs` for fixtures | Charged to their own size budget, because test code is deliberate bulk |
 
-Honest note on the refactor: pulling these out did **not** reduce total lines — 732 across six scripts became 935 across ten, of which 72 is the new `check-all.mjs` entrypoint and 93 is `lib/`. What it removed was three copies of a directory walk, three copies of a problem-reporting block, six hand-rolled root resolutions, and two different functions confusingly both named `walk`. The trade is slightly more code for no duplication and one way to do each thing.
+### `lib/` — generic infrastructure
+
+Nothing in these is specific to this project; any check could use them. The first three were extracted because the same code had been written three and six times over.
+
+| Module | Checks using it | Holds |
+| --- | --- | --- |
+| `paths.mjs` | all 7 | The directories every check needs, resolved from the lib's own location so a script works from any cwd. Also the `STARTKOMPAS_SKILL_ROOT` test seam |
+| `report.mjs` | 6 | One reporting shape — `note` / `warn` / `fail` / `finish` — so every check's output and exit behaviour match |
+| `files.mjs` | 4 | Recursive sorted file listing, forward-slash path formatting, size and budget-overage formatting |
+| `pool.mjs` | 1 | Bounded-concurrency mapping, so a slow request delays only itself. Generic, but `check-links.mjs` is its only consumer today |
+
+### `lib/` — one check's logic, pulled out to be testable
+
+Each of these has exactly **one** check that uses it, plus its test. They are in `lib/` rather than beside that check because the top level is for programs, and a program cannot be imported without running it. Pulling the logic out is what lets a test feed it synthetic input instead of driving the whole check.
+
+| Module | Used by | Why it is separate |
+| --- | --- | --- |
+| `citations.mjs` | `check-links.mjs` | Decides which URLs get probed at all. A URL it fails to see is a claim whose evidence is never checked, so it is worth testing without a network |
+| `probe.mjs` | `check-links.mjs` | Decides what each HTTP response *means*. Takes an injectable `fetch`, so the dead-or-merely-awkward table is tested with no network and no server |
+| `facts.mjs` | `check-facts.mjs` | The assertion tables **and** a pure `evaluate()`. The tables are data that goes wrong in specific ways — a duplicate label, a pattern naming a pack that no longer exists — so they are tested as data |
+
+**`facts.mjs` is the one surprise in here**, since it holds claims about German VAT rather than general-purpose code. It sits in `lib/` for the structural reason above, not because it is reusable. If you are looking for the fact assertions, start from `check-facts.mjs`, which is a 34-line CLI around it.
+
+Honest note on the original extraction: it did **not** reduce total lines — 732 across six scripts became 935 across ten. What it removed was three copies of a directory walk, three copies of a problem-reporting block, six hand-rolled root resolutions, and two different functions confusingly both named `walk`. The trade is slightly more code for no duplication and one way to do each thing.
 
 ## CI
 

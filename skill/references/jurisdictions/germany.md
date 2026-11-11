@@ -100,19 +100,21 @@ Accepted formats: **XRechnung** (the national standard), **ZUGFeRD 2.2.0** (XRec
 
 Legal basis: the `Wachstumschancengesetz` (Growth Opportunities Act), adopted **2024-03-22**, codified in **§14(2) and §27(38) UStG**.
 
-### The 2026 letter — and how the three relate
+### The three BMF letters — how to read them
+
+All three were extracted and read in full on **2026-11-10**. They **amend**, not replace: each restates specific `Randnummern` of the previous letter, so all three are live and a citation belongs to an Rn., not to "the BMF".
+
+**The three subsections below run newest first, deliberately.** The most recent letter carries the requirements in force, so a founder's answer is most likely there; read downwards for the history that produced it. The amend-not-replace structure is why the older letters still matter at all — the transitional rules a founder needs are only in the 2024 one.
+
+| Date | Citation | Where in this pack | What it is mainly for |
+| --- | --- | --- | --- |
+| 15 October 2026 | GZ III C 5 - S 7287, from the letter | next, immediately below | Additional requirements, and the non-objection window that closes 2026-12-31 |
+| 15 October 2025 | BStBl I S. 1806 (secondary); GZ III C 2 - S 7287-a/00019/007/243 from the letter | second | The Kleinunternehmer carve-out, the error taxonomy, retention |
+| 15 October 2024 | **BStBl I S. 1320** — confirmed in the 2025 letter's own text | third | Rn. 62–65, where the transitional rules live |
+
+### The 2026 letter — the additional requirements, and a window closing
 
 Source: [BMF letter of 15 October 2026](https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Steuerarten/Umsatzsteuer/Umsatzsteuer-Anwendungserlass/2026-10-15-obligatorische-elektronische-rechnung.pdf?__blob=publicationFile&v=2), *"Einführung der obligatorischen elektronischen Rechnung bei Umsätzen zwischen inländischen Unternehmern ab dem 1. Januar 2025 — Ergänzende Regelungen"*, GZ III C 5 - S 7287 · *primary administrative guidance, PDF extracted and read* · **[checked 2026-11-10]**
-
-**Three letters, each building on the last. All three were extracted and read in full on 2026-11-10.**
-
-| Date | Citation | Covered in |
-| --- | --- | --- |
-| 15 October 2024 | **BStBl I S. 1320** — confirmed in the 2025 letter's own text | *The 2024 letter*, below — the transitional rules |
-| 15 October 2025 | BStBl I S. 1806 (secondary); GZ III C 2 - S 7287-a/00019/007/243 from the letter | *The 2025 letter*, below |
-| 15 October 2026 | GZ III C 5 - S 7287, from the letter | this subsection |
-
-They **amend**, not replace: each restates specific `Randnummern` of the previous letter. Cite the Rn., not "the BMF".
 
 **The non-objection period, in the letter's own terms.** An e-invoice issued **up to 31 December 2026** that conforms to the 2024 and 2025 letters but not to the *additional* requirements of the 2026 letter will not be objected to — *"auch für den Vorsteuerabzug"*, **including for input VAT deduction**.
 

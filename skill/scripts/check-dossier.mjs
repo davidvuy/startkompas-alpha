@@ -8,6 +8,15 @@
 //
 // Defaults to the worked example. Point it at a real project.json to check that
 // project — it only reads.
+//
+// Checks, in order. Each has a matching `--- n. ---` banner below.
+//   1. the document's shape — format, revision, and the eight collections.
+//      A failure here stops the run, because everything after it indexes in
+//   2. ids are unique and every reference resolves, including the link graph
+//   3. assertion vocabularies, and the rules dossier-format.md states in prose
+//   4. the change-propagation walk: one depth-first search for a cycle, which
+//      would make "revise only the dependents" ill-defined
+//   5. the report — what a revision of each assumption would mark for review
 
 import {readFileSync, existsSync} from 'node:fs';
 import {join, resolve} from 'node:path';

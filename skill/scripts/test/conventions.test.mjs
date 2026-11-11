@@ -72,6 +72,27 @@ test('every script is listed in scripts/README.md', () => {
   }
 });
 
+test('every lib module is listed in scripts/README.md', () => {
+  // The README described "three modules" while there were seven, so four were
+  // undocumented and a reader had no way to know what they were for. That is
+  // the drift this catches.
+  for (const name of readdirSync(join(scriptsDir, 'lib'))) {
+    assert.ok(
+      readme.includes(name),
+      `lib/${name} is not described in scripts/README.md; a reader cannot tell what it is for`,
+    );
+  }
+});
+
+test('scripts/README.md describes no lib module that has been removed', () => {
+  const present = new Set(readdirSync(join(scriptsDir, 'lib')));
+  for (const [, name] of readme.matchAll(/`([\w-]+\.mjs)`/g)) {
+    // Only claims about lib/ — the table in that section names bare filenames.
+    if (!/^(paths|files|report|pool|citations|probe|facts)\.mjs$/.test(name)) continue;
+    assert.ok(present.has(name), `scripts/README.md describes lib/${name}, which no longer exists`);
+  }
+});
+
 test('scripts/README.md mentions no script that has been removed', () => {
   for (const [, name] of readme.matchAll(/`(check-[\w-]+\.mjs|build-zip\.mjs)`/g)) {
     assert.ok(scripts.includes(name), `scripts/README.md documents ${name}, which no longer exists`);
@@ -89,6 +110,25 @@ test('every script is executable as a program and says what it is for', () => {
     assert.ok(
       /^\/\/\s+node scripts\//m.test(text),
       `${name} does not show how to invoke it`,
+    );
+  }
+});
+
+test('a script with numbered sections lists them in its header, and the list matches', () => {
+  // A long check is navigable only if its header is a map of it. check-skill.mjs
+  // had eight `--- n. ---` banners and a header listing seven, so the one a
+  // reader could not find was the one nobody maintained; check-dossier.mjs had
+  // five banners and no list at all.
+  for (const name of scripts) {
+    const text = readFileSync(join(scriptsDir, name), 'utf8');
+    const banners = [...text.matchAll(/^\/\/ --- (\d+)\./gm)].map((match) => match[1]);
+    if (banners.length === 0) continue;
+
+    const listed = [...text.matchAll(/^\/\/\s+(\d+)\. /gm)].map((match) => match[1]);
+    assert.deepEqual(
+      listed,
+      banners,
+      `${name}: the header lists sections [${listed}] but the file has banners [${banners}]`,
     );
   }
 });

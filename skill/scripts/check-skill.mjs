@@ -3,14 +3,15 @@
 //
 //   node scripts/check-skill.mjs
 //
-// Checks, in order:
+// Checks, in order. Each has a matching `--- n. ---` banner below.
 //   1. SKILL.md frontmatter is valid and the description can route on it
 //   2. every relative link resolves
 //   3. every reference is reachable from SKILL.md
 //   4. no runtime coupling has been reintroduced
 //   5. SKILL.md and references name no specific AI host
-//   6. jurisdiction packs stay discoverable and dated
-//   7. the skill stays within its size budget and ships no binaries
+//   6. jurisdiction packs stay discoverable, dated and on-template
+//   7. no reference links outside the model-facing set
+//   8. every size budget is met and no binaries ship
 
 import {readFileSync, existsSync, readdirSync} from 'node:fs';
 import {dirname, join, resolve} from 'node:path';
@@ -19,61 +20,17 @@ import {skillRoot, skillFile, referencesDir, packsDir, packIndexFile} from './li
 import {listFiles, relativePosix, totalBytes, kb, overBudget} from './lib/files.mjs';
 import {createReport} from './lib/report.mjs';
 
-// Five budgets, because they measure five different costs. The order below is
-// the order of how much each one actually matters.
-//
-// ALWAYS_BUDGET_KB — SKILL.md alone. The host loads this on every single turn
-// whether the skill is used or not, so a kilobyte here is the most expensive
-// kilobyte in the project. This is the budget to defend hardest.
-//
-// REFERENCE_BUDGET_KB — the largest single file under references/. Progressive
-// disclosure means the model opens one pack, not all of them: a founder in
-// Berlin never pays for the French pack. So the real per-conversation cost is
-// SKILL.md plus the biggest thing it might open, not the sum of everything.
-//
-// MODEL_BUDGET_KB — SKILL.md plus all of references/. This is a *distribution*
-// bound, not a per-turn cost: it caps how much a reader has to trust and a
-// maintainer has to recheck. It is the loosest of the three model budgets on
-// purpose, because adding the ninth jurisdiction pack should not be blocked by
-// the eight that a given conversation will not read.
-//
-// FOLDER_BUDGET_KB — the folder as a user installs it, minus the test suite.
-// It exists only to catch accidental bulk.
-//
-// TEST_BUDGET_KB — scripts/test/ on its own. Test code is *deliberate* bulk,
-// and the third time this check measured the wrong thing was when the suite
-// grew to 95 KB and started competing with the packs for the folder budget: a
-// new jurisdiction pack would have been blocked by a new fixture. Tests still
-// get a bound, so a runaway fixture is caught, but it is their own.
-//
-// Measuring only the folder — as this check first did — would have blocked
-// adding a jurisdiction pack because the *tooling* had grown. That was a bug.
-// Measuring only the aggregate, as it did next, had the same shape of bug one
-// level up: it priced every pack into every conversation.
-//
-// History of these budgets, so a raise is never silent:
-//   192 KB  MODEL, initial, set when the model-facing set was 142.7 KB
-//   256 KB  MODEL, 2026-11-10, raised at 177.5 KB — closing open topics adds
-//           verified content, and 14.5 KB of headroom was about to block that
-//           work. Raised on an explicit decision, not to make a red build green.
-//   2026-11-10  ALWAYS and REFERENCE added, at SKILL.md 7.5 KB and a largest
-//           reference of 36.1 KB (germany.md). They encode what the aggregate
-//           could not: that the per-turn cost is bounded by one pack, and that
-//           SKILL.md growing is far worse than references/ growing.
-//   2026-11-11  TEST added at 95 KB, and scripts/test/ taken out of the folder
-//           figure. Nothing was over budget; the point is that it was about to
-//           be, for the wrong reason — a fixture and a jurisdiction pack were
-//           drawing on the same 512 KB.
-// Before raising MODEL again, ask whether the packs should be condensed. Before
-// raising ALWAYS, ask what behaviour the extra instruction buys. Verified prose
-// earns its space; restated prose does not.
-const ALWAYS_BUDGET_KB = 10;
-const REFERENCE_BUDGET_KB = 48;
-const MODEL_BUDGET_KB = 320;
-const FOLDER_BUDGET_KB = 512;
-const TEST_BUDGET_KB = 192;
+// Five size budgets, each measuring a different cost. What each one is for,
+// why these numbers, and when they were last raised: scripts/README.md, "The
+// five size budgets". Change a number there and here together.
+const ALWAYS_BUDGET_KB = 10; // SKILL.md alone — paid on every turn, used or not
+const REFERENCE_BUDGET_KB = 48; // largest single reference — what one turn opens
+const MODEL_BUDGET_KB = 320; // SKILL.md + references/ — a distribution bound
+const FOLDER_BUDGET_KB = 512; // the folder as installed, tests excluded
+const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
 
-// A description shorter than this cannot carry both scope and "when to use".
+// Frontmatter limits. A description shorter than MIN cannot carry both the
+// skill's scope and when to use it, which is what a host routes on.
 const MIN_DESCRIPTION = 80;
 const MAX_DESCRIPTION = 1024;
 const MAX_NAME = 64;
