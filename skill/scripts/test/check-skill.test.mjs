@@ -338,6 +338,48 @@ test('a hyphenated name with no pack beside it is a national pack, not an annex'
   expectFail(tree, /section 1 missing or off-template/);
 });
 
+/** A shared `eu-` layer plus an annex to it, both indexed. */
+function sharedAnnexTree({linked = true} = {}) {
+  const layer = validAnnex({name: 'EU — testland layer'});
+  return {
+    ...baseTree({
+      'references/method.md': '# Method\n\nSee [packs](jurisdictions/README.md).\n',
+    }),
+    'references/jurisdictions/README.md':
+      '# Packs\n\n- [eu-testland.md](eu-testland.md)\n- [eu-testland-topic.md](eu-testland-topic.md)\n',
+    'references/jurisdictions/eu-testland.md': linked
+      ? layer.replace(
+          '## The one topic this annex covers',
+          '## The one topic this annex covers\n\nDetail in [eu-testland-topic.md](eu-testland-topic.md).',
+        )
+      : layer,
+    'references/jurisdictions/eu-testland-topic.md': validAnnex({name: 'EU — testland topic'}),
+  };
+}
+
+test('a shared layer may have an annex, and the layer must still link it', () => {
+  // The regression: classifying by the `eu-` prefix first made
+  // `eu-gdpr-fines.md` a shared layer, which skipped the only rule that keeps
+  // an annex reachable. Finding the parent also has to look past the hyphen
+  // inside `eu-gdpr`, or it resolves to an `eu.md` that does not exist.
+  expectPass(sharedAnnexTree());
+  const result = expectFail(sharedAnnexTree({linked: false}), /does not link it/);
+  assert.match(result.output, /eu-testland\.md/);
+});
+
+test('a hyphen inside a layer name does not make it an annex', () => {
+  // `eu-vat-sme.md` has no `eu-vat.md` and no `eu.md` beside it, so the search
+  // for a parent must come up empty and leave it a shared layer — which is
+  // exempt from the six-section template.
+  expectPass({
+    ...baseTree({
+      'references/method.md': '# Method\n\nSee [packs](jurisdictions/README.md).\n',
+    }),
+    'references/jurisdictions/README.md': '# Packs\n\n- [eu-two-words.md](eu-two-words.md)\n',
+    'references/jurisdictions/eu-two-words.md': validAnnex({name: 'EU — two words'}),
+  });
+});
+
 /** A pack with `line` inserted just under one of its section headings. */
 function packWithLine(heading, line) {
   return packTree(validPack().replace(`${heading}\n`, `${heading}\n\n${line}\n`));
@@ -485,6 +527,23 @@ test('test code is charged to its own budget, not the folder budget', () => {
   assert.match(result.output, /over the 192 KB test-suite budget/);
   // The installed-folder figure must not include it.
   assert.match(result.output, /folder without tests: 2 files/);
+});
+
+test('bulk in scripts/ fails the support budget, not the model-facing one', () => {
+  // The folder total used to have a budget of its own, and a pack growing
+  // tripped it with the message "something bulky got in" — which points a
+  // maintainer at the wrong half. The two halves are now charged separately
+  // and the total is derived, so each failure names the half that caused it.
+  const result = withTree(
+    {...baseTree(), 'scripts/vendor.mjs': 'x'.repeat(200 * 1024)},
+    (root) => runCheck('check-skill.mjs', root),
+  );
+  assert.match(result.output, /over the 192 KB support budget/);
+  assert.match(result.output, /scripts\/ \+ docs\//);
+  // And it must not be reported as a model-facing problem, because the model
+  // never reads it: the folder line carries the sum of the two budgets.
+  assert.doesNotMatch(result.output, /model-facing budget/);
+  assert.match(result.output, /folder without tests: .* of 576 KB/);
 });
 
 test('a binary asset in the tree fails', () => {

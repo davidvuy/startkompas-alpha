@@ -61,7 +61,7 @@ They verify **structure**, not behaviour. For behaviour, run [evals/cases.md](ev
 
 ## Jurisdictions
 
-The method is worldwide. The **rules** are not, so they live in packs: four national ones and two shared EU layers, all checked 2026-11-10. Each states per claim whether its source was actually read or is still unresearched.
+The method is worldwide. The **rules** are not, so they live in packs: four national ones and three shared EU layers, all checked 2026-11-10 or 2026-11-11, three of them with an annex. Each states per claim whether its source was actually read or is still unresearched.
 
 Why packs rather than one "EU" answer? Same question, same day, four different answers:
 

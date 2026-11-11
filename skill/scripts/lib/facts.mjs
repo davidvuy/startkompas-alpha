@@ -156,6 +156,33 @@ export const REQUIRED = [
   // Patterns tolerate markdown emphasis: the text reads "**not** a legal requirement".
   {case: '—', pack: 'eu-gdpr.md', label: 'password figure flagged as not a requirement', pattern: /a legal requirement/i},
   {case: '—', pack: 'eu-gdpr.md', label: 'processor liability for sub-processors', pattern: /liable to the controller for its sub-processors/i},
+  // The GDPR is unamended, so the version string is the layer's whole claim to
+  // being current. Losing it is how the AI Act layer came to rest on a
+  // reproduction of superseded law.
+  {case: '—', pack: 'eu-gdpr.md', label: 'the consolidated version read is identified', pattern: /02016R0679 — EN — 04\.05\.2016 — 000\.002/},
+  {case: '—', pack: 'eu-gdpr.md', label: 'the corrigendum is identified', pattern: /OJ L 127, 23\.5\.2018/},
+  // The single most consequential correction in this layer: a B2B pilot's
+  // contract is with the company, so the contact it names is an art. 6(1)(f)
+  // question. Telling a founder it is (b) hands them a basis they do not have.
+  {case: '—', pack: 'eu-gdpr.md', label: 'basis (b) needs the data subject to be a party', pattern: /to which the data subject is party/},
+  {case: '—', pack: 'eu-gdpr.md', label: 'a processor register is shorter than a controller one', pattern: /four things, not seven/},
+  // Art. 30(5) is one sentence with three limbs, the third of which has two
+  // alternatives, so any count of it is an artefact of how a source laid it out.
+  {case: '—', pack: 'eu-gdpr.md', label: 'the art. 30(5) conditions are not given as a count', pattern: /Do not quote a count of these/},
+  {case: '—', pack: 'eu-gdpr.md', label: 'a breach needs no attacker and no disclosure', pattern: /accidental or unlawful destruction/},
+  // A per-sub-processor consent requirement would condemn every real cloud DPA.
+  {case: '—', pack: 'eu-gdpr.md', label: 'art. 28(2) allows a general authorisation', pattern: /specific or general written authorisation/},
+  {case: '—', pack: 'eu-gdpr.md', label: 'art. 32(1) makes cost a statutory factor', pattern: /costs of implementation/},
+  {case: '—', pack: 'eu-gdpr.md', label: 'art. 44 reaches onward transfers', pattern: /onward transfers/},
+  {case: '—', pack: 'eu-gdpr.md', label: 'art. 12(5) puts the burden on the controller', pattern: /burden of demonstrating/},
+  {case: '—', pack: 'eu-gdpr-fines.md', label: 'the GDPR has no SME reduction', pattern: /no SME tier/},
+  // The comparison is the point of the row: the two instruments the skill
+  // covers resolve "amount or percentage" in opposite directions for an SME.
+  {case: '—', pack: 'eu-gdpr-fines.md', label: 'the AI Act resolves the same choice the other way', pattern: /whichever thereof is lower/},
+  {case: '—', pack: 'eu-gdpr-fines.md', label: 'self-notification is an express mitigating factor', pattern: /whether, and if so to what extent, the controller or processor notified/},
+  {case: '—', pack: 'eu-gdpr-dpo-dpia.md', label: 'art. 35(3) case 1 keeps "and extensive"', pattern: /systematic and extensive/},
+  {case: '—', pack: 'eu-gdpr-dpo-dpia.md', label: 'national law can require a DPO under art. 37(4)', pattern: /where required by Union or Member State law shall/},
+  {case: '—', pack: 'eu-gdpr-dpo-dpia.md', label: 'the art. 35(4) national list is mandatory', pattern: /shall establish and make public a list/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'national threshold ceiling', pattern: /€85,000/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'Union turnover cap article', pattern: /284\(2\)\(a\)/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'the EUR 100,000 coincidence trap is named', pattern: /coincidence is a live trap/i},
@@ -224,6 +251,30 @@ export const FORBIDDEN = [
     pack: 'germany.md',
     label: 'must not call one sentence of §19(1) the whole paragraph',
     pattern: /(?<!`)§19\(1\) in full/,
+  },
+  // Withdrawn on 2026-11-11 against art. 6(1)(b): in a B2B pilot the contract
+  // is with the company, so its named contact is not a party to it and their
+  // data is an art. 6(1)(f) question. The layer quotes the old sentence inside
+  // `*"` in the subsection that withdraws it, which the lookbehind excludes.
+  {
+    pack: 'eu-gdpr.md',
+    label: "must not give basis (b) for a corporate client's contact",
+    pattern: /(?<!\*")delivering an agreed service to a business customer's named contact is \(b\)/i,
+  },
+  // Withdrawn the same day: art. 30(5) is one sentence with three limbs, the
+  // third carrying two alternatives, so "four" was an artefact of the
+  // reproduction's list formatting. Both places the layer now says the old
+  // number put it in double quotes, which the lookbehind excludes.
+  //
+  // There is deliberately NO entry for art. 35(3)'s missing `and extensive`,
+  // the third claim withdrawn on 2026-11-11. The REQUIRED entry that keeps
+  // `systematic and extensive` in eu-gdpr-dpo-dpia.md guards it from the other
+  // side: dropping the qualifier again means deleting that phrase, which fails
+  // there. One guard that works beats two that fight each other.
+  {
+    pack: 'eu-gdpr.md',
+    label: 'must not count the art. 30(5) conditions',
+    pattern: /(?<!")four conditions/,
   },
   // A pack may legitimately QUOTE a claim it has withdrawn, inside the
   // correction that withdraws it — belgium.md §2 does exactly that, and the

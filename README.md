@@ -48,7 +48,7 @@ You do not need to name the skill — it is selected from its description.
 
 ## Jurisdictions
 
-The method is worldwide. The **rules** are not, so they live in packs: four national ones — **Belgium, Netherlands, Germany, France** — plus two shared EU layers for the GDPR and the small-enterprise VAT scheme. All checked 2026-11-10.
+The method is worldwide. The **rules** are not, so they live in packs: four national ones — **Belgium, Netherlands, Germany, France** — plus three shared EU layers, for the GDPR, the small-enterprise VAT scheme and the AI Act. All checked 2026-11-10 or 2026-11-11, and three of them carry an annex for a topic that outgrew its file.
 
 Why packs rather than one "EU" answer? Same question, same day, four different answers:
 

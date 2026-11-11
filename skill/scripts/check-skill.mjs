@@ -27,8 +27,16 @@ import {createReport} from './lib/report.mjs';
 const ALWAYS_BUDGET_KB = 10; // SKILL.md alone — paid on every turn, used or not
 const REFERENCE_BUDGET_KB = 48; // largest single reference — what one turn opens
 const MODEL_BUDGET_KB = 384; // SKILL.md + references/ — a distribution bound. Raised from 320 on 2026-11-11
-const FOLDER_BUDGET_KB = 512; // the folder as installed, tests excluded
+const SUPPORT_BUDGET_KB = 192; // scripts/ and docs/ as installed — code the model never reads
 const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
+
+// The installed folder is the two halves above, so it needs no number of its
+// own. It had one until 2026-11-11, fixed at 512 KB, and it failed first when
+// a pack grew — with the message "something bulky got in", which sent a
+// maintainer looking for a stray binary instead of at the budget that had
+// actually been exceeded. Deriving it keeps the total reported and puts each
+// failure on the half that caused it.
+const FOLDER_BUDGET_KB = MODEL_BUDGET_KB + SUPPORT_BUDGET_KB;
 
 // A skill is text. Section 8 rejects these outright; section 9 skips them,
 // because "line endings" means nothing in a font or a video.
@@ -236,19 +244,26 @@ if (existsSync(packsDir)) {
     .filter((file) => file.endsWith('.md') && file !== 'README.md')
     .sort();
 
-  const shared = packs.filter((pack) => pack.startsWith('eu-'));
   const stems = new Set(packs.map((pack) => pack.replace(/\.md$/, '')));
 
-  // `germany-e-invoicing.md` is an annex to `germany.md`; `eu-vat-sme.md` is
-  // already a shared layer, so the hyphen in its name never reaches here.
+  // An annex is named `<its pack's stem>-<topic>.md`, so the parent is the
+  // longest prefix of its own stem, cut at a hyphen, that is itself a pack.
+  //
+  // Longest first, and every hyphen tried, because a pack's stem may contain
+  // one: `eu-gdpr-fines` resolves to `eu-gdpr.md`, not to a non-existent
+  // `eu.md`. `eu-vat-sme` has no pack prefix at all, so it stays a layer.
   const parentOf = (pack) => {
     const stem = pack.replace(/\.md$/, '');
-    const cut = stem.indexOf('-');
-    const parent = cut < 0 ? null : stem.slice(0, cut);
-    return parent && stems.has(parent) ? `${parent}.md` : null;
+    for (let cut = stem.lastIndexOf('-'); cut > 0; cut = stem.lastIndexOf('-', cut - 1))
+      if (stems.has(stem.slice(0, cut))) return `${stem.slice(0, cut)}.md`;
+    return null;
   };
 
-  const annexes = packs.filter((pack) => !shared.includes(pack) && parentOf(pack));
+  // Annexes are classified first: `eu-gdpr-fines.md` starts with `eu-`, and
+  // treating it as a shared layer would exempt it from the rule that its own
+  // pack has to link it — the only thing that makes it reachable.
+  const annexes = packs.filter((pack) => parentOf(pack));
+  const shared = packs.filter((pack) => pack.startsWith('eu-') && !annexes.includes(pack));
   const national = packs.filter((pack) => !shared.includes(pack) && !annexes.includes(pack));
 
   // The first pack's convention line becomes the one every other must match.
@@ -397,7 +412,9 @@ const modelBytes = totalBytes(modelFiles);
 // the same budget as the packs would mean a new fixture could block a new pack.
 const testFiles = files.filter((f) => rel(f).startsWith('scripts/test/'));
 const installedFiles = files.filter((f) => !rel(f).startsWith('scripts/test/'));
+const supportFiles = installedFiles.filter((f) => !modelFiles.includes(f));
 const testBytes = totalBytes(testFiles);
+const supportBytes = totalBytes(supportFiles);
 const folderBytes = totalBytes(installedFiles);
 
 // The per-turn cost is SKILL.md plus whichever single reference gets opened,
@@ -416,6 +433,9 @@ report.note(
 );
 report.note(
   `model-facing total: ${modelFiles.length} files, ${kb(modelBytes)} KB of ${MODEL_BUDGET_KB} KB`,
+);
+report.note(
+  `support files: ${supportFiles.length} files, ${kb(supportBytes)} KB of ${SUPPORT_BUDGET_KB} KB`,
 );
 report.note(
   `folder without tests: ${installedFiles.length} files, ${kb(folderBytes)} KB of ${FOLDER_BUDGET_KB} KB`,
@@ -442,10 +462,13 @@ if (modelBytes > MODEL_BUDGET_KB * 1024)
     `${overBudget(modelBytes, MODEL_BUDGET_KB, 'model-facing')}; trim it or raise the budget on purpose`,
   );
 
-if (folderBytes > FOLDER_BUDGET_KB * 1024)
+// No separate check on the folder total: it is the sum of the model-facing and
+// support halves, so exceeding it means exceeding one of them, and both are
+// checked above and below with a message that names the right half.
+if (supportBytes > SUPPORT_BUDGET_KB * 1024)
   report.fail(
-    '.',
-    `folder is ${overBudget(folderBytes, FOLDER_BUDGET_KB, 'installed-folder')}; something bulky got in`,
+    'scripts/ + docs/',
+    `${overBudget(supportBytes, SUPPORT_BUDGET_KB, 'support')}; this half ships but is never read by the model, so something bulky probably got in`,
   );
 
 if (testBytes > TEST_BUDGET_KB * 1024)
