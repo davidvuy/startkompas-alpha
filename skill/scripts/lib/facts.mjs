@@ -179,6 +179,16 @@ export const REQUIRED = [
   // the reader who needs it.
   {case: '—', pack: 'netherlands.md', label: 'the pack points at the copyright annex', pattern: /netherlands-copyright\.md/},
 
+  // The three states were in three different conditions on 2026-11-12, and the
+  // spread IS the finding. A pack that keeps Germany and loses the other two
+  // reads as if a national regime were the normal case.
+  {case: '—', pack: 'eu-ai-act-national.md', label: 'the Dutch implementing act is a closed consultation, not law', pattern: /Consultatie gesloten|is \*\*not in force\*\*/},
+  {case: '—', pack: 'eu-ai-act-national.md', label: 'the AP is proposed for work-related high-risk systems', pattern: /hoog-risico AI-toepassingen, zoals in werk/},
+  {case: '—', pack: 'eu-ai-act-national.md', label: 'Belgium has designated nobody, in the department’s own words', pattern: /De implementatie van het governancekader in België is momenteel lopende/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'the absence of a supervisor is not the absence of a duty', pattern: /not the absence of a duty/},
+  {case: '—', pack: 'eu-ai-act-national.md', label: 'no designated authority is not nothing applying', pattern: /not\*\* the same as nothing applying/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'the layer points at the national annex', pattern: /eu-ai-act-national\.md/},
+
   // --- EU — unsolicited commercial communication -----------------------------
   // The layer exists because art. 13(5) hands the member states a choice. If
   // that sentence goes, the four national answers below read as four mistakes.
@@ -441,9 +451,9 @@ export const REQUIRED = [
   // Germany's national regime, read on 2026-11-11. The €50,000 and the art.
   // 86(1) offence are the two a founder can act on; the authority is the
   // answer to a question the German annex recorded as unsettled in May 2025.
-  {case: '—', pack: 'eu-ai-act.md', label: 'the Bundesnetzagentur is the German authority', pattern: /Die Bundesnetzagentur ist die für die Einhaltung der Verordnung/},
-  {case: '—', pack: 'eu-ai-act.md', label: 'the German national offences are capped at EUR 50,000', pattern: /Geldbuße bis zu fünfzigtausend Euro/},
-  {case: '—', pack: 'eu-ai-act.md', label: 'failing to explain a high-risk decision is a German offence', pattern: /explanation required by \*\*art\. 86\(1\)\*\*/},
+  {case: '—', pack: 'eu-ai-act-national.md', label: 'the Bundesnetzagentur is the German authority', pattern: /Die Bundesnetzagentur ist die für die Einhaltung der Verordnung/},
+  {case: '—', pack: 'eu-ai-act-national.md', label: 'the German national offences are capped at EUR 50,000', pattern: /Geldbuße bis zu fünfzigtausend Euro/},
+  {case: '—', pack: 'eu-ai-act-national.md', label: 'failing to explain a high-risk decision is a German offence', pattern: /explanation required by \*\*art\. 86\(1\)\*\*/},
 ];
 
 /**

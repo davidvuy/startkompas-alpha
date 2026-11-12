@@ -1,6 +1,6 @@
 # EU — AI Act
 
-**This is a shared layer, not a country.** Regulation (EU) 2024/1689 applies across the Union, so it holds identically in the Belgium, Netherlands, Germany and France packs. The Regulation's own obligations hold identically. **What each member state adds under arts. 99(1) and 84 does not** — Germany's `KI-MIG` creates offences of its own, with its own ceiling, which §7 reads. So the authority differs, and so can the price of breaching a duty.
+**This is a shared layer, not a country.** Regulation (EU) 2024/1689 applies across the Union, so it holds identically in the Belgium, Netherlands, Germany and France packs. The Regulation's own obligations hold identically. **What each member state adds does not** — art. 99(1) leaves the penalties to national law and art. 70 leaves the supervisor to national designation, and §7 shows the three states read so far sitting in three different conditions. So the authority differs, the price of breaching a duty differs, and in one of the three there is no authority designated at all.
 
 **This layer is preparation, not advice.** It records what the articles themselves state, with dates. Whether a specific system or use is in scope is a legal question for a qualified reviewer.
 
@@ -257,27 +257,13 @@ For a solo founder the percentage is far below the cash figure, so the operative
 
 Art. 99(1), as amended, leaves the rules themselves to national law — which may include warnings and non-monetary measures — and requires Member States to *"take into account the interests of SMEs, including start-ups, and SMCs, and their economic viability when imposing penalties"*. **So the ceilings above are the Union's limits, not a national tariff.**
 
-## 7. One national regime, read: Germany's KI-MIG
+## 7. National regimes — and they are in three different conditions
 
-Source: [`KI-Marktüberwachungs-und-Innovationsförderungs-Gesetz` (KI-MIG) of 2026-07-22, BGBl. 2026 I Nr. 223](https://www.gesetze-im-internet.de/ki-mig/BJNR0DF0B0026.html) · *primary legislation, in force 2026-07-29* · **[checked 2026-11-11]**
+Art. 99(1) leaves the rules to national law and art. 70 leaves the supervisor to national designation, so there is a national layer and it does not look the same anywhere. **[eu-ai-act-national.md](eu-ai-act-national.md) holds it**, because reading three regimes into this file would put it over the per-reference budget.
 
-§6 above says the Union ceilings are here and the national regimes are not. One of them is now read, because a founder in the largest member state covered by these packs should not be told only that a national regime exists. **This is Germany's, and it is not a template for anyone else's.**
+The short version, as at 2026-11-12: **Germany has settled it** — the Bundesnetzagentur by statute since 2026-07-29, plus German offences of its own at up to €50,000, including one for failing to explain a high-risk decision to the person it was about. **The Netherlands has a bill**, consulted from 2026-04-20 to 2026-06-01 and not in force, which would give ten existing authorities a domain each and make the AP the fallback and the supervisor for work-related high-risk systems. **Belgium has designated nobody**, and says so itself: *"De implementatie van het governancekader in België is momenteel lopende"*, on a FOD Economie page updated 2026-09-03, thirteen months after the deadline that page quotes. **France is blocked**, not unexamined.
 
-**Who supervises.** §2(1): *"Die Bundesnetzagentur ist die für die Einhaltung der Verordnung (EU) 2024/1689 zuständige Marktüberwachungsbehörde, soweit in diesem Gesetz nichts anderes bestimmt ist"* — the **Bundesnetzagentur**, unless the Act says otherwise. The exceptions are sectoral: authorities already supervising the Annex I Section A harmonisation legislation keep those systems under §2(2), and the Act carves out a long list of financial-sector entities for BaFin. §6: the Bundesnetzagentur is also the **single point of contact** under art. 70(2), and §8 establishes a central complaints office, for which the Länder may name single contact points. §13: the Bundesnetzagentur **must establish and run at least one AI regulatory sandbox** under arts. 57 and 58.
-
-**This closes a question the German pack raised from the other side.** A Bavarian supervisory authority's checklist recorded in May 2025 that the authority competent for the AI Act in Germany was not yet settled — see [germany-data-protection.md](germany-data-protection.md). It was settled on 2026-07-29, fourteen months later, and the answer is the telecoms regulator rather than the data protection authorities.
-
-**What Germany added to the fines, and it is small.** The Regulation's own ceilings in art. 99(3) to (5) are enforced here through §16 and §17, with the market surveillance authority acting as the administrative authority. Separately, **§15 creates German administrative offences of its own**, for intentional or negligent breaches of specific articles: art. 21(1) and (2) (information and access for authorities), art. 27(1), (2) and (3) (the fundamental-rights impact assessment), and art. 45(1) to (3) (informing notifying authorities). §15(2) adds one aimed squarely at a deployer:
-
-> a deployer of a high-risk system under **Annex III points 1, 3, 4 or 5** who does not ensure that an affected person is given the explanation required by **art. 86(1)**
-
-§15(3): *"Die Ordnungswidrigkeit kann mit einer Geldbuße bis zu fünfzigtausend Euro geahndet werden"* — **up to €50,000.**
-
-Read that beside §3: Annex III points 4 and 5 are employment and essential services, which is where an HR screening tool and a credit-scoring tool sit. **So in Germany, failing to explain a high-risk decision to the person it was about is a named offence with its own ceiling**, separate from the Union tiers. The Act does not give the art. 86(1) duty a new content; it gives it a German enforcement price.
-
-**One drafting detail worth recording rather than interpreting.** §15 pins its offences to the Regulation *"in der Fassung vom 13. Juni 2024"* — the version of 13 June 2024, which is the original. The amending Regulation (EU) 2026/1744 in §0 applied from **2026-07-27**, two days before the KI-MIG entered into force. What that reference does to offences defined against articles the Omnibus has since changed is **[not researched]** and is a question for a German lawyer, not for this layer. It is recorded because a reader comparing the two dates will notice, and should know the pack noticed too.
-
-**What this does not tell you about the other three.** Belgium, the Netherlands and France each make their own art. 99(1) regime, and nothing here carries across — exactly as with the art. 35(4) lists in [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md). Theirs are **[not researched]**.
+**None of which suspends anything.** The Regulation binds without a national act, so the absence of a supervisor is not the absence of a duty — it is the absence of someone to ask.
 
 ## 8. What this layer does not cover
 
@@ -315,10 +301,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 50(7) as amended: codes of practice on marking, with an implementing act if inadequate | 2026-11-11 | Primary — consolidated article read |
 | Art. 113 as amended: all eight dates, incl. 2026-12-02 for the new prohibitions and 2026-07-27 for arts. 102–110 | 2026-11-11 | Primary — consolidated article read and quoted against the 2024 original |
 | Art. 99(3)/(4)/(5) ceilings, and **art. 99(6)**: for SMEs including start-ups the **lower** of the two applies | 2026-11-11 | Primary — consolidated article read and quoted |
-| Germany: the KI-MIG of 2026-07-22, in force 2026-07-29, makes the Bundesnetzagentur the market surveillance authority, single point of contact and sandbox operator | 2026-11-11 | Primary — the Act read and quoted |
-| §15 KI-MIG: German offences for arts. 21, 27, 45 and the art. 86(1) explanation, capped at €50,000; the Union tiers run through §§16 and 17 | 2026-11-11 | Primary — read and quoted |
-| §15 pins its offences to the Regulation "in der Fassung vom 13. Juni 2024", two days before the amended version applied | 2026-11-11 | Primary — read; the effect of that reference is not this layer's to resolve |
-| The Belgian, Dutch and French art. 99(1) regimes | — | Open — not researched; nothing in the German one carries across |
+| The national layer: Germany's KI-MIG, the Dutch bill, and Belgium having designated nobody | — | Elsewhere — read on 2026-11-11 and 2026-11-12 and maintained in [eu-ai-act-national.md](eu-ai-act-national.md) |
 | Art. 99(1) as amended: national rules, and Member States must weigh SME economic viability | 2026-11-11 | Primary — consolidated article read |
 | No further AI Act duties on a minimal-risk deployer | 2026-11-11 | Unconfirmed — art. 26 is limited to high-risk deployers by its own terms and Chapter III Sections 1–3 are deferred, but this is an argument from absence; the whole Regulation was not read |
 | Marketing content as public-interest text under art. 50(4) | — | Open — not yet researched |
