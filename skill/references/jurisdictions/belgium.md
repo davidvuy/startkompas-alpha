@@ -94,6 +94,14 @@ Art. 56ter §1 gives the exemption to taxable persons established in Belgium who
 
 **And art. 4 is the cost nobody budgets for.** On moving into the exemption the taxable person must **revise the VAT already deducted** on goods and services other than capital assets not yet used or consumed, and on capital assets still in existence and usable whose original deduction is open to revision. The transition *"wordt gelijkgesteld met het verlies van de hoedanigheid van belastingplichtige"* — it is treated as **losing taxable-person status** — and the amount to repay is fixed on the basis of an **inventory** of what is left. A founder who has just bought equipment and then switches into the exemption pays some of that deduction back.
 
+### What the exemption does to the paperwork — `KB nr. 1` art. 14
+
+Source: [`KB nr. 1`, art. 14 §§2, 4 and 5 and arts. 17 and 18](https://www.ejustice.just.fgov.be/eli/besluit/1992/12/29/1992003823/justel) · *primary legislation, Justel consolidated text; §4 as replaced by `KB 2024-12-15/05`, in force 2025-01-01* · **[checked 2026-11-12]**
+
+**Art. 14 §4**: a taxable person under **art. 56ter** is relieved of keeping the incoming- and outgoing-invoice books that §2 1° and 2° otherwise require — **on two conditions**: the invoices and documents are kept *"volgens een ononderbroken reeks volgnummers"* assigned on receipt, issue or drawing up, **and** the book in §5 is kept. So the exemption removes the ledgers and replaces them with a numbered file plus one book; it does not remove the obligation to keep anything.
+
+**Two figures from the same decree that a founder will meet either way.** Art. 17 §1: the periodic return is filed by the **twentieth** day of the month following the period. Art. 17 §2: a **quarterly** return is allowed, by the **twenty-fifth** day of the month after each calendar quarter, where annual turnover excluding VAT is **at most €2,500,000** — with a lower €250,000 limit for energy products, mobile phones and computers with their accessories, and registered motor vehicles. Art. 18 §1 requires returns to be filed **electronically**, and §2 relieves that duty *"zolang zij niet over de nodige geïnformatiseerde middelen beschikken"*.
+
 ### The phased increase: the figures are confirmed, the enactment is not
 
 Source: [Chamber of Representatives, **DOC 56 1593/001** of **2026-06-15**](https://www.dekamer.be/FLWB/PDF/56/1593/56K1593001.pdf), `Wetsontwerp op de reductie van de kosten II`, Title 5 · *official parliamentary document, PDF extracted and the enacting articles read in both languages* · **[checked 2026-11-10]**
@@ -148,9 +156,24 @@ Source: [official e-invoicing FAQ — general B2B questions](https://efactuur.be
 | Special agricultural flat-rate regime | In scope **at least for receiving** B2B invoices (`minstens voor het ontvangen van B2B-facturen`) |
 | VAT taxpayer not established in Belgium, without a fixed establishment, even if VAT-identified here | **Out of scope** — the FAQ notes the law will be adjusted on this point |
 | Selling only to consumers (B2C) | Not mandatory |
-| A person with only article 44 VAT-exempt activities | **Unknown** — the FAQ does not address this case, and no other source was consulted for it: **[not researched]**. Do not infer either way. |
+| A person with only article 44 VAT-exempt activities | **Still unknown, but the question is now located.** The duty is in art. 53 §2bis of the Code, which was not read; `KB nr. 1` art. 14 §5 treats such a person separately for **bookkeeping**, which says nothing about invoicing. **[not researched]** — do not infer either way. |
 
 Format and transport: a structured electronic invoice over the **Peppol** network. Legal hook: new article 53, §2bis of the Belgian VAT Code.
+
+### The implementing rule, read — `KB nr. 1` arts. 13ter and 13quater
+
+Source: [`KB nr. 1` of 29 December 1992, arts. 13ter and 13quater](https://www.ejustice.just.fgov.be/eli/besluit/1992/12/29/1992003823/justel) · *primary legislation, Justel consolidated text; both articles inserted by `KB 2025-07-08/02`, art. 3, **in force 2026-01-01*** · **[checked 2026-11-12]**
+
+**Art. 13ter first paragraph** is where "Peppol" actually comes from. A taxable person obliged under art. 53 §2bis to issue a structured electronic invoice issues it:
+
+1. *"in overeenstemming met de Europese norm voor elektronische facturering en de lijst van syntaxen ervan op grond van Richtlijn 2014/55/EU zoals geconcretiseerd in het formaat **Peppol BIS in de UBL-versie**"*; and
+2. *"via het **Peppol-transmissienetwerk**"*.
+
+**Art. 13ter second paragraph lets the parties agree otherwise — within a limit.** By agreement between the parties concerned, another format and any other digital channel may be used, **on condition that the format satisfies the European standard and its list of syntaxes**. So the escape is from Peppol as a *network*, not from the European standard.
+
+**And art. 13quater closes the escape halfway.** A taxable person relying on that agreement *"beschikt over de technische middelen die het mogelijk maken om een gestructureerde elektronische factuur uit te reiken en te ontvangen overeenkomstig artikel 13ter, eerste lid"* — they must still **have the technical means to issue and receive over Peppol**. Agreeing a different channel with one customer does not excuse a founder from being Peppol-capable.
+
+**What that means for a founder's tooling decision.** The question is not "which invoicing tool do I like" but "can it do Peppol BIS in UBL over the Peppol network". A bilateral agreement to exchange something else is possible and is not a way to avoid the capability.
 
 **Why this matters most for this pack's default user.** A Belgian solo founder running a small B2B pilot is very likely under the €25,000 exemption regime — and that regime does **not** remove this obligation. A PDF emailed to a Belgian business customer is not a structured electronic invoice. Do not treat a PDF-only workflow as sufficient by default.
 
@@ -301,6 +324,10 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Phased figures 2027–2031 (€26,000 → €30,000) | 2026-11-10 | Primary — DOC 56 1593/001 of 2026-06-15, art. 25 |
 | Art. 26 of the bill is the entry-into-force clause, not an amending article | 2026-11-10 | Primary — the bill's own art. 26, quoted |
 | A law of 2026-09-23, published 2026-10-07, amends art. 56ter of the VAT Code | 2026-11-11 | Primary — Justel's own amendment history for the Code, read and quoted |
+| Art. 13ter `KB nr. 1`: Peppol BIS in UBL over the Peppol network, with a format-conforming alternative only by agreement | 2026-11-12 | Primary — the article read and quoted; inserted by `KB 2025-07-08/02`, in force 2026-01-01 |
+| Art. 13quater: a party using that agreement must still be able to issue and receive over Peppol | 2026-11-12 | Primary — read and quoted |
+| Art. 14 §4: an art. 56ter taxable person keeps a numbered file and the §5 book instead of the invoice ledgers | 2026-11-12 | Primary — read |
+| Art. 17: monthly return by the 20th, quarterly by the 25th where turnover is at most €2,500,000; art. 18: electronic filing unless the means are lacking | 2026-11-12 | Primary — read |
 | **`KB nr. 19` of 2014 is repealed** with effect from 2025-01-01 and replaced by `KB nr. 19` of 15 December 2024 | 2026-11-12 | Primary — the repeal note read on the 2014 decree's own Justel page, and the replacement read in its consolidated form |
 | Art. 56decies §1: a **10 % tolerance** on the domestic threshold, then immediate loss, and a bar for the following calendar year | 2026-11-12 | Primary — the inserting law read as published and quoted. Justel's consolidated Code was not reachable, so a later amendment would not show |
 | Art. 56decies §2: **no** tolerance on the Union threshold | 2026-11-12 | Primary — read |

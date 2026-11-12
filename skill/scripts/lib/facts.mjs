@@ -251,6 +251,8 @@ export const REQUIRED = [
   // Belgium's 10 % tolerance is the only one of the four, and the repeal of
   // KB nr. 19 of 2014 is why the question stayed open for a day. Both must
   // survive: the rule, and the reason the old instrument cannot be cited.
+  {case: '—', pack: 'belgium.md', label: 'Peppol BIS in UBL over the Peppol network is the default', pattern: /Peppol BIS in de UBL-versie/},
+  {case: '—', pack: 'belgium.md', label: 'agreeing another channel does not excuse Peppol capability', pattern: /beschikt over de technische middelen/},
   {case: '—', pack: 'belgium.md', label: 'a 10 per cent tolerance on the Belgian VAT threshold', pattern: /ten hoogste tien pct\./},
   {case: '—', pack: 'belgium.md', label: 'KB nr. 19 of 2014 is repealed, not merely old', pattern: /\[Opgeheven\] <KB 2024-12-15\/04/},
   {case: '—', pack: 'belgium.md', label: 'entering the exemption triggers an input-VAT revision', pattern: /gelijkgesteld met het verlies van de hoedanigheid van belastingplichtige/},
