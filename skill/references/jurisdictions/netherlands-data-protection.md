@@ -171,6 +171,34 @@ This is the operative one. Where a **non-public** controller decides on a reques
 
 Art. 36 adds that the AP can resolve such a dispute, or a code of conduct's body can, and art. 42 disapplies art. 34 — telling the data subject about a breach — **for financial undertakings under the `Wet op het financieel toezicht`** and nobody else. Art. 43 disapplies most of the Regulation and nearly all of the UAVG for processing **solely for journalistic purposes or for academic, artistic or literary expression**; it is listed here only so that a founder running a blog alongside the business does not read that exemption as covering the business.
 
+## Whether a breach has to be notified — the AP's own test
+
+Source: [`Datalek: wel of niet melden`](https://autoriteitpersoonsgegevens.nl/themas/beveiliging/datalekken/datalek-wel-of-niet-melden) · *official authority, read in full* · **[checked 2026-11-12]**
+
+Art. 33 GDPR sets the 72 hours and the *"unlikely to result in a risk"* threshold — see [eu-gdpr.md](eu-gdpr.md). **What the AP adds is how to decide**, and a founder deciding at speed needs the three parts below rather than the principle.
+
+**Eight factors it names**, as the structure of the assessment: the nature of the breach; the **nature, sensitivity and amount** of the data; how easily people can be identified; the **severity of the consequences**; the characteristics of the **unauthorised recipient**; special characteristics of the person; special characteristics of **your organisation**; and the number of people affected.
+
+**Three categories where it says to assume a high risk outright**: special-category data such as health; criminal-law data; and *"[i]nformatie over persoonlijke aspecten, bedoeld om profielen op te stellen of te gebruiken"* — profiling data, especially on work performance, economic situation, health, preferences or interests, reliability, behaviour and location. It adds credit-card data, **copies of identity documents**, and the **BSN combined with name and address**. And a warning a founder will under-rate: a telephone number and an email address can look harmless and are exactly what a targeted phishing attack needs.
+
+### The encryption exception, and its three conditions
+
+The familiar line is that encrypted data need not be notified. The AP states it with **three cumulative conditions**, and the second and third are the ones that fail in practice:
+
+1. the data are **still completely intact**;
+2. you **still have full control** over them — *"u beschikt over een recente back-up"*; and
+3. the key used for the encryption or hashing **was not compromised in the breach**, and is not findable by unauthorised people with available technology.
+
+So ransomware that encrypts data you cannot restore fails condition 1 and 2 at once: the point of the exception is that **the people whose data it is are no worse off**, not that something somewhere was encrypted.
+
+### The "reliable recipient", and the trap at the end of it
+
+Sending data to the wrong person is the commonest small-business breach. The AP accepts that a recipient who can **objectively** be established as reliable reduces or removes the severity, and names three categories: a **wrong colleague or department inside your own organisation**; a party you have a **business relationship** with, such as a regular supplier; and a party under a **statutory professional secrecy**, such as a GP.
+
+**Then it closes the obvious workaround.** If an unknown recipient contacts you, returns the data or confirms deletion, **but is not in one of those three categories**, you may not treat them as reliable — *"[u] heeft daarom geen zekerheid over de ontvanger"*. Their good behaviour is not knowledge of them. A founder who emails a client list to a stranger and gets a polite reply has still had a notifiable breach unless something else saves it.
+
+**Two closing rules from the same page.** If the breach need not be notified to the AP, it need **not** be communicated to the people affected either. And where the assessment is genuinely balanced, the AP's advice is to **notify**: *"dan kunt het beste het zekere voor het onzekere nemen"*.
+
 ## Pack maintenance
 
 One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
@@ -212,7 +240,11 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Follow-up notification requested within 4 weeks, longer must be motivated | 2026-11-10 | Authority — the same AP document |
 | `Vragenlijst` is `versie 1.1, augustus 2022` and disclaims any rights | 2026-11-10 | Authority — the same AP document; recheck for a newer version |
 | Notification duty sits in four statutes (AVG, Tw, Wjsg, Wpg) | 2026-11-10 | Authority — the same AP document; the three other statutes not examined |
-| Parent brochure, the notifiable/non-notifiable example list, the 10 registration tips | — | Open — not yet researched |
+| The AP's eight risk factors, and the three data categories it treats as high risk outright | 2026-11-12 | Authority — its current guidance page read in full |
+| **The encryption exception has three cumulative conditions**, including a recent backup and an uncompromised key | 2026-11-12 | Authority — read and quoted |
+| The "reliable recipient" doctrine, its three categories, and the rule that an unknown recipient's good behaviour does not qualify | 2026-11-12 | Authority — read and quoted |
+| No notification to the AP means no communication to the people affected; in doubt, notify | 2026-11-12 | Authority — read |
+| The 2019 example-list PDF, the parent brochure and the 10 registration tips | — | Open — the live guidance page was read instead, because it is current and the 2019 list is not. The three documents themselves are still unread |
 | Registration, VAT, e-invoicing, agreements and ownership | — | Elsewhere — those are [netherlands.md](netherlands.md)'s sections 1 to 5 |
 
 Next full recheck due: **2027-05-10**. Earlier if the UAVG's pending amendments commence, or if the AP issues a version 2 of its art. 35(4) list.

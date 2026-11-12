@@ -353,6 +353,11 @@ export const REQUIRED = [
   // A draft list is not a list. The AP's own process - EDPB opinion, then the
   // Staatscourant - is what makes the difference, and it is the sentence a
   // reader needs before relying on anything they have heard about it.
+  // The two parts of the AP's breach test that a founder gets wrong under
+  // pressure: the encryption exception is three conditions, not one, and a
+  // polite stranger is not a reliable recipient.
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'the encryption exception has three cumulative conditions', pattern: /three cumulative conditions/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'an unknown recipient is not a reliable recipient', pattern: /geen zekerheid over de ontvanger/},
   {case: '—', pack: 'netherlands-data-protection.md', label: 'the Dutch art. 35(5) list is a draft, valid only after the Staatscourant', pattern: /is de lijst officieel geldig/},
   {case: '—', pack: 'netherlands-data-protection.md', label: 'the draft list is aimed at the mkb and the self-employed', pattern: /mkb en zelfstandige ondernemers in Nederland/},
   {case: '—', pack: 'netherlands-data-protection.md', label: 'no time limit on the petition if the controller did not answer in time', pattern: /is de indiening van het verzoekschrift niet aan een termijn gebonden/},
