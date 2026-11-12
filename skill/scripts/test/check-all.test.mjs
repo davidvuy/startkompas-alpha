@@ -129,3 +129,70 @@ test('exactly one check is marked as needing the network', () => {
   const networked = [...source.matchAll(/network:\s*true/g)];
   assert.equal(networked.length, 1, `${networked.length} checks claim to need the network`);
 });
+
+// --- Running the network check alongside the local ones ----------------------
+//
+// Added 2026-11-12. `check-links.mjs` takes about fourteen seconds of waiting
+// and everything else about four, so in sequence the run spent fourteen
+// seconds with an idle CPU. Measured over three alternating pairs, starting it
+// first and awaiting it last cut the run from 29.7 s to 23.6 s on average, and
+// won every pair.
+//
+// The concurrent path itself needs the network, so it is exercised by the real
+// `check-all` run rather than here — the same way check-links is. What these
+// tests pin is everything about it that can be checked offline: that the
+// report still reads in declared order, and that a skipped check is not given
+// a fabricated duration.
+
+test('the summary reports how long each check took', () => {
+  // You cannot improve what you do not measure, and the one place a
+  // maintainer will look is the summary they already read.
+  const result = runAll(['--offline', '--quiet']);
+  assert.match(
+    result.stdout,
+    /passed\s+check-skill\.mjs\s+\d+\s+ms/,
+    `expected a duration beside each check, got:\n${result.stdout}`,
+  );
+});
+
+test('a skipped check is given no duration rather than zero', () => {
+  // `0 ms` would read as "it ran and was instant", which is the opposite of
+  // what --offline means.
+  const result = runAll(['--offline', '--quiet']);
+  const line = result.stdout.split(/\r?\n/).find((text) => text.includes('skipped'));
+  assert.ok(line, `no skipped line in:\n${result.stdout}`);
+  assert.ok(!/\d+\s*ms/.test(line), `a skipped check must carry no duration, got: ${line}`);
+});
+
+test('the summary is ordered as the checks are declared, not as they finish', () => {
+  // The network check now finishes asynchronously, so the order of the results
+  // array is no longer the order of the loop. The report must not reorder:
+  // "the tests over the checks run first" is a documented property.
+  const result = runAll(['--offline', '--quiet']);
+  const source = readFileSync(join(scriptsDir, 'check-all.mjs'), 'utf8');
+  const declared = [...source.matchAll(/script: '([^']+)'/g)].map((match) => match[1]);
+  const summary = result.stdout.slice(result.stdout.indexOf('--- summary ---'));
+  const reported = declared.filter((name) => summary.includes(name));
+  assert.deepEqual(reported, declared, 'every declared check should appear in the summary');
+  let cursor = -1;
+  for (const name of declared) {
+    const at = summary.indexOf(name);
+    assert.ok(at > cursor, `${name} appears out of declared order in:\n${summary}`);
+    cursor = at;
+  }
+});
+
+test('the network check is started before the local loop, not after it', () => {
+  // The whole saving depends on this ordering, and it is the kind of thing a
+  // later edit reverts by accident while tidying. Asserted against the source,
+  // because the behaviour it guards is invisible offline.
+  const source = readFileSync(join(scriptsDir, 'check-all.mjs'), 'utf8');
+  const startedAt = source.indexOf('const pending =');
+  const loopAt = source.indexOf('for (const check of CHECKS)');
+  assert.ok(startedAt > 0, 'expected the network checks to be started into a `pending` list');
+  assert.ok(loopAt > 0, 'expected the local loop over CHECKS');
+  assert.ok(
+    startedAt < loopAt,
+    'the network check must be started before the local loop, or nothing overlaps',
+  );
+});
