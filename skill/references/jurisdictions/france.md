@@ -376,7 +376,8 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | 3-year inactivity retention for customer and prospect data | 2026-11-12 | Authority — confirmed against the CNIL's current `gestion commerciale` référentiel, which splits the figure: see [france-data-protection.md](france-data-protection.md) |
 | B2B prospecting rests on legitimate interest, not consent; telephone prospecting to consumers needs consent from 2026-08-11 | 2026-11-12 | Authority — the CNIL's current prospecting pages read; maintained in [france-data-protection.md](france-data-protection.md) |
 | CNIL cookie doctrine as it stands now | 2026-11-12 | Authority — the art. 82 audience-measurement exemption read and recorded in [france-data-protection.md](france-data-protection.md); the wider cookie guidelines not read |
-| CNIL `guide sécurité des données personnelles`; ANSSI/CPME 12 règles | — | Open — not yet researched |
+| The CNIL's security guide: 25 sheets, and sheet 14 on processors read in full | 2026-11-12 | Authority — read in its HTML form; maintained in [france-data-protection.md](france-data-protection.md) |
+| ANSSI/CPME `12 règles essentielles` | — | Open — not yet researched |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2027-09-01, when the issuing obligation reaches small businesses.

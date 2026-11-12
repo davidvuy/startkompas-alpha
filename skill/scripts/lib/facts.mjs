@@ -370,6 +370,12 @@ export const REQUIRED = [
   // 2026-11-12. A B2B founder told they need consent before the first email
   // does not send the email, so losing this row costs more than a wrong fine
   // figure would: it stops the work the skill exists to start.
+  // Sheet 14 is the only place in these packs with an operational checklist
+  // for choosing and contracting a processor. Art. 28 says what the contract
+  // must contain; this says what to do about it.
+  {case: '—', pack: 'france-data-protection.md', label: 'ask the provider for its security policy and certifications', pattern: /connaissances spécialisées, fiabilité et ressources/},
+  {case: '—', pack: 'france-data-protection.md', label: 'cloud without the effective location of the data is named as a mistake', pattern: /localisation géographique effective des données/},
+  {case: '—', pack: 'france-data-protection.md', label: 'a certification is a first indicator, not a conclusion', pattern: /first indicator of reliability and not a conclusion|first indicator\* of reliability and not a conclusion/},
   {case: '—', pack: 'france-data-protection.md', label: 'B2B prospecting rests on legitimate interest, not consent', pattern: /\*\*legitimate interest — no prior consent\*\*/},
   {case: '—', pack: 'france-data-protection.md', label: "the CNIL's own B2B example, which anchors the rule in a real case", pattern: /directeur informatique d'une entreprise/},
   // Writing to contact@ is outside the regime entirely. This is the one line

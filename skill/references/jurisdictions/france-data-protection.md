@@ -184,6 +184,30 @@ The CNIL adds recommendations rather than conditions: inform users, for instance
 
 Source · [`Cookies : solutions pour les outils de mesure d'audience`](https://www.cnil.fr/fr/cookies-solutions-pour-les-outils-de-mesure-daudience) · *official authority, page dated 2025-07-04* · **[checked 2026-11-12]**
 
+## The CNIL's security guide is an agenda, and it is readable in full
+
+Sources
+- [`Guide de la sécurité des données personnelles`](https://www.cnil.fr/fr/guide-de-la-securite-des-donnees-personnelles) · *official authority, the complete sheet list read in its HTML form* · **[checked 2026-11-12]**
+- [`Sécurité : Gérer la sous-traitance`](https://www.cnil.fr/fr/securite-gerer-la-sous-traitance) · *official authority, sheet 14, dated 2024-03-14, read in full* · **[checked 2026-11-12]**
+
+**Twenty-five numbered sheets, each with one job.** In order: piloting security; defining a framework for users; involving and training them; authenticating users; managing authorisations; securing workstations; securing mobile computing; protecting the network; securing servers; securing websites; **framing software development**; protecting premises; securing exchanges with the outside; **managing processors**; maintenance and end of life of hardware and software; logging operations; backups; continuity and recovery; **incidents and breaches**; risk analysis; encryption, hashing and signature; **cloud**; **mobile applications**; **artificial intelligence: design and training**; and **APIs**. A self-assessment, *"Avez-vous pensé à ?"*, closes it.
+
+**The last four are the ones a software founder will reach for**, and they are the newest: cloud, mobile applications, AI design and training, and APIs were added when the guide was reorganised into five parts. Sheet 24's stated purpose is *"[s]e doter des ressources et outils nécessaires pour développer un système d'IA robuste, fiable et performant"* — which sits beside, not inside, the AI Act obligations in [eu-ai-act.md](eu-ai-act.md).
+
+**Each sheet has the same three levels**, and that shape is why the guide works as an agenda rather than a lecture: *les précautions élémentaires*, *ce qu'il ne faut pas faire*, and *pour aller plus loin*.
+
+### Sheet 14, because it is the one a pilot needs first
+
+Every pilot in this skill has suppliers. Art. 28 GDPR says what the contract must contain — see [eu-gdpr.md](eu-gdpr.md) for the six particulars. **The CNIL adds what to do about it**, and the items below are not in art. 28:
+
+- **Before choosing.** Use only processors offering sufficient guarantees in *"connaissances spécialisées, fiabilité et ressources"*, and **ask the provider for its information-security policy and any certifications**.
+- **In the contract**, besides the art. 28 content: the split of responsibility for confidentiality; **minimum requirements on user authentication**; **the conditions for returning and destroying the data at the end of the contract**; incident rules that include telling the controller *"dans les plus brefs délais"* on discovering a security flaw or incident; the assistance the processor owes; and a **regular review of the security measures** with the conditions for revising them.
+- **A way to check.** Provide means to verify the guarantees — security audits, visits — covering encryption by sensitivity or a procedure ensuring the provider has **no access to data it does not need**, encrypted transmission such as HTTPS or VPN, and network protection, logging, authorisation management and authentication.
+
+**What it says not to do** is short and is exactly what a founder in a hurry does: start the work without a signed art. 28 contract, and take cloud services *"sans garantie quant à la localisation géographique effective des données"* and without checking what a transfer outside the Union requires.
+
+**And three things worth carrying into any jurisdiction.** The **whole sub-processing chain** should be considered, not only the direct processor. A certification is a *first indicator* of reliability and not a conclusion — it names **ISO/IEC 27001** for information security management and **ISO/IEC 27701** for privacy information management. And where the provider holds a certification, **ask for it and check its scope**, because a certificate covering a different service is no comfort at all.
+
 ## The French statute could not be read, and that is worth recording
 
 `Loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés`, as rewritten for the GDPR, is France's national data-protection act — the counterpart to the German `BDSG`, the Dutch `UAVG` and the Belgian `wet van 30 juli 2018`, all three of which are read in their own packs. It is **[not researched]**, and so are the criminal provisions in the `Code pénal` that France, like Belgium, maintains under art. 84 GDPR.
@@ -224,7 +248,11 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | The référentiels are **not binding**; departing from them is permitted if justified | 2026-11-12 | Authority — the CNIL states it in both the FAQ and the publication notice, and both were read |
 | Audience-measurement trackers are exempt from consent under art. 82 on the conditions listed; the 13- and 25-month figures are recommendations, not conditions | 2026-11-12 | Authority — the CNIL page of 2025-07-04 read; art. 82 `loi 78-17` itself is on blocked Légifrance |
 | The old sentence `Prospecting by electronic means requires consent, and you must keep the proof of it` was wrong for B2B and is withdrawn | 2026-11-12 | Withdrawn — carried from the April 2018 guide until 2026-11-12, when the CNIL's current pages were read |
-| The CNIL's sector guides, its `gestion des impayés` référentiel, and its `guide sécurité des données personnelles` | — | Open — reachable, simply not yet read |
+| The security guide's 25 sheets, their three-level shape, and the four newest — cloud, mobile apps, AI, APIs | 2026-11-12 | Authority — the guide's HTML index read in full |
+| Sheet 14 on processors: what to ask for before choosing, what the contract adds beyond art. 28, and how to verify it | 2026-11-12 | Authority — the sheet read in full and quoted; it carries its own date of 2024-03-14 |
+| Sheet 14's two "do not": starting without a signed art. 28 contract, and cloud without the effective location of the data | 2026-11-12 | Authority — read and quoted |
+| The whole sub-processing chain counts; ISO/IEC 27001 and 27701 are a first indicator, not a conclusion | 2026-11-12 | Authority — read |
+| The CNIL's sector guides and its `gestion des impayés` référentiel | — | Open — reachable, simply not yet read |
 
 Next full recheck due: **2027-05-10**. Earlier if Légifrance becomes readable again, which would let the French statutory layer be closed, or if the CNIL replaces either list.
 
