@@ -14,6 +14,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {existsSync, readFileSync, readdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {dirname, join, resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -184,5 +185,80 @@ test('a scheduled workflow is not also doing work on every push', () => {
     matrixJob[1],
     /if:\s*github\.event_name == 'schedule'/,
     'the full matrix should run on the schedule, not on every push',
+  );
+});
+
+// --- Would CI's first step pass from here? -----------------------------------
+//
+// Added 2026-11-12, after `Quality / Tests (ubuntu, Node 24)` had been failing
+// on every push since 2026-11-11 and mailing the repository owner each time.
+// The cause was one line: `installation.json` holds a SHA-256 for every file
+// outside `node_modules`, `.git` and `skill/`, and two documentation files had
+// been edited without `scripts/refresh-public-manifest.mjs --write` being run.
+//
+// Nothing local caught it. `npm test` does not look at the manifest and
+// `npm run test:scripts` did not either, so the first anyone knew was an email
+// about a red build. These two tests move that discovery to before the push.
+
+test('the public package manifest matches the working tree', () => {
+  // This is the first step of the Quality workflow, as a test. When it fails,
+  // the fix is `node scripts/refresh-public-manifest.mjs --check` to see what
+  // moved and `--write` to record it — never editing installation.json by hand.
+  const manifest = JSON.parse(readFileSync(join(repoRoot, 'installation.json'), 'utf8'));
+  const listed = new Map(manifest.files.map((file) => [file.path, file.sha256]));
+  const onDisk = new Set();
+  const mismatched = [];
+  const unlisted = [];
+
+  const walk = (dir, rel = '') => {
+    for (const entry of readdirSync(dir, {withFileTypes: true})) {
+      const name = rel ? `${rel}/${entry.name}` : entry.name;
+      // The same three exclusions verify-installation.mjs applies. `skill/` is
+      // outside this manifest on purpose and has its own checks.
+      if (!rel && ['node_modules', '.git', 'skill'].includes(entry.name)) continue;
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(full, name);
+        continue;
+      }
+      if (name === 'installation.json') continue;
+      onDisk.add(name);
+      if (!listed.has(name)) {
+        unlisted.push(name);
+        continue;
+      }
+      const digest = createHash('sha256').update(readFileSync(full)).digest('hex');
+      if (digest !== listed.get(name)) mismatched.push(name);
+    }
+  };
+  walk(repoRoot);
+
+  const missing = [...listed.keys()].filter((path) => !onDisk.has(path));
+  assert.deepEqual(
+    mismatched,
+    [],
+    `these files changed without a manifest refresh — run scripts/refresh-public-manifest.mjs --write:\n  ${mismatched.join('\n  ')}`,
+  );
+  assert.deepEqual(
+    unlisted,
+    [],
+    `these files are not in installation.json — packaging a new file is a reviewed decision, so add the entry deliberately:\n  ${unlisted.join('\n  ')}`,
+  );
+  assert.deepEqual(missing, [], `these manifest entries no longer exist on disk:\n  ${missing.join('\n  ')}`);
+});
+
+test('the eval case count the README states is the count that exists', () => {
+  // The sentence that broke the manifest was a count of eval cases, and it had
+  // gone stale twice by the time anyone looked. A number in prose that nothing
+  // checks is a number that is wrong.
+  const readme = readFileSync(join(repoRoot, 'README.md'), 'utf8');
+  const stated = readme.match(/cases\.md\) has (\d+) cases/);
+  assert.ok(stated, 'README.md no longer states how many eval cases there are');
+  const cases = readFileSync(join(repoRoot, 'skill', 'evals', 'cases.md'), 'utf8');
+  const actual = (cases.match(/^## C\d+/gm) ?? []).length;
+  assert.equal(
+    Number(stated[1]),
+    actual,
+    `README.md says ${stated[1]} eval cases; skill/evals/cases.md has ${actual}`,
   );
 });

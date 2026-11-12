@@ -114,7 +114,7 @@ They unblock or invalidate large parts of the rest. **Eight of the twelve are cl
 | --- | --- | --- | --- |
 | 1 | [#11](#11) Decide the runtime's fate | 30+ items below branch on this answer | **Done** — keep, frozen; [DECISIONS.md](DECISIONS.md) entry 1 |
 | 2 | [#1](#1) Rewrite the root README install path | It currently sends every visitor down the 28 MB route | **Done** — skill install is first, one line, no Node |
-| 3 | [#47](#47) Score the eval cases on one host | Until this exists, nobody knows the skill works | **Open — needs a host session judged by someone who is not the model.** The 22 cases and the pass bar are written |
+| 3 | [#47](#47) Score the eval cases on one host | Until this exists, nobody knows the skill works | **Open — needs a host session judged by someone who is not the model.** The cases and the pass bar are written |
 | 4 | [#69](#69) Install your own skill and use it | `~/.claude/skills/` does not exist on your machine | **Done** — installed in `~/.claude/skills/` and `~/.codex/skills/`, resynced on every change |
 | 5 | [#59](#59) Run `check-skill.mjs` in CI | It currently runs nowhere | **Done** — `skill.yml` runs `check-all.mjs`, so every check plus their own tests, with no `npm ci` |
 | 6 | [#99](#99) Watch one person install it, unaided | That number replaces every estimate in this file | **Open — needs a real person** |
