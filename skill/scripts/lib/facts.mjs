@@ -161,16 +161,57 @@ export const REQUIRED = [
   {case: '—', pack: 'netherlands-data-protection.md', label: 'reaching the FG is not awareness', pattern: /the DPO is not a buffer/i},
   // Art. 2(3) Aw: ownership cannot pass without a deed. A founder relying on
   // this pack must not be told payment or an invoice can transfer copyright.
-  {case: '—', pack: 'netherlands.md', label: 'transfer needs a deed under art. 3:95 BW', pattern: /art\. 3:95 BW/},
-  {case: '—', pack: 'netherlands.md', label: 'narrow construction follows the human creator', pattern: /not whoever holds the title/i},
+  // These five moved to the copyright annex on 2026-11-12, when netherlands.md
+  // went over the per-reference budget. check-facts named all five the moment
+  // the split landed, which is the cheapest possible way to learn that an
+  // assertion outlived the file it was written against.
+  {case: '—', pack: 'netherlands-copyright.md', label: 'transfer needs a deed under art. 3:95 BW', pattern: /art\. 3:95 BW/},
+  {case: '—', pack: 'netherlands-copyright.md', label: 'narrow construction follows the human creator', pattern: /not whoever holds the title/i},
   // The Dutch software-user provisions invert the pattern of the other three.
   // Both halves must survive: the protection of error correction, and the
   // refusal to conclude anything from the silence in 45k-45m.
-  {case: '—', pack: 'netherlands.md', label: 'art. 45j protects error correction from contract', pattern: /kan niet bij overeenkomst\s+worden verboden/},
-  {case: '—', pack: 'netherlands.md', label: 'silence in 45k-45m is not read as waivable', pattern: /Do not conclude from that silence/i},
+  {case: '—', pack: 'netherlands-copyright.md', label: 'art. 45j protects error correction from contract', pattern: /kan niet bij overeenkomst\s+worden verboden/},
+  {case: '—', pack: 'netherlands-copyright.md', label: 'silence in 45k-45m is not read as waivable', pattern: /Do not conclude from that silence/i},
   // The directive settles what the Dutch text leaves unsaid. Without this the
-  // pack reads as if the silence were simply unresolved.
-  {case: '—', pack: 'netherlands.md', label: 'art. 8 of the Software Directive voids such clauses', pattern: /shall be null and void/},
+  // annex reads as if the silence were simply unresolved.
+  {case: '—', pack: 'netherlands-copyright.md', label: 'art. 8 of the Software Directive voids such clauses', pattern: /shall be null and void/},
+  // And the pack must keep the pointer, or the annex is five files away from
+  // the reader who needs it.
+  {case: '—', pack: 'netherlands.md', label: 'the pack points at the copyright annex', pattern: /netherlands-copyright\.md/},
+
+  // --- EU — unsolicited commercial communication -----------------------------
+  // The layer exists because art. 13(5) hands the member states a choice. If
+  // that sentence goes, the four national answers below read as four mistakes.
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the layer does not hold identically, unlike the GDPR layer', pattern: /it does not hold identically/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'art. 13(5) applies the opt-in to natural persons only', pattern: /shall apply to subscribers who are natural persons/},
+  // Germany. The word in §7(2) Nr. 2 is "Adressaten", not "Verbraucher", and
+  // that single word is why a German cold email needs consent.
+  {case: '—', pack: 'eu-eprivacy.md', label: 'German email needs prior express consent of the Adressat', pattern: /vorherige ausdrückliche Einwilligung des Adressaten/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'a German call to a non-consumer needs only presumed consent', pattern: /zumindest mutmaßliche Einwilligung/},
+  // The sanction route, which is the part a founder actually feels. §20 omits
+  // email; without this the pack reads as if a regulator enforced it.
+  {case: '—', pack: 'eu-eprivacy.md', label: 'email is not an administrative offence in Germany', pattern: /\*\*Email is not in that list\.\*\*/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the German route is a competitor injunction under §8', pattern: /jedem Mitbewerber/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'German telephone consent is kept five years, against the French three', pattern: /keep the proof for \*\*five years\*\*/},
+  // Netherlands. The claim rests on a definition in a different article, so
+  // both halves are guarded.
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the Dutch opt-in covers companies', pattern: /natuurlijke persoon of rechtspersoon/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the Dutch sender carries the burden of proof', pattern: /kan aantonen/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the Dutch carve-out needs an address published for that purpose', pattern: /designated and made public for receiving/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'art. 11.7 Tw is supervised by the ACM, not the AP', pattern: /\*\*Art\. 11\.7 is the ACM's\*\*/},
+  // Belgium, which is the harshest of the four and the easiest to understate.
+  {case: '—', pack: 'eu-eprivacy.md', label: 'Belgian advertising email without consent is criminal', pattern: /Art\. XV\.120 WER: those who send advertising by email/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the Belgian ceiling has a turnover alternative', pattern: /6 \*\*%\*\* of total annual turnover|\*\*6 %\*\* of total annual turnover/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the Belgian burden of proof is in art. XII.13 §4', pattern: /incombe au prestataire/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the Belgian carve-out is for impersonal addresses', pattern: /if the electronic contact details used are `impersonnelles`/},
+  // The decree names a repealed law. A reader who checks it alone concludes
+  // the exemptions lapsed, so the saving provision has to stay.
+  {case: '—', pack: 'eu-eprivacy.md', label: 'art. 6 of the inserting law saves the 2003 decree', pattern: /présumées faire référence aux dispositions équivalentes/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'Belgium requires an acknowledgement of an unsubscribe', pattern: /\*\*send an acknowledgement of receipt by email\*\*/},
+  // Two words reading "niveau" on two different scales, one of them ten times
+  // the other. This warning is the whole reason the figures are safe to quote.
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the WER niveau scale is not the Penal Code niveau scale', pattern: /Same word, different scales/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the décimes question is left open rather than assumed away', pattern: /without mentioning `décimes additionnels`/},
 
   // --- Shared EU layers ------------------------------------------------------
   {case: '—', pack: 'eu-gdpr.md', label: '72-hour notification', pattern: /72 hours/},

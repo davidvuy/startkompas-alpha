@@ -298,6 +298,8 @@ Art. 6(1)(b) requires a contract *"to which the data subject is party"*. In a B2
 
 So for the pilots this skill supports, **(f) carries more than this layer used to say**, and (b) carries the sole-trader case and the pre-contractual steps a prospect themselves asks for. (f) requires actually weighing the interests rather than asserting them — which is why the note below is open, and why "legitimate interests" is not a shortcut around a basis.
 
+**And a legal basis is not the only thing the first email needs.** Arts. 6 and 21 decide whether you may process the contact's data; **art. 13 of Directive 2002/58/EC decides whether you may send the message at all**, and it answers differently in each of the four packs — see [eu-eprivacy.md](eu-eprivacy.md). Satisfying (f) and still breaching the national rule is the ordinary outcome, not an edge case.
+
 **One authority has now worked the test for the activity every pilot starts with.** On B2B prospecting the CNIL holds that **legitimate interest suffices**, with no prior consent, where the subject of the approach relates to the recipient's profession — and on *guessing* a professional email address from a name it published criteria for the balancing itself in October 2026. Read [france-data-protection.md](france-data-protection.md) for both: it is the closest thing these packs have to a regulator showing its working on (f), and the reasoning travels further than the jurisdiction does. **What it is not is a French answer that binds elsewhere** — the other three packs have no equivalent, and their open rows now say so.
 
 **Open:** the balancing test for (f) in general, and whether a given outreach activity survives it, is **[not researched]** and is a judgment, not a lookup.

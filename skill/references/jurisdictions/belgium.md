@@ -231,6 +231,8 @@ Never infer ownership or clearance from payment alone, from the fact that AI gen
 
 ## 6. Data protection
 
+**Before the GDPR, there is the first email — read [eu-eprivacy.md](eu-eprivacy.md).** Art. XII.13 `WER` prohibits advertising email without the addressee's prior consent, puts the burden of proof on the sender, and art. XV.120 makes a breach **criminal** — `niveau 3`, up to €25,000 or 6 % of turnover. The only business carve-out is for **impersonal** addresses such as `info@`. This is the second place Belgium criminalises ordinary pilot activity; art. 222 of the data-protection act is the other.
+
 **The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle. Those rules are identical in all four packs and are not repeated here.
 
 **Belgian specifics go well beyond the authority — Belgium is the one of these four that makes processing without a lawful basis a crime.** The supervisory authority is the **Gegevensbeschermingsautoriteit / Autorité de protection des données (GBA/APD)**, and it publishes more SME-specific material than most — point a Belgian founder at these rather than paraphrasing them.
@@ -271,7 +273,9 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. XI.301: XI.299 §§2–3 and XI.300 are `van dwingend recht`; §1 is not | 2026-11-10 | Primary — WER text read and quoted |
 | Art. XI.298 c): EU exhaustion on first sale, except rental and lending | 2026-11-10 | Primary — WER text read |
 | Belgian case law on what `dwingend recht` means for a non-compliant clause | — | Open — not yet researched |
-| Whether the GBA has published anything on B2B prospecting and legitimate interest | — | Open — not yet researched. The CNIL has, and [france-data-protection.md](france-data-protection.md) carries it; nothing in it binds a Belgian controller |
+| Advertising email without the addressee's prior consent breaches art. XII.13 WER and is **criminal** under art. XV.120 — `niveau 3`, €26–€25,000 or 6 % of turnover | 2026-11-12 | Primary — arts. XII.13, XV.70 and XV.120 read on Justel; maintained in [eu-eprivacy.md](eu-eprivacy.md) |
+| The 2003 royal decree exempts **impersonal** company addresses, and survives its repealed cross-reference | 2026-11-12 | Primary — the decree and art. 6 of `L 2013-12-15/51` read; maintained in [eu-eprivacy.md](eu-eprivacy.md) |
+| Whether the GBA has published anything on B2B prospecting and the GDPR basis | — | Open — not yet researched. The statute is read; the authority guidance is what is missing |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 | Everything Belgian about data protection: the GBA, the `wet van 30 juli 2018` and the art. 35(4) list | — | Elsewhere — maintained in [belgium-data-protection.md](belgium-data-protection.md) |
 | EU AI Act | — | Elsewhere — maintained in eu-ai-act.md |

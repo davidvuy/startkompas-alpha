@@ -108,6 +108,8 @@ Copy this block into the run log section below it, one copy per run, and fill th
 | C23 | Germany: “I’m too small to need a DPO” | | |
 | C24 | An AI tool that screens job applications | | |
 | C25 | Netherlands: standard terms and the assumed protection | | |
+| C26 | Germany: the cold email a founder is sure is fine | | |
+| C27 | Belgium and France: the same campaign, two countries | | |
 
 ### The pass bar
 

@@ -323,6 +323,8 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 
 ## 6. Data protection
 
+**Before the GDPR, there is the first email — read [eu-eprivacy.md](eu-eprivacy.md).** France is the one of these four where the ordinary first email to a business **is** lawful without consent, on legitimate interest, where the subject relates to the recipient's profession. That layer sets it against Germany, the Netherlands and Belgium, which all answer differently; the French detail is in the annex below.
+
 **The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle.
 
 **French specifics.** The supervisory authority is the **CNIL**, and a French founder's data-protection answers come from it rather than from the statute — on 2026-11-11 Légifrance served a bot-protection challenge to every automated request, so `Loi n° 78-17` is unread and the annex says so rather than implying otherwise.

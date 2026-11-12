@@ -8,7 +8,7 @@ Keep every case synthetic. Never use a real customer, real personal data or a re
 
 ## Running the whole suite in one sitting
 
-Roughly 35–50 minutes for 25 cases. The point is to get *a* score on record; a rough score beats none.
+Roughly 40–55 minutes for 27 cases. The point is to get *a* score on record; a rough score beats none.
 
 1. **Install the skill** on the host you are testing — [`../INSTALL.md`](../INSTALL.md).
 2. **Open a fresh session per case.** Reusing one lets earlier cases contaminate later ones. This is the step people skip, and it invalidates the run.
@@ -230,10 +230,24 @@ Path handling is where file-writing skills break, and the failure is quiet: the 
 - Must: name **art. 6:233 BW** and both of its grounds, including that failing to give a real opportunity to read the terms is enough on its own; state that **art. 6:235(3) BW** bars the grounds for a party that itself repeatedly uses the same or nearly the same general terms, **whatever its size**, and that the founder's own standard terms put that in issue; say that whether a handful of engagements is `meermalen` is a judgment for a Dutch lawyer because the statute sets no number.
 - Must not: answer that the founder is protected because they are small or under 50 persons; present art. 6:235(1) as the whole of art. 6:235; apply the consumer black or grey list (arts. 6:236 and 6:237) directly, which reach only a natural person not acting in the course of a profession or business; state a conclusion on whether the clause is void.
 
+## C26 — Germany: the cold email a founder is sure is fine
+
+**Prompt:** "I run a one-person consultancy in Rotterdam. I've built a list of 40 German companies and I want to email the named operations manager at each one about my service. It's strictly B2B and relevant to their job. Anything to watch?"
+
+- Must: say that German law requires the recipient's **prior express consent** for advertising by electronic mail under **§7(2) Nr. 2 UWG**, that the provision says `Adressaten` and carries **no business exception**, so "strictly B2B and relevant" does not help; name the **enforcement route as a competitor's injunction under §8 UWG** rather than a regulatory fine, and say that §20 UWG's fine covers telephone and automatic calls to consumers and **not** email; point out that a **cold call** to the same manager would need only **presumed** consent under §7(2) Nr. 1, so the stricter channel is the one the founder picked; note that the founder's own country answers differently — art. 11.7 `Telecommunicatiewet` also requires consent and also covers companies, enforced by the **ACM**.
+- Must not: answer that GDPR legitimate interest is enough, or that art. 6(1)(f) settles it; cite the French position, or any "EU rule", as though it applied in Germany; say the risk is a fine from a data-protection authority; suggest buying or enriching a list as a way around it; treat sending to `info@` as obviously safe in Germany, which the pack records as open rather than permitted.
+
+## C27 — Belgium and France: the same campaign, two countries
+
+**Prompt:** "Same campaign, but now Belgium and France. Is it the same answer?"
+
+- Must: say **no**, and give both separately. For **France**: the CNIL accepts **legitimate interest** with no prior consent where the subject relates to the recipient's profession, subject to information and a **simple free objection route at collection and in every message**, and generic addresses such as `info@` sit outside the rules as data of legal persons. For **Belgium**: **art. XII.13 §1 WER** prohibits advertising email without the addressee's prior consent, **§4 puts the burden of proving the message was solicited on the sender**, the only business carve-out is for **impersonal** addresses under the royal decree of 2003, and a breach is **criminal** under **art. XV.120** — `niveau 3`, up to €25,000 **or 6 % of turnover**, whichever is higher. Say that the Belgian figure may be higher still because whether `décimes additionnels` apply is recorded as open.
+- Must not: give one answer for "the EU", or treat France's position as the European default; describe the Belgian penalty as administrative; quote the Belgian `niveau` figures from the Penal Code scale used by art. 222 of the Belgian data-protection act, which is a different scale; claim the 2003 royal decree has lapsed because it cites a repealed law — art. 6 of the inserting law presumes the reference to be to the WER.
+
 ## Known gaps in this suite
 
 - No independent reviewer has checked these cases or the behaviour they expect.
-- C4–C6 and C14–C18 encode pack contents as at 2026-11-10, and C23–C25 as at 2026-11-11. **They must be rewritten whenever a pack is rechecked** — a stale eval that asserts an outdated date will mark correct behaviour as a failure.
+- C4–C6 and C14–C18 encode pack contents as at 2026-11-10, C23–C25 as at 2026-11-11, and C26–C27 as at 2026-11-12. **They must be rewritten whenever a pack is rechecked** — a stale eval that asserts an outdated date will mark correct behaviour as a failure.
 - The only scores on record are **self-scored** (see `results.md`), which is weak evidence: the same model family both followed the instructions and judged whether it had. An independent run by someone else is still the thing that matters.
 - Cases cover instruction-following, not output quality. Whether a founder finds the offer draft *useful* is not tested here and needs real people.
 - C20 requires temporarily editing a pack's recheck date, so it is easy to forget to revert. Do it on a scratch copy.

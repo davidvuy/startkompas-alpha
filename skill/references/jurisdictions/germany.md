@@ -304,6 +304,8 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 
 ## 6. Data protection
 
+**Before the GDPR, there is the first email — read [eu-eprivacy.md](eu-eprivacy.md).** In Germany cold email needs **prior express consent** under §7(2) Nr. 2 `UWG` and there is no business exception, while a cold **call** to a business needs only presumed consent. Neither is a data-protection rule and neither is enforced by a data-protection authority: the route for email is a **competitor's injunction**. That layer compares all four packs, which disagree sharply.
+
 **The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle.
 
 **German specifics start with the authority and do not end there.** Germany has **no single supervisory authority for business** — and beyond that it adds a duty to appoint a data protection officer that the GDPR does not, a binding national list of processing needing an impact assessment, and criminal liability. The authority first, because everything else routes through it:
@@ -360,7 +362,9 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Competent authority is the Land authority, not the BfDI; 16 entries listed | 2026-11-10 | Authority — the BfDI's own directory read |
 | Which Land splits public and private supervision (the 17/18 counts) | — | Open — not yet researched |
 | The BDSG, the DSK art. 35(4) list and the competent Land authority's own guidance | — | Elsewhere — researched on 2026-11-11 and maintained in [germany-data-protection.md](germany-data-protection.md) |
-| Whether the DSK or a Land authority has published anything on B2B prospecting and legitimate interest | — | Open — not yet researched. The CNIL has, and [france-data-protection.md](france-data-protection.md) carries it; §7 UWG, the German rule on unsolicited advertising, is not read either |
+| Cold email to a business needs prior **express** consent under §7(2) Nr. 2 UWG, with no business carve-out; a cold **call** needs only presumed consent | 2026-11-12 | Primary — §7 UWG read in full; maintained in [eu-eprivacy.md](eu-eprivacy.md) |
+| Email is not an administrative offence under §20 UWG — the route is a competitor's injunction under §8 | 2026-11-12 | Primary — §8 and §20 read in full; maintained in [eu-eprivacy.md](eu-eprivacy.md) |
+| Whether the DSK or a Land authority has published anything on B2B prospecting and legitimate interest | — | Open — not yet researched. The statute is read; what is missing is authority guidance on the GDPR basis that sits alongside it |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2026-12-31, when the BMF non-objection period ends, and before 2027-01-01 when the first issuing phase begins. Also before 2027-12-31, when the transitional rules of the 2024 letter run out.
