@@ -407,6 +407,10 @@ export const REQUIRED = [
   // Art. 222 is the only national penalty in these packs that is criminal, and
   // its point 1° states no mental element where 2° and 4° require serious
   // negligence or malice. Losing that asymmetry turns a sharp warning vague.
+  // The authority disclaims its own helper documents. A pack that cites them
+  // as if they were the authority's reading of the law overstates them.
+  {case: '—', pack: 'belgium-data-protection.md', label: 'the GBA takes no position on its own toolbox documents', pattern: /neemt geen standpunt in over de inhoud van deze documenten/},
+  {case: '—', pack: 'belgium-data-protection.md', label: 'using the model register is not a defence', pattern: /is sensible and is not a defence/},
   {case: '—', pack: 'belgium-data-protection.md', label: 'art. 222 criminal fine ceiling', pattern: /€120,000/},
   {case: '—', pack: 'belgium-data-protection.md', label: 'the lawful-basis offence states no mental element', pattern: /\*\*none stated\*\*/},
   {case: '—', pack: 'belgium-data-protection.md', label: 'the court may order the judgment published', pattern: /published in whole or in extract/},

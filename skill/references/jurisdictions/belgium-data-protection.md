@@ -122,6 +122,18 @@ Entry 7's carve-out is worth noting from the other side: communication or locati
 
 **Open:** the BOOST brochures' substantive answers were not transcribed into this pack — read them at the source. Whether a specific breach is notifiable remains a judgment for the founder with advice, not something this pack decides.
 
+## What the GBA says about its own toolbox, and why it changes a label
+
+Source: [`Toolbox`](https://www.gegevensbeschermingsautoriteit.be/professioneel/eerstehulp-avg/toolbox) · *official authority* · **[checked 2026-11-12]**
+
+The GBA publishes the register models, the 13-step plan, the protocol template and the rights-and-bases schema that this pack points founders at. On the page that offers them it also says what they are:
+
+> De Autoriteit neemt geen standpunt in over de inhoud van deze documenten, met uitzondering van de lijst van rechtspraak van de Geschillenkamer van de GBA, en er rust geen verplichting op verwerkingsverantwoordelijken of verwerkers om deze documenten te gebruiken.
+
+**The Authority takes no position on their content** — one exception, its own Disputes Chamber case law list — **and nobody is obliged to use them.** It adds that it remains the controller's own job under arts. 5(2) and 24 to decide whether and how to use them.
+
+**That is not a reason to stop recommending them; it is a reason to label them correctly.** A GBA template is the authority's *help*, not the authority's *reading of the law*, and a row resting on one is weaker than a row resting on a `Besluit` or a published recommendation. Where this pack cites a toolbox document it says so in the row, and a founder should be told the same thing: using the model register is sensible and is not a defence.
+
 ## Pack maintenance
 
 One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
@@ -145,7 +157,8 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Entry 2 has no scale qualifier: third-party data used to refuse or end a service contract | 2026-11-11 | Authority — read and quoted |
 | No AI entry, and absence from the list does not exclude a DPIA | 2026-11-11 | Authority — paragraph 9 of the decision |
 | The list is reviewed six-monthly under art. 10 of the GBA's internal rules | 2026-11-11 | Authority — paragraph 10, quoted |
-| Whether any six-monthly review has changed the 2019 list | — | Open — not researched; the 2019 decision is the published version |
+| Whether any six-monthly review has changed the 2019 list | — | Open — the GBA's own site was browsed on 2026-11-12 and no later list was found, but its search could not be driven and its publication index was not read exhaustively. **Not established either way**; the 2019 decision remains the published version this pack cites |
+| The GBA takes **no position** on its own toolbox documents and nobody is obliged to use them | 2026-11-12 | Authority — the Toolbox page read and quoted. It changes how a row resting on a template should be labelled |
 | Substantive answers in the two BOOST brochures | — | Open — provenance established, contents left at the source |
 | Registration, VAT, e-invoicing, agreements and software ownership | — | Elsewhere — those are [belgium.md](belgium.md)'s sections 1 to 5 |
 
