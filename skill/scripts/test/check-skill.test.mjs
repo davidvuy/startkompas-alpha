@@ -5,10 +5,12 @@
 // names the problem — because an exit code alone does not tell a contributor
 // what to fix.
 
+import {readFileSync} from 'node:fs';
+import {join} from 'node:path';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 
-import {baseTree, runCheck, withTree, VALID_REFERENCE, VALID_CONVENTION, validAnnex, validPack} from './helpers.mjs';
+import {baseTree, runCheck, scriptsDir, withTree, VALID_REFERENCE, VALID_CONVENTION, validAnnex, validPack} from './helpers.mjs';
 
 /** A tree that passes, so a negative result can only come from the defect. */
 function expectPass(files) {
@@ -681,4 +683,51 @@ test('several defects are all reported, not just the first', () => {
   assert.match(result.output, /dependency install step/);
   assert.match(result.output, /names the host "Claude"/);
   assert.match(result.output, /3 problem\(s\)/);
+});
+
+test('the README documents the budget numbers the check enforces', () => {
+  // `check-skill.mjs` says "Change a number there and here together", and until
+  // 2026-11-12 that sentence was the only thing guarding it. The raise to
+  // 640 KB landed while scripts/README.md still derived the installed-folder
+  // total from 512, so the document explaining the budgets stated arithmetic
+  // the code no longer did. An instruction nobody can run is not a guard.
+  //
+  // This reads the two files as text on purpose. The constants are not exported
+  // — importing the check would run it — and the thing under test is whether
+  // the prose and the code agree, which only their text can answer.
+  const source = readFileSync(join(scriptsDir, 'check-skill.mjs'), 'utf8');
+  const readme = readFileSync(join(scriptsDir, 'README.md'), 'utf8');
+
+  const constant = (name) => {
+    const found = source.match(new RegExp(`^const ${name} = ([0-9]+);`, 'm'));
+    assert.ok(found, `${name} is no longer a plain numeric constant, so this test cannot read it`);
+    return Number(found[1]);
+  };
+
+  const model = constant('MODEL_BUDGET_KB');
+  const support = constant('SUPPORT_BUDGET_KB');
+  const assertions = constant('ASSERTIONS_BUDGET_KB');
+  const derivation = `**derived** as ${model} + ${support} + ${assertions} = ${model + support + assertions} KB`;
+  assert.ok(
+    readme.includes(derivation),
+    `scripts/README.md derives the folder budget from stale numbers. It should contain:\n  ${derivation}`,
+  );
+
+  // Weaker, and deliberately so: a raise that never reached the document at
+  // all is caught even where the number appears in no arithmetic.
+  for (const name of [
+    'ALWAYS_BUDGET_KB',
+    'REFERENCE_BUDGET_KB',
+    'MODEL_BUDGET_KB',
+    'SUPPORT_BUDGET_KB',
+    'TEST_BUDGET_KB',
+    'ASSERTIONS_BUDGET_KB',
+  ]) {
+    const value = constant(name);
+    assert.match(
+      readme,
+      new RegExp(`(^|[^0-9.])${value} KB`),
+      `scripts/README.md never mentions ${value} KB, the current ${name} — document the raise`,
+    );
+  }
 });
