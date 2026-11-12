@@ -262,3 +262,33 @@ test('the eval case count the README states is the count that exists', () => {
     `README.md says ${stated[1]} eval cases; skill/evals/cases.md has ${actual}`,
   );
 });
+
+test('the manifest assertions do not fail a Dependabot pull request', () => {
+  // installation.json pins package-lock.json and the workflow files, which are
+  // exactly what Dependabot edits, and Dependabot cannot run the refresh. So
+  // every bot pull request was permanently red and mailed on every run. Both
+  // places that assert the manifest now exempt the bot — and both must keep
+  // doing it, or the noise comes straight back.
+  const quality = workflows.find((workflow) => workflow.name === 'quality.yml');
+  assert.ok(quality, 'quality.yml is gone');
+
+  const inventory = quality.text.includes("if: github.actor != 'dependabot[bot]'");
+  assert.ok(inventory, 'the package-inventory step must be skipped for dependabot[bot]');
+
+  const advisory = /continue-on-error: true/.test(quality.text);
+  assert.ok(advisory, 'a bot pull request should still RUN the inventory check, just not fail on it');
+
+  assert.match(
+    quality.text,
+    /--test-skip-pattern="public package manifest"/,
+    'the manifest test must be skipped by name on a bot pull request, so the others still run',
+  );
+
+  // And the exemption must be narrow: a human push still has to satisfy both.
+  const exemptions = quality.text.match(/dependabot\[bot\]/g) ?? [];
+  assert.equal(
+    exemptions.length,
+    4,
+    `expected exactly two guarded pairs, found ${exemptions.length} mentions of the bot`,
+  );
+});

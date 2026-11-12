@@ -37,7 +37,7 @@
     },
     {
       "path": ".github/workflows/quality.yml",
-      "sha256": "d336b194915618ea1d8001c3afc0ac6771b06334e503b67b345bd32f4c321327"
+      "sha256": "219ab68d952a5ee37c949a1241eeef7cf827af97958f06346541c8b39c8357cd"
     },
     {
       "path": ".github/workflows/secrets.yml",
@@ -661,7 +661,7 @@
     },
     {
       "path": "scripts/ci.test.mjs",
-      "sha256": "a26297a1264d0b6292d01a2d50cf45eff33e3c259c7f091c4bdd30d5e6a3fa6a"
+      "sha256": "66a53a6c584b0f78232f9943b27feb26d464f21ff27ccb28d029968d8211e136"
     },
     {
       "path": "scripts/refresh-public-manifest.mjs",

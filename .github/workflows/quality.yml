@@ -34,7 +34,20 @@ jobs:
           package-manager-cache: false
           node-version: '24.x'
 
+      # installation.json pins a SHA-256 for every file outside node_modules,
+      # .git and skill/ — package-lock.json and these workflow files included.
+      # A Dependabot pull request therefore invalidates it by construction, and
+      # Dependabot cannot run the refresh. Before 2026-11-12 that meant every
+      # bot pull request was permanently red and mailed on every run, which is
+      # noise that teaches people to ignore CI. The manifest is still checked
+      # on a bot pull request, and still reported, but it does not fail it: a
+      # maintainer refreshes the manifest when merging the bump.
       - name: Verify package inventory
+        if: github.actor != 'dependabot[bot]'
+        run: node scripts/check-public-package.mjs
+      - name: Verify package inventory (advisory for a dependency bump)
+        if: github.actor == 'dependabot[bot]'
+        continue-on-error: true
         run: node scripts/check-public-package.mjs
       - name: Install locked dependencies without install scripts
         run: npm ci --ignore-scripts --no-audit --no-fund
@@ -96,8 +109,15 @@ jobs:
       # the job that runs once rather than across the test matrix: they need no
       # dependencies, no network and no install step. Tests first — a link
       # checker that reports nothing is indistinguishable from a clean tree.
+      # One of these tests asserts the manifest matches the tree, for the same
+      # reason the step above does. Skipped by name on a bot pull request, so
+      # the other 36 still run and still have to pass.
       - name: Tests for the repository scripts
+        if: github.actor != 'dependabot[bot]'
         run: npm run test:scripts
+      - name: Tests for the repository scripts (manifest assertion skipped)
+        if: github.actor == 'dependabot[bot]'
+        run: node --test --test-skip-pattern="public package manifest" scripts/*.test.mjs
 
       - name: Relative markdown links across the repository
         run: node scripts/check-doc-links.mjs
