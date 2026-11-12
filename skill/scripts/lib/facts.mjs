@@ -189,6 +189,17 @@ export const REQUIRED = [
   {case: '—', pack: 'eu-ai-act-national.md', label: 'no designated authority is not nothing applying', pattern: /not\*\* the same as nothing applying/},
   {case: '—', pack: 'eu-ai-act.md', label: 'the layer points at the national annex', pattern: /eu-ai-act-national\.md/},
 
+  // The two provisions in arts. 8 to 15 written for a small provider. Losing
+  // the first would make the documentation burden look larger than it is;
+  // losing the second would let a security review miss the attacks the
+  // statute itself names.
+  {case: '—', pack: 'eu-ai-act-high-risk.md', label: 'SMEs may file simplified technical documentation on a Commission form', pattern: /Notified bodies shall accept the form|notified bodies must accept/},
+  {case: '—', pack: 'eu-ai-act-high-risk.md', label: 'art. 15 names the AI-specific attack classes', pattern: /adversarial examples/},
+  {case: '—', pack: 'eu-ai-act-high-risk.md', label: 'risk measures run design first, documentation last', pattern: /Documentation is the last resort, not the first/},
+  {case: '—', pack: 'eu-ai-act-high-risk.md', label: 'testing is against metrics defined in advance', pattern: /prior defined metrics and probabilistic thresholds/},
+  {case: '—', pack: 'eu-ai-act-high-risk.md', label: 'the overseer must be able to stop the system', pattern: /come to a halt in a safe state/},
+  {case: '—', pack: 'eu-ai-act.md', label: 'the layer points at the high-risk annex', pattern: /eu-ai-act-high-risk\.md/},
+
   // --- EU — unsolicited commercial communication -----------------------------
   // The layer exists because art. 13(5) hands the member states a choice. If
   // that sentence goes, the four national answers below read as four mistakes.

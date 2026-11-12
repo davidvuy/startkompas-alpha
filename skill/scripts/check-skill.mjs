@@ -31,8 +31,8 @@ const REFERENCE_BUDGET_KB = 48; // largest single reference — what one turn op
 // "Why the aggregate is derived from a jurisdiction and not from a file". 384
 // allowed one more reference at the 48 KB ceiling, which stopped being the unit
 // of growth the moment a country needed annexes. The unit is a jurisdiction,
-// and the most-worked one — Germany — is three files and 89 KB.
-const MODEL_BUDGET_KB = 640;
+// and the most-worked one — Germany — is three files and 102 KB.
+const MODEL_BUDGET_KB = 768;
 const SUPPORT_BUDGET_KB = 192; // scripts/ and docs/ as installed — code the model never reads
 const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
 // scripts/lib/facts.mjs is a table of one assertion per verified claim, so it

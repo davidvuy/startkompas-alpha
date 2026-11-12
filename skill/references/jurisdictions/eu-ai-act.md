@@ -108,7 +108,7 @@ This layer left art. 16 open on the ground that a founder reaching it needs a sp
 
 **Points (c), (f) and (h) are the answer to "how bad is it".** A quality management system, a conformity assessment and a CE marking are product-regulation machinery, on the model of a medical device or a machine — not a policy document and a privacy notice. Telling a founder that becoming a high-risk provider is a documentation exercise is the misreading this table exists to prevent.
 
-**Open:** what arts. 8 to 15, 17, 18 and 43 require in detail is **[not researched]**, and deliberately: at that point the question is a specialist engagement, and the useful service this layer can perform is to say so before a founder has built the thing.
+**Arts. 8 to 15 are now read, in [eu-ai-act-high-risk.md](eu-ai-act-high-risk.md).** At this point the question is still a specialist engagement, and saying so before a founder has built the thing remains the useful service. What the annex adds is **what that engagement will be working on**, so the size of it can be judged — and two provisions written for a small provider specifically: **art. 11 lets an SME file simplified technical documentation on a Commission form that notified bodies must accept**, and **art. 15 names the attack classes** the system has to resist. **Open:** arts. 17, 18 and 43 — quality management, documentation keeping and conformity assessment — are still **[not researched]**.
 
 ## 3. Is it high-risk? Article 6, and the 2026 carve-out
 
@@ -267,7 +267,7 @@ The short version, as at 2026-11-12: **Germany has settled it** — the Bundesne
 
 ## 8. What this layer does not cover
 
-- **What each of art. 16's twelve obligations actually requires.** The obligations themselves are listed in §2; the articles they point to — arts. 8 to 15, 17, 18 and 43 — are the open part, and are listed separately below.
+- **Arts. 17, 18 and 43** — quality management, documentation keeping and conformity assessment. The other articles art. 16 points at, **arts. 8 to 15**, are read in [eu-ai-act-high-risk.md](eu-ai-act-high-risk.md).
 - Whether a founder's **marketing content** can amount to text `published to inform the public on matters of public interest` under art. 50(4). The limb reads as aimed at publishing, not business documents, but the boundary is **[not researched]**.
 - **National market-surveillance authorities and the national penalty regimes** made under art. 99(1): read for **Germany** in §7, **[not researched]** for Belgium, the Netherlands and France. The Union ceilings are in §6; what any Member State imposes is not.
 - The art. 6(5) Commission guidelines and the comprehensive list of practical examples that were due by 2026-02-02: **[not researched]**, and the first thing to look for on a recheck — §3 says why.
@@ -312,7 +312,8 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 6(4): using the derogation requires a documented assessment and art. 49(2) registration | 2026-11-11 | Primary — read |
 | Art. 4a: special-category processing for bias detection is a permission with six conditions, and creates no duty to bias-test | 2026-11-11 | Primary — read and quoted, both paragraphs |
 | The art. 6(5) guidelines and practical examples due 2026-02-02 | — | Open — not researched; it is the document a founder would most want |
-| Annex I; arts. 8 to 15, 17, 18 and 43 | — | Open — not researched, deliberately for the second group |
+| Arts. 8 to 15: the requirements a high-risk system must satisfy | — | Elsewhere — read on 2026-11-12 and maintained in [eu-ai-act-high-risk.md](eu-ai-act-high-risk.md) |
+| Annex I; arts. 17, 18 and 43 | — | Open — not researched |
 | National authorities and the national penalty regimes under art. 99(1) | — | Open — not yet researched |
 | Art. 4a, added in 2026: special-category processing for bias detection | — | Open — read in passing, not worked through |
 
