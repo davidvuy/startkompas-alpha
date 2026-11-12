@@ -23,8 +23,30 @@ import {harvestCitations} from './lib/citations.mjs';
 import {probeUrl, STATE_ORDER} from './lib/probe.mjs';
 
 // One worker per URL would hammer a handful of government hosts; serial would
-// take a minute. Eight keeps the run under a couple of seconds.
+// take a minute. Eight hosts at a time, and never two requests to the same
+// host at once.
+//
+// The per-host bound is not politeness for its own sake. Measured on the real
+// citation set on 2026-11-12, with eight unbounded workers over URLs sorted by
+// URL: `gesetze-im-internet.de` holds 23 of the 114 and answered five of them
+// with ECONNRESET, so two consecutive runs disagreed about which sources were
+// reachable — the report stated as fact something that changed per run. With
+// one request per host the same set came back identical twice, and the cost is
+// about two seconds, all of it one Justel URL whose six siblings now queue
+// behind it. See scripts/README.md, "What makes check-links slow".
 const CONCURRENCY = 8;
+const PER_HOST = 1;
+
+/** Group by host, so the bound above applies per government portal. */
+const hostOf = (url) => {
+  try {
+    return new URL(url).host;
+  } catch {
+    // harvestCitations only yields http(s) URLs, but a malformed one must not
+    // take the whole run down: give it a lane of its own.
+    return url;
+  }
+};
 
 const asJson = process.argv.includes('--json');
 
@@ -36,10 +58,12 @@ const citations = harvestCitations(
 );
 
 const urls = [...citations.keys()].sort();
-const results = await mapPool(urls, CONCURRENCY, async (url) => ({
-  url,
-  ...(await probeUrl(url)),
-}));
+const results = await mapPool(
+  urls,
+  CONCURRENCY,
+  async (url) => ({url, ...(await probeUrl(url))}),
+  {keyOf: hostOf, keyLimit: PER_HOST},
+);
 
 results.sort((a, b) => STATE_ORDER[a.state] - STATE_ORDER[b.state] || a.url.localeCompare(b.url));
 

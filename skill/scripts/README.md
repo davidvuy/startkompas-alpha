@@ -29,7 +29,7 @@ Nothing in these is specific to this project; any check could use them. The firs
 | `paths.mjs` | all 8 | The directories every check needs, resolved from the lib's own location so a script works from any cwd. Also the `STARTKOMPAS_SKILL_ROOT` test seam |
 | `report.mjs` | 6 | One reporting shape — `note` / `warn` / `fail` / `finish` — so every check's output and exit behaviour match |
 | `files.mjs` | 4 | Recursive sorted file listing, forward-slash path formatting, size and budget-overage formatting |
-| `pool.mjs` | 1 | Bounded-concurrency mapping, so a slow request delays only itself. Generic, but `check-links.mjs` is its only consumer today |
+| `pool.mjs` | 1 | Bounded-concurrency mapping, so a slow request delays only itself — plus an optional **per-key** bound, so a run spread over many hosts never puts two requests into one of them at once. Generic, but `check-links.mjs` is its only consumer today |
 
 ### `lib/` — one check's logic, pulled out to be testable
 
@@ -145,6 +145,25 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | `check-links.mjs` | A `wetten.overheid.nl` redirect to a dated URL, and a moved CNIL page |
 | `check-dossier.mjs` | Not yet on real content — but its tests break it on purpose, including a three-hop cycle and a dangling link |
 | `test/conventions.test.mjs` | A deliberately added `--- 9. ---` section with no tests, and `lib/graph.mjs` added without a README entry |
+
+## What makes check-links slow, measured rather than guessed
+
+Every other check runs in under 150 ms. `check-links.mjs` takes thirteen seconds, and before changing anything about it, it was measured on the real citation set on **2026-11-12**. Three results, two of them negative, recorded so nobody pays for them twice.
+
+**The median probe takes 135 ms, and one URL takes nine seconds.** Across 114 cited URLs and two passes: p50 135 ms, p90 616 ms, p95 938 ms — and then [the Justel consolidated economic code](https://www.ejustice.just.fgov.be/eli/loi/2013/02/28/2013A11134/justel) at **9 to 13 seconds**, every time. That one URL sets the floor for the whole run and **no client-side change can lower it**: a bare `HEAD` on it takes 8.7 s, because the server generates the whole 6 MB document before answering. Probing it with `GET` and cancelling the body is no faster. If a run ever has to be quicker than this, the only lever is not citing that route — and the content is worth more than the nine seconds.
+
+**Negative result: spreading the queue across hosts does nothing.** Sorting by URL clusters a host's URLs together, so the shared queue of width 8 puts up to eight requests into one government host. Round-robin ordering by host cuts same-host adjacent pairs from 83 to 11 — and changed the wall clock by **5 ms** in one pass and made it worse in the other. The run is bounded by the slow URL above, not by contention, so **ordering is not a lever**. Raising the width to 16 did nothing either, for the same reason.
+
+**What was actually wrong was not speed.** Two consecutive runs disagreed about which sources were reachable: 101 live, then 94, then 102. The cause was precise — `gesetze-im-internet.de` holds 23 of the 114 URLs, and under eight unbounded workers five of them answered `ECONNRESET`. The report was stating as fact something that changed per run. Two fixes, both measured:
+
+| Change | Effect |
+| --- | --- |
+| **Retry a transport failure once** (`probe.mjs`, `DEFAULT_TRANSPORT_ATTEMPTS`) | Not enough on its own — the retry fired straight back into the same rate limit. Kept because it is nearly free: a connection error returns in milliseconds, and no probe in the set reached the 15 s timeout. Our own timeout is deliberately **not** retried |
+| **One request per host** (`pool.mjs`, `keyOf` and `keyLimit`) | The fix. Two runs, identical results, zero resets. Costs about **two seconds**, all of it the Justel URL's five siblings now queueing behind it |
+
+`keyLimit: 2` was tried and reset once in two passes, so it is not safe here; `keyLimit: 1` with width 8 and with width 31 gave the same time, because the bound is that one host's lane and not the global width. **Width 8, one per host.**
+
+**And one correctness bug surfaced while measuring.** `EAI_AGAIN` — POSIX for *temporary* failure in name resolution — was classified as `dead`, the one network state that fails the build. A DNS hiccup would therefore have reported a government source as gone. It is now retried and, if it persists, reported as `unreachable` like any other transient fault. `ENOTFOUND` still means dead.
 
 ## The six size budgets
 

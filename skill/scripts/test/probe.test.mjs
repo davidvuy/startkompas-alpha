@@ -129,13 +129,100 @@ function stubError(code, name = 'TypeError') {
   };
 }
 
-test('a hostname that does not resolve is dead', async () => {
-  // The host is gone, so the citation is gone.
-  for (const code of ['ENOTFOUND', 'EAI_AGAIN']) {
+test('a hostname that does not exist is dead', async () => {
+  // The name is gone, so the citation is gone. This is the only network-level
+  // failure that fails the build.
+  for (const code of ['ENOTFOUND', 'ERR_NAME_NOT_RESOLVED']) {
     const result = await probeUrl('https://gone.test/x', {fetchImpl: stubError(code)});
     assert.equal(result.state, 'dead', `${code} should read as dead`);
     assert.equal(result.error, code);
   }
+});
+
+test('a busy resolver is retried and is unreachable, not dead', async () => {
+  // EAI_AGAIN is POSIX for TEMPORARY failure in name resolution. It read as
+  // `dead` until 2026-11-12, so a DNS hiccup told a maintainer a government
+  // source had disappeared, and failed the build saying so. Now it is retried,
+  // and a persistent one is reported like any other transient fault.
+  let calls = 0;
+  const flaky = stubError('EAI_AGAIN');
+  const result = await probeUrl('https://busy.test/x', {
+    fetchImpl: async (...args) => {
+      calls += 1;
+      return flaky(...args);
+    },
+  });
+  assert.equal(result.state, 'unreachable');
+  assert.equal(result.error, 'EAI_AGAIN');
+  assert.equal(calls, 2, 'a busy resolver should be given a second attempt');
+  assert.equal(result.attempts, 2, 'the report should say it took two attempts');
+});
+
+test('a transport failure that clears on the second attempt reports the success', async () => {
+  // Measured on the real citation set: two URLs on one host flipped
+  // unreachable -> ok between back-to-back passes. That flapping was reported
+  // as fact, so the report said which sources were reachable and was wrong.
+  let calls = 0;
+  const result = await probeUrl('https://flappy.test/x', {
+    fetchImpl: async () => {
+      calls += 1;
+      if (calls === 1) {
+        const error = new Error('fetch failed');
+        error.cause = Object.assign(new Error('ECONNRESET'), {code: 'ECONNRESET'});
+        throw error;
+      }
+      return {status: 200, headers: new Map()};
+    },
+  });
+  assert.equal(result.state, 'ok');
+  assert.equal(result.attempts, 2);
+  assert.equal(calls, 2);
+});
+
+test('a retry is not a third chance', async () => {
+  // The bound exists so a widespread outage cannot double the run time for
+  // every URL at once.
+  let calls = 0;
+  await probeUrl('https://down.test/x', {
+    fetchImpl: async (...args) => {
+      calls += 1;
+      return stubError('ECONNREFUSED')(...args);
+    },
+  });
+  assert.equal(calls, 2);
+});
+
+test('transportAttempts of 1 turns the retry off', async () => {
+  let calls = 0;
+  const result = await probeUrl('https://down.test/x', {
+    transportAttempts: 1,
+    fetchImpl: async (...args) => {
+      calls += 1;
+      return stubError('ECONNRESET')(...args);
+    },
+  });
+  assert.equal(calls, 1);
+  assert.equal(result.state, 'unreachable');
+  assert.equal(result.attempts, undefined, 'a single attempt should not be reported as plural');
+});
+
+test('our own timeout is not retried', async () => {
+  // It already waited the whole budget. Retrying would double the worst case
+  // for exactly the hosts that are slowest.
+  let calls = 0;
+  const fetchImpl = async (_url, options) => {
+    calls += 1;
+    return new Promise((_resolve, reject) => {
+      options.signal.addEventListener('abort', () => {
+        const error = new Error('aborted');
+        error.name = 'AbortError';
+        reject(error);
+      });
+    });
+  };
+  const result = await probeUrl('https://slow.test/x', {fetchImpl, timeoutMs: 10});
+  assert.equal(result.state, 'unreachable');
+  assert.equal(calls, 1, 'an abort from our own timeout must not be tried again');
 });
 
 test('a connection reset or refusal is unreachable, not dead', async () => {
