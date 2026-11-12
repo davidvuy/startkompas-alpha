@@ -58,7 +58,15 @@ Source: [AP — data protection impact assessment (DPIA)](https://www.autoriteit
 - **A DPIA is not a lawful basis.** If the processing is on the list you must still check you have one, and without it you may not process *"regardless of the outcomes of any DPIA"*.
 - **One divergence to handle carefully.** The AP's page summarises the GDPR's own DPIA cases as **four**, splitting criminal-offence data into a case of its own and stating it **without a large-scale qualifier**. Art. 35(3)(b) GDPR, read in [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md), has it as one point covering special categories **or** criminal data, *"processing on a large scale"*. The statute is the rule; the AP's reading is broader. Where they differ, say so rather than choosing.
 
-Whether the AP has published an art. 35(5) list of processing for which **no** assessment is required is **[not researched]**. France has published one, and it is the only art. 35(5) list any of these packs has read — see [france-data-protection.md](france-data-protection.md) for what a list of that kind actually contains.
+**The AP has a draft art. 35(5) list, and it is written for this skill's reader.** On **2026-06-24** it published *"een lijst … van soorten verwerkingen waarvoor geen `data protection impact assessment` (DPIA) vereist is"* for consultation, saying in its own words that it covers processing *"door onder meer het mkb en zelfstandige ondernemers in Nederland"* and that *"de lijst vermindert zo de regeldruk voor deze bedrijven en ondernemers"*. The consultation closed on **2026-08-10**.
+
+**It is not in force, and the AP sets out exactly what still has to happen:** the responses sharpen the list, the amended list goes to the **EDPB**, the final list is adopted after the EDPB's opinion, and it is then published in the **Staatscourant** and on the AP's site — *"[v]anaf dat moment is de lijst officieel geldig."* So on 2026-11-12 a Dutch founder cannot rely on it, and anyone who tells them a Dutch exemption list exists is describing a draft.
+
+**What is on the draft list is [not researched], and that is a decision rather than an omission.** The consultation PDF stores its objects in object streams with subset fonts; this project's extractor returns garbage for it, and the rule in [sources-and-review.md](../sources-and-review.md) is that a quotation has to be read rather than reconstructed. The status above comes from the AP's own web page, which was read in full.
+
+Source · [`AP vraagt reacties op lijst DPIA-uitzonderingen`](https://www.autoriteitpersoonsgegevens.nl/actueel/ap-vraagt-reacties-op-lijst-dpia-uitzonderingen) · *official authority, published 2026-06-24, page updated 2026-08-11* · **[checked 2026-11-12]**
+
+France has published one, and it is the only art. 35(5) list any of these packs has read — see [france-data-protection.md](france-data-protection.md) for what a list of that kind actually contains.
 
 ## The AP's own step plan for a controller
 
@@ -192,7 +200,9 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | No AI entry on the Dutch list, where the German list has one | 2026-11-11 | Primary — both lists read in full |
 | The AP's test for `stelselmatig`, its two-criteria rule of thumb, and that declining a DPIA must be substantiated | 2026-11-11 | Authority — the AP's own page read and quoted |
 | The AP's page states the GDPR's DPIA cases as four, criminal data without a scale qualifier | 2026-11-11 | Authority — read; recorded as a divergence from art. 35(3)(b), not resolved |
-| Whether the AP publishes an art. 35(5) exemption list | — | Open — not researched |
+| The AP consulted on a **draft** art. 35(5) list on 2026-06-24, aimed at the `mkb` and the self-employed; consultation closed 2026-08-10 | 2026-11-12 | Authority — the AP's own announcement read in full and quoted |
+| It becomes valid only after an **EDPB opinion** and publication in the **Staatscourant** | 2026-11-12 | Authority — read and quoted |
+| What is on the draft list | — | Open — the consultation PDF uses object streams and subset fonts, and this project does not reconstruct text it cannot read. Blocked by the format, not unexamined |
 | AP: register, written processor agreement, 72-hour breach report | 2026-11-10 | Authority — AP pages read |
 | AP controller stappenplan: 12 items in 3 steps, breach URL, DPIA high-risk examples | 2026-11-10 | Authority — AP PDF extracted and read |
 | AP breach stappenplan: five steps, first notification plus follow-up | 2026-11-10 | Authority — AP PDF extracted and read |

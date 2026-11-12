@@ -63,7 +63,7 @@ Which means a complete DPIA answer is: the general rule, the three cases in 35(3
 
 Belgium's list is read too and has **eight** entries against seventeen each in Germany and the Netherlands, with no AI entry and one — third-party data used to refuse or end a service contract — that carries **no scale qualifier at all**. See [belgium.md](belgium.md) §6, and the three-way comparison in [README.md](README.md).
 
-France's is read too, and France is the **only one of the four** to have published the art. 35(5) list as well — the one that says when an assessment is **not** required, including human-resources administration under 250 persons so long as no profiling is involved. See [france-data-protection.md](france-data-protection.md).
+France's is read too, and France is the **only one of the four with an art. 35(5) list in force** — the Netherlands consulted on a draft on 2026-06-24, which is not valid until the EDPB has given an opinion and it is published in the Staatscourant, and [netherlands-data-protection.md](netherlands-data-protection.md) records where that stands. France remains the only one to have published the art. 35(5) list — the one that says when an assessment is **not** required, including human-resources administration under 250 persons so long as no profiling is involved. See [france-data-protection.md](france-data-protection.md).
 
 So the same pilot can be a listed assessment in one member state and an argument in the next, and only one of the four tells a founder where the duty stops. The four-way comparison is in [README.md](README.md). Never tell a founder no assessment is needed without saying which national list was checked.
 
@@ -92,7 +92,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | **Corrected on 2026-11-11:** art. 35(3) case 1 was given without `and extensive` | 2026-11-11 | Withdrawn — the statute requires a *systematic and extensive* evaluation; the missing word widened the case |
 | DPIA conditions, art. 35(1) and 35(3) | 2026-11-11 | Primary — article text read on EUR-Lex, replacing a secondary reproduction |
 | Art. 35(4) authorities must publish a list of operations requiring a DPIA; 35(5) may publish the converse | 2026-11-11 | Primary — read |
-| Contents of the national art. 35(4) lists | — | Elsewhere — all four are read in their own packs and all four differ; maintained there. France's art. 35(5) list is read too |
+| Contents of the national art. 35(4) lists | — | Elsewhere — all four are read in their own packs and all four differ; maintained there. France's art. 35(5) list is read too, and the Dutch **draft** one is recorded in [netherlands-data-protection.md](netherlands-data-protection.md) |
 | Art. 35(7) four minimum contents; 35(9) views of data subjects; 35(11) review | 2026-11-11 | Primary — read |
 | Controller and processor roles, registers, breach notification, security, lawful basis, transfers and data subject requests | — | Elsewhere — everything else about the GDPR is in [eu-gdpr.md](eu-gdpr.md) |
 

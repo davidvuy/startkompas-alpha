@@ -28,6 +28,8 @@ If a source is unreachable, record **what you tried and what stopped you**, not 
 
 Two kinds show up in practice. A **bot-protection challenge or CAPTCHA is never to be worked around** — note the host, the date and that the page was not served, and use a different source or leave the topic open. A **document too large to fetch** is a tooling limit, not a source problem: say so, and say what would get past it, because the next person may have the tool you lacked. One national civil code sat behind that for a day and was read in the end by loading the page and slicing it to the article inside the page.
 
+**A third kind is a document you can fetch and still cannot read.** A PDF whose text comes out as plausible-looking nonsense is usually one that stores its objects in **object streams** with **subset fonts**: the glyph codes mean nothing without the font's own character map. The temptation is to reconstruct the words from what did come through. **Do not** — a garbled extraction is the signal to stop trusting the output, not an invitation to guess, and a quotation in a pack has to be read rather than rebuilt. Record what the document is, where it is, and that the format defeated the tool, and take the surrounding facts from a source you can actually read: an authority's web page about its own PDF is usually enough for status and dates, and is honest about being a different source.
+
 Either way the row says blocked rather than unexamined, so nobody re-does the attempt blind, and nobody mistakes an obstacle for an answer.
 
 ## Keep four review dimensions separate

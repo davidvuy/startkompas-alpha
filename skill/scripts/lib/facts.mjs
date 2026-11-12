@@ -350,6 +350,11 @@ export const REQUIRED = [
   // The Dutch trap: silence on a data subject request removes the claimant's
   // deadline altogether. And the secrecy duty art. 30(4) imposes on the
   // controller personally, which no policy creates and none can remove.
+  // A draft list is not a list. The AP's own process - EDPB opinion, then the
+  // Staatscourant - is what makes the difference, and it is the sentence a
+  // reader needs before relying on anything they have heard about it.
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'the Dutch art. 35(5) list is a draft, valid only after the Staatscourant', pattern: /is de lijst officieel geldig/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'the draft list is aimed at the mkb and the self-employed', pattern: /mkb en zelfstandige ondernemers in Nederland/},
   {case: '—', pack: 'netherlands-data-protection.md', label: 'no time limit on the petition if the controller did not answer in time', pattern: /is de indiening van het verzoekschrift niet aan een termijn gebonden/},
   {case: '—', pack: 'netherlands-data-protection.md', label: 'art. 30(4) puts the controller personally under a secrecy duty', pattern: /is hij verplicht tot geheimhouding van de gegevens/},
   {case: '—', pack: 'netherlands-data-protection.md', label: 'art. 41 is one general power, not a carve-out per right', pattern: /buiten toepassing laten/},
