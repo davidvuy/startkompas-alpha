@@ -20,7 +20,7 @@
 import {readFileSync, existsSync} from 'node:fs';
 import {join} from 'node:path';
 
-import {packsDir} from './lib/paths.mjs';
+import {packsDir, skillRoot} from './lib/paths.mjs';
 import {createReport} from './lib/report.mjs';
 import {evaluate} from './lib/facts.mjs';
 
@@ -29,13 +29,18 @@ const report = createReport({
 });
 
 const {checked, packs, problems} = evaluate((pack) => {
-  const path = join(packsDir, pack);
+  // A plain filename is a jurisdiction pack. A name containing a slash is a
+  // path from the skill root, so the same table can assert the METHOD
+  // references too. Those decide whether a pack is ever opened, and until
+  // 2026-11-12 nothing guarded them: a verified layer nothing routes to is
+  // worth exactly nothing.
+  const path = pack.includes('/') ? join(skillRoot, pack) : join(packsDir, pack);
   return existsSync(path) ? readFileSync(path, 'utf8') : null;
 });
 
 for (const {pack, message} of problems) report.fail(pack, message);
 
-report.note(`${checked} fact assertion(s) checked across ${packs.length} pack(s)`);
+report.note(`${checked} fact assertion(s) checked across ${packs.length} file(s)`);
 
 if (!report.finish())
   console.error('\nEither the pack improved and the eval case must be rewritten, or the edit was a mistake.');

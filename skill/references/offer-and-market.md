@@ -16,6 +16,8 @@ Record separately, each with a date and a limited participant code: direct state
 
 Save the guide plus either a genuinely blank log or actual attributed findings. **A blank evidence log is not an interview.** Record a decision rule before interpreting outcomes, but do not impose a universal interview-count threshold.
 
+**How the founder may lawfully reach participants is a separate question from what to ask them, and it is jurisdiction-specific.** Whether an unsolicited business email or call needs prior consent, whether a generic company address is treated differently, and who enforces it all differ by country — see [pilot-conditions.md](pilot-conditions.md) §5 and, for the four EU jurisdictions with packs, [jurisdictions/eu-eprivacy.md](jurisdictions/eu-eprivacy.md). Preparing an interview guide never authorizes sending anything; and do not tell a founder that business-to-business or professional relevance makes the approach lawful, because in some jurisdictions it does and in others it does not.
+
 Compliments, hypothetical prices and model predictions do not establish purchase intent. A good next step is often another narrow check, not a dashboard.
 
 ## 2. Alternatives → comparison sheet

@@ -213,6 +213,17 @@ export const REQUIRED = [
   {case: '—', pack: 'eu-eprivacy.md', label: 'the WER niveau scale is not the Penal Code niveau scale', pattern: /Same word, different scales/},
   {case: '—', pack: 'eu-eprivacy.md', label: 'the décimes question is left open rather than assumed away', pattern: /without mentioning `décimes additionnels`/},
 
+  // --- The method references that decide whether a pack is opened ------------
+  // A name with a slash resolves from the skill root, not from the packs
+  // directory. These two files hold the instructions that send a reader to
+  // eu-eprivacy.md at the moment outreach is being prepared. Before
+  // 2026-11-12 neither mentioned it, so the layer was reachable only by
+  // someone who already thought to open the jurisdiction index — which is the
+  // one reader who did not need the pointer.
+  {case: '—', pack: 'references/pilot-conditions.md', label: 'condition 5 routes outreach lawfulness to the ePrivacy layer', pattern: /jurisdictions\/eu-eprivacy\.md/},
+  {case: '—', pack: 'references/offer-and-market.md', label: 'interview preparation routes outreach lawfulness to the ePrivacy layer', pattern: /jurisdictions\/eu-eprivacy\.md/},
+  {case: '—', pack: 'references/offer-and-market.md', label: 'B2B relevance is not presented as making an approach lawful', pattern: /do not tell a founder that business-to-business or professional relevance makes the approach lawful/},
+
   // --- Shared EU layers ------------------------------------------------------
   {case: '—', pack: 'eu-gdpr.md', label: '72-hour notification', pattern: /72 hours/},
   // The layer's opening told a reader the national packs hold only the name of

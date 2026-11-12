@@ -55,6 +55,8 @@ Map each real flow: data categories and the people involved, purpose, sender, re
 
 Keep business confidentiality distinct from personal data — they carry different obligations. Determine the founder's role in the processing from the **actual purposes and instructions**, not from a product name or a contract title.
 
+**And one part of this condition is met before any of the others: whether the first message may be sent at all.** Unsolicited commercial contact is regulated separately from the data protection rules above, and the answers diverge sharply between neighbouring countries. Universal questions: May an unsolicited commercial message go to this recipient without prior consent, or not? Does the answer differ for a **company** as against a **named person at a company**, or for a generic address such as `info@`? Does it differ by **channel** — email, telephone, SMS? **Who enforces it**, and is that the data-protection authority or someone else? What must every message carry, and how must an objection be honoured, recorded and kept? For the four EU jurisdictions with packs, [jurisdictions/eu-eprivacy.md](jurisdictions/eu-eprivacy.md) answers all five and shows how far apart they are. Elsewhere, treat it as a researched condition like any other and do not assume the permissive answer.
+
 Synthetic examples never establish a real-data basis. Before real personal or confidential data enters any AI or supplier tool, get a scoped assessment and actual authority.
 
 ## 6. Suppliers and providers

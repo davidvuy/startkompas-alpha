@@ -16,7 +16,7 @@
 
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {readdirSync, readFileSync} from 'node:fs';
+import {existsSync, readdirSync, readFileSync} from 'node:fs';
 import {join} from 'node:path';
 
 import {REQUIRED, FORBIDDEN, evaluate} from '../lib/facts.mjs';
@@ -36,12 +36,39 @@ test('every assertion is well-formed', () => {
   }
 });
 
-test('every pack an assertion names actually exists', () => {
-  // An assertion against a renamed or deleted pack reports "missing" forever,
+test('every file an assertion names actually exists', () => {
+  // An assertion against a renamed or deleted file reports "missing" forever,
   // or — worse, for a forbidden entry — is skipped in silence.
-  const present = new Set(readdirSync(packsDir).filter((file) => file.endsWith('.md')));
+  //
+  // Two naming forms, matching check-facts.mjs's resolver: a plain filename is
+  // a jurisdiction pack, and a name containing a slash is a path from the
+  // skill root, used for the method references that route a reader to a pack.
+  const packs = new Set(readdirSync(packsDir).filter((file) => file.endsWith('.md')));
   for (const entry of [...REQUIRED, ...FORBIDDEN]) {
-    assert.ok(present.has(entry.pack), `assertion "${entry.label}" names missing pack ${entry.pack}`);
+    if (entry.pack.includes('/')) {
+      assert.ok(
+        existsSync(join(skillRoot, entry.pack)),
+        `assertion "${entry.label}" names missing file ${entry.pack}`,
+      );
+      assert.ok(
+        !entry.pack.startsWith('/') && !entry.pack.includes('..'),
+        `assertion "${entry.label}" must name a path inside the skill, not ${entry.pack}`,
+      );
+    } else {
+      assert.ok(packs.has(entry.pack), `assertion "${entry.label}" names missing pack ${entry.pack}`);
+    }
+  }
+});
+
+test('the two naming forms cannot refer to the same file', () => {
+  // references/jurisdictions/belgium.md and belgium.md would both resolve, and
+  // the "read once per distinct pack" guarantee below counts them as two. One
+  // file with two names is how a label collision escapes the duplicate check.
+  for (const entry of [...REQUIRED, ...FORBIDDEN]) {
+    assert.ok(
+      !entry.pack.startsWith('references/jurisdictions/'),
+      `assertion "${entry.label}" names a pack by its full path; use the bare filename ${entry.pack.split('/').pop()}`,
+    );
   }
 });
 
