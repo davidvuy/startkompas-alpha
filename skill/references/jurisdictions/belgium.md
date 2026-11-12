@@ -47,6 +47,53 @@ Recheck trigger: a change of region; the activity turning out to be a regulated 
 
 Current threshold **in force**: **€25,000** annual Belgian turnover, excluding VAT. This is the figure to use today.
 
+### Crossing €25,000 mid-year: Belgium gives a 10 % tolerance, and nobody else does
+
+Sources
+- [`Wet van 21 maart 2024`, published 2024-04-09, inserting arts. 56ter to 56undecies](https://www.ejustice.just.fgov.be/cgi/article_body.pl?language=nl&caller=summary&pub_date=2024-04-09&numac=2024002757) · *primary legislation, **read as published** — Justel's consolidated text of the Code was not reachable, so a later amendment would not show here* · **[checked 2026-11-12]**
+- [`KB nr. 19` of **15 December 2024**](https://www.ejustice.just.fgov.be/cgi_loi/article.pl?language=nl&lg_txt=n&cn_search=2024121504) · *primary legislation, Justel consolidated text, `tekstbijwerking tot 31-12-2025`* · **[checked 2026-11-12]**
+
+**First, the instrument this pack was chasing no longer exists.** [`KB nr. 19` of 29 June 2014](https://www.ejustice.just.fgov.be/eli/besluit/2014/06/29/2014003283/justel) carries, in place of its text, `[Opgeheven] <KB 2024-12-15/04, art. 14, 008; Inwerkingtreding : 01-01-2025>`. **It was repealed with effect from 2025-01-01** and replaced by a new `KB nr. 19` of 15 December 2024, which partially transposes Directive (EU) 2020/285. Anything written about the Belgian exemption that cites the 2014 decree as current is describing a repealed instrument — and that includes the €15,000 figure this pack records as history.
+
+**The rule itself is art. 56decies §1**, and it is the only tolerance band in these four packs:
+
+> Wanneer tijdens een kalenderjaar de … drempel wordt overschreden met:
+> 1° **ten hoogste tien pct.**, kan de belastingplichtige gedurende dat kalenderjaar de vrijstellingsregeling van belasting **blijven genieten**;
+> 2° **meer dan tien pct.**, is de vrijstellingsregeling van belasting **vanaf dat tijdstip niet langer van toepassing**.
+
+So on €25,000: turnover up to **€27,500** keeps the exemption for the rest of that calendar year. Past €27,500 it stops **from that moment**. And the first sentence of the same paragraph adds the part a founder plans around: having exceeded the threshold in the preceding calendar year **bars the exemption for a full calendar year**.
+
+| Pack | Crossing the domestic threshold mid-year |
+| --- | --- |
+| **Belgium** | **10 % tolerance** — keep it for the rest of the year up to €27,500, lose it immediately above that, and be barred for the following calendar year |
+| **Netherlands** | ends **immediately**; the Belastingdienst's own words are *"u zich meteen afmelden"* |
+| **France** | answered in [france.md](france.md) with its own two-figure structure |
+| **Germany** | the statute is **silent**, which [germany.md](germany.md) records as a negative result rather than a gap |
+
+**There is no tolerance on the Union threshold.** Art. 56decies §2: where a taxable person established in another member state crosses the **Union** annual turnover threshold during a year, the Belgian exemption stops *"vanaf dat tijdstip"*. The 10 % band is domestic only — which matches [eu-vat-sme.md](eu-vat-sme.md), where the directive's Union cap has no tolerance either.
+
+### What art. 56ter actually says, and the two counting rules a founder will not guess
+
+Art. 56ter §1 gives the exemption to taxable persons established in Belgium whose **annual turnover in Belgium is not more than €25,000**, for the supplies they make in Belgium. Three further sentences matter more than the figure:
+
+- **Joint activity is added together.** Where several people carry on an economic activity *"in onverdeeldheid of in vereniging"*, the threshold is applied to *"het jaarlijks totaalbedrag van de omzetcijfers die ze samen realiseren"* — their combined turnover.
+- **Spouses are counted separately.** Where spouses carry on **distinct** economic activities, each activity is counted on its own, *"ongeacht hun huwelijksvoorwaarden"* — whatever their matrimonial property regime.
+- **The notification is made at the start.** A taxable person wanting the exemption notifies the administration *"op het moment van de aanvang van zijn economische activiteit"*. And where the circumstances clearly show the conditions are not met, the administration puts them under another regime instead.
+
+**Art. 56ter §2 is the inbound half of the EU scheme**: a taxable person established in another member state may use the Belgian exemption where their **Union annual turnover is at most €100,000** — at the ECB rate published on **2018-01-18** — **and** their Belgian turnover is at most €25,000, having first notified their own member state and been identified there with the **`EX`** suffix. That is Belgium's side of the mechanism [eu-vat-sme.md](eu-vat-sme.md) reads from the directive.
+
+**Art. 56quater is the outbound half.** A Belgian-established taxable person wanting another member state's exemption sends a prior notification *"aan het daarvoor door de minister van Financiën of zijn gemachtigde gecreëerde elektronisch adres"*, and is identified by their Belgian VAT number **with `EX` appended**. The notification carries the name, activity, legal form and address, the member states concerned, and the totals supplied in Belgium and in each other member state **in the preceding calendar year and in the elapsed part of the current one**. The exemption takes effect in the other state from the date the administration communicates the identification number.
+
+**Two deadlines come with it**: the quarterly figures are supplied **within one month** of the end of the calendar quarter, and where the Union threshold is crossed the administration must be told **within fifteen working days**, together with the amount supplied from the start of the current quarter to the date of crossing.
+
+### Getting into the exemption costs something — `KB nr. 19` arts. 3 and 4
+
+**Starting out is simple.** Art. 3 §1: a taxable person beginning an activity notifies the intention in advance through the start-of-activity declaration under `KB nr. 10`; it has effect **for an indefinite period from the first day of activity**; and the VAT identification number is allotted **within fifteen working days**, unless that is too short for the checks needed to prevent evasion.
+
+**Switching in later is a calendar exercise.** Art. 3 §2: a taxable person under the normal or flat-rate regime whose current-year turnover stays under the threshold may move to the exemption from **1 January, 1 April, 1 July or 1 October**, by applying **before 15 December** of the current year or **before 15 March, 15 June or 15 September**. The application states the turnover realised in the elapsed quarters **and an estimate for the remaining ones**.
+
+**And art. 4 is the cost nobody budgets for.** On moving into the exemption the taxable person must **revise the VAT already deducted** on goods and services other than capital assets not yet used or consumed, and on capital assets still in existence and usable whose original deduction is open to revision. The transition *"wordt gelijkgesteld met het verlies van de hoedanigheid van belastingplichtige"* — it is treated as **losing taxable-person status** — and the amount to repay is fixed on the basis of an **inventory** of what is left. A founder who has just bought equipment and then switches into the exemption pays some of that deduction back.
+
 ### The phased increase: the figures are confirmed, the enactment is not
 
 Source: [Chamber of Representatives, **DOC 56 1593/001** of **2026-06-15**](https://www.dekamer.be/FLWB/PDF/56/1593/56K1593001.pdf), `Wetsontwerp op de reductie van de kosten II`, Title 5 · *official parliamentary document, PDF extracted and the enacting articles read in both languages* · **[checked 2026-11-10]**
@@ -254,6 +301,12 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Phased figures 2027–2031 (€26,000 → €30,000) | 2026-11-10 | Primary — DOC 56 1593/001 of 2026-06-15, art. 25 |
 | Art. 26 of the bill is the entry-into-force clause, not an amending article | 2026-11-10 | Primary — the bill's own art. 26, quoted |
 | A law of 2026-09-23, published 2026-10-07, amends art. 56ter of the VAT Code | 2026-11-11 | Primary — Justel's own amendment history for the Code, read and quoted |
+| **`KB nr. 19` of 2014 is repealed** with effect from 2025-01-01 and replaced by `KB nr. 19` of 15 December 2024 | 2026-11-12 | Primary — the repeal note read on the 2014 decree's own Justel page, and the replacement read in its consolidated form |
+| Art. 56decies §1: a **10 % tolerance** on the domestic threshold, then immediate loss, and a bar for the following calendar year | 2026-11-12 | Primary — the inserting law read as published and quoted. Justel's consolidated Code was not reachable, so a later amendment would not show |
+| Art. 56decies §2: **no** tolerance on the Union threshold | 2026-11-12 | Primary — read |
+| Art. 56ter §1: €25,000; joint activity aggregated; spouses counted separately; notification at the start of the activity | 2026-11-12 | Primary — read and quoted |
+| Art. 56ter §2 and art. 56quater: the inbound and outbound cross-border halves, the `EX` suffix, the quarterly report within one month and the fifteen working days on crossing | 2026-11-12 | Primary — read |
+| `KB nr. 19` arts. 3 and 4: entry mechanics, the quarterly switch-in dates, the fifteen-working-day VAT number, and the **input-VAT revision on entering the exemption** | 2026-11-12 | Primary — the consolidated decree read |
 | Council Implementing Decision 2013/53/EU authorised €25,000; `KB nr. 19` of 2014 set €15,000 | 2026-11-12 | Primary — the decree as published read; the consolidated text is not served, so its current content is not claimed |
 | A raise to €30,000 needs no EU derogation, because Directive (EU) 2020/285 permits up to €85,000 | 2026-11-12 | Primary — the directive is read in eu-vat-sme.md; the inference is arithmetic, not interpretation |
 | The 2024-03-21 and 2026-02-10 laws, with publication dates, and three further 2026 amendments to the Code | 2026-11-11 | Primary — the same amendment history |

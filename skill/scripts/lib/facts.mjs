@@ -248,6 +248,15 @@ export const REQUIRED = [
   {case: '—', pack: 'references/offer-and-market.md', label: 'interview preparation routes outreach lawfulness to the ePrivacy layer', pattern: /jurisdictions\/eu-eprivacy\.md/},
   {case: '—', pack: 'references/offer-and-market.md', label: 'B2B relevance is not presented as making an approach lawful', pattern: /do not tell a founder that business-to-business or professional relevance makes the approach lawful/},
 
+  // Belgium's 10 % tolerance is the only one of the four, and the repeal of
+  // KB nr. 19 of 2014 is why the question stayed open for a day. Both must
+  // survive: the rule, and the reason the old instrument cannot be cited.
+  {case: '—', pack: 'belgium.md', label: 'a 10 per cent tolerance on the Belgian VAT threshold', pattern: /ten hoogste tien pct\./},
+  {case: '—', pack: 'belgium.md', label: 'KB nr. 19 of 2014 is repealed, not merely old', pattern: /\[Opgeheven\] <KB 2024-12-15\/04/},
+  {case: '—', pack: 'belgium.md', label: 'entering the exemption triggers an input-VAT revision', pattern: /gelijkgesteld met het verlies van de hoedanigheid van belastingplichtige/},
+  {case: '—', pack: 'belgium.md', label: 'spouses are counted separately, joint activity together', pattern: /ongeacht hun huwelijksvoorwaarden/},
+  {case: '—', pack: 'eu-vat-sme.md', label: 'the Belgian tolerance is recorded in the per-pack table', pattern: /A 10 % tolerance, and it is the only one/},
+
   // --- Shared EU layers ------------------------------------------------------
   {case: '—', pack: 'eu-gdpr.md', label: '72-hour notification', pattern: /72 hours/},
   // The layer's opening told a reader the national packs hold only the name of
