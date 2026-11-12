@@ -48,11 +48,13 @@ The question a founder actually asks: *may I email a company I have never dealt 
 | --- | --- | --- | --- | --- |
 | Cold **email** to a named professional (`anna.jansen@firma.nl`) | **Yes** — legitimate interest, no consent, where the subject relates to their profession | **No** without consent — unless that address was **published for receiving** such messages | **No** without consent — the exemption covers only **impersonal** addresses | **No** without prior **express** consent. No business carve-out exists |
 | Cold **email** to a generic address (`info@`, `contact@`) | **Yes** — the CNIL puts these outside the rules as data of legal persons | only on the same published-for-the-purpose test | **Yes** — the royal decree exempts impersonal addresses of legal persons | **No exception appears** — §7(2) Nr. 2 says `Adressaten` and draws no line at an impersonal address. Whether German practice draws one anyway is **[not researched]** |
-| Cold **telephone** call to a business | **Yes** — legitimate interest, same test as email | the opt-in in art. 11.7(2) reaches **natural persons only**, so a call to a company is outside it | **[not researched]** — art. XII.13 governs email; the Belgian telephone rule was not read | **Yes, on a lower standard** — §7(2) Nr. 1 needs only **presumed** consent from a non-consumer |
+| Cold **telephone** call to a business | **Yes** — legitimate interest, same test as email | the opt-in in art. 11.7(2) reaches **natural persons only**, so a call to a company is outside it | **Opt-out, plus a lookup before every call.** Art. VI.110 §2 permits a human call unless the subscriber has manifestly objected — but art. VI.112 §1 forbids calling any number on the **`Bel me niet meer!`** list and requires the caller to **check it beforehand, every time**. Automated calls and faxes need consent | **Yes, on a lower standard** — §7(2) Nr. 1 needs only **presumed** consent from a non-consumer |
 | Who comes after you | the **CNIL** | the **ACM**, not the data-protection authority | **a criminal sanction** under art. XV.120. By what route it is pursued, and whether Book XV's administrative settlement comes first, is **[not researched]** | **a competitor**, by injunction. For email there is no administrative fine |
 | Burden of proof | the controller's, under the GDPR | explicit: the sender *"kan aantonen"* | explicit: art. XII.13 §4 puts it on the sender | the advertiser's, as the party relying on consent |
 
 **The two ends of that table are worth stating plainly.** In France the ordinary first email to a business contact is lawful on legitimate interest, with notice and an opt-out. In Germany the same email is unlawful without prior express consent, and in Belgium it is a **criminal offence** — art. XV.120 says so, though how a prosecution or settlement actually proceeds is not researched here. Nothing about the message changes; only the country does.
+
+**Belgium splits by channel too, and the split runs the other way from Germany's.** An email needs consent and is criminal at `niveau 3`; a human telephone call is opt-out at `niveau 2` — but carries a duty to check a register before every call that no other pack has. So in Belgium the cheaper channel is the telephone, and the cheaper channel is the one with the procedural trap.
 
 **And the asymmetry inside Germany is the opposite of the French one.** Germany treats a **cold call** to a business more leniently than a cold email — presumed consent suffices for the call, express consent is required for the email. France has no such split. A founder who switches channel to be safer may be switching to the stricter one.
 
@@ -120,7 +122,17 @@ The decree executes art. 14 §1 of the `loi du 11 mars 2003`, which art. 5 of `L
 | **niveau 3** — breach of art. XII.13 | €26 to **€25,000** | **6 %** of total annual turnover of the last closed financial year |
 | **niveau 4** — the same in bad faith | €26 to **€50,000** | **6 %** of total annual turnover |
 
-**Two cautions on those figures.** The article states the amounts without mentioning `décimes additionnels` / `opdeciemen`, the multiplier Belgian criminal fines ordinarily carry; whether it applies here is **[not researched]**, and if it does the real ceilings are several times higher. And this `niveau` scale is **the WER's own**, defined in art. XV.70 — it is **not** the `straf van niveau 1` of the new Penal Code that [belgium-data-protection.md](belgium-data-protection.md) records for art. 222 of the data-protection act. Same word, different scales, and conflating them gets the number wrong by an order of magnitude.
+**Two cautions on those figures, and the first one is not hypothetical.**
+
+**The surcharge exists and art. XV.70 does not mention it.** `Wet van 5 maart 1952 betreffende de opdécimes op de strafrechtelijke geldboeten` art. 1 raises *"het bedrag der strafrechtelijke geldboeten uitgesproken door de hoven en rechtbanken krachtens het Strafwetboek en de bijzondere, zelfs van na deze wet daterende wetten en reglementen"* — fines under the Penal Code **and under special laws, including later ones** — *"zonder dat die verhoging het juridisch karakter van die boeten wijzigt"*. The WER is such a special law. Since **2026-09-01** the surcharge is **`2,5 opdecimes`**, after two amendments in a year: `W 2025-12-19/18` in force 2026-02-01 and `W 2026-03-16/16` in force 2026-09-01. The article's own note records how far it has moved before — 190 opdecimes in 1952, rising to 1490 by 1994.
+
+**So the honest statement is that €25,000 may not be the ceiling, and the pack does not convert the figure.** Art. 1's new third paragraph sends special laws *"die geen strafniveau bepalen"* to art. 78, § 1, second paragraph of the `Strafwetboek van 29 februari 2024` — and art. XV.70 **does** set levels, so that paragraph does not obviously reach it. Whether the surcharge then applies on top of a `niveau 3` fine, and what `2,5 opdecimes` comes to, is a question for a Belgian lawyer. **Give a founder the article and the fact that a surcharge regime exists, never a multiplied number.**
+
+**And Belgian criminal law is a moving target right now.** The `wet van 29 februari 2024` introducing Book II of the Penal Code has its articles 78 onward **repealed** by `W 2026-03-16/08`, art. 126, in force **2026-09-01** — the same date as the surcharge change and as the restatement of the data-protection act's penalties that [belgium-data-protection.md](belgium-data-protection.md) records. Any secondary source on a Belgian criminal penalty written before September 2026 should be assumed stale.
+
+**The second caution: this `niveau` scale is the WER's own**, defined in art. XV.70 — it is **not** the `straf van niveau 1` of the new Penal Code that [belgium-data-protection.md](belgium-data-protection.md) records for art. 222 of the data-protection act. Same word, different scales, and conflating them gets the number wrong by an order of magnitude.
+
+Source · [`Wet van 5 maart 1952 betreffende de opdécimes op de strafrechtelijke geldboeten`](https://www.ejustice.just.fgov.be/eli/wet/1952/03/05/1952030505/justel) · *primary legislation, read on Justel's consolidated text, `tekstbijwerking tot 01-04-2026`* · **[checked 2026-11-12]**
 
 So Belgium is the **second** place in these packs where ordinary pilot activity is criminal rather than administrative — the first being processing without a lawful basis under art. 222. Both are in the same country, and neither is in the other three.
 
@@ -130,6 +142,25 @@ Sources
 - [`Loi du 15 décembre 2013` inserting Book XII, arts. 5 and 6](https://www.ejustice.just.fgov.be/cgi_loi/change_lg.pl?language=fr&la=F&cn=2013121551&table_name=loi) · *primary legislation, read for the repeal and the presumption that carries the decree* · **[checked 2026-11-12]**
 
 **A technique note, because it cost time before.** Justel served only metadata for `KB nr. 19` through `change_lg.pl` when [eu-vat-sme.md](eu-vat-sme.md) needed it, and that is recorded there as an open topic. The **`/eli/`** route used above serves the **full consolidated text**, including for the 2003 royal decree and the whole of the economic code. Try `/eli/<type>/<yyyy>/<mm>/<dd>/<numac>/justel` before concluding Justel will not serve a Belgian text — and see [README.md](README.md) for where this note belongs long-term.
+
+### Belgium again — the telephone rule is a different article, a different penalty, and a duty to look something up
+
+Art. XII.13 governs **email**. Telephone direct marketing sits in Book VI, `HOOFDSTUK 3. — Ongewenste communicaties`, and answers differently:
+
+| What | Rule |
+| --- | --- |
+| **Automated calling systems without human intervention, and faxes** | **Prohibited** without the *"voorafgaande, vrije, specifieke en geïnformeerde toestemming van de geadresseerde"* — art. VI.110 §1. Consent is withdrawable at any time, without a reason and at no cost, and **the burden of proving the communication was requested rests on the sender** |
+| **A human telephone call** | **Opt-out.** Art. VI.110 §2, as replaced with effect from 2024-02-29: *"Andere telefonische communicatie met het oog op direct marketing is toegestaan voor zover de abonnee of de gebruiker zich hiertegen niet kennelijk heeft verzet"* — permitted so long as the subscriber or user **has not manifestly objected**, and subject to arts. VI.111 to VI.115 |
+| **But first, the list** | Art. VI.112 §1: a direct-marketing call to a number on the **`Bel me niet meer!`** list is prohibited, and *"[v]oor elke telefoonoproep om redenen van direct marketing gaat de oproeper voorafgaandelijk na of het desbetreffende nummer niet is opgenomen"* — **before every such call the caller checks whether the number is on it.** The exception in §2 is narrow: subscribers who gave **that** caller express permission to use their data for the purpose |
+| **Identity** | Art. VI.110 §4: concealing the identity of the undertaking on whose behalf the communication takes place is prohibited |
+| **Cost of objecting** | Art. VI.110 §3: nothing may be charged to the addressee for exercising the right to object |
+| **Penalty** | Art. XV.83, 16°: breaching arts. VI.110 to VI.115 is a **`sanctie van niveau 2`** — by art. XV.70 §1, €26 to **€10,000**, or **4 %** of total annual turnover if that is higher. Lower than the `niveau 3` for email |
+
+**This is the only duty in these four packs that is a lookup rather than a basis.** France, Germany and the Netherlands tell a founder what they need before calling; Belgium also tells them to consult a register **before each call**, and art. VI.114 has the list made available to businesses by a non-profit recognised by the King. A founder working a call list in Belgium either has that check in their process or is in breach of it on every call.
+
+**One scope question, left open rather than assumed.** The articles say `abonnee` and `gebruiker`, not `consument`, and the chapter sits in the same Title as the expressly business-to-business art. VI.109/8 — so nothing on the face of them limits the rule to consumers. Whether a **business** number is covered in practice is a question about Book VI's scope that was not researched, and the open row below says so.
+
+Source · [Arts. I.8 48°, VI.110 to VI.115 and XV.83 `Wetboek van economisch recht`](https://www.ejustice.just.fgov.be/eli/wet/2013/02/28/2013A11134/justel) · *primary legislation, read on Justel's consolidated Dutch text* · **[checked 2026-11-12]**
 
 ### France — the one that permits the first email
 
@@ -182,9 +213,15 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 2 of the decree requires an **acknowledgement of receipt by email** for an objection, plus up-to-date suppression lists | 2026-11-12 | Primary — read |
 | Breach of art. XII.13 is criminal: art. XV.120 `niveau 3`, art. XV.121 `niveau 4` in bad faith | 2026-11-12 | Primary — both articles read |
 | Art. XV.70 §1: `niveau 3` is €26–€25,000 or 6 % of turnover; `niveau 4` €26–€50,000 or 6 % | 2026-11-12 | Primary — read and tabulated |
-| Whether `décimes additionnels` apply to the art. XV.70 amounts | — | Open — the article does not mention them and this was not researched. If they apply the ceilings are several times higher |
+| The surcharge law exists, reaches special laws, and stands at `2,5 opdecimes` since 2026-09-01 after two amendments in a year | 2026-11-12 | Primary — `wet van 5 maart 1952` art. 1 read on Justel and quoted, consolidated to 2026-04-01 |
+| Whether the surcharge applies on top of an art. XV.70 `niveau` fine, and what `2,5 opdecimes` comes to | — | Open — art. 1's third paragraph reaches special laws that set **no** level, and art. XV.70 sets levels. A question for a Belgian lawyer; the pack states the article and not a multiplied figure |
+| Arts. 78 onward of the `wet van 29 februari 2024` on Book II of the Penal Code are repealed from 2026-09-01 | 2026-11-12 | Primary — read on Justel. Any secondary source on a Belgian criminal penalty written before September 2026 should be assumed stale |
 | The WER's `niveau` scale is not the Penal Code `niveau` scale used by art. 222 of the Belgian data-protection act | 2026-11-12 | Primary — art. XV.70 read here, art. 222 read in [belgium-data-protection.md](belgium-data-protection.md) |
-| The Belgian rule for **telephone** prospecting | — | Open — not researched. Art. XII.13 governs email only, and no Belgian telephone provision was read |
+| Belgian automated calls and faxes need consent, with the burden on the sender — art. VI.110 §1 | 2026-11-12 | Primary — read on Justel and quoted |
+| A Belgian human call is opt-out under art. VI.110 §2, as replaced with effect from 2024-02-29 | 2026-11-12 | Primary — read and quoted |
+| Art. VI.112 §1 requires the caller to check the `Bel me niet meer!` list **before every** direct-marketing call | 2026-11-12 | Primary — read and quoted; the active duty is the finding |
+| Breach of arts. VI.110 to VI.115 is a `sanctie van niveau 2` under art. XV.83, 16° — €26 to €10,000 or 4 % of turnover | 2026-11-12 | Primary — both articles read |
+| Whether Book VI's unwanted-communications chapter covers a **business** number | — | Open — the articles say `abonnee` and `gebruiker`, not `consument`, and the chapter shares a Title with an expressly B2B article; the scope of Book VI was not researched |
 | Whether German practice treats a generic company address differently from a named one | — | Open — §7(2) Nr. 2 says `Adressaten` and draws no such line; reading a line into it would be interpretation, and the table says so instead |
 | By what procedure a breach of art. XII.13 is pursued in Belgium, and whether Book XV's administrative settlement applies | — | Open — art. XV.120 establishes the sanction; the procedure was not read |
 | The French position — B2B on legitimate interest, generic addresses outside, the 2026-08-11 telephone regime | — | Elsewhere — maintained in [france-data-protection.md](france-data-protection.md), where it is `Authority` because Légifrance is blocked |

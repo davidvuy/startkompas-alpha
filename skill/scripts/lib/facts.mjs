@@ -211,7 +211,21 @@ export const REQUIRED = [
   // Two words reading "niveau" on two different scales, one of them ten times
   // the other. This warning is the whole reason the figures are safe to quote.
   {case: '—', pack: 'eu-eprivacy.md', label: 'the WER niveau scale is not the Penal Code niveau scale', pattern: /Same word, different scales/},
-  {case: '—', pack: 'eu-eprivacy.md', label: 'the décimes question is left open rather than assumed away', pattern: /without mentioning `décimes additionnels`/},
+  // Researched on 2026-11-12: the surcharge law exists and reaches special
+  // laws, so the figures in art. XV.70 may not be the real ceilings. What the
+  // pack must never do is multiply them itself and present the product as law.
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the pack refuses to give a multiplied Belgian figure', pattern: /never a multiplied number/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the surcharge reaches special laws, in the words of the statute', pattern: /zelfs van na deze wet daterende wetten en reglementen/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'Belgian criminal penalties are a moving target as at 2026-09-01', pattern: /assumed stale/},
+
+  // The only obligation in these four packs that is an ACTION before each
+  // contact rather than a basis for making contact at all. A founder working a
+  // Belgian call list either has this in their process or breaches it on every
+  // call, so losing the row would cost more than losing a fine figure.
+  {case: '—', pack: 'eu-eprivacy.md', label: 'Belgium requires a Bel me niet meer check before every call', pattern: /gaat de oproeper voorafgaandelijk na/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'a Belgian human call is opt-out, not consent', pattern: /zich hiertegen niet kennelijk heeft verzet/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'Belgian unwanted communications carry the lower niveau 2', pattern: /\`sanctie van niveau 2\`/},
+  {case: '—', pack: 'eu-eprivacy.md', label: 'the Belgian channel split runs the other way from the German one', pattern: /the cheaper channel is the one with the procedural trap/},
 
   // --- The method references that decide whether a pack is opened ------------
   // A name with a slash resolves from the skill root, not from the packs
