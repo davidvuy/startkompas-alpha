@@ -336,6 +336,14 @@ export const REQUIRED = [
   {case: '—', pack: 'france-data-protection.md', label: 'Legifrance is recorded as blocked, not unexamined', pattern: /bot-protection challenge instead of the page/},
   {case: '—', pack: 'france-data-protection.md', label: 'the count of the French list is deliberately withheld', pattern: /count is deliberately not quoted here/},
 
+  // The Dutch trap: silence on a data subject request removes the claimant's
+  // deadline altogether. And the secrecy duty art. 30(4) imposes on the
+  // controller personally, which no policy creates and none can remove.
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'no time limit on the petition if the controller did not answer in time', pattern: /is de indiening van het verzoekschrift niet aan een termijn gebonden/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'art. 30(4) puts the controller personally under a secrecy duty', pattern: /is hij verplicht tot geheimhouding van de gegevens/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'art. 41 is one general power, not a carve-out per right', pattern: /buiten toepassing laten/},
+  {case: '—', pack: 'netherlands-data-protection.md', label: 'criminal-law data needs one of the six art. 32 grounds', pattern: /six grounds/},
+
   // --- France — prospecting, which is the first thing a pilot actually does ---
   // The pack carried the opposite of the first assertion below until
   // 2026-11-12. A B2B founder told they need consent before the first email
@@ -364,6 +372,15 @@ export const REQUIRED = [
   // narrow are the ones a founder's analytics vendor usually breaks.
   {case: '—', pack: 'france-data-protection.md', label: "the audience exemption needs anonymous statistics for the publisher alone", pattern: /for the publisher's exclusive account/},
   {case: '—', pack: 'france-data-protection.md', label: 'the 13- and 25-month figures are recommendations, not conditions', pattern: /recommendations rather than conditions/},
+
+  // §26(8) is what brings a single CV inside the German employment rules, and
+  // §35(3) is what turns a clause in the founder's own contract into a defence
+  // against an erasure request. Both are German-specific and neither is
+  // guessable from the GDPR.
+  {case: '—', pack: 'germany-data-protection.md', label: 'applicants count as employees under §26(8)', pattern: /Bewerberinnen und Bewerber für ein Beschäftigungsverhältnis/},
+  {case: '—', pack: 'germany-data-protection.md', label: 'a contractual retention period can displace the erasure right', pattern: /vertragliche Aufbewahrungsfristen/},
+  {case: '—', pack: 'germany-data-protection.md', label: 'the backup carve-out is triple-locked, not a one-line excuse', pattern: /triple-locked/},
+  {case: '—', pack: 'germany-data-protection.md', label: 'every BDSG exemption carries a duty to record why', pattern: /The documentation duty survives every exemption/},
 
   // --- Belgium — the 2018 act and the GBA's own list --------------------------
   // Art. 222 is the only national penalty in these packs that is criminal, and

@@ -318,6 +318,8 @@ So for a **private company the competent authority is the `Land` authority where
 
 Practical consequence: a founder cannot be told "contact the German DPA". Establish their `Land` first, then find that authority. A breach notification sent to the wrong authority is not a notification made.
 
+**Hiring anyone, even reading one CV, puts you under §26 BDSG** — §26(8) counts applicants and former employees as `Beschäftigte`. And §35(3) lets a **contractual** retention period displace an erasure request, which makes the retention clause in your own terms a two-edged thing.
+
 **The German specifics beyond that are in [germany-data-protection.md](germany-data-protection.md):** §40 BDSG and which Land authority is competent when there are several establishments, **§38 BDSG — under which a DPO is compulsory with no employees at all** — the dismissal protection a compulsory DPO acquires, **§42 BDSG's criminal liability and the use immunity it gives a breach notification**, the German art. 35(4) DPIA list and **the entry on it that covers AI customer interaction**, and the BayLDA's own checklist for a one-person business.
 
 ---

@@ -276,6 +276,8 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 - **Verwerkersovereenkomst** — the agreement must be in writing and must state that the processor acts **only on the controller's written instructions**.
 - **Datalek melden** — report to the AP **within 72 hours** of discovering the breach; the AP is explicit that failing to do so puts you in breach. A processor must warn its controller without undue delay.
 
+**Two Dutch things a founder meets early.** Art. 30(4) UAVG puts a controller who handles health data personally under a **statutory secrecy duty** of their own. And art. 35(2) UAVG makes **not answering** a data subject request worse than refusing one: a refusal starts a six-week clock, while silence leaves the court petition open with no deadline at all.
+
 **The Dutch specifics beyond those three are in [netherlands-data-protection.md](netherlands-data-protection.md):** what the `UAVG` adds and — more usefully — what it does **not** add, **the AP's binding art. 35(4) list of 17 processing types**, the AP's twelve-item step plan for a controller, its five steps for a breach, and the questions its notification form asks before the 72-hour clock runs out.
 
 ---

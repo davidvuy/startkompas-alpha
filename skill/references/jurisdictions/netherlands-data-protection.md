@@ -115,6 +115,54 @@ Source: [AP — `Vragenlijst meldformulier datalekken`](https://www.autoriteitpe
 
 **Open:** the brochure the controller step plan accompanies, the AP's example list of notifiable and non-notifiable breaches, and its ten tips on breach registration are **[not researched]**.
 
+## The rest of the UAVG: health, criminal data, and the restrictions on rights
+
+Source: [Uitvoeringswet AVG, arts. 30 to 43](https://wetten.overheid.nl/BWBR0040940) · *primary legislation, read on the official portal in the version `Geldend van 01-09-2026`* · **[checked 2026-11-12]**
+
+Most of these articles are written for public bodies, schools, health providers and insurers. **Four of them reach a solo founder**, and one of those is a trap.
+
+### Health data about an employee — art. 30, and the secrecy duty in art. 30(4)
+
+Art. 30(1) disapplies the art. 9(1) prohibition for *"bestuursorganen, pensioenfondsen, **werkgevers** of instellingen die te hunnen behoeve werkzaam zijn"* — employers included — but only so far as necessary for **two purposes**: the proper implementation of statutory rules, pension schemes or collective agreements whose entitlements depend on the person's health, and *"de re-integratie of begeleiding van werknemers of uitkeringsgerechtigden in verband met ziekte of arbeidsongeschiktheid"*. Nothing wider. A founder logging *why* someone is ill is outside both.
+
+**Art. 30(4) is the paragraph a one-person company will not expect.** Where any of paragraphs 1 to 3 is used, the data may be processed **only by people under a duty of secrecy** — by office, profession, statutory rule **or contract**. And then:
+
+> Indien de verwerkingsverantwoordelijke persoonlijk gegevens verwerkt en op hem niet reeds uit hoofde van ambt, beroep of wettelijk voorschrift een geheimhoudingsplicht rust, is hij verplicht tot geheimhouding van de gegevens
+
+A founder who is the controller and handles the data personally, and who has no professional secrecy duty of their own, **is placed under one by this article**. That is a statutory obligation attaching to the individual, not a policy they choose to write.
+
+### Criminal-law data — art. 32
+
+Art. 10 GDPR bars processing data on criminal convictions and offences without authority. Art. 32 UAVG supplies the Dutch authority, in **six grounds**, and only two of them are realistic for a pilot: *(a)* the person's **explicit consent** for one or more specified purposes, and *(d)* where processing is **necessary for establishing, exercising or defending a legal claim**. The others are vital interests, data the person has manifestly made public, substantial public interest, and research or statistics under art. 89(1).
+
+**So a founder cannot screen a candidate or a counterparty for convictions on a general "legitimate interest" argument.** Art. 33 adds further grounds, and they are for bodies charged with applying criminal law and comparable public-law arrangements, not for a business.
+
+### The restrictions on data subject rights — art. 41, and the contrast with Germany
+
+Art. 23 GDPR lets a member state restrict arts. 12 to 22 and 34. **Germany and the Netherlands did it by opposite techniques**, and a founder operating in both should know which they are standing in:
+
+| | Germany — §§32 to 35 BDSG | Netherlands — art. 41 UAVG |
+| --- | --- | --- |
+| Shape | **A carve-out per right.** Separate provisions for art. 13, art. 14, art. 15 and art. 17, each with its own cumulative conditions | **One general power.** The controller *"kan de verplichtingen en rechten, bedoeld in de artikelen 12 tot en met 21 en artikel 34 ... buiten toepassing laten"* |
+| Test | Fit the facts into the named limb | *"voor zover zulks noodzakelijk en evenredig is"* to safeguard one of **ten** listed interests |
+| Which limbs reach a private controller | Few, and narrow — prejudice to legal claims, backup-only data, a particular manner of storage | at least *(i)* **protecting the data subject or the rights and freedoms of others** and *(j)* **`de inning van civielrechtelijke vorderingen`**, the recovery of civil claims |
+| What you must weigh | the statute states the conditions; the weighing is inside them | art. 41(2) gives **eight factors** to take into account, ending with *(h)* **the data subject's right to be told about the restriction, unless that would defeat its purpose** |
+| Duty to record | explicit: §32(2), §33(2), §34(2) each require a written reason | **not stated in art. 41** — the accountability principle in art. 5(2) GDPR is what carries it |
+
+**The practical difference is where the argument happens.** In Germany a refusal is right or wrong by the terms of a narrow provision. In the Netherlands it is right or wrong by a proportionality judgment the controller made and must be able to defend. Neither is more permissive in the abstract; the Dutch one simply puts more weight on the quality of the reasoning, and leaves the writing-down to art. 5(2) rather than demanding it.
+
+### Not answering is worse than refusing — art. 35 UAVG
+
+This is the operative one. Where a **non-public** controller decides on a request under arts. 15 to 22, the person can petition the **rechtbank** to order the controller to grant or refuse it. Three details:
+
+- **Six weeks** from receiving the controller's answer, and
+- *"Indien de verwerkingsverantwoordelijke niet binnen de in artikel 12, derde lid, van de verordening genoemde termijnen heeft geantwoord, is de indiening van het verzoekschrift niet aan een termijn gebonden"* — **if the controller did not answer within the art. 12(3) period, the petition is subject to no time limit at all**; and
+- **no lawyer is required** to file it.
+
+**So silence is the worst available option.** Answering badly starts a six-week clock; answering late or not at all leaves the claim open indefinitely and costs the claimant nothing to bring. A founder who cannot meet art. 12(3) should send the extension that art. 12(3) itself allows rather than let the date pass.
+
+Art. 36 adds that the AP can resolve such a dispute, or a code of conduct's body can, and art. 42 disapplies art. 34 — telling the data subject about a breach — **for financial undertakings under the `Wet op het financieel toezicht`** and nobody else. Art. 43 disapplies most of the Regulation and nearly all of the UAVG for processing **solely for journalistic purposes or for academic, artistic or literary expression**; it is listed here only so that a founder running a blog alongside the business does not read that exemption as covering the business.
+
 ## Pack maintenance
 
 One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
@@ -128,7 +176,16 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 5 UAVG: sixteen, and beyond art. 8 GDPR's information-society services | 2026-11-11 | Primary — read |
 | The DPO's secrecy duty about complaints and data subject requests | 2026-11-11 | Primary — read and quoted |
 | The act has amendments with no commencement date as at 2026-11-11 | 2026-11-11 | Primary — the act's own header; what they change is open |
-| Arts. 30–33 and 41 onwards of the UAVG | — | Open — not read beyond what is quoted |
+| Art. 30(1): the employer limb covers only statutory/pension/collective entitlements and reintegration or support in sickness | 2026-11-12 | Primary — read and quoted |
+| **Art. 30(4): a controller handling the data personally is placed under a secrecy duty by the article itself** | 2026-11-12 | Primary — read and quoted |
+| Art. 32: six grounds for criminal-law data, of which explicit consent and legal claims are the realistic ones | 2026-11-12 | Primary — read |
+| Art. 41(1): one general power to disapply arts. 12 to 21 and 34, on necessity and proportionality, for ten listed interests | 2026-11-12 | Primary — read and quoted |
+| Art. 41(2): eight factors to weigh, ending with telling the person about the restriction | 2026-11-12 | Primary — read |
+| The Dutch technique differs in shape from the German one | 2026-11-12 | Primary — both read; §§32 to 35 BDSG are in [germany-data-protection.md](germany-data-protection.md). The comparison is this pack's |
+| **Art. 35(2): no time limit on the petition if the controller did not answer within art. 12(3)** | 2026-11-12 | Primary — read and quoted |
+| Art. 35(4): no lawyer is required to file it | 2026-11-12 | Primary — read |
+| Art. 42: art. 34 disapplied for financial undertakings under the Wft; art. 43 for journalistic, academic, artistic and literary purposes | 2026-11-12 | Primary — read |
+| Arts. 30a, 30b, 31, 33(1), 34 and 36 to 39 UAVG | — | Open — read only as far as their headings. They address record transfers by care providers, public supervision, criminal-law bodies, administrative-law procedure, representation, suspensive effect and a secrecy duty |
 | The Dutch art. 35(4) list is a formal `Besluit`, 17 types, built on the nine WP 248 criteria, in force since 2019-11-27 with no later version | 2026-11-11 | Primary — the `Besluit` read in full on wetten.overheid.nl |
 | Entry 15, `Profilering`, omits art. 35(3)(a)'s legal-effects limb | 2026-11-11 | Primary — both texts read; the comparison is of wording |
 | Entry 1 requires a DPIA for covert staff cameras even in isolated cases | 2026-11-11 | Primary — read and quoted |

@@ -101,6 +101,66 @@ Five things in it that are useful anyway:
 
 The remaining `BDSG` provisions — employee data in §26, special categories in §22, and the restrictions on data subject rights in §§32 to 37 — are **[not researched]**.
 
+## Employee data, and the applicant who counts as an employee — §26 BDSG
+
+Source: [§26 BDSG](https://www.gesetze-im-internet.de/bdsg_2018/__26.html) · *primary legislation, read in full on the federal justice ministry's portal* · **[checked 2026-11-12]**
+
+**The paragraph a founder hiring their first person needs is §26(1) sentence 1.** Employee personal data may be processed for employment purposes where that is **necessary** — for *"die Entscheidung über die Begründung eines Beschäftigungsverhältnisses"*, the decision whether to enter into the relationship at all, and after it exists for performing or ending it, or for the rights and duties of employee representation arising from a law or a collective agreement.
+
+**And §26(8) is the sentence that makes this reach a pilot.** It lists seven categories of `Beschäftigte` — employees including agency workers, trainees, rehabilitation participants, sheltered-workshop workers, certain volunteers, **economically dependent persons treated as employee-like including homeworkers**, and federal officials, judges and soldiers. Then:
+
+> Bewerberinnen und Bewerber für ein Beschäftigungsverhältnis sowie Personen, deren Beschäftigungsverhältnis beendet ist, gelten als Beschäftigte.
+
+**Applicants for a position, and people whose employment has ended, count as employees.** So a founder who collects a single CV is processing `Beschäftigtendaten` under §26 — before anyone is hired, and after anyone leaves. Read that beside **[eu-ai-act-national.md](eu-ai-act-national.md)** and [eu-ai-act.md](eu-ai-act.md) §3: a tool that screens those CVs is high-risk under Annex III point 4(a), and the data it reads are employee data under German law from the moment the application arrives.
+
+**Two more paragraphs that change what a founder may do:**
+
+| Provision | What it does |
+| --- | --- |
+| **§26(1) sentence 2** | To **detect a criminal offence** by an employee, processing is allowed only where **documented** factual indications ground the suspicion, the processing is necessary to detect it, and the employee's legitimate interest in exclusion does not outweigh — *"insbesondere Art und Ausmaß im Hinblick auf den Anlass nicht unverhältnismäßig sind"*. Three cumulative conditions and a documentation duty before you look |
+| **§26(2)** | Consent in employment: freedom to consent is judged against *"die im Beschäftigungsverhältnis bestehende Abhängigkeit"* and the circumstances. It **can** be free where the employee gains a legal or economic advantage or the interests are aligned. **Consent must be in writing or electronic form** unless special circumstances make another form appropriate, and the employer must explain the purpose and the art. 7(3) withdrawal right **in `Textform`** |
+| **§26(3)** | Special categories for employment purposes, where necessary to exercise rights or meet duties under labour, social security and social protection law, and no reason to think the data subject's interest overrides. Consent must **expressly refer to those data**, and §22(2)'s safeguards apply |
+| **§26(7)** | Paragraphs 1 to 6 apply **even where the data are not and will not be stored in a filing system**. That is wider than art. 2(1) GDPR, which reaches non-automated processing only in a filing system |
+
+**Open:** whether §26(1) satisfies the conditions **art. 88(2) GDPR** sets for a national employment rule. The question is not idle: §26(4) is the only paragraph that mentions art. 88(2) expressly, and it addresses it to the parties negotiating a **collective agreement** rather than to §26(1) itself. Whether that matters is **[not researched]** and is a question for a German lawyer.
+
+## The safeguards §22(2) BDSG actually names
+
+Source: [§22 BDSG](https://www.gesetze-im-internet.de/bdsg_2018/__22.html) · *primary legislation, read in full* · **[checked 2026-11-12]**
+
+§22(1) permits special-category processing in cases a solo founder will rarely be in — social security, health care, substantial public interest, and public-body limbs. **§22(2) is the useful half**, because §26(3) and §10 `HinSchG` both borrow it: where you do rely on §22(1), you must put *"angemessene und spezifische Maßnahmen"* in place, and the statute names ten, weighed against the state of the art, the cost of implementation and the risk:
+
+technical and organisational measures to ensure the processing complies; measures that make it possible to **check afterwards whether and by whom data were entered, altered or removed**; awareness-raising among those involved; **naming a data protection officer**; restricting access inside the controller and at processors; pseudonymisation; encryption; ensuring confidentiality, integrity, availability and resilience including rapid restoration after an incident; a **procedure for regularly reviewing and evaluating the effectiveness** of the measures; and specific procedural rules for onward transmission or further purposes.
+
+**That list is worth more than its own section suggests.** It is the closest thing in German law to an itemised answer to "what counts as appropriate", and a founder writing their first security note can use it as the agenda — note that it puts **appointing a DPO** in the same list as encryption, which is a measure rather than a threshold, and is a different route to a DPO from the §38 duty above.
+
+## What Germany takes away from the data subject rights — §§32 to 35 BDSG
+
+Sources
+- [§32](https://www.gesetze-im-internet.de/bdsg_2018/__32.html), [§33](https://www.gesetze-im-internet.de/bdsg_2018/__33.html), [§34](https://www.gesetze-im-internet.de/bdsg_2018/__34.html) and [§35 BDSG](https://www.gesetze-im-internet.de/bdsg_2018/__35.html) · *primary legislation, read in full* · **[checked 2026-11-12]**
+
+These are restrictions under art. 23 GDPR, and most of their limbs are for public bodies. **What reaches a `nichtöffentliche Stelle` — a private founder — is narrow and worth knowing exactly**, because the rest is noise a reader will otherwise wade through:
+
+| Right | What a private controller gets |
+| --- | --- |
+| **Art. 13(3)** — informing about further processing | **§32(1) Nr. 1**: not required where the further processing concerns **analogue stored** data, the controller addresses the person directly through it, the new purpose is compatible, **the communication is not digital**, and the person's interest in being informed is slight in the circumstances. **§32(1) Nr. 4**: not required where informing would prejudice asserting, exercising or defending legal claims and the controller's interest in silence prevails |
+| **Art. 14** — data not obtained from the person | **§33(1) Nr. 2(a)**: not required where informing would prejudice **civil** claims, or where the processing involves data from civil contracts and serves to **prevent damage through criminal offences** — unless the person's legitimate interest in being informed prevails |
+| In both cases | **§32(2) and §33(2)**: if you omit it, take appropriate measures including **publishing the art. 13 or 14 information** in clear plain language, and **record in writing why you omitted it**. For §32(1) Nr. 4 and 5 that does not apply. **§32(3)**: where the obstacle was temporary, inform within a reasonable period and **at the latest within two weeks** of it falling away |
+| **Art. 15** — access | **§34(1) Nr. 2**: no right where the data are stored **only** because a statutory or by-law retention rule forbids deletion, **or** serve **exclusively** backup or data-protection-control purposes — **and** access would need disproportionate effort **and** processing for other purposes is excluded by technical and organisational measures. Three conditions, all of them |
+| Refusing access | **§34(2)**: the reasons must be **documented**, and the refusal **reasoned to the person** unless that would defeat its purpose. Data held to answer the request may be used only for that and for data-protection control |
+| **Art. 17** — erasure | **§35(1)**: where erasure in **non-automated** processing is impossible or disproportionately costly *"wegen der besonderen Art der Speicherung"* and the person's interest in erasure is slight, there is **no right and no duty** — and **restriction under art. 18 takes its place**. It does **not** apply where the data were processed unlawfully |
+| Erasure, again | **§35(3)**: the same applies where **`satzungsgemäße oder vertragliche Aufbewahrungsfristen`** stand in the way — so a **contractual** retention period can displace the erasure right |
+
+**Three things to take from that table.**
+
+**The backup carve-out is real but triple-locked.** "It is only in the backup" is not an answer to a German access request on its own; it is an answer only together with disproportionate effort and a technical bar on using the data for anything else. A founder whose backups are a folder they could grep has the effort limb against them.
+
+**§35(3) is the one that changes a founder's drafting.** A retention period written into the founder's own contract is not merely a reason to keep data; in Germany it can defeat an erasure request, with restriction substituted. That is a reason to set retention periods deliberately and in writing — and a reason not to copy a long one in from a template, because it cuts both ways: it is also the period you must then be able to justify.
+
+**The documentation duty survives every exemption.** §32(2), §33(2) and §34(2) each require the controller to **write down why**. Using one of these restrictions without a record is using it badly, and the record is the only thing that makes the refusal defensible later.
+
+**§36 and §37 were not read**, deliberately: §36 restricts the art. 21 objection for **public bodies**, and §37 concerns automated individual decisions in **insurance** contracts. Neither reaches a solo B2B founder. They are named here so that "§§32 to 37" is not left looking unexamined.
+
 ## Pack maintenance
 
 One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
@@ -129,7 +189,20 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | §42 BDSG: criminal liability needs scale plus a commercial purpose, or a profit or harm motive, and is prosecuted only on application | 2026-11-11 | Primary — read and tabulated against the Belgian provision |
 | §42(4): an art. 33 or art. 34 notification may be used against its maker in criminal proceedings only with consent | 2026-11-11 | Primary — read and quoted |
 | Whether Belgium, the Netherlands or France has an equivalent use immunity | — | Open — not researched |
-| §26, §22 and §§32 to 37 BDSG — employee data, special categories, restrictions on data subject rights | — | Open — not researched |
+| §26(1) sentence 1: employee data for the decision to enter, perform or end the relationship | 2026-11-12 | Primary — read and quoted |
+| **§26(8): applicants and former employees count as `Beschäftigte`** | 2026-11-12 | Primary — read and quoted. This is what brings a single CV inside §26 |
+| §26(1) sentence 2: three cumulative conditions and a documentation duty before processing to detect an employee's offence | 2026-11-12 | Primary — read |
+| §26(2): dependency is weighed, consent in writing or electronic form, purpose and withdrawal right in `Textform` | 2026-11-12 | Primary — read and quoted |
+| §26(7): paragraphs 1 to 6 apply even outside a filing system, which is wider than art. 2(1) GDPR | 2026-11-12 | Primary — read; the comparison with art. 2(1) is this pack's |
+| Whether §26(1) satisfies art. 88(2) GDPR | — | Open — §26(4) is the only paragraph citing art. 88(2), and it addresses collective agreements. Not researched; a question for a German lawyer |
+| §22(2): ten named appropriate and specific measures, including appointing a DPO | 2026-11-12 | Primary — read and listed |
+| §32(1) Nr. 1 and Nr. 4, §32(2) publication and written record, §32(3) two-week limit | 2026-11-12 | Primary — read |
+| §33(1) Nr. 2(a): the private-sector limb, civil claims and preventing damage through offences | 2026-11-12 | Primary — read |
+| §34(1) Nr. 2: no access right for retention-locked or backup-only data, on three cumulative conditions | 2026-11-12 | Primary — read |
+| §34(2): refusal must be documented and reasoned to the person | 2026-11-12 | Primary — read |
+| §35(1): restriction replaces erasure for non-automated data stored in a particular way, unless processed unlawfully | 2026-11-12 | Primary — read and quoted |
+| **§35(3): a contractual retention period can displace the erasure right** | 2026-11-12 | Primary — read |
+| §36 and §37 BDSG | — | Elsewhere — read as out of scope rather than unexamined: §36 restricts the art. 21 objection for public bodies and §37 concerns automated decisions in insurance |
 | Which authority is competent, as a founder needs to be told it | — | Elsewhere — stated in [germany.md](germany.md) §6, which this annex expands |
 
 Next full recheck due: **2027-05-10**. Earlier if the DSK publishes a version 1.2 of the art. 35(4) list, if the BayLDA moves its checklist past version 0.9, or if Germany designates its AI Act supervisory authority.
