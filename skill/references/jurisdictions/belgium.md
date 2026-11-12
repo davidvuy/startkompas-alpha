@@ -271,6 +271,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. XI.301: XI.299 §§2–3 and XI.300 are `van dwingend recht`; §1 is not | 2026-11-10 | Primary — WER text read and quoted |
 | Art. XI.298 c): EU exhaustion on first sale, except rental and lending | 2026-11-10 | Primary — WER text read |
 | Belgian case law on what `dwingend recht` means for a non-compliant clause | — | Open — not yet researched |
+| Whether the GBA has published anything on B2B prospecting and legitimate interest | — | Open — not yet researched. The CNIL has, and [france-data-protection.md](france-data-protection.md) carries it; nothing in it binds a Belgian controller |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 | Everything Belgian about data protection: the GBA, the `wet van 30 juli 2018` and the art. 35(4) list | — | Elsewhere — maintained in [belgium-data-protection.md](belgium-data-protection.md) |
 | EU AI Act | — | Elsewhere — maintained in eu-ai-act.md |

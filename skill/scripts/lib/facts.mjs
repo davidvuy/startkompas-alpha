@@ -260,6 +260,35 @@ export const REQUIRED = [
   {case: '—', pack: 'france-data-protection.md', label: 'Legifrance is recorded as blocked, not unexamined', pattern: /bot-protection challenge instead of the page/},
   {case: '—', pack: 'france-data-protection.md', label: 'the count of the French list is deliberately withheld', pattern: /count is deliberately not quoted here/},
 
+  // --- France — prospecting, which is the first thing a pilot actually does ---
+  // The pack carried the opposite of the first assertion below until
+  // 2026-11-12. A B2B founder told they need consent before the first email
+  // does not send the email, so losing this row costs more than a wrong fine
+  // figure would: it stops the work the skill exists to start.
+  {case: '—', pack: 'france-data-protection.md', label: 'B2B prospecting rests on legitimate interest, not consent', pattern: /\*\*legitimate interest — no prior consent\*\*/},
+  {case: '—', pack: 'france-data-protection.md', label: "the CNIL's own B2B example, which anchors the rule in a real case", pattern: /directeur informatique d'une entreprise/},
+  // Writing to contact@ is outside the regime entirely. This is the one line
+  // that changes how a founder builds the outreach list, so it is guarded.
+  {case: '—', pack: 'france-data-protection.md', label: 'generic company addresses fall outside the rules', pattern: /ne sont pas soumises aux principes rappelés ci-dessus/},
+  {case: '—', pack: 'france-data-protection.md', label: 'an online account without a purchase is not a client', pattern: /creating an online account is not enough/},
+  // The telephone regime changed three months before this was written. A pack
+  // that loses the date reads as if the old opt-out regime still ran.
+  {case: '—', pack: 'france-data-protection.md', label: 'telephone prospecting to consumers needs consent from 2026-08-11', pattern: /### Telephone prospecting: the regime changed on 2026-08-11/},
+  {case: '—', pack: 'france-data-protection.md', label: 'consent is valid one year and its proof kept three', pattern: /\*\*valid for one year\*\*/},
+  // Guessing prenom.nom@ is standard practice and the CNIL ruled on it in
+  // October 2026. Both halves matter: what makes it lawful, and the two cases
+  // it says fail before you start.
+  {case: '—', pack: 'france-data-protection.md', label: 'no online presence defeats address reconstitution a priori', pattern: /no identifiable online presence at all/},
+  {case: '—', pack: 'france-data-protection.md', label: 'the objection the CNIL asks for is wider than art. 21', pattern: /without a reason tied to their particular situation/},
+  // The prospect clock, where the CNIL draws a line a founder would not guess.
+  {case: '—', pack: 'france-data-protection.md', label: 'a click counts as contact from the prospect, opening an email does not', pattern: /la simple ouverture d'un courriel ne devrait pas être considérée/},
+  // Without this, every retention row above it reads as binding law.
+  {case: '—', pack: 'france-data-protection.md', label: 'the référentiels are not binding', pattern: /Les référentiels ne sont pas contraignants/},
+  // The analytics exemption is narrow, and the two conditions that make it
+  // narrow are the ones a founder's analytics vendor usually breaks.
+  {case: '—', pack: 'france-data-protection.md', label: "the audience exemption needs anonymous statistics for the publisher alone", pattern: /for the publisher's exclusive account/},
+  {case: '—', pack: 'france-data-protection.md', label: 'the 13- and 25-month figures are recommendations, not conditions', pattern: /recommendations rather than conditions/},
+
   // --- Belgium — the 2018 act and the GBA's own list --------------------------
   // Art. 222 is the only national penalty in these packs that is criminal, and
   // its point 1° states no mental element where 2° and 4° require serious
@@ -360,6 +389,11 @@ export const FORBIDDEN = [
     pack: 'france.md',
     label: 'PLF 2026 carve-out must not read as pending',
     pattern: /is reported to propose a €37,500 base threshold \*\*with €25,000/,
+  },
+  {
+    pack: 'france-data-protection.md',
+    label: 'B2B prospecting must not read as requiring consent',
+    pattern: /\*\*Prospecting by electronic means\*\* requires consent/,
   },
   {
     pack: 'netherlands.md',

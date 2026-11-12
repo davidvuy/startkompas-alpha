@@ -327,7 +327,7 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 
 **French specifics.** The supervisory authority is the **CNIL**, and a French founder's data-protection answers come from it rather than from the statute — on 2026-11-11 Légifrance served a bot-protection challenge to every automated request, so `Loi n° 78-17` is unread and the annex says so rather than implying otherwise.
 
-**[france-data-protection.md](france-data-protection.md) holds the French layer:** the CNIL's **two** impact-assessment lists — France is the only one of these four jurisdictions to have published the art. 35(5) list of processing that needs **no** assessment — which of its art. 35(4) types reach a one-person business, the two exemptions that do too, the CNIL's own SME documents with their dates, and what the Légifrance wall means for the six `Primary` rows in this pack that cite it.
+**[france-data-protection.md](france-data-protection.md) holds the French layer:** the CNIL's **two** impact-assessment lists — France is the only one of these four jurisdictions to have published the art. 35(5) list of processing that needs **no** assessment — which of its art. 35(4) types reach a one-person business, the two exemptions that do too, the CNIL's own SME documents with their dates, **what the CNIL now says about prospecting a French business — which is the first thing a pilot does, and where this skill previously had the B2B answer backwards** — and what the Légifrance wall means for the six `Primary` rows in this pack that cite it.
 
 ---
 
@@ -371,8 +371,9 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | TPE-PME check-list: four actions, register sheet contents, security hygiene | 2026-11-10 | Authority — official PDF extracted and read |
 | CNIL/Bpifrance PME guide is dated **April 2018** and marked `non contractuel` | 2026-11-10 | Authority — extracted and read; colophon quoted, and it is dated April 2018 |
 | Occasional processing need not be registered; register sits with the company head | 2026-11-10 | Authority — extracted and read, from the April 2018 guide |
-| 3-year inactivity retention for customer and prospect data | 2026-11-10 | Authority — read in the April 2018 guide, whose figure may since have moved; the current référentiels not read |
-| CNIL cookie doctrine as it stands now | — | Open — only the April 2018 statement was read |
+| 3-year inactivity retention for customer and prospect data | 2026-11-12 | Authority — confirmed against the CNIL's current `gestion commerciale` référentiel, which splits the figure: see [france-data-protection.md](france-data-protection.md) |
+| B2B prospecting rests on legitimate interest, not consent; telephone prospecting to consumers needs consent from 2026-08-11 | 2026-11-12 | Authority — the CNIL's current prospecting pages read; maintained in [france-data-protection.md](france-data-protection.md) |
+| CNIL cookie doctrine as it stands now | 2026-11-12 | Authority — the art. 82 audience-measurement exemption read and recorded in [france-data-protection.md](france-data-protection.md); the wider cookie guidelines not read |
 | CNIL `guide sécurité des données personnelles`; ANSSI/CPME 12 règles | — | Open — not yet researched |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 

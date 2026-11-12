@@ -360,6 +360,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Competent authority is the Land authority, not the BfDI; 16 entries listed | 2026-11-10 | Authority — the BfDI's own directory read |
 | Which Land splits public and private supervision (the 17/18 counts) | — | Open — not yet researched |
 | The BDSG, the DSK art. 35(4) list and the competent Land authority's own guidance | — | Elsewhere — researched on 2026-11-11 and maintained in [germany-data-protection.md](germany-data-protection.md) |
+| Whether the DSK or a Land authority has published anything on B2B prospecting and legitimate interest | — | Open — not yet researched. The CNIL has, and [france-data-protection.md](france-data-protection.md) carries it; §7 UWG, the German rule on unsolicited advertising, is not read either |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2026-12-31, when the BMF non-objection period ends, and before 2027-01-01 when the first issuing phase begins. Also before 2027-12-31, when the transitional rules of the 2024 letter run out.

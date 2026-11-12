@@ -393,6 +393,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | How a Dutch court gives effect to art. 8 given the silence in 45k–45m | — | Open — the question a clause touching them turns on; the Directive answers what is void, not by what route |
 | Whether the internet consultation has opened, and what the draft bill says | — | Open — the consultation was expected this autumn and was not checked |
 | The UAVG, the AP art. 35(4) DPIA list, and the three AP step-plan documents | — | Elsewhere — read on 2026-11-10 and 2026-11-11 and maintained in [netherlands-data-protection.md](netherlands-data-protection.md) |
+| Whether the AP has published anything on B2B prospecting and legitimate interest | — | Open — not yet researched. The CNIL has, and [france-data-protection.md](france-data-protection.md) carries it; nothing in it binds a Dutch controller |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier when the Q4 2026 internet consultation opens.

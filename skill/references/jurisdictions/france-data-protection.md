@@ -80,12 +80,109 @@ What they say that still holds:
 - **What goes on each register sheet** — one per activity, not one per company: the purpose, the data categories, who has access, and the retention period, split into *how long the data is operationally useful* and *how long it is kept in archive*. The register sits with the head of the company. **Purely occasional processing need not be listed** — its example is a file built for a one-off shop opening.
 - **The work scales with the data, not the company.** The guide states the criterion is the volume or sensitivity of the data processed, **not the size or headcount** of the business. The Belgian authority reaches the same conclusion from the other direction — see [belgium.md](belgium.md) §6.
 - **A DPO is mandatory only for large-scale processing presenting particular risks**; in the other cases the CNIL *recommends* rather than requires one, notably where the activity forces a `PIA`.
-- **Inactivity retention.** Its figure for customer and prospect data is **3 years from the end of the commercial relationship**, after which the record goes; data held under a separate legal duty (accounting, litigation) moves to a **distinct archive base** rather than staying in the live one. Carried from an April 2018 document — the CNIL's current `référentiels` are **[not researched]**.
-- **Prospecting by electronic means** requires consent, and you must keep the **proof** of it.
-- **Cookies and trackers:** information suffices for a strictly functional tracker (its example: a shopping basket), **consent** is required for an advertising one, and third-party features embedded in your pages — analytics, social buttons, embedded video — need the visitor's consent. The CNIL's cookie doctrine has moved since April 2018; the current guidelines are **[not researched]**, so treat this as the shape of the rule and not its present detail.
+- **Inactivity retention.** Its figure for customer and prospect data is **3 years from the end of the commercial relationship**, after which the record goes; data held under a separate legal duty (accounting, litigation) moves to a **distinct archive base** rather than staying in the live one. The current `référentiel` confirms both, and **splits the figure in two** — the three years run from the end of the relationship for a client but from collection or the prospect's own last contact for a prospect. The section below gives it as the CNIL now states it; prefer that to this bullet.
+- **Prospecting and cookies.** Both bullets this guide carried on these have been **replaced** by the section below, read from the CNIL's current pages on 2026-11-12. The old prospecting sentence was wrong for a B2B pilot, which is the case this skill exists for.
 - For security it defers to the **ANSSI/CPME** `12 règles essentielles pour sécuriser vos équipements numériques` and to its own `guide sécurité des données personnelles`. Neither was read here.
 
 Point a French founder at the CNIL's **current** pages, and at its register template, rather than at these two PDFs or at a paraphrase of them.
+
+## Prospecting a French business — the rule this annex had backwards
+
+**Why this section exists at all.** Every pilot this skill supports begins by contacting someone who did not ask to be contacted, so prospecting is not a side topic here: it is the founder's first act. France regulates it in three places at once — the GDPR's legal bases, art. L34-5 of the `Code des postes et des communications électroniques` for electronic messages, and, since **2026-08-11**, art. L223-1 of the `Code de la consommation` for telephone calls.
+
+Until 2026-11-12 this annex carried a single sentence on the subject, taken from the April 2018 SME guide: `Prospecting by electronic means requires consent, and you must keep the proof of it.` **For a B2B pilot that is the wrong answer**, and wrong in the direction that stops a founder working — it forbids the ordinary first email. The CNIL's current position is below.
+
+### Who you are contacting decides the basis
+
+| Recipient | Channel | Basis the CNIL accepts | Required either way |
+| --- | --- | --- | --- |
+| A **professional at their work address or work number**, where the subject matter relates to their profession | email, SMS/MMS, automated call, telephone | **legitimate interest — no prior consent** | inform them the address or number will be used for prospecting, and give a **simple and free** way to object, at collection and in every message |
+| A **consumer** | email, SMS/MMS, automated call | **prior consent**: free, specific, informed, unambiguous, by a dedicated box that is **not pre-ticked** — accepting terms and conditions does not suffice | the same information, and withdrawal at any time |
+| A **consumer** | telephone | **prior consent**, since 2026-08-11 — see below | as above |
+| Anyone | **postal mail** | **opt-out** | the same information and objection route |
+| A **generic company address** — `info@`, `contact@`, `commande@` | any | **outside these rules**: the CNIL states these concern legal persons and are *"ne sont pas soumises aux principes rappelés ci-dessus"* | — |
+
+The CNIL's own illustration of the B2B case is *"un appel présentant les mérites d'un logiciel au directeur informatique d'une entreprise"* — pitching software to a company's IT director. **That is the pilot case, and it needs no consent.** What it needs is the notice and the working opt-out, in every message, which is a product decision a founder can make on day one and cannot retrofit cheaply.
+
+**Three traps worth naming.**
+
+- **The existing-client exception needs an actual sale.** For consumers, prospecting about *similar products or services from the same company* escapes prior consent — but the CNIL has held in a sanction decision that **creating an online account is not enough**: no purchase, no client, no exception.
+- **A bought list does not import a basis.** Where the data is *"déjà en possession de la société ou acquises auprès de tiers"*, you must still satisfy yourself the person was informed that their address or number might be used for prospecting, and can object.
+- **Honouring an objection is not the same as deleting the row.** The CNIL recommends a `liste repoussoir` — a suppression list — and that the information needed to respect an objection be kept **at least three years**, used for nothing else, so that a later imported prospect list cannot resurrect the contact. Deleting someone on request therefore means deleting them from the prospecting base and keeping the minimum needed to keep them out of it.
+
+Sources
+- [`La prospection commerciale par courrier électronique, SMS-MMS et automate d'appel`](https://www.cnil.fr/fr/la-prospection-commerciale-par-courrier-electronique-sms-mms-et-automate-dappel) · *official authority, page dated 2026-06-10, both the B to C and B to B tabs read* · **[checked 2026-11-12]**
+- [`Questions-réponses sur les référentiels`](https://www.cnil.fr/fr/questions-reponses-sur-les-referentiels-relatifs-la-gestion-des-activites-commerciales-et-des) · *official authority, 2022-01-28, read with every accordion expanded* · **[checked 2026-11-12]**
+
+### Guessing an address from a name is itself processing — the CNIL's position of 2026-10-16
+
+The standard growth tactic is to deduce `prenom.nom@entreprise.fr` from a name and an employer found online. The CNIL published its position on this on **2026-10-16**, and it is recent enough that most secondary advice predates it.
+
+Its starting point: *"Le fait que les données utilisées pour reconstituer ces adresses soient accessibles sur Internet ne dispense pas les organismes de respecter les règles applicables."* Being findable is not permission. The practice **can** rest on legitimate interest, on conditions:
+
+| What the CNIL asks you to weigh | What it says about it |
+| --- | --- |
+| **The purpose, and how intrusive the step is** | reconstitution is rarely isolated — it is a technical step inside a larger, pre-identified purpose, so it *"peut généralement reposer sur la même base légale que ce traitement"*. B2B prospecting on legitimate interest therefore generally carries the reconstitution too. **Not automatic, not systematic.** |
+| **How visible the data was, and how much control the person kept** | the test is whether the person could reasonably expect it. Two cases are called out as failing *a priori*: someone with **no identifiable online presence at all**, and someone who took steps to restrict access — tightened privacy settings, or publishing a contact form instead of an address |
+| **The safeguards you put in place** | two are named: keep the reconstituted address **only where a first effective contact is actually made within a reasonable time**; and make any objection exclude the person from all later reconstitution **immediately and without a reason tied to their particular situation** |
+
+That second safeguard is stronger than art. 21 GDPR requires, and it is the one a founder's tooling will not do by default. Where the conditions cannot be met, the CNIL's instruction is to **abstain** unless consent can be obtained.
+
+Source · [`Reconstitution d'adresses électroniques professionnelles : dans quel cadre est-ce autorisé ?`](https://www.cnil.fr/fr/reconstitution-adresses-professionnelles-quel-cadre) · *official authority, 2026-10-16* · **[checked 2026-11-12]**
+
+### Telephone prospecting: the regime changed on 2026-08-11
+
+For **consumers**, France moved from opt-out to **opt-in**. Art. L223-1 `Code de la consommation`, as it stands from the `loi du 30 juin 2025`, is the provision; the CNIL dates the change to **2026-08-11** and says a joint FAQ with the DGCCRF is still to come.
+
+- **Consent**, with the content set by `décret n° 2026-662 du 23 juillet 2026`: the request must state the caller's identity and the nature of the goods or services, the consent is **valid for one year**, it is withdrawable at any time, and the person may ask to see the proof. **The proof must be kept at least three years** from collection, on a durable medium, accessible to the consumer free of charge on request.
+- **Calling hours**, where consent exists: Monday to Friday, 10:00–13:00 and 14:00–20:00. Outside those windows, and on Saturdays, Sundays and public holidays, it is prohibited unless the consumer agreed to be called then.
+- **Three exceptions** to prior consent, as the CNIL heads them: supply of newspapers, periodicals or magazines (art. L223-5); a call about **an existing contract** and related to its subject — which may include performing it, complementary products or services, and offers improving the service, but **not** offers unconnected to it; and prospecting that is **not commercial**, such as charitable calls, which then runs on legitimate interest with information and an objection route.
+- **Sector bans:** telephone prospecting is **wholly prohibited** for energy renovation, for adapting homes to loss of autonomy, and for the `compte personnel de formation`.
+- A call answering the consumer's **own explicit request for information** is allowed within **five working days** and limited to the goods or services they asked about.
+
+For **professionals** nothing changed: legitimate interest, information, and a simple free objection — the same test as for email.
+
+Source · [`Prospection commerciale par téléphone (hors automate d'appel)`](https://www.cnil.fr/fr/prospection-commerciale-par-telephone-hors-automate-dappel-quelles-sont-les-regles) · *official authority, page dated 2026-06-10, both tabs read* · **[checked 2026-11-12]**
+
+### How long the list may be kept — the `gestion commerciale` référentiel
+
+The référentiel published on **2022-01-28** replaced `norme simplifiée n° 48`, which lost its legal value when the GDPR came into application. It covers client and prospect files: contract management, loyalty programmes, satisfaction surveys, complaints and after-sales, and prospecting. It **excludes** fraud detection and prevention, processing that can exclude someone from a service, and **profiling built on third-party data or on data collected through cookies and other trackers** — so a founder enriching a prospect list from a data broker is outside it.
+
+| Record | Retention it gives |
+| --- | --- |
+| **Client** data used for prospecting | the commercial relationship, then **three years** from its end — its own examples of the start of that period: a purchase, a warranty's expiry, the end of a services contract, or the last contact **from the client** |
+| **Non-client prospect** data | **three years** from collection or from the last contact **coming from the prospect**. A click on a hyperlink in an email counts; *"la simple ouverture d'un courriel ne devrait pas être considérée comme un contact émanant du prospect"* |
+| At the end of those three years | you may contact the person once to ask whether they want to keep receiving solicitations. **Absent an explicit positive answer, delete or archive** |
+| An **inactive account** | the référentiel treats **two years** as proportionate before the account is considered inactive and deleted |
+| **Contract** data after the contract ends | intermediate archiving for the limitation period, in a **dedicated archive base or a logical separation** inside the active one, after sorting out what is worth archiving |
+| The **card security code** | deleted as soon as the payment is complete |
+| Information needed to **respect an objection** | at least three years, and usable for nothing else |
+
+**The référentiel is not binding, and this matters for how its rows are labelled.** The CNIL states it plainly: *"Les référentiels ne sont pas contraignants"* — a controller may depart from it, retention periods included, **provided they can justify the choice**, for which they remain responsible. Following it buys legal certainty, not immunity; departing from it is permitted, not free. Its rows below are therefore `Authority`, never `Primary`, and the pack says "the CNIL gives" rather than "the law requires".
+
+It is also *"une aide à la réalisation d'une analyse d'impact"* where one is needed — which ties it to the two French lists at the top of this annex and to [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md).
+
+Sources
+- [`Référentiel relatif aux traitements de données à caractère personnel mis en œuvre à fins de gestion des activités commerciales`](https://www.cnil.fr/sites/cnil/files/atoms/files/referentiel_traitements-donnees-caractere-personnel_gestion-activites-commerciales.pdf) · *official authority, PDF extracted and read; §7 `Durées de conservation` quoted* · **[checked 2026-11-12]**
+- [`Gestion commerciale et gestion des impayés : la CNIL publie deux nouveaux référentiels`](https://www.cnil.fr/fr/gestion-commerciale-et-gestion-des-impayes-la-cnil-publie-deux-nouveaux-referentiels) · *official authority, 2022-01-28 — the publication date and the replacement of NS-48* · **[checked 2026-11-12]**
+
+### Cookies: the exemption a founder's own site can usually live inside
+
+The April 2018 shape of the rule — information for a strictly functional tracker, consent for an advertising one — still holds, but the operative question for a one-person pilot is narrower: **can the landing page keep its analytics without a consent banner?** Under art. 82 `loi Informatique et Libertés` it can, if the trackers:
+
+- serve a purpose **strictly limited to measuring the audience** of that site or app — performance, navigation problems, technical or ergonomic optimisation, server sizing, which content is read — **for the publisher's exclusive account**; and
+- produce **anonymous statistics only**.
+
+And if they do **not**:
+
+- lead to the data being cross-referenced with other processing, or non-anonymous data being passed to third parties; or
+- allow the person's browsing to be followed **across** apps or sites. Any solution using one identifier across several sites to deduplicate or measure unified reach is excluded.
+
+The CNIL adds recommendations rather than conditions: inform users, for instance in the privacy policy; keep the tracker's **lifetime** to something like **thirteen months**, **not automatically extended** on a new visit; keep the information collected for at most **twenty-five months**; and review both periodically.
+
+**Two practical notes it makes itself.** Several market analytics offers fall outside the exemption because the provider reuses the data for its own account — though some can be configured not to. And watch for transfers outside the EU by the provider. A provider may say its tool meets the criteria after using the CNIL's self-assessment tool, but **may not call it "certified" or "validated by the CNIL"**, nor use the CNIL's logo.
+
+Source · [`Cookies : solutions pour les outils de mesure d'audience`](https://www.cnil.fr/fr/cookies-solutions-pour-les-outils-de-mesure-daudience) · *official authority, page dated 2025-07-04* · **[checked 2026-11-12]**
 
 ## The French statute could not be read, and that is worth recording
 
@@ -98,7 +195,7 @@ The reason is not that nobody looked. On **2026-11-11** every attempt to open `l
 - **Six rows in [france.md](france.md) cite Légifrance and are labelled `Primary`.** They were genuinely read, on 2026-11-10, when the site served pages normally — articles L442-1, 1171 of the Civil Code, L113-9, L121-7, L131-3 and L122-6-1, plus a Cour de cassation judgment. Those rows stand. What has changed is that **the next recheck of them will hit the same wall**, and `check-links.mjs` already reports all seven of those URLs as `blocked 403` warnings rather than as live.
 - **The one French source that is reliably readable is the CNIL itself**, which publishes a great deal — the two lists above, the SME material in §6 of the pack, its `référentiels` and its sector guides. For France, that makes the pack's centre of gravity `Authority` rather than `Primary`, and the honest thing is to say so in the rows instead of upgrading them on the strength of a citation nobody could open.
 
-The CNIL's `référentiels`, its individual sector guides, and its current cookie and tracker guidelines remain **[not researched]** — they are reachable, so that is ordinary unfinished work rather than a blocked source.
+**That is why the section above exists.** The `gestion commerciale` référentiel, the current prospecting pages and the cookie exemption were all read on **2026-11-12** straight from cnil.fr, and they carry the weight the French statutory layer cannot. What remains **[not researched]** is narrower: the CNIL's individual **sector** guides, its `référentiel` on `gestion des impayés` — relevant only once a pilot has unpaid invoices — and its `guide sécurité des données personnelles`.
 
 ## Pack maintenance
 
@@ -117,7 +214,17 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Its preamble: other obligations survive, compliance must still be assessed, and in doubt do an assessment | 2026-11-11 | Authority — read and summarised; the French wording not quoted, for the reason given above |
 | French phrases from these two PDFs are given in English, because the files' text layer drops apostrophes and `œ` | 2026-11-11 | Primary — established by extracting both files |
 | `Loi n° 78-17` and the `Code pénal` provisions under art. 84 GDPR | — | Open — Légifrance served a bot-protection challenge on 2026-11-11 and this project does not attempt to pass one. Not "not looked at": blocked |
-| The CNIL's `référentiels`, sector guides, and current cookie and tracker guidelines | — | Open — reachable, simply not yet read |
+| B2B electronic and telephone prospecting may rest on **legitimate interest**, with information and a simple free objection, where the subject relates to the person's profession | 2026-11-12 | Authority — the CNIL's own B to B tabs on both prospecting pages read, with its IT-director example |
+| Generic company addresses (`info@`, `contact@`) fall outside these rules as data of legal persons | 2026-11-12 | Authority — read, and quoted |
+| A consumer needs prior consent for electronic prospecting; an online account without a purchase does not make them a client | 2026-11-12 | Authority — read; the CNIL attributes the account point to a sanction decision, which was not itself read |
+| Telephone prospecting to consumers requires consent from **2026-08-11**: one-year validity, proof kept three years, calling hours, three exceptions, sector bans | 2026-11-12 | Authority — the CNIL page of 2026-06-10 read. `Loi du 30 juin 2025`, art. L223-1 `Code de la consommation` and `décret n° 2026-662` are cited as the CNIL cites them; Légifrance is blocked, so none was read in primary form |
+| Reconstituting a professional address can rest on legitimate interest, generally on the same basis as the prospecting it serves, and fails *a priori* for someone with no online presence or who restricted access | 2026-11-12 | Authority — the CNIL's position of 2026-10-16 read in full |
+| The CNIL asks that an objection exclude a person from later reconstitution without a reason tied to their situation — more than art. 21 requires | 2026-11-12 | Authority — read; the comparison with art. 21 is this pack's, from [eu-gdpr.md](eu-gdpr.md) |
+| The `gestion commerciale` référentiel's retention periods, including that a click counts as contact and opening an email does not | 2026-11-12 | Authority — the référentiel PDF extracted and §7 read |
+| The référentiels are **not binding**; departing from them is permitted if justified | 2026-11-12 | Authority — the CNIL states it in both the FAQ and the publication notice, and both were read |
+| Audience-measurement trackers are exempt from consent under art. 82 on the conditions listed; the 13- and 25-month figures are recommendations, not conditions | 2026-11-12 | Authority — the CNIL page of 2025-07-04 read; art. 82 `loi 78-17` itself is on blocked Légifrance |
+| The old sentence `Prospecting by electronic means requires consent, and you must keep the proof of it` was wrong for B2B and is withdrawn | 2026-11-12 | Withdrawn — carried from the April 2018 guide until 2026-11-12, when the CNIL's current pages were read |
+| The CNIL's sector guides, its `gestion des impayés` référentiel, and its `guide sécurité des données personnelles` | — | Open — reachable, simply not yet read |
 
 Next full recheck due: **2027-05-10**. Earlier if Légifrance becomes readable again, which would let the French statutory layer be closed, or if the CNIL replaces either list.
 
