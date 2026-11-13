@@ -103,6 +103,10 @@ export const REQUIRED = [
   // lighter regime than the Regulation has.
   {case: 'C24', pack: 'eu-ai-act-high-risk.md', label: 'Annex IV 2(g) requires signed and dated test reports', pattern: /test logs and all test reports dated and signed by the responsible persons/},
   {case: 'C24', pack: 'eu-ai-act-high-risk.md', label: 'Annex IV 7 makes the provider justify conformity where no harmonised standard applies', pattern: /No harmonised standards means writing the justification yourself/},
+  // Annex I read 2026-11-13. The conclusion is what a founder acts on, and
+  // losing it would send them back to assuming route one might apply.
+  {case: '—', pack: 'eu-ai-act-high-risk.md', label: 'route one does not reach software sold as a service', pattern: /route one does not reach you/i},
+  {case: '—', pack: 'eu-ai-act-high-risk.md', label: 'the MDR, IVDR and radio-equipment exposures are named', pattern: /2017\/745|in vitro diagnostic/},
   {case: 'C24', pack: 'eu-ai-act.md', label: 'the art. 6(5) guidelines are a draft, not adopted', pattern: /They exist as a draft and have not been adopted|exist as a \*\*draft\*\*, not adopted/},
   {case: 'C24', pack: 'eu-ai-act.md', label: 'neither SME simplification has been published', pattern: /Both simplifications are promised and neither exists|neither is published/},
 

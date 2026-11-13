@@ -169,7 +169,7 @@ What the page establishes, and each half matters:
 
 **The same page corroborates the amended art. 113 dates from outside the Regulation, and names which areas.** Rules for systems used in high-risk areas — the page lists *"biometrics, critical infrastructure, education, employment, migration, asylum and border control"* — apply from **2027-12-02**, and for systems integrated into products such as robotics and industrial machinery from **2028-08-02**. Those are the two rows §5 takes from art. 113 as amended, now confirmed by a third official source. The page attributes the timeline to *"the political agreement on the 'AI Omnibus'"*.
 
-**Annex I, the harmonisation legislation behind route one, is still [not researched]** — though the Single Information Platform serves it, so it is now a fetch rather than a search.
+**Annex I is now read, in [eu-ai-act-high-risk.md](eu-ai-act-high-risk.md).** Twenty entries, all physical-product legislation — toys, lifts, pressure equipment, vehicles, aircraft, ships, medical devices. **Route one does not reach software sold as a service.** The exposures worth checking are a component going into a **medical device or IVD** under Regulation (EU) 2017/745 or 2017/746, or into **radio equipment** under Directive 2014/53/EU.
 
 ### What other guidelines exist, and which a small provider is waiting for
 

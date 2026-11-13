@@ -105,6 +105,25 @@ Art. 11(1)'s documentation *"shall contain at least the following information, a
 
 ---
 
+## Annex I — route one is physical-product law, end to end
+
+Source: [Annex I on the AI Act Service Desk](https://ai-act-service-desk.ec.europa.eu/en/ai-act/annex-1) · *the Commission's own platform; the page states its text is **"based on the EUR-Lex consolidated version of the AI Act as at 27 July 2026"**, the same consolidation [eu-ai-act.md](eu-ai-act.md) cites, and marks Digital Omnibus changes as `NEW` and `AMENDED`* · **[checked 2026-11-13]**
+
+**Art. 6(1) — route one to high-risk — turns on whether the AI system is a safety component of, or itself, a product covered by the Union harmonisation legislation in Annex I.** The pack recorded Annex I as `[not researched]`, which left a founder to assume the worst. Read, it is twenty entries and **every one of them is about a physical product**:
+
+| Section | What it covers |
+| --- | --- |
+| **A** — New Legislative Framework, items 2 to 12 | toys · recreational craft and personal watercraft · lifts · equipment for explosive atmospheres · **radio equipment** · pressure equipment · cableway installations · personal protective equipment · gas-burning appliances · **medical devices (Regulation (EU) 2017/745)** · **in vitro diagnostic medical devices (Regulation (EU) 2017/746)** |
+| **B** — other harmonisation legislation, items 13 to 20 | civil aviation security · two- and three-wheel vehicles and quadricycles · agricultural and forestry vehicles · marine equipment · rail interoperability · motor-vehicle type approval (Regulation (EU) 2018/858) · vehicle general safety (Regulation (EU) 2019/2144) · civil aviation and EASA (Regulation (EU) 2018/1139) |
+
+**So the answer for a solo founder selling B2B software is: route one does not reach you.** Not one entry covers software sold as a service, a web application or an API. **The realistic exceptions are narrow and recognisable**: a component going into a **medical device** or an **in vitro diagnostic** under the MDR or IVDR, or into **radio equipment** under Directive 2014/53/EU. If a founder's product is destined for a hospital, a diagnostic workflow or a piece of connected hardware, route one is live and this pack is not enough — that is a notified-body conversation.
+
+**Everyone else goes to route two**, Annex III, which is where [eu-ai-act.md](eu-ai-act.md) §3 says an HR screening tool sits.
+
+**One Omnibus change recorded without guessing at it.** Section A's **item 1 reads `DELETED` — *"Not present after the amendment"***. So the Digital Omnibus removed an entry from the New Legislative Framework list. **What it was is not established from this source**, and identifying it means reading the pre-Omnibus Annex I rather than inferring from the gap. Recorded as open; it matters only if a founder's product sits in whatever was removed, in which case the removal is good news for them and worth confirming.
+
+---
+
 ## Pack maintenance
 
 One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
@@ -130,7 +149,9 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | **Art. 15(5): data poisoning, model poisoning, adversarial examples or model evasion, confidentiality attacks, model flaws** | 2026-11-12 | Primary — read and quoted; the statute names them |
 | Whether the Commission's simplified technical documentation form exists yet | — | Open — art. 11 requires it. **Not in the AI Office's own list of published guidelines** as at 2026-07-31, which lists eight sets still being worked on and names the art. 17 simplified **quality management system** for SMEs among them — a different instrument. So neither simplification the Regulation holds out to an SME exists, and the eval run's lead is corroborated as far as an absence can be. See [eu-ai-act.md](eu-ai-act.md) §3 |
 | Annex IV's nine points, including the signed and dated test reports in 2(g) and the own-justification duty in 7 | 2026-11-13 | Primary — read in full on the Commission's AI Act Service Desk. **Closed an open row that mattered more once the art. 11 simplified form was confirmed not to exist** |
-| Annex I, the harmonisation legislation behind route one | — | Open — not read. The Service Desk serves it, so this is a fetch rather than a search |
+| Annex I's twenty entries, all physical-product legislation; MDR, IVDR and radio equipment are the realistic exposures for a software founder | 2026-11-13 | Primary — read in full on the Service Desk, whose text is the 2026-07-27 consolidation this pack already cites. **Closes route one for most founders rather than leaving it unknown** |
+| Annex I Section A item **1** is `DELETED` by the Digital Omnibus | 2026-11-13 | Primary — the page says *"Not present after the amendment"* |
+| **What** Section A item 1 was before the Omnibus deleted it | — | Open — not established. Needs the pre-Omnibus Annex I; inferring it from the gap would be a guess |
 | Arts. 17, 18 and 43 — quality management, documentation keeping, conformity assessment | — | Open — named in art. 16's list in [eu-ai-act.md](eu-ai-act.md) §2 and not yet read |
 | The risk tiers, art. 6, the dates, penalties and the national layer | — | Elsewhere — maintained in [eu-ai-act.md](eu-ai-act.md) and [eu-ai-act-national.md](eu-ai-act-national.md) |
 
