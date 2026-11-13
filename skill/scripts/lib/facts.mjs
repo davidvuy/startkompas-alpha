@@ -21,6 +21,11 @@ export const REQUIRED = [
   {case: 'C4', pack: 'belgium-e-invoicing.md', label: 'the exemption carries a mandatory invoice mention', pattern: /Bijzondere vrijstellingsregeling van belasting/},
   {case: 'C18', pack: 'belgium-e-invoicing.md', label: 'the reverse-charge mention is Btw verlegd', pattern: /Btw verlegd/},
   {case: 'C18', pack: 'belgium-e-invoicing.md', label: 'art. 5 item 12 leaves the list open', pattern: /alle andere vermeldingen die worden voorgeschreven/},
+  // Art. 13 read the same day. The relief and its exclusion have to survive
+  // together: the simplification is real domestically and unavailable on the
+  // cross-border invoice that most needs shortening.
+  {case: 'C18', pack: 'belgium-e-invoicing.md', label: 'the exemption allows a simplified invoice', pattern: /may issue a \*\*simplified\*\* invoice/},
+  {case: 'C18', pack: 'belgium-e-invoicing.md', label: 'the simplified invoice is excluded for reverse-charge supplies', pattern: /mag niet worden toegepast/},
   {case: 'C4', pack: 'belgium.md', label: 'Peppol named', pattern: /\bPeppol\b/},
   {case: 'C5', pack: 'belgium.md', label: 'Walloon abolition date', pattern: /2025-10-01/},
   {case: 'C5', pack: 'belgium.md', label: 'conflict preserved as a conflict', pattern: /source conflict/i},

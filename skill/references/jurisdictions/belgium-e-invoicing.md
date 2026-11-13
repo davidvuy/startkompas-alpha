@@ -94,6 +94,33 @@ Source: [`KB nr. 1` of 29 December 1992, art. 5 §1](https://www.ejustice.just.f
 
 **Two readings worth carrying.** First, item 1° ties the invoice number to the outgoing-invoice book — and [belgium.md](belgium.md) §2 records that `KB nr. 1` art. 14 §4 relieves an exempt founder of that book **on condition** the documents are kept in an unbroken series of sequential numbers. The two provisions are the same requirement seen from different ends. Second, item 12° means a checklist built from art. 5 alone is not a complete checklist; it is the floor.
 
+### And an exempt founder may issue a **simplified** invoice — art. 13
+
+**Art. 13 of the same decree allows a simplified invoice in four cases**, and the fourth was inserted for the exemption regime by `KB 2024-12-15/05` art. 3 with effect from **2025-01-01**:
+
+1. the invoice amount is **not more than €100** excluding VAT;
+2. where, on conditions set by the Minister of Finance, the sector's commercial or administrative practices or the technical conditions of issue make compliance with all the obligations difficult;
+3. where the document or message issued is treated as an invoice under art. 53 §2 third paragraph — a corrective document;
+4. **where the taxable person uses the exemption regime of arts. 56bis to 56undecies of the Code.**
+
+**So the duty above has a relief beside it.** A founder under the exemption is not held to the twelve items of art. 5 §1 on every invoice; they may use the shorter list, *"in elk geval"*:
+
+| # | The simplified invoice must still contain |
+| --- | --- |
+| 1° | the issue date and a **sequential number** uniquely identifying it, under which it is entered in the outgoing-invoice book |
+| 2° | the supplier's name or company name, the address of its administrative or registered seat, and its art. 50 VAT number — **or the individual number allotted by its member state of establishment under art. 292ter second paragraph of Directive 2006/112/EC**, which is the `EX` number of the cross-border exemption scheme |
+| 3° | the acquirer's or recipient's art. 50 VAT number — **or, failing that, their name or company name and full address** |
+| 4° | identification of the **nature** of the goods supplied or services rendered |
+| 5° | **per rate**, the taxable base and the amount of tax due |
+| 6° | for a corrective document, a **specific and unambiguous reference** to the original invoice, with the change specified |
+
+**And the exclusion is what makes the two halves fit together.** The simplified invoice *"mag niet worden toegepast"* for operations under arts. 14 §3, 15 §§1 and 2, **25ter** and **39bis** of the Code, **nor for operations where the tax is payable by the co-contractant under art. 51 §§2 or 4**. Those are precisely the cross-border cases that carry `"Btw verlegd"`.
+
+**The practical rule for a founder, stated once:**
+
+- **Invoicing a Belgian customer under the exemption** → the simplified invoice of art. 13 is available, with the six items above **plus** the `"Bijzondere vrijstellingsregeling van belasting"` mention of art. 5 §1 10° quater.
+- **Invoicing a business in another member state**, so reverse charge → **the full art. 5 §1 content**, including the recipient's number under 4°(a) and `"Btw verlegd"` under 9° bis. No simplification.
+
 ---
 
 ## Pack maintenance
@@ -113,6 +140,9 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | **10° quater**: an invoice under the arts. 56bis to 56undecies exemption must state `"Bijzondere vrijstellingsregeling van belasting"` in place of the tax | 2026-11-13 | Primary — read and quoted. Being exempt carries an invoice duty, not only a relief |
 | Art. 5 §1 4°(a) requires the number the recipient is identified under **and under which the service was supplied** | 2026-11-13 | Primary — read and quoted. Not any VAT number the customer holds |
 | Item 12° makes the list open: *"alle andere vermeldingen die worden voorgeschreven"* | 2026-11-13 | Primary — read. A checklist from art. 5 alone is the floor, not the whole duty |
+| `KB nr. 1` art. 13: a founder under the exemption may issue a **simplified** invoice, by item 4° inserted with effect from 2025-01-01 | 2026-11-13 | Primary — read and quoted, with the six mandatory items |
+| The simplified invoice is **excluded** for arts. 25ter and 39bis operations and where the tax is payable by the co-contractant under art. 51 §§2 or 4 | 2026-11-13 | Primary — read and quoted. This is why a cross-border reverse-charge invoice needs the full art. 5 content |
+| The conditions the Minister of Finance may set under art. 13 1st para 2° | — | Open — delegated by the article, not traced |
 | Whether an exempt business owes an intracommunautaire listing through Intervat, and an annual turnover report before 31 March | — | Open — the other half of the same lead, and **not in art. 5**. Art. 53sexies of the Code and `KB nr. 1` arts. 17 and 18 are where to look; none read |
 | Registration, VAT, agreements, ownership and data protection | — | Elsewhere — [belgium.md](belgium.md) sections 1, 2 and 4 to 6, the last annexed again to [belgium-data-protection.md](belgium-data-protection.md) |
 
