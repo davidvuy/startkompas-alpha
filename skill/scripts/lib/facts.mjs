@@ -64,6 +64,18 @@ export const REQUIRED = [
   {case: '—', pack: 'belgium-data-protection.md', label: 'part 1 alone does not discharge the duty', pattern: /part 1 alone does not discharge the duty/i},
   {case: '—', pack: 'belgium-data-protection.md', label: 'supplementing act identified, not read', pattern: /wet van 30 juli 2018/},
 
+  // --- Belgium, the VAT exemption annex -------------------------------------
+  // Read on 2026-11-13 from the law of 2024-03-21 as published. These four are
+  // the claims whose loss would mislead rather than merely thin the annex: the
+  // first decides whether a founder is in the regime at all, the next two
+  // decide whether they are near the threshold, and the last is the condition
+  // on a relief that reads unconditional.
+  {case: '—', pack: 'belgium-vat-exemption.md', label: 'art. 56bis §2 excludes three activities for the whole business', pattern: /voor het geheel van hun economische activiteit/},
+  {case: '—', pack: 'belgium-vat-exemption.md', label: 'exempt exports and intra-Community supplies still count toward the threshold', pattern: /exempt cross-border sales still count/i},
+  {case: '—', pack: 'belgium-vat-exemption.md', label: 'a transfer of the business own capital goods does not count', pattern: /De overdracht van materiële of immateriële investeringsgoederen van de belastingplichtige wordt niet in aanmerking genomen/},
+  {case: '—', pack: 'belgium-vat-exemption.md', label: 'the cross-border relief lapses if the reporting is not done', pattern: /the relief lapses if they do not meet the Directive's art\. 284ter obligations/},
+  {case: '—', pack: 'belgium-vat-exemption.md', label: 'undeclared and unlawful operations are outside the exemption', pattern: /de handelingen die niet worden aangegeven en de handelingen die niet geoorloofd zijn/},
+
   // --- Germany ---------------------------------------------------------------
   {case: 'C14', pack: 'germany.md', label: 'receiving mandatory from 2025-01-01', pattern: /2025-01-01/},
   // §8 Nr. 1 is an allowance on the SUM, not on each item, and the two items a
@@ -285,8 +297,8 @@ export const REQUIRED = [
   {case: '—', pack: 'belgium-e-invoicing.md', label: 'agreeing another channel does not excuse Peppol capability', pattern: /beschikt over de technische middelen/},
   {case: '—', pack: 'belgium.md', label: 'a 10 per cent tolerance on the Belgian VAT threshold', pattern: /ten hoogste tien pct\./},
   {case: '—', pack: 'belgium.md', label: 'KB nr. 19 of 2014 is repealed, not merely old', pattern: /\[Opgeheven\] <KB 2024-12-15\/04/},
-  {case: '—', pack: 'belgium.md', label: 'entering the exemption triggers an input-VAT revision', pattern: /gelijkgesteld met het verlies van de hoedanigheid van belastingplichtige/},
-  {case: '—', pack: 'belgium.md', label: 'spouses are counted separately, joint activity together', pattern: /ongeacht hun huwelijksvoorwaarden/},
+  {case: '—', pack: 'belgium-vat-exemption.md', label: 'entering the exemption triggers an input-VAT revision', pattern: /gelijkgesteld met het verlies van de hoedanigheid van belastingplichtige/},
+  {case: '—', pack: 'belgium-vat-exemption.md', label: 'spouses are counted separately, joint activity together', pattern: /ongeacht hun huwelijksvoorwaarden/},
   {case: '—', pack: 'eu-vat-sme.md', label: 'the Belgian tolerance is recorded in the per-pack table', pattern: /A 10 % tolerance, and it is the only one/},
 
   // --- Shared EU layers ------------------------------------------------------

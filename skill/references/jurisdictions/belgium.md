@@ -79,35 +79,11 @@ So on €25,000: turnover up to **€27,500** keeps the exemption for the rest o
 
 **There is no tolerance on the Union threshold.** Art. 56decies §2: where a taxable person established in another member state crosses the **Union** annual turnover threshold during a year, the Belgian exemption stops *"vanaf dat tijdstip"*. The 10 % band is domestic only — which matches [eu-vat-sme.md](eu-vat-sme.md), where the directive's Union cap has no tolerance either.
 
-### What art. 56ter actually says, and the two counting rules a founder will not guess
+### The statutory machinery is in the annex
 
-Art. 56ter §1 gives the exemption to taxable persons established in Belgium whose **annual turnover in Belgium is not more than €25,000**, for the supplies they make in Belgium. Three further sentences matter more than the figure:
+Three things a founder meets once they are inside the regime — **what art. 56ter actually says, what entering the exemption costs in repaid input VAT, and what paperwork survives it** — are in [belgium-vat-exemption.md](belgium-vat-exemption.md), together with the scope exclusions in art. 56bis and the turnover base in art. 56nonies. They moved there on 2026-11-13 when this pack reached its 48 KB per-reference budget; nothing was dropped.
 
-- **Joint activity is added together.** Where several people carry on an economic activity *"in onverdeeldheid of in vereniging"*, the threshold is applied to *"het jaarlijks totaalbedrag van de omzetcijfers die ze samen realiseren"* — their combined turnover.
-- **Spouses are counted separately.** Where spouses carry on **distinct** economic activities, each activity is counted on its own, *"ongeacht hun huwelijksvoorwaarden"* — whatever their matrimonial property regime.
-- **The notification is made at the start.** A taxable person wanting the exemption notifies the administration *"op het moment van de aanvang van zijn economische activiteit"*. And where the circumstances clearly show the conditions are not met, the administration puts them under another regime instead.
-
-**Art. 56ter §2 is the inbound half of the EU scheme**: a taxable person established in another member state may use the Belgian exemption where their **Union annual turnover is at most €100,000** — at the ECB rate published on **2018-01-18** — **and** their Belgian turnover is at most €25,000, having first notified their own member state and been identified there with the **`EX`** suffix. That is Belgium's side of the mechanism [eu-vat-sme.md](eu-vat-sme.md) reads from the directive.
-
-**Art. 56quater is the outbound half.** A Belgian-established taxable person wanting another member state's exemption sends a prior notification *"aan het daarvoor door de minister van Financiën of zijn gemachtigde gecreëerde elektronisch adres"*, and is identified by their Belgian VAT number **with `EX` appended**. The notification carries the name, activity, legal form and address, the member states concerned, and the totals supplied in Belgium and in each other member state **in the preceding calendar year and in the elapsed part of the current one**. The exemption takes effect in the other state from the date the administration communicates the identification number.
-
-**Two deadlines come with it**: the quarterly figures are supplied **within one month** of the end of the calendar quarter, and where the Union threshold is crossed the administration must be told **within fifteen working days**, together with the amount supplied from the start of the current quarter to the date of crossing.
-
-### Getting into the exemption costs something — `KB nr. 19` arts. 3 and 4
-
-**Starting out is simple.** Art. 3 §1: a taxable person beginning an activity notifies the intention in advance through the start-of-activity declaration under `KB nr. 10`; it has effect **for an indefinite period from the first day of activity**; and the VAT identification number is allotted **within fifteen working days**, unless that is too short for the checks needed to prevent evasion.
-
-**Switching in later is a calendar exercise.** Art. 3 §2: a taxable person under the normal or flat-rate regime whose current-year turnover stays under the threshold may move to the exemption from **1 January, 1 April, 1 July or 1 October**, by applying **before 15 December** of the current year or **before 15 March, 15 June or 15 September**. The application states the turnover realised in the elapsed quarters **and an estimate for the remaining ones**.
-
-**And art. 4 is the cost nobody budgets for.** On moving into the exemption the taxable person must **revise the VAT already deducted** on goods and services other than capital assets not yet used or consumed, and on capital assets still in existence and usable whose original deduction is open to revision. The transition *"wordt gelijkgesteld met het verlies van de hoedanigheid van belastingplichtige"* — it is treated as **losing taxable-person status** — and the amount to repay is fixed on the basis of an **inventory** of what is left. A founder who has just bought equipment and then switches into the exemption pays some of that deduction back.
-
-### What the exemption does to the paperwork — `KB nr. 1` art. 14
-
-Source: [`KB nr. 1`, art. 14 §§2, 4 and 5 and arts. 17 and 18](https://www.ejustice.just.fgov.be/eli/besluit/1992/12/29/1992003823/justel) · *primary legislation, Justel consolidated text; §4 as replaced by `KB 2024-12-15/05`, in force 2025-01-01* · **[checked 2026-11-12]**
-
-**Art. 14 §4**: a taxable person under **art. 56ter** is relieved of keeping the incoming- and outgoing-invoice books that §2 1° and 2° otherwise require — **on two conditions**: the invoices and documents are kept *"volgens een ononderbroken reeks volgnummers"* assigned on receipt, issue or drawing up, **and** the book in §5 is kept. So the exemption removes the ledgers and replaces them with a numbered file plus one book; it does not remove the obligation to keep anything.
-
-**Two figures from the same decree that a founder will meet either way.** Art. 17 §1: the periodic return is filed by the **twentieth** day of the month following the period. Art. 17 §2: a **quarterly** return is allowed, by the **twenty-fifth** day of the month after each calendar quarter, where annual turnover excluding VAT is **at most €2,500,000** — with a lower €250,000 limit for energy products, mobile phones and computers with their accessories, and registered motor vehicles. Art. 18 §1 requires returns to be filed **electronically**, and §2 relieves that duty *"zolang zij niet over de nodige geïnformatiseerde middelen beschikken"*.
+**Read the annex before telling a founder they qualify.** Three regular activities are excluded from the exemption **for the whole of a business's economic activity** — immovable work, anything needing a registered cash register, and dealing in scrap and waste — and that is decided by what the business does, not by its turnover.
 
 ### The phased increase: enacted 2026-09-23, in force 2027-01-01
 
