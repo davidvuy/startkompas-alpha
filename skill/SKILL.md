@@ -19,7 +19,11 @@ Write artifacts in English unless asked otherwise; conversation follows the foun
 
 Registration, invoicing, tax, contract and data rules differ per country and sometimes per region. Before stating any such requirement, establish the founder's country and region, their customers' country, and where the service is delivered. If unknown, ask — it changes the next decision.
 
+**While the jurisdiction is unknown, do not answer it for several countries at once.** The packs and their index carry cross-country comparison tables; those exist so the packs stay honest with each other, and they are **not** an answer to give a founder whose country you do not know. A reader takes the nearest figure as theirs. Ask the question and give nothing else.
+
 Then use the matching pack in [references/jurisdictions/](references/jurisdictions/README.md), respecting its check dates and recorded conflicts, and following any annex a section points to — a pack section may hold the answer and the annex the working. With no pack, do **not** generalize from another country and do **not** answer from memory: follow the protocol in that file.
+
+**Compare the pack's `Next full recheck due` with today's date, and say so if it has passed.** Nothing inside a pack announces that it is stale — the date is there and the comparison is yours to make. A pack past that date still gives the best recorded figure, and the founder has to be told it needs confirming against the primary source before they rely on it.
 
 **Never state a threshold, rate, fee, deadline or count you did not read in a pack or in a source you actually fetched.** A missing pack is never a finding that no obligation exists.
 

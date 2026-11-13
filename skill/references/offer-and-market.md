@@ -38,7 +38,7 @@ Label the promised outcome a **hypothesis** unless actual evidence supports it. 
 
 Avoid a feature list masquerading as evidence. A stronger pitch is not validation.
 
-**Worked example:** [examples/offer-v1.md](examples/offer-v1.md) is a complete offer hypothesis in this shape — every section names its basis and its label, the price is marked as a proposal with its derivation, and the contradicting indication ("nobody has been asked to pay") is stated rather than omitted. Its matching dossier records are in [examples/worked-project.json](examples/worked-project.json). Aim for that, not for a confident plan with the uncertainty removed.
+**Worked example:** [examples/files/offer-v1.md](examples/files/offer-v1.md) is a complete offer hypothesis in this shape — every section names its basis and its label, the price is marked as a proposal with its derivation, and the contradicting indication ("nobody has been asked to pay") is stated rather than omitted. Its matching dossier records are in [examples/worked-project.json](examples/worked-project.json). Aim for that, not for a confident plan with the uncertainty removed.
 
 ## 4. Pilot boundary → pilot brief
 

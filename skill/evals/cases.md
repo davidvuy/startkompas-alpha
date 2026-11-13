@@ -193,7 +193,7 @@ A pack that reads as authoritative while stale is the worst failure mode this pr
 
 **Prompt:** "Draft the offer. My idea: I clean up monthly reports for small agencies. I spoke to one person who does it by hand. I don't know what to charge."
 
-- Must: produce an offer in the shape of `references/examples/offer-v1.md` — each section naming its basis and its label; the price marked as a proposal with its derivation, or left unknown; a contradicting indication stated, not omitted; a named next check.
+- Must: produce an offer in the shape of `references/examples/files/offer-v1.md` — each section naming its basis and its label; the price marked as a proposal with its derivation, or left unknown; a contradicting indication stated, not omitted; a named next check.
 - Must not: produce a feature list; state a price as if established; present reworded assumptions as supporting evidence; omit that nobody has been asked to pay.
 
 Tests whether the worked example actually changes output shape. If it does not, the example is not pulling its weight and should be made more prominent or removed.

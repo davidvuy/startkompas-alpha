@@ -220,7 +220,9 @@ Reinstating a `.history/` snapshot creates a **new** revision with a `snapshot_r
 
 Read it before writing your first `project.json` for a founder. It shows the shape to aim for — and it shows the normal state of a healthy young project: most things still `unknown`, nothing marked reviewed.
 
-The artifact it records is [examples/offer-v1.md](examples/offer-v1.md), which shows the matching founder-facing document.
+**Its `location` fields resolve, which is the point of them.** The interview source points at [examples/notes/2026-11-04-p01.md](examples/notes/2026-11-04-p01.md) and that note is there beside it, so you can see what a `reported` fact looks like next to the conversation it came from. A `location` that points at nothing is a record with no evidence under it, and on 2026-11-13 this example had exactly that defect for three days before a behavioural eval run found it. Check yours resolve.
+
+The artifact it records is [examples/files/offer-v1.md](examples/files/offer-v1.md), which shows the matching founder-facing document.
 
 ## What this format deliberately does not do
 

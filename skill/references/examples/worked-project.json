@@ -1,5 +1,5 @@
 {
-  "_comment": "Fictional worked example at revision 3. Every id referenced below exists in this file. Not a template to copy wholesale: a real project starts with empty collections and only gains a record when there is something real to record.",
+  "_comment": "Fictional worked example at revision 3. Every id referenced below exists in this file, every location resolves beside it, and artifacts[offer-v1].sha256 is the real digest of offer-v1.md — so this example passes the verify-by-hash step it is meant to illustrate. It ships WITHOUT a .history/ directory: revisions 1 and 2 are not included, because two more JSON files would add bulk without teaching anything the format document does not already say. A real project at revision 3 has three history entries. Not a template to copy wholesale: a real project starts with empty collections and only gains a record when there is something real to record.",
   "format": "startkompas-dossier/1",
   "project_id": "clearer-reports",
   "name": "Monthly report clean-up service",
@@ -40,7 +40,9 @@
       "id": "fact-p01-manual-rework",
       "text": "P01 rewrites the monthly client report by hand each month because the tool's export is unreadable to their clients.",
       "assertion": "reported",
-      "source_ids": ["source-interview-p01"],
+      "source_ids": [
+        "source-interview-p01"
+      ],
       "scope": "P01's own account on 2026-11-04. One person, one agency. Their saying it is the fact; whether it is the most costly part of their month is not established.",
       "recorded_at": "2026-11-04",
       "review_required": false
@@ -49,7 +51,9 @@
       "id": "fact-einvoice-applies-under-exemption",
       "text": "The Belgian structured B2B e-invoicing obligation applies to invoices created, issued or sent from 2026-01-01, including to businesses using the small-business VAT exemption regime.",
       "assertion": "reported",
-      "source_ids": ["source-be-einvoicing-faq"],
+      "source_ids": [
+        "source-be-einvoicing-faq"
+      ],
       "scope": "Belgian VAT-taxable to Belgian VAT-taxable B2B. Reported by the official FAQ; applicability to this founder's actual VAT status still needs an accountant.",
       "recorded_at": "2026-11-10",
       "review_required": false
@@ -80,7 +84,9 @@
       "id": "decision-narrow-to-one-deliverable",
       "text": "Offer exactly one deliverable: one cleaned-up monthly report, not a reporting subscription.",
       "reason": "The only recorded evidence concerns a single recurring manual task. A subscription would rest on assumptions nothing supports yet.",
-      "basis_ids": ["fact-p01-manual-rework"],
+      "basis_ids": [
+        "fact-p01-manual-rework"
+      ],
       "status": "active",
       "supersedes": null,
       "reconsider_when": "Two or more agencies ask for an ongoing arrangement unprompted.",
@@ -95,7 +101,9 @@
       "substantiation": "unreviewed",
       "basis_kind": "own_requirement",
       "evidence_ids": [],
-      "depends_on": ["offer-v1"],
+      "depends_on": [
+        "offer-v1"
+      ],
       "period": null
     },
     {
@@ -104,7 +112,9 @@
       "progress": "open",
       "substantiation": "unreviewed",
       "basis_kind": "obligation",
-      "evidence_ids": ["fact-einvoice-applies-under-exemption"],
+      "evidence_ids": [
+        "fact-einvoice-applies-under-exemption"
+      ],
       "depends_on": [],
       "period": null
     }
@@ -115,7 +125,7 @@
       "kind": "offer",
       "version": "1",
       "location": "files/offer-v1.md",
-      "sha256": "9f2c4b1ad7e8305c6b0f1e9d4a7c2b85f3e6d1c09a4b7e2f5c8d1a6b3e9f0c74",
+      "sha256": "8ba8ad9fe854f79e4ccde6cce5c09efbf6f13522447ceab3f2202d3e91675ad5",
       "basis_ids": [
         "fact-p01-manual-rework",
         "assumption-agencies-pay-for-this",
@@ -172,21 +182,28 @@
       "type": "fact_recorded",
       "at": "2026-11-04",
       "description": "Recorded P01's account of manual report rework as reported, not observed",
-      "subject_ids": ["fact-p01-manual-rework"]
+      "subject_ids": [
+        "fact-p01-manual-rework"
+      ]
     },
     {
       "id": "event-2026-11-06-offer",
       "type": "artifact_saved",
       "at": "2026-11-06",
       "description": "Saved offer v1 with two open assumptions still unknown",
-      "subject_ids": ["offer-v1"]
+      "subject_ids": [
+        "offer-v1"
+      ]
     },
     {
       "id": "event-2026-11-10-source",
       "type": "source_checked",
       "at": "2026-11-10",
       "description": "Read the official e-invoicing FAQ; obligation applies despite the small-business exemption",
-      "subject_ids": ["source-be-einvoicing-faq", "fact-einvoice-applies-under-exemption"]
+      "subject_ids": [
+        "source-be-einvoicing-faq",
+        "fact-einvoice-applies-under-exemption"
+      ]
     }
   ],
   "active_task_id": "test-willingness-to-pay"

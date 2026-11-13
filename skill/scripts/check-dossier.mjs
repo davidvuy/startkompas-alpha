@@ -13,13 +13,14 @@
 //   1. the document's shape — format, revision, and the eight collections.
 //      A failure here stops the run, because everything after it indexes in
 //   2. ids are unique and every reference resolves, including the link graph
+//   2b. every relative file `location` resolves beside the project file
 //   3. assertion vocabularies, and the rules dossier-format.md states in prose
 //   4. the change-propagation walk: one depth-first search for a cycle, which
 //      would make "revise only the dependents" ill-defined
 //   5. the report — what a revision of each assumption would mark for review
 
 import {readFileSync, existsSync} from 'node:fs';
-import {join, resolve} from 'node:path';
+import {dirname, isAbsolute, join, resolve} from 'node:path';
 
 import {examplesDir} from './lib/paths.mjs';
 import {createReport} from './lib/report.mjs';
@@ -125,6 +126,40 @@ for (const [index, link] of doc.links.entries()) {
     report.fail(where, 'a record cannot be its own prerequisite');
   if (typeof link.reason !== 'string' || !link.reason.trim())
     report.fail(where, 'every declared link needs a reason');
+}
+
+// --- 2b. Every file `location` resolves beside the project ------------------
+//
+// Added 2026-11-13. A behavioural eval run read the worked example and found
+// that the dossier's only customer-evidence source pointed at
+// `notes/2026-11-04-p01.md`, which did not exist — and no check noticed, for
+// three days. A `location` that points at nothing is a record with no evidence
+// under it, which is the one thing this format exists to prevent.
+//
+// Only relative paths are checked, and only against the project file's own
+// directory, because that is what the format says a relative location means.
+// A URL, a described physical source or an absolute path is somebody else's
+// problem: `check-links.mjs` probes URLs, and an absolute path on another
+// machine cannot be verified from here.
+
+const projectDir = dirname(target);
+const LOCATED = ['sources', 'artifacts'];
+
+for (const collection of LOCATED) {
+  for (const [index, item] of (doc[collection] ?? []).entries()) {
+    const where = `${collection}[${item.id ?? index}]`;
+    const location = item.location;
+    if (typeof location !== 'string' || !location.trim()) continue;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(location)) continue; // a URL or other scheme
+    if (isAbsolute(location)) continue; // not resolvable from here
+    // A described physical source ("the folder behind the counter") is not a
+    // path. Only check what looks like one: it has a directory separator, or
+    // it ends in a file extension.
+    const pathLike = location.includes('/') || /\.[a-z0-9]{1,8}$/i.test(location);
+    if (!pathLike) continue;
+    if (!existsSync(join(projectDir, location)))
+      report.fail(where, `location ${JSON.stringify(location)} does not resolve beside the project file`);
+  }
 }
 
 // --- 3. Assertion vocabularies, and the format's own rules -------------------

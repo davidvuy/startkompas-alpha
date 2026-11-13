@@ -54,7 +54,7 @@ Honest note on the original extraction: it did **not** reduce total lines — 73
 | --- | --- | --- | --- |
 | `check-skill.mjs` | The skill is structurally sound, self-contained and host-neutral | Bad frontmatter, dead relative link, unreachable reference, a reference linking outside the model-facing set, reintroduced runtime coupling, a named host, an undated or off-template pack, an annex its own pack does not link, **a cross-reference to a section number that no longer exists**, a verification marker outside the three the legend defines, a source on a non-authoritative host called "primary", over budget, a binary, a file rewritten with CRLF line endings | no |
 | `check-markdown.mjs` | The markdown renders as written | A table split by a blank line, a ragged row, a separator with no header, a duplicate heading, a `---` that turns the paragraph above it into a heading, an unclosed code fence, a missing final newline | no |
-| `check-dossier.mjs` | The change-propagation algorithm in `references/dossier-format.md` terminates, and is acyclic | Broken reference, duplicate id, invalid assertion value, a dependency cycle — reported as the path round the loop | no |
+| `check-dossier.mjs` | The change-propagation algorithm in `references/dossier-format.md` terminates, and is acyclic | Broken reference, duplicate id, invalid assertion value, a dependency cycle, **a `location` that points at nothing** — reported as the path round the loop | no |
 | `check-facts.mjs` | Packs and eval cases still agree | A fact a case depends on has moved, or a reversed claim has returned | no |
 | `check-freshness.mjs` | No pack is past its recheck date, and its maintenance table is still machine-readable | Missing recheck date, overdue recheck, an impossible date, a verified claim older than 183 days, a Status cell outside the seven-label vocabulary, an `Open` row carrying a check date or a dated label missing one | no |
 | `check-links.mjs` | Every cited source URL still resolves, and every anchor with it | 404, 410, or a host that does not resolve | **yes** |
@@ -143,7 +143,7 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | `check-facts.mjs` | Four real mismatches, listed above |
 | `check-freshness.mjs` | Three packs whose recheck date did not parse, because the period sat inside the bold. Then, once the Status column became a vocabulary: an `Unconfirmed` row in `belgium.md` dated `—`, hiding that the Staatsblad really had been searched, and five `Elsewhere` rows dated as though a check had happened in a pack that only points elsewhere |
 | `check-links.mjs` | A `wetten.overheid.nl` redirect to a dated URL, and a moved CNIL page |
-| `check-dossier.mjs` | Not yet on real content — but its tests break it on purpose, including a three-hop cycle and a dangling link |
+| `check-dossier.mjs` | Its tests break it on purpose, including a three-hop cycle and a dangling link. And on 2026-11-13 it found real content: the shipped worked example's only customer-evidence source pointed at a file that did not exist, and its artifact `location` pointed at `files/offer-v1.md` while the file sat beside the dossier. A behavioural eval run found the first; the new location check found the second |
 | `test/conventions.test.mjs` | A deliberately added `--- 9. ---` section with no tests, and `lib/graph.mjs` added without a README entry |
 
 ## What makes check-links slow, measured rather than guessed

@@ -332,3 +332,93 @@ test('the report states the impact of each assumption', () => {
   assert.match(result.output, /Change impact per assumption/);
   assert.match(result.output, /a1 -> d1|1\s+a1/);
 });
+
+// --- Locations resolve — check-dossier.mjs section 2b ------------------------
+//
+// Added 2026-11-13. The shipped worked example pointed its only
+// customer-evidence source at a file that did not exist, and no check noticed
+// for three days — a behavioural eval run found it. A `location` that points
+// at nothing is a record with no evidence under it.
+
+test('a relative location that does not resolve fails and names the path', () => {
+  const result = withTree(
+    {
+      'project.json': JSON.stringify(
+        validDossier({sources: [{id: 's1', title: 'A read source', location: 'notes/missing.md'}]}),
+      ),
+    },
+    (root) => runCheck('check-dossier.mjs', root, {args: [join(root, 'project.json')]}),
+  );
+  assert.notEqual(result.code, 0, result.output);
+  assert.match(result.output, /notes\/missing\.md/);
+  assert.match(result.output, /does not resolve beside the project file/);
+});
+
+test('a relative location that resolves passes', () => {
+  const result = withTree(
+    {
+      'project.json': JSON.stringify(
+        validDossier({sources: [{id: 's1', title: 'A read source', location: 'notes/there.md'}]}),
+      ),
+      'notes/there.md': '# the note\n',
+    },
+    (root) => runCheck('check-dossier.mjs', root, {args: [join(root, 'project.json')]}),
+  );
+  assert.equal(result.code, 0, result.output);
+});
+
+test('a URL location is not treated as a path', () => {
+  // check-links.mjs probes URLs. This check must not fail one for not being a
+  // file, or every official source in a real dossier breaks the build.
+  const result = withTree(
+    {
+      'project.json': JSON.stringify(
+        validDossier({
+          sources: [{id: 's1', title: 'An official page', location: 'https://example.test/a/b'}],
+        }),
+      ),
+    },
+    (root) => runCheck('check-dossier.mjs', root, {args: [join(root, 'project.json')]}),
+  );
+  assert.equal(result.code, 0, result.output);
+});
+
+test('a described physical source is not treated as a path', () => {
+  // The format allows "a described physical source". It has no extension and
+  // no separator, so it must be left alone rather than resolved.
+  const result = withTree(
+    {
+      'project.json': JSON.stringify(
+        validDossier({
+          sources: [{id: 's1', title: 'A paper file', location: 'the folder behind the counter'}],
+        }),
+      ),
+    },
+    (root) => runCheck('check-dossier.mjs', root, {args: [join(root, 'project.json')]}),
+  );
+  assert.equal(result.code, 0, result.output);
+});
+
+test('an artifact location is checked too, not only a source', () => {
+  const result = withTree(
+    {
+      'project.json': JSON.stringify(
+        validDossier({
+          artifacts: [
+            {
+              id: 'a1',
+              kind: 'offer',
+              version: '1',
+              location: 'files/gone.md',
+              basis_ids: [],
+              review_required: false,
+            },
+          ],
+        }),
+      ),
+    },
+    (root) => runCheck('check-dossier.mjs', root, {args: [join(root, 'project.json')]}),
+  );
+  assert.notEqual(result.code, 0, result.output);
+  assert.match(result.output, /files\/gone\.md/);
+});
