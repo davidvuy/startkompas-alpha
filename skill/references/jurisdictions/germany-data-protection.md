@@ -161,6 +161,34 @@ These are restrictions under art. 23 GDPR, and most of their limbs are for publi
 
 **§36 and §37 were not read**, deliberately: §36 restricts the art. 21 objection for **public bodies**, and §37 concerns automated individual decisions in **insurance** contracts. Neither reaches a solo B2B founder. They are named here so that "§§32 to 37" is not left looking unexamined.
 
+## The duty this section is built on is scheduled to be repealed
+
+Sources, both read as published:
+- [`Föderale Modernisierungsagenda`, adopted by the Chancellor and the Minister-Presidents on **2025-12-04**](https://www.bundesregierung.de/resource/blob/975228/2397654/c57248be7fa2d61ab6d8b12c0f29f05b/2025-12-04-mpk-staatsmodernisierung-data.pdf) · *the official document, PDF extracted locally; section **III. Vereinfachungen im Datenschutzrecht**, measures 158 to 161* · **[checked 2026-11-13]**
+- [First progress report on the agenda, **2026-06-26**](https://www.bundesregierung.de/resource/blob/992814/2445318/98baa702bc15bb8c0bc8894856da1bdc/2026-06-26-fortschrittsbericht-modernisierung-data.pdf) · *the official report, PDF extracted locally* · **[checked 2026-11-13]**
+
+**Measure 160 is the one that would remove the German DPO duty.** Measure 2.2, *"Beschränkung der Pflicht zur Bestellung von Datenschutzbeauftragten"*:
+
+> *"Der Bund wird bis zum 31.12.2026 eine Aufhebung des § 38 Abs. 1 BDSG einbringen und damit die Pflicht zur Bestellung von Datenschutzbeauftragten im nichtöffentlichen Bereich auf die Regelung in Art. 37 DSGVO beschränken."*
+
+**Three things to be exact about, because this is the single largest pending change to this pack.**
+
+**One: `einbringen` is "introduce", not "enact".** The commitment is to put a repeal before the legislature by 2026-12-31. A bill introduced in December 2026 is not law in December 2026, and nothing in the measure promises a date for entry into force.
+
+**Two: it repeals the whole of `Abs. 1`, which is both sentences.** This section is built on §38(1) sentence 1 — the 20-person threshold — **and** sentence 2, the four triggers that apply regardless of headcount. A repeal of Abs. 1 takes both, leaving the private-sector duty *"auf die Regelung in Art. 37 DSGVO beschränkt"* — art. 37 GDPR and nothing more. **So a founder below 20 people who is currently caught by sentence 2 would stop being caught**, and the DPIA-list route in this pack would no longer drag a DPO with it.
+
+**Three: nothing has happened yet, as far as the government's own reporting shows.** The agenda's first progress report, of 2026-06-26, **does not mention the BDSG or Datenschutzbeauftragte at all**. **Until a repeal is promulgated, §38(1) applies in full** — both sentences, exactly as recorded above. Tell a founder the rule and tell them it is scheduled to go; do not let them plan on the schedule.
+
+### Two neighbouring measures, and one of them changes who a founder deals with
+
+**Measure 158 — the supervisory landscape itself.** *"Der Bund wird in Abstimmung mit den Ländern die Datenschutzaufsicht für den nichtöffentlichen Bereich bis spätestens 31.12.2027 reformieren und dabei gegebenenfalls auch die Aufgabenverteilung im Föderalstaat neu justieren."* The stated aim is uniform interpretation and application of the law and more efficiency between the authorities, and the named means are **bundling competences at the BfDI or at Länder authorities** — *"bspw. durch Zuständigkeitskonzentration und/oder One-Stop-Shop-Regelungen"* — better involvement of the **DSK**, and/or a **coherence procedure** under art. 87(3) `GG`, federally or by treaty between the Länder. The same measure adds that the federal government *"prüft die Aufhebung der Pflicht zur Bestellung eines Landesdatenschutzbeauftragten"*.
+
+**That is aimed squarely at the thing [germany.md](germany.md) §6 tells a founder first**: that Germany has no single supervisory authority for business, and that everything routes through one of sixteen Länder authorities. A one-stop-shop would change that answer. It is a commitment to reform by a date, not a described reform — **no instrument, no allocation, nothing to act on** — so the pack's current answer stands and this is the thing to watch on recheck.
+
+**Measure 159 — AI training data, and it is not for a founder.** By **2027-12-31** the federal government will propose a new BDSG rule allowing *"öffentlichen Stellen"* — **public bodies** — to anonymise or pseudonymise personal data for the purpose of training and deploying AI, at least until the Commission's current reform efforts produce a rule in the GDPR itself. **Public bodies only**, so a private founder training a model gets nothing from it. Worth knowing because it is routinely reported as a German AI-data-protection relaxation.
+
+---
+
 ## Pack maintenance
 
 One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
@@ -175,7 +203,12 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Whether any Land other than Bavaria splits it | — | Open — not researched; the BfDI directory lists one entry per Land and does not say |
 | §38(1) sentence 1 BDSG: at least 20 persons permanently occupied with automated processing | 2026-11-11 | Primary — read and quoted |
 | §38(1) sentence 2 BDSG: four triggers that apply regardless of headcount | 2026-11-11 | Primary — read and quoted; this is the half a summary of the 20-person rule leaves out |
-| Whether **§38(1) BDSG is being repealed** | — | Open — lead from the 2026-11-13 eval run, unverified: the `Föderale Modernisierungsagenda` of 2025-12-04 was reported to commit the federal government, at item 160, to introducing a repeal of §38(1) by the end of 2026, on the ground that it goes beyond art. 37 GDPR. No bill was found and nothing here was read. **If it passes, the German DPO duty this section is built on disappears** — so check this before any recheck of the rest |
+| **Measure 160**: the federal government will `einbringen` a repeal of §38(1) BDSG by **2026-12-31**, limiting the private-sector DPO duty to art. 37 GDPR | 2026-11-13 | Primary — the official agenda of 2025-12-04 read as published and quoted. **The eval run's lead is confirmed, item number and date.** `einbringen` is introduce, not enact |
+| A repeal of `Abs. 1` takes **both** sentences — the 20-person rule and the four headcount-independent triggers | 2026-11-13 | Primary — read. This is the structural consequence for this whole section |
+| The agenda's first progress report of 2026-06-26 does **not** mention the BDSG or Datenschutzbeauftragte | 2026-11-13 | Primary — the official report read as published. A negative finding, and the reason the pack still states §38(1) as live law |
+| **Measure 158**: private-sector supervision to be reformed by **2027-12-31**, with `Zuständigkeitskonzentration`, one-stop-shop, the DSK and an art. 87(3) GG coherence procedure named as options | 2026-11-13 | Primary — read and quoted. Bears directly on germany.md §6's "no single supervisory authority for business" |
+| **Measure 159**: a BDSG rule for anonymising and pseudonymising for AI training by **2027-12-31**, for **public bodies only** | 2026-11-13 | Primary — read. Routinely misreported as a general relaxation |
+| Whether a §38(1) repeal bill has been introduced since 2026-06-26 | — | Open — the progress report predates the deadline by six months. **Check the Bundestag and Bundesrat before any recheck of this section**, because the whole of it turns on this |
 | §38(2) with §6(4) BDSG: dismissal protection for a compulsory DPO, plus one year | 2026-11-11 | Primary — both read and quoted |
 | §6(5) sentence 2 and §6(6) BDSG: confidentiality, inherited testimonial privilege, seizure protection | 2026-11-11 | Primary — read |
 | The DSK list is titled as the art. 35(4) list for the non-public sector, version 1.1, 17 entries | 2026-11-11 | Authority — the list and the DSK index page both read; version 1.1 is still the only one listed |

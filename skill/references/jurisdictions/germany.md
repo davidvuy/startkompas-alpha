@@ -308,6 +308,8 @@ Use [../pilot-conditions.md](../pilot-conditions.md) §4 for the inventory disci
 
 **The GDPR layer is shared — read [eu-gdpr.md](eu-gdpr.md)** for the controller/processor test, the processor-contract duties, the sub-processor rule, the register obligation, the 72-hour breach notification and the security principle.
 
+**And this answer is scheduled to change.** Measure 158 of the `Föderale Modernisierungsagenda` of 2025-12-04 commits the federal government to reforming private-sector data protection supervision **by 2027-12-31**, naming a one-stop-shop and a concentration of competences among the options — see [germany-data-protection.md](germany-data-protection.md). Nothing is enacted and no allocation is described, so what follows is the position today.
+
 **German specifics start with the authority and do not end there.** Germany has **no single supervisory authority for business** — and beyond that it adds a duty to appoint a data protection officer that the GDPR does not, a binding national list of processing needing an impact assessment, and criminal liability. The authority first, because everything else routes through it:
 
 Source: [BfDI — addresses of the Länder authorities](https://www.bfdi.bund.de/DE/Service/Anschriften/Laender/Laender-node.html) · *federal authority's own directory; **this host answers an automated probe with a 303 to its own error page** while serving the page normally to a browser, so `check-links.mjs` reporting a redirect here is bot defence and not rot — opened and the quotation below re-read on 2026-11-13* · **[checked 2026-11-10]**

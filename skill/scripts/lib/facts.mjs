@@ -484,6 +484,14 @@ export const REQUIRED = [
   {case: '—', pack: 'germany-data-protection.md', label: 'a contractual retention period can displace the erasure right', pattern: /vertragliche Aufbewahrungsfristen/},
   {case: '—', pack: 'germany-data-protection.md', label: 'the backup carve-out is triple-locked, not a one-line excuse', pattern: /triple-locked/},
   {case: '—', pack: 'germany-data-protection.md', label: 'every BDSG exemption carries a duty to record why', pattern: /The documentation duty survives every exemption/},
+  // --- The scheduled repeal, read in the primary document 2026-11-13 --------
+  // Three halves of one claim, and dropping any of them misleads: the
+  // commitment is to INTRODUCE a repeal, it would take both sentences of
+  // Abs. 1, and nothing has happened yet.
+  {case: 'C23', pack: 'germany-data-protection.md', label: 'measure 160 quoted, with the 2026-12-31 date', pattern: /bis zum 31\.12\.2026 eine Aufhebung des § 38 Abs\. 1 BDSG einbringen/},
+  {case: 'C23', pack: 'germany-data-protection.md', label: 'einbringen is introduce, not enact', pattern: /is "introduce", not "enact"/},
+  {case: 'C23', pack: 'germany-data-protection.md', label: 'until repeal, §38(1) applies in full', pattern: /Until a repeal is promulgated, §38\(1\) applies in full/},
+  {case: '—', pack: 'germany-data-protection.md', label: 'measure 159 is for public bodies only', pattern: /\*\*Public bodies only\*\*/},
 
   // --- Belgium — the 2018 act and the GBA's own list --------------------------
   // Art. 222 is the only national penalty in these packs that is criminal, and
