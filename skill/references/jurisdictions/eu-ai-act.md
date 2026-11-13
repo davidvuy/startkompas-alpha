@@ -154,7 +154,32 @@ Then the sting:
 
 **Using the derogation is not free either.** Art. 6(4): a provider who considers an Annex III system not high-risk *"shall document its assessment before that system is placed on the market or put into service"*, is subject to the **registration obligation in art. 49(2)**, and must hand the documentation to national authorities on request. So the escape route is itself a documented, registered decision — which is the same shape as the impact-assessment decisions in [eu-gdpr-dpo-dpia.md](eu-gdpr-dpo-dpia.md): a reasoned "no" on the record, not silence.
 
-**Open:** art. 6(5) required the Commission to publish, by **2026-02-02**, guidelines on the practical implementation of this article *"together with a comprehensive list of practical examples of use cases of AI systems that are high-risk and not high-risk"*. Whether it did, and what the examples say, is **[not researched]** — and it is the single most useful document a founder could be pointed at on this question, so it is the first thing to look for on a recheck. Annex I, the harmonisation legislation behind route one, is **[not researched]** too.
+### The art. 6(5) guidelines exist, and they are still a draft
+
+Source: [the Commission's policy page for the guidelines](https://digital-strategy.ec.europa.eu/en/policies/guidelines-ai-high-risk-systems) · *the Commission's own page, last updated 2026-10-19* · **[checked 2026-11-13]**
+
+Art. 6(5) required the Commission to publish, by **2026-02-02**, guidelines on the practical implementation of this article *"together with a comprehensive list of practical examples of use cases of AI systems that are high-risk and not high-risk"*. **It has published them as a draft and has not adopted them.**
+
+What the page establishes, and each half matters:
+
+- **They are draft.** *"The Commission has developed draft guidelines making use of the feedback obtained through a public consultation"*, and a further targeted consultation ran **until 2026-07-23**, with feedback *"going to be incorporated in the final version of the guidelines before adoption by the Commission"*. As at the page's own last update, 2026-10-19, adoption had not happened.
+- **They are not binding, and they decide enforcement anyway.** *"Though not legally binding, they reflect the Commission's interpretation and will guide enforcement."* That is the sentence to repeat to a founder: a draft guideline is not law and is still the best available prediction of how the Commission will read art. 6.
+- **The examples are explicitly not exhaustive.** *"A list of examples strives to cover all areas and use cases, but they are not to be considered as exhaustive and may be updated over time."* So finding your use case absent from the list is not a finding that it is outside Annex III.
+- **They live on the [AI Act Single Information Platform](https://ai-act-service-desk.ec.europa.eu/en)**, which also carries Annex I and Annex III in browsable form, alongside an **AI Act Service Desk**. **Point a founder there** — it is the Commission's own self-assessment surface, and it is the one place in this whole file a founder can check their own case without reading a Regulation.
+
+**The same page corroborates the amended art. 113 dates from outside the Regulation, and names which areas.** Rules for systems used in high-risk areas — the page lists *"biometrics, critical infrastructure, education, employment, migration, asylum and border control"* — apply from **2027-12-02**, and for systems integrated into products such as robotics and industrial machinery from **2028-08-02**. Those are the two rows §5 takes from art. 113 as amended, now confirmed by a third official source. The page attributes the timeline to *"the political agreement on the 'AI Omnibus'"*.
+
+**Annex I, the harmonisation legislation behind route one, is still [not researched]** — though the Single Information Platform serves it, so it is now a fetch rather than a search.
+
+### What other guidelines exist, and which a small provider is waiting for
+
+Source: [the AI Office's own overview of the guidelines](https://digital-strategy.ec.europa.eu/en/news/supporting-implementation-ai-act-clear-guidelines) · *the Commission's news page, last updated 2026-07-31* · **[checked 2026-11-13]**
+
+**Published** as at that date: the high-risk classification guidelines above; the **transparency** guidelines for providers and deployers of certain systems; a **template for reporting serious incidents** by providers of high-risk systems; and guidelines on the practical application of the high-risk requirements.
+
+**Still being worked on**, and the list is worth knowing because each gap is a question a founder cannot yet get an official answer to: the practical application of provider and deployer obligations; a **template for the fundamental rights impact assessment**; responsibilities along the **AI value chain**; **substantial modification**; a voluntary template for **post-market monitoring**; the AI Act's interplay with other EU law, including joint Commission–EDPB guidelines on the AI Act and data protection; and — the one that matters most here — **guidelines on the elements of the quality management system which SMEs and SMCs may comply with in a simplified manner**.
+
+**That last item is not the art. 11 documentation form**, which is a different simplification: art. 11 promises SMEs a simplified **Annex IV technical documentation** form, and this is art. 17's **quality management system**. Both are promised, neither is published, and a small provider in an Annex III area is therefore expected to meet arts. 11 and 17 without the simplified instruments the Regulation itself holds out. Say that plainly rather than implying a lighter regime exists.
 
 ### Article 4a — special-category data for bias detection is a permission, not a duty
 
@@ -270,7 +295,7 @@ The short version, as at 2026-11-12: **Germany has settled it** — the Bundesne
 - **Arts. 17, 18 and 43** — quality management, documentation keeping and conformity assessment. The other articles art. 16 points at, **arts. 8 to 15**, are read in [eu-ai-act-high-risk.md](eu-ai-act-high-risk.md).
 - Whether a founder's **marketing content** can amount to text `published to inform the public on matters of public interest` under art. 50(4). The limb reads as aimed at publishing, not business documents, but the boundary is **[not researched]**.
 - **National market-surveillance authorities and the national penalty regimes** made under art. 99(1): read for **Germany** in §7, **[not researched]** for Belgium, the Netherlands and France. The Union ceilings are in §6; what any Member State imposes is not.
-- The art. 6(5) Commission guidelines and the comprehensive list of practical examples that were due by 2026-02-02: **[not researched]**, and the first thing to look for on a recheck — §3 says why.
+- The **contents** of the art. 6(5) draft guidelines and their example list: the draft's existence and status are now established (§3), but the examples themselves are **[not researched]**. They are on the Single Information Platform, so this is a fetch away.
 - Annex I, the Union harmonisation legislation behind art. 6(1): **[not researched]**.
 - Arts. 8 to 15, 17, 18 and 43 — what a high-risk provider's obligations contain: **[not researched]**, deliberately; §2 gives the shape and says why the detail is a specialist engagement.
 - The interaction with the GDPR, which is a separate instrument — see [eu-gdpr.md](eu-gdpr.md). Using an AI tool on personal data engages both. Art. 4a, added in 2026, permits processing special categories of personal data for bias detection under strict conditions, and was **[not researched]**.
@@ -311,7 +336,12 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 6(3) derogation, its four conditions, and that profiling always cancels it | 2026-11-11 | Primary — read and quoted |
 | Art. 6(4): using the derogation requires a documented assessment and art. 49(2) registration | 2026-11-11 | Primary — read |
 | Art. 4a: special-category processing for bias detection is a permission with six conditions, and creates no duty to bias-test | 2026-11-11 | Primary — read and quoted, both paragraphs |
-| The art. 6(5) guidelines and practical examples due 2026-02-02 | — | Open — not researched; it is the document a founder would most want. lead from the 2026-11-13 eval run, unverified: a **draft** dated 2026-05-19 was reported to exist, containing worked recruitment examples that turn on whether the system carries evaluative weight. A draft is not guidance and none of it was read — but it is a specific thing to look for, which "whether it exists" was not |
+| The art. 6(5) guidelines exist as a **draft**, not adopted; consultation closed 2026-07-23; not binding but *"will guide enforcement"*; examples explicitly non-exhaustive | 2026-11-13 | Authority — the Commission's own policy page read, last updated 2026-10-19. **Closed the pack's own first-recheck row.** The eval run's lead that a draft existed is confirmed; its date of 2026-05-19 is **not** — the page gives no publication date |
+| The AI Act **Single Information Platform** and **Service Desk** host the guidelines, Annex I and Annex III | 2026-11-13 | Authority — the platform opened and Annex III point 4 read there, matching the EUR-Lex text already recorded above |
+| The 2027-12-02 and 2028-08-02 dates, corroborated outside the Regulation, with the areas named | 2026-11-13 | Authority — the same policy page. A third official source agreeing with art. 113 as amended |
+| Published guidelines as at 2026-07-31, and the eight sets still being worked on | 2026-11-13 | Authority — the AI Office's own overview read |
+| **The art. 17 simplified quality-management-system guidelines for SMEs are not published**, and are a different instrument from the art. 11 documentation form | 2026-11-13 | Authority — named in the overview's "still working on" list. Both simplifications are promised and neither exists |
+| The contents of the draft art. 6(5) examples | — | Open — the draft's status is settled, its examples are not read. On the Single Information Platform |
 | Arts. 8 to 15: the requirements a high-risk system must satisfy | — | Elsewhere — read on 2026-11-12 and maintained in [eu-ai-act-high-risk.md](eu-ai-act-high-risk.md) |
 | Annex I; arts. 17, 18 and 43 | — | Open — not researched |
 | National authorities and the national penalty regimes under art. 99(1) | — | Open — not yet researched |
