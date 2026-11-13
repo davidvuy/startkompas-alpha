@@ -16,6 +16,11 @@ export const REQUIRED = [
   // --- Belgium ---------------------------------------------------------------
   {case: 'C4', pack: 'belgium.md', label: 'e-invoicing in force from 2026-01-01', pattern: /2026-01-01/},
   {case: 'C4', pack: 'belgium-e-invoicing.md', label: 'exemption regime still in scope', pattern: /exemption regime[^|]*\|\s*\*\*In scope/i},
+  // Art. 5 §1 read 2026-11-13. 10° quater is the item an exempt founder meets
+  // on every invoice and the lead that prompted the reading did not have it.
+  {case: 'C4', pack: 'belgium-e-invoicing.md', label: 'the exemption carries a mandatory invoice mention', pattern: /Bijzondere vrijstellingsregeling van belasting/},
+  {case: 'C18', pack: 'belgium-e-invoicing.md', label: 'the reverse-charge mention is Btw verlegd', pattern: /Btw verlegd/},
+  {case: 'C18', pack: 'belgium-e-invoicing.md', label: 'art. 5 item 12 leaves the list open', pattern: /alle andere vermeldingen die worden voorgeschreven/},
   {case: 'C4', pack: 'belgium.md', label: 'Peppol named', pattern: /\bPeppol\b/},
   {case: 'C5', pack: 'belgium.md', label: 'Walloon abolition date', pattern: /2025-10-01/},
   {case: 'C5', pack: 'belgium.md', label: 'conflict preserved as a conflict', pattern: /source conflict/i},

@@ -142,6 +142,8 @@ Recheck triggers: turnover approaching the threshold; the start of any calendar 
 
 **[belgium-e-invoicing.md](belgium-e-invoicing.md) holds the whole of it:** who is in and out of scope, the statute's three limits on the duty — supplies **other than** art. 44 exempt ones, the **art. 56 flat-rate** regime excluded while the **art. 56ter exemption is not**, and bankrupt taxable persons — the `Peppol BIS` in UBL format over the Peppol network required by `KB nr. 1` art. 13ter, the agreement that lets parties use another channel, and art. 13quater, which still requires them to be Peppol-capable.
 
+**And the exemption has an invoice duty of its own.** `KB nr. 1` art. 5 §1 **10° quater** requires an invoice under the arts. 56bis to 56undecies exemption to state `"Bijzondere vrijstellingsregeling van belasting"` **in place of the tax** — read in the annex, with the rest of the mandatory invoice content.
+
 **The one line to carry into §2:** being under the **€25,000 exemption does not take a founder out of this duty.** The statutory exclusion is for art. 56, the flat-rate regime, and art. 56ter is not in it.
 
 ---
