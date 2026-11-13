@@ -311,7 +311,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 6(3) derogation, its four conditions, and that profiling always cancels it | 2026-11-11 | Primary — read and quoted |
 | Art. 6(4): using the derogation requires a documented assessment and art. 49(2) registration | 2026-11-11 | Primary — read |
 | Art. 4a: special-category processing for bias detection is a permission with six conditions, and creates no duty to bias-test | 2026-11-11 | Primary — read and quoted, both paragraphs |
-| The art. 6(5) guidelines and practical examples due 2026-02-02 | — | Open — not researched; it is the document a founder would most want |
+| The art. 6(5) guidelines and practical examples due 2026-02-02 | — | Open — not researched; it is the document a founder would most want. lead from the 2026-11-13 eval run, unverified: a **draft** dated 2026-05-19 was reported to exist, containing worked recruitment examples that turn on whether the system carries evaluative weight. A draft is not guidance and none of it was read — but it is a specific thing to look for, which "whether it exists" was not |
 | Arts. 8 to 15: the requirements a high-risk system must satisfy | — | Elsewhere — read on 2026-11-12 and maintained in [eu-ai-act-high-risk.md](eu-ai-act-high-risk.md) |
 | Annex I; arts. 17, 18 and 43 | — | Open — not researched |
 | National authorities and the national penalty regimes under art. 99(1) | — | Open — not yet researched |

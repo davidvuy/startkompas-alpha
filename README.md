@@ -114,7 +114,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 Most useful contributions, in order:
 
 1. A verified jurisdiction pack for your country.
-2. A scored eval run — [skill/evals/cases.md](skill/evals/cases.md) has 27 cases and **none has been scored on any host yet**.
+2. An **independent** scored eval run — [skill/evals/cases.md](skill/evals/cases.md) has 28 cases, and the only run on record is self-scored: 2026-11-13, 18 pass, 2 partial, 5 fail, and **two of the four harm cases failed, so the project's own pass bar is not met**. [skill/evals/results.md](skill/evals/results.md) has the transcripts and the causes.
 3. A recheck of a stale claim in an existing pack, with its new date.
 
 [Ask a question](https://github.com/davidvuy/startkompas-alpha/discussions) · [Report a bug or suggest an improvement](https://github.com/davidvuy/startkompas-alpha/issues/new/choose) · [Report a vulnerability privately](https://github.com/davidvuy/startkompas-alpha/security/advisories/new)

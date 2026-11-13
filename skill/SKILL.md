@@ -27,6 +27,10 @@ Then use the matching pack in [references/jurisdictions/](references/jurisdictio
 
 **Never state a threshold, rate, fee, deadline or count you did not read in a pack or in a source you actually fetched.** A missing pack is never a finding that no obligation exists.
 
+**Where a pack gives a date, give that date.** "For years", "recently" and "since a while back" are not answers a founder can act on, and a pack that says `2019-11-01` has already done the work of being exact. The same goes for a figure's year: say which year it applies to, and say when a scheduled figure takes effect.
+
+**A conflict a pack records is reported as recorded, not resolved.** Where two or three official sources disagree, the pack has preserved that deliberately — it is a fact about what the founder's own authority will tell them. Name which source is most specific or most recent if that is true, then give the others with their dates and say confirmation is needed. Picking a winner hides the reason the founder has to ask.
+
 ## Work from evidence
 
 1. **Establish the milestone** from the founder's input and existing files. When resuming, read the saved files and identify their project and revision — never substitute conversational recall. Resolve an identity or version conflict before changing anything.

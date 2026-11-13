@@ -37,7 +37,12 @@ Establish before advising any administrative action: whether the founder is alre
 | [business.belgium.be general start portal](https://business.belgium.be/32) | Still states the requirement: *"Are you established in Wallonia? If so, you must also be able to demonstrate basic knowledge of business management. This is not required in Flanders or Brussels."* No content update date shown. | 2026-11-10 |
 | [FPS Economy procedures](https://economie.fgov.be/en/themes/enterprises/starting-business/procedures-self-employed) | States competence requirements apply in **Wallonia and the Brussels-Capital Region** — which contradicts the other two on Brussels. | 2026-11-10 |
 
-Consequence for the founder: **do not create a task to obtain the abolished proof**, and do not rely on any of the three for a Brussels founder. The regional announcement is the most specific and most recent, but two federal portals still contradict it and each other. Confirm with the founder's own region before acting, and still check whether their **actual activity** is a regulated trade with a retained competence requirement.
+**Answering this question has two obligations, and the first one comes before the answer.**
+
+1. **Ask what the activity actually is.** The abolition keeps the competence requirements for regulated trades — Wallonia's own announcement names restaurateurs, bakers and pastry chefs, roofers and heating engineers. So "abolished" is the right answer for a consultant and the wrong answer for a founder opening a bakery, and nothing in the question itself says which one is asking. **Do not answer for the general case and leave the exception as a footnote.**
+2. **Present the conflict as recorded, not resolved.** The regional announcement is the most specific and most recent source, and saying so is fair. Picking it as the answer is not: two federal portals still contradict it and each other, which is a fact about what a founder's own region will tell them when they ask. Give all three with their dates and let the founder see why confirmation is needed.
+
+**And do not create a task to obtain the abolished proof.** For a Brussels founder, none of the three sources can be relied on at all — they disagree about Brussels specifically. Confirm with the founder's own region before any administrative step.
 
 Recheck trigger: a change of region; the activity turning out to be a regulated trade; either federal portal being corrected.
 
@@ -46,6 +51,8 @@ Recheck trigger: a change of region; the activity turning out to be a regulated 
 ## 2. VAT — small-business exemption regime
 
 Current threshold **in force**: **€25,000** annual Belgian turnover, excluding VAT. This is the figure to use today.
+
+**Asked about a future year, go straight to [the phased increase](#the-phased-increase-the-figures-are-confirmed-the-enactment-is-not) below — €26,000 in 2027 rising to €30,000 in 2031.** Those figures are a **bill's** proposed text, so they are not the answer to "what is the threshold"; they are the answer to "what is it going to be", and that question has a recorded answer here. The four subsections between this line and that table are about the €25,000 regime as it stands.
 
 ### Crossing €25,000 mid-year: Belgium gives a 10 % tolerance, and nobody else does
 

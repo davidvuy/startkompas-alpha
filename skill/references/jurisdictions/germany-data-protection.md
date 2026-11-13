@@ -175,6 +175,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Whether any Land other than Bavaria splits it | — | Open — not researched; the BfDI directory lists one entry per Land and does not say |
 | §38(1) sentence 1 BDSG: at least 20 persons permanently occupied with automated processing | 2026-11-11 | Primary — read and quoted |
 | §38(1) sentence 2 BDSG: four triggers that apply regardless of headcount | 2026-11-11 | Primary — read and quoted; this is the half a summary of the 20-person rule leaves out |
+| Whether **§38(1) BDSG is being repealed** | — | Open — lead from the 2026-11-13 eval run, unverified: the `Föderale Modernisierungsagenda` of 2025-12-04 was reported to commit the federal government, at item 160, to introducing a repeal of §38(1) by the end of 2026, on the ground that it goes beyond art. 37 GDPR. No bill was found and nothing here was read. **If it passes, the German DPO duty this section is built on disappears** — so check this before any recheck of the rest |
 | §38(2) with §6(4) BDSG: dismissal protection for a compulsory DPO, plus one year | 2026-11-11 | Primary — both read and quoted |
 | §6(5) sentence 2 and §6(6) BDSG: confidentiality, inherited testimonial privilege, seizure protection | 2026-11-11 | Primary — read |
 | The DSK list is titled as the art. 35(4) list for the non-public sector, version 1.1, 17 entries | 2026-11-11 | Authority — the list and the DSK index page both read; version 1.1 is still the only one listed |

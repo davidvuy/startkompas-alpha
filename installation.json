@@ -561,7 +561,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "1b8edf472485bce3f030e653b2c27629dfd6765ef19e72937ec489a80adc5f57"
+      "sha256": "77e53774d79f41360e8e21d9065b7330c9958d77c8f026c28dab1a1a84a96508"
     },
     {
       "path": "schemas/cli-error-v1.schema.json",

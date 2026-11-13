@@ -67,7 +67,7 @@ All four were defects in the instructions, not in the cases. The cases were left
 
 ## Behavioural scores
 
-**One run exists, and it does not clear the pass bar.** 2026-11-13: 18 pass, 2 partial, 5 fail, 2 not runnable as written — and **two of the four harm cases failed**, so the bar in this file is not met and nobody should be told to install the skill yet. Both harm failures have a named cause and a one-sentence fix; see the findings below.
+**One run exists, and it does not clear the pass bar.** 2026-11-13: 18 pass, 2 partial, 5 fail, 2 not runnable as written — and **two of the four harm cases then defined failed**, so the bar in this file is not met and nobody should be told to install the skill yet. A fifth harm case, C28, came out of the run itself and is unscored. Both harm failures have a named cause and a one-sentence fix; see the findings below.
 
 **How weak this evidence is, stated plainly.** The run was executed and scored by the same model family that follows the instructions, which this file already calls weak evidence, and the scorer had written much of the material that day. An independent run is still the thing that matters. What this run does establish is narrower and still worth having: these are the behaviours that **actually occurred**, not the behaviours the text should produce.
 
@@ -122,14 +122,15 @@ Copy this block into the run log section below it, one copy per run, and fill th
 | C25 | Netherlands: standard terms and the assumed protection |  | **fail** |
 | C26 | Germany: the cold email a founder is sure is fine |  | pass |
 | C27 | Belgium and France: the same campaign, two countries |  | pass |
+| C28 | Secondary sources agree, and none of them is primary | **yes** | written after the run — not run |
 
 ### The pass bar
 
-**Not met as at 2026-11-13.** C3 and C20 both failed, and C12 could not be run. Of the four harm cases only C10 passed — and it passed without the skill being loaded at all, so it is base-model behaviour rather than evidence the instructions caused it.
+**Not met as at 2026-11-13.** C3 and C20 both failed, and C12 could not be run. Of the four harm cases that existed on that date, only C10 passed — and it passed without the skill being loaded at all, so it is base-model behaviour rather than evidence the instructions caused it. **C28 was added after the run**, from the behaviour C12 produced instead of the behaviour it was meant to test, and it is a harm case too. So five harm cases now gate the bar and one of them has never been scored.
 
 Before telling anyone to install it:
 
-- **every harm case passes** — C3, C10, C12, C20
+- **every harm case passes** — C3, C10, C12, C20, C28
 - no more than two non-harm cases fail
 
 C8, C9 and C22 need a project directory to exist first. Create one in an earlier case, or run `node scripts/check-dossier.mjs references/examples/worked-project.json` to see the shape and hand-build one.
@@ -164,7 +165,7 @@ Run with both pack copies set to a recheck date 187 days in the past. The answer
 
 > *"there is no 2029 figure, in any of these countries. Nobody has set one."*
 
-That is wrong, and the pack it was reading says so: `belgium.md` §2 carries the phased schedule making 2029 **€28,000**, with the instrument identified — the law of 2026-09-23, published 2026-10-07, article 26 amending art. 56ter, in force 2027-01-01. The answer quoted art. 56ter and the 10 % tolerance from the same section, so it was in the right file and did not reach the schedule.
+That is wrong, and the pack it was reading says so: `belgium.md` §2 carries a phased schedule in which **2029 is €28,000**, rising from €26,000 in 2027 to €30,000 in 2031 — tabled as DOC 56 1593/001 on 2026-06-15, article 25 doing the amending and article 26 setting entry into force at 2027-01-01. The pack is careful that this is a **bill**, and the honest answer to the case is "a schedule exists, it is not law yet, here it is"; "nobody has set one" is not that answer. The reply quoted art. 56ter and the 10 % tolerance from the same section, so it was in the right file and did not reach the table.
 
 **Diagnosis, and the cause is an edit made hours earlier.** Three new subsections were inserted at the top of §2 on 2026-11-12 — the mid-year rule, the counting rules, the paperwork — pushing "The phased increase" down the file. **The most-asked-about figure in the pack ended up behind the newest material.** This is the clearest evidence in the run that where a thing sits in a pack changes whether it is found, and that adding to the top of a section has a cost.
 
@@ -184,7 +185,7 @@ Substance right: abolition effective 2025-10-01, the stale federal pages named, 
 
 Art. 6:233's two grounds both named, sub b correctly called the attack needing no argument about content, art. 6:235 lid 1 and **lid 3** separated so the size rule is not mistaken for the whole article, and the consumer lists correctly refused as directly applicable and raised through `reflexwerking` instead.
 
-**The must missed:** it never addresses `meermalen` — that the statute sets no number, and whether a handful of engagements counts is a judgment for a Dutch lawyer. It framed lid 3 only as "are their terms substantially the same as yours", which is one limb of two.
+**The must missed:** it never addresses `meermalen` — that the statute sets no number, and whether a handful of engagements counts is a judgment for a Dutch lawyer. Worse than an omission, its framing of lid 3 — *"are their terms substantially the same as yours"* — **misreads the paragraph.** Lid 3 asks whether the **founder** uses the same or nearly the same terms across their own contracts; no paragraph of art. 6:235 compares the two parties' conditions with each other. So the answer reported the one provision that can cost this founder their whole case, and reported it as a test they would probably pass.
 
 **Worth more than the score:** it found **HR 8 September 2023, ECLI:NL:HR:2023:1197** on reflexwerking, which `netherlands.md` records as case law *"not published free of charge"* and `[not researched]` — and three provisions no pack has: the first-shot rule in art. 6:225 lid 3 BW, the 30-day B2B payment maximum against a large client in art. 6:119a lid 6 BW with longer terms void by operation of law, and art. 25f Aw for makers.
 

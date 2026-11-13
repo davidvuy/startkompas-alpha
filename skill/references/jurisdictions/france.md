@@ -378,6 +378,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | CNIL cookie doctrine as it stands now | 2026-11-12 | Authority — the art. 82 audience-measurement exemption read and recorded in [france-data-protection.md](france-data-protection.md); the wider cookie guidelines not read |
 | The CNIL's security guide: 25 sheets, and sheet 14 on processors read in full | 2026-11-12 | Authority — read in its HTML form; maintained in [france-data-protection.md](france-data-protection.md) |
 | ANSSI/CPME `12 règles essentielles` | — | Open — not yet researched |
+| Whether **PLF 2027** changes the `franchise en base` thresholds | — | Open — lead from the 2026-11-13 eval run, unverified: the bill presented 2026-10-01 was reported to carry no franchise measure in its initial text, and the early-November amendments to touch e-invoicing rather than thresholds. Neither was read. The 2026 entry in §2 is why this matters — a budget bill is where this figure moves |
 | GDPR layer | — | Elsewhere — maintained in eu-gdpr.md |
 
 Next full recheck due: **2027-05-10**. Earlier before 2027-09-01, when the issuing obligation reaches small businesses.
