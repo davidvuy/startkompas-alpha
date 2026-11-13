@@ -587,13 +587,34 @@ test('bulk in scripts/ fails the support budget, not the model-facing one', () =
   // arithmetic rather than as a number, because the first version of this test
   // hard-coded 576 and broke the next time the model-facing budget moved —
   // which is the opposite of what a derived budget is for. It then caught the
-  // assertion table being split out, which is the same check working.
+  // assertion table being split out, and on 2026-11-13 it caught evals/ being
+  // split out the same way. Both times the check was working.
   const budgetOf = (label) =>
     Number(new RegExp(`${label}: .* of (\\d+) KB`).exec(result.output)?.[1]);
   assert.equal(
     budgetOf('folder without tests'),
-    budgetOf('model-facing total') + budgetOf('support files') + budgetOf('assertion table'),
+    budgetOf('model-facing total') +
+      budgetOf('support files') +
+      budgetOf('assertion table') +
+      budgetOf('eval suite and log'),
   );
+});
+
+test('a recorded eval run is charged apart from the tooling, and names itself when over', () => {
+  // evals/results.md grows by one run and never shrinks — the file's own rule
+  // is that a score without its transcripts cannot be acted on. On 2026-11-13
+  // the second run of the day pushed the support half 4.7 KB over 192, so
+  // "record this run" was competing with "ship the tooling". Same remedy as
+  // the assertion table: charge the log apart, and make the failure say that
+  // raising the number is the intended response rather than deleting a run.
+  const result = withTree(
+    {...baseTree(), 'evals/results.md': 'x'.repeat(100 * 1024)},
+    (root) => runCheck('check-skill.mjs', root),
+  );
+  assert.match(result.output, /over the 96 KB eval-suite budget/);
+  assert.match(result.output, /rather than deleting a recorded run/);
+  // And it must not be charged to the half that exists to catch stray bulk.
+  assert.doesNotMatch(result.output, /support budget/);
 });
 
 test('the assertion table is charged apart from the tooling that reads it', () => {
@@ -704,10 +725,12 @@ test('the README documents the budget numbers the check enforces', () => {
     return Number(found[1]);
   };
 
-  const model = constant('MODEL_BUDGET_KB');
-  const support = constant('SUPPORT_BUDGET_KB');
-  const assertions = constant('ASSERTIONS_BUDGET_KB');
-  const derivation = `**derived** as ${model} + ${support} + ${assertions} = ${model + support + assertions} KB`;
+  // The parts are listed in the order FOLDER_BUDGET_KB adds them, so the
+  // sentence in the document reads as the arithmetic the code performs. Charge
+  // a new part apart and it belongs in both places, which is what this catches.
+  const parts = ['MODEL_BUDGET_KB', 'SUPPORT_BUDGET_KB', 'ASSERTIONS_BUDGET_KB', 'EVALS_BUDGET_KB'].map(constant);
+  const total = parts.reduce((sum, part) => sum + part, 0);
+  const derivation = `**derived** as ${parts.join(' + ')} = ${total} KB`;
   assert.ok(
     readme.includes(derivation),
     `scripts/README.md derives the folder budget from stale numbers. It should contain:\n  ${derivation}`,
@@ -722,6 +745,7 @@ test('the README documents the budget numbers the check enforces', () => {
     'SUPPORT_BUDGET_KB',
     'TEST_BUDGET_KB',
     'ASSERTIONS_BUDGET_KB',
+    'EVALS_BUDGET_KB',
   ]) {
     const value = constant(name);
     assert.match(

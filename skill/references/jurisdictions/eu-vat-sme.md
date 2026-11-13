@@ -70,7 +70,7 @@ Note what this does **not** settle: it governs the **cross-border** exemption fo
 | **Netherlands** | **The exemption ends immediately.** The Belastingdienst draws the distinction itself: a voluntary exit from the KOR takes effect from the first day of the next quarter, but crossing €20,000 in a calendar year means *"u zich meteen afmelden ... Uw afmelding gaat dan direct in"* — see [netherlands.md](netherlands.md) §2 |
 | **Belgium** | **A 10 % tolerance, and it is the only one.** Art. 56decies §1: up to ten per cent over the threshold the exemption survives to the end of the calendar year; beyond that it stops at once — and the following calendar year is barred. See [belgium.md](belgium.md) §2 |
 
-So "what happens if I go over mid-year" now has a clear answer in two of the four packs — and the two agree, which one data point could not show: **both the French `seuil majoré` and the Dutch KOR end the exemption on the day, not at year end.** Germany's statute is silent and Belgium is unread. Do not carry the French rule across a border; the French page's own history shows the rule can change even within one country, since it says the immediate cessation is *"et non plus au premier jour du mois du dépassement"*.
+So "what happens if I go over mid-year" now has a clear answer in three of the four packs, and they do **not** all agree. **The French `seuil majoré` and the Dutch KOR both end the exemption on the day, not at year end** — while **Belgium gives a 10 % tolerance band** before it ends, under art. 56decies §1 of its VAT Code ([belgium.md](belgium.md) §2, primary legislation read 2026-11-12). Germany's statute is silent. Three national answers to one question, which is the point of keeping them apart. Do not carry the French rule across a border; the French page's own history shows the rule can change even within one country, since it says the immediate cessation is *"et non plus au premier jour du mois du dépassement"*.
 
 ## What counts toward the turnover — article 288
 
@@ -94,7 +94,7 @@ The financial-and-real-estate limb turns on whether those transactions are **anc
 
 - Whether a given financial or real estate transaction is **ancillary** for art. 288: **[not researched]**.
 - How each member state **implements** the notification and quarterly return in practice — the Dutch `opgaaf kwartaalomzet` is one implementation; the others are **[not researched]**.
-- What happens to a **domestic** exemption on a mid-year threshold crossing. Not an EU question — see the per-pack table above, where France and the Netherlands answer it, Germany's statute is silent, and Belgium have not researched it.
+- What happens to a **domestic** exemption on a mid-year threshold crossing. Not an EU question — see the per-pack table above, where France and the Netherlands end the exemption on the day, Belgium allows a 10 % tolerance first, and Germany's statute is silent.
 
 ## Pack maintenance
 
@@ -114,7 +114,7 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | The Dutch mid-year rule: the domestic exemption ends immediately | 2026-11-11 | Authority — the Belastingdienst's own KOR page, read and quoted in [netherlands.md](netherlands.md) |
 | The Belgian mid-year rule: **10 % tolerance**, then immediate loss, and a bar for the following calendar year | 2026-11-12 | Primary — art. 56decies §1 read in the inserting law as published and quoted in [belgium.md](belgium.md) §2. The obstacle was that `KB nr. 19` of 2014 had been **repealed**; the live instruments are arts. 56bis to 56undecies and `KB nr. 19` of 15 December 2024 |
 | Member-state implementation of notification and returns | 2026-11-12 | Authority — **Belgium's is read**: arts. 56ter §2 and 56quater of the VAT Code, the `EX` suffix, a quarterly report within one month and fifteen working days' notice on crossing the Union threshold, in [belgium.md](belgium.md) §2. The other three are still open |
-| Domestic exemption on a mid-year crossing | — | Elsewhere — a national question, not an EU one. Answered in france.md and netherlands.md, recorded as statutorily unanswered in germany.md, open in belgium.md |
+| Domestic exemption on a mid-year crossing | — | Elsewhere — a national question, not an EU one. Answered in france.md, netherlands.md and belgium.md (art. 56decies §1, a 10 % tolerance, read 2026-11-12), recorded as statutorily unanswered in germany.md |
 
 Next full recheck due: **2027-05-10**. Earlier on any amendment to the SME scheme or a member state changing its national figure.
 

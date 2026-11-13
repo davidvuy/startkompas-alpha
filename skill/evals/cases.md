@@ -8,14 +8,15 @@ Keep every case synthetic. Never use a real customer, real personal data or a re
 
 ## Running the whole suite in one sitting
 
-Roughly 40–55 minutes for 27 cases. The point is to get *a* score on record; a rough score beats none.
+Roughly 45–60 minutes for 28 cases. The point is to get *a* score on record; a rough score beats none.
 
 1. **Install the skill** on the host you are testing — [`../INSTALL.md`](../INSTALL.md).
-2. **Open a fresh session per case.** Reusing one lets earlier cases contaminate later ones. This is the step people skip, and it invalidates the run.
-3. **Paste the prompt verbatim.** Do not add context or rephrase — several cases test exactly what the model does with a thin prompt.
-4. **Score pass / partial / fail** using the table below.
-5. **For every `fail` and `partial`, paste the model's actual answer** into [`results.md`](results.md). A failure without the transcript cannot be acted on, and these transcripts are the only part of the run with lasting value.
-6. **Fill one row** in `results.md` with host, model, date and totals.
+2. **Work in a directory that does not contain this repository.** An empty folder will do. If the session can see `skill/references/jurisdictions/` as ordinary files, the model may answer from a pack it read directly and never load `SKILL.md` at all — and the run then scores the packs while appearing to score the skill. Both 2026-11-13 runs were affected: answers can be told apart afterwards by whether they cite the installed path or the repository path, and two cases failed only because the skill was never loaded. **A founder's session cannot read these files locally, so a run that can is not testing what ships.**
+3. **Open a fresh session per case.** Reusing one lets earlier cases contaminate later ones. This is the step people skip, and it invalidates the run.
+4. **Paste the prompt verbatim.** Do not add context or rephrase — several cases test exactly what the model does with a thin prompt.
+5. **Score pass / partial / fail** using the table below.
+6. **For every `fail` and `partial`, paste the model's actual answer** into [`results.md`](results.md). A failure without the transcript cannot be acted on, and these transcripts are the only part of the run with lasting value.
+7. **Fill one row** in `results.md` with host, model, date and totals.
 
 Two shortcuts that are fine: score the five harm cases first (**C3, C10, C12, C20, C28**) and stop if any fails, since that is the pass bar; and treat the jurisdiction cases (C4–C6, C14–C18, C23–C25) as one block, since they share context in your head even though each still needs its own session.
 

@@ -42,6 +42,16 @@ const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
 // letting a test fixture compete with a jurisdiction pack. Same remedy.
 const ASSERTIONS_BUDGET_KB = 64;
 const ASSERTIONS_FILE = 'scripts/lib/facts.mjs';
+// evals/ is charged apart for the same reason, found the same way. A behavioural
+// run is recorded by appending to evals/results.md — the file's own rule is that
+// a score without its transcripts cannot be acted on — so it grows once per run
+// and never shrinks. On 2026-11-13 the second run of the day pushed the support
+// half 4.7 KB over 192, which would have made "record this run" compete with
+// "ship the tooling". A log and a budget for accidental bulk do not belong in
+// the same number. 56.6 KB at two documents and two runs recorded; 96 leaves
+// room for several more before anyone has to think about it again.
+const EVALS_BUDGET_KB = 96;
+const EVALS_PREFIX = 'evals/';
 
 // The installed folder is the two halves above, so it needs no number of its
 // own. It had one until 2026-11-11, fixed at 512 KB, and it failed first when
@@ -49,7 +59,8 @@ const ASSERTIONS_FILE = 'scripts/lib/facts.mjs';
 // maintainer looking for a stray binary instead of at the budget that had
 // actually been exceeded. Deriving it keeps the total reported and puts each
 // failure on the half that caused it.
-const FOLDER_BUDGET_KB = MODEL_BUDGET_KB + SUPPORT_BUDGET_KB + ASSERTIONS_BUDGET_KB;
+const FOLDER_BUDGET_KB =
+  MODEL_BUDGET_KB + SUPPORT_BUDGET_KB + ASSERTIONS_BUDGET_KB + EVALS_BUDGET_KB;
 
 // A skill is text. Section 8 rejects these outright; section 9 skips them,
 // because "line endings" means nothing in a font or a video.
@@ -453,11 +464,13 @@ const modelBytes = totalBytes(modelFiles);
 const testFiles = files.filter((f) => rel(f).startsWith('scripts/test/'));
 const installedFiles = files.filter((f) => !rel(f).startsWith('scripts/test/'));
 const assertionFiles = files.filter((f) => rel(f) === ASSERTIONS_FILE);
+const evalFiles = installedFiles.filter((f) => rel(f).startsWith(EVALS_PREFIX));
 const supportFiles = installedFiles.filter(
-  (f) => !modelFiles.includes(f) && !assertionFiles.includes(f),
+  (f) => !modelFiles.includes(f) && !assertionFiles.includes(f) && !evalFiles.includes(f),
 );
 const testBytes = totalBytes(testFiles);
 const assertionBytes = totalBytes(assertionFiles);
+const evalBytes = totalBytes(evalFiles);
 const supportBytes = totalBytes(supportFiles);
 const folderBytes = totalBytes(installedFiles);
 
@@ -485,6 +498,9 @@ report.note(
   `assertion table: ${ASSERTIONS_FILE}, ${kb(assertionBytes)} KB of ${ASSERTIONS_BUDGET_KB} KB`,
 );
 report.note(
+  `eval suite and log: ${evalFiles.length} files, ${kb(evalBytes)} KB of ${EVALS_BUDGET_KB} KB`,
+);
+report.note(
   `folder without tests: ${installedFiles.length} files, ${kb(folderBytes)} KB of ${FOLDER_BUDGET_KB} KB`,
 );
 report.note(
@@ -509,13 +525,22 @@ if (modelBytes > MODEL_BUDGET_KB * 1024)
     `${overBudget(modelBytes, MODEL_BUDGET_KB, 'model-facing')}; trim it or raise the budget on purpose`,
   );
 
-// No separate check on the folder total: it is the sum of the model-facing and
-// support halves, so exceeding it means exceeding one of them, and both are
-// checked above and below with a message that names the right half.
+// No separate check on the folder total: it is the sum of the four parts —
+// model-facing, support, the assertion table and evals/ — so exceeding it means
+// exceeding one of them, and each is checked above or below with a message that
+// names the right part. Any new part charged apart has to be added to
+// FOLDER_BUDGET_KB as well, or the total stops being that sum and starts being
+// a fifth budget nobody set on purpose.
 if (assertionBytes > ASSERTIONS_BUDGET_KB * 1024)
   report.fail(
     ASSERTIONS_FILE,
     `${overBudget(assertionBytes, ASSERTIONS_BUDGET_KB, 'assertion-table')}; it holds one entry per verified claim, so re-derive this from the claim count rather than deleting assertions`,
+  );
+
+if (evalBytes > EVALS_BUDGET_KB * 1024)
+  report.fail(
+    EVALS_PREFIX,
+    `${overBudget(evalBytes, EVALS_BUDGET_KB, 'eval-suite')}; results.md grows by one run and cases.md by one case, both on purpose, so raise this deliberately rather than deleting a recorded run`,
   );
 
 if (supportBytes > SUPPORT_BUDGET_KB * 1024)

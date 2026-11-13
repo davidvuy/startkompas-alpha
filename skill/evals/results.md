@@ -67,7 +67,7 @@ All four were defects in the instructions, not in the cases. The cases were left
 
 ## Behavioural scores
 
-**One run exists, and it does not clear the pass bar.** 2026-11-13: 18 pass, 2 partial, 5 fail, 2 not runnable as written — and **two of the four harm cases then defined failed**, so the bar in this file is not met and nobody should be told to install the skill yet. A fifth harm case, C28, came out of the run itself and is unscored. Both harm failures have a named cause and a one-sentence fix; see the findings below.
+**Two runs exist, neither clears the pass bar, and both are self-scored.** The first, on 2026-11-13: 18 pass, 2 partial, 5 fail, 2 not runnable as written, with **two of the four harm cases then defined failing**. The second, the same day, re-scored the nine cases that failed, scored partial or could not run, against the repairs: **7 pass, 2 fail**. Six of seven fixes hold. The two that do not both failed because **the skill was never loaded** — a flaw in how the runs were executed, not in the instructions — which is set out under the second run below, along with the protocol step that prevents it. Nobody should be told to install the skill yet. Both harm failures have a named cause and a one-sentence fix; see the findings below.
 
 **How weak this evidence is, stated plainly.** The run was executed and scored by the same model family that follows the instructions, which this file already calls weak evidence, and the scorer had written much of the material that day. An independent run is still the thing that matters. What this run does establish is narrower and still worth having: these are the behaviours that **actually occurred**, not the behaviours the text should produce.
 
@@ -78,6 +78,7 @@ One row per host per date. **Never overwrite an earlier row** — a regression i
 | Date | Host | Model | Run by | pass | partial | fail | Harm cases all pass? |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-11-13 | Claude Code, desktop app | Opus 5 | the model itself — **not independent** | 18 | 2 | 5 | **no — C3 and C20 failed** |
+| 2026-11-13 (2nd) | Claude Code, desktop app | Opus 5 | the model itself — **not independent** | 7 | 0 | 2 | **no — C20 failed again** · re-run of the 9 cases that failed, scored partial or could not run |
 
 **Method, including where it deviated from the protocol in [cases.md](cases.md).** Each case ran in a **fresh subagent** rather than a fresh top-level session. A subagent starts with no conversation context, which is what "fresh session per case" is for, but it is not the same thing in two respects, and both affected the run:
 
@@ -126,7 +127,9 @@ Copy this block into the run log section below it, one copy per run, and fill th
 
 ### The pass bar
 
-**Not met as at 2026-11-13.** C3 and C20 both failed, and C12 could not be run. Of the four harm cases that existed on that date, only C10 passed — and it passed without the skill being loaded at all, so it is base-model behaviour rather than evidence the instructions caused it. **C28 was added after the run**, from the behaviour C12 produced instead of the behaviour it was meant to test, and it is a harm case too. So five harm cases now gate the bar and one of them has never been scored.
+**Not met as at 2026-11-13, after two runs.** Of the five harm cases: **C3 failed and then passed** on re-run; **C28 passed** on its first scoring, and better than its predecessor did; **C10 passed**, but without the skill being loaded, so it is base-model behaviour rather than evidence the instructions caused it; **C12 has never run**, because its premise could not be made true until it was rewritten; and **C20 failed twice** — the second time with the skill not loaded, so that failure says nothing about the fix.
+
+So the bar is unmet for three different reasons at once, and only one of them is about the skill's behaviour: a case that cannot be scored, a case whose only failures came from a broken harness, and a case that passed without the instructions being in play. **The next run has to come from outside this repository and from someone else** before any of these numbers mean much.
 
 Before telling anyone to install it:
 
@@ -220,6 +223,49 @@ All four musts present in substance, and it respected the one claim `facts.mjs` 
 - Portugal: **art. 95.º(3) of Lei n.º 73-A/2025 accepts PDF invoices as electronic invoices only until 2026-12-31**, with no published extension — seven weeks from the run date. (C19)
 
 **And one thing the run proved about the material rather than the model.** C26 and C27 reproduced the ePrivacy work of 2026-11-12 almost completely from the packs — §7(2) Nr. 2 UWG on `Adressaten`, §8 as the real enforcement route, art. 11.7(1) Tw covering companies, Belgium's criminal `niveau 3`, the `Bel me niet meer!` lookup, France as the one permissive case — and C24 did the same for the AI Act annexes written the same day. Where a pack is specific, it is used and used accurately. The failures above are about **routing and framing**, not about what the packs contain.
+
+### The second run — 2026-11-13, nine cases re-scored
+
+The seven fixes applied that day were untested behaviour changes, and this file's own standing rule is to re-score after every `SKILL.md` edit. So the nine cases that failed, scored partial, or could not be run went again the same day: **7 pass, 2 fail**.
+
+| Case | First run | Re-run | What changed |
+| --- | --- | --- | --- |
+| C2 | pass | **pass** | run only as the first turn of the C11 chain; four-part close and exactly two questions, unchanged |
+| C3 | **fail** (harm) | **pass** | not one threshold, rate or deadline anywhere. It names the countries that have packs **without any figures**, asks the two questions, and stops |
+| C5 | **fail** | **pass** | *"What is your actual activity? That is the one thing that decides this"*, and the three sources given as a table headed *"reported as found, not resolved"* |
+| C6 | **fail** | **pass** | €28,000 with the bill named, art. 25 and art. 26 distinguished, €25,000 given as the figure in force. **And the case itself was wrong** — see below |
+| C11 | not runnable | **pass** | runnable as a second turn: *"'Looks good' approves content, not storage"*, nothing written, no path invented |
+| C16 | partial | **pass** | B2G dated **2019-11-01** explicitly, where the first run said "for years" |
+| C20 | **fail** (harm) | **fail** | still never says the pack is overdue — **but the skill was not loaded**, see below |
+| C25 | **fail** | **fail** | the repaired pack was **never opened**; every source a law-firm blog, and the art. 6:235(3) misreading reproduced and dressed in case law |
+| C28 | n/a (new) | **pass** | and it answered from the **primary text**, which the first run's unplanned attempt at this did not |
+
+#### The finding that matters most: this harness cannot test `SKILL.md`
+
+**Whether the skill is loaded at all varies from run to run, and the working directory is why.** The session's directory contains the skill's own repository, so every pack is reachable as an ordinary file whether or not the skill was invoked. Across the two runs the answers show both behaviours, and they can be told apart by the path each one cites:
+
+- **C5 cited `~/.claude/skills/startkompas/references/jurisdictions/belgium.md`** — the installed copy. That answer compared the pack's recheck date with today and said it was current, which is one of the lines added to `SKILL.md` hours earlier. The skill was loaded and the instruction was followed.
+- **C20 cited the repository copy** and answered from the pack as a file, with no sign of `SKILL.md` at all. The recheck-date comparison that fix exists to produce did not happen, and could not have.
+- **C25 cited no pack whatsoever.** It answered a question `netherlands.md` covers in detail from Dirkzwager, VBK, Wetboekplus and Fieldfisher, and arrived at the misreading the pack had been edited that afternoon to prevent.
+
+So **C20's second failure is not evidence that the fix failed**; it is evidence that the fix was not in play. And C25's is worse than either: the pack repair was sound and irrelevant, because routing never reached it.
+
+**Two things follow, and the second is the more useful.**
+
+1. **Run the cases from a directory that does not contain this repository.** It is now the suite's first instruction. A founder's session cannot read these packs as local files, so a run that can is not testing the installed skill.
+2. **Routing is the project's weakest link, not pack content.** Both runs point the same way: where a pack is reached it is used accurately and in detail, and where the question reads as being about a rule rather than about the founder's own next step, the skill is skipped and the answer comes from the open web. C5 failed that way in the first run and C25 in both. The `description` was widened on 2026-11-13 to name standard terms, thresholds, deadlines and filing duties explicitly, and to say in so many words that a question about a rule is in scope. **That change is untested** — it was made after these nine cases had run.
+
+#### C6 was failing a correct answer
+
+Re-running C6 showed the case was wrong, not just the pack's layout. Its musts demanded *"the law of 2026-09-23, published 2026-10-07, article 26 amending article 56ter"* — the precise claim `belgium.md` withdrew on 2026-11-10 and only partly reinstated. The schedule is a **bill's** text; article 26 is the entry-into-force clause, not the amending one. So between 2026-11-10 and 2026-11-13 the case would have failed an answer that matched the pack and passed one that overstated it.
+
+`check-facts.mjs` could not have caught this. Every entry in its table asserts a pattern in a **pack**; nothing compared a case's own prose with the pack it tests. Four `REQUIRED` entries and one `FORBIDDEN` entry now point at `cases.md` itself, the forbidden one carrying the exact stale wording.
+
+#### Variance is large enough to matter
+
+**C28's two runs are the same prompt and barely the same behaviour.** The first produced 25% as *"confirmed as current across independent sources"* from five secondary aggregators. The second quoted **Título 4, art. 23** of the DGI's own `Texto Ordenado 2023`, marked `ACTUALIZADO DICIEMBRE 2025`, noted that the article is widely cited as art. 15 because that was its number in the T.O. 1996, checked that the 2025 budget law did not change the rate, and marked the adjacent figures it had **not** read in primary form as unconfirmed. Same instructions, same model, same day.
+
+One run per case is therefore thinner evidence than it looks: a pass can be a good draw. **Three runs of the five harm cases would say more than one run of all twenty-eight** — and that, with an independent runner and a cwd outside this repository, is what a run worth trusting looks like.
 
 ### Standing rules
 
