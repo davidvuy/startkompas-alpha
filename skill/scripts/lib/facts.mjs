@@ -26,21 +26,32 @@ export const REQUIRED = [
   // "it is in force".
   {case: '—', pack: 'belgium.md', label: 'the EU authorisation behind the EUR 25,000', pattern: /2013\/53\/EU/},
   {case: '—', pack: 'belgium.md', label: 'a raise needs no derogation now', pattern: /a derogation is no longer needed/i},
-  {case: 'C6', pack: 'belgium.md', label: 'enacting instrument identified', pattern: /DOC 56 1593\/001/},
+  {case: 'C6', pack: 'belgium.md', label: 'originating bill still named', pattern: /DOC 56 1593\/001/},
   {case: 'C6', pack: 'belgium.md', label: 'amended VAT Code article named', pattern: /art\. 56ter/i},
-  // The figures are primary-confirmed from the bill; the ENACTMENT is not. Both
-  // halves have to survive, because stating these amounts as law would send a
-  // founder into 2027 on a threshold that may never have been promulgated.
-  {case: 'C6', pack: 'belgium.md', label: 'amending article is 25, not 26', pattern: /\*\*Article 25\*\* of that bill replaces/},
-  {case: 'C6', pack: 'belgium.md', label: 'publication is unverified and said to be', pattern: /do not tell a founder these amounts are law/i},
+  // Enacted on 2026-11-13, after the Staatsblad of 2026-10-07 and Justel's
+  // consolidated text of the act were read and found to agree word for word.
+  // The numac is the handle a Belgian adviser uses, so it is the thing that
+  // must not quietly vanish from the entry.
+  {case: 'C6', pack: 'belgium.md', label: 'the enacting law is identified by numac', pattern: /numac \*\*2026007237\*\*/},
+  {case: 'C6', pack: 'belgium.md', label: 'the amending article of the LAW is 26', pattern: /\*\*Article 26\*\* amends art\. 56ter/},
+  {case: 'C6', pack: 'belgium.md', label: 'entry into force quoted from art. 27', pattern: /Artikel 26 treedt in werking op 1 januari 2027/},
+  // The bill numbered these articles 25 and 26; the law numbers them 26 and
+  // 27. An entry that loses that distinction sends an adviser to the wrong
+  // article of the right instrument.
+  {case: 'C6', pack: 'belgium.md', label: 'the renumbering between bill and law is recorded', pattern: /Cite the law's numbers, not the bill's/},
+  // FPS Finance's own page still says EUR 25 000 while telling a founder to
+  // opt in before 15 December 2026 for a 2027 start. That pair is the one
+  // operational trap in this entry, so it is asserted rather than left to
+  // survive edits by luck.
+  {case: '—', pack: 'belgium.md', label: 'the stale FPS page and its 15 December trap', pattern: /the figure for 2027 is \*\*€26,000\*\*/},
   // The case text itself, not the pack. C6 was rewritten on 2026-11-13 from a
   // claim belgium.md had already withdrawn, and nothing noticed: every entry
   // above asserts a pattern in a pack, so a case could contradict the pack it
   // tests and still pass. These four assert the case.
-  {case: 'C6', pack: 'evals/cases.md', label: 'C6 calls the schedule a bill', pattern: /a \*\*bill's\*\* proposed figure, not law/},
-  {case: 'C6', pack: 'evals/cases.md', label: 'C6 names the bill, not a law', pattern: /\*\*DOC 56 1593\/001\*\* of \*\*2026-06-15\*\*/},
+  {case: 'C6', pack: 'evals/cases.md', label: 'C6 calls the schedule law', pattern: /it is \*\*law\*\*, not a proposal/},
+  {case: 'C6', pack: 'evals/cases.md', label: 'C6 names the enacting law', pattern: /\*\*law of 23 September 2026\*\*/},
   {case: 'C6', pack: 'evals/cases.md', label: 'C6 names the country it means', pattern: /I'm self-employed in Belgium\. What's the VAT exemption threshold/},
-  {case: 'C6', pack: 'evals/cases.md', label: 'C6 forbids the withdrawn attribution', pattern: /attribute the schedule to the law of 2026-09-23/},
+  {case: 'C6', pack: 'evals/cases.md', label: 'C6 forbids the bill-era hedge', pattern: /call the amounts a proposal, a bill/},
   {case: '—', pack: 'belgium.md', label: 'unfair terms black list article', pattern: /VI\.91\/4/},
   {case: '—', pack: 'belgium.md', label: 'software ownership: no automatic transfer', pattern: /niet automatisch overgedragen/},
   // Same trap as the French guide below: two of the four SME brochures are
@@ -529,12 +540,16 @@ export const REQUIRED = [
  */
 export const FORBIDDEN = [
   {
-    // The precise wording C6 carried between 2026-11-10 and 2026-11-13: the
-    // schedule attributed to the September law and to article 26. Both are
-    // wrong — 26 is the entry-into-force clause — and the pack says so.
+    // This entry has changed sides, and that is the record working. Until
+    // 2026-11-13 it banned attributing the schedule to the law of 2026-09-23,
+    // because the only readable document was a bill whose article 25 did the
+    // amending. The Staatsblad then showed the law really does carry it, at
+    // article 26. So the banned claim is now the correct one, and what has to
+    // be banned instead is the hedge it replaced: a case still demanding that
+    // the amounts be called a proposal would fail a correct answer.
     pack: 'evals/cases.md',
-    label: 'no case may attribute the phased schedule to the 2026-09-23 law',
-    pattern: /the \*\*law of 2026-09-23\*\*, published 2026-10-07, \*\*article 26\*\* amending/,
+    label: 'no case may still call the enacted Belgian amounts a bill',
+    pattern: /a \*\*bill's\*\* proposed figure, not law/,
   },
   {
     pack: 'france.md',

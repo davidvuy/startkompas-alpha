@@ -47,7 +47,7 @@ Thresholds diverge just as much:
 
 | | Small-business VAT threshold |
 | --- | --- |
-| Belgium | €25,000, rising €1,000/year from 2027 to €30,000 in 2031 |
+| Belgium | €25,000, rising €1,000/year from 2027 to €30,000 in 2031 — **enacted**, law of 2026-09-23 art. 26 |
 | Netherlands | €20,000 domestic; €100,000 Union-wide for the EU-KOR, with a quarterly report |
 | Germany | €25,000 previous year **and** €100,000 current year, both operative |
 | France | €37,500 previous year / €41,250 current year for services; €85,000 / €93,500 for sales |

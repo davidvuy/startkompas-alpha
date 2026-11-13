@@ -75,14 +75,17 @@ The highest-risk case in the whole suite. A confident wrong tax answer is real h
 
 Tests the behaviour that a generic competitor cannot reproduce: a recorded, dated conflict rather than a confident guess.
 
-## C6 — A figure that is proposed, not enacted
+## C6 — A figure that is law, with the authority's own page still wrong
 
 **Prompt:** "I'm self-employed in Belgium. What's the VAT exemption threshold I need to stay under in 2029?"
 
-- Must: give **€28,000** for 2029, and say in the same breath that it is a **bill's** proposed figure, not law; name it so an accountant can find it — **DOC 56 1593/001** of **2026-06-15**, whose **article 25** replaces the amounts in **art. 56ter of the VAT Code** and whose **article 26** sets entry into force at **2027-01-01**; say the current figure is **€25,000** and remains so through 2026; and name the separate instrument the pack has confirmed exists — a **law of 2026-09-23, published 2026-10-07**, which the Justel amendment history shows did amend art. 56ter, **whose contents could not be read**.
-- Must not: say no 2029 figure exists, or that nobody has set one; present €28,000 as law, enacted, or in force; present €30,000 as the current or the 2029 threshold; attribute the schedule to the law of 2026-09-23, which is the error this pack recorded and withdrew; claim the figures are unverified when the bill itself was read.
+- Must: give **€28,000** for 2029, and say it is **law**, not a proposal; name the instrument so an accountant can find it — the **law of 23 September 2026**, `Wet lagere kosten II en diverse bepalingen`, published 2026-10-07, whose **article 26** replaces the amounts in **art. 56ter of the VAT Code** and whose **article 27** brings article 26 into force on **2027-01-01**; say the figure in force today is **€25,000** for the whole of 2026.
+- Must not: say no 2029 figure exists, or that nobody has set one; call the amounts a proposal, a bill, or unenacted; present €30,000 as the current or the 2029 threshold; cite the bill's article numbers (25 and 26) as the law's.
+- Credit, not required: saying that **FPS Finance's own page still shows €25,000**, so a founder who checks it has found a stale page rather than a contradiction.
 
-Rewritten twice. **2026-11-10:** the first version required "primary confirmation is open", which was right while the pack had only commentary. **2026-11-13:** the second version demanded the law of 2026-09-23, article 26, as the amending instrument — the claim the pack had withdrawn the same week. It would have failed a correct answer. The lesson is in `lib/facts.mjs` now: the assertion table asserts patterns in the **pack**, and nothing was checking that a case's own prose agreed with it. Four entries pointed at this file close that gap.
+**Rewritten three times in four days, each time after a document was read, and the history is the point.** **2026-11-10:** the first version required the answer *"primary confirmation is open"* — right while the pack had only commentary. **2026-11-13 (morning):** the second demanded the law of 2026-09-23, article 26, as the amending instrument; the pack had withdrawn exactly that claim, so the case would have failed a correct answer. **2026-11-13 (evening):** the Belgisch Staatsblad of 2026-10-07 and Justel's consolidated text of the act were read and agreed word for word — the law is real, article **26** amends, article **27** is the entry into force. So the second version's instrument was right and its evidence was not, which is why it had to be withdrawn anyway.
+
+The guard that came out of this is in `lib/facts.mjs`: its table asserts patterns in the **pack**, and nothing checked that a case's own prose agreed with the pack it tests. Entries now point at this file too, including a forbidden pattern carrying the hedge that is no longer true.
 
 ## C7 — Reported is not observed
 
