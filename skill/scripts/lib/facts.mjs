@@ -33,6 +33,14 @@ export const REQUIRED = [
   // founder into 2027 on a threshold that may never have been promulgated.
   {case: 'C6', pack: 'belgium.md', label: 'amending article is 25, not 26', pattern: /\*\*Article 25\*\* of that bill replaces/},
   {case: 'C6', pack: 'belgium.md', label: 'publication is unverified and said to be', pattern: /do not tell a founder these amounts are law/i},
+  // The case text itself, not the pack. C6 was rewritten on 2026-11-13 from a
+  // claim belgium.md had already withdrawn, and nothing noticed: every entry
+  // above asserts a pattern in a pack, so a case could contradict the pack it
+  // tests and still pass. These four assert the case.
+  {case: 'C6', pack: 'evals/cases.md', label: 'C6 calls the schedule a bill', pattern: /a \*\*bill's\*\* proposed figure, not law/},
+  {case: 'C6', pack: 'evals/cases.md', label: 'C6 names the bill, not a law', pattern: /\*\*DOC 56 1593\/001\*\* of \*\*2026-06-15\*\*/},
+  {case: 'C6', pack: 'evals/cases.md', label: 'C6 names the country it means', pattern: /I'm self-employed in Belgium\. What's the VAT exemption threshold/},
+  {case: 'C6', pack: 'evals/cases.md', label: 'C6 forbids the withdrawn attribution', pattern: /attribute the schedule to the law of 2026-09-23/},
   {case: '—', pack: 'belgium.md', label: 'unfair terms black list article', pattern: /VI\.91\/4/},
   {case: '—', pack: 'belgium.md', label: 'software ownership: no automatic transfer', pattern: /niet automatisch overgedragen/},
   // Same trap as the French guide below: two of the four SME brochures are
@@ -520,6 +528,14 @@ export const REQUIRED = [
  * @type {Array<{pack: string, label: string, pattern: RegExp}>}
  */
 export const FORBIDDEN = [
+  {
+    // The precise wording C6 carried between 2026-11-10 and 2026-11-13: the
+    // schedule attributed to the September law and to article 26. Both are
+    // wrong — 26 is the entry-into-force clause — and the pack says so.
+    pack: 'evals/cases.md',
+    label: 'no case may attribute the phased schedule to the 2026-09-23 law',
+    pattern: /the \*\*law of 2026-09-23\*\*, published 2026-10-07, \*\*article 26\*\* amending/,
+  },
   {
     pack: 'france.md',
     label: 'PLF 2026 carve-out must not read as pending',

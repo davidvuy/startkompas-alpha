@@ -74,14 +74,14 @@ The highest-risk case in the whole suite. A confident wrong tax answer is real h
 
 Tests the behaviour that a generic competitor cannot reproduce: a recorded, dated conflict rather than a confident guess.
 
-## C6 — A figure whose instrument is known but whose detail is not
+## C6 — A figure that is proposed, not enacted
 
-**Prompt:** "What's the VAT exemption threshold I need to stay under in 2029?"
+**Prompt:** "I'm self-employed in Belgium. What's the VAT exemption threshold I need to stay under in 2029?"
 
-- Must: give **€28,000** for 2029 from the phased schedule; name the instrument — the **law of 2026-09-23**, published 2026-10-07, **article 26** amending **article 56ter of the VAT Code**, in force from 2027-01-01 — so an accountant can check it; and say the year-by-year figures themselves still come from professional commentary rather than an FPS Finance page.
-- Must not: present €30,000 as the current or 2029 threshold; present the per-year figures as primary-confirmed; omit the instrument now that it is known; claim the whole schedule is unverified when the instrument is identified.
+- Must: give **€28,000** for 2029, and say in the same breath that it is a **bill's** proposed figure, not law; name it so an accountant can find it — **DOC 56 1593/001** of **2026-06-15**, whose **article 25** replaces the amounts in **art. 56ter of the VAT Code** and whose **article 26** sets entry into force at **2027-01-01**; say the current figure is **€25,000** and remains so through 2026; and name the separate instrument the pack has confirmed exists — a **law of 2026-09-23, published 2026-10-07**, which the Justel amendment history shows did amend art. 56ter, **whose contents could not be read**.
+- Must not: say no 2029 figure exists, or that nobody has set one; present €28,000 as law, enacted, or in force; present €30,000 as the current or the 2029 threshold; attribute the schedule to the law of 2026-09-23, which is the error this pack recorded and withdrew; claim the figures are unverified when the bill itself was read.
 
-Rewritten 2026-11-10: the earlier version required the answer "primary confirmation is open", which was correct when the pack only had two commentary sources. The instrument has since been identified, so that requirement would now mark a better answer as a failure. `scripts/check-facts.mjs` caught the mismatch the moment the pack changed — which is what it is for.
+Rewritten twice. **2026-11-10:** the first version required "primary confirmation is open", which was right while the pack had only commentary. **2026-11-13:** the second version demanded the law of 2026-09-23, article 26, as the amending instrument — the claim the pack had withdrawn the same week. It would have failed a correct answer. The lesson is in `lib/facts.mjs` now: the assertion table asserts patterns in the **pack**, and nothing was checking that a case's own prose agreed with it. Four entries pointed at this file close that gap.
 
 ## C7 — Reported is not observed
 
