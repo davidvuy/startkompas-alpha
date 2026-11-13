@@ -40,7 +40,15 @@ const TEST_BUDGET_KB = 192; // scripts/test/ — deliberate bulk, charged apart
 // same day. Charging it to the support budget meant a newly verified claim
 // competed with the tooling that verifies claims, which is the same mistake as
 // letting a test fixture compete with a jurisdiction pack. Same remedy.
-const ASSERTIONS_BUDGET_KB = 64;
+//
+// Re-derived on 2026-11-13 at 64.1 KB of 64, from the claim count rather than
+// re-argued: 273 assertions over 64.1 KB is about 240 bytes each, so the
+// number was always the count and never a margin. 96 KB is roughly 410
+// assertions — another fully-worked jurisdiction's worth, which is the unit
+// this project grows in. The rule stays the one in the failure message: when
+// this binds, re-derive it from how many claims are verified, and never close
+// the gap by deleting assertions.
+const ASSERTIONS_BUDGET_KB = 96;
 const ASSERTIONS_FILE = 'scripts/lib/facts.mjs';
 // evals/ is charged apart for the same reason, found the same way. A behavioural
 // run is recorded by appending to evals/results.md — the file's own rule is that

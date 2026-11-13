@@ -193,46 +193,15 @@ Recheck triggers: the Q4 2026 consultation opening; the bill's submission; any c
 
 ## 4. Agreements and unfair terms
 
-Dutch law protects against unreasonable standard terms. The protection is calibrated partly by **how big you are**, which cuts in a founder's favour — and partly by **whether you use standard terms of your own**, which cuts the other way and is the half this section used to miss.
+**Three questions, and they have to be asked in this order.** The pack's §4 used to open with the second one, which is how an eval run came to argue about whether a clause was unreasonable before establishing that it was in the contract at all.
 
-Sources
-- [arts. 6:233, 6:235, 6:236 and 6:237 BW](https://wetten.overheid.nl/BWBR0005289) · *primary legislation, read on the official portal in the version `Geldend van 16-07-2026`* · **[checked 2026-11-11]**
-- the `reflexwerking` doctrine, which is case law and not in the articles · *secondary legal commentary, consistent* · **[checked 2026-11-10]**
+1. **Are their terms part of the contract?** Art. 6:225(3) BW: where offer and acceptance each refer to different general terms, **the second reference has no effect unless it also expressly rejects the first set** — *"uitdrukkelijk van de hand wordt gewezen"*. Merely declaring your own terms applicable is not a rejection. Quoting first, with a rejection clause in your own terms, often ends the dispute without any argument about content. And art. 6:233(b): terms the other side never gave you a real chance to read are voidable **whatever they say**.
+2. **Can you attack the clause for being unreasonable?** Art. 6:233(a), subject to art. 6:235 — and **paragraph 3 is the one that catches a founder**: a party who *"meermalen dezelfde of nagenoeg dezelfde algemene voorwaarden"* uses in its own contracts cannot invoke those grounds at all. It is about your own repeated use, not about the two sets of terms resembling each other, and the statute sets no number.
+3. **Is there a rule that applies regardless?** Art. 6:119a lid 6 caps a payment term at **30 days** where a non-small legal person contracts a small supplier, and a longer term is **`nietig`** — void, nothing to invoke. Art. 6:248(2) is the fallback that no art. 6:235 bar reaches.
 
-**Art. 6:233** makes a term in general conditions **voidable** on either of two grounds, quoted:
+**[netherlands-contracts.md](netherlands-contracts.md) has all of it article by article** — the two grounds in art. 6:233, the three live paragraphs of art. 6:235, the consumer lists and `reflexwerking`, the whole of art. 6:119a's payment machinery, and what is open. Read it before advising on a specific clause.
 
-> *"indien het, gelet op de aard en de overige inhoud van de overeenkomst, de wijze waarop de voorwaarden zijn tot stand gekomen, de wederzijds kenbare belangen van partijen en de overige omstandigheden van het geval, onredelijk bezwarend is voor de wederpartij"*
-
-> *"indien de gebruiker aan de wederpartij niet een redelijke mogelijkheid heeft geboden om van de algemene voorwaarden kennis te nemen"*
-
-The second ground is independent of content: **failing to give the counterparty a real chance to read the terms is itself enough**, however reasonable the terms are.
-
-| Provision | Effect |
-| --- | --- |
-| **art. 6:233 BW** | Voidable on either ground above |
-| **art. 6:235(1) BW** | Cannot be invoked by a party with **50 or more persons employed**, or by a legal entity that had **most recently published its annual accounts** at the time the agreement was concluded |
-| **art. 6:236 / 6:237 BW** | The black list (deemed unreasonably onerous) and the grey list (presumed so) open with the same words: *“Bij een overeenkomst tussen een gebruiker en een wederpartij, **natuurlijk persoon, die niet handelt in de uitoefening van een beroep of bedrijf**”*. Read that test, not “consumer” |
-| `reflexwerking` | Where a small entrepreneur's position closely resembles a consumer's, a term's appearance on the consumer black or grey list is relevant to the open test in 6:233 · *secondary* |
-
-Note for maintainers, kept because the workaround is reusable: a plain fetch of the Boek 6 BW page on `wetten.overheid.nl` returns the wrong part of a 351,743-character document, which is how these articles came to rest on a reproduction in the first place. Reading them on 2026-11-11 worked by loading the page in a browser and slicing it to the article in the page itself, so only the article is ever extracted. The same method read art. 7:400 out of Boek 7, which is over a million characters. It is a tooling limit, not a source disagreement — and it was worth defeating: the reproduction had been right about arts. 233 and 235(1) and silent about art. 235(3), which is the paragraph that matters most to the reader of this section.
-
-**For a solo founder this is usually favourable — but article 6:235 has two more paragraphs, and one of them can take it away.**
-
-- **Art. 6:235(3):** the grounds in arts. 233 and 234 *"kan geen beroep worden gedaan door een partij die meermalen dezelfde of nagenoeg dezelfde algemene voorwaarden in haar overeenkomsten gebruikt"* — **a party that itself repeatedly uses the same or nearly the same general terms cannot invoke them.** Nothing about size. A founder who has their own standard terms and uses them with every client is inside this paragraph, and the protection the rest of this section describes is gone.
-  - **It is about the founder's own repeated use, not about the two sets of terms resembling each other.** The resemblance the paragraph tests is between the founder's terms and the founder's *other* contracts — *"dezelfde of nagenoeg dezelfde algemene voorwaarden in haar overeenkomsten"*. Whether the counterparty's conditions look anything like the founder's does not enter it, and no paragraph of art. 6:235 asks that.
-  - **And `meermalen` has no number in the statute.** Whether one set of terms used across a handful of pilots engages this paragraph is **a judgment for a Dutch lawyer**, and the pack cannot narrow it: the case law is **[not researched]**, not published free of charge. Say the exposure exists and say the threshold is unsettled. Do not estimate a count.
-- **Art. 6:235(2):** the art. 233(a) ground may **also** be invoked by a party for whom the terms were used by an authorised representative, provided the counterparty repeatedly concludes contracts on the same or nearly the same terms.
-- **Art. 6:235(4):** the limitation period of art. 3:52(1)(d) BW starts on the day after the term is invoked against you — so the clock runs from the moment the other side relies on the clause, not from signature.
-
-Paragraph 3 is the one to raise before anything else in this section, because it is the only one that turns on the founder's **own** conduct rather than their size, and because §4's own advice — have your own terms, and give the counterparty a real chance to read them — is what puts a founder inside it. Do not tell a founder they are protected because they are small without raising it.
-
-Subject to that, the size calibration still cuts in a small party's favour. You are a small party, so art. 6:235(1) does not exclude you — you *can* invoke 6:233 against a larger counterparty's standard terms, and `reflexwerking` may import the consumer lists in your favour. The failure to give you a real chance to read the terms is itself a ground.
-
-The mirror image matters too: once a founder grows past 50 employees or publishes accounts, that protection disappears.
-
-Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet, and give the counterparty a genuine opportunity to read your own terms — under 6:233 that is not a formality.
-
-**Open:** the precise boundaries of `reflexwerking`, and what counts as `meermalen` under art. 6:235(3), are case law and **[not researched]** — the Dutch case law is not published free of charge. The articles themselves were read in primary form on 2026-11-11. Confirm either question with a Dutch lawyer before relying on it.
+Use [../pilot-conditions.md](../pilot-conditions.md) §3 for the discussion sheet, and give the counterparty a genuine opportunity to read your own terms — under art. 6:233(b) that is a ground on its own.
 
 ---
 
@@ -319,12 +288,9 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Registration test, one eenmanszaak, automatic KVK→Belastingdienst transfer, btw-id by post | 2026-11-10 | Authority — KVK pages read |
 | Registration fee €85.15, one-off, annually indexed | 2026-11-10 | Authority — official KVK page read |
 | Required identification documents and processing timeframe | — | Open — not yet researched |
-| Art. 6:233 both grounds; art. 6:235(1) 50 persons / published accounts | 2026-11-11 | Primary — both articles read on `wetten.overheid.nl`, version `Geldend van 16-07-2026`, by slicing the 351,743-character document in the browser |
-| **Corrected on 2026-11-11:** the pack said a small party can invoke art. 6:233 | 2026-11-11 | Withdrawn — art. 6:235(3) excludes any party that itself repeatedly uses the same or nearly the same general terms, whatever its size, which is most founders with standard terms |
-| Art. 6:235(2) representative-used terms; 6:235(4) when the art. 3:52 clock starts | 2026-11-11 | Primary — read |
 | Arts. 6:236 and 6:237 open on a natural person not acting in the course of a profession or business | 2026-11-11 | Primary — both openings read on `wetten.overheid.nl` and quoted; it is narrower than “consumer” and excludes a sole trader acting in business |
-| Where `reflexwerking` extends those lists to a small entrepreneur, and its boundaries | 2026-11-10 | Secondary — consistent across commentary; the case law is not published free of charge and was not read |
 | Art. 7 Auteurswet: employer deemed maker for work in dienst; opdracht does not qualify | 2026-11-10 | Primary — statute read and quoted |
+| Agreements and unfair terms — arts. 6:225, 6:233, 6:235, 6:119a, 6:248 and `reflexwerking` | — | Elsewhere — eleven rows, moved with the prose to [netherlands-contracts.md](netherlands-contracts.md) on 2026-11-13 |
 | Art. 7:400(1) defines opdracht as "other than under an employment contract", and excludes four other contract types | 2026-11-11 | Primary — read on `wetten.overheid.nl`, version `Geldend van 08-10-2026`; Boek 7 is 1,054,732 characters and was sliced in the browser |
 | Art. 7:400(2): arts. 401 to 412 are defaults the contract, its nature or custom can displace | 2026-11-11 | Primary — read and quoted |
 | Art. 7:401: the `zorg van een goed opdrachtnemer` standard | 2026-11-11 | Primary — read and quoted |

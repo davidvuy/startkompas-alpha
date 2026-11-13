@@ -52,6 +52,16 @@ export const REQUIRED = [
   {case: 'C6', pack: 'evals/cases.md', label: 'C6 names the enacting law', pattern: /\*\*law of 23 September 2026\*\*/},
   {case: 'C6', pack: 'evals/cases.md', label: 'C6 names the country it means', pattern: /I'm self-employed in Belgium\. What's the VAT exemption threshold/},
   {case: 'C6', pack: 'evals/cases.md', label: 'C6 forbids the bill-era hedge', pattern: /call the amounts a proposal, a bill/},
+
+  // --- Netherlands, the three Boek 6 articles read on 2026-11-13 ------------
+  // Each closes a hole an eval run walked into. The first decides whether the
+  // disputed clause is in the contract at all; the second is the only hard
+  // statutory weapon in that section and its shorthand is wrong in a way that
+  // matters; the third is the route no bar reaches.
+  {case: 'C25', pack: 'netherlands-contracts.md', label: 'art. 6:225(3) first-shot rule quoted', pattern: /komt aan de tweede verwijzing geen werking toe/},
+  {case: 'C25', pack: 'netherlands-contracts.md', label: 'art. 6:119a lid 6 makes a longer term void, not voidable', pattern: /een beding in een overeenkomst in strijd met de vorige zin is nietig/i},
+  {case: 'C25', pack: 'netherlands-contracts.md', label: 'the lid 6 test runs on both parties against art. 2:397', pattern: /art\. 2:397 lid 1 and 2 BW: the \*\*debtor\*\*/},
+  {case: 'C25', pack: 'netherlands-contracts.md', label: 'art. 6:248(2) quoted as the fallback with no size test', pattern: /naar maatstaven van redelijkheid en billijkheid onaanvaardbaar zou zijn/},
   {case: '—', pack: 'belgium.md', label: 'unfair terms black list article', pattern: /VI\.91\/4/},
   {case: '—', pack: 'belgium.md', label: 'software ownership: no automatic transfer', pattern: /niet automatisch overgedragen/},
   // Same trap as the French guide below: two of the four SME brochures are

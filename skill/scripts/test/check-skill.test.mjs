@@ -621,11 +621,20 @@ test('the assertion table is charged apart from the tooling that reads it', () =
   // facts.mjs grows by one entry per verified claim. Charging it to the
   // support budget would let a newly verified fact compete with the scripts,
   // which is the mistake the test budget already exists to prevent.
+  // The size and the expected number both come from the constant, because the
+  // first version hard-coded 64 and broke the day the table was re-derived to
+  // 96 — the same failure the folder-total test already records. A test that
+  // breaks on an intended raise is noise, not a guard.
+  const budget = Number(
+    /^const ASSERTIONS_BUDGET_KB = (\d+);/m.exec(
+      readFileSync(join(scriptsDir, 'check-skill.mjs'), 'utf8'),
+    )[1],
+  );
   const result = withTree(
-    {...baseTree(), 'scripts/lib/facts.mjs': 'x'.repeat(80 * 1024)},
+    {...baseTree(), 'scripts/lib/facts.mjs': 'x'.repeat((budget + 16) * 1024)},
     (root) => runCheck('check-skill.mjs', root),
   );
-  assert.match(result.output, /over the 64 KB assertion-table budget/);
+  assert.match(result.output, new RegExp(`over the ${budget} KB assertion-table budget`));
   assert.match(result.output, /re-derive this from the claim count/);
   // And it must not be counted twice: the support line excludes it.
   assert.match(result.output, /support files: 0 files, 0\.0 KB/);
