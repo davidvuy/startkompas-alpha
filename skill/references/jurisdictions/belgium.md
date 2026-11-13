@@ -83,7 +83,7 @@ So on €25,000: turnover up to **€27,500** keeps the exemption for the rest o
 
 Three things a founder meets once they are inside the regime — **what art. 56ter actually says, what entering the exemption costs in repaid input VAT, and what paperwork survives it** — are in [belgium-vat-exemption.md](belgium-vat-exemption.md), together with the scope exclusions in art. 56bis and the turnover base in art. 56nonies. They moved there on 2026-11-13 when this pack reached its 48 KB per-reference budget; nothing was dropped.
 
-**Read the annex before telling a founder they qualify.** Three regular activities are excluded from the exemption **for the whole of a business's economic activity** — immovable work, anything needing a registered cash register, and dealing in scrap and waste — and that is decided by what the business does, not by its turnover.
+**Read the annex before telling a founder they qualify.** Three regular activities are excluded from the exemption **for the whole of a business's economic activity** — immovable work, anything needing a registered cash register, and dealing in scrap and waste — and that is decided by what the business does, not by its turnover. The one carve-out, art. 50 §4, is the sharing-economy regime capped at €3,830 a year — it is not a way back in for a building business.
 
 ### The phased increase: enacted 2026-09-23, in force 2027-01-01
 

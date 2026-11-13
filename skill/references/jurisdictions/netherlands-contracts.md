@@ -4,6 +4,8 @@
 
 **This annex is preparation, not advice.** It records what the articles of Boek 6 BW state, with dates, and marks the case law it has not read. Dutch case law is not published free of charge, and several of the questions a founder will actually ask turn on it. A consequential decision needs a Dutch `advocaat`.
 
+Extra source for §3 below: [art. 2:397 BW](https://wetten.overheid.nl/BWBR0003045) · *primary legislation, read on the official portal in the version `Geldend van 01-07-2026`* · **[checked 2026-11-13]**
+
 Verification convention: **[checked YYYY-MM-DD]** means the source was actually fetched and read on that date. **[carried YYYY-MM-DD, not refetched]** means earlier research was reused without refetching it. **[not researched]** means no source was consulted — the topic is open.
 
 ---
@@ -75,13 +77,30 @@ For a founder that makes the order of documents decisive, and it is usually reco
 | **lid 2** | With **no** agreed payment date, statutory commercial interest runs **by operation of law** from **30 days** after the day following receipt of the invoice — or of the performance where the invoice came first, or of acceptance where an inspection period was agreed |
 | **lid 4** | An agreed **inspection or acceptance** period is at most **30 days** from receipt of the performance, unless expressly agreed longer **and** not *"kennelijk onbillijk"* toward the creditor |
 | **lid 5** | Parties may agree a payment deadline of at most **60 days**, unless they expressly put a longer term in the contract **and** it is not manifestly unfair, judged on whether the debtor has objective reasons, the nature of the performance, and any significant departure from good commercial practice |
-| **lid 6** | **A maximum of 30 days, with no escape**, where the debtor is a legal person that is **not** small and the creditor **is** — and *"een beding in een overeenkomst in strijd met de vorige zin is nietig"* |
+| **lid 6** | **A maximum of 30 days, with no escape**, where the debtor is a **large** legal person and the creditor is not — and *"een beding in een overeenkomst in strijd met de vorige zin is nietig"* |
 | lid 3 | The amount interest is calculated on is increased each year by that year's interest — it compounds annually |
 | lid 7 to 9 | No interest while the **creditor** is itself in default; none in so far as the delay is not attributable to the debtor; an agreed interest rate is treated as the statutory one |
 
-**Lid 6 is worth stating exactly, because the shorthand "30 days for SMEs" is not what it says.** The test is on both sides and it runs on art. 2:397 lid 1 and 2 BW: the **debtor** must be a legal person that, on two consecutive balance-sheet dates and without interruption thereafter, did **not** meet at least two of those requirements — so not a small company — while the **creditor** must be a natural person acting in a profession or business, or a legal person, that **did** meet at least two of them over that period. Then 30 days is the ceiling and a longer term is **`nietig`** — void by operation of law, not voidable. Nothing has to be invoked, and no art. 6:235 bar touches it.
+**Lid 6 is worth stating exactly, because the shorthand "30 days for SMEs" is not what it says.** The test is on both sides and it runs on art. 2:397 lid 1 and 2 BW. **Art. 2:397 lid 1** sets three requirements, measured on two consecutive balance-sheet dates and without interruption thereafter on two consecutive balance-sheet dates:
 
-**So a 60- or 90-day payment clause from a large client is simply unenforceable against a small supplier**, and the statutory commercial interest runs from day 31 regardless of what the contract says. · **Art. 2:397 lid 1 and 2's own thresholds are [not researched]**, so whether a particular client is "not small" needs checking before relying on this.
+| Requirement | Limit |
+| --- | --- |
+| a. assets, on the balance sheet with notes, at acquisition or production cost | **not more than €25,000,000** |
+| b. net turnover for the financial year | **not more than €50,000,000** |
+| c. average number of employees over the financial year | **fewer than 250** |
+
+**Art. 2:397 lid 2** adds in the assets, turnover and employees of group companies that would have to be consolidated if the legal person had to prepare consolidated accounts — unless it applies art. 2:408.
+
+Then art. 6:119a lid 6 asks:
+
+- the **debtor** must be a legal person that did **not** meet at least two of those three. Failing two of three means exceeding two of those limits, which is the definition of a **large** company — art. 2:397 is the *medium-sized* regime, not the small one (art. 2:396 is small, with its own lower figures).
+- the **creditor** must be a natural person acting in a profession or business, or a legal person, that **did** meet at least two of them over that period — which is every freelancer and nearly every SME.
+
+Then 30 days is the ceiling and a longer term is **`nietig`** — void by operation of law, not voidable. Nothing has to be invoked, and no art. 6:235 bar touches it.
+
+**So the cap reaches a genuinely large client, not merely a bigger one.** A client with €30m turnover and 100 employees still meets two of the three requirements, so it is medium-sized and lid 6 does not apply to it — the 60-day ceiling in lid 5 does. **"Not small" is the wrong gloss and this annex carried it for two hours on 2026-11-13; the statute says large.** Where a client's size is not obvious, its own published accounts at the KVK are the place to settle it.
+
+**One figure here is secondary to that point but worth having**: art. 2:397's thresholds are the medium-sized limits for the *accounting* regime too, so a client that publishes an abbreviated balance sheet under lid 5 is telling you, on the public record, that it is not large.
 
 ### The fallback no bar reaches — art. 6:248(2)
 
@@ -105,9 +124,11 @@ Where art. 6:235 shuts the unfair-terms route, art. 6:248(2) is still open: *"Ee
 | Art. 6:225(3): the first reference wins unless the second expressly rejects it | 2026-11-13 | Primary — read and quoted. Came out of the C25 eval runs; §4 had no article about whether a clause is in the contract at all |
 | Art. 6:225(1) counter-offer, and (2) subordinate deviations accepted unless objected to `onverwijld` | 2026-11-13 | Primary — read |
 | Art. 6:119a lid 2, 4 and 5: interest from 30 days, a 30-day inspection cap, a 60-day deadline ceiling | 2026-11-13 | Primary — read and quoted |
-| Art. 6:119a lid 6: 30 days maximum where a non-small debtor contracts a small creditor, longer terms `nietig` | 2026-11-13 | Primary — read and quoted. The shorthand "30 days for SMEs" omits that the test runs on **both** parties against art. 2:397 lid 1 and 2 |
+| Art. 6:119a lid 6: 30 days maximum where a **large** debtor contracts a smaller creditor, longer terms `nietig` | 2026-11-13 | Primary — read and quoted. The shorthand "30 days for SMEs" omits that the test runs on **both** parties against art. 2:397 lid 1 and 2 |
 | Art. 6:248(2): the derogating effect of reasonableness, with no size or `meermalen` test | 2026-11-13 | Primary — read and quoted |
-| Art. 2:397 lid 1 and 2's own thresholds, which decide who is "not small" under art. 6:119a lid 6 | — | Open — not researched. Needed before telling a founder a particular client is caught |
+| Art. 2:397 lid 1: assets ≤ €25m, net turnover ≤ €50m, fewer than 250 employees, on two consecutive balance-sheet dates; lid 2 consolidates group figures | 2026-11-13 | Primary — read and quoted on `wetten.overheid.nl`, version `Geldend van 01-07-2026`. **Closed an open row that gated art. 6:119a lid 6** |
+| **Corrected on 2026-11-13:** this annex said lid 6 catches a debtor that is "not small" | 2026-11-13 | Withdrawn — art. 2:397 is the **medium-sized** regime, so a debtor failing two of its three requirements is **large**. A medium-sized client is not caught, and the earlier wording would have had a founder rely on a nullity that is not there |
+| Art. 2:396's own small-company figures, and art. 2:408 | — | Open — named by art. 2:397 lid 1 and lid 2, not read. Neither is needed for art. 6:119a lid 6, which tests art. 397 only |
 | What counts as a "subordinate point" under art. 6:225(2), and how courts treat a boilerplate rejection clause | — | Open — case law, not published free of charge |
 | Where `reflexwerking` extends those lists to a small entrepreneur, and its boundaries | 2026-11-10 | Secondary — consistent across commentary; the case law is not published free of charge and was not read |
 

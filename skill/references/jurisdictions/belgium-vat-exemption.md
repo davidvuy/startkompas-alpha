@@ -28,7 +28,7 @@ Source for everything in §§1 to 3 below: [`Wet van 21 maart 2024`, published 2
 2. supplies for which they must give the customer the **cash-register ticket** of the royal decree of 30 December 2009 on registered cash systems in the horeca sector.
 3. supplies of **old and used materials that cannot be reused as such, industrial and non-industrial waste, waste for reuse, partly processed waste and scrap** within art. 199(1)(d) of Directive 2006/112/EC. The King draws up the list.
 
-**One carve-out from that list, and it is the one a solo founder might stand in**: the exclusion in 1° does not apply to services supplied by **taxable natural persons** under the conditions of art. 50 §4. So the construction exclusion is not automatic for every sole trader doing immovable work, and art. 50 §4 is the condition to check. · art. 50 §4 itself is **[not researched]**
+**One carve-out from that list, and it is far narrower than it reads**: the exclusion in 1° does not apply to services supplied by **taxable natural persons** under the conditions of art. 50 §4. Read on its own that sounds like relief for any sole trader doing immovable work. **It is not** — see §4 below. Art. 50 §4 is the sharing-economy regime, capped at **€3,830 a year**, and a founder running a building business is nowhere near it. **Treat the immovable-work exclusion as applying to them.**
 
 **Art. 56bis §2 first paragraph** excludes **`btw-eenheden`** — VAT groups within art. 4 §2 — from the exemption.
 
@@ -81,6 +81,30 @@ Source for everything in §§1 to 3 below: [`Wet van 21 maart 2024`, published 2
 
 ---
 
+## 4. What art. 50 §4 actually is — the sharing-economy carve-out, not a builder's one
+
+Source: [`Wet van 18 juli 2018` on economic recovery and social cohesion, art. 54, published 2018-07-26](https://www.ejustice.just.fgov.be/mopdf/2018/07/26_1.pdf) · *primary legislation, **as published**; the Staatsblad edition's PDF extracted locally and read in Dutch and French, which agree* · **[checked 2026-11-13]**
+
+**Art. 56bis §2 points twice at "the conditions of art. 50 §4", and the VAT Code is not served to an automated reader.** Finding the provision took the Code's own amendment history: of 127 amending instruments, two touched art. 50 and nothing else, and the earlier of them — the law of **18 July 2018**, in force for this purpose from **2018-01-01** — **replaces** §4 at its art. 54. Two negative results came with it and are worth keeping: the law of **26 November 2009** that *replaced* art. 50 ends at **§3**, and the law of **23 November 2023** that last amended it touches only **§1**. So §4 is neither original nor recent; it was inserted by the law of 1 July 2016 and replaced in 2018.
+
+**What it does is withhold a VAT number, not grant an exemption.** By derogation from §1 first paragraph 1°, the administration *"kent […] geen btw-identificatienummer toe aan de belastingplichtige natuurlijke personen op wie de in artikel 56bis bedoelde regeling van toepassing is en die uitsluitend diensten verrichten"* — to taxable **natural persons** under the exemption regime who supply **only services** — when **all seven** of these hold:
+
+1. the **place of supply is in Belgium**;
+2. the services are supplied *"voor andere doeleinden dan die van de gebruikelijke economische activiteit van de belastingplichtige"* — **for purposes other than the person's usual economic activity**;
+3. they are supplied **exclusively to natural persons** who use them privately, or for other people's private use;
+4. they are supplied exclusively under either (a) agreements brought about **through an approved electronic platform**, or (b) agreements for **occasional services between citizens** under chapter 2 of title 2 of the same 2018 law;
+5. the fees for the 4°(a) services are paid to the supplier **only by that platform or through it**;
+6. the 4°(b) services and their agreed fees are **recorded in the electronic system** of art. 25 of the same law;
+7. the combined turnover from 5° and 6°, **including everything the platform withheld**, does **not exceed €3,830** per calendar year, indexed under art. 178 §1 and §3 first paragraph 2° of the Income Tax Code 1992.
+
+**So the carve-out in art. 56bis §2 reaches gig work and neighbourly odd jobs, and nothing else.** Condition 2 alone disposes of the case a reader of art. 56bis would expect: a sole trader whose usual economic activity *is* immovable work fails it by definition. Condition 3 rules out every B2B supply. Condition 7 caps the whole thing below four thousand euro.
+
+**Practical reading for a founder: if your business does immovable work, you are outside the VAT exemption regime**, and the art. 50 §4 reference is not a way back in. Say that plainly rather than leaving them to chase a cross-reference.
+
+**One stale cross-reference, recorded rather than resolved.** Art. 50 §4 speaks of *"de in artikel 56bis bedoelde regeling"*. When it was written, art. 56bis **was** the small-business exemption. Since the law of 2024-03-21 the regime is arts. 56bis to 56undecies, art. 56bis holds the definitions and exclusions, and the **threshold** is in art. 56ter. Whether the 2024 law conformed art. 50 §4's reference was **[not researched]** — the amendment history shows the 2024 law touching art. 50, but at §1 only, which suggests it did not.
+
+---
+
 ### What art. 56ter actually says, and the two counting rules a founder will not guess
 
 Art. 56ter §1 gives the exemption to taxable persons established in Belgium whose **annual turnover in Belgium is not more than €25,000**, for the supplies they make in Belgium. Three further sentences matter more than the figure:
@@ -120,7 +144,11 @@ Source: [`KB nr. 1`, art. 14 §§2, 4 and 5 and arts. 17 and 18](https://www.eju
 | --- | --- | --- |
 | Art. 56bis §1 definitions of Belgian and Union annual turnover and of an established taxable person | 2026-11-13 | Primary — read and quoted from the inserting law as published |
 | Art. 56bis §2 excludes immovable work, registered-cash-register supplies and scrap dealing for the **whole** economic activity, and excludes `btw-eenheden` | 2026-11-13 | Primary — read and quoted |
-| The immovable-work exclusion does not reach services by taxable natural persons under art. 50 §4 | 2026-11-13 | Primary — read. **Art. 50 §4's own conditions are [not researched]**, so this carve-out is named rather than applied |
+| The immovable-work exclusion does not reach services by taxable natural persons under art. 50 §4 | 2026-11-13 | Primary — read |
+| Art. 50 §4's seven conditions, and the €3,830 annual cap | 2026-11-13 | Primary — art. 54 of the law of 2018-07-18 read as published in both languages, via the Staatsblad PDF the Code's amendment history links. **Closed the annex's own first open row** |
+| **Corrected on 2026-11-13:** this annex called the art. 50 §4 carve-out "the one a solo founder might stand in" | 2026-11-13 | Withdrawn — it is the sharing-economy regime. Condition 2 excludes anyone whose usual economic activity is the work in question, condition 3 excludes all B2B supply, and condition 7 caps turnover at €3,830. A founder doing immovable work as a business is **excluded from the exemption**, and the cross-reference is not a way back in |
+| The law of 2009-11-26's art. 50 ends at §3; the law of 2023-11-23 amends only §1 | 2026-11-13 | Primary — both read as published. Negative results, kept so nobody traces §4 through them again |
+| Whether the law of 2024-03-21 conformed art. 50 §4's reference to "artikel 56bis" | — | Open — the amendment history shows it touching art. 50 at §1 only, which suggests it did not. The reference now points at the definitions article rather than the threshold article |
 | Art. 56bis §3's five excluded operation types, including undeclared and unlawful operations | 2026-11-13 | Primary — read and quoted |
 | Art. 56nonies: the four limbs of the turnover base, and capital-goods transfers left out | 2026-11-13 | Primary — read and quoted. Limb 3 is the counter-intuitive one: exempt exports and intra-Community supplies count |
 | Art. 56sexies: reported amounts are the art. 56nonies amounts, in euro, split per threshold | 2026-11-13 | Primary — read and quoted |
@@ -130,7 +158,7 @@ Source: [`KB nr. 1`, art. 14 §§2, 4 and 5 and arts. 17 and 18](https://www.eju
 | Art. 56ter §1 and §2, the two counting rules, and the `EX` machinery | 2026-11-12 | Primary — carried from belgium.md §2 unchanged when this annex was created on 2026-11-13 |
 | `KB nr. 19` arts. 3 and 4: the calendar windows and the input-VAT revision on entering | 2026-11-12 | Primary — carried from belgium.md §2 unchanged |
 | `KB nr. 1` art. 14: the ledger relief and its two conditions, and the return deadlines | 2026-11-12 | Primary — carried from belgium.md §2 unchanged |
-| Art. 50 §4, the condition behind the natural-person carve-out | — | Open — named twice by art. 56bis, its text not read. **The first thing to read on any recheck**, because it decides whether a sole trader doing immovable work is in the regime at all |
+| Art. 178 §1 and §3 of the Income Tax Code 1992, which index the €3,830 | — | Open — named by art. 50 §4 7°, not read, so the **current** indexed figure is unknown. €3,830 is the 2018 base amount |
 | The list of waste and scrap goods the King draws up under art. 56bis §2 3° | — | Open — the statute delegates it; the decree was not traced |
 | Art. 44 §3's own subdivisions, which limbs 2 and 4 of the turnover base point at | — | Open — not researched. Needed before telling anyone with property, insurance or financial income how to count it |
 | The threshold, the ladder, the 10 % tolerance, e-invoicing | — | Elsewhere — [belgium.md](belgium.md) §2 and [belgium-e-invoicing.md](belgium-e-invoicing.md) |

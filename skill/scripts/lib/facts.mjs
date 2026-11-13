@@ -60,7 +60,12 @@ export const REQUIRED = [
   // matters; the third is the route no bar reaches.
   {case: 'C25', pack: 'netherlands-contracts.md', label: 'art. 6:225(3) first-shot rule quoted', pattern: /komt aan de tweede verwijzing geen werking toe/},
   {case: 'C25', pack: 'netherlands-contracts.md', label: 'art. 6:119a lid 6 makes a longer term void, not voidable', pattern: /een beding in een overeenkomst in strijd met de vorige zin is nietig/i},
-  {case: 'C25', pack: 'netherlands-contracts.md', label: 'the lid 6 test runs on both parties against art. 2:397', pattern: /art\. 2:397 lid 1 and 2 BW: the \*\*debtor\*\*/},
+  {case: 'C25', pack: 'netherlands-contracts.md', label: 'the lid 6 test runs on both parties against art. 2:397', pattern: /it runs on art\. 2:397 lid 1 and 2 BW/},
+  // The correction of 2026-11-13: art. 2:397 is the medium-sized regime, so
+  // lid 6's debtor is LARGE. "Not small" would have a founder rely on a
+  // nullity that is not there against a medium-sized client.
+  {case: 'C25', pack: 'netherlands-contracts.md', label: 'lid 6 reaches a large debtor, not merely a non-small one', pattern: /\*\*"Not small" is the wrong gloss/},
+  {case: '—', pack: 'netherlands-contracts.md', label: 'art. 2:397 lid 1 thresholds', pattern: /not more than €50,000,000/},
   {case: 'C25', pack: 'netherlands-contracts.md', label: 'art. 6:248(2) quoted as the fallback with no size test', pattern: /naar maatstaven van redelijkheid en billijkheid onaanvaardbaar zou zijn/},
   {case: '—', pack: 'belgium.md', label: 'unfair terms black list article', pattern: /VI\.91\/4/},
   {case: '—', pack: 'belgium.md', label: 'software ownership: no automatic transfer', pattern: /niet automatisch overgedragen/},
@@ -85,6 +90,12 @@ export const REQUIRED = [
   {case: '—', pack: 'belgium-vat-exemption.md', label: 'a transfer of the business own capital goods does not count', pattern: /De overdracht van materiële of immateriële investeringsgoederen van de belastingplichtige wordt niet in aanmerking genomen/},
   {case: '—', pack: 'belgium-vat-exemption.md', label: 'the cross-border relief lapses if the reporting is not done', pattern: /the relief lapses if they do not meet the Directive's art\. 284ter obligations/},
   {case: '—', pack: 'belgium-vat-exemption.md', label: 'undeclared and unlawful operations are outside the exemption', pattern: /de handelingen die niet worden aangegeven en de handelingen die niet geoorloofd zijn/},
+  // Art. 50 §4, read 2026-11-13. The carve-out it anchors reads like relief
+  // for any sole trader doing immovable work and is in fact the sharing-economy
+  // regime. Both halves are asserted: the cap, which makes the scale obvious,
+  // and the correction, so the old gloss cannot come back.
+  {case: '—', pack: 'belgium-vat-exemption.md', label: 'art. 50 §4 is capped at EUR 3,830 a year', pattern: /does \*\*not exceed €3,830\*\* per calendar year/},
+  {case: '—', pack: 'belgium-vat-exemption.md', label: 'a founder doing immovable work as a business is outside the exemption', pattern: /if your business does immovable work, you are outside the VAT exemption regime/},
 
   // --- Germany ---------------------------------------------------------------
   {case: 'C14', pack: 'germany.md', label: 'receiving mandatory from 2025-01-01', pattern: /2025-01-01/},
