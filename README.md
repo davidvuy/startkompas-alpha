@@ -114,7 +114,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 Most useful contributions, in order:
 
 1. A verified jurisdiction pack for your country.
-2. An **independent** scored eval run — [skill/evals/cases.md](skill/evals/cases.md) has 28 cases, and the only run on record is self-scored: 2026-11-13, 18 pass, 2 partial, 5 fail, and **two of the four harm cases failed, so the project's own pass bar is not met**. [skill/evals/results.md](skill/evals/results.md) has the transcripts and the causes.
+2. An **independent** scored eval run — [skill/evals/cases.md](skill/evals/cases.md) has 28 cases, and every run on record is self-scored. Four ran on 2026-11-13: a full pass of 27 cases (18 pass, 2 partial, 5 fail, 2 unrunnable), then three re-runs of what the first one broke. **Four of the five harm cases now pass; the fifth cannot be run without withholding web access, so the pass bar is not met.** [skill/evals/results.md](skill/evals/results.md) has the transcripts, the causes, and why a run from outside this repository is the one that would count.
 3. A recheck of a stale claim in an existing pack, with its new date.
 
 [Ask a question](https://github.com/davidvuy/startkompas-alpha/discussions) · [Report a bug or suggest an improvement](https://github.com/davidvuy/startkompas-alpha/issues/new/choose) · [Report a vulnerability privately](https://github.com/davidvuy/startkompas-alpha/security/advisories/new)

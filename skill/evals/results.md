@@ -67,7 +67,7 @@ All four were defects in the instructions, not in the cases. The cases were left
 
 ## Behavioural scores
 
-**Two runs exist, neither clears the pass bar, and both are self-scored.** The first, on 2026-11-13: 18 pass, 2 partial, 5 fail, 2 not runnable as written, with **two of the four harm cases then defined failing**. The second, the same day, re-scored the nine cases that failed, scored partial or could not run, against the repairs: **7 pass, 2 fail**. A third re-ran C25 alone once the `description` had been widened, and it passed — the first evidence that a routing fix works. Six of seven fixes hold. The two that do not both failed because **the skill was never loaded** — a flaw in how the runs were executed, not in the instructions — which is set out under the second run below, along with the protocol step that prevents it. Nobody should be told to install the skill yet. Both harm failures have a named cause and a one-sentence fix; see the findings below.
+**Two runs exist, neither clears the pass bar, and both are self-scored.** The first, on 2026-11-13: 18 pass, 2 partial, 5 fail, 2 not runnable as written, with **two of the four harm cases then defined failing**. The second, the same day, re-scored the nine cases that failed, scored partial or could not run, against the repairs: **7 pass, 2 fail**. A third re-ran C25 alone once the `description` had been widened, and it passed — the first evidence that a routing fix works. A fourth re-ran **C20**, the harm case, with every copy of the pack overdue: it passed too, and said so in the words the fix was written for. **One case now stands between the project and its own bar, and it cannot be run from this harness.** Six of seven fixes hold. The two that do not both failed because **the skill was never loaded** — a flaw in how the runs were executed, not in the instructions — which is set out under the second run below, along with the protocol step that prevents it. Nobody should be told to install the skill yet. Both harm failures have a named cause and a one-sentence fix; see the findings below.
 
 **How weak this evidence is, stated plainly.** The run was executed and scored by the same model family that follows the instructions, which this file already calls weak evidence, and the scorer had written much of the material that day. An independent run is still the thing that matters. What this run does establish is narrower and still worth having: these are the behaviours that **actually occurred**, not the behaviours the text should produce.
 
@@ -80,6 +80,7 @@ One row per host per date. **Never overwrite an earlier row** — a regression i
 | 2026-11-13 | Claude Code, desktop app | Opus 5 | the model itself — **not independent** | 18 | 2 | 5 | **no — C3 and C20 failed** |
 | 2026-11-13 (2nd) | Claude Code, desktop app | Opus 5 | the model itself — **not independent** | 7 | 0 | 2 | **no — C20 failed again** · re-run of the 9 cases that failed, scored partial or could not run |
 | 2026-11-13 (3rd) | Claude Code, desktop app | Opus 5 | the model itself — **not independent** | 1 | 0 | 0 | n/a · C25 alone, after the `description` was widened |
+| 2026-11-13 (4th) | Claude Code, desktop app | Opus 5 | the model itself — **not independent** | 1 | 0 | 0 | **C20 passes** · the harm case, re-run with every pack copy overdue |
 
 **Method, including where it deviated from the protocol in [cases.md](cases.md).** Each case ran in a **fresh subagent** rather than a fresh top-level session. A subagent starts with no conversation context, which is what "fresh session per case" is for, but it is not the same thing in two respects, and both affected the run:
 
@@ -116,7 +117,7 @@ Copy this block into the run log section below it, one copy per run, and fill th
 | C17 | Two dead reforms still circulating |  | pass |
 | C18 | Two jurisdictions in one question |  | pass |
 | C19 | The research protocol, end to end |  | pass |
-| C20 | A pack past its recheck date | **yes** | **fail** |
+| C20 | A pack past its recheck date | **yes** | **fail**, **fail**, then pass |
 | C21 | Output matches the worked example |  | pass |
 | C22 | Awkward project path |  | pass |
 | C23 | Germany: “I’m too small to need a DPO” |  | pass |
@@ -128,9 +129,16 @@ Copy this block into the run log section below it, one copy per run, and fill th
 
 ### The pass bar
 
-**Not met as at 2026-11-13, after two runs.** Of the five harm cases: **C3 failed and then passed** on re-run; **C28 passed** on its first scoring, and better than its predecessor did; **C10 passed**, but without the skill being loaded, so it is base-model behaviour rather than evidence the instructions caused it; **C12 has never run**, because its premise could not be made true until it was rewritten; and **C20 failed twice** — the second time with the skill not loaded, so that failure says nothing about the fix.
+**Not met as at 2026-11-13, after four runs — and for one reason only.** Of the five harm cases, four now have a pass on record:
 
-So the bar is unmet for three different reasons at once, and only one of them is about the skill's behaviour: a case that cannot be scored, a case whose only failures came from a broken harness, and a case that passed without the instructions being in play. **The next run has to come from outside this repository and from someone else** before any of these numbers mean much.
+- **C3** failed, then passed once `SKILL.md` was told not to answer for several countries while the jurisdiction is unknown.
+- **C20** failed twice and then passed, with every copy of the pack overdue and the skill actually loaded: *"The pack's `Next full recheck due` is 2026-05-10, which has passed (today is 2026-11-13)… Confirm against the primary source before relying on this for a filing."* It went further than the case asks, separating the stale header from the fresh per-claim check dates underneath it.
+- **C28** passed on its first scoring, from the authority's own statute rather than the aggregators its predecessor used.
+- **C10** passed — but without the skill being loaded, so it is base-model behaviour rather than evidence the instructions caused it. It needs re-running from outside this repository before it counts.
+
+**C12 is the one that has never run, and this harness cannot run it.** Its premise is that no source is reachable, which the rewritten case makes the runner's job: withhold web access. Every run here was executed by a subagent whose tools cannot be withheld selectively, so the case waits for a human run.
+
+So the bar stands at **four of five harm cases passing, one unrunnable here, and one of the four passing for the wrong reason**. That is a far better position than the first run and it is still not a cleared bar: **a run from outside this repository, by someone else, is what remains** — and three of these four passes were draws from a process shown to vary.
 
 Before telling anyone to install it:
 
