@@ -75,6 +75,36 @@ The instructions for use must contain at least: the provider's identity and cont
 
 ---
 
+## Annex IV in full — what the technical documentation has to contain
+
+Source: [Annex IV on the AI Act Service Desk](https://ai-act-service-desk.ec.europa.eu/en/ai-act/annex-4) · *the Commission's own platform, managed by DG CONNECT* · **[checked 2026-11-13]**
+
+**This matters more than it did yesterday.** Art. 11 promises SMEs a simplified form of this annex and [eu-ai-act.md](eu-ai-act.md) §3 now records that the form **does not exist** — it is not among the guidelines the AI Office has published. So for a small provider of an Annex III system, Annex IV in full *is* the obligation, and naming it without listing it was leaving out the thing a founder needs to decide whether to build at all.
+
+Art. 11(1)'s documentation *"shall contain at least the following information, as applicable to the relevant AI system"* — nine points:
+
+| # | What it requires | Within reach of a solo founder? |
+| --- | --- | --- |
+| **1** | A general description: intended purpose, provider name, version and its relation to earlier versions; how the system interacts with hardware or software **that is not part of it, including other AI systems**; versions of relevant software or firmware and update requirements; **every form** in which it is placed on the market — embedded, download, API; the hardware it runs on; where it is a component of a product, photographs showing external features, marking and internal layout; a basic description of the deployer's user interface; and instructions for use for the deployer | **Yes.** This is documentation of decisions already made |
+| **2** | A detailed description of the system's elements and of its development: methods and steps, **including any pre-trained systems or third-party tools and how they were used, integrated or modified**; design specifications — the general logic, the algorithms, key design choices with their rationale and assumptions *"including with regard to persons or groups of persons in respect of who, the system is intended to be used"*, the main classification choices, **what the system is designed to optimise for**, expected output and output quality, and the trade-offs taken to meet Chapter III Section 2; the architecture and the computational resources used to develop, train, test and validate; where relevant **datasheets** on training methodology and the training sets, their provenance, scope, main characteristics, how the data was obtained and selected, labelling procedures, cleaning methodologies; the art. 14 **human-oversight assessment**; pre-determined changes and the technical solutions keeping the system compliant through them; **validation and testing procedures**, the data used, metrics for accuracy and robustness **and potentially discriminatory impacts**, with *"test logs and all test reports dated and signed by the responsible persons"*; and cybersecurity measures | **Partly, and this is where a pilot stops being cheap.** Datasheets on provenance, signed and dated test reports, and a measured discriminatory-impact metric are not weekend work, and they cannot be written retrospectively from memory |
+| **3** | Detailed information about monitoring, functioning and control: capabilities and limitations, **including accuracy for specific persons or groups** and overall expected accuracy against the intended purpose; foreseeable unintended outcomes and sources of risk to health, safety, fundamental rights **and discrimination**; the art. 14 oversight measures actually in place; and input-data specifications | Partly — the per-group accuracy figures presuppose the testing in point 2 |
+| **4** | A description of why the performance metrics are **appropriate** for this system | Yes, if point 2 was done honestly |
+| **5** | A detailed description of the **art. 9 risk management system** | Yes in form; it is a standing process, not a document |
+| **6** | A description of relevant changes made through the lifecycle | Yes — if it is kept from the start |
+| **7** | A list of the **harmonised standards** applied, as published in the Official Journal; **where none have been applied**, a detailed description of the solutions adopted to meet Chapter III Section 2, with any other standards and technical specifications used | **This is the hidden cost.** No harmonised standards means writing the justification yourself, clause by clause |
+| **8** | A copy of the **art. 47 EU declaration of conformity** | Yes — but it is a declaration that everything above is true |
+| **9** | A detailed description of the system for evaluating performance **post-market** under art. 72, including the art. 72(3) **post-market monitoring plan** | Form only: the art. 72(3) voluntary template is among the guidelines **not yet published** |
+
+**Two readings a founder should take from this table.**
+
+**First, points 2 and 7 are where an Annex III pilot becomes a project rather than an experiment.** Signed, dated test reports and a measured discriminatory-impact metric have to exist *while* the system is being built; and with no harmonised standards published for the AI Act, point 7 means writing your own conformity argument against Chapter III Section 2. Neither can be produced after the fact.
+
+**Second, "as applicable to the relevant AI system" is a real qualifier and not an escape.** It drops the points that genuinely cannot apply — a pure-software system has no internal layout to photograph. It does not drop the testing, the datasheets or the standards justification for a system that processes personal data about candidates.
+
+**The honest conclusion for a solo founder in an Annex III area**: the documentation is not the hard part of compliance, it is the *record* of the hard parts, and the hard parts are art. 9 risk management, art. 10 data governance and art. 15 accuracy and robustness testing. If those were not done, Annex IV cannot be written — and the simplification art. 11 promises to make this lighter has not been published. Say that before a founder commits to the build.
+
+---
+
 ## Pack maintenance
 
 One row per substantive claim. The Status column uses the seven labels defined in [README.md](README.md#the-status-column-is-a-fixed-vocabulary).
@@ -99,7 +129,8 @@ One row per substantive claim. The Status column uses the seven labels defined i
 | Art. 15(4): feedback loops in systems that keep learning; redundancy, backup or fail-safe | 2026-11-12 | Primary — read and quoted |
 | **Art. 15(5): data poisoning, model poisoning, adversarial examples or model evasion, confidentiality attacks, model flaws** | 2026-11-12 | Primary — read and quoted; the statute names them |
 | Whether the Commission's simplified technical documentation form exists yet | — | Open — art. 11 requires it. **Not in the AI Office's own list of published guidelines** as at 2026-07-31, which lists eight sets still being worked on and names the art. 17 simplified **quality management system** for SMEs among them — a different instrument. So neither simplification the Regulation holds out to an SME exists, and the eval run's lead is corroborated as far as an absence can be. See [eu-ai-act.md](eu-ai-act.md) §3 |
-| Annex IV's own contents, and Annex I | — | Open — not researched. Annex IV is the minimum content art. 11 points at, so this annex names it without reproducing it |
+| Annex IV's nine points, including the signed and dated test reports in 2(g) and the own-justification duty in 7 | 2026-11-13 | Primary — read in full on the Commission's AI Act Service Desk. **Closed an open row that mattered more once the art. 11 simplified form was confirmed not to exist** |
+| Annex I, the harmonisation legislation behind route one | — | Open — not read. The Service Desk serves it, so this is a fetch rather than a search |
 | Arts. 17, 18 and 43 — quality management, documentation keeping, conformity assessment | — | Open — named in art. 16's list in [eu-ai-act.md](eu-ai-act.md) §2 and not yet read |
 | The risk tiers, art. 6, the dates, penalties and the national layer | — | Elsewhere — maintained in [eu-ai-act.md](eu-ai-act.md) and [eu-ai-act-national.md](eu-ai-act-national.md) |
 

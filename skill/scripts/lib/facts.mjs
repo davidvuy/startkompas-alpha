@@ -97,6 +97,15 @@ export const REQUIRED = [
   {case: '—', pack: 'belgium-vat-exemption.md', label: 'art. 50 §4 is capped at EUR 3,830 a year', pattern: /does \*\*not exceed €3,830\*\* per calendar year/},
   {case: '—', pack: 'belgium-vat-exemption.md', label: 'a founder doing immovable work as a business is outside the exemption', pattern: /if your business does immovable work, you are outside the VAT exemption regime/},
 
+  // --- The AI Act's documentation duty, read 2026-11-13 ---------------------
+  // Annex IV matters only because the art. 11 simplification does not exist.
+  // Both halves are asserted: an entry that loses either one would describe a
+  // lighter regime than the Regulation has.
+  {case: 'C24', pack: 'eu-ai-act-high-risk.md', label: 'Annex IV 2(g) requires signed and dated test reports', pattern: /test logs and all test reports dated and signed by the responsible persons/},
+  {case: 'C24', pack: 'eu-ai-act-high-risk.md', label: 'Annex IV 7 makes the provider justify conformity where no harmonised standard applies', pattern: /No harmonised standards means writing the justification yourself/},
+  {case: 'C24', pack: 'eu-ai-act.md', label: 'the art. 6(5) guidelines are a draft, not adopted', pattern: /They exist as a draft and have not been adopted|exist as a \*\*draft\*\*, not adopted/},
+  {case: 'C24', pack: 'eu-ai-act.md', label: 'neither SME simplification has been published', pattern: /Both simplifications are promised and neither exists|neither is published/},
+
   // --- Germany ---------------------------------------------------------------
   {case: 'C14', pack: 'germany.md', label: 'receiving mandatory from 2025-01-01', pattern: /2025-01-01/},
   // §8 Nr. 1 is an allowance on the SUM, not on each item, and the two items a
