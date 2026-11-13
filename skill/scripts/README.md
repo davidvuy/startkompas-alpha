@@ -39,6 +39,7 @@ Each of these has exactly **one** program that uses it, plus its test. They are 
 | --- | --- | --- |
 | `citations.mjs` | `check-links.mjs` | Decides which URLs get probed at all. A URL it fails to see is a claim whose evidence is never checked, so it is worth testing without a network |
 | `probe.mjs` | `check-links.mjs` | Decides what each HTTP response *means*. Takes an injectable `fetch`, so the dead-or-merely-awkward table is tested with no network and no server |
+| `statutes.mjs` | `check-links.mjs` | Decides which statute reading claims a version, and reads the version in force out of the portal's redirect. Both halves are string work on text that varies — a dated URL, or the portal's `Geldend van` phrase in a source annotation — and a *wrongly* attributed version is worse than a missed one, because it sends a maintainer to reread a statute that has not changed |
 | `facts.mjs` | `check-facts.mjs` | The assertion tables **and** a pure `evaluate()`. The tables are data that goes wrong in specific ways — a duplicate label, a pattern naming a pack that no longer exists — so they are tested as data |
 | `graph.mjs` | `check-dossier.mjs` | The two walks over a dossier's links: reachability, and one depth-first search for a cycle. Takes an adjacency map and nothing else |
 
@@ -57,7 +58,7 @@ Honest note on the original extraction: it did **not** reduce total lines — 73
 | `check-dossier.mjs` | The change-propagation algorithm in `references/dossier-format.md` terminates, and is acyclic | Broken reference, duplicate id, invalid assertion value, a dependency cycle, **a `location` that points at nothing** — reported as the path round the loop | no |
 | `check-facts.mjs` | Packs and eval cases still agree | A fact a case depends on has moved, or a reversed claim has returned | no |
 | `check-freshness.mjs` | No pack is past its recheck date, and its maintenance table is still machine-readable | Missing recheck date, overdue recheck, an impossible date, a verified claim older than 183 days, a Status cell outside the seven-label vocabulary, an `Open` row carrying a check date or a dated label missing one | no |
-| `check-links.mjs` | Every cited source URL still resolves, and every anchor with it | 404, 410, or a host that does not resolve | **yes** |
+| `check-links.mjs` | Every cited source URL still resolves, and every anchor with it — **and every Dutch statute reading is still the version in force** | 404, 410, or a host that does not resolve. A statute read at a version the portal no longer serves is **warned**, not failed | **yes** |
 | `build-zip.mjs` | The upload archive has `SKILL.md` at its root | `SKILL.md` not at the archive root | no |
 | `test/*.test.mjs` | **The checks above actually catch what they claim to** | A check that passes a tree it should reject | no |
 
@@ -143,8 +144,21 @@ A check nobody has watched fail is not known to work. Each of these has fired on
 | `check-facts.mjs` | Four real mismatches, listed above |
 | `check-freshness.mjs` | Three packs whose recheck date did not parse, because the period sat inside the bold. Then, once the Status column became a vocabulary: an `Unconfirmed` row in `belgium.md` dated `—`, hiding that the Staatsblad really had been searched, and five `Elsewhere` rows dated as though a check had happened in a pack that only points elsewhere |
 | `check-links.mjs` | A `wetten.overheid.nl` redirect to a dated URL, and a moved CNIL page |
+| `check-links.mjs` — statute versions | Nothing yet, and that is the finding: on 2026-11-13 all **six** Dutch statute readings in the packs matched the version in force. Watched failing with one date edited, to see that the message names both dates and the file to reread |
 | `check-dossier.mjs` | Its tests break it on purpose, including a three-hop cycle and a dangling link. And on 2026-11-13 it found real content: the shipped worked example's only customer-evidence source pointed at a file that did not exist, and its artifact `location` pointed at `files/offer-v1.md` while the file sat beside the dossier. A behavioural eval run found the first; the new location check found the second |
 | `test/conventions.test.mjs` | A deliberately added `--- 9. ---` section with no tests, and `lib/graph.mjs` added without a README entry |
+
+## Why the link check also reads statute versions
+
+A dead URL is loud. `check-links.mjs` fails, and a maintainer can see that a claim's evidence is gone.
+
+**An amended statute is silent.** The URL still resolves, the page still looks official, and the article a pack quoted may have been rewritten since it was read. Nothing in the project noticed that, and it is the failure mode with the worst consequences: a pack that goes on asserting repealed law, with a check date next to it that makes it look verified.
+
+`wetten.overheid.nl` answers the question for free. The undated `/BWBR0005289` redirects to `/BWBR0005289/<date>` — the version in force today — so a reading that states which version it used can be compared against it with one extra request to a host already in the queue. Four of the packs' six Dutch readings state the version in the source annotation (*"read on the official portal in the version `Geldend van 16-07-2026`"*) and two state it in a dated URL; both are read.
+
+**It warns and never fails**, for two reasons that are not politeness. An amendment may not touch the articles quoted, so a mismatch is a prompt to reread rather than a proven error — and a pack may cite an older version deliberately, beside a `Withdrawn` row, which is the record working as intended. What the warning carries is the pair of dates and the file to reread, which is the part a maintainer cannot derive themselves.
+
+**No equivalent exists for the other portals yet.** `gesetze-im-internet.de` serves no version in its URLs, EUR-Lex consolidations are dated in the CELEX number rather than by redirect, and Justel's version is in the page body. So this covers the Netherlands and says so, rather than pretending to cover four countries.
 
 ## What makes check-links slow, measured rather than guessed
 

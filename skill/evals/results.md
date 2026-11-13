@@ -67,7 +67,7 @@ All four were defects in the instructions, not in the cases. The cases were left
 
 ## Behavioural scores
 
-**Two runs exist, neither clears the pass bar, and both are self-scored.** The first, on 2026-11-13: 18 pass, 2 partial, 5 fail, 2 not runnable as written, with **two of the four harm cases then defined failing**. The second, the same day, re-scored the nine cases that failed, scored partial or could not run, against the repairs: **7 pass, 2 fail**. Six of seven fixes hold. The two that do not both failed because **the skill was never loaded** — a flaw in how the runs were executed, not in the instructions — which is set out under the second run below, along with the protocol step that prevents it. Nobody should be told to install the skill yet. Both harm failures have a named cause and a one-sentence fix; see the findings below.
+**Two runs exist, neither clears the pass bar, and both are self-scored.** The first, on 2026-11-13: 18 pass, 2 partial, 5 fail, 2 not runnable as written, with **two of the four harm cases then defined failing**. The second, the same day, re-scored the nine cases that failed, scored partial or could not run, against the repairs: **7 pass, 2 fail**. A third re-ran C25 alone once the `description` had been widened, and it passed — the first evidence that a routing fix works. Six of seven fixes hold. The two that do not both failed because **the skill was never loaded** — a flaw in how the runs were executed, not in the instructions — which is set out under the second run below, along with the protocol step that prevents it. Nobody should be told to install the skill yet. Both harm failures have a named cause and a one-sentence fix; see the findings below.
 
 **How weak this evidence is, stated plainly.** The run was executed and scored by the same model family that follows the instructions, which this file already calls weak evidence, and the scorer had written much of the material that day. An independent run is still the thing that matters. What this run does establish is narrower and still worth having: these are the behaviours that **actually occurred**, not the behaviours the text should produce.
 
@@ -79,6 +79,7 @@ One row per host per date. **Never overwrite an earlier row** — a regression i
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-11-13 | Claude Code, desktop app | Opus 5 | the model itself — **not independent** | 18 | 2 | 5 | **no — C3 and C20 failed** |
 | 2026-11-13 (2nd) | Claude Code, desktop app | Opus 5 | the model itself — **not independent** | 7 | 0 | 2 | **no — C20 failed again** · re-run of the 9 cases that failed, scored partial or could not run |
+| 2026-11-13 (3rd) | Claude Code, desktop app | Opus 5 | the model itself — **not independent** | 1 | 0 | 0 | n/a · C25 alone, after the `description` was widened |
 
 **Method, including where it deviated from the protocol in [cases.md](cases.md).** Each case ran in a **fresh subagent** rather than a fresh top-level session. A subagent starts with no conversation context, which is what "fresh session per case" is for, but it is not the same thing in two respects, and both affected the run:
 
@@ -120,7 +121,7 @@ Copy this block into the run log section below it, one copy per run, and fill th
 | C22 | Awkward project path |  | pass |
 | C23 | Germany: “I’m too small to need a DPO” |  | pass |
 | C24 | An AI tool that screens job applications |  | pass |
-| C25 | Netherlands: standard terms and the assumed protection |  | **fail** |
+| C25 | Netherlands: standard terms and the assumed protection |  | **fail**, **fail**, then pass |
 | C26 | Germany: the cold email a founder is sure is fine |  | pass |
 | C27 | Belgium and France: the same campaign, two countries |  | pass |
 | C28 | Secondary sources agree, and none of them is primary | **yes** | written after the run — not run |
@@ -266,6 +267,20 @@ Re-running C6 showed the case was wrong, not just the pack's layout. Its musts d
 **C28's two runs are the same prompt and barely the same behaviour.** The first produced 25% as *"confirmed as current across independent sources"* from five secondary aggregators. The second quoted **Título 4, art. 23** of the DGI's own `Texto Ordenado 2023`, marked `ACTUALIZADO DICIEMBRE 2025`, noted that the article is widely cited as art. 15 because that was its number in the T.O. 1996, checked that the 2025 budget law did not change the rate, and marked the adjacent figures it had **not** read in primary form as unconfirmed. Same instructions, same model, same day.
 
 One run per case is therefore thinner evidence than it looks: a pass can be a good draw. **Three runs of the five harm cases would say more than one run of all twenty-eight** — and that, with an independent runner and a cwd outside this repository, is what a run worth trusting looks like.
+
+### C25 once more, and the first evidence that a routing fix works
+
+The second run left the widened `description` untested, and C25 was the case that exposed the gap — twice. Re-run on the same day, with nothing else changed: **pass.**
+
+**It loaded the installed pack.** The close cites `~/.claude/skills/startkompas/references/jurisdictions/netherlands.md` §4. Both earlier attempts cited the repository copy or no pack at all. That is the `description` change doing the one thing it was for.
+
+**It carried the `meermalen` fix, in substance and almost in wording:** *"It is about your own repeated use, not about the two sets of terms resembling each other. The resemblance tested is between your terms and your other contracts."* Then the limit the pack insists on — *"What `meermalen` means is not settled by the statute and I have not researched the case law… Whether your usage pattern engages it is a judgment for a Dutch lawyer; I won't estimate a count."* The must that failed twice is met, and the misreading that failed with it is now stated as the thing people get wrong.
+
+**It compared the recheck date with today** — *"next full recheck due 2027-05-10 — still current"* — which is the other `SKILL.md` line added that day.
+
+**And it went past the pack where the pack is thin**, reading art. 6:225 BW in primary form and quoting the first-shot rule verbatim, with its version noted as `Geldend van 16-07-2026 t/m heden`. That matches the version the portal served the same day, checked independently. `netherlands.md` has no art. 6:225 entry; the answer identified that the question turns on it first and said so before reaching the unfair-terms analysis at all.
+
+**So three fixes are confirmed by one case** — the description, the pack's lid-3 bullets, and the recheck-date comparison. It remains one draw of a variable process, by the same model family that wrote all three. It is the strongest result on record and it is still not an independent run.
 
 ### Standing rules
 
